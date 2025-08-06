@@ -1,0 +1,10 @@
+{
+  "title": "feat: Ghostbusters GCP Implementation Complete - Intelligent Linter System & Multi-Agent Architecture",
+  "body_file": "create_pr.md",
+  "base": "develop",
+  "head": "ghostbusters-gcp-implementation",
+  "labels": ["enhancement", "ghostbusters", "intelligent-linter"],
+  "assignees": [],
+  "reviewers": [],
+  "draft": false
+} 
