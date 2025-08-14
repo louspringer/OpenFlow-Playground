@@ -23,3 +23,14 @@ repos:
     hooks:
       - id: ruff
         args: [--fix]
+
+  # Project Model Validation
+  - repo: local
+    hooks:
+      - id: project-model-validation
+        name: Project Model Validation
+        entry: python3 scripts/validate_project_model.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]

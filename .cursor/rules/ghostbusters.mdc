@@ -1,8 +1,5 @@
----
 description: "Ghostbusters Component - Multi-Agent Delusion Detection & Recovery System"
-globs: ["src/ghostbusters/**/*.py", "tests/test_ghostbusters*.py", "**/*.py"]
-alwaysApply: true
----
+globs: ["src/multi_agent_testing/**/*.py", "tests/test_diversity_hypothesis.py", "**/*.py"]
 
 # Ghostbusters Component Rules
 
@@ -25,14 +22,17 @@ Ghostbusters is a comprehensive multi-agent system for detecting and recovering 
 
 ### Ghostbusters Commands
 ```bash
-# Run full Ghostbusters workflow
-python -m src.ghostbusters.ghostbusters_orchestrator
+# Run full Ghostbusters workflow (Diversity System)
+python3 src/multi_agent_testing/code_quality_automation_orchestrator.py .
 
-# Run specific agent
-python -c "from src.ghostbusters import SecurityExpert; import asyncio; asyncio.run(SecurityExpert().detect_delusions('.'))"
+# Run simple quality automation
+python3 src/multi_agent_testing/automate_quality_secure.py .
 
-# Run recovery engine
-python -c "from src.ghostbusters import IndentationFixer; import asyncio; asyncio.run(IndentationFixer().execute_recovery({'target_files': ['problematic_file.py']}))"
+# Run diversity hypothesis testing
+python3 -m pytest src/multi_agent_testing/test_diversity_hypothesis.py
+
+# Run multi-agent analysis
+python3 src/multi_agent_testing/ghostbusters_diversity_analysis.py
 ```
 
 ### Integration with Existing Tools
@@ -44,10 +44,11 @@ python -c "from src.ghostbusters import IndentationFixer; import asyncio; asynci
 ## Component Structure
 
 ### Core Components
-- **GhostbustersOrchestrator**: Main orchestrator using LangGraph
-- **Expert Agents**: Security, Code Quality, Test, Build, Architecture, Model
-- **Validators**: Domain-specific validation components
-- **Recovery Engines**: Syntax, Indentation, Import, Type Annotation fixers
+- **MultiDimensionalSmokeTest**: Core diversity testing system
+- **LangGraphDiversityOrchestrator**: Orchestrates diversity analysis
+- **DiversitySynthesisOrchestrator**: Synthesizes fixes for diversity issues
+- **CostAnalysis**: Analyzes costs of diversity systems
+- **CodeQualityAutomationOrchestrator**: Automated quality improvement workflow
 
 ### Workflow Phases
 1. **Detect Delusions**: All agents analyze the project
@@ -131,27 +132,27 @@ python -c "from src.ghostbusters import IndentationFixer; import asyncio; asynci
 
 ### Basic Usage
 ```python
-from src.ghostbusters import run_ghostbusters
+from src.multi_agent_testing import MultiDimensionalSmokeTest
 
 # Run Ghostbusters on current project
-state = await run_ghostbusters(".")
-print(f"Confidence: {state.confidence_score}")
+test_system = MultiDimensionalSmokeTest()
+result = test_system.run_test("code_quality", "security_expert", "direct_questions", "json", {})
 ```
 
 ### Custom Orchestrator
 ```python
-from src.ghostbusters import GhostbustersOrchestrator
+from src.multi_agent_testing import CodeQualityAutomationOrchestrator
 
-orchestrator = GhostbustersOrchestrator("path/to/project")
-state = await orchestrator.run_ghostbusters()
+orchestrator = CodeQualityAutomationOrchestrator("path/to/project")
+results = orchestrator.run_complete_automation()
 ```
 
 ### Individual Agents
 ```python
-from src.ghostbusters import SecurityExpert
+from src.multi_agent_testing import MultiDimensionalSmokeTest
 
-expert = SecurityExpert()
-result = await expert.detect_delusions(Path("."))
+expert = MultiDimensionalSmokeTest()
+result = expert.run_test("security_audit", "security_expert", "socratic_questioning", "json", {})
 ```
 
 ## Configuration
@@ -292,6 +293,11 @@ result = await expert.detect_delusions(Path("."))
 
 ### Reporting
 - Comprehensive JSON reports
+- Human-readable summaries
+- Actionable recommendations
+- Historical trend analysis
+
+
 - Human-readable summaries
 - Actionable recommendations
 - Historical trend analysis
