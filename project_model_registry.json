@@ -1105,7 +1105,10 @@
         "hackathon/*.yaml",
         "hackathon/*.json",
         "**/*hackathon*.py",
-        "**/*hackathon*.md"
+        "**/*hackathon*.md",
+        "gke-ai-microservices-hackathon/**/*",
+        "tidb-agentx-hackathon/**/*",
+        "kiro-ai-development-hackathon/**/*"
       ],
       "content_indicators": [
         "hackathon",
@@ -1137,6 +1140,12 @@
       "demo_role": "coordination",
       "extraction_candidate": false,
       "reason": "Central coordination domain that should remain in main project",
+      "github_repositories": [
+        "nkllon/gke-ai-microservices-hackathon",
+        "nkllon/tidb-agentx-hackathon", 
+        "nkllon/kiro-ai-development-hackathon"
+      ],
+      "implementation_status": "repositories_created",
       "hackathon_mapping": {
         "gke_turns_10": {
           "name": "GKE Turns 10 Hackathon",
