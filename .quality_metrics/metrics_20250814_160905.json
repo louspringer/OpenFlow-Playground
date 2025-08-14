@@ -1,0 +1,38 @@
+{
+  "project_path": ".",
+  "overall_score": 80.0,
+  "scores": [
+    {
+      "metric_name": "code_quality",
+      "score": 100.0,
+      "weight": 2.0,
+      "details": {},
+      "timestamp": "2025-08-14T16:09:05.374343+00:00"
+    },
+    {
+      "metric_name": "security",
+      "score": 100.0,
+      "weight": 3.0,
+      "details": {},
+      "timestamp": "2025-08-14T16:09:05.374350+00:00"
+    },
+    {
+      "metric_name": "test_coverage",
+      "score": 0.0,
+      "weight": 1.5,
+      "details": {
+        "coverage_percentage": 0.0
+      },
+      "timestamp": "2025-08-14T16:09:05.374356+00:00"
+    },
+    {
+      "metric_name": "performance",
+      "score": 100.0,
+      "weight": 1.0,
+      "details": {},
+      "timestamp": "2025-08-14T16:09:05.374360+00:00"
+    }
+  ],
+  "metadata": {},
+  "timestamp": "2025-08-14T16:09:05.374334+00:00"
+}
