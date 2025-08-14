@@ -3,36 +3,35 @@
 Tests for Ghostbusters Component
 """
 
-import pytest
-import asyncio
 from pathlib import Path
 from typing import Any
 
+import pytest
+
 from src.ghostbusters import (
     GhostbustersOrchestrator,
-    run_ghostbusters,
 )
 from src.ghostbusters.agents import (
-    SecurityExpert,
-    CodeQualityExpert,
-    TestExpert,
-    BuildExpert,
     ArchitectureExpert,
+    BuildExpert,
+    CodeQualityExpert,
     ModelExpert,
-)
-from src.ghostbusters.validators import (
-    SecurityValidator,
-    CodeQualityValidator,
-    TestValidator,
-    BuildValidator,
-    ArchitectureValidator,
-    ModelValidator,
+    SecurityExpert,
+    TestExpert,
 )
 from src.ghostbusters.recovery import (
-    SyntaxRecoveryEngine,
-    IndentationFixer,
     ImportResolver,
+    IndentationFixer,
+    SyntaxRecoveryEngine,
     TypeAnnotationFixer,
+)
+from src.ghostbusters.validators import (
+    ArchitectureValidator,
+    BuildValidator,
+    CodeQualityValidator,
+    ModelValidator,
+    SecurityValidator,
+    TestValidator,
 )
 
 
@@ -42,7 +41,7 @@ class TestGhostbustersAgents:
     @pytest.fixture
     def project_path(self) -> Path:
         """Get project path for testing"""
-        return Path(".")
+        return Path()
 
     @pytest.mark.asyncio
     async def test_security_expert(self, project_path: Path) -> None:
@@ -419,21 +418,8 @@ class TestGhostbustersIntegration:
         from src.ghostbusters import (
             GhostbustersOrchestrator,
             SecurityExpert,
-            CodeQualityExpert,
-            TestExpert,
-            BuildExpert,
-            ArchitectureExpert,
-            ModelExpert,
             SecurityValidator,
-            CodeQualityValidator,
-            TestValidator,
-            BuildValidator,
-            ArchitectureValidator,
-            ModelValidator,
             SyntaxRecoveryEngine,
-            IndentationFixer,
-            ImportResolver,
-            TypeAnnotationFixer,
         )
 
         # Test that classes can be instantiated

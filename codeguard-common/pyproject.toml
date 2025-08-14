@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "tidb-agentx-hackathon"
+name = "clewcrew-common"
 version = "0.1.0"
-description = "TiDB AgentX Hackathon 2025: AI-powered multi-agent testing with TiDB Serverless"
+description = "clewcrew-common: Your friendly neighborhood hallucination-busting task force"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
@@ -20,34 +20,14 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
 ]
 requires-python = ">=3.9"
 dependencies = [
-    # Core AI components from parent project
-    "ghostbusters-ai>=0.1.0",
-    "multi-agent-testing>=0.1.0",
-    "model-driven-projection>=0.1.0",
-    
-    # Data and visualization
-    "data-analysis-toolkit>=0.1.0",
-    "svg-visualization-engine>=0.1.0",
-    
-    # Infrastructure
-    "ghostbusters-api-client>=0.1.0",
-    "deployment-automation>=0.1.0",
-    
-    # TiDB specific dependencies
-    "tidb-connector-python>=0.1.0",
-    "pymilvus>=2.3.0",  # For vector search
-    
-    # Standard dependencies
-    "fastapi>=0.104.0",
-    "uvicorn>=0.24.0",
-    "streamlit>=1.28.0",
-    "pandas>=2.0.0",
-    "numpy>=1.24.0",
     "pydantic>=2.0.0",
-    "python-dotenv>=1.0.0",
+    "typing-extensions>=4.0.0",
 ]
 
 [project.optional-dependencies]
@@ -73,13 +53,13 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/louspringer/tidb-agentx-hackathon"
-Documentation = "https://github.com/louspringer/tidb-agentx-hackathon#readme"
-Repository = "https://github.com/louspringer/tidb-agentx-hackathon.git"
-Issues = "https://github.com/louspringer/tidb-agentx-hackathon/issues"
+Homepage = "https://github.com/louspringer/clewcrew-common"
+Documentation = "https://github.com/louspringer/clewcrew-common#readme"
+Repository = "https://github.com/louspringer/clewcrew-common.git"
+Issues = "https://github.com/louspringer/clewcrew-common/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/tidb_agentx_hackathon"]
+packages = ["src/clewcrew_common"]
 
 [tool.black]
 line-length = 88
@@ -150,7 +130,6 @@ addopts = [
 ]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-    "integration: marks tests as integration tests",
     "unit: marks tests as unit tests",
 ]
 
@@ -177,7 +156,3 @@ exclude_lines = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
 ]
-
-
-
-

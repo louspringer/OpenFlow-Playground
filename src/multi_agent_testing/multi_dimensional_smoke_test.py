@@ -554,9 +554,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = (
-                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
-                )
+                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")

@@ -86,6 +86,12 @@ ignore = [
     "COM812", # missing trailing comma (conflicts with formatter)
     "ISC001", # implicit string concatenation (conflicts with formatter)
     "E902",  # No such file or directory (pre-commit hook issue)
+    "F541",  # f-string without any placeholders (PEP 8's most annoying rule - f-strings are valid even without placeholders)
+    "PTH120", # os.path.dirname() -> Path.parent (style preference, not functional)
+    "PTH100", # os.path.abspath() -> Path.resolve() (style preference, not functional)
+    "PTH109", # os.getcwd() -> Path.cwd() (style preference, not functional)
+    "PTH103", # os.makedirs() -> Path.mkdir() (style preference, not functional)
+    "F401",  # unused imports (false positives for availability testing)
 ]
 
 # Allow autofix for all rules

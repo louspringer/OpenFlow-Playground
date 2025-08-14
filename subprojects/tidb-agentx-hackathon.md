@@ -235,3 +235,7 @@ TiDB AgentX Hackathon
 **Priority**: 🔴 **HIGHEST** - $30,500 prize  
 **Strategy**: Component distribution + TiDB integration  
 **Success Criteria**: Complete AI agent workflow with TiDB
+
+
+
+

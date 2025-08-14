@@ -157,7 +157,7 @@ def validate_xss_safe(text: str) -> bool:
     dangerous_patterns = [
         "<script[^>]*>.*?</script>",
         "javascript:",
-        "on\\w+\\s*=",
+        r"on\w+\s*=",
         "<iframe[^>]*>",
         "<object[^>]*>",
         "<embed[^>]*>",
