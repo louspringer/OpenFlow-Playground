@@ -1,0 +1,120 @@
+{
+  "clewcrew": {
+    "name": "clewcrew",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew",
+    "status": "skipped",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": false,
+    "git_status": "unknown",
+    "errors": [
+      "No pyproject.toml found - not a Python project"
+    ]
+  },
+  "clewcrew-agents": {
+    "name": "clewcrew-agents",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-agents",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-common": {
+    "name": "clewcrew-common",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-common",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-core": {
+    "name": "clewcrew-core",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-core",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-framework": {
+    "name": "clewcrew-framework",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-framework",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-recovery": {
+    "name": "clewcrew-recovery",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-recovery",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-tools": {
+    "name": "clewcrew-tools",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-tools",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "clewcrew-validators": {
+    "name": "clewcrew-validators",
+    "path": "/home/lou/Documents/OpenFlow-Playground/clewcrew-validators",
+    "status": "clean",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": true,
+    "git_status": "dirty",
+    "errors": []
+  },
+  "gke-ai-microservices-hackathon": {
+    "name": "gke-ai-microservices-hackathon",
+    "path": "/home/lou/Documents/OpenFlow-Playground/subprojects/gke-ai-microservices-hackathon",
+    "status": "skipped",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": false,
+    "git_status": "unknown",
+    "errors": [
+      "No pyproject.toml found - not a Python project"
+    ]
+  },
+  "kiro-ai-development-hackathon": {
+    "name": "kiro-ai-development-hackathon",
+    "path": "/home/lou/Documents/OpenFlow-Playground/subprojects/kiro-ai-development-hackathon",
+    "status": "skipped",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": false,
+    "git_status": "unknown",
+    "errors": [
+      "No pyproject.toml found - not a Python project"
+    ]
+  },
+  "tidb-agentx-hackathon": {
+    "name": "tidb-agentx-hackathon",
+    "path": "/home/lou/Documents/OpenFlow-Playground/tidb-agentx-hackathon",
+    "status": "skipped",
+    "ruff_issues_before": 0,
+    "ruff_issues_after": 0,
+    "black_formatted": false,
+    "git_status": "unknown",
+    "errors": [
+      "No pyproject.toml found - not a Python project"
+    ]
+  }
+}

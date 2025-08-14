@@ -263,7 +263,7 @@ class ContinuousLearningModel:
             )
 
             # Clean up
-            os.unlink(temp_file)
+            Path(temp_file).unlink()
 
             if result.returncode != 0:
                 return result.stdout.splitlines()
@@ -416,9 +416,9 @@ class InfiniteQueueLearningSystem:
         """Serialize model for telemetry"""
         return {
             "type": type(model).__name__,
-            "attributes": list(model.__dict__.keys())
-            if hasattr(model, "__dict__")
-            else [],
+            "attributes": (
+                list(model.__dict__.keys()) if hasattr(model, "__dict__") else []
+            ),
         }
 
     def _get_context(self) -> dict[str, Any]:

@@ -349,9 +349,9 @@ class ActualBillingAnalyzer:
             "estimated_monthly": estimated_total,
             "actual_charge": actual_charge,
             "discrepancy": discrepancy,
-            "discrepancy_percentage": (discrepancy / actual_charge * 100)
-            if actual_charge > 0
-            else 0,
+            "discrepancy_percentage": (
+                (discrepancy / actual_charge * 100) if actual_charge > 0 else 0
+            ),
             "possible_causes": [],
         }
 
