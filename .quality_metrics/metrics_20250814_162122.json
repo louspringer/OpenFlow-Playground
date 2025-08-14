@@ -1,0 +1,50 @@
+{
+  "project_path": ".",
+  "overall_score": 96.73333333333333,
+  "scores": [
+    {
+      "metric_name": "code_quality",
+      "score": 99.0,
+      "weight": 2.0,
+      "details": {
+        "total_issues": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "flake8_issues": [
+          {
+            "file": "test_file.py",
+            "type": "code_quality_issue",
+            "priority": "medium",
+            "description": "Line too long"
+          }
+        ]
+      },
+      "timestamp": "2025-08-14T16:21:22.433818+00:00"
+    },
+    {
+      "metric_name": "security",
+      "score": 100.0,
+      "weight": 3.0,
+      "details": {},
+      "timestamp": "2025-08-14T16:21:22.433824+00:00"
+    },
+    {
+      "metric_name": "test_coverage",
+      "score": 85.0,
+      "weight": 1.5,
+      "details": {
+        "coverage_percentage": 85.0
+      },
+      "timestamp": "2025-08-14T16:21:22.433828+00:00"
+    },
+    {
+      "metric_name": "performance",
+      "score": 100.0,
+      "weight": 1.0,
+      "details": {},
+      "timestamp": "2025-08-14T16:21:22.433831+00:00"
+    }
+  ],
+  "metadata": {},
+  "timestamp": "2025-08-14T16:21:22.433804+00:00"
+}
