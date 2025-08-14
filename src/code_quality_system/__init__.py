@@ -5,14 +5,14 @@ Comprehensive code quality automation that integrates with the multi-agent testi
 enforces quality gates, and provides round-trip code generation validation.
 """
 
-from .quality_metrics import QualityMetrics, QualityScore
-from .quality_gates import QualityGate, QualityGateManager
+from .integrations import CICDIntegration, PreCommitIntegration
 from .quality_enforcer import QualityEnforcer
-from .integrations import PreCommitIntegration, CICDIntegration
+from .quality_gates import QualityGate, QualityGateManager
+from .quality_metrics import QualityMetrics, QualityScore
 
 __all__ = [
     "QualityMetrics",
-    "QualityScore", 
+    "QualityScore",
     "QualityGate",
     "QualityGateManager",
     "QualityEnforcer",
