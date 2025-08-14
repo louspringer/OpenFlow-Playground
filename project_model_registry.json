@@ -430,14 +430,20 @@
       "patterns": [
         "src/multi_agent_testing/*.py",
         "src/multi_agent_testing/**/*.py",
-        "**/*multi_agent*.py"
+        "**/*multi_agent*.py",
+        "clewcrew-*/**/*.py",
+        "**/*clewcrew*.py"
       ],
       "content_indicators": [
         "multi_agent",
         "agent_testing",
         "blind_spot_detection",
         "diversity_testing",
-        "agent_orchestration"
+        "agent_orchestration",
+        "clewcrew",
+        "clewcrew_framework",
+        "clewcrew_agents",
+        "clewcrew_core"
       ],
       "linter": "flake8",
       "formatter": "black",
@@ -451,7 +457,8 @@
         "Support blind spot detection with multiple perspectives",
         "Implement diversity testing for comprehensive coverage",
         "Support agent orchestration and validation",
-        "Maintain zero false positives in agent analysis"
+        "Maintain zero false positives in agent analysis",
+        "Integrate with nkllon/clewcrew constellation for production deployment"
       ],
       "demo_role": "tool",
       "extraction_candidate": "HIGH",
@@ -460,8 +467,20 @@
         "Could become a standalone testing framework",
         "Has potential for commercial testing tools",
         "Could integrate with existing testing frameworks",
-        "Has potential for AI-powered testing applications"
-      ]
+        "Has potential for AI-powered testing applications",
+        "Now deployed as nkllon/clewcrew constellation on GitHub"
+      ],
+      "github_organization": "nkllon",
+      "github_repositories": [
+        "nkllon/clewcrew-common",
+        "nkllon/clewcrew-framework", 
+        "nkllon/clewcrew-agents",
+        "nkllon/clewcrew-core",
+        "nkllon/clewcrew-recovery",
+        "nkllon/clewcrew-tools",
+        "nkllon/clewcrew-validators"
+      ],
+      "implementation_status": "deployed_to_github"
     },
     "visualization": {
       "patterns": [

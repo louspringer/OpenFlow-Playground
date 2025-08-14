@@ -104,7 +104,7 @@ def run_pre_commit_check(project_path: Path, verbose: bool = False) -> int:
         return 1
 
 
-def run_ci_check(project_path: Path, verbose: bool = False) -> int:
+async def run_ci_check(project_path: Path, verbose: bool = False) -> int:
     """Run CI/CD quality check"""
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
@@ -113,7 +113,7 @@ def run_ci_check(project_path: Path, verbose: bool = False) -> int:
         logger.info(f"Running CI/CD quality check on {project_path}")
 
         integration = CICDIntegration(project_path)
-        result = integration.run_ci_quality_check()
+        result = await integration.run_ci_quality_check()
 
         if result["can_proceed"]:
             print("✅ CI/CD quality check passed")
@@ -297,7 +297,8 @@ Examples:
     elif args.command == "pre-commit":
         return run_pre_commit_check(project_path, args.verbose)
     elif args.command == "ci":
-        return run_ci_check(project_path, args.verbose)
+        import asyncio
+        return asyncio.run(run_ci_check(project_path, args.verbose))
     elif args.command == "install-hook":
         return install_pre_commit_hook(project_path, args.verbose)
     elif args.command == "trends":
