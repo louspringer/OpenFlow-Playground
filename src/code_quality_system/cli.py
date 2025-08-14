@@ -15,7 +15,7 @@ from .integrations.pre_commit_integration import PreCommitIntegration
 from .quality_enforcer import QualityEnforcer
 
 
-def setup_logging(verbose: bool = False) -> None:
+def setup_logging(*, verbose: bool = False) -> None:
     """Set up logging configuration"""
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
@@ -23,7 +23,7 @@ def setup_logging(verbose: bool = False) -> None:
     )
 
 
-def run_quality_check(project_path: Path, verbose: bool = False) -> int:
+def run_quality_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run a quality check on the project"""
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
@@ -62,16 +62,16 @@ def run_quality_check(project_path: Path, verbose: bool = False) -> int:
             print(f"   Overall Score: {result['overall_score']:.1f}")
             print(f"   Can Proceed: {result['can_proceed']}")
             return 0
-        
+
         print("❌ Quality Check Failed")
         print(f"   Overall Score: {result['overall_score']:.1f}")
         print(f"   Blocking Gates: {result['blocking_gates']}")
-        
+
         if "recommendations" in result:
             print("\nRecommendations:")
             for rec in result["recommendations"]:
                 print(f"   • {rec}")
-        
+
         return 1
 
     except Exception as e:
@@ -80,7 +80,7 @@ def run_quality_check(project_path: Path, verbose: bool = False) -> int:
         return 1
 
 
-def run_pre_commit_check(project_path: Path, verbose: bool = False) -> int:
+def run_pre_commit_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run pre-commit quality check"""
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
@@ -94,7 +94,7 @@ def run_pre_commit_check(project_path: Path, verbose: bool = False) -> int:
         if success:
             print("✅ Pre-commit quality check passed")
             return 0
-        
+
         print("❌ Pre-commit quality check failed")
         return 1
 
@@ -104,7 +104,7 @@ def run_pre_commit_check(project_path: Path, verbose: bool = False) -> int:
         return 1
 
 
-async def run_ci_check(project_path: Path, verbose: bool = False) -> int:
+async def run_ci_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run CI/CD quality check"""
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ async def run_ci_check(project_path: Path, verbose: bool = False) -> int:
             print("✅ CI/CD quality check passed")
             print(f"   Overall Score: {result.get('overall_score', 'N/A')}")
             return 0
-        
+
         print("❌ CI/CD quality check failed")
         print(f"   Overall Score: {result.get('overall_score', 'N/A')}")
         return 1
@@ -130,7 +130,7 @@ async def run_ci_check(project_path: Path, verbose: bool = False) -> int:
         return 1
 
 
-def install_pre_commit_hook(project_path: Path, verbose: bool = False) -> int:
+def install_pre_commit_hook(project_path: Path, *, verbose: bool = False) -> int:
     """Install pre-commit hook"""
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
@@ -144,7 +144,7 @@ def install_pre_commit_hook(project_path: Path, verbose: bool = False) -> int:
         if success:
             print("✅ Pre-commit hook installed successfully")
             return 0
-        
+
         print("❌ Failed to install pre-commit hook")
         return 1
 
@@ -155,7 +155,7 @@ def install_pre_commit_hook(project_path: Path, verbose: bool = False) -> int:
 
 
 def show_quality_trends(
-    project_path: Path, days: int = 30, verbose: bool = False
+    project_path: Path, *, days: int = 30, verbose: bool = False
 ) -> int:
     """Show quality trends over time"""
     setup_logging(verbose)
@@ -293,19 +293,24 @@ Examples:
 
     # Execute command
     if args.command == "check":
-        return run_quality_check(project_path, args.verbose)
-    elif args.command == "pre-commit":
-        return run_pre_commit_check(project_path, args.verbose)
-    elif args.command == "ci":
+        return run_quality_check(project_path=project_path, verbose=args.verbose)
+    if args.command == "pre-commit":
+        return run_pre_commit_check(project_path=project_path, verbose=args.verbose)
+    if args.command == "ci":
         import asyncio
-        return asyncio.run(run_ci_check(project_path, args.verbose))
-    elif args.command == "install-hook":
-        return install_pre_commit_hook(project_path, args.verbose)
-    elif args.command == "trends":
-        return show_quality_trends(project_path, args.days, args.verbose)
-    else:
-        print(f"❌ Unknown command: {args.command}")
-        return 1
+
+        return asyncio.run(
+            run_ci_check(project_path=project_path, verbose=args.verbose)
+        )
+    if args.command == "install-hook":
+        return install_pre_commit_hook(project_path=project_path, verbose=args.verbose)
+    if args.command == "trends":
+        return show_quality_trends(
+            project_path=project_path, days=args.days, verbose=args.verbose
+        )
+
+    print(f"❌ Unknown command: {args.command}")
+    return 1
 
 
 if __name__ == "__main__":
