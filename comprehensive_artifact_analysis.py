@@ -532,10 +532,14 @@ class ArtifactAnalyzer:
                 "traced_artifacts": self.analysis.artifacts_traced,
                 "untraced_artifacts": self.analysis.artifacts_untraced,
                 "coverage_percentage": (
-                    self.analysis.artifacts_traced / self.analysis.total_artifacts * 100
-                )
-                if self.analysis.total_artifacts > 0
-                else 0,
+                    (
+                        self.analysis.artifacts_traced
+                        / self.analysis.total_artifacts
+                        * 100
+                    )
+                    if self.analysis.total_artifacts > 0
+                    else 0
+                ),
             },
             "domain_analysis": {
                 "domain_counts": self.analysis.domain_coverage,

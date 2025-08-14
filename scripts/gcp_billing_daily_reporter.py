@@ -91,9 +91,11 @@ class GCPBillingDailyReporter:
                     "date": date.strftime("%Y-%m-%d"),
                     "cloud_functions": {
                         "cost": cloud_functions_cost,
-                        "usage": "18 functions"
-                        if cloud_functions_cost > 0
-                        else "0 functions",
+                        "usage": (
+                            "18 functions"
+                            if cloud_functions_cost > 0
+                            else "0 functions"
+                        ),
                     },
                     "cloud_run": {"cost": cloud_run_cost, "usage": "19 services"},
                     "firestore": {"cost": 0.04, "usage": "1 database"},  # $0.04 per day
@@ -216,7 +218,7 @@ class GCPBillingDailyReporter:
             )
             plt.xlabel("Date", fontsize=12)
             plt.ylabel("Total Cost ($)", fontsize=12)
-            plt.grid(True, alpha=0.3)
+            plt.grid(visible=True, alpha=0.3)
             plt.xticks(rotation=45)
             plt.tight_layout()
 

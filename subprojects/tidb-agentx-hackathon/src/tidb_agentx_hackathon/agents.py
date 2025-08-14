@@ -179,8 +179,8 @@ class MultiAgentTestingService:
             "total_tests": total_tests,
             "passed_tests": passed_tests,
             "failed_tests": failed_tests,
-            "success_rate": (passed_tests / total_tests * 100)
-            if total_tests > 0
-            else 0,
+            "success_rate": (
+                (passed_tests / total_tests * 100) if total_tests > 0 else 0
+            ),
             "active_tests": len(self.active_tests),
         }

@@ -13,6 +13,7 @@ from typing import Any
 class QualityStage(Enum):
     """Stages of the quality automation workflow"""
 
+    SUBPROJECT_SCRUBBING = "subproject_scrubbing"
     BLACK_FORMATTING = "black_formatting"
     RUFF_LINTING = "ruff_linting"
     PRE_COMMIT_CHECK = "pre_commit_check"
@@ -85,7 +86,7 @@ class CodeQualityAutomationOrchestrator:
     def __init__(self, target_directory: str = "."):
         """Initialize the orchestrator"""
         self.target_directory = Path(target_directory).resolve()
-        self.current_stage = QualityStage.BLACK_FORMATTING
+        self.current_stage = QualityStage.SUBPROJECT_SCRUBBING
         self.quality_reports: list[QualityReport] = []
         self.iteration_count = 0
         self.max_iterations = 5  # Prevent infinite loops
@@ -172,45 +173,126 @@ class CodeQualityAutomationOrchestrator:
             print(f"❌ Ruff linting failed: {e}")
             return {"success": False, "error": str(e)}
 
-    def run_pre_commit_check(self) -> dict[str, Any]:
-        """Run pre-commit hooks on target files"""
-        print("🔍 Running pre-commit checks...")
+    def run_subproject_scrubbing(self) -> dict[str, Any]:
+        """Run subproject scrubbing across all subprojects"""
+        print("🔧 Running subproject scrubbing...")
 
         try:
-            # Get Python files in target directory
-            python_files = list(self.target_directory.rglob("*.py"))
-            file_paths = [str(f) for f in python_files]
+            # Import and run the subproject scrubber
+            scrubber_script = (
+                Path(__file__).parent.parent.parent
+                / "scripts"
+                / "scrub_all_subprojects.py"
+            )
 
-            if not file_paths:
+            print(f"   📁 Scrubber script: {scrubber_script}")
+
+            if not scrubber_script.exists():
+                print(f"   ❌ Script not found at {scrubber_script}")
+                return {
+                    "success": False,
+                    "error": f"Subproject scrubber script not found at {scrubber_script}",
+                }
+
+            print("   🔄 Executing subproject scrubber...")
+            # Run the subproject scrubber
+            result = subprocess.run(
+                ["python3", str(scrubber_script)],
+                capture_output=True,
+                text=True,
+                cwd=self.target_directory,
+                timeout=300,  # 5 minutes timeout
+            )
+
+            if result.returncode == 0:
+                print("✅ Subproject scrubbing completed successfully")
+                return {
+                    "success": True,
+                    "output": result.stdout,
+                    "subprojects_processed": "See output for details",
+                }
+
+            print("⚠️ Subproject scrubbing completed with issues")
+            return {
+                "success": False,
+                "error": result.stderr,
+                "output": result.stdout,
+            }
+
+        except subprocess.TimeoutExpired:
+            return {
+                "success": False,
+                "error": "Subproject scrubbing timed out after 5 minutes",
+            }
+        except Exception as e:
+            return {"success": False, "error": f"Subproject scrubbing failed: {str(e)}"}
+
+    def run_pre_commit_check(self) -> dict[str, Any]:
+        """Run pre-commit hooks on staged files only"""
+        print("🔍 Running pre-commit checks on staged files...")
+
+        try:
+            # Get ONLY staged Python files (what git actually cares about)
+            result = subprocess.run(
+                ["git", "diff", "--cached", "--name-only"],
+                capture_output=True,
+                text=True,
+                cwd=self.target_directory,
+                timeout=30,
+            )
+
+            if result.returncode != 0:
+                print("   ⚠️ Could not get staged files from git")
+                return {
+                    "success": False,
+                    "error": "Failed to get staged files from git",
+                    "files_checked": 0,
+                    "issues_found": 0,
+                }
+
+            staged_files = result.stdout.strip().split("\n")
+            python_files = [f for f in staged_files if f.endswith(".py") and f.strip()]
+
+            if not python_files:
+                print("   ℹ️ No staged Python files found")
                 return {
                     "success": True,
                     "files_checked": 0,
                     "issues_found": 0,
-                    "message": "No Python files found",
+                    "message": "No staged Python files to check",
                 }
 
-            # Run pre-commit on specific files
+            print(f"   📁 Checking {len(python_files)} staged Python files...")
+
+            # Run pre-commit on ONLY staged files
+            print("   🔄 Executing pre-commit hooks on staged files...")
             result = subprocess.run(
-                ["python3", "-m", "pre_commit", "run", "--files"] + file_paths,
+                ["python3", "-m", "pre_commit", "run", "--files"] + python_files,
                 capture_output=True,
                 text=True,
                 cwd=self.target_directory,
+                timeout=60,  # 1 minute timeout (should be fast for staged files)
             )
+
+            print("   ✅ Pre-commit execution completed")
 
             # Parse pre-commit output
             issues = self._parse_pre_commit_output(result.stdout, result.stderr)
 
             return {
                 "success": result.returncode == 0,
-                "files_checked": len(file_paths),
+                "files_checked": len(python_files),
                 "issues_found": len(issues),
                 "issues": issues,
                 "output": result.stdout,
                 "stderr": result.stderr,
             }
 
+        except subprocess.TimeoutExpired:
+            print("   ⏰ Pre-commit check timed out after 2 minutes")
+            return {"success": False, "error": "Timeout after 2 minutes"}
         except Exception as e:
-            print(f"❌ Pre-commit check failed: {e}")
+            print(f"   ❌ Pre-commit check failed: {e}")
             return {"success": False, "error": str(e)}
 
     def run_multi_agent_analysis(self) -> dict[str, Any]:
@@ -454,6 +536,7 @@ class CodeQualityAutomationOrchestrator:
         current_report = self.generate_quality_report()
 
         # Do: Apply automated fixes
+        subproject_result = self.run_subproject_scrubbing()
         black_result = self.run_black_formatting()
         ruff_result = self.run_ruff_linting()
 
@@ -477,7 +560,11 @@ class CodeQualityAutomationOrchestrator:
         return {
             "iteration": self.iteration_count,
             "plan": current_report.to_dict(),
-            "do": {"black": black_result, "ruff": ruff_result},
+            "do": {
+                "subprojects": subproject_result,
+                "black": black_result,
+                "ruff": ruff_result,
+            },
             "check": pre_commit_result,
             "act": multi_agent_result,
             "should_continue": should_continue,
@@ -488,9 +575,20 @@ class CodeQualityAutomationOrchestrator:
         """Run the complete automation workflow until clean"""
         print("🚀 Starting complete code quality automation workflow...")
 
+        # Start with subproject scrubbing
+        print("🔧 Phase 1: Subproject scrubbing...")
+        subproject_result = self.run_subproject_scrubbing()
+        if not subproject_result.get("success", False):
+            print(
+                f"⚠️ Subproject scrubbing had issues: {subproject_result.get('error', 'Unknown error')}"
+            )
+        else:
+            print("✅ Subproject scrubbing completed")
+
         results = {
             "workflow_start": datetime.now().isoformat(),
             "target_directory": str(self.target_directory),
+            "subproject_scrubbing": subproject_result,
             "iterations": [],
             "final_report": None,
         }
@@ -541,13 +639,57 @@ def main():
     """Main function to run the automation"""
     import sys
 
-    target_dir = sys.argv[1] if len(sys.argv) > 1 else "."
+    # Parse arguments properly
+    args = sys.argv[1:]
+    test_mode = "--test" in args
+
+    # Remove --test from args to get target directory
+    if "--test" in args:
+        args.remove("--test")
+
+    target_dir = args[0] if args else "."
 
     print("🎯 Code Quality Automation Orchestrator")
     print(f"🎯 Target Directory: {target_dir}")
-    print("🎯 Starting automated quality improvement...")
+
+    if test_mode:
+        print("🧪 TEST MODE: Running individual components only")
+        print("🎯 Usage: python3 orchestrator.py [directory] --test")
+    else:
+        print("🎯 Starting automated quality improvement...")
+        print(
+            "🎯 Workflow: Subproject Scrubbing → Black → Ruff → Pre-commit → Multi-agent Analysis"
+        )
 
     orchestrator = CodeQualityAutomationOrchestrator(target_dir)
+
+    if test_mode:
+        # Test individual components
+        print("\n🧪 Testing subproject scrubbing...")
+        subproject_result = orchestrator.run_subproject_scrubbing()
+        print(f"Result: {subproject_result['success']}")
+
+        print("\n🧪 Testing Black formatting...")
+        black_result = orchestrator.run_black_formatting()
+        print(f"Result: {black_result['success']}")
+
+        print("\n🧪 Testing Ruff linting...")
+        ruff_result = orchestrator.run_ruff_linting()
+        print(f"Result: {ruff_result['success']}")
+
+        print("\n🧪 Testing pre-commit check...")
+        pre_commit_result = orchestrator.run_pre_commit_check()
+        print(f"Result: {pre_commit_result['success']}")
+
+        return {
+            "test_mode": True,
+            "subproject": subproject_result,
+            "black": black_result,
+            "ruff": ruff_result,
+            "pre_commit": pre_commit_result,
+        }
+
+    # Run full automation
     results = orchestrator.run_complete_automation()
 
     # Save report
