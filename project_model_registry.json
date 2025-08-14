@@ -351,14 +351,18 @@
       "patterns": [
         "src/code_quality_system/*.py",
         "src/code_quality_system/**/*.py",
+        "src/ghostbusters/agents/code_quality_expert.py",
         "**/*code_quality*.py"
       ],
       "content_indicators": [
         "CodeQualityModel",
         "LintingRule",
         "QualityOrchestrator",
-        "fix_unused_imports",
-        "fix_f_strings"
+        "CodeQualityExpert",
+        "systemic_analysis",
+        "pattern_recognition",
+        "process_improvement",
+        "quality_orchestration"
       ],
       "linter": "flake8",
       "formatter": "black",
@@ -368,19 +372,24 @@
         "*.pyc"
       ],
       "requirements": [
-        "Provide comprehensive code quality management for demo development",
-        "Support automated fixing of common linting issues",
-        "Implement quality orchestration and validation",
-        "Maintain zero linter errors in all demo files",
-        "Support AST parsing validation for all Python files"
+        "Provide intelligent analysis of existing code quality tool output",
+        "Identify systemic patterns in linting results across the project",
+        "Recommend process improvements and automation solutions",
+        "Suggest team training and quality standards when issues are widespread",
+        "NEVER run scanning tools - only analyze existing output",
+        "Focus on systemic solutions, not individual error reporting",
+        "Recommend pre-commit hooks, CI/CD quality gates, and process automation",
+        "Support quality orchestration and validation without duplication"
       ],
-      "demo_role": "tool",
-      "extraction_candidate": "MEDIUM",
-      "reason": "Generic code quality system with broad applicability",
+      "demo_role": "intelligent_analyst",
+      "extraction_candidate": "HIGH",
+      "reason": "Intelligent quality analysis system that provides systemic solutions rather than just error reporting",
       "extraction_benefits": [
-        "Could become a standalone code quality tool",
-        "Has potential for integration with other development tools",
-        "Could be used in educational settings"
+        "Could become a standalone intelligent quality analysis tool",
+        "Has potential for integration with existing CI/CD pipelines",
+        "Could revolutionize how teams approach code quality management",
+        "Provides actionable insights instead of just error lists",
+        "Could be used in enterprise quality management systems"
       ]
     },
     "multi_agent_testing": {
@@ -1800,10 +1809,10 @@
       "test": "test_requirement_77_code_quality_management"
     },
     {
-      "requirement": "Support automated fixing of common linting issues",
+      "requirement": "Provide intelligent analysis of existing code quality tool output",
       "domain": "code_quality_system",
-      "implementation": "Automated fixers for common code quality issues",
-      "test": "test_requirement_78_code_quality_automated_fixing"
+      "implementation": "Intelligent analysis system that identifies systemic patterns and recommends process improvements",
+      "test": "test_requirement_78_code_quality_intelligent_analysis"
     },
     {
       "requirement": "Support round-trip code generation and validation",

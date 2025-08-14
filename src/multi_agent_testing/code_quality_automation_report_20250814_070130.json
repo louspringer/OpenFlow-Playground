@@ -1,0 +1,165 @@
+{
+  "orchestrator": {
+    "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+    "current_stage": "black_formatting",
+    "iteration_count": 5
+  },
+  "quality_reports": [
+    {
+      "timestamp": "2025-08-14T07:01:16.040085",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+      "total_files_analyzed": 17,
+      "files_with_issues": 0,
+      "total_issues": 139,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 61,
+        "high": 75,
+        "critical": 3
+      },
+      "issues_by_type": {
+        "UP035": 2,
+        "W293": 74,
+        "UP006": 18,
+        "RET505": 1,
+        "W291": 1,
+        "Q000": 29,
+        "": 3,
+        "F541": 3,
+        "PTH120": 1,
+        "PTH100": 1,
+        "PTH109": 4,
+        "PTH103": 2
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 139,
+      "recommendations": [
+        "Address 139 remaining linting issues",
+        "Fix critical errors first",
+        "Address high-priority warnings"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-14T07:01:18.760248",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+      "total_files_analyzed": 17,
+      "files_with_issues": 0,
+      "total_issues": 8,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 8,
+        "high": 0,
+        "critical": 0
+      },
+      "issues_by_type": {
+        "PTH120": 1,
+        "PTH100": 1,
+        "PTH109": 4,
+        "PTH103": 2
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 8,
+      "recommendations": [
+        "Address 8 remaining linting issues"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-14T07:01:20.777755",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+      "total_files_analyzed": 17,
+      "files_with_issues": 0,
+      "total_issues": 8,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 8,
+        "high": 0,
+        "critical": 0
+      },
+      "issues_by_type": {
+        "PTH120": 1,
+        "PTH100": 1,
+        "PTH109": 4,
+        "PTH103": 2
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 8,
+      "recommendations": [
+        "Address 8 remaining linting issues"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-14T07:01:23.291258",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+      "total_files_analyzed": 17,
+      "files_with_issues": 0,
+      "total_issues": 8,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 8,
+        "high": 0,
+        "critical": 0
+      },
+      "issues_by_type": {
+        "PTH120": 1,
+        "PTH100": 1,
+        "PTH109": 4,
+        "PTH103": 2
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 8,
+      "recommendations": [
+        "Address 8 remaining linting issues"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-14T07:01:27.548088",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing",
+      "total_files_analyzed": 17,
+      "files_with_issues": 0,
+      "total_issues": 8,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 8,
+        "high": 0,
+        "critical": 0
+      },
+      "issues_by_type": {
+        "PTH120": 1,
+        "PTH100": 1,
+        "PTH109": 4,
+        "PTH103": 2
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 8,
+      "recommendations": [
+        "Address 8 remaining linting issues"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    }
+  ],
+  "timestamp": "2025-08-14T07:01:30.821819"
+}

@@ -1,6 +1,0 @@
-# GCP Services
-google-cloud-firestore==2.11.1
-functions-framework==3.4.0
-
-# Basic dependencies
-pydantic==2.9.2 

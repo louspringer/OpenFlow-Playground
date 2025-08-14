@@ -70,7 +70,7 @@ class InputValidator:
     @staticmethod
     def validate_email(email: str) -> bool:
         """Validate email format"""
-        email_pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        email_pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         return bool(re.match(email_pattern, email))
 
     @staticmethod
@@ -80,8 +80,8 @@ class InputValidator:
             "length": len(password) >= 8,
             "uppercase": bool(re.search("[A-Z]", password)),
             "lowercase": bool(re.search("[a-z]", password)),
-            "digit": bool(re.search("\\d", password)),
-            "special": bool(re.search('[!@#$%^&*(),.?\\":{}|<>]', password)),
+            "digit": bool(re.search(r"\d", password)),
+            "special": bool(re.search(r'[!@#$%^&*(),.?":{}|<>]', password)),
         }
         checks["strong"] = all(checks.values())
         return checks
@@ -98,13 +98,13 @@ class InputValidator:
     @staticmethod
     def validate_phone_number(phone: str) -> bool:
         """Validate phone number format"""
-        digits_only = re.sub("\\D", "", phone)
+        digits_only = re.sub(r"\D", "", phone)
         return len(digits_only) >= 10
 
     @staticmethod
     def validate_credit_card(card_number: str) -> bool:
         """Validate credit card number using Luhn algorithm"""
-        card_number = re.sub("\\s+|-", "", card_number)
+        card_number = re.sub(r"\s+|-", "", card_number)
         if not card_number.isdigit():
             return False
         digits = [int(d) for d in card_number]
@@ -144,10 +144,10 @@ class InputValidator:
     def validate_sql_injection_safe(sql: str) -> bool:
         """Check if SQL string is safe from injection"""
         dangerous_patterns = [
-            "(\\b(union|select|insert|update|delete|drop|create|alter)\\b)",
-            "(--|#|/\\*|\\*/)",
-            "(\\b(exec|execute|script)\\b)",
-            "(\\b(xp_|sp_)\\b)",
+            r"(\b(union|select|insert|update|delete|drop|create|alter)\b)",
+            r"(--|#|/\*|\*/)",
+            r"(\b(exec|execute|script)\b)",
+            r"(\b(xp_|sp_)\b)",
         ]
         sql_lower = sql.lower()
         return all(not re.search(pattern, sql_lower) for pattern in dangerous_patterns)
@@ -158,7 +158,7 @@ class InputValidator:
         dangerous_patterns = [
             "<script[^>]*>.*?</script>",
             "javascript:",
-            "on\\w+\\s*=",
+            r"on\w+\s*=",
             "<iframe[^>]*>",
             "<object[^>]*>",
             "<embed[^>]*>",
@@ -194,7 +194,7 @@ class InputValidator:
         if file_ext in dangerous_extensions:
             validation_result["valid"] = False
             validation_result["errors"].append(f"Dangerous file type: {file_ext}")
-        suspicious_patterns = ["\\.\\./", "\\.\\.\\\\", "cmd\\.", "\\.tmp$"]
+        suspicious_patterns = [r"\.\./", r"\.\.\\", r"cmd\.", r"\.tmp$"]
         for pattern in suspicious_patterns:
             if re.search(pattern, filename, re.IGNORECASE):
                 validation_result["valid"] = False
