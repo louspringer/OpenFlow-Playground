@@ -1256,6 +1256,34 @@
                 "testing_phase": 15.00,
                 "demo_phase": 25.00
               }
+            },
+            "deploy_template": {
+              "filename": "deploy-ghostbusters.sh",
+              "description": "GKE Deployment Script for Ghostbusters AI Hackathon 2025",
+              "variables": {
+                "cluster_name": "ghostbusters-hackathon",
+                "project_id": "ghostbusters-hackathon-2025",
+                "region": "us-central1",
+                "zone": "us-central1-a",
+                "max_nodes": "3",
+                "max_pods_per_service": "3",
+                "required_apis": [
+                  "container.googleapis.com",
+                  "compute.googleapis.com",
+                  "monitoring.googleapis.com",
+                  "logging.googleapis.com",
+                  "cloudresourcemanager.googleapis.com",
+                  "iam.googleapis.com"
+                ],
+                "k8s_manifests": [
+                  "k8s/namespaces/ghostbusters-namespace.yaml",
+                  "k8s/config/ghostbusters-config.yaml",
+                  "k8s/services/orchestrator-service.yaml",
+                  "k8s/services/ai-agents.yaml",
+                  "k8s/ingress/ghostbusters-ingress.yaml",
+                  "k8s/monitoring/ghostbusters-monitoring.yaml"
+                ]
+              }
             }
           }
         },
