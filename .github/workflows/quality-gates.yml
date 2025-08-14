@@ -1,0 +1,111 @@
+name: Quality Gates
+
+on:
+  push:
+    branches: [ main, develop, staging ]
+  pull_request:
+    branches: [ main, develop, staging ]
+
+env:
+  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref == 'refs/heads/staging' && 'staging' || 'development' }}
+  QUALITY_THRESHOLD: ${{ github.ref == 'refs/heads/main' && '85.0' || github.ref == 'refs/heads/staging' && '70.0' || '50.0' }}
+  FAIL_ON_QUALITY: ${{ github.ref == 'refs/heads/main' && 'true' || github.ref == 'refs/heads/staging' && 'true' || 'false' }}
+  QUALITY_VERBOSE: true
+  QUALITY_REPORT_PATH: quality-reports/quality-report-${{ github.run_id }}.json
+
+jobs:
+  quality-check:
+    name: Quality Gate Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install UV
+      uses: astral-sh/setup-uv@v1
+      with:
+        version: "latest"
+        
+    - name: Install dependencies
+      run: |
+        uv sync --all-extras
+        
+    - name: Run quality analysis
+      run: |
+        python -m src.code_quality_system.cli ci --project-path . --verbose
+        
+    - name: Upload quality report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: quality-report-${{ github.run_id }}
+        path: |
+          quality-reports/
+          .quality_metrics/
+          
+    - name: Quality Gate Decision
+      run: |
+        if [ "${{ env.FAIL_ON_QUALITY }}" = "true" ]; then
+          python -c "
+          import json
+          import sys
+          
+          try:
+              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
+                  report = json.load(f)
+              
+              if not report.get('can_proceed', False):
+                  print('❌ Quality gates failed!')
+                  print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+                  print(f'Threshold: {report.get(\"quality_threshold\", \"N/A\")}')
+                  sys.exit(1)
+              else:
+                  print('✅ Quality gates passed!')
+                  print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+          except Exception as e:
+              print(f'Error reading quality report: {e}')
+              sys.exit(1)
+          "
+        else
+          echo "Quality gates not enforced in ${{ env.DEPLOYMENT_ENVIRONMENT }} environment"
+        fi
+        
+    - name: Quality Summary
+      if: always()
+      run: |
+        echo "## Quality Gate Results for ${{ env.DEPLOYMENT_ENVIRONMENT }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Environment**: ${{ env.DEPLOYMENT_ENVIRONMENT }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Quality Threshold**: ${{ env.QUALITY_THRESHOLD }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Fail on Quality**: ${{ env.FAIL_ON_QUALITY }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f "${{ env.QUALITY_REPORT_PATH }}" ]; then
+          python -c "
+          import json
+          
+          try:
+              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
+                  report = json.load(f)
+              
+              print(f'**Overall Score**: {report.get(\"overall_score\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              print(f'**Quality Status**: {report.get(\"quality_status\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              print(f'**Can Proceed**: {report.get(\"can_proceed\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              
+              if 'gate_summary' in report:
+                  gates = report['gate_summary']
+                  print(f'**Total Gates**: {gates.get(\"total_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
+                  print(f'**Failed Gates**: {gates.get(\"failed_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
+                  
+          except Exception as e:
+              print(f'**Error**: Could not read quality report') >> $GITHUB_STEP_SUMMARY
+          "
+        else
+          echo "**Status**: Quality report not available" >> $GITHUB_STEP_SUMMARY
+        fi

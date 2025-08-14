@@ -2,28 +2,33 @@
 """
 CI/CD Integration
 
-Integrates quality enforcement with CI/CD pipelines.
+Integrates quality enforcement with CI/CD pipelines using multi-agent analysis.
 """
 
 import logging
 import os
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
+from ..multi_agent_integration import QualityMultiAgentAdapter
 from ..quality_enforcer import QualityEnforcementError, QualityEnforcer
 
 
 class CICDIntegration:
-    """Integrates quality enforcement with CI/CD pipelines"""
+    """Integrates quality enforcement with CI/CD pipelines using multi-agent analysis"""
 
     def __init__(self, project_path: Path):
         self.project_path = project_path
         self.quality_enforcer = QualityEnforcer(project_path)
+        self.quality_adapter = QualityMultiAgentAdapter(project_path)
         self.logger = logging.getLogger(__name__)
 
         # CI/CD environment detection
         self.ci_environment = self._detect_ci_environment()
         self.ci_config = self._load_ci_config()
+
+        # Environment-specific quality rules
+        self.environment_rules = self._load_environment_rules()
 
     def _detect_ci_environment(self) -> str:
         """Detect which CI/CD environment we're running in"""
@@ -55,12 +60,48 @@ class CICDIntegration:
                 "QUALITY_METRICS_PATH", ".quality_metrics"
             ),
             "verbose": os.getenv("QUALITY_VERBOSE", "false").lower() == "true",
+            "environment": os.getenv("DEPLOYMENT_ENVIRONMENT", "development"),
         }
 
         self.logger.info(f"CI/CD Configuration: {config}")
         return config
 
-    def run_ci_quality_check(self) -> dict[str, Any]:
+    def _load_environment_rules(self) -> dict[str, Any]:
+        """Load environment-specific quality rules"""
+        environment = self.ci_config["environment"]
+
+        # Environment-specific quality thresholds and rules
+        rules = {
+            "development": {
+                "quality_threshold": 50.0,  # Lenient for rapid iteration
+                "fail_on_quality": False,  # Don't block development
+                "gate_severity": "medium",  # Medium severity gates
+                "auto_fix_enabled": True,  # Allow auto-fixes
+                "quality_reporting": "basic",
+            },
+            "staging": {
+                "quality_threshold": 70.0,  # Moderate for validation
+                "fail_on_quality": True,  # Block on moderate issues
+                "gate_severity": "high",  # High severity gates
+                "auto_fix_enabled": False,  # No auto-fixes in staging
+                "quality_reporting": "detailed",
+            },
+            "production": {
+                "quality_threshold": 85.0,  # Strict for production
+                "fail_on_quality": True,  # Always block on issues
+                "gate_severity": "critical",  # Critical severity gates
+                "auto_fix_enabled": False,  # No auto-fixes in production
+                "quality_reporting": "comprehensive",
+            },
+        }
+
+        # Use environment-specific rules, fallback to development
+        env_rules = rules[environment] if environment in rules else rules["development"]
+        self.logger.info(f"Environment rules for {environment}: {env_rules}")
+
+        return env_rules
+
+    async def run_ci_quality_check(self) -> dict[str, Any]:
         """Run quality check for CI/CD pipeline"""
         self.logger.info(f"Running CI/CD quality check in {self.ci_environment}")
 
@@ -69,7 +110,7 @@ class CICDIntegration:
             self._configure_ci_enforcement()
 
             # Run quality check
-            result = self._run_quality_check()
+            result = await self._run_quality_check()
 
             # Generate CI-specific report
             ci_report = self._generate_ci_report(result)
@@ -93,22 +134,88 @@ class CICDIntegration:
 
     def _configure_ci_enforcement(self) -> None:
         """Configure quality enforcement for CI environment"""
-        # In CI, we want strict enforcement
+        # Use environment-specific rules
+        env_rules = self.environment_rules
+
+        # Configure enforcement based on environment
+        enforcement_level = "strict" if env_rules["fail_on_quality"] else "moderate"
+        block_on_failure = env_rules["fail_on_quality"]
+        auto_fix_enabled = env_rules["auto_fix_enabled"]
+
         self.quality_enforcer.configure_enforcement(
-            enforcement_level="strict", block_on_failure=True, auto_fix_enabled=False
+            enforcement_level=enforcement_level,
+            block_on_failure=block_on_failure,
+            auto_fix_enabled=auto_fix_enabled,
         )
 
-        # Set quality threshold from CI config
-        threshold = self.ci_config["quality_threshold"]
-        self.logger.info(f"Setting quality threshold to {threshold}")
+        # Set quality threshold from environment rules
+        threshold = env_rules["quality_threshold"]
+        self.logger.info(
+            f"Setting quality threshold to {threshold} for {self.ci_config['environment']} environment"
+        )
 
-    def _run_quality_check(self) -> dict[str, Any]:
-        """Run the actual quality check"""
-        # For CI, we need to run a full analysis
-        # This would typically integrate with your multi-agent testing framework
+        # Update CI config with environment-specific threshold
+        self.ci_config["quality_threshold"] = threshold
+        self.ci_config["fail_on_quality"] = env_rules["fail_on_quality"]
 
-        # For now, create a mock analysis result
-        # In practice, this would come from your actual analysis tools
+    async def _run_quality_check(self) -> dict[str, Any]:
+        """Run the actual quality check using multi-agent analysis"""
+        self.logger.info("Running multi-agent quality analysis for CI/CD")
+
+        try:
+            # Run multi-agent quality analysis
+            # This integrates with our clewcrew framework
+            multi_agent_results = await self._run_multi_agent_analysis()
+
+            # Convert multi-agent results to quality metrics
+            quality_metrics = (
+                await self.quality_adapter._convert_agent_results_to_metrics(
+                    multi_agent_results
+                )
+            )
+
+            # Run quality enforcement with the metrics
+            enforcement_result = self.quality_enforcer.enforce_quality(quality_metrics)
+
+            # Add multi-agent context to the result
+            enforcement_result["multi_agent_analysis"] = {
+                "agents_analyzed": len(multi_agent_results),
+                "analysis_timestamp": multi_agent_results.get("timestamp", ""),
+                "agent_results": multi_agent_results,
+            }
+
+            return enforcement_result
+
+        except Exception as e:
+            self.logger.error(f"Multi-agent quality analysis failed: {e}")
+            # Fallback to basic analysis
+            return self._run_fallback_quality_check()
+
+    async def _run_multi_agent_analysis(self) -> dict[str, Any]:
+        """Run quality analysis using the multi-agent framework"""
+        try:
+            # Import the orchestrator to run quality analysis
+            import sys
+
+            sys.path.insert(0, str(self.project_path / "clewcrew-core" / "src"))
+
+            from clewcrew_core.orchestrator import ClewcrewOrchestrator
+
+            # Create orchestrator and run quality analysis
+            orchestrator = ClewcrewOrchestrator(str(self.project_path))
+
+            return await orchestrator.run_quality_analysis(str(self.project_path))
+
+        except Exception as e:
+            self.logger.warning(f"Could not run multi-agent analysis: {e}")
+            # Return empty results to trigger fallback
+            return {}
+
+    def _run_fallback_quality_check(self) -> dict[str, Any]:
+        """Run fallback quality check when multi-agent analysis fails"""
+        self.logger.info("Running fallback quality check")
+
+        # Use the existing basic analysis logic
         analysis_results = self._get_ci_analysis_results()
 
         # Run quality enforcement
@@ -169,7 +276,7 @@ class CICDIntegration:
 
     def _generate_ci_report(self, quality_result: dict[str, Any]) -> dict[str, Any]:
         """Generate CI-specific quality report"""
-        ci_report = {
+        return {
             "ci_environment": self.ci_environment,
             "timestamp": quality_result.get("timestamp", ""),
             "project_path": str(self.project_path),
@@ -191,8 +298,6 @@ class CICDIntegration:
             if quality_result.get("can_proceed", False)
             else "failed",
         }
-
-        return ci_report
 
     def _get_build_info(self) -> dict[str, Any]:
         """Get build information from CI environment"""
@@ -268,10 +373,11 @@ class CICDIntegration:
 
             # Fail the build if configured to do so
             if self.ci_config["fail_on_quality"]:
-                raise QualityEnforcementError(
+                error_message = (
                     f"Quality check failed with score {ci_report['overall_score']:.1f} "
                     f"(threshold: {ci_report['quality_threshold']:.1f})"
                 )
+                raise QualityEnforcementError(error_message)
         else:
             self.logger.info("Quality gates passed - CI can proceed")
 

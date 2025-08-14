@@ -1,0 +1,185 @@
+stages:
+  - quality-check
+  - build
+  - test
+  - deploy
+
+variables:
+  QUALITY_VERBOSE: "true"
+  QUALITY_REPORT_PATH: "quality-reports/quality-report-${CI_PIPELINE_ID}.json"
+  QUALITY_METRICS_PATH: ".quality_metrics"
+
+# Quality Gate Check Stage
+quality-gates:
+  stage: quality-check
+  image: python:3.11-slim
+  before_script:
+    - pip install uv
+    - uv sync --all-extras
+  script:
+    - |
+      # Set environment-specific quality rules
+      if [ "$CI_COMMIT_REF_NAME" = "main" ]; then
+        export DEPLOYMENT_ENVIRONMENT="production"
+        export QUALITY_THRESHOLD="85.0"
+        export FAIL_ON_QUALITY="true"
+      elif [ "$CI_COMMIT_REF_NAME" = "staging" ]; then
+        export DEPLOYMENT_ENVIRONMENT="staging"
+        export QUALITY_THRESHOLD="70.0"
+        export FAIL_ON_QUALITY="true"
+      else
+        export DEPLOYMENT_ENVIRONMENT="development"
+        export QUALITY_THRESHOLD="50.0"
+        export FAIL_ON_QUALITY="false"
+      fi
+      
+      echo "Running quality gates for $DEPLOYMENT_ENVIRONMENT environment"
+      echo "Quality threshold: $QUALITY_THRESHOLD"
+      echo "Fail on quality: $FAIL_ON_QUALITY"
+      
+      # Run quality analysis
+      python -m src.code_quality_system.cli ci --project-path . --verbose
+      
+      # Quality gate decision
+      if [ "$FAIL_ON_QUALITY" = "true" ]; then
+        python -c "
+        import json
+        import sys
+        
+        try:
+            with open('$QUALITY_REPORT_PATH') as f:
+                report = json.load(f)
+            
+            if not report.get('can_proceed', False):
+                print('❌ Quality gates failed!')
+                print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+                print(f'Threshold: {report.get(\"quality_threshold\", \"N/A\")}')
+                sys.exit(1)
+            else:
+                print('✅ Quality gates passed!')
+                print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+        except Exception as e:
+            print(f'Error reading quality report: {e}')
+            sys.exit(1)
+        "
+      else
+        echo "Quality gates not enforced in $DEPLOYMENT_ENVIRONMENT environment"
+      fi
+  artifacts:
+    reports:
+      quality_report:
+        - $QUALITY_REPORT_PATH
+    paths:
+      - quality-reports/
+      - .quality_metrics/
+    expire_in: 30 days
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^(main|develop|staging)$/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Build Stage
+build:
+  stage: build
+  image: python:3.11-slim
+  dependencies:
+    - quality-gates
+  before_script:
+    - pip install uv
+    - uv sync --all-extras
+  script:
+    - echo "Building application..."
+    - python -m src.code_quality_system.cli check --project-path .
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^(main|develop|staging)$/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Test Stage
+test:
+  stage: test
+  image: python:3.11-slim
+  dependencies:
+    - quality-gates
+  before_script:
+    - pip install uv
+    - uv sync --all-extras
+  script:
+    - echo "Running tests..."
+    - python -m pytest tests/ --cov=src/ --cov-report=xml
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    paths:
+      - coverage.xml
+      - htmlcov/
+    expire_in: 30 days
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^(main|develop|staging)$/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Deploy Stage (Production)
+deploy-production:
+  stage: deploy
+  image: python:3.11-slim
+  dependencies:
+    - quality-gates
+    - build
+    - test
+  script:
+    - echo "Deploying to production..."
+    - |
+      # Final quality check before deployment
+      python -c "
+      import json
+      
+      with open('$QUALITY_REPORT_PATH') as f:
+          report = json.load(f)
+      
+      if report.get('can_proceed', False):
+          print('✅ Quality gates passed - proceeding with deployment')
+          print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+      else:
+          print('❌ Quality gates failed - deployment blocked')
+          exit(1)
+      "
+  environment:
+    name: production
+    url: https://production.example.com
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "main"
+      when: manual
+  allow_failure: false
+
+# Deploy Stage (Staging)
+deploy-staging:
+  stage: deploy
+  image: python:3.11-slim
+  dependencies:
+    - quality-gates
+    - build
+    - test
+  script:
+    - echo "Deploying to staging..."
+    - |
+      # Quality check for staging
+      python -c "
+      import json
+      
+      with open('$QUALITY_REPORT_PATH') as f:
+          report = json.load(f)
+      
+      if report.get('can_proceed', False):
+          print('✅ Quality gates passed - proceeding with staging deployment')
+          print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
+      else:
+          print('❌ Quality gates failed - staging deployment blocked')
+          exit(1)
+      "
+  environment:
+    name: staging
+    url: https://staging.example.com
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "staging"
+  allow_failure: false
