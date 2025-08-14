@@ -1,0 +1,29 @@
+{
+  "ci_environment": "unknown",
+  "timestamp": "",
+  "project_path": ".",
+  "overall_score": 0.0,
+  "quality_threshold": 70.0,
+  "threshold_met": false,
+  "gate_summary": {},
+  "can_proceed": false,
+  "ci_config": {
+    "ci_environment": "unknown",
+    "quality_threshold": 70.0,
+    "fail_on_quality": true,
+    "quality_report_path": "quality_report.json",
+    "quality_metrics_path": ".quality_metrics",
+    "verbose": true,
+    "environment": "staging"
+  },
+  "build_info": {
+    "ci_environment": "unknown",
+    "build_id": "unknown",
+    "build_number": "unknown",
+    "commit_sha": "unknown",
+    "branch": "unknown",
+    "triggered_by": "unknown"
+  },
+  "recommendations": [],
+  "status": "failed"
+}
