@@ -1,6 +1,7 @@
 {
   "name": "CodeQualityOrchestrator",
-  "description": "Orchestrates code quality checks and fixes using model-driven approach",
+"description": "Orchestrates code quality checks and fixes using model-driven
+approach",
   "components": [
     {
       "name": "QualityRule",

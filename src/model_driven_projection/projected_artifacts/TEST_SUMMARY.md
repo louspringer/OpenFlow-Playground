@@ -141,4 +141,5 @@
 2. `test_projected_artifacts_simple.py` - Simple validation
 3. `test_projected_artifacts.py` - Original test suite
 
-**All test files are working correctly and provide comprehensive validation of the projected artifacts.** 
+**All test files are working correctly and provide comprehensive validation of the
+projected artifacts.**

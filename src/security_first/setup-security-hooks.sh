@@ -133,7 +133,8 @@ create_documentation() {
 
 This repository uses pre-commit hooks to prevent security violations:
 
-1. **Security Check Script**: Runs `scripts/security-check.sh` to detect hardcoded credentials
+1. **Security Check Script**: Runs `scripts/security-check.sh` to detect hardcoded
+credentials
 2. **Hardcoded URL Detection**: Checks for Snowflake-specific URLs
 3. **UUID Pattern Detection**: Checks for hardcoded UUIDs
 4. **AWS Key Detection**: Checks for hardcoded AWS credentials
