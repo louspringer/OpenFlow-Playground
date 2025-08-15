@@ -161,8 +161,10 @@ class FinalProjectionSystem:
 
         # Add required constants for functional equivalence
         required_constants = [
-            "SECURITY_CONFIG = {'fernet_key': os.getenv('FERNET_KEY', Fernet.generate_key()), 'redis_url': os.getenv('REDIS_URL', 'redis://localhost:6379'), 'jwt_secret': os.getenv('JWT_SECRET', 'your-secret-key'), 'session_timeout_minutes': int(os.getenv('SESSION_TIMEOUT_MINUTES', '15')), 'max_login_attempts': int(os.getenv('MAX_LOGIN_ATTEMPTS', '3')), 'password_min_length': int(os.getenv('PASSWORD_MIN_LENGTH', '12'))}",
-            "AWS_CONFIG = {'region': os.getenv('AWS_REGION', 'us-east-1'), 'access_key': os.getenv('AWS_ACCESS_KEY_ID'), 'secret_key': os.getenv('AWS_SECRET_ACCESS_KEY')}",
+            "SECURITY_CONFIG  = \
+     {'fernet_key': os.getenv('FERNET_KEY', Fernet.generate_key()), 'redis_url': os.getenv('REDIS_URL', 'redis://localhost:6379'), 'jwt_secret': os.getenv('JWT_SECRET', 'your-secret-key'), 'session_timeout_minutes': int(os.getenv('SESSION_TIMEOUT_MINUTES', '15')), 'max_login_attempts': int(os.getenv('MAX_LOGIN_ATTEMPTS', '3')), 'password_min_length': int(os.getenv('PASSWORD_MIN_LENGTH', '12'))}",
+            "AWS_CONFIG  = \
+     {'region': os.getenv('AWS_REGION', 'us-east-1'), 'access_key': os.getenv('AWS_ACCESS_KEY_ID'), 'secret_key': os.getenv('AWS_SECRET_ACCESS_KEY')}",
         ]
 
         for constant_line in required_constants:

@@ -3,15 +3,15 @@
 
 check_parent_process() {
     local parent_pid=$(ps -o ppid= -p $$)
-    local parent_name=$(ps -o comm= -p $parent_pid)
+    local parent_name=$(ps -o comm= -p "parent_pid")
     
     # Allow if parent is make
-    if [[ "$parent_name" == "make" ]]; then
+    if [[ ""parent_nam"e" == "make" ]]; then
         return 0
     fi
     
     # Allow if we're in a make environment
-    if [[ -n "$MAKEFLAGS" || -n "$MAKELEVEL" ]]; then
+    if [[ -n ""MAKEFLAG"S" || -n ""MAKELEVE"L" ]]; then
         return 0
     fi
     

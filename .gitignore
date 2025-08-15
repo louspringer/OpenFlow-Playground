@@ -77,3 +77,9 @@ keys/
 # Confidential and incoming files
 .incoming/
 *.pdf
+
+# Subproject directories
+clewcrew*/
+gke-ai-microservices-hackathon/
+kiro-ai-development-hackathon/
+tidb-agentx-hackathon/

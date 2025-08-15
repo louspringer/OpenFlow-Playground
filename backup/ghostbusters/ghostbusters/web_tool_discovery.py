@@ -146,7 +146,8 @@ class WebToolDiscovery:
             if github_tools:
                 top_tool = github_tools[0]
                 recommendations.append(
-                    f"Found GitHub tool: {top_tool['name']} ({top_tool['stars']} stars) - {top_tool['description']}",
+                    f"Found GitHub tool: {top_tool['name']} ( \
+    {top_tool['stars']} stars) - {top_tool['description']}",
                 )
 
             if pypi_tools:
@@ -161,7 +162,8 @@ class WebToolDiscovery:
             if github_tools:
                 top_tool = github_tools[0]
                 recommendations.append(
-                    f"Found GitHub tool: {top_tool['name']} ({top_tool['stars']} stars) - {top_tool['description']}",
+                    f"Found GitHub tool: {top_tool['name']} ( \
+    {top_tool['stars']} stars) - {top_tool['description']}",
                 )
 
             if pypi_tools:
@@ -176,7 +178,8 @@ class WebToolDiscovery:
             if github_tools:
                 top_tool = github_tools[0]
                 recommendations.append(
-                    f"Found GitHub tool: {top_tool['name']} ({top_tool['stars']} stars) - {top_tool['description']}",
+                    f"Found GitHub tool: {top_tool['name']} ( \
+    {top_tool['stars']} stars) - {top_tool['description']}",
                 )
 
         # Check for subprocess security vulnerabilities
@@ -187,7 +190,8 @@ class WebToolDiscovery:
             if github_tools:
                 top_tool = github_tools[0]
                 recommendations.append(
-                    f"Found GitHub tool: {top_tool['name']} ({top_tool['stars']} stars) - {top_tool['description']}",
+                    f"Found GitHub tool: {top_tool['name']} ( \
+    {top_tool['stars']} stars) - {top_tool['description']}",
                 )
 
             if pypi_tools:
@@ -203,7 +207,8 @@ class WebToolDiscovery:
             if github_tools:
                 top_tool = github_tools[0]
                 recommendations.append(
-                    f"Found GitHub tool: {top_tool['name']} ({top_tool['stars']} stars) - {top_tool['description']}",
+                    f"Found GitHub tool: {top_tool['name']} ( \
+    {top_tool['stars']} stars) - {top_tool['description']}",
                 )
 
         if not recommendations:

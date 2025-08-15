@@ -128,7 +128,9 @@ def test_requirement_6_tool_execution() -> None:
 
     # Check if cfn-lint is available
     try:
-        secure_execute(["cfn-lint", "--version"], capture_output=True, check=True)  # type: ignore
+        secure_execute(
+            ["cfn-lint", "--version"], capture_output=True, check=True
+        )  # type: ignore
         assert "cfn-lint" in result["tools_used"], "cfn-lint not used"
         print("✅ cfn-lint executed successfully")
     except (subprocess.CalledProcessError, FileNotFoundError):

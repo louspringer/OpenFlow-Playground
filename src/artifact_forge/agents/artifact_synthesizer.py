@@ -430,7 +430,8 @@ def main() -> None:
 
     for insight in insights[:3]:  # Show first 3
         print(
-            f"  {insight.title} ({insight.insight_type}, {insight.severity}): {insight.description}",
+            f"  {insight.title} ( \
+    {insight.insight_type}, {insight.severity}): {insight.description}",
         )
 
 

@@ -113,7 +113,8 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "        text=True,",
             "        check=True",
             "    )",
-            "    billing_account = result.stdout.strip().split('\\n')[0] if result.stdout.strip() else None",
+            "    billing_account  = \
+     result.stdout.strip().split('\\n')[0] if result.stdout.strip() else None",
             "",
             "    # Get enabled services",
             "    result = subprocess.run(",
@@ -122,7 +123,8 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "        text=True,",
             "        check=True",
             "    )",
-            "    enabled_services = result.stdout.strip().split('\\n') if result.stdout.strip() else []",
+            "    enabled_services  = \
+     result.stdout.strip().split('\\n') if result.stdout.strip() else []",
             "",
             "    # Get resource usage",
             "    resources = {}",
@@ -135,7 +137,8 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "            text=True,",
             "            check=True",
             "        )",
-            "        functions = result.stdout.strip().split('\\n') if result.stdout.strip() else []",
+            "        functions  = \
+     result.stdout.strip().split('\\n') if result.stdout.strip() else []",
             "        resources['cloud_functions'] = len(functions)",
             "    except Exception:",
             "        resources['cloud_functions'] = 0",
@@ -148,7 +151,8 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "            text=True,",
             "            check=True",
             "        )",
-            "        run_services = result.stdout.strip().split('\\n') if result.stdout.strip() else []",
+            "        run_services  = \
+     result.stdout.strip().split('\\n') if result.stdout.strip() else []",
             "        resources['cloud_run'] = len(run_services)",
             "    except Exception:",
             "        resources['cloud_run'] = 0",
@@ -161,7 +165,8 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "            text=True,",
             "            check=True",
             "        )",
-            "        databases = result.stdout.strip().split('\\n') if result.stdout.strip() else []",
+            "        databases  = \
+     result.stdout.strip().split('\\n') if result.stdout.strip() else []",
             "        resources['firestore'] = len(databases)",
             "    except Exception:",
             "        resources['firestore'] = 0",
@@ -360,18 +365,23 @@ def generate_gemini_billing_analyzer() -> CodeFile:
             "print('='*60)",
             "print(f'Status: {result[\"status\"]}')",
             "print(f'Analysis ID: {result[\"analysis_id\"]}')",
-            'print(f\'Billing Analysis: {"✅ Available" if result["billing_analysis_available"] else "❌ Not available"}\')',
-            'print(f\'Ghostbusters Analysis: {"✅ Available" if result["ghostbusters_analysis_available"] else "❌ Not available"}\')',
+            'print( \
+    f\'Billing Analysis: {"✅ Available" if result["billing_analysis_available"] else "❌ Not available"}\')',
+            'print( \
+    f\'Ghostbusters Analysis: {"✅ Available" if result["ghostbusters_analysis_available"] else "❌ Not available"}\')',
             "",
             "if result['summary']:",
             "    print('\\n📊 Summary:')",
             '    print(f\'  Project ID: {result["summary"]["project_id"]}\')',
             '    print(f\'  Enabled Services: {result["summary"]["enabled_services"]}\')',
             '    print(f\'  Resources: {result["summary"]["resources"]}\')',
-            '    print(f\'  Ghostbusters Delusions: {result["summary"]["ghostbusters_delusions"]}\')',
-            '    print(f\'  Ghostbusters Confidence: {result["summary"]["ghostbusters_confidence"]}\')',
+            '    print( \
+    f\'  Ghostbusters Delusions: {result["summary"]["ghostbusters_delusions"]}\')',
+            '    print( \
+    f\'  Ghostbusters Confidence: {result["summary"]["ghostbusters_confidence"]}\')',
             "",
-            "if result.get('full_analysis', {}).get('billing_analysis', {}).get('gemini_analysis'):",
+            "if result.get( \
+    'full_analysis', {}).get('billing_analysis', {}).get('gemini_analysis'):",
             "    print('\\n🤖 Gemini Analysis:')",
             "    print('-' * 40)",
             "    print(result['full_analysis']['billing_analysis']['gemini_analysis'])",

@@ -28,26 +28,27 @@ find_1password_credential() {
     local possible_items=("$2")
     local possible_fields=("$3")
     
-    echo "🔍 Looking for $provider API key in 1Password..."
+    echo "🔍 Looking for "provide"r API key in 1Password..."
     
     # Try different item names
     for item_name in "${possible_items[@]}"; do
-        echo "  Trying item: '$item_name'"
+        echo "  Trying item: '"item_name"'"
         
         # Try different field names
         for field_name in "${possible_fields[@]}"; do
-            echo "    Trying field: '$field_name'"
+            echo "    Trying field: '"field_name"'"
             
             # Try to get the credential
-            if credential=$(op item get "$item_name" --fields "$field_name" --reveal 2>/dev/null) && [ -n "$credential" ]; then
-                echo "    ✅ Found $provider API key in '$item_name' field '$field_name'"
-                echo "$credential"
+            if credential=$(op item get ""item_nam"e" --fields ""field_nam"e" --reveal 2>/dev/null)
+[ -n ""credentia"l" ]; then
+                echo "    ✅ Found "provide"r API key in '"item_name"' field '"field_name"'"
+                echo ""credentia"l"
                 return 0
             fi
         done
     done
     
-    echo "  ❌ Could not find $provider API key"
+    echo "  ❌ Could not find "provide"r API key"
     return 1
 }
 
@@ -93,7 +94,8 @@ ANTHROPIC_FIELDS=(
 
 # Try to get OpenAI API key
 echo ""
-if OPENAI_API_KEY=$(find_1password_credential "OpenAI" "${OPENAI_ITEMS[*]}" "${OPENAI_FIELDS[*]}"); then
+if OPENAI_API_KEY=$(find_1password_credential "OpenAI" "${OPENAI_ITEMS[*]}" "${OPENAI_FIELDS[*]}")
+then
     echo "✅ Found OpenAI API key in 1Password"
     export OPENAI_API_KEY
 else
@@ -103,7 +105,8 @@ fi
 
 # Try to get Anthropic API key
 echo ""
-if ANTHROPIC_API_KEY=$(find_1password_credential "Anthropic" "${ANTHROPIC_ITEMS[*]}" "${ANTHROPIC_FIELDS[*]}"); then
+if ANTHROPIC_API_KEY=$(find_1password_credential "Anthropic" "${ANTHROPIC_ITEMS[*]}" "${ANTHROPIC_FIELDS[*]}")
+then
     echo "✅ Found Anthropic API key in 1Password"
     export ANTHROPIC_API_KEY
 else
@@ -112,7 +115,7 @@ else
 fi
 
 # Check if we have any credentials
-if [ -z "$OPENAI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+if [ -z ""OPENAI_API_KE"Y" ] && [ -z ""ANTHROPIC_API_KE"Y" ]; then
     echo ""
     echo "❌ No API credentials found in 1Password"
     echo ""

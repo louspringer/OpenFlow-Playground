@@ -1,12 +1,12 @@
 # 💰 GCP Daily Billing Report
-Generated: 2025-08-07 09:04:41
+Generated: 2025-08-14 14:19:29
 
 ## 📋 Project Information
 - **Project ID**: aardvark-linkedin-grepper
 - **Billing Account**: 01F112-E73FD5-795507
 
 ## 📅 Report Period
-- **Date Range**: 2025-07-25 to 2025-08-07
+- **Date Range**: 2025-08-01 to 2025-08-14
 - **Total Days**: 14
 
 ## 💰 Cost Summary

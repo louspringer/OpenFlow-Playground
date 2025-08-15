@@ -28,22 +28,24 @@ echo "🔑 Looking for Anthropic API key..."
 ANTHROPIC_API_KEY=""
 
 # Define a whitelist of allowed item names for security
-allowed_anthropic_items=("ANTHROPIC_API_KEY" "Anthropic Cursor AI" "Anthropic API Key" "Anthropic" "Claude API Key")
+allowed_anthropic_items=("ANTHROPIC_API_KEY" "Anthropic Cursor AI" "Anthropic API Key"
+"Anthropic" "Claude API Key")
 for item_name in "${allowed_anthropic_items[@]}"; do
-    echo "  Trying: $item_name"
+    echo "  Trying: "item_nam"e"
     # Try different field names (whitelist approach for security)
     for field_name in "credential" "api key" "password" "key" "secret"; do
         # Use field_name directly since it's from a hardcoded whitelist
-        if credential=$(op item get "$item_name" --fields "$field_name" --reveal 2>/dev/null) && [ -n "$credential" ]; then
-            echo "  ✅ Found Anthropic API key in '$item_name' field '$field_name'"
-            ANTHROPIC_API_KEY="$credential"
+        if credential=$(op item get ""item_nam"e" --fields ""field_nam"e" --reveal 2>/dev/null)
+[ -n ""credentia"l" ]; then
+            echo "  ✅ Found Anthropic API key in '"item_name"' field '"field_name"'"
+            ANTHROPIC_API_KEY=""credentia"l"
             export ANTHROPIC_API_KEY
             break 2
         fi
     done
 done
 
-if [ -z "$ANTHROPIC_API_KEY" ]; then
+if [ -z ""ANTHROPIC_API_KE"Y" ]; then
     echo "❌ Could not find Anthropic API key"
 fi
 
@@ -55,25 +57,26 @@ OPENAI_API_KEY=""
 # Define a whitelist of allowed item names for security
 allowed_openai_items=("OPENAI_API_KEY" "OpenAI API Key" "OpenAI" "GPT API Key")
 for item_name in "${allowed_openai_items[@]}"; do
-    echo "  Trying: $item_name"
+    echo "  Trying: "item_nam"e"
     # Try different field names (whitelist approach for security)
     for field_name in "credential" "api key" "password" "key" "secret"; do
         # Use field_name directly since it's from a hardcoded whitelist
-        if credential=$(op item get "$item_name" --fields "$field_name" --reveal 2>/dev/null) && [ -n "$credential" ]; then
-            echo "  ✅ Found OpenAI API key in '$item_name' field '$field_name'"
-            OPENAI_API_KEY="$credential"
+        if credential=$(op item get ""item_nam"e" --fields ""field_nam"e" --reveal 2>/dev/null)
+[ -n ""credentia"l" ]; then
+            echo "  ✅ Found OpenAI API key in '"item_name"' field '"field_name"'"
+            OPENAI_API_KEY=""credentia"l"
             export OPENAI_API_KEY
             break 2
         fi
     done
 done
 
-if [ -z "$OPENAI_API_KEY" ]; then
+if [ -z ""OPENAI_API_KE"Y" ]; then
     echo "❌ Could not find OpenAI API key"
 fi
 
 # Check if we have any credentials
-if [ -z "$OPENAI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+if [ -z ""OPENAI_API_KE"Y" ] && [ -z ""ANTHROPIC_API_KE"Y" ]; then
     echo ""
     echo "❌ No API credentials found in 1Password"
     echo ""

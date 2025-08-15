@@ -39,7 +39,8 @@ def analyze_multi_dimensional_costs():
 
             # Estimate input tokens (prompt)
             # Each test had a system message + user message with context
-            system_message = "You are an expert analyst focused on identifying blind spots and potential issues."
+            system_message  = \
+     "You are an expert analyst focused on identifying blind spots and potential issues."
             user_message = f"""
 You are a skeptical partner analyzing a technical decision.
 
@@ -109,7 +110,8 @@ def analyze_langgraph_costs():
 
             # Estimate input tokens (prompt for each agent)
             agent_name = analysis["agent_name"]
-            system_message = "You are an expert analyst focused on identifying blind spots and potential issues."
+            system_message  = \
+     "You are an expert analyst focused on identifying blind spots and potential issues."
             user_message = f"""
 You are {agent_name}, analyzing a GitHub PR for a Healthcare CDC implementation.
 
@@ -172,25 +174,31 @@ def analyze_synthesis_costs():
         data = json.load(f)
 
     # One synthesis call that processed all findings
-    system_message = "You are an expert technical architect specializing in synthesizing diverse technical findings into actionable, prioritized solutions."
+    system_message  = \
+     "You are an expert technical architect specializing in synthesizing diverse technical findings into actionable, prioritized solutions."
     # Estimate the synthesis prompt (includes all findings)
     findings_text = ""
     for analysis in data.get("analyses", []):
         for finding in analysis.get("findings", []):
-            findings_text += f"• {finding.get('agent', 'Unknown')} ({finding.get('category', 'unknown')}): {finding.get('question', '')} - {finding.get('recommendation', '')}\n"
+            findings_text + = \
+     f"• {finding.get('agent', 'Unknown')} ({finding.get('category', 'unknown')}): {finding.get('question', '')} - {finding.get('recommendation', '')}\n"
 
     user_message = f"""
 You are a senior technical architect tasked with synthesizing diverse findings into prioritized, actionable fixes.
 
 CONTEXT:
-We have analyzed a GitHub PR for a Healthcare CDC implementation and found {len(findings_text.split('•')) - 1} diverse issues from multiple AI perspectives.
+We have analyzed a GitHub PR for a Healthcare CDC implementation and found {len( \
+    findings_text.split('•')) - 1} diverse issues from multiple AI perspectives.
 
 STAKEHOLDERS (in priority order):
 1. Security Team (Security and compliance) - Priority: 1, Decision Power: High
 2. DevOps Team (Infrastructure and deployment) - Priority: 2, Decision Power: High
-3. Development Team (Code quality and maintainability) - Priority: 3, Decision Power: Medium
-4. Product Team (User experience and business value) - Priority: 4, Decision Power: Medium
-5. Business Stakeholders (Cost and timeline management) - Priority: 5, Decision Power: Low
+3. Development Team ( \
+    Code quality and maintainability) - Priority: 3, Decision Power: Medium
+4. Product Team ( \
+    User experience and business value) - Priority: 4, Decision Power: Medium
+5. Business Stakeholders ( \
+    Cost and timeline management) - Priority: 5, Decision Power: Low
 
 FINDINGS TO SYNTHESIZE:
 {findings_text}
@@ -256,10 +264,14 @@ def main():
     langgraph = analyze_langgraph_costs()
     synthesis = analyze_synthesis_costs()
     # Calculate totals
-    total_calls = multi_dimensional.get("calls", 0) + langgraph.get("calls", 0) + synthesis.get("calls", 0)
-    total_input_tokens = multi_dimensional.get("input_tokens", 0) + langgraph.get("input_tokens", 0) + synthesis.get("input_tokens", 0)
-    total_output_tokens = multi_dimensional.get("output_tokens", 0) + langgraph.get("output_tokens", 0) + synthesis.get("output_tokens", 0)
-    total_cost = multi_dimensional.get("total_cost", 0) + langgraph.get("total_cost", 0) + synthesis.get("total_cost", 0)
+    total_calls  = \
+     multi_dimensional.get("calls", 0) + langgraph.get("calls", 0) + synthesis.get("calls", 0)
+    total_input_tokens  = \
+     multi_dimensional.get("input_tokens", 0) + langgraph.get("input_tokens", 0) + synthesis.get("input_tokens", 0)
+    total_output_tokens  = \
+     multi_dimensional.get("output_tokens", 0) + langgraph.get("output_tokens", 0) + synthesis.get("output_tokens", 0)
+    total_cost  = \
+     multi_dimensional.get("total_cost", 0) + langgraph.get("total_cost", 0) + synthesis.get("total_cost", 0)
     print("\n" + "=" * 50)
     print("💰 TOTAL COST SUMMARY")
     print("=" * 50)
@@ -275,7 +287,8 @@ def main():
     print(f"\n📈 COST EFFICIENCY:")
     print(f"   Cost per finding: ${cost_per_finding:.4f}")
     print(f"   Cost per API call: ${total_cost/total_calls:.4f}")
-    print(f"   Cost per 1K tokens: ${(total_cost/(total_input_tokens + total_output_tokens)*1000):.4f}")
+    print( \
+    f"   Cost per 1K tokens: ${(total_cost/(total_input_tokens + total_output_tokens)*1000):.4f}")
     # ROI analysis
     print(f"\n🎯 ROI ANALYSIS:")
     print(f"   We discovered 25 unique blind spots")

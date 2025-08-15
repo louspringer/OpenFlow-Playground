@@ -37,7 +37,8 @@ def test_complex_model() -> None:
 
         print("📊 DETAILED ANALYSIS:")
         print(
-            f"   AST Parse Successful: {analysis['ast_analysis'].get('ast_parse_successful', False)}",
+            f"   AST Parse Successful: {analysis['ast_analysis'].get( \
+    'ast_parse_successful', False)}",
         )
         print(f"   Functions: {len(analysis['ast_analysis'].get('functions', []))}")
         print(f"   Classes: {len(analysis['ast_analysis'].get('classes', []))}")

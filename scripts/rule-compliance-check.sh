@@ -13,8 +13,8 @@ NC='\033[0m' # No Color
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-RULES_DIR="$PROJECT_ROOT/.cursor/rules"
+PROJECT_ROOT="$(dirname ""SCRIPT_DI"R")"
+RULES_DIR=""PROJECT_ROOT"/.cursor/rules"
 VIOLATIONS=0
 TOTAL_CHECKS=0
 
@@ -41,35 +41,35 @@ check_deterministic_editing() {
     local file="$1"
     local file_type="${file##*.}"
     
-    case "$file_type" in
+    case ""file_typ"e" in
         yaml|yml|json|toml|ini|cfg|mdc|py|xml|properties|env)
-            log_info "Checking deterministic editing for $file"
+            log_info "Checking deterministic editing for "fil"e"
             
             # Check for common non-deterministic patterns
-            if grep -q "edit_file" "$file" 2>/dev/null; then
-                log_error "File $file may use non-deterministic edit_file tool"
+            if grep -q "edit_file" ""fil"e" 2>/dev/null; then
+                log_error "File "fil"e may use non-deterministic edit_file tool"
                 return 1
             fi
             
             # Check for proper YAML frontmatter in .mdc files
-            if [[ "$file_type" == "mdc" ]]; then
-                if ! grep -q "^---$" "$file" 2>/dev/null; then
-                    log_error "File $file missing YAML frontmatter"
+            if [[ ""file_typ"e" == "mdc" ]]; then
+                if ! grep -q "^---$" ""fil"e" 2>/dev/null; then
+                    log_error "File "fil"e missing YAML frontmatter"
                     return 1
                 fi
                 
-                if ! grep -q "description:" "$file" 2>/dev/null; then
-                    log_error "File $file missing description in frontmatter"
+                if ! grep -q "description:" ""fil"e" 2>/dev/null; then
+                    log_error "File "fil"e missing description in frontmatter"
                     return 1
                 fi
                 
-                if ! grep -q "globs:" "$file" 2>/dev/null; then
-                    log_error "File $file missing globs in frontmatter"
+                if ! grep -q "globs:" ""fil"e" 2>/dev/null; then
+                    log_error "File "fil"e missing globs in frontmatter"
                     return 1
                 fi
             fi
             
-            log_success "File $file passes deterministic editing checks"
+            log_success "File "fil"e passes deterministic editing checks"
             ;;
     esac
     return 0
@@ -79,26 +79,28 @@ check_deterministic_editing() {
 check_security_compliance() {
     local file="$1"
     
-    log_info "Checking security compliance for $file"
+    log_info "Checking security compliance for "fil"e"
     
     # Check for hardcoded credentials
-    if grep -q -E "(password|secret|key|token).*=.*['\"][^'\"]*['\"]" "$file" 2>/dev/null; then
-        log_error "File $file contains potential hardcoded credentials"
+    if grep -q -E "(password|secret|key|token).*=.*['\"][^'\"]*['\"]" ""fil"e" 2>/dev/null
+then
+        log_error "File "fil"e contains potential hardcoded credentials"
         return 1
     fi
     
     # Check for AWS keys
-    if grep -q "AKIA[0-9A-Z]\{16\}" "$file" 2>/dev/null; then
-        log_error "File $file contains potential AWS access keys"
+    if grep -q "AKIA[0-9A-Z]\{16\}" ""fil"e" 2>/dev/null; then
+        log_error "File "fil"e contains potential AWS access keys"
         return 1
     fi
     
     # Check for UUID patterns
-    if grep -q "[0-9a-f]\{8\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{12\}" "$file" 2>/dev/null; then
-        log_warning "File $file contains UUID patterns (may be legitimate)"
+    if grep -q "[0-9a-f]\{8\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{12\}" ""fil"e" 2>/dev/null
+then
+        log_warning "File "fil"e contains UUID patterns (may be legitimate)"
     fi
     
-    log_success "File $file passes security compliance checks"
+    log_success "File "fil"e passes security compliance checks"
     return 0
 }
 
@@ -110,11 +112,11 @@ check_mdc_structure() {
         return 0
     fi
     
-    log_info "Checking .mdc file structure for $file"
+    log_info "Checking .mdc file structure for "fil"e"
     
     # Check for proper YAML frontmatter
-    if ! awk '/^---$/{count++} END{exit count!=2}' "$file" 2>/dev/null; then
-        log_error "File $file has incorrect YAML frontmatter structure"
+    if ! awk '/^---$/{count++} END{exit count!=2}' ""fil"e" 2>/dev/null; then
+        log_error "File "fil"e has incorrect YAML frontmatter structure"
         return 1
     fi
     
@@ -124,31 +126,31 @@ check_mdc_structure() {
     local has_always_apply=false
     
     while IFS= read -r line; do
-        if [[ "$line" =~ ^description: ]]; then
+        if [[ ""lin"e" =~ ^description: ]]; then
             has_description=true
-        elif [[ "$line" =~ ^globs: ]]; then
+        elif [[ ""lin"e" =~ ^globs: ]]; then
             has_globs=true
-        elif [[ "$line" =~ ^alwaysApply: ]]; then
+        elif [[ ""lin"e" =~ ^alwaysApply: ]]; then
             has_always_apply=true
         fi
-    done < "$file"
+    done < ""fil"e"
     
-    if [[ "$has_description" == "false" ]]; then
-        log_error "File $file missing description field"
+    if [[ ""has_descriptio"n" == "false" ]]; then
+        log_error "File "fil"e missing description field"
         return 1
     fi
     
-    if [[ "$has_globs" == "false" ]]; then
-        log_error "File $file missing globs field"
+    if [[ ""has_glob"s" == "false" ]]; then
+        log_error "File "fil"e missing globs field"
         return 1
     fi
     
-    if [[ "$has_always_apply" == "false" ]]; then
-        log_error "File $file missing alwaysApply field"
+    if [[ ""has_always_appl"y" == "false" ]]; then
+        log_error "File "fil"e missing alwaysApply field"
         return 1
     fi
     
-    log_success "File $file has correct .mdc structure"
+    log_success "File "fil"e has correct .mdc structure"
     return 0
 }
 
@@ -156,39 +158,42 @@ check_mdc_structure() {
 check_file_organization() {
     local file="$1"
     
-    log_info "Checking file organization compliance for $file"
+    log_info "Checking file organization compliance for "fil"e"
     
     # Check if file is in appropriate directory based on type
     local file_type="${file##*.}"
-    local dir_name="$(dirname "$file")"
+    local dir_name="$(dirname ""fil"e")"
     
-    case "$file_type" in
+    case ""file_typ"e" in
         py)
-            if [[ "$dir_name" == "src/"* ]] || [[ "$dir_name" == "tests/" ]] || [[ "$dir_name" == "scripts/" ]]; then
-                log_success "Python file $file is in appropriate directory"
+            if [[ ""dir_nam"e" == "src/"* ]] || [[ ""dir_nam"e" == "tests/" ]] || [[ ""dir_nam"e" == "scripts/" ]]
+then
+                log_success "Python file "fil"e is in appropriate directory"
             else
-                log_warning "Python file $file may be in wrong directory"
+                log_warning "Python file "fil"e may be in wrong directory"
             fi
             ;;
         md)
-            if [[ "$dir_name" == "docs/" ]] || [[ "$dir_name" == "." ]] || [[ "$dir_name" == "healthcare-cdc/" ]]; then
-                log_success "Markdown file $file is in appropriate directory"
+            if [[ ""dir_nam"e" == "docs/" ]] || [[ ""dir_nam"e" == "." ]] || [[ ""dir_nam"e" == "healthcare-cdc/" ]]
+then
+                log_success "Markdown file "fil"e is in appropriate directory"
             else
-                log_warning "Markdown file $file may be in wrong directory"
+                log_warning "Markdown file "fil"e may be in wrong directory"
             fi
             ;;
         yaml|yml)
-            if [[ "$dir_name" == "config/" ]] || [[ "$dir_name" == "." ]]; then
-                log_success "YAML file $file is in appropriate directory"
+            if [[ ""dir_nam"e" == "config/" ]] || [[ ""dir_nam"e" == "." ]]; then
+                log_success "YAML file "fil"e is in appropriate directory"
             else
-                log_warning "YAML file $file may be in wrong directory"
+                log_warning "YAML file "fil"e may be in wrong directory"
             fi
             ;;
         json)
-            if [[ "$dir_name" == "data/" ]] || [[ "$dir_name" == "config/" ]] || [[ "$dir_name" == "." ]]; then
-                log_success "JSON file $file is in appropriate directory"
+            if [[ ""dir_nam"e" == "data/" ]] || [[ ""dir_nam"e" == "config/" ]] || [[ ""dir_nam"e" == "." ]]
+then
+                log_success "JSON file "fil"e is in appropriate directory"
             else
-                log_warning "JSON file $file may be in wrong directory"
+                log_warning "JSON file "fil"e may be in wrong directory"
             fi
             ;;
     esac
@@ -199,26 +204,26 @@ validate_file() {
     local file="$1"
     ((TOTAL_CHECKS++))
     
-    log_info "Validating file: $file"
+    log_info "Validating file: "fil"e"
     
     local has_violations=false
     
     # Run all checks
-    if ! check_deterministic_editing "$file"; then
+    if ! check_deterministic_editing ""fil"e"; then
         has_violations=true
     fi
     
-    if ! check_security_compliance "$file"; then
+    if ! check_security_compliance ""fil"e"; then
         has_violations=true
     fi
     
-    if ! check_mdc_structure "$file"; then
+    if ! check_mdc_structure ""fil"e"; then
         has_violations=true
     fi
     
-    check_file_organization "$file"
+    check_file_organization ""fil"e"
     
-    if [[ "$has_violations" == "true" ]]; then
+    if [[ ""has_violation"s" == "true" ]]; then
         return 1
     fi
     
@@ -231,7 +236,9 @@ main() {
     
     # Get list of files to check (excluding git, node_modules, etc.)
     local files_to_check
-    files_to_check=$(find . -type f \( -name "*.py" -o -name "*.md" -o -name "*.yaml" -o -name "*.yml" -o -name "*.json" -o -name "*.mdc" -o -name "*.sh" \) \
+    files_to_check=$(find . -type f \ \
+( -name "*.py" -o -name "*.md" -o -name "*.yaml" -o -name "*.yml" -o -name "*.json" -o
+-name "*.mdc" -o -name "*.sh" \) \
         -not -path "./.git/*" \
         -not -path "./node_modules/*" \
         -not -path "./__pycache__/*" \
@@ -245,25 +252,25 @@ main() {
     local failed_files=0
     
     while IFS= read -r file; do
-        if [[ -n "$file" ]]; then
-            if ! validate_file "$file"; then
+        if [[ -n ""fil"e" ]]; then
+            if ! validate_file ""fil"e"; then
                 ((failed_files++))
             fi
         fi
-    done <<< "$files_to_check"
+    done <<< ""files_to_chec"k"
     
     # Summary
     echo
     log_info "Rule compliance check completed"
-    log_info "Total files checked: $TOTAL_CHECKS"
-    log_info "Violations found: $VIOLATIONS"
-    log_info "Files with issues: $failed_files"
+    log_info "Total files checked: "TOTAL_CHECK"S"
+    log_info "Violations found: "VIOLATION"S"
+    log_info "Files with issues: "failed_file"s"
     
-    if [[ $VIOLATIONS -eq 0 ]]; then
+    if [[ "VIOLATION"S -eq 0 ]]; then
         log_success "All files pass rule compliance checks!"
         exit 0
     else
-        log_error "Found $VIOLATIONS violations. Please fix before committing."
+        log_error "Found "VIOLATION"S violations. Please fix before committing."
         exit 1
     fi
 }

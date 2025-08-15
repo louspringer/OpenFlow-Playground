@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Security Check Script
-# This script checks for hardcoded credentials, security vulnerabilities, and sloppy practices
+# This script checks for hardcoded credentials, security vulnerabilities, and sloppy
+practices
 # Use as a pre-commit hook or run manually
 
 set -e
@@ -60,30 +61,37 @@ check_hardcoded_credentials() {
     
     for pattern in "${patterns[@]}"; do
         # Skip ParameterKey patterns which are legitimate
-        if [[ "$pattern" == *"key.*=.*"* ]]; then
+        if [[ ""patter"n" == *"key.*=.*"* ]]; then
             local matches
-            matches=$(grep -r -E "$pattern" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log --exclude=security-check.sh 2>/dev/null | grep -v "ParameterKey" | grep -v "values\[" || true)
-        elif [[ "$pattern" == *"credential.*=.*"* ]]; then
+            matches=$(grep -r -E ""patter"n" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log --exclude=security-check.sh 2>/dev/null
+grep -v "ParameterKey"
+grep -v "values\[" || \
+    true)
+        elif [[ ""patter"n" == *"credential.*=.*"* ]]; then
             local matches
-            matches=$(grep -r -E "$pattern" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log --exclude=security-check.sh 2>/dev/null | grep -v "values\[" || true)
+            matches=$(grep -r -E ""patter"n" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log --exclude=security-check.sh 2>/dev/null
+grep -v "values\[" || \
+    true)
         else
             local matches
-            matches=$(grep -r -E "$pattern" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log --exclude=security-check.sh 2>/dev/null || true)
+matches=$(grep -r -E ""patter"n" . --exclude-dir=.git --exclude-dir=node_modules
+--exclude=*.log --exclude=security-check.sh 2>/dev/null || \
+    true)
         fi
-        if [ -n "$matches" ]; then
-            print_error "Found potential hardcoded credentials with pattern: $pattern"
-            echo "$matches" | head -5
+        if [ -n ""matche"s" ]; then
+            print_error "Found potential hardcoded credentials with pattern: "patter"n"
+            echo ""matche"s" | head -5
             violations=$((violations + 1))
         fi
     done
     
-    if [ "$violations" -eq 0 ]; then
+    if [ ""violation"s" -eq 0 ]; then
         print_success "No hardcoded credentials found"
     else
-        print_error "Found $violations potential credential violations"
+        print_error "Found "violation"s potential credential violations"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Function to check for account-specific URLs and identifiers
@@ -104,21 +112,22 @@ check_account_specific_data() {
     
     for pattern in "${patterns[@]}"; do
         local matches
-        matches=$(grep -r -E "$pattern" . --exclude-dir=.git --exclude-dir=node_modules --exclude=*.log 2>/dev/null || true)
-        if [ -n "$matches" ]; then
-            print_warning "Found potential account-specific data with pattern: $pattern"
-            echo "$matches" | head -3
+matches=$(grep -r -E ""patter"n" . --exclude-dir=.git --exclude-dir=node_modules
+--exclude=*.log 2>/dev/null || true)
+        if [ -n ""matche"s" ]; then
+            print_warning "Found potential account-specific data with pattern: "patter"n"
+            echo ""matche"s" | head -3
             violations=$((violations + 1))
         fi
     done
     
-    if [ "$violations" -eq 0 ]; then
+    if [ ""violation"s" -eq 0 ]; then
         print_success "No account-specific data found"
     else
-        print_warning "Found $violations potential account-specific data violations"
+        print_warning "Found "violation"s potential account-specific data violations"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Function to check for hardcoded values in CloudFormation templates
@@ -137,21 +146,22 @@ check_cloudformation_hardcoded() {
     
     for pattern in "${hardcoded_patterns[@]}"; do
         local matches
-        matches=$(grep -r -E "$pattern" . --include="*.yaml" --include="*.yml" --exclude-dir=.git 2>/dev/null || true)
-        if [ -n "$matches" ]; then
-            print_error "Found hardcoded values in CloudFormation templates: $pattern"
-            echo "$matches"
+matches=$(grep -r -E ""patter"n" . --include="*.yaml" --include="*.yml"
+--exclude-dir=.git 2>/dev/null || true)
+        if [ -n ""matche"s" ]; then
+            print_error "Found hardcoded values in CloudFormation templates: "patter"n"
+            echo ""matche"s"
             violations=$((violations + 1))
         fi
     done
     
-    if [ "$violations" -eq 0 ]; then
+    if [ ""violation"s" -eq 0 ]; then
         print_success "No hardcoded values found in CloudFormation templates"
     else
-        print_error "Found $violations hardcoded value violations in CloudFormation templates"
+        print_error "Found "violation"s hardcoded value violations in CloudFormation templates"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Function to check for .env files with real values
@@ -173,10 +183,10 @@ check_env_files() {
         )
         
         for pattern in "${placeholder_patterns[@]}"; do
-            local matches=$(grep -E "$pattern" .env 2>/dev/null || true)
-            if [ -n "$matches" ]; then
-                print_warning "Found placeholder values in .env file: $pattern"
-                echo "$matches" | head -3
+            local matches=$(grep -E ""patter"n" .env 2>/dev/null || true)
+            if [ -n ""matche"s" ]; then
+                print_warning "Found placeholder values in .env file: "patter"n"
+                echo ""matche"s" | head -3
             fi
         done
         
@@ -188,10 +198,10 @@ check_env_files() {
         )
         
         for pattern in "${real_patterns[@]}"; do
-            local matches=$(grep -E "$pattern" .env 2>/dev/null || true)
-            if [ -n "$matches" ]; then
-                print_error "Found real-looking values in .env file: $pattern"
-                echo "$matches"
+            local matches=$(grep -E ""patter"n" .env 2>/dev/null || true)
+            if [ -n ""matche"s" ]; then
+                print_error "Found real-looking values in .env file: "patter"n"
+                echo ""matche"s"
                 violations=$((violations + 1))
             fi
         done
@@ -199,7 +209,7 @@ check_env_files() {
         print_success "No .env file found"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Function to check for proper placeholder usage
@@ -216,7 +226,8 @@ check_placeholder_usage() {
     )
     
     for file_pattern in "${example_files[@]}"; do
-        for file in $(find . -name "$file_pattern" -not -path "./.git/*" 2>/dev/null); do
+        for file in $(find . -name ""file_patter"n" -not -path "./.git/*" 2>/dev/null)
+do
             # Check for real-looking values in example files
             local real_patterns=(
                 "https://[a-z0-9-]+\\.snowflakecomputing\\.com"
@@ -225,23 +236,23 @@ check_placeholder_usage() {
             )
             
             for pattern in "${real_patterns[@]}"; do
-                local matches=$(grep -E "$pattern" "$file" 2>/dev/null || true)
-                if [ -n "$matches" ]; then
-                    print_error "Found real-looking values in example file $file: $pattern"
-                    echo "$matches"
+                local matches=$(grep -E ""patter"n" ""fil"e" 2>/dev/null || true)
+                if [ -n ""matche"s" ]; then
+                    print_error "Found real-looking values in example file "file": "patter"n"
+                    echo ""matche"s"
                     violations=$((violations + 1))
                 fi
             done
         done
     done
     
-    if [ "$violations" -eq 0 ]; then
+    if [ ""violation"s" -eq 0 ]; then
         print_success "Example files use proper placeholders"
     else
-        print_error "Found $violations violations in example files"
+        print_error "Found "violation"s violations in example files"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Function to check for required parameter validation
@@ -251,21 +262,25 @@ check_parameter_validation() {
     local violations=0
     
     # Check for CloudFormation parameters without defaults (good)
-    local required_params=$(grep -r "Type: String" . --include="*.yaml" --include="*.yml" --exclude-dir=.git | grep -v "Default:" | wc -l)
+    local required_params=$(grep -r "Type: String" . --include="*.yaml" --include="*.yml" --exclude-dir=.git
+\
+    grep -v "Default:" | wc -l)
     
     # Check for parameters with hardcoded defaults (bad)
-    local hardcoded_defaults=$(grep -r "Default:" . --include="*.yaml" --include="*.yml" --exclude-dir=.git | grep -E "(https://|UUID|KEY|SECRET)" | wc -l)
+    local hardcoded_defaults=$(grep -r "Default:" . --include="*.yaml" --include="*.yml" --exclude-dir=.git
+\
+    grep -E "(https://|UUID|KEY|SECRET)" | wc -l)
     
-    if [ "$hardcoded_defaults" -gt 0 ]; then
-        print_error "Found $hardcoded_defaults parameters with hardcoded defaults"
+    if [ ""hardcoded_default"s" -gt 0 ]; then
+        print_error "Found "hardcoded_default"s parameters with hardcoded defaults"
         violations=$((violations + hardcoded_defaults))
     fi
     
-    if [ "$required_params" -gt 0 ]; then
-        print_success "Found $required_params required parameters (good)"
+    if [ ""required_param"s" -gt 0 ]; then
+        print_success "Found "required_param"s required parameters (good)"
     fi
     
-    return $violations
+    return "violation"s
 }
 
 # Main function
@@ -302,10 +317,10 @@ main() {
     
     # Summary
     print_header "Security Check Summary"
-    echo "Checks performed: $checks"
-    echo "Total violations found: $total_violations"
+    echo "Checks performed: "check"s"
+    echo "Total violations found: "total_violation"s"
     
-    if [ "$total_violations" -eq 0 ]; then
+    if [ ""total_violation"s" -eq 0 ]; then
         print_success "All security checks passed! ✅"
         exit 0
     else

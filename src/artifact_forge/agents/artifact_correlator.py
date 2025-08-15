@@ -320,7 +320,8 @@ def main() -> None:
 
     for rel in relationships:
         print(
-            f"  {rel.source_artifact} -> {rel.target_artifact} ({rel.relationship_type}, confidence: {rel.confidence:.2f})",
+            f"  {rel.source_artifact} -> {rel.target_artifact} ( \
+    {rel.relationship_type}, confidence: {rel.confidence:.2f})",
         )
 
 

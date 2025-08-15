@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Setup GitHub Connection and Cloud Build Trigger for Develop Branch
-# Based on: https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github
+# Based on:
+https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github
 
 set -e
 
@@ -14,10 +15,10 @@ SECRET_NAME="github-token"
 TRIGGER_NAME="ghostbusters-api-develop-trigger"
 
 echo "🚀 Setting up GitHub connection and Cloud Build trigger"
-echo "📋 Project: $PROJECT_ID"
-echo "🌍 Region: $REGION"
-echo "🔗 Connection: $CONNECTION_NAME"
-echo "📦 Repository: $REPO_OWNER/$REPO_NAME"
+echo "📋 Project: "PROJECT_I"D"
+echo "🌍 Region: "REGIO"N"
+echo "🔗 Connection: "CONNECTION_NAM"E"
+echo "📦 Repository: "REPO_OWNER"/"REPO_NAM"E"
 
 # Step 1: Check if we need to create a personal access token
 echo ""
@@ -42,17 +43,20 @@ GITHUB_TOKEN=$1
 
 # Step 2: Store token in Secret Manager
 echo "🔐 Step 2: Storing token in Secret Manager..."
-echo -n "$GITHUB_TOKEN" | gcloud secrets create "$SECRET_NAME" --data-file=- --project="$PROJECT_ID" || echo "Secret already exists"
+echo -n ""GITHUB_TOKE"N"
+gcloud secrets create ""SECRET_NAM"E" --data-file=- --project=""PROJECT_I"D" || \
+    echo "Secret already exists"
 
 # Step 3: Grant access to Cloud Build Service Agent
 echo "🔓 Step 3: Granting access to Cloud Build Service Agent..."
-PROJECT_NUMBER=$(gcloud projects describe "$PROJECT_ID" --format="value(projectNumber)")
+PROJECT_NUMBER=$(gcloud projects describe ""PROJECT_I"D"
+--format="value(projectNumber)")
 CLOUD_BUILD_SERVICE_AGENT="service-${PROJECT_NUMBER}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 
-gcloud secrets add-iam-policy-binding "$SECRET_NAME" \
+gcloud secrets add-iam-policy-binding ""SECRET_NAM"E" \
   --member="serviceAccount:${CLOUD_BUILD_SERVICE_AGENT}" \
   --role="roles/secretmanager.secretAccessor" \
-  --project="$PROJECT_ID"
+  --project=""PROJECT_I"D"
 
 # Step 4: Create GitHub connection
 echo "🔗 Step 4: Creating GitHub connection..."
@@ -63,44 +67,51 @@ echo ""
 
 read -p "Enter GitHub App installation ID: " INSTALLATION_ID
 
-gcloud builds connections create github "$CONNECTION_NAME" \
-  --authorizer-token-secret-version="projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/1" \
-  --app-installation-id="$INSTALLATION_ID" \
-  --region="$REGION" \
-  --project="$PROJECT_ID"
+gcloud builds connections create github ""CONNECTION_NAM"E" \
+--authorizer-token-secret-version="projects/"PROJECT_ID"/secrets/"SECRET_NAME"/versions/1"
+\
+  --app-installation-id=""INSTALLATION_I"D" \
+  --region=""REGIO"N" \
+  --project=""PROJECT_I"D"
 
 # Step 5: Create repository link
 echo "📦 Step 5: Creating repository link..."
-REPO_URI="https://github.com/$REPO_OWNER/$REPO_NAME.git"
+REPO_URI="https://github.com/"REPO_OWNER"/"REPO_NAME".git"
 
-gcloud builds repositories create "$REPO_NAME" \
-  --remote-uri="$REPO_URI" \
-  --connection="$CONNECTION_NAME" \
-  --region="$REGION" \
-  --project="$PROJECT_ID"
+gcloud builds repositories create ""REPO_NAM"E" \
+  --remote-uri=""REPO_UR"I" \
+  --connection=""CONNECTION_NAM"E" \
+  --region=""REGIO"N" \
+  --project=""PROJECT_I"D"
 
 # Step 6: Create trigger
 echo "🎯 Step 6: Creating Cloud Build trigger..."
 gcloud builds triggers create github \
-  --name="$TRIGGER_NAME" \
-  --repo-name="$REPO_NAME" \
-  --repo-owner="$REPO_OWNER" \
+  --name=""TRIGGER_NAM"E" \
+  --repo-name=""REPO_NAM"E" \
+  --repo-owner=""REPO_OWNE"R" \
   --branch-pattern="^develop$" \
   --build-config="cloudbuild.yaml" \
-  --project="$PROJECT_ID" \
+  --project=""PROJECT_I"D" \
   --description="Automatic build and deploy Ghostbusters API on push to develop branch"
 
 echo ""
 echo "✅ GitHub connection and trigger setup complete!"
 echo ""
 echo "📊 Setup Summary:"
-echo "   Connection: $CONNECTION_NAME"
-echo "   Repository: $REPO_NAME"
-echo "   Trigger: $TRIGGER_NAME"
+echo "   Connection: "CONNECTION_NAM"E"
+echo "   Repository: "REPO_NAM"E"
+echo "   Trigger: "TRIGGER_NAM"E"
 echo "   Branch: develop"
 echo ""
-echo "🔗 View triggers: https://console.cloud.google.com/cloud-build/triggers?project=$PROJECT_ID"
-echo "🔗 View builds: https://console.cloud.google.com/cloud-build/builds?project=$PROJECT_ID"
+echo "🔗 View triggers:
+https://console.cloud.google.com/cloud-build/triggers?project="PROJECT_I"D"
+echo "🔗 View builds:
+https://console.cloud.google.com/cloud-build/builds?project="PROJECT_I"D"
 echo ""
 echo "🧪 Test the trigger:"
-echo "   git add . && git commit -m 'test: trigger cloud build' && git push" 
+echo "   git add . \
+   
+git commit -m 'test: trigger cloud build' \
+   
+git push" 

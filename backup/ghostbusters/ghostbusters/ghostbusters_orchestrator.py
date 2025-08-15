@@ -785,7 +785,8 @@ class GhostbustersOrchestrator:
         engine_name = engine_mapping.get(delusion_type)
         if engine_name and engine_name in self.recovery_engines:
             return {
-                "id": f"recovery_{len(self.recovery_actions) if hasattr(self, 'recovery_actions') else 0}",
+                "id": f"recovery_{len( \
+    self.recovery_actions) if hasattr(self, 'recovery_actions') else 0}",
                 "engine": engine_name,
                 "delusion": delusion,
                 "priority": delusion.get("priority", "medium"),

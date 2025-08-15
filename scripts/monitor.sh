@@ -35,13 +35,14 @@ print_header() {
 
 # Function to check if stack exists
 stack_exists() {
-    aws cloudformation describe-stacks --stack-name $STACK_NAME &> /dev/null
+    aws cloudformation describe-stacks --stack-name "STACK_NAM"E &> /dev/null
 }
 
 # Function to get stack status
 get_stack_status() {
     if stack_exists; then
-        aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].StackStatus' --output text
+aws cloudformation describe-stacks --stack-name "STACK_NAM"E --query
+'Stacks[0].StackStatus' --output text
     else
         echo "STACK_NOT_FOUND"
     fi
@@ -52,14 +53,14 @@ monitor_stack() {
     print_header "CloudFormation Stack Status"
     
     if ! stack_exists; then
-        print_error "Stack '$STACK_NAME' does not exist."
+        print_error "Stack '"STACK_NAME"' does not exist."
         return 1
     fi
     
     STATUS=$(get_stack_status)
-    print_status "Stack Status: $STATUS"
+    print_status "Stack Status: "STATU"S"
     
-    case $STATUS in
+    case "STATU"S in
         "CREATE_COMPLETE"|"UPDATE_COMPLETE")
             print_status "Stack deployment completed successfully!"
             ;;
@@ -72,14 +73,17 @@ monitor_stack() {
             print_status "Check CloudFormation events for details."
             ;;
         *)
-            print_warning "Stack status: $STATUS"
+            print_warning "Stack status: "STATU"S"
             ;;
     esac
     
     # Show recent events
     print_header "Recent Stack Events"
-    aws cloudformation describe-stack-events --stack-name $STACK_NAME \
-        --query 'StackEvents[0:5].{Time:Timestamp,Status:ResourceStatus,Resource:LogicalResourceId,Reason:ResourceStatusReason}' \
+    aws cloudformation describe-stack-events --stack-name "STACK_NAM"E \
+--query
+'StackEvents[0:5].{Time:Timestamp,Status:ResourceStatus,Resource:LogicalResourceId,Reason:ResourceStatusReason}'
+\ \
+    
         --output table
 }
 
@@ -92,22 +96,31 @@ monitor_instances() {
         --query 'Reservations[].Instances[]' \
         --output json)
     
-    INSTANCE_COUNT=$(echo "$INSTANCES" | jq 'length')
-    if [ "$INSTANCE_COUNT" -eq 0 ]; then
+    INSTANCE_COUNT=$(echo ""INSTANCE"S" | jq 'length')
+    if [ ""INSTANCE_COUN"T" -eq 0 ]; then
         print_warning "No Openflow agent instances found."
         return
     fi
     
-    echo "$INSTANCES" | jq -r '.[] | "Instance: \(.InstanceId) | State: \(.State.Name) | Name: \(.Tags[]? | select(.Key=="Name").Value // "N/A") | Private IP: \(.PrivateIpAddress // "N/A")"'
+    echo ""INSTANCE"S" | \
+    jq -r '.[]
+"Instance: \(.InstanceId)
+State: \(.State.Name)
+Name: \(.Tags[]?
+select(.Key=="Name").Value // "N/A")
+Private IP: \(.PrivateIpAddress // "N/A")"'
     
     # Check if instances are running
-    RUNNING_COUNT=$(echo "$INSTANCES" | jq '[.[] | select(.State.Name=="running")] | length')
-    TOTAL_COUNT=$(echo "$INSTANCES" | jq 'length')
+    RUNNING_COUNT=$(echo ""INSTANCE"S"
+jq '[.[]
+select(.State.Name=="running")]
+length')
+    TOTAL_COUNT=$(echo ""INSTANCE"S" | jq 'length')
     
-    if [ "$RUNNING_COUNT" -eq "$TOTAL_COUNT" ]; then
+    if [ ""RUNNING_COUN"T" -eq ""TOTAL_COUN"T" ]; then
         print_status "All instances are running."
     else
-        print_warning "$RUNNING_COUNT/$TOTAL_COUNT instances are running."
+        print_warning ""RUNNING_COUNT"/"TOTAL_COUN"T instances are running."
     fi
 }
 
@@ -116,22 +129,25 @@ monitor_eks() {
     print_header "EKS Cluster Status"
     
     # Get data plane key from stack outputs or parameters
-    DATA_PLANE_KEY=$(aws cloudformation describe-stacks --stack-name $STACK_NAME \
-        --query 'Stacks[0].Parameters[?ParameterKey==`DataPlaneKey`].ParameterValue' --output text 2>/dev/null || echo "unknown")
+    DATA_PLANE_KEY=$(aws cloudformation describe-stacks --stack-name "STACK_NAM"E \
+--query 'Stacks[0].Parameters[?ParameterKey==`DataPlaneKey`].ParameterValue' --output
+text 2>/dev/null || \
+    echo "unknown")
     
-    CLUSTER_NAME="$DATA_PLANE_KEY"
+    CLUSTER_NAME=""DATA_PLANE_KE"Y"
     
-    if aws eks describe-cluster --name "$CLUSTER_NAME" &> /dev/null; then
-        CLUSTER_STATUS=$(aws eks describe-cluster --name "$CLUSTER_NAME" --query 'cluster.status' --output text)
-        print_status "EKS Cluster '$CLUSTER_NAME' Status: $CLUSTER_STATUS"
+    if aws eks describe-cluster --name ""CLUSTER_NAM"E" &> /dev/null; then
+CLUSTER_STATUS=$(aws eks describe-cluster --name ""CLUSTER_NAM"E" --query
+'cluster.status' --output text)
+        print_status "EKS Cluster '"CLUSTER_NAME"' Status: "CLUSTER_STATU"S"
         
-        if [ "$CLUSTER_STATUS" = "ACTIVE" ]; then
+        if [ ""CLUSTER_STATU"S" = "ACTIVE" ]; then
             print_status "EKS cluster is active and ready."
         else
             print_warning "EKS cluster is not yet active."
         fi
     else
-        print_warning "EKS cluster '$CLUSTER_NAME' not found or not yet created."
+        print_warning "EKS cluster '"CLUSTER_NAME"' not found or not yet created."
     fi
 }
 
@@ -139,16 +155,16 @@ monitor_eks() {
 monitor_s3() {
     print_header "S3 Bucket Status"
     
-    BUCKET_NAME="byoc-tf-state-$DATA_PLANE_KEY-$REGION"
+    BUCKET_NAME="byoc-tf-state-"DATA_PLANE_KEY"-"REGIO"N"
     
-    if aws s3 ls "s3://$BUCKET_NAME" &> /dev/null; then
-        print_status "S3 bucket '$BUCKET_NAME' exists."
+    if aws s3 ls "s3://"BUCKET_NAM"E" &> /dev/null; then
+        print_status "S3 bucket '"BUCKET_NAME"' exists."
         
         # Check bucket contents
-        OBJECT_COUNT=$(aws s3 ls "s3://$BUCKET_NAME" --recursive | wc -l)
-        print_status "Bucket contains $OBJECT_COUNT objects."
+        OBJECT_COUNT=$(aws s3 ls "s3://"BUCKET_NAM"E" --recursive | wc -l)
+        print_status "Bucket contains "OBJECT_COUN"T objects."
     else
-        print_warning "S3 bucket '$BUCKET_NAME' not found."
+        print_warning "S3 bucket '"BUCKET_NAME"' not found."
     fi
 }
 
@@ -156,12 +172,12 @@ monitor_s3() {
 monitor_secrets() {
     print_header "Secrets Manager Status"
     
-    SECRET_NAME="snowflake-oauth2-$DATA_PLANE_KEY"
+    SECRET_NAME="snowflake-oauth2-"DATA_PLANE_KE"Y"
     
-    if aws secretsmanager describe-secret --secret-id "$SECRET_NAME" &> /dev/null; then
-        print_status "OAuth2 secret '$SECRET_NAME' exists."
+    if aws secretsmanager describe-secret --secret-id ""SECRET_NAM"E" &> /dev/null; then
+        print_status "OAuth2 secret '"SECRET_NAME"' exists."
     else
-        print_warning "OAuth2 secret '$SECRET_NAME' not found."
+        print_warning "OAuth2 secret '"SECRET_NAME"' not found."
     fi
 }
 
@@ -171,7 +187,7 @@ show_progress() {
     
     STATUS=$(get_stack_status)
     
-    case $STATUS in
+    case "STATU"S in
         "CREATE_COMPLETE"|"UPDATE_COMPLETE")
             print_status "✅ Infrastructure deployment completed"
             print_status "✅ EC2 instance created and configured"
@@ -194,7 +210,7 @@ show_progress() {
             print_status "Check CloudFormation events for error details"
             ;;
         *)
-            print_warning "⚠️  Unknown deployment status: $STATUS"
+            print_warning "⚠️  Unknown deployment status: "STATU"S"
             ;;
     esac
 }
@@ -210,15 +226,16 @@ show_logs() {
     
     # Get instance ID
     INSTANCE_ID=$(aws ec2 describe-instances \
-        --filters "Name=tag:Name,Values=openflow-agent-*" "Name=instance-state-name,Values=running" \
+--filters "Name=tag:Name,Values=openflow-agent-*"
+"Name=instance-state-name,Values=running" \
         --query 'Reservations[0].Instances[0].InstanceId' --output text)
     
-    if [ "$INSTANCE_ID" = "None" ] || [ -z "$INSTANCE_ID" ]; then
+    if [ ""INSTANCE_I"D" = "None" ] || [ -z ""INSTANCE_I"D" ]; then
         print_warning "No running instances found for log access."
         return
     fi
     
-    print_status "Instance ID: $INSTANCE_ID"
+    print_status "Instance ID: "INSTANCE_I"D"
     print_status "To view logs, you can connect to the instance and check:"
     print_status "  - /var/log/cloud-init-output.log (setup logs)"
     print_status "  - /home/ec2-user/host-scripts/ (agent logs)"

@@ -402,7 +402,8 @@ class GeminiGCPBillingAnalyzer:
                         "    for rec in optimizations.get('optimization_recommendations', []):\n",
                         '        print(f"  - {rec}")\n',
                         "    \n",
-                        "    print(f\"\\n💰 Potential Monthly Savings: ${optimizations.get('potential_savings', 0):.2f}\")\n",
+                        "    print( \
+    f\"\\n💰 Potential Monthly Savings: ${optimizations.get('potential_savings', 0):.2f}\")\n",
                         "    \n",
                         "    print('🚀 Quick Wins:')\n",
                         "    for win in optimizations.get('quick_wins', []):\n",
@@ -456,8 +457,10 @@ class GeminiGCPBillingAnalyzer:
                         "if 'generate_forecast' in analysis_results:\n",
                         "    forecast = analysis_results['generate_forecast']\n",
                         "    \n",
-                        "    print(f\"🔮 Next Month Forecast: ${forecast.get('next_month_forecast', 0):.2f}\")\n",
-                        "    print(f\"📊 Forecast Confidence: {forecast.get('forecast_confidence', 'Unknown')}\")\n",
+                        "    print( \
+    f\"🔮 Next Month Forecast: ${forecast.get('next_month_forecast', 0):.2f}\")\n",
+                        "    print( \
+    f\"📊 Forecast Confidence: {forecast.get('forecast_confidence', 'Unknown')}\")\n",
                         "    print(f\"📈 Growth Trend: {forecast.get('growth_trends', 'Unknown')}\")\n",
                         "    \n",
                         "    print('\\n📋 Forecast Factors:')\n",
@@ -497,7 +500,8 @@ class GeminiGCPBillingAnalyzer:
                     "outputs": [],
                     "source": [
                         "# Create service breakdown visualization\n",
-                        "service_columns = [col for col in daily_data.columns if col not in ['date', 'total_cost']]\n",
+                        "service_columns  = \
+     [col for col in daily_data.columns if col not in ['date', 'total_cost']]\n",
                         "\n",
                         "# Calculate total cost per service\n",
                         "service_totals = daily_data[service_columns].sum().sort_values(ascending=False)\n",
@@ -551,10 +555,12 @@ class GeminiGCPBillingAnalyzer:
                         '        print(f"{i}. {win}")\n',
                         "    \n",
                         "    print('\\n💡 Strategic Optimizations:')\n",
-                        "    for i, rec in enumerate(optimizations.get('optimization_recommendations', []), 1):\n",
+                        "    for i, rec in enumerate( \
+    optimizations.get('optimization_recommendations', []), 1):\n",
                         '        print(f"{i}. {rec}")\n',
                         "    \n",
-                        "    print(f\"\\n💰 Expected Monthly Savings: ${optimizations.get('potential_savings', 0):.2f}\")\n",
+                        "    print( \
+    f\"\\n💰 Expected Monthly Savings: ${optimizations.get('potential_savings', 0):.2f}\")\n",
                         "else:\n",
                         "    print('❌ No optimization recommendations available')",
                     ],
@@ -568,7 +574,8 @@ class GeminiGCPBillingAnalyzer:
                     "source": [
                         "print('📊 Analysis Summary:')\n",
                         "print('=' * 20)\n",
-                        'print(f\'📅 Analysis Period: {daily_data["date"].min()} to {daily_data["date"].max()}\')\n',
+                        'print( \
+    f\'📅 Analysis Period: {daily_data["date"].min()} to {daily_data["date"].max()}\')\n',
                         "print(f'💰 Total Cost: ${daily_data[\"total_cost\"].sum():.2f}')\n",
                         "print(f'📈 Average Daily Cost: ${daily_data[\"total_cost\"].mean():.2f}')\n",
                         "print(f'🔍 Services Analyzed: {len(service_columns)}')\n",

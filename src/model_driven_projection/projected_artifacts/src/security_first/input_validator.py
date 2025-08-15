@@ -175,7 +175,9 @@ def validate_file_upload(
 ) -> dict[str, Any]:
     """Validate file upload for security and size constraints"""
     validation_result: dict[str, Any] = {"valid": True, "errors": [], "warnings": []}
-    if not InputValidator.validate_file_extension(filename, allowed_extensions):  # type: ignore
+    if not InputValidator.validate_file_extension(
+        filename, allowed_extensions
+    ):  # type: ignore
         validation_result["valid"] = False
         validation_result["errors"].append(
             f"File extension not allowed. Allowed: {allowed_extensions}",

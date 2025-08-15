@@ -65,7 +65,8 @@ class GCPBillingDailyReporter:
             start_date = end_date - timedelta(days=days)
 
             print(
-                f"📅 Fetching billing data from {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}",
+                f"📅 Fetching billing data from {start_date.strftime( \
+    '%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}",
             )
 
             # Generate mock billing data since we can't access real billing API
@@ -486,7 +487,8 @@ class GCPBillingDailyReporter:
                         "print(daily_summary)\n",
                         "\n",
                         "print('\\n=== Service Cost Summary ===')\n",
-                        "service_summary = df.groupby('service')['cost'].agg(['sum', 'mean', 'count']).round(4)\n",
+                        "service_summary  = \
+     df.groupby('service')['cost'].agg(['sum', 'mean', 'count']).round(4)\n",
                         "service_summary.columns = ['Total Cost', 'Average Daily Cost', 'Days Tracked']\n",
                         "print(service_summary.sort_values('Total Cost', ascending=False))",
                     ],
@@ -540,7 +542,8 @@ class GCPBillingDailyReporter:
                         "# Interactive Plotly dashboard\n",
                         "fig = make_subplots(\n",
                         "    rows=2, cols=2,\n",
-                        "    subplot_titles=('Daily Cost Trend', 'Service Breakdown', 'Cost Distribution', 'Service Count'),\n",
+                        "    subplot_titles = \
+    ('Daily Cost Trend', 'Service Breakdown', 'Cost Distribution', 'Service Count'),\n",
                         '    specs=[[{"secondary_y": False}, {"secondary_y": False}],\n',
                         '           [{"secondary_y": False}, {"secondary_y": False}]]\n',
                         ")\n",
