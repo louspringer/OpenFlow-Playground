@@ -31,7 +31,10 @@
         "ghostbusters_file_type_processor",
         "semantic_diff_engine",
         "universal_ast_enhanced_linter",
-        "glacier_spore_system"
+        "glacier_spore_system",
+        "heuristic_file_processing",
+        "github_discovery_automation",
+        "one_liner_linter"
       ],
       "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
     },
@@ -43,7 +46,8 @@
         "security_first",
         "healthcare_cdc",
         "package_management",
-        "rule_compliance"
+        "rule_compliance",
+        "glacier_schema_system"
       ],
       "purpose": "Provide the foundation and supporting infrastructure for the demo ecosystem"
     },
@@ -128,6 +132,18 @@
       "artifact_forge": [
         "model_driven_projection",
         "mdc_generator"
+      ],
+      "heuristic_file_processing": [
+        "security_first",
+        "data"
+      ],
+      "github_discovery_automation": [
+        "security_first",
+        "model_driven_projection"
+      ],
+      "one_liner_linter": [
+        "code_quality_system",
+        "intelligent_linter_system"
       ]
     },
     "demo_infrastructure_dependencies": {
@@ -150,6 +166,10 @@
       ],
       "rule_compliance": [
         "mdc_generator"
+      ],
+      "glacier_schema_system": [
+        "security_first",
+        "data"
       ]
     },
     "demo_apis_dependencies": {
@@ -1750,6 +1770,152 @@
       "config/.cursor/rules/configuration.mdc": "Configuration management guidelines",
       ".cursor/rules/ghostbusters.mdc": "Ghostbusters multi-agent delusion detection and recovery guidelines",
       ".cursor/rules/model-first-enforcement.mdc": "Model-first enforcement to prevent manual work when automated tools exist"
+    },
+    "glacier_schema_system": {
+      "patterns": [
+        "scripts/glacier_schema_discovery.py",
+        "scripts/glacier_spore_sync.py",
+        "**/*glacier*.py",
+        "**/*spore*.py"
+      ],
+      "content_indicators": [
+        "glacier",
+        "spore",
+        "schema_discovery",
+        "spore_sync",
+        "discovery_schema",
+        "processing_trigger",
+        "sync_strategy"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "ast-parse",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Provide glacier schema discovery and spore synchronization for intelligent data processing",
+        "Support dynamic schema discovery across multiple data sources",
+        "Implement intelligent spore synchronization with conflict resolution",
+        "Support processing triggers and automated workflow orchestration",
+        "Maintain zero false positives in schema discovery and validation"
+      ],
+      "demo_role": "infrastructure",
+      "extraction_candidate": "MEDIUM",
+      "reason": "Generic glacier schema system that could benefit many data processing projects",
+      "extraction_benefits": [
+        "Could become a standalone data processing tool",
+        "Has potential for ETL and data pipeline applications",
+        "Could integrate with other data processing frameworks"
+      ]
+    },
+    "heuristic_file_processing": {
+      "patterns": [
+        "scripts/heuristic_file_type_processor.py",
+        "**/*heuristic*.py",
+        "**/*file_type*.py"
+      ],
+      "content_indicators": [
+        "heuristic",
+        "file_type",
+        "discovery_strategy",
+        "exception_mapping",
+        "confidence_score",
+        "pattern_recognition"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "ast-parse",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Provide intelligent file type discovery using heuristic pattern recognition",
+        "Support dynamic file type detection with confidence scoring",
+        "Implement exception mapping and recovery strategies",
+        "Support learning from failures and pattern evolution",
+        "Maintain zero false positives in file type detection"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "HIGH",
+      "reason": "Generic heuristic processing system with broad applicability across file analysis tools",
+      "extraction_benefits": [
+        "Could become a standalone file analysis tool",
+        "Has potential for IDE and editor integrations",
+        "Could be used in file management and organization tools"
+      ]
+    },
+    "github_discovery_automation": {
+      "patterns": [
+        "scripts/demo_github_discovery.py",
+        "**/*github_discovery*.py",
+        "**/*github_automation*.py"
+      ],
+      "content_indicators": [
+        "github_discovery",
+        "github_automation",
+        "repository_analysis",
+        "automated_discovery",
+        "github_integration"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "ast-parse",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Provide automated GitHub repository discovery and analysis",
+        "Support intelligent repository pattern recognition",
+        "Implement automated integration and workflow setup",
+        "Support discovery automation across multiple repositories",
+        "Maintain zero false positives in repository discovery"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "MEDIUM",
+      "reason": "Generic GitHub automation tool that could benefit many development teams",
+      "extraction_benefits": [
+        "Could become a standalone GitHub automation tool",
+        "Has potential for CI/CD pipeline integration",
+        "Could be used in repository management and organization"
+      ]
+    },
+    "one_liner_linter": {
+      "patterns": [
+        "ONE_LINER_LINTER_DOCUMENTATION.md",
+        "one_liner_report.md",
+        "**/*one_liner*.py",
+        "**/*one_liner*.md"
+      ],
+      "content_indicators": [
+        "one_liner",
+        "linter",
+        "documentation",
+        "report",
+        "linting_automation"
+      ],
+      "linter": "markdownlint",
+      "validator": "markdown-validation",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Provide comprehensive one-liner linter documentation and automation",
+        "Support automated linting with one-liner commands",
+        "Implement comprehensive linting reports and analysis",
+        "Support linting automation across multiple file types",
+        "Maintain zero false positives in linting automation"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "LOW",
+      "reason": "Specific to this project's linting automation needs",
+      "extraction_benefits": [
+        "Could be useful for other projects with similar linting requirements"
+      ]
     }
   },
   "requirements_traceability": [
@@ -2794,10 +2960,10 @@
       "project_management_coordination": 1
     },
     "domain_coverage": {
-      "total_domains": 27,
+      "total_domains": 31,
       "core_domains": 4,
-      "tool_domains": 6,
-      "infrastructure_domains": 6,
+      "tool_domains": 9,
+      "infrastructure_domains": 7,
       "api_domains": 3,
       "utility_domains": 6,
       "coordination_domains": 2
@@ -2813,11 +2979,11 @@
       "missing_components": "Minimal - only edge cases and future enhancements"
     },
     "extraction_potential": {
-      "high_priority": 4,
-      "medium_priority": 8,
-      "low_priority": 4,
-      "total_extractable": 16,
-      "retention_rate": "36%"
+      "high_priority": 5,
+      "medium_priority": 10,
+      "low_priority": 5,
+      "total_extractable": 20,
+      "retention_rate": "35%"
     },
     "tests": [
       "test_model_traceability.py"
