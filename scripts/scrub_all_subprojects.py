@@ -258,7 +258,8 @@ class SubprojectScrubber:
         total_improvement = total_issues_before - total_issues_after
 
         print(
-            f"📈 Overall Improvement: {total_issues_before} → {total_issues_after} issues (-{total_improvement})"
+            f"📈 Overall Improvement: {total_issues_before} → {total_issues_after} issues ( \
+    -{total_improvement})"
         )
         print(f"🎯 Subprojects Processed: {len(self.results)}")
 

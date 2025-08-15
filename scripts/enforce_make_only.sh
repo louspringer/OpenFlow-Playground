@@ -22,28 +22,28 @@ create_tool_wrapper() {
     local tool=$1
     local wrapper_file="scripts/${tool}_wrapper.sh"
     
-    if [[ ! -f "$wrapper_file" ]]; then
-        echo "📝 Creating wrapper for $tool..."
-        cat > "$wrapper_file" << EOF
+    if [[ ! -f ""wrapper_fil"e" ]]; then
+        echo "📝 Creating wrapper for "tool"..."
+        cat > ""wrapper_fil"e" << EOF
 #!/bin/bash
 # $tool wrapper - only allows execution through make
 
 check_parent_process() {
     local parent_pid=\$(ps -o ppid= -p \$\$)
-    local parent_name=\$(ps -o comm= -p \$parent_pid)
+    local parent_name=\$(ps -o comm= -p \"parent_pid")
     
     # Allow if parent is make
-    if [[ "\$parent_name" == "make" ]]; then
+    if [[ "\"parent_nam"e" == "make" ]]; then
         return 0
     fi
     
     # Allow if we're in a make environment
-    if [[ -n "\$MAKEFLAGS" || -n "\$MAKELEVEL" ]]; then
+    if [[ -n "\"MAKEFLAG"S" || -n "\"MAKELEVE"L" ]]; then
         return 0
     fi
     
     # Block direct execution
-    echo "❌ ERROR: $tool can only be executed through make"
+    echo "❌ ERROR: "too"l can only be executed through make"
     echo "✅ Use: make ${tool//_/-}"
     echo "📋 Available targets:"
     echo "   - make ${tool//_/-}"
@@ -55,7 +55,7 @@ check_parent_process() {
 check_parent_process
 exec /home/lou/.local/bin/${tool}.original "\$@"
 EOF
-        chmod +x "$wrapper_file"
+        chmod +x ""wrapper_fil"e"
     fi
 }
 
@@ -66,9 +66,12 @@ create_tool_wrapper "mypy"
 
 # Create symbolic links to wrappers
 echo "🔗 Creating symbolic links..."
-ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/flake8_wrapper.sh /home/lou/.local/bin/flake8
-ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/black_wrapper.sh /home/lou/.local/bin/black
-ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/mypy_wrapper.sh /home/lou/.local/bin/mypy
+ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/flake8_wrapper.sh
+/home/lou/.local/bin/flake8
+ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/black_wrapper.sh
+/home/lou/.local/bin/black
+ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/mypy_wrapper.sh
+/home/lou/.local/bin/mypy
 
 # Create a restore script
 cat > scripts/restore_tools.sh << 'EOF'

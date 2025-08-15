@@ -7,7 +7,7 @@ echo "🔥 LIVE SMOKE TEST SETUP"
 echo "=========================="
 
 # Check if credentials are already set
-if [ -n "$OPENAI_API_KEY" ] || [ -n "$ANTHROPIC_API_KEY" ]; then
+if [ -n ""OPENAI_API_KE"Y" ] || [ -n ""ANTHROPIC_API_KE"Y" ]; then
     echo "✅ API credentials found in environment"
     echo "🔑 OpenAI API Key: ${OPENAI_API_KEY:+SET}"
     echo "🔑 Anthropic API Key: ${ANTHROPIC_API_KEY:+SET}"

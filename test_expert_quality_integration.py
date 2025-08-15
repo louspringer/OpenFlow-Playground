@@ -149,7 +149,8 @@ async def test_quality_metric_consistency():
             expected_weight = security_mapping["weight"]
             if abs(security_metric_weight - expected_weight) < 0.01:
                 print(
-                    f"  ✅ SecurityExpert metric consistency: {security_metric_name} = {security_metric_weight}"
+                    f"  ✅ SecurityExpert metric consistency: {security_metric_name}  = \
+     {security_metric_weight}"
                 )
             else:
                 print(
@@ -178,7 +179,8 @@ async def test_quality_metric_consistency():
             expected_weight = code_quality_mapping["weight"]
             if abs(code_quality_metric_weight - expected_weight) < 0.01:
                 print(
-                    f"  ✅ CodeQualityExpert metric consistency: {code_quality_metric_name} = {code_quality_metric_weight}"
+                    f"  ✅ CodeQualityExpert metric consistency: {code_quality_metric_name}  = \
+     {code_quality_metric_weight}"
                 )
             else:
                 print(

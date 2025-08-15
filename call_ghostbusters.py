@@ -42,7 +42,8 @@ async def call_ghostbusters():
             print("\n🚨 DELUSIONS DETECTED:")
             for i, delusion in enumerate(result.delusions_detected, 1):
                 print(
-                    f"  {i}. {delusion.get('type', 'Unknown')}: {delusion.get('description', 'No description')}",
+                    f"  {i}. {delusion.get( \
+    'type', 'Unknown')}: {delusion.get('description', 'No description')}",
                 )
 
         # Display recovery actions if any
@@ -50,7 +51,8 @@ async def call_ghostbusters():
             print("\n🔧 RECOVERY ACTIONS:")
             for i, action in enumerate(result.recovery_actions, 1):
                 print(
-                    f"  {i}. {action.get('type', 'Unknown')}: {action.get('description', 'No description')}",
+                    f"  {i}. {action.get( \
+    'type', 'Unknown')}: {action.get('description', 'No description')}",
                 )
 
         # Display errors if any
@@ -99,7 +101,8 @@ async def call_ghostbusters():
             print("\n🔧 ROUND-TRIP MODEL SYSTEM RECOVERIES:")
             for i, recovery in enumerate(round_trip_recoveries, 1):
                 print(
-                    f"  {i}. {recovery.get('type', 'Unknown')}: {recovery.get('description', 'No description')}",
+                    f"  {i}. {recovery.get( \
+    'type', 'Unknown')}: {recovery.get('description', 'No description')}",
                 )
 
         print("\n🎯 NEXT STEPS:")

@@ -587,12 +587,14 @@ class ArtifactAnalyzer:
 
         if self.analysis.missing_domains:
             recommendations.append(
-                f"📁 Domains defined in model but no artifacts found: {', '.join(self.analysis.missing_domains)}",
+                f"📁 Domains defined in model but no artifacts found: {', '.join( \
+    self.analysis.missing_domains)}",
             )
 
         if self.analysis.missing_requirements:
             recommendations.append(
-                f"📋 {len(self.analysis.missing_requirements)} requirements are not traced to any artifacts. Consider implementing these requirements.",
+                f"📋 {len( \
+    self.analysis.missing_requirements)} requirements are not traced to any artifacts. Consider implementing these requirements.",
             )
 
         # Python analysis recommendations
@@ -605,7 +607,8 @@ class ArtifactAnalyzer:
         large_files = [a for a in self.artifacts if a.size_bytes > 1000000]
         if large_files:
             recommendations.append(
-                f"📦 {len(large_files)} files are larger than 1MB. Consider if these should be in version control.",
+                f"📦 {len( \
+    large_files)} files are larger than 1MB. Consider if these should be in version control.",
             )
 
         return recommendations

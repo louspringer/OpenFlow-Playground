@@ -27,13 +27,13 @@ get_1password_credential() {
     local item_name="$1"
     local field_name="$2"
     
-    echo "🔍 Looking for '$item_name' in 1Password..."
+    echo "🔍 Looking for '"item_name"' in 1Password..."
     
     # Try to get the item
-    if op item get "$item_name" --fields "$field_name" 2>/dev/null; then
+    if op item get ""item_nam"e" --fields ""field_nam"e" 2>/dev/null; then
         return 0
     else
-        echo "❌ Could not find '$item_name' with field '$field_name'"
+        echo "❌ Could not find '"item_name"' with field '"field_name"'"
         return 1
     fi
 }
@@ -63,7 +63,7 @@ else
 fi
 
 # Check if we have any credentials
-if [ -z "$OPENAI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+if [ -z ""OPENAI_API_KE"Y" ] && [ -z ""ANTHROPIC_API_KE"Y" ]; then
     echo ""
     echo "❌ No API credentials found in 1Password"
     echo ""

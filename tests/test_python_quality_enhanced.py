@@ -196,7 +196,8 @@ class EnhancedPythonQualityTester:
 
             annotation_ratio = annotated_functions / total_functions
             logger.info(
-                f"✅ Type annotation ratio: {annotation_ratio:.2f} ({annotated_functions}/{total_functions})",
+                f"✅ Type annotation ratio: {annotation_ratio:.2f} ( \
+    {annotated_functions}/{total_functions})",
             )
             return annotation_ratio > 0.3  # At least 30% should have annotations
         except Exception as e:

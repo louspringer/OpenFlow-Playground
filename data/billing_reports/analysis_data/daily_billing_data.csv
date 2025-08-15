@@ -1,16 +1,100 @@
 date,service,cost,usage,total_daily_cost
-2025-08-07,cloud_functions,0.0,0 functions,0.26
-2025-08-07,cloud_run,0.19,19 services,0.26
-2025-08-07,firestore,0.04,1 database,0.26
-2025-08-07,pubsub,0.02,10GB/month,0.26
-2025-08-07,storage,0.01,5GB,0.26
-2025-08-07,bigquery,0.0,1TB/month,0.26
-2025-08-07,speech,0.0,60 minutes/month,0.26
-2025-08-07,cloudbuild,0.0,120 build-minutes/day,0.26
-2025-08-07,logging,0.0,50GB/month,0.26
-2025-08-07,monitoring,0.0,Basic monitoring,0.26
-2025-08-07,aiplatform,0.0,Not enabled,0.26
-2025-08-07,cloudaicompanion,0.0,Basic usage,0.26
+2025-08-14,cloud_functions,0.0,0 functions,0.26
+2025-08-14,cloud_run,0.19,19 services,0.26
+2025-08-14,firestore,0.04,1 database,0.26
+2025-08-14,pubsub,0.02,10GB/month,0.26
+2025-08-14,storage,0.01,5GB,0.26
+2025-08-14,bigquery,0.0,1TB/month,0.26
+2025-08-14,speech,0.0,60 minutes/month,0.26
+2025-08-14,cloudbuild,0.0,120 build-minutes/day,0.26
+2025-08-14,logging,0.0,50GB/month,0.26
+2025-08-14,monitoring,0.0,Basic monitoring,0.26
+2025-08-14,aiplatform,0.0,Not enabled,0.26
+2025-08-14,cloudaicompanion,0.0,Basic usage,0.26
+2025-08-13,cloud_functions,1.44,18 functions,1.7
+2025-08-13,cloud_run,0.19,19 services,1.7
+2025-08-13,firestore,0.04,1 database,1.7
+2025-08-13,pubsub,0.02,10GB/month,1.7
+2025-08-13,storage,0.01,5GB,1.7
+2025-08-13,bigquery,0.0,1TB/month,1.7
+2025-08-13,speech,0.0,60 minutes/month,1.7
+2025-08-13,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-13,logging,0.0,50GB/month,1.7
+2025-08-13,monitoring,0.0,Basic monitoring,1.7
+2025-08-13,aiplatform,0.0,Not enabled,1.7
+2025-08-13,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-12,cloud_functions,1.44,18 functions,1.7
+2025-08-12,cloud_run,0.19,19 services,1.7
+2025-08-12,firestore,0.04,1 database,1.7
+2025-08-12,pubsub,0.02,10GB/month,1.7
+2025-08-12,storage,0.01,5GB,1.7
+2025-08-12,bigquery,0.0,1TB/month,1.7
+2025-08-12,speech,0.0,60 minutes/month,1.7
+2025-08-12,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-12,logging,0.0,50GB/month,1.7
+2025-08-12,monitoring,0.0,Basic monitoring,1.7
+2025-08-12,aiplatform,0.0,Not enabled,1.7
+2025-08-12,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-11,cloud_functions,1.44,18 functions,1.7
+2025-08-11,cloud_run,0.19,19 services,1.7
+2025-08-11,firestore,0.04,1 database,1.7
+2025-08-11,pubsub,0.02,10GB/month,1.7
+2025-08-11,storage,0.01,5GB,1.7
+2025-08-11,bigquery,0.0,1TB/month,1.7
+2025-08-11,speech,0.0,60 minutes/month,1.7
+2025-08-11,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-11,logging,0.0,50GB/month,1.7
+2025-08-11,monitoring,0.0,Basic monitoring,1.7
+2025-08-11,aiplatform,0.0,Not enabled,1.7
+2025-08-11,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-10,cloud_functions,1.44,18 functions,1.7
+2025-08-10,cloud_run,0.19,19 services,1.7
+2025-08-10,firestore,0.04,1 database,1.7
+2025-08-10,pubsub,0.02,10GB/month,1.7
+2025-08-10,storage,0.01,5GB,1.7
+2025-08-10,bigquery,0.0,1TB/month,1.7
+2025-08-10,speech,0.0,60 minutes/month,1.7
+2025-08-10,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-10,logging,0.0,50GB/month,1.7
+2025-08-10,monitoring,0.0,Basic monitoring,1.7
+2025-08-10,aiplatform,0.0,Not enabled,1.7
+2025-08-10,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-09,cloud_functions,1.44,18 functions,1.7
+2025-08-09,cloud_run,0.19,19 services,1.7
+2025-08-09,firestore,0.04,1 database,1.7
+2025-08-09,pubsub,0.02,10GB/month,1.7
+2025-08-09,storage,0.01,5GB,1.7
+2025-08-09,bigquery,0.0,1TB/month,1.7
+2025-08-09,speech,0.0,60 minutes/month,1.7
+2025-08-09,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-09,logging,0.0,50GB/month,1.7
+2025-08-09,monitoring,0.0,Basic monitoring,1.7
+2025-08-09,aiplatform,0.0,Not enabled,1.7
+2025-08-09,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-08,cloud_functions,1.44,18 functions,1.7
+2025-08-08,cloud_run,0.19,19 services,1.7
+2025-08-08,firestore,0.04,1 database,1.7
+2025-08-08,pubsub,0.02,10GB/month,1.7
+2025-08-08,storage,0.01,5GB,1.7
+2025-08-08,bigquery,0.0,1TB/month,1.7
+2025-08-08,speech,0.0,60 minutes/month,1.7
+2025-08-08,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-08,logging,0.0,50GB/month,1.7
+2025-08-08,monitoring,0.0,Basic monitoring,1.7
+2025-08-08,aiplatform,0.0,Not enabled,1.7
+2025-08-08,cloudaicompanion,0.0,Basic usage,1.7
+2025-08-07,cloud_functions,1.44,18 functions,1.7
+2025-08-07,cloud_run,0.19,19 services,1.7
+2025-08-07,firestore,0.04,1 database,1.7
+2025-08-07,pubsub,0.02,10GB/month,1.7
+2025-08-07,storage,0.01,5GB,1.7
+2025-08-07,bigquery,0.0,1TB/month,1.7
+2025-08-07,speech,0.0,60 minutes/month,1.7
+2025-08-07,cloudbuild,0.0,120 build-minutes/day,1.7
+2025-08-07,logging,0.0,50GB/month,1.7
+2025-08-07,monitoring,0.0,Basic monitoring,1.7
+2025-08-07,aiplatform,0.0,Not enabled,1.7
+2025-08-07,cloudaicompanion,0.0,Basic usage,1.7
 2025-08-06,cloud_functions,1.44,18 functions,1.7
 2025-08-06,cloud_run,0.19,19 services,1.7
 2025-08-06,firestore,0.04,1 database,1.7
@@ -83,87 +167,3 @@ date,service,cost,usage,total_daily_cost
 2025-08-01,monitoring,0.0,Basic monitoring,1.7
 2025-08-01,aiplatform,0.0,Not enabled,1.7
 2025-08-01,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-31,cloud_functions,1.44,18 functions,1.7
-2025-07-31,cloud_run,0.19,19 services,1.7
-2025-07-31,firestore,0.04,1 database,1.7
-2025-07-31,pubsub,0.02,10GB/month,1.7
-2025-07-31,storage,0.01,5GB,1.7
-2025-07-31,bigquery,0.0,1TB/month,1.7
-2025-07-31,speech,0.0,60 minutes/month,1.7
-2025-07-31,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-31,logging,0.0,50GB/month,1.7
-2025-07-31,monitoring,0.0,Basic monitoring,1.7
-2025-07-31,aiplatform,0.0,Not enabled,1.7
-2025-07-31,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-30,cloud_functions,1.44,18 functions,1.7
-2025-07-30,cloud_run,0.19,19 services,1.7
-2025-07-30,firestore,0.04,1 database,1.7
-2025-07-30,pubsub,0.02,10GB/month,1.7
-2025-07-30,storage,0.01,5GB,1.7
-2025-07-30,bigquery,0.0,1TB/month,1.7
-2025-07-30,speech,0.0,60 minutes/month,1.7
-2025-07-30,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-30,logging,0.0,50GB/month,1.7
-2025-07-30,monitoring,0.0,Basic monitoring,1.7
-2025-07-30,aiplatform,0.0,Not enabled,1.7
-2025-07-30,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-29,cloud_functions,1.44,18 functions,1.7
-2025-07-29,cloud_run,0.19,19 services,1.7
-2025-07-29,firestore,0.04,1 database,1.7
-2025-07-29,pubsub,0.02,10GB/month,1.7
-2025-07-29,storage,0.01,5GB,1.7
-2025-07-29,bigquery,0.0,1TB/month,1.7
-2025-07-29,speech,0.0,60 minutes/month,1.7
-2025-07-29,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-29,logging,0.0,50GB/month,1.7
-2025-07-29,monitoring,0.0,Basic monitoring,1.7
-2025-07-29,aiplatform,0.0,Not enabled,1.7
-2025-07-29,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-28,cloud_functions,1.44,18 functions,1.7
-2025-07-28,cloud_run,0.19,19 services,1.7
-2025-07-28,firestore,0.04,1 database,1.7
-2025-07-28,pubsub,0.02,10GB/month,1.7
-2025-07-28,storage,0.01,5GB,1.7
-2025-07-28,bigquery,0.0,1TB/month,1.7
-2025-07-28,speech,0.0,60 minutes/month,1.7
-2025-07-28,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-28,logging,0.0,50GB/month,1.7
-2025-07-28,monitoring,0.0,Basic monitoring,1.7
-2025-07-28,aiplatform,0.0,Not enabled,1.7
-2025-07-28,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-27,cloud_functions,1.44,18 functions,1.7
-2025-07-27,cloud_run,0.19,19 services,1.7
-2025-07-27,firestore,0.04,1 database,1.7
-2025-07-27,pubsub,0.02,10GB/month,1.7
-2025-07-27,storage,0.01,5GB,1.7
-2025-07-27,bigquery,0.0,1TB/month,1.7
-2025-07-27,speech,0.0,60 minutes/month,1.7
-2025-07-27,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-27,logging,0.0,50GB/month,1.7
-2025-07-27,monitoring,0.0,Basic monitoring,1.7
-2025-07-27,aiplatform,0.0,Not enabled,1.7
-2025-07-27,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-26,cloud_functions,1.44,18 functions,1.7
-2025-07-26,cloud_run,0.19,19 services,1.7
-2025-07-26,firestore,0.04,1 database,1.7
-2025-07-26,pubsub,0.02,10GB/month,1.7
-2025-07-26,storage,0.01,5GB,1.7
-2025-07-26,bigquery,0.0,1TB/month,1.7
-2025-07-26,speech,0.0,60 minutes/month,1.7
-2025-07-26,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-26,logging,0.0,50GB/month,1.7
-2025-07-26,monitoring,0.0,Basic monitoring,1.7
-2025-07-26,aiplatform,0.0,Not enabled,1.7
-2025-07-26,cloudaicompanion,0.0,Basic usage,1.7
-2025-07-25,cloud_functions,1.44,18 functions,1.7
-2025-07-25,cloud_run,0.19,19 services,1.7
-2025-07-25,firestore,0.04,1 database,1.7
-2025-07-25,pubsub,0.02,10GB/month,1.7
-2025-07-25,storage,0.01,5GB,1.7
-2025-07-25,bigquery,0.0,1TB/month,1.7
-2025-07-25,speech,0.0,60 minutes/month,1.7
-2025-07-25,cloudbuild,0.0,120 build-minutes/day,1.7
-2025-07-25,logging,0.0,50GB/month,1.7
-2025-07-25,monitoring,0.0,Basic monitoring,1.7
-2025-07-25,aiplatform,0.0,Not enabled,1.7
-2025-07-25,cloudaicompanion,0.0,Basic usage,1.7

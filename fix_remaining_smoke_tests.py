@@ -37,11 +37,13 @@ class LiveLLMOrchestrator:
                     from langchain_anthropic import ChatAnthropic
                     self.llm = ChatAnthropic(api_key=self.api_key, model="claude-3-5-sonnet-20241022")
             except ImportError as e:
-                raise ValueError(f"Failed to import {provider} dependencies: {str(e)}. Install required packages.")
+                raise ValueError( \
+    f"Failed to import {provider} dependencies: {str(e)}. Install required packages.")
             except ValueError as e:
                 raise ValueError(f"Invalid {provider} configuration: {str(e)}. Check API key format.")
             except Exception as e:
-                raise ValueError(f"Failed to initialize {provider} model: {str(e)}. Check API key validity and model availability.")
+                raise ValueError( \
+    f"Failed to initialize {provider} model: {str(e)}. Check API key validity and model availability.")
 
         # Set up JSON output parser
         self.output_parser = JsonOutputParser()

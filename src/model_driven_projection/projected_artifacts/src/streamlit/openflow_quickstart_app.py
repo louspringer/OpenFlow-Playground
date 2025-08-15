@@ -53,7 +53,8 @@ class CredentialManager:
         return self.fernet.decrypt(encrypted_credential.encode()).decode()  # type: ignore
 
     def store_credential(self, key: str, value: str) -> None:
-        """Store credential securely in Redis with encryption (alias for store_credential_secure)"""
+        """Store credential securely in Redis with encryption ( \
+    alias for store_credential_secure)"""
         self.store_credential_secure(key, value)  # type: ignore
 
     def validate_session_token(self, session_token: str) -> bool:
@@ -67,7 +68,8 @@ class CredentialManager:
         payload = {
             "user_id": user_id,
             "role": role,
-            "exp": datetime.now(timezone.utc) + timedelta(minutes=int(timeout_minutes)),  # type: ignore
+            "exp": datetime.now(timezone.utc)
+            + timedelta(minutes=int(timeout_minutes)),  # type: ignore
         }
         return jwt.encode(
             payload,

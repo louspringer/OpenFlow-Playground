@@ -210,7 +210,8 @@ class ScaledComplexModelGenerator:
         self.model.total_errors = total_errors
 
         print(
-            f"🎯 TOTAL ERRORS: {total_errors} (mypy: {len(self.model.mypy_errors)}, flake8: {len(self.model.flake8_errors)})",
+            f"🎯 TOTAL ERRORS: {total_errors} ( \
+    mypy: {len(self.model.mypy_errors)}, flake8: {len(self.model.flake8_errors)})",
         )
 
         # UPDATE COMPLIANCE RULES BASED ON FINDINGS

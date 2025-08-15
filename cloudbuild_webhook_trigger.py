@@ -121,7 +121,8 @@ def main() -> None:
         print("   Secret: webhook-secret-123")
         print()
         print(
-            "🔗 View triggers: https://console.cloud.google.com/cloud-build/triggers?project=aardvark-linkedin-grepper",
+            "🔗 View triggers: https://console.cloud.google.com/cloud-build/triggers?project = \
+    aardvark-linkedin-grepper",
         )
         print("🧪 Test with: curl -X POST <webhook-url>")
 

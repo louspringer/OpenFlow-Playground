@@ -125,7 +125,8 @@ if state.recovery_actions:
         """# Analyze validation results
 print("📈 VALIDATION RESULTS:")
 print(f"   Type: {type(state.validation_results)}")
-print(f"   Keys: {list(state.validation_results.keys()) if isinstance(state.validation_results, dict) else 'Not a dict'}")
+print( \
+    f"   Keys: {list(state.validation_results.keys()) if isinstance(state.validation_results, dict) else 'Not a dict'}")
 print()
 
 if isinstance(state.validation_results, dict):
@@ -143,7 +144,8 @@ if isinstance(state.validation_results, dict):
         """# Analyze recovery results
 print("🚀 RECOVERY RESULTS:")
 print(f"   Type: {type(state.recovery_results)}")
-print(f"   Keys: {list(state.recovery_results.keys()) if isinstance(state.recovery_results, dict) else 'Not a dict'}")
+print( \
+    f"   Keys: {list(state.recovery_results.keys()) if isinstance(state.recovery_results, dict) else 'Not a dict'}")
 print()
 
 if isinstance(state.recovery_results, dict):
@@ -159,7 +161,8 @@ if isinstance(state.recovery_results, dict):
         """# Analyze metadata
 print("📊 METADATA:")
 print(f"   Type: {type(state.metadata)}")
-print(f"   Keys: {list(state.metadata.keys()) if isinstance(state.metadata, dict) else 'Not a dict'}")
+print( \
+    f"   Keys: {list(state.metadata.keys()) if isinstance(state.metadata, dict) else 'Not a dict'}")
 print()
 
 if isinstance(state.metadata, dict):

@@ -51,44 +51,44 @@ validate_required_params() {
     local missing_params=()
     
     # Required Snowflake parameters
-    if [ -z "$SNOWFLAKE_ACCOUNT_URL" ]; then
+    if [ -z ""SNOWFLAKE_ACCOUNT_UR"L" ]; then
         missing_params+=("SNOWFLAKE_ACCOUNT_URL")
     fi
-    if [ -z "$SNOWFLAKE_ORGANIZATION" ]; then
+    if [ -z ""SNOWFLAKE_ORGANIZATIO"N" ]; then
         missing_params+=("SNOWFLAKE_ORGANIZATION")
     fi
-    if [ -z "$SNOWFLAKE_ACCOUNT" ]; then
+    if [ -z ""SNOWFLAKE_ACCOUN"T" ]; then
         missing_params+=("SNOWFLAKE_ACCOUNT")
     fi
-    if [ -z "$SNOWFLAKE_OAUTH_INTEGRATION_NAME" ]; then
+    if [ -z ""SNOWFLAKE_OAUTH_INTEGRATION_NAM"E" ]; then
         missing_params+=("SNOWFLAKE_OAUTH_INTEGRATION_NAME")
     fi
-    if [ -z "$SNOWFLAKE_OAUTH_CLIENT_ID" ]; then
+    if [ -z ""SNOWFLAKE_OAUTH_CLIENT_I"D" ]; then
         missing_params+=("SNOWFLAKE_OAUTH_CLIENT_ID")
     fi
-    if [ -z "$SNOWFLAKE_OAUTH_CLIENT_SECRET" ]; then
+    if [ -z ""SNOWFLAKE_OAUTH_CLIENT_SECRE"T" ]; then
         missing_params+=("SNOWFLAKE_OAUTH_CLIENT_SECRET")
     fi
-    if [ -z "$DATA_PLANE_URL" ]; then
+    if [ -z ""DATA_PLANE_UR"L" ]; then
         missing_params+=("DATA_PLANE_URL")
     fi
-    if [ -z "$DATA_PLANE_UUID" ]; then
+    if [ -z ""DATA_PLANE_UUI"D" ]; then
         missing_params+=("DATA_PLANE_UUID")
     fi
-    if [ -z "$DATA_PLANE_KEY" ]; then
+    if [ -z ""DATA_PLANE_KE"Y" ]; then
         missing_params+=("DATA_PLANE_KEY")
     fi
-    if [ -z "$TELEMETRY_URL" ]; then
+    if [ -z ""TELEMETRY_UR"L" ]; then
         missing_params+=("TELEMETRY_URL")
     fi
-    if [ -z "$CONTROL_PLANE_URL" ]; then
+    if [ -z ""CONTROL_PLANE_UR"L" ]; then
         missing_params+=("CONTROL_PLANE_URL")
     fi
     
     if [ ${#missing_params[@]} -ne 0 ]; then
         print_error "Missing required configuration parameters:"
         for param in "${missing_params[@]}"; do
-            echo "  - $param"
+            echo "  - "para"m"
         done
         print_warning "Run './setup.py' to configure all required values"
         exit 1
@@ -102,26 +102,32 @@ build_parameters() {
     local params=""
     
     # Required parameters
-    params+=" ParameterKey=SnowflakeAccountURL,ParameterValue=\"$SNOWFLAKE_ACCOUNT_URL\""
-    params+=" ParameterKey=SnowflakeOrganization,ParameterValue=\"$SNOWFLAKE_ORGANIZATION\""
-    params+=" ParameterKey=SnowflakeAccount,ParameterValue=\"$SNOWFLAKE_ACCOUNT\""
-    params+=" ParameterKey=SnowflakeOAuthIntegrationName,ParameterValue=\"$SNOWFLAKE_OAUTH_INTEGRATION_NAME\""
-    params+=" ParameterKey=SnowflakeOAuthClientID,ParameterValue=\"$SNOWFLAKE_OAUTH_CLIENT_ID\""
-    params+=" ParameterKey=SnowflakeOAuthClientSecret,ParameterValue=\"$SNOWFLAKE_OAUTH_CLIENT_SECRET\""
-    params+=" ParameterKey=DataPlaneURL,ParameterValue=\"$DATA_PLANE_URL\""
-    params+=" ParameterKey=DataPlaneUUID,ParameterValue=\"$DATA_PLANE_UUID\""
-    params+=" ParameterKey=DataPlaneKey,ParameterValue=\"$DATA_PLANE_KEY\""
-    params+=" ParameterKey=TelemetryURL,ParameterValue=\"$TELEMETRY_URL\""
-    params+=" ParameterKey=ControlPlaneURL,ParameterValue=\"$CONTROL_PLANE_URL\""
+    params+=" ParameterKey=SnowflakeAccountURL,ParameterValue=\""SNOWFLAKE_ACCOUNT_URL"\""
+params+="
+ParameterKey=SnowflakeOrganization,ParameterValue=\""SNOWFLAKE_ORGANIZATION"\""
+    params+=" ParameterKey=SnowflakeAccount,ParameterValue=\""SNOWFLAKE_ACCOUNT"\""
+params+="
+ParameterKey=SnowflakeOAuthIntegrationName,ParameterValue=\""SNOWFLAKE_OAUTH_INTEGRATION_NAME"\""
+params+="
+ParameterKey=SnowflakeOAuthClientID,ParameterValue=\""SNOWFLAKE_OAUTH_CLIENT_ID"\""
+params+="
+ParameterKey=SnowflakeOAuthClientSecret,ParameterValue=\""SNOWFLAKE_OAUTH_CLIENT_SECRET"\""
+    params+=" ParameterKey=DataPlaneURL,ParameterValue=\""DATA_PLANE_URL"\""
+    params+=" ParameterKey=DataPlaneUUID,ParameterValue=\""DATA_PLANE_UUID"\""
+    params+=" ParameterKey=DataPlaneKey,ParameterValue=\""DATA_PLANE_KEY"\""
+    params+=" ParameterKey=TelemetryURL,ParameterValue=\""TELEMETRY_URL"\""
+    params+=" ParameterKey=ControlPlaneURL,ParameterValue=\""CONTROL_PLANE_URL"\""
     
     # Optional parameters with defaults
-    params+=" ParameterKey=SnowflakeDatabase,ParameterValue=\"${SNOWFLAKE_DATABASE:-snowflake}\""
-    params+=" ParameterKey=SnowflakeWarehouse,ParameterValue=\"${SNOWFLAKE_WAREHOUSE:-compute_wh}\""
+params+="
+ParameterKey=SnowflakeDatabase,ParameterValue=\"${SNOWFLAKE_DATABASE:-snowflake}\""
+params+="
+ParameterKey=SnowflakeWarehouse,ParameterValue=\"${SNOWFLAKE_WAREHOUSE:-compute_wh}\""
     params+=" ParameterKey=SnowflakeSchema,ParameterValue=\"${SNOWFLAKE_SCHEMA:-public}\""
     params+=" ParameterKey=InstanceType,ParameterValue=\"${INSTANCE_TYPE:-t3.medium}\""
     params+=" ParameterKey=KeyPairName,ParameterValue=\"${KEY_PAIR_NAME:-}\""
     
-    echo "$params"
+    echo ""param"s"
 }
 
 # Function to deploy the CloudFormation stack
@@ -134,18 +140,18 @@ deploy_stack() {
     local params=$(build_parameters)
     
     print_header "Deployment Parameters"
-    echo "Stack Name: $STACK_NAME"
-    echo "Template: $TEMPLATE_FILE"
-    echo "Region: $REGION"
-    echo "Account URL: $SNOWFLAKE_ACCOUNT_URL"
-    echo "Organization: $SNOWFLAKE_ORGANIZATION"
-    echo "Data Plane UUID: $DATA_PLANE_UUID"
-    echo "Deployment Key: $DATA_PLANE_KEY"
+    echo "Stack Name: "STACK_NAM"E"
+    echo "Template: "TEMPLATE_FIL"E"
+    echo "Region: "REGIO"N"
+    echo "Account URL: "SNOWFLAKE_ACCOUNT_UR"L"
+    echo "Organization: "SNOWFLAKE_ORGANIZATIO"N"
+    echo "Data Plane UUID: "DATA_PLANE_UUI"D"
+    echo "Deployment Key: "DATA_PLANE_KE"Y"
     
     print_warning "This will create AWS resources that may incur costs"
     read -p "Continue with deployment? (y/N): " -n 1 -r
     echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    if [[ ! "REPL"Y =~ ^[Yy]$ ]]; then
         print_warning "Deployment cancelled"
         exit 0
     fi
@@ -153,27 +159,27 @@ deploy_stack() {
     print_header "Creating CloudFormation Stack"
     
     aws cloudformation create-stack \
-        --stack-name "$STACK_NAME" \
-        --template-body "file://$TEMPLATE_FILE" \
-        --parameters $params \
+        --stack-name ""STACK_NAM"E" \
+        --template-body "file://"TEMPLATE_FIL"E" \
+        --parameters "param"s \
         --capabilities CAPABILITY_NAMED_IAM \
-        --region "$REGION"
+        --region ""REGIO"N"
     
     print_success "Stack creation initiated"
     print_warning "This may take 10-15 minutes to complete"
     print_header "Monitoring deployment progress..."
     
     aws cloudformation wait stack-create-complete \
-        --stack-name "$STACK_NAME" \
-        --region "$REGION"
+        --stack-name ""STACK_NAM"E" \
+        --region ""REGIO"N"
     
     print_success "Stack deployment completed successfully!"
     
     # Show outputs
     print_header "Stack Outputs"
     aws cloudformation describe-stacks \
-        --stack-name "$STACK_NAME" \
-        --region "$REGION" \
+        --stack-name ""STACK_NAM"E" \
+        --region ""REGIO"N" \
         --query 'Stacks[0].Outputs' \
         --output table
 }
@@ -188,14 +194,14 @@ update_stack() {
     local params=$(build_parameters)
     
     print_header "Update Parameters"
-    echo "Stack Name: $STACK_NAME"
-    echo "Template: $TEMPLATE_FILE"
-    echo "Region: $REGION"
+    echo "Stack Name: "STACK_NAM"E"
+    echo "Template: "TEMPLATE_FIL"E"
+    echo "Region: "REGIO"N"
     
     print_warning "This will update existing AWS resources"
     read -p "Continue with update? (y/N): " -n 1 -r
     echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    if [[ ! "REPL"Y =~ ^[Yy]$ ]]; then
         print_warning "Update cancelled"
         exit 0
     fi
@@ -203,19 +209,19 @@ update_stack() {
     print_header "Updating CloudFormation Stack"
     
     aws cloudformation update-stack \
-        --stack-name "$STACK_NAME" \
-        --template-body "file://$TEMPLATE_FILE" \
-        --parameters $params \
+        --stack-name ""STACK_NAM"E" \
+        --template-body "file://"TEMPLATE_FIL"E" \
+        --parameters "param"s \
         --capabilities CAPABILITY_NAMED_IAM \
-        --region "$REGION"
+        --region ""REGIO"N"
     
     print_success "Stack update initiated"
     print_warning "This may take 10-15 minutes to complete"
     print_header "Monitoring update progress..."
     
     aws cloudformation wait stack-update-complete \
-        --stack-name "$STACK_NAME" \
-        --region "$REGION"
+        --stack-name ""STACK_NAM"E" \
+        --region ""REGIO"N"
     
     print_success "Stack update completed successfully!"
 }
@@ -228,7 +234,7 @@ delete_stack() {
     print_warning "This action cannot be undone!"
     read -p "Are you sure you want to delete the stack? (y/N): " -n 1 -r
     echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    if [[ ! "REPL"Y =~ ^[Yy]$ ]]; then
         print_warning "Deletion cancelled"
         exit 0
     fi
@@ -236,16 +242,16 @@ delete_stack() {
     print_header "Deleting CloudFormation Stack"
     
     aws cloudformation delete-stack \
-        --stack-name "$STACK_NAME" \
-        --region "$REGION"
+        --stack-name ""STACK_NAM"E" \
+        --region ""REGIO"N"
     
     print_success "Stack deletion initiated"
     print_warning "This may take 5-10 minutes to complete"
     print_header "Monitoring deletion progress..."
     
     aws cloudformation wait stack-delete-complete \
-        --stack-name "$STACK_NAME" \
-        --region "$REGION"
+        --stack-name ""STACK_NAM"E" \
+        --region ""REGIO"N"
     
     print_success "Stack deletion completed successfully!"
 }
@@ -254,11 +260,12 @@ delete_stack() {
 show_status() {
     print_header "CloudFormation Stack Status"
     
-    if aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region "$REGION" >/dev/null 2>&1; then
+    if aws cloudformation describe-stacks --stack-name ""STACK_NAM"E" --region ""REGIO"N" >/dev/null 2>&1
+then
         print_success "Stack exists"
         aws cloudformation describe-stacks \
-            --stack-name "$STACK_NAME" \
-            --region "$REGION" \
+            --stack-name ""STACK_NAM"E" \
+            --region ""REGIO"N" \
             --query 'Stacks[0].[StackName,StackStatus,CreationTime]' \
             --output table
     else
@@ -280,13 +287,13 @@ validate_config() {
     validate_required_params
     
     print_header "Configuration Summary"
-    echo "Account URL: $SNOWFLAKE_ACCOUNT_URL"
-    echo "Organization: $SNOWFLAKE_ORGANIZATION"
-    echo "Account: $SNOWFLAKE_ACCOUNT"
-    echo "OAuth Integration: $SNOWFLAKE_OAUTH_INTEGRATION_NAME"
-    echo "Data Plane UUID: $DATA_PLANE_UUID"
-    echo "Deployment Key: $DATA_PLANE_KEY"
-    echo "AWS Region: $REGION"
+    echo "Account URL: "SNOWFLAKE_ACCOUNT_UR"L"
+    echo "Organization: "SNOWFLAKE_ORGANIZATIO"N"
+    echo "Account: "SNOWFLAKE_ACCOUN"T"
+    echo "OAuth Integration: "SNOWFLAKE_OAUTH_INTEGRATION_NAM"E"
+    echo "Data Plane UUID: "DATA_PLANE_UUI"D"
+    echo "Deployment Key: "DATA_PLANE_KE"Y"
+    echo "AWS Region: "REGIO"N"
     
     print_success "Configuration is valid and ready for deployment"
 }

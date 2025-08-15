@@ -45,7 +45,8 @@ async def test_orchestrator_quality_analysis():
         overall_summary = quality_report.get("overall_quality_summary", {})
         if overall_summary:
             print(
-                f"    📊 Overall Quality Score: {overall_summary.get('overall_quality_score', 'N/A'):.1f}"
+                f"    📊 Overall Quality Score: {overall_summary.get( \
+    'overall_quality_score', 'N/A'):.1f}"
             )
             print(
                 f"    📊 Quality Status: {overall_summary.get('quality_status', 'N/A')}"
@@ -57,7 +58,8 @@ async def test_orchestrator_quality_analysis():
                 f"    📊 Agents Analyzed: {overall_summary.get('agents_analyzed', 'N/A')}"
             )
             print(
-                f"    📊 Recommendations Priority: {overall_summary.get('recommendations_priority', 'N/A')}"
+                f"    📊 Recommendations Priority: {overall_summary.get( \
+    'recommendations_priority', 'N/A')}"
             )
 
         # Display agent quality results

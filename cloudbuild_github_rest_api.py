@@ -168,7 +168,8 @@ def main() -> None:
         print("   Branch: develop")
         print()
         print(
-            "🔗 View triggers: https://console.cloud.google.com/cloud-build/triggers?project=aardvark-linkedin-grepper",
+            "🔗 View triggers: https://console.cloud.google.com/cloud-build/triggers?project = \
+    aardvark-linkedin-grepper",
         )
         print("🧪 Test with: git push origin develop")
 

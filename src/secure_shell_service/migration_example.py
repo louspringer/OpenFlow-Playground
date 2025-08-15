@@ -43,7 +43,9 @@ async def elegant_new_way() -> None:
 
     # 🎉 ELEGANT: Input validation and sanitization
     user_input = "rm -rf /"  # Still dangerous, but now SAFE!
-    result = await secure_execute(user_input, timeout=10, validate_input=True)  # type: ignore
+    result = await secure_execute(
+        user_input, timeout=10, validate_input=True
+    )  # type: ignore
     print("ELEGANT: Command sanitized and validated!")
 
     # 🎉 ELEGANT: Proper error handling
@@ -88,7 +90,9 @@ async def migration_examples() -> None:
     print("😱 BEFORE: secure_execute(['find', '.', '-name', '*.py'])")
     print("🎉 AFTER: await secure_execute('find . -name \"*.py\"')")
 
-    result = await secure_execute('find . -name "*.py" | head -5', timeout=10)  # type: ignore
+    result = await secure_execute(
+        'find . -name "*.py" | head -5', timeout=10
+    )  # type: ignore
     print(f"✅ Result: {result['success']}, Files: {len(result['output'].split())}")
 
     print("\n🎉 NO MORE CRINGING! Everything is elegant and secure! 🚀")

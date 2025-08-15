@@ -109,7 +109,8 @@ print(f"📄 Summary data file exists: {summary_data_file.exists()}")
 if not daily_data_file.exists():
     print("❌ Billing data not found. Generating it...")
     import subprocess
-    result = subprocess.run(["uv", "run", "python", "scripts/gcp_billing_daily_reporter.py"],
+    result  = \
+     subprocess.run(["uv", "run", "python", "scripts/gcp_billing_daily_reporter.py"],
                           cwd=project_root)
     if result.returncode != 0:
         print("❌ Failed to generate billing data")
@@ -237,7 +238,8 @@ fig.show()""",
     service_cell = nbf.v4.new_code_cell(
         """# Create service breakdown visualization
 # Calculate total cost per service
-service_totals = daily_data.groupby('service')['cost'].sum().sort_values(ascending=False)
+service_totals  = \
+     daily_data.groupby('service')['cost'].sum().sort_values(ascending=False)
 
 print("💰 Service cost breakdown:")
 print(service_totals)

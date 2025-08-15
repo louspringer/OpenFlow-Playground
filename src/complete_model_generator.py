@@ -156,7 +156,9 @@ class CompleteModelGenerator:
 
         return perfect_code
 
-    def _generate_perfect_code_from_analysis(self, initial_code: str, analysis) -> str:  # type: ignore
+    def _generate_perfect_code_from_analysis(
+        self, initial_code: str, analysis
+    ) -> str:  # type: ignore
         """Generate perfect code by removing unused elements"""
         lines = initial_code.split("\n")
         perfect_lines = []
