@@ -110,9 +110,11 @@ class ProductionDeployment:
                 text=True,
             )
 
-            # Run black check
+            # Run black check using UV
             black_result = subprocess.run(
-                ["black", "--check", "src/"], capture_output=True, text=True
+                ["uv", "run", "black", "--check", "src/"],
+                capture_output=True,
+                text=True,
             )
 
             if flake8_result.returncode == 0 and black_result.returncode == 0:
