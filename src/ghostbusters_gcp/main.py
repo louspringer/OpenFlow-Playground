@@ -9,7 +9,7 @@ GCP-specific infrastructure and deployment quality issues.
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -329,6 +329,19 @@ def run_gcp_ghostbusters(project_id: str = "default") -> dict[str, Any]:
 
     # Run GCP investigation
     return orchestrator.investigate_gcp_infrastructure(project_id)
+
+
+def ghostbusters_analyze(project_id: str = "default") -> dict[str, Any]:
+    """
+    Analyze GCP infrastructure using Ghostbusters (alias for run_gcp_ghostbusters).
+
+    Args:
+        project_id: GCP project ID to investigate
+
+    Returns:
+        Investigation results dictionary
+    """
+    return run_gcp_ghostbusters(project_id)
 
 
 if __name__ == "__main__":

@@ -6,9 +6,9 @@ This module provides paranormal investigation capabilities for code quality anal
 It implements the GhostbustersOrchestrator for multi-agent testing and quality validation.
 """
 
-from .ghostbusters_orchestrator import GhostbustersOrchestrator
+from .ghostbusters_orchestrator import GhostbustersOrchestrator, run_ghostbusters
 
-__all__ = ["GhostbustersOrchestrator"]
+__all__ = ["GhostbustersOrchestrator", "run_ghostbusters"]
 
 # Version information
 __version__ = "1.0.0"
