@@ -42,6 +42,8 @@ dependencies = [
     "pytest-asyncio>=1.1.0",
     "matplotlib>=3.10.5",
     "kaleido>=1.0.0",
+    "neo4j>=5.28.2",
+    "jq>=1.10.0",
 ]
 
 [project.optional-dependencies]
