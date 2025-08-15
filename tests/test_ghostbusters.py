@@ -1,184 +1,116 @@
-"""Tests for the Ghostbusters system."""
+#!/usr/bin/env python3
+"""
+Test Ghostbusters Module
 
-from pathlib import Path
+This module tests the Ghostbusters orchestrator functionality.
+"""
+
+from unittest.mock import Mock, patch
 
 import pytest
 
 from src.ghostbusters import GhostbustersOrchestrator, run_ghostbusters
-from src.ghostbusters.agents import (
-    ArchitectureExpert,
-    BuildExpert,
-    CodeQualityExpert,
-    ModelExpert,
-    SecurityExpert,
-    TestExpert,
-)
 
 
 class TestGhostbustersOrchestrator:
-    """Test the Ghostbusters orchestrator."""
+    """Test the Ghostbusters Orchestrator class"""
 
-    @pytest.fixture
-    def orchestrator(self, tmp_path: Path) -> GhostbustersOrchestrator:
-        """Create a test orchestrator."""
-        return GhostbustersOrchestrator(str(tmp_path))
+    def test_init(self):
+        """Test orchestrator initialization"""
+        orchestrator = GhostbustersOrchestrator()
+        assert orchestrator.config == {}
+        assert orchestrator.agents == {}
+        assert orchestrator.investigation_results == {}
+        assert orchestrator.quality_metrics == {}
 
-    @pytest.mark.asyncio
-    async def test_orchestrator_initialization(
-        self,
-        orchestrator: GhostbustersOrchestrator,
-    ) -> None:
-        """Test orchestrator initialization."""
-        assert orchestrator.project_path is not None
-        assert orchestrator.workflow is not None
+    def test_add_agent(self):
+        """Test adding an agent"""
+        orchestrator = GhostbustersOrchestrator()
+        result = orchestrator.add_agent("test_agent", {"type": "test"})
+        assert result is True
+        assert "test_agent" in orchestrator.agents
+        assert orchestrator.agents["test_agent"]["type"] == "test"
 
-    @pytest.mark.asyncio
-    async def test_run_ghostbusters(self, tmp_path: Path) -> None:
-        """Test running the complete Ghostbusters workflow."""
-        # Create a simple test file
-        test_file = tmp_path / "test.py"
-        test_file.write_text("def hello():\n    print('Hello, World!')\n")
+    def test_investigate_quality_issues_file(self):
+        """Test investigating quality issues for a file"""
+        orchestrator = GhostbustersOrchestrator()
 
-        state = await run_ghostbusters(str(tmp_path))
+        # Mock file path
+        with patch("pathlib.Path") as mock_path:
+            mock_path.return_value.is_file.return_value = True
+            mock_path.return_value.suffix = ".py"
+            mock_path.return_value.read_text.return_value = "print('Hello World')"
 
-        assert state is not None
-        assert hasattr(state, "confidence_score")
-        assert hasattr(state, "delusions_detected")
-        assert hasattr(state, "errors")
+            result = orchestrator.investigate_quality_issues("test_file.py")
 
+            assert result["target_path"] == "test_file.py"
+            assert "timestamp" in result
+            assert result["issues_found"] == []
+            assert result["quality_score"] == 100.0
 
-class TestExpertAgents:
-    """Test the expert agents."""
+    def test_investigate_quality_issues_directory(self):
+        """Test investigating quality issues for a directory"""
+        orchestrator = GhostbustersOrchestrator()
 
-    @pytest.fixture
-    def test_project(self, tmp_path: Path) -> Path:
-        """Create a test project structure."""
-        # Create src directory
-        src_dir = tmp_path / "src"
-        src_dir.mkdir()
+        # Mock directory path
+        with patch("pathlib.Path") as mock_path:
+            mock_path.return_value.is_file.return_value = False
+            mock_path.return_value.is_dir.return_value = True
+            mock_path.return_value.rglob.return_value = []
 
-        # Create a simple Python file
-        test_file = src_dir / "test.py"
-        test_file.write_text("def hello():\n    print('Hello, World!')\n")
+            result = orchestrator.investigate_quality_issues("test_dir")
 
-        return tmp_path
+            assert result["target_path"] == "test_dir"
+            assert "timestamp" in result
+            assert result["issues_found"] == []
+            assert result["quality_score"] == 100.0
 
-    @pytest.mark.asyncio
-    async def test_security_expert(self, test_project: Path) -> None:
-        """Test the security expert agent."""
-        expert = SecurityExpert()
-        result = await expert.detect_delusions(test_project)
+    def test_get_investigation_summary(self):
+        """Test getting investigation summary"""
+        orchestrator = GhostbustersOrchestrator()
+        orchestrator.add_agent("test_agent", {"type": "test"})
 
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "SecurityExpert"
+        summary = orchestrator.get_investigation_summary()
 
-    @pytest.mark.asyncio
-    async def test_code_quality_expert(self, test_project: Path) -> None:
-        """Test the code quality expert agent."""
-        expert = CodeQualityExpert()
-        result = await expert.detect_delusions(test_project)
-
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "CodeQualityExpert"
-
-    @pytest.mark.asyncio
-    async def test_test_expert(self, test_project: Path) -> None:
-        """Test the test expert agent."""
-        expert = TestExpert()
-        result = await expert.detect_delusions(test_project)
-
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "TestExpert"
-
-    @pytest.mark.asyncio
-    async def test_build_expert(self, test_project: Path) -> None:
-        """Test the build expert agent."""
-        expert = BuildExpert()
-        result = await expert.detect_delusions(test_project)
-
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "BuildExpert"
-
-    @pytest.mark.asyncio
-    async def test_architecture_expert(self, test_project: Path) -> None:
-        """Test the architecture expert agent."""
-        expert = ArchitectureExpert()
-        result = await expert.detect_delusions(test_project)
-
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "ArchitectureExpert"
-
-    @pytest.mark.asyncio
-    async def test_model_expert(self, test_project: Path) -> None:
-        """Test the model expert agent."""
-        expert = ModelExpert()
-        result = await expert.detect_delusions(test_project)
-
-        assert result is not None
-        assert hasattr(result, "delusions")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "recommendations")
-        assert result.agent_name == "ModelExpert"
+        assert summary["total_investigations"] == 0
+        assert summary["recent_investigations"] == []
+        assert summary["overall_quality_trend"] == "no_data"
+        assert summary["agent_status"]["test_agent"] == "active"
 
 
-class TestRecoveryEngines:
-    """Test the recovery engines."""
+class TestRunGhostbusters:
+    """Test the run_ghostbusters function"""
 
-    @pytest.fixture
-    def test_file(self, tmp_path: Path) -> Path:
-        """Create a test file with issues."""
-        test_file = tmp_path / "test.py"
-        test_file.write_text("def hello()\n    print('Hello, World!')\n")
-        return test_file
+    def test_run_ghostbusters_default(self):
+        """Test running ghostbusters with default path"""
+        with patch("src.ghostbusters.GhostbustersOrchestrator") as mock_orchestrator:
+            mock_instance = Mock()
+            mock_instance.investigate_quality_issues.return_value = {
+                "target_path": ".",
+                "quality_score": 95.0,
+            }
+            mock_orchestrator.return_value = mock_instance
 
-    @pytest.mark.asyncio
-    async def test_syntax_recovery_engine(self, test_file: Path) -> None:
-        """Test the syntax recovery engine."""
-        from src.ghostbusters.recovery_engines import SyntaxRecoveryEngine
+            result = run_ghostbusters()
 
-        engine = SyntaxRecoveryEngine()
-        action = {"target_file": str(test_file)}
+            assert result["target_path"] == "."
+            assert result["quality_score"] == 95.0
+            mock_instance.add_agent.assert_called()
 
-        result = await engine.execute_recovery(action)
+    def test_run_ghostbusters_custom_path(self):
+        """Test running ghostbusters with custom path"""
+        with patch("src.ghostbusters.GhostbustersOrchestrator") as mock_orchestrator:
+            mock_instance = Mock()
+            mock_instance.investigate_quality_issues.return_value = {
+                "target_path": "custom_path",
+                "quality_score": 88.0,
+            }
+            mock_orchestrator.return_value = mock_instance
 
-        assert result is not None
-        assert hasattr(result, "success")
-        assert hasattr(result, "message")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "changes_made")
-        assert result.engine_name == "SyntaxRecoveryEngine"
+            result = run_ghostbusters("custom_path")
 
-    @pytest.mark.asyncio
-    async def test_indentation_fixer(self, test_file: Path) -> None:
-        """Test the indentation fixer."""
-        from src.ghostbusters.recovery_engines import IndentationFixer
-
-        engine = IndentationFixer()
-        action = {"target_file": str(test_file)}
-
-        result = await engine.execute_recovery(action)
-
-        assert result is not None
-        assert hasattr(result, "success")
-        assert hasattr(result, "message")
-        assert hasattr(result, "confidence")
-        assert hasattr(result, "changes_made")
-        assert result.engine_name == "IndentationFixer"
+            assert result["target_path"] == "custom_path"
+            assert result["quality_score"] == 88.0
 
 
 if __name__ == "__main__":
