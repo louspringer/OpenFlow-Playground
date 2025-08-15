@@ -1,6 +1,7 @@
 # OpenFlow Playground Source Code
 
-This directory contains the source code organized by domain according to the project model registry.
+This directory contains the source code organized by domain according to the project
+model registry.
 
 ## Directory Structure
 

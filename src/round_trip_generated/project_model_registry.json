@@ -1,5 +1,7 @@
 {
-  "description": "Model-driven tool orchestration registry for OpenFlow Playground. This is the single source of truth for domain detection, tool selection, and requirements traceability.",
+"description": "Model-driven tool orchestration registry for OpenFlow Playground. This
+is the single source of truth for domain detection, tool selection, and requirements
+traceability.",
   "author": "LLM + Lou (OpenFlow-Playground)",
   "domains": {
     "model_driven_projection": {
@@ -360,14 +362,19 @@
     },
     "domain_rules": {
       "description": "Domain-specific development rules",
-      "src/streamlit/.cursor/rules/streamlit-development.mdc": "Streamlit development guidelines",
-      "src/security_first/.cursor/rules/security-first.mdc": "Security-first architecture guidelines",
-      "src/multi_agent_testing/.cursor/rules/multi-agent-testing.mdc": "Multi-agent testing guidelines",
+"src/streamlit/.cursor/rules/streamlit-development.mdc": "Streamlit development
+guidelines",
+"src/security_first/.cursor/rules/security-first.mdc": "Security-first architecture
+guidelines",
+"src/multi_agent_testing/.cursor/rules/multi-agent-testing.mdc": "Multi-agent testing
+guidelines",
       "scripts/.cursor/rules/bash-scripting.mdc": "Bash scripting guidelines",
       "docs/.cursor/rules/documentation.mdc": "Documentation guidelines",
       "config/.cursor/rules/configuration.mdc": "Configuration management guidelines",
-      ".cursor/rules/ghostbusters.mdc": "Ghostbusters multi-agent delusion detection and recovery guidelines",
-      ".cursor/rules/model-first-enforcement.mdc": "Model-first enforcement to prevent manual work when automated tools exist"
+".cursor/rules/ghostbusters.mdc": "Ghostbusters multi-agent delusion detection and
+recovery guidelines",
+".cursor/rules/model-first-enforcement.mdc": "Model-first enforcement to prevent manual
+work when automated tools exist"
     }
   },
   "requirements_traceability": [
@@ -500,7 +507,8 @@
     {
       "requirement": "Rule compliance enforcement system",
       "domain": "rule_compliance",
-      "implementation": "Pre-commit hooks + IDE plugins + automated linting for rule compliance",
+"implementation": "Pre-commit hooks + IDE plugins + automated linting for rule
+compliance",
       "test": "test_requirement_22_rule_compliance_enforcement"
     },
     {
@@ -542,13 +550,15 @@
     {
       "requirement": "Immutable audit logging",
       "domain": "healthcare_cdc",
-      "implementation": "Immutable audit trail with S3 Object Lock for healthcare data access",
+"implementation": "Immutable audit trail with S3 Object Lock for healthcare data
+access",
       "test": "test_requirement_29_immutable_audit_logging"
     },
     {
       "requirement": "Healthcare data encryption",
       "domain": "healthcare_cdc",
-      "implementation": "AES-256 encryption at rest and TLS 1.3 for healthcare data transmission",
+"implementation": "AES-256 encryption at rest and TLS 1.3 for healthcare data
+transmission",
       "test": "test_requirement_30_healthcare_data_encryption"
     },
     {
@@ -560,19 +570,22 @@
     {
       "requirement": "Healthcare CDC CI/CD integration",
       "domain": "healthcare_cdc",
-      "implementation": "CI/CD pipeline with healthcare-specific security scans and monitoring",
+"implementation": "CI/CD pipeline with healthcare-specific security scans and
+monitoring",
       "test": "test_requirement_32_healthcare_cdc_cicd_integration"
     },
     {
       "requirement": "HTTPS enforcement for all connections",
       "domain": "security_first",
-      "implementation": "HTTPS enforcement module with TLS 1.2+ configuration and certificate validation",
+"implementation": "HTTPS enforcement module with TLS 1.2+ configuration and certificate
+validation",
       "test": "test_requirement_33_https_enforcement"
     },
     {
       "requirement": "Rate limiting to prevent abuse",
       "domain": "security_first",
-      "implementation": "Redis-based rate limiting with configurable limits per endpoint and user",
+"implementation": "Redis-based rate limiting with configurable limits per endpoint and
+user",
       "test": "test_requirement_34_rate_limiting"
     },
     {
@@ -590,7 +603,8 @@
     {
       "requirement": "Streamlit app dependencies with UV",
       "domain": "package_management",
-      "implementation": "streamlit, boto3, redis, plotly, pandas, pydantic, bcrypt managed via UV",
+"implementation": "streamlit, boto3, redis, plotly, pandas, pydantic, bcrypt managed
+via UV",
       "test": "test_requirement_37_streamlit_dependencies_uv"
     },
     {
@@ -614,19 +628,22 @@
     {
       "requirement": "Ghostbusters agent orchestration",
       "domain": "ghostbusters",
-      "implementation": "SecurityExpert, CodeQualityExpert, TestExpert, BuildExpert orchestration",
+"implementation": "SecurityExpert, CodeQualityExpert, TestExpert, BuildExpert
+orchestration",
       "test": "test_requirement_41_ghostbusters_orchestration"
     },
     {
       "requirement": "Ghostbusters recovery engines",
       "domain": "ghostbusters",
-      "implementation": "SyntaxRecoveryEngine, IndentationFixer, ImportResolver, TypeAnnotationFixer",
+"implementation": "SyntaxRecoveryEngine, IndentationFixer, ImportResolver,
+TypeAnnotationFixer",
       "test": "test_requirement_42_ghostbusters_recovery"
     },
     {
       "requirement": "Ghostbusters functional equivalence",
       "domain": "ghostbusters",
-      "implementation": "All recovery engines must achieve functional equivalence with original",
+"implementation": "All recovery engines must achieve functional equivalence with
+original",
       "test": "test_requirement_43_ghostbusters_equivalence"
     },
     {
@@ -644,7 +661,8 @@
     {
       "requirement": "Ghostbusters multi-agent testing",
       "domain": "ghostbusters",
-      "implementation": "Comprehensive testing of all Ghostbusters agents and recovery engines",
+"implementation": "Comprehensive testing of all Ghostbusters agents and recovery
+engines",
       "test": "test_requirement_46_ghostbusters_testing"
     },
     {
@@ -674,7 +692,8 @@
     {
       "requirement": "Use Ghostbusters for multi-agent orchestration",
       "domain": "ghostbusters",
-      "implementation": "Orchestrate multiple expert agents for comprehensive delusion detection and recovery",
+"implementation": "Orchestrate multiple expert agents for comprehensive delusion
+detection and recovery",
       "test": "test_requirement_51_ghostbusters_multi_agent_orchestration"
     },
     {
@@ -789,7 +808,8 @@
           "langchain-core compatibility",
           "pydantic version resolution"
         ],
-        "description": "Fix pydantic compatibility issues preventing Ghostbusters tests from running",
+"description": "Fix pydantic compatibility issues preventing Ghostbusters tests from
+running",
         "acceptance_criteria": [
           "All Ghostbusters tests pass",
           "No pydantic version conflicts",
@@ -819,7 +839,8 @@
       {
         "requirement": "Comprehensive AST modeler quality checks",
         "status": "eliminated",
-        "reason": "File too large for standard quality checks, intended for specialized analysis only",
+"reason": "File too large for standard quality checks, intended for specialized
+analysis only",
         "domain": "python_quality",
         "files_affected": [
           "comprehensive_ast_modeler.py"
@@ -836,7 +857,11 @@
       {
         "requirement": "F-string without placeholders rule (F541)",
         "status": "eliminated",
-        "reason": "Security analysis confirms this rule provides no security value. F-strings without placeholders have negligible security risk (extremely low likelihood, very low impact). The rule creates false positives, cognitive overhead, and enforces style preferences as security requirements. Real security risks are in user input validation, SQL injection prevention, and command injection - not f-string syntax.",
+"reason": "Security analysis confirms this rule provides no security value. F-strings
+without placeholders have negligible security risk (extremely low likelihood, very low
+impact). The rule creates false positives, cognitive overhead, and enforces style
+preferences as security requirements. Real security risks are in user input validation,
+SQL injection prevention, and command injection - not f-string syntax.",
         "domain": "python_quality",
         "security_analysis": {
           "risk_likelihood": "extremely_low",
@@ -856,7 +881,8 @@
         ],
         "date_eliminated": "2024-12-19",
         "regime_policy_override": true,
-        "intelligent_policy_applied": "When a tool creates more problems than it solves, use your intelligence instead. The goal is security, not compliance with broken tools."
+"intelligent_policy_applied": "When a tool creates more problems than it solves, use
+your intelligence instead. The goal is security, not compliance with broken tools."
       }
     ]
   },
@@ -937,7 +963,8 @@
       "files_tested": 113,
       "results": [
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/healthcare-cdc/healthcare_cdc_domain_model.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/healthcare-cdc/healthcare_cdc_domain_model.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -965,7 +992,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/healthcare-cdc/test_healthcare_cdc_domain_model.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/healthcare-cdc/test_healthcare_cdc_domain_model.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1035,7 +1063,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_gemini_2_5_flash_lite_pr_review.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_gemini_2_5_flash_lite_pr_review.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1049,7 +1078,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_code_quality_comprehensive.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_code_quality_comprehensive.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1063,7 +1093,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_python_quality_enforcement.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_python_quality_enforcement.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1077,7 +1108,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/validate_healthcare_cdc_simple.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/validate_healthcare_cdc_simple.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1091,7 +1123,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_python_quality_enhanced.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_python_quality_enhanced.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1147,7 +1180,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_basic_validation_simple.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_basic_validation_simple.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1175,7 +1209,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_basic_validation_pytest.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_basic_validation_pytest.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1231,7 +1266,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_gemini_2_5_preview_pr_review.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_gemini_2_5_preview_pr_review.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1245,7 +1281,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_rule_compliance_enforcement.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_rule_compliance_enforcement.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1287,7 +1324,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_ghostbusters_integration.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_ghostbusters_integration.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1301,7 +1339,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_healthcare_cdc_requirements.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_healthcare_cdc_requirements.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1315,7 +1354,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/tests/test_cline_fresh_plan_blind_spots.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/tests/test_cline_fresh_plan_blind_spots.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1455,7 +1495,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/scripts/call_ghostbusters_properly.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/scripts/call_ghostbusters_properly.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1469,7 +1510,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/scripts/call_ghostbusters_encoding_issue.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/scripts/call_ghostbusters_encoding_issue.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1567,7 +1609,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/fixed_projected_artifacts/src/security_first/input_validator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/fixed_projected_artifacts/src/security_first/input_validator.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1581,7 +1624,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/fixed_projected_artifacts/src/streamlit/openflow_quickstart_app.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/fixed_projected_artifacts/src/streamlit/openflow_quickstart_app.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1595,7 +1639,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/context_aware_projected_artifacts/src/security_first/input_validator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/context_aware_projected_artifacts/src/security_first/input_validator.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1609,7 +1654,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/context_aware_projected_artifacts/src/streamlit/openflow_quickstart_app.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/context_aware_projected_artifacts/src/streamlit/openflow_quickstart_app.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1623,7 +1669,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/code_quality_system/quality_model.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/code_quality_system/quality_model.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1637,7 +1684,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/input_validator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/input_validator.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1651,7 +1699,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/https_enforcement.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/https_enforcement.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1665,7 +1714,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/test_https_enforcement.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/test_https_enforcement.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1693,7 +1743,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/test_streamlit_security_first.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/test_streamlit_security_first.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1707,7 +1758,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/test_security_model.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/test_security_model.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1721,7 +1773,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/security_first/security_manager.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/security_first/security_manager.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1805,7 +1858,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/ghostbusters/artifact_requirement_mapper.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/ghostbusters/artifact_requirement_mapper.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1819,7 +1873,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/ghostbusters/ghostbusters_orchestrator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/ghostbusters/ghostbusters_orchestrator.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -1861,7 +1916,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/test_projected_equivalence.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/test_projected_equivalence.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1875,7 +1931,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/improved_projection.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/improved_projection.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1889,7 +1946,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/improved_projection_system.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/improved_projection_system.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1903,7 +1961,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/test_simple_equivalence.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/test_simple_equivalence.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1917,7 +1976,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/final_projection_system.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/final_projection_system.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1931,7 +1991,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/level1_granular_nodes.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/level1_granular_nodes.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1945,7 +2006,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/final_projection.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/final_projection.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1959,7 +2021,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/__init__.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/__init__.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -1973,7 +2036,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/diversity_synthesis_orchestrator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/diversity_synthesis_orchestrator.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -1987,7 +2051,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_anthropic_simple.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_anthropic_simple.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2001,63 +2066,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_multi_agent_blind_spot_detection.py",
-          "ast_parse": true,
-          "black_format": false,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": false,
-          "docstrings": true,
-          "error_handling": false,
-          "security_check": false,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/debug_anthropic_api.py",
-          "ast_parse": true,
-          "black_format": true,
-          "flake8_lint": true,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": true,
-          "docstrings": true,
-          "error_handling": true,
-          "security_check": true,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_diversity_hypothesis.py",
-          "ast_parse": true,
-          "black_format": false,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": false,
-          "docstrings": true,
-          "error_handling": false,
-          "security_check": true,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/meta_cognitive_orchestrator.py",
-          "ast_parse": true,
-          "black_format": true,
-          "flake8_lint": true,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": true,
-          "docstrings": true,
-          "error_handling": false,
-          "security_check": true,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_live_smoke_test.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_multi_agent_blind_spot_detection.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2071,77 +2081,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_model_traceability.py",
-          "ast_parse": true,
-          "black_format": false,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": false,
-          "docstrings": true,
-          "error_handling": true,
-          "security_check": false,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/multi_dimensional_smoke_test.py",
-          "ast_parse": true,
-          "black_format": false,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": true,
-          "docstrings": true,
-          "error_handling": true,
-          "security_check": false,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/langgraph_diversity_orchestrator.py",
-          "ast_parse": true,
-          "black_format": true,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": true,
-          "docstrings": true,
-          "error_handling": true,
-          "security_check": true,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/cost_analysis.py",
-          "ast_parse": true,
-          "black_format": true,
-          "flake8_lint": true,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": true,
-          "docstrings": true,
-          "error_handling": false,
-          "security_check": true,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_meta_cognitive_orchestrator.py",
-          "ast_parse": true,
-          "black_format": false,
-          "flake8_lint": false,
-          "mypy_check": false,
-          "imports_valid": true,
-          "type_annotations": false,
-          "docstrings": true,
-          "error_handling": true,
-          "security_check": false,
-          "model_projection": false,
-          "functional_equivalence": false
-        },
-        {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/live_smoke_test.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/debug_anthropic_api.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -2155,7 +2096,143 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/diversity_hypothesis_demo.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_diversity_hypothesis.py",
+          "ast_parse": true,
+          "black_format": false,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": false,
+          "docstrings": true,
+          "error_handling": false,
+          "security_check": true,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/meta_cognitive_orchestrator.py",
+          "ast_parse": true,
+          "black_format": true,
+          "flake8_lint": true,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": true,
+          "docstrings": true,
+          "error_handling": false,
+          "security_check": true,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_live_smoke_test.py",
+          "ast_parse": true,
+          "black_format": false,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": false,
+          "docstrings": true,
+          "error_handling": false,
+          "security_check": false,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_model_traceability.py",
+          "ast_parse": true,
+          "black_format": false,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": false,
+          "docstrings": true,
+          "error_handling": true,
+          "security_check": false,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/multi_dimensional_smoke_test.py",
+          "ast_parse": true,
+          "black_format": false,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": true,
+          "docstrings": true,
+          "error_handling": true,
+          "security_check": false,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/langgraph_diversity_orchestrator.py",
+          "ast_parse": true,
+          "black_format": true,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": true,
+          "docstrings": true,
+          "error_handling": true,
+          "security_check": true,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/cost_analysis.py",
+          "ast_parse": true,
+          "black_format": true,
+          "flake8_lint": true,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": true,
+          "docstrings": true,
+          "error_handling": false,
+          "security_check": true,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/test_meta_cognitive_orchestrator.py",
+          "ast_parse": true,
+          "black_format": false,
+          "flake8_lint": false,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": false,
+          "docstrings": true,
+          "error_handling": true,
+          "security_check": false,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/live_smoke_test.py",
+          "ast_parse": true,
+          "black_format": true,
+          "flake8_lint": true,
+          "mypy_check": false,
+          "imports_valid": true,
+          "type_annotations": true,
+          "docstrings": true,
+          "error_handling": true,
+          "security_check": true,
+          "model_projection": false,
+          "functional_equivalence": false
+        },
+        {
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/diversity_hypothesis_demo.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2169,7 +2246,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/live_smoke_test_langchain.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/multi_agent_testing/live_smoke_test_langchain.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2211,7 +2289,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/streamlit/openflow_quickstart_app_projected.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/streamlit/openflow_quickstart_app_projected.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2225,7 +2304,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/streamlit/openflow_quickstart_app.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/streamlit/openflow_quickstart_app.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": true,
@@ -2253,7 +2333,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts_pytest.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts_pytest.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2267,7 +2348,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts_simple.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts_simple.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2281,7 +2363,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/test_projected_artifacts.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2295,7 +2378,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2309,7 +2393,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/src/streamlit/openflow_quickstart_app.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/model_driven_projection/projected_artifacts/src/streamlit/openflow_quickstart_app.py",
           "ast_parse": true,
           "black_format": false,
           "flake8_lint": false,
@@ -2323,7 +2408,8 @@
           "functional_equivalence": true
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_parser_enhanced.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_parser_enhanced.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2337,7 +2423,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_synthesizer.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_synthesizer.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2351,7 +2438,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_parser.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_parser.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2365,7 +2453,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_detector.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_detector.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -2379,7 +2468,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_correlator.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_correlator.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2393,7 +2483,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/__init__.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/__init__.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -2407,7 +2498,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_optimizer.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/agents/artifact_optimizer.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2421,7 +2513,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/models/__init__.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/models/__init__.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -2463,7 +2556,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/enhanced_workflow.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/enhanced_workflow.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2477,7 +2571,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/basic_workflow.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/basic_workflow.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": false,
@@ -2491,7 +2586,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/__init__.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/src/artifact_forge/workflows/__init__.py",
           "ast_parse": true,
           "black_format": true,
           "flake8_lint": true,
@@ -2505,7 +2601,8 @@
           "functional_equivalence": false
         },
         {
-          "file": "/home/lou/Documents/OpenFlow-Playground/.cursor/plugins/rule-compliance-checker.py",
+"file":
+"/home/lou/Documents/OpenFlow-Playground/.cursor/plugins/rule-compliance-checker.py",
           "ast_parse": false,
           "black_format": false,
           "flake8_lint": false,

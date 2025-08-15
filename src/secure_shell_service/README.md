@@ -2,7 +2,9 @@
 
 ## 🛡️ **Addressing the "Pernicious Problem"**
 
-This service directly addresses the subprocess security vulnerabilities detected by Ghostbusters (197 security issues) by providing a secure, gRPC-based alternative to Python's `subprocess` calls.
+This service directly addresses the subprocess security vulnerabilities detected by
+Ghostbusters (197 security issues) by providing a secure, gRPC-based alternative to
+Python's `subprocess` calls.
 
 ### **The Problem**
 - **Subprocess vulnerabilities**: Command injection risks
@@ -259,4 +261,5 @@ This service addresses the issues identified in:
 - **Ghostbusters Detection**: 197 security issues
 - **Subprocess Vulnerabilities**: Critical priority issues
 
-**Fixes the exact "pernicious problem" of hanging shell commands and subprocess security vulnerabilities!** 🚀 
+**Fixes the exact "pernicious problem" of hanging shell commands and subprocess
+security vulnerabilities!** 🚀

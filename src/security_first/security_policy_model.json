@@ -1,7 +1,9 @@
 {
-  "description": "Security policy model for credentials, UUIDs, and configuration context. Used for enforcement, triage, and disaster recovery.",
+"description": "Security policy model for credentials, UUIDs, and configuration
+context. Used for enforcement, triage, and disaster recovery.",
   "credentials": {
-    "allowed_patterns": ["YOUR_API_KEY", "${API_KEY}", "your-data-plane-uuid-here", "${UUID}", "00000000-0000-0000-0000-000000000000"],
+"allowed_patterns": ["YOUR_API_KEY", "${API_KEY}", "your-data-plane-uuid-here",
+"${UUID}", "00000000-0000-0000-0000-000000000000"],
     "forbidden_patterns": [
       "sk-[0-9a-zA-Z]{48}",
       "AKIA[0-9A-Z]{16}",
@@ -16,7 +18,8 @@
   "uuids": {
     "allowed_in": ["example", "test", "placeholder", "template"],
     "forbidden_in": ["production", "docs", "real configs"],
-    "placeholder_patterns": ["your-data-plane-uuid-here", "00000000-0000-0000-0000-000000000000", "${UUID}"]
+"placeholder_patterns": ["your-data-plane-uuid-here",
+"00000000-0000-0000-0000-000000000000", "${UUID}"]
   },
   "enforcement": {
     "tests": ["test_security_model.py"],
