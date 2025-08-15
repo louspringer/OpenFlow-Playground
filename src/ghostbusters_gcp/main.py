@@ -344,6 +344,20 @@ def ghostbusters_analyze(project_id: str = "default") -> dict[str, Any]:
     return run_gcp_ghostbusters(project_id)
 
 
+def ghostbusters_history(project_id: str = "default") -> dict[str, Any]:
+    """
+    Get GCP infrastructure investigation history.
+
+    Args:
+        project_id: GCP project ID to investigate
+
+    Returns:
+        Investigation history dictionary
+    """
+    orchestrator = GCPGhostbustersOrchestrator()
+    return orchestrator.get_gcp_investigation_summary()
+
+
 if __name__ == "__main__":
     # Example usage
     results = run_gcp_ghostbusters("my-gcp-project")

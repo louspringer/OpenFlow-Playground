@@ -8,7 +8,7 @@ This agent specializes in detecting code quality issues and potential problems.
 import logging
 import re
 from pathlib import Path
-from typing import Any, dict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
