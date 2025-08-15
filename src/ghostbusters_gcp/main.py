@@ -358,6 +358,52 @@ def ghostbusters_history(project_id: str = "default") -> dict[str, Any]:
     return orchestrator.get_gcp_investigation_summary()
 
 
+def ghostbusters_status(request) -> tuple[dict[str, Any], int]:
+    """
+    Get status of a GCP infrastructure analysis.
+
+    Args:
+        request: Request object containing analysis_id
+
+    Returns:
+        Tuple of (response_dict, status_code)
+    """
+    try:
+        data = request.get_json() if request else {}
+        analysis_id = data.get("analysis_id")
+
+        if not analysis_id:
+            return {
+                "status": "error",
+                "error_message": "Missing analysis_id parameter",
+            }, 400
+
+        # Mock response for testing
+        # In production, this would query a database
+        mock_analysis = {
+            "analysis_id": analysis_id,
+            "status": "completed",
+            "confidence_score": 0.95,
+            "delusions_detected": [{"type": "security"}],
+            "recovery_actions": [{"action": "fix"}],
+            "timestamp": "2024-01-01T00:00:00Z",
+        }
+
+        return {
+            "analysis_id": analysis_id,
+            "status": mock_analysis["status"],
+            "confidence_score": mock_analysis["confidence_score"],
+            "delusions_detected": len(mock_analysis["delusions_detected"]),
+            "recovery_actions": len(mock_analysis["recovery_actions"]),
+        }, 200
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "error_message": f"Failed to get analysis status: {str(e)}",
+        }, 500
+
+
 if __name__ == "__main__":
     # Example usage
     results = run_gcp_ghostbusters("my-gcp-project")

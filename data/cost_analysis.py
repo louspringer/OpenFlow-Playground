@@ -180,7 +180,7 @@ def analyze_synthesis_costs():
     findings_text = ""
     for analysis in data.get("analyses", []):
         for finding in analysis.get("findings", []):
-            findings_text + = \
+            findings_text += \
      f"• {finding.get('agent', 'Unknown')} ({finding.get('category', 'unknown')}): {finding.get('question', '')} - {finding.get('recommendation', '')}\n"
 
     user_message = f"""
@@ -251,7 +251,7 @@ Return as a JSON array of fixes, prioritizing fixes that address multiple high-p
         "total_tokens": input_tokens + output_tokens,
         "input_cost": input_cost,
         "output_cost": output_cost,
-"total_cost": total_cost,
+        "total_cost": total_cost,
     }
 
 def main():
