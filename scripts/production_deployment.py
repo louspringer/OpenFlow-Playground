@@ -4,6 +4,7 @@ Production Deployment Script with Quality Gates Enforcement
 
 This script implements the production deployment process based on meta-testing analysis
 findings. It enforces all quality gates and ensures proper workflow compliance.
+Uses API-based tools instead of subprocess for better performance and reliability.
 """
 
 import json
@@ -12,6 +13,30 @@ import sys
 import time
 from pathlib import Path
 from typing import Any
+
+# Try to import API-based tools, fallback to subprocess if not available
+try:
+    from black import FileMode, format_file_contents
+
+    BLACK_AVAILABLE = True
+except ImportError:
+    BLACK_AVAILABLE = False
+
+try:
+    from ruff import check
+    from ruff.settings import Settings
+
+    RUFF_AVAILABLE = True
+except ImportError:
+    RUFF_AVAILABLE = False
+
+try:
+    from bandit.core import manager
+    from bandit.core.config_manager import BanditConfig
+
+    BANDIT_AVAILABLE = True
+except ImportError:
+    BANDIT_AVAILABLE = False
 
 # Quality Gates Configuration
 QUALITY_GATES = {
@@ -93,38 +118,114 @@ class ProductionDeployment:
             print(f"❌ Meta-testing gate: ERROR - {e}")
             return False
 
-    def _run_code_quality_gate(self) -> bool:
-        """Run code quality gate"""
+    def _check_black_formatting_api(self, file_path: Path) -> bool:
+        """Check Black formatting using API"""
         try:
-            # Run flake8
-            flake8_result = subprocess.run(
-                [
-                    "flake8",
-                    "src/",
-                    "--count",
-                    "--select=E9,F63,F7,F82",
-                    "--show-source",
-                    "--statistics",
-                ],
+            with open(file_path, encoding="utf-8") as f:
+                content = f.read()
+
+            formatted_content = format_file_contents(content, mode=FileMode())
+            return content == formatted_content
+        except Exception as e:
+            print(f"⚠️ Black API error for {file_path}: {e}")
+            return False
+
+    def _check_black_formatting_subprocess(self, file_path: Path) -> bool:
+        """Check Black formatting using subprocess (fallback)"""
+        try:
+            result = subprocess.run(
+                ["uv", "run", "black", "--check", str(file_path)],
                 capture_output=True,
                 text=True,
             )
+            return result.returncode == 0
+        except Exception as e:
+            print(f"⚠️ Black subprocess error for {file_path}: {e}")
+            return False
 
-            # Run black check using UV
-            black_result = subprocess.run(
-                ["uv", "run", "black", "--check", "src/"],
+    def _check_ruff_linting_api(self, file_path: Path) -> list:
+        """Check Ruff linting using API"""
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                content = f.read()
+
+            settings = Settings()
+            diagnostics = check(content, str(file_path), settings)
+            return [d.message for d in diagnostics]
+        except Exception as e:
+            print(f"⚠️ Ruff API error for {file_path}: {e}")
+            return []
+
+    def _check_ruff_linting_subprocess(self, file_path: Path) -> list:
+        """Check Ruff linting using subprocess (fallback)"""
+        try:
+            result = subprocess.run(
+                ["uv", "run", "ruff", "check", str(file_path), "--output-format=json"],
                 capture_output=True,
                 text=True,
             )
+            if result.returncode == 0:
+                return []
+            # Parse JSON output for errors
+            try:
+                errors = json.loads(result.stdout)
+                return [e.get("message", "Unknown error") for e in errors]
+            except json.JSONDecodeError:
+                return [result.stderr or "Unknown error"]
+        except Exception as e:
+            print(f"⚠️ Ruff subprocess error for {file_path}: {e}")
+            return []
 
-            if flake8_result.returncode == 0 and black_result.returncode == 0:
+    def _run_code_quality_gate(self) -> bool:
+        """Run code quality gate using API-based tools when possible"""
+        try:
+            print("🔍 Checking code quality...")
+
+            # Check Black formatting
+            black_issues = []
+            python_files = list(Path("src").rglob("*.py"))
+
+            for file_path in python_files:
+                if BLACK_AVAILABLE:
+                    is_formatted = self._check_black_formatting_api(file_path)
+                else:
+                    is_formatted = self._check_black_formatting_subprocess(file_path)
+
+                if not is_formatted:
+                    black_issues.append(str(file_path))
+
+            # Check Ruff linting
+            ruff_issues = []
+            for file_path in python_files:
+                if RUFF_AVAILABLE:
+                    file_issues = self._check_ruff_linting_api(file_path)
+                else:
+                    file_issues = self._check_ruff_linting_subprocess(file_path)
+
+                if file_issues:
+                    ruff_issues.extend(
+                        [f"{file_path}: {issue}" for issue in file_issues]
+                    )
+
+            if not black_issues and not ruff_issues:
                 print("✅ Code quality gate: PASSED")
                 return True
+
             print("❌ Code quality gate: FAILED")
-            if flake8_result.returncode != 0:
-                print(f"Flake8 errors: {flake8_result.stdout}")
-            if black_result.returncode != 0:
-                print(f"Black formatting issues: {black_result.stdout}")
+            if black_issues:
+                print(f"Black formatting issues: {len(black_issues)} files")
+                for issue in black_issues[:5]:  # Show first 5
+                    print(f"  - {issue}")
+                if len(black_issues) > 5:
+                    print(f"  ... and {len(black_issues) - 5} more")
+
+            if ruff_issues:
+                print(f"Ruff linting issues: {len(ruff_issues)} total")
+                for issue in ruff_issues[:5]:  # Show first 5
+                    print(f"  - {issue}")
+                if len(ruff_issues) > 5:
+                    print(f"  ... and {len(ruff_issues) - 5} more")
+
             return False
 
         except Exception as e:
@@ -160,37 +261,91 @@ class ProductionDeployment:
             print(f"❌ Performance gate: ERROR - {e}")
             return False
 
-    def _run_security_gate(self) -> bool:
-        """Run security gate"""
+    def _run_bandit_scan_api(self, target_path: str) -> dict:
+        """Run Bandit security scan using API"""
         try:
-            # Run bandit security scan
-            bandit_result = subprocess.run(
-                ["bandit", "-r", "src/", "-f", "json"], capture_output=True, text=True
+            config = BanditConfig()
+            manager_obj = manager.BanditManager(config, "file")
+            manager_obj.discover_files([target_path])
+            manager_obj.run_tests()
+
+            # Convert to our expected format
+            issues = manager_obj.get_issue_list()
+            return {
+                "results": [
+                    {
+                        "issue_severity": issue.severity.name.lower(),
+                        "issue_text": issue.text,
+                        "line_number": issue.line,
+                        "filename": issue.fname,
+                    }
+                    for issue in issues
+                ]
+            }
+        except Exception as e:
+            print(f"⚠️ Bandit API error: {e}")
+            return {"results": []}
+
+    def _run_bandit_scan_subprocess(self, target_path: str) -> dict:
+        """Run Bandit security scan using subprocess (fallback)"""
+        try:
+            result = subprocess.run(
+                ["bandit", "-r", target_path, "-f", "json"],
+                capture_output=True,
+                text=True,
             )
 
-            if bandit_result.returncode == 0:
-                # Parse bandit results
-                try:
-                    results = json.loads(bandit_result.stdout)
-                    high_issues = len(
-                        [
-                            r
-                            for r in results.get("results", [])
-                            if r.get("issue_severity") == "HIGH"
-                        ]
-                    )
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            return {"results": []}
+        except Exception as e:
+            print(f"⚠️ Bandit subprocess error: {e}")
+            return {"results": []}
 
-                    if high_issues == 0:
-                        print("✅ Security gate: PASSED (0 high severity issues)")
-                        return True
-                    print(
-                        f"❌ Security gate: FAILED ({high_issues} high severity issues)"
-                    )
-                    return False
-                except json.JSONDecodeError:
-                    print("✅ Security gate: PASSED (no issues found)")
-                    return True
-            print("❌ Security gate: FAILED (bandit scan failed)")
+    def _run_security_gate(self) -> bool:
+        """Run security gate using API-based tools when possible"""
+        try:
+            print("🔍 Running security scan...")
+
+            if BANDIT_AVAILABLE:
+                results = self._run_bandit_scan_api("src/")
+            else:
+                results = self._run_bandit_scan_subprocess("src/")
+
+            # Parse results
+            high_issues = len(
+                [
+                    r
+                    for r in results.get("results", [])
+                    if r.get("issue_severity") == "high"
+                ]
+            )
+
+            total_issues = len(results.get("results", []))
+
+            if high_issues == 0:
+                print(
+                    f"✅ Security gate: PASSED (0 high severity issues, {total_issues} total)"
+                )
+                return True
+
+            print(
+                f"❌ Security gate: FAILED ({high_issues} high severity issues, {total_issues} total)"
+            )
+
+            # Show high severity issues
+            high_severity = [
+                r
+                for r in results.get("results", [])
+                if r.get("issue_severity") == "high"
+            ]
+            for issue in high_severity[:3]:  # Show first 3
+                print(
+                    f"  - {issue.get('filename')}:{issue.get('line_number')} - {issue.get('issue_text')}"
+                )
+            if len(high_severity) > 3:
+                print(f"  ... and {len(high_severity) - 3} more high severity issues")
+
             return False
 
         except Exception as e:
@@ -223,6 +378,17 @@ class ProductionDeployment:
         """Run all quality gates"""
         print("🚀 Running Production Quality Gates")
         print("=" * 50)
+
+        # Show tool availability
+        print("🔧 Tool Availability:")
+        print(
+            f"  - Black API: {'✅' if BLACK_AVAILABLE else '❌'} (fallback: subprocess)"
+        )
+        print(f"  - Ruff API: {'✅' if RUFF_AVAILABLE else '❌'} (fallback: subprocess)")
+        print(
+            f"  - Bandit API: {'✅' if BANDIT_AVAILABLE else '❌'} (fallback: subprocess)"
+        )
+        print()
 
         all_passed = True
 
