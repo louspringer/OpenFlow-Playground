@@ -1109,6 +1109,169 @@
       "extraction_candidate": false,
       "reason": "Standard CloudFormation - should remain as part of project"
     },
+    "mdc_cursor_rules": {
+      "patterns": [
+        ".cursor/rules/*.mdc",
+        "**/*.mdc"
+      ],
+      "content_indicators": [
+        "---",
+        "description:",
+        "globs:",
+        "alwaysApply:",
+        "triggers:",
+        "# Rule Content"
+      ],
+      "linter": "mdc-linter",
+      "validator": "mdc-editor",
+      "formatter": "mdc-editor",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Support Cursor-specific MDC format with comma-separated globs",
+        "Use mdc-linter for validation, not generic YAML tools",
+        "Handle non-standard YAML syntax for Cursor rules",
+        "Support both quoted and unquoted glob patterns",
+        "Respect Cursor's alwaysApply behavior: true=universal, false=selective",
+        "Generate valid MDC frontmatter with proper alwaysApply logic"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "Cursor-specific format - should remain as part of project",
+      "constraints": {
+        "alwaysApply_behavior": "When true, globs are ignored and rule applies universally. When false, rule applies only to files matching globs patterns.",
+        "generation_rules": [
+          "alwaysApply: true for universal rules (ignore globs)",
+          "alwaysApply: false for selective rules (respect globs)",
+          "Use comma-separated globs for Cursor format",
+          "Use YAML list format for standard format"
+        ]
+      }
+    },
+    "yaml_infrastructure": {
+      "patterns": [
+        "*cloudformation*.yaml",
+        "*infrastructure*.yaml",
+        "*aws*.yaml",
+        "models/*.yaml"
+      ],
+      "content_indicators": [
+        "!Sub",
+        "!Ref",
+        "!GetAtt",
+        "AWS::",
+        "Type: 'AWS::",
+        "Resources:",
+        "Parameters:"
+      ],
+      "linter": "cfn-lint",
+      "validator": "aws-cloudformation",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Don't lint CloudFormation with generic YAML tools",
+        "Use cfn-lint for CloudFormation validation",
+        "Support AWS infrastructure deployment patterns"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "Infrastructure YAML - should remain as part of project"
+    },
+    "yaml_config": {
+      "patterns": [
+        "config*.yaml",
+        "settings*.yaml",
+        "*.config.yaml",
+        "*.settings.yaml"
+      ],
+      "content_indicators": [
+        "config:",
+        "settings:",
+        "environment:",
+        "features:",
+        "database:",
+        "api:"
+      ],
+      "linter": "yamllint",
+      "validator": "jsonschema",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Use yamllint + jsonschema for config files",
+        "Validate configuration schemas properly",
+        "Support application configuration patterns"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "Configuration YAML - should remain as part of project"
+    },
+    "yaml_cicd": {
+      "patterns": [
+        ".github/*.yaml",
+        ".gitlab-ci.yml",
+        "*.workflow.yaml",
+        "azure-pipelines*.yml"
+      ],
+      "content_indicators": [
+        "on:",
+        "jobs:",
+        "steps:",
+        "pipeline:",
+        "stages:",
+        "workflow:",
+        "actions:"
+      ],
+      "linter": "actionlint",
+      "validator": "gitlab-ci-lint",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Use actionlint for GitHub Actions",
+        "Use gitlab-ci-lint for GitLab CI",
+        "Support CI/CD pipeline patterns"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "CI/CD YAML - should remain as part of project"
+    },
+    "yaml_kubernetes": {
+      "patterns": [
+        "k8s/*.yaml",
+        "kubernetes/*.yaml",
+        "*.k8s.yaml",
+        "*.kubernetes.yaml"
+      ],
+      "content_indicators": [
+        "apiVersion:",
+        "kind:",
+        "metadata:",
+        "spec:",
+        "containers:",
+        "deployments:"
+      ],
+      "linter": "kubectl",
+      "validator": "kubeval",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Use kubectl validate for K8s files",
+        "Use kubeval for additional validation",
+        "Support Kubernetes manifest patterns"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "Kubernetes YAML - should remain as part of project"
+    },
     "go": {
       "patterns": [
         "*.go",
@@ -1966,6 +2129,36 @@
       "domain": "yaml_infrastructure",
       "implementation": "cfn-lint for CloudFormation, aws-cloudformation validator",
       "test": "test_requirement_8_yaml_infrastructure"
+    },
+    {
+      "requirement": "MDC cursor rules validation",
+      "domain": "mdc_cursor_rules",
+      "implementation": "mdc-linter for Cursor rules, not generic YAML tools",
+      "test": "test_requirement_9_mdc_cursor_rules"
+    },
+    {
+      "requirement": "Cursor rules directory protection",
+      "domain": "mdc_cursor_rules",
+      "implementation": "dynamic-prevention-rules.mdc with .cursor/rules/* coverage",
+      "test": "test_requirement_10_cursor_rules_protection"
+    },
+    {
+      "requirement": "Configuration YAML validation",
+      "domain": "yaml_config",
+      "implementation": "yamllint + jsonschema for config files",
+      "test": "test_requirement_10_yaml_config"
+    },
+    {
+      "requirement": "CI/CD YAML validation",
+      "domain": "yaml_cicd",
+      "implementation": "actionlint for GitHub Actions, gitlab-ci-lint for GitLab CI",
+      "test": "test_requirement_11_yaml_cicd"
+    },
+    {
+      "requirement": "Kubernetes YAML validation",
+      "domain": "yaml_kubernetes",
+      "implementation": "kubectl validate, kubeval for K8s files",
+      "test": "test_requirement_12_yaml_kubernetes"
     },
     {
       "requirement": "Configuration YAML validation",
