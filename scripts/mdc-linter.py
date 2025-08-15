@@ -188,10 +188,7 @@ class MDCLinter:
             self.validate_file_organization(file_path)
 
             # Validate deterministic editing compliance
-            if not self.validate_deterministic_editing_compliance(file_path, content):
-                return False
-
-            return True
+            return self.validate_deterministic_editing_compliance(file_path, content)
 
         except Exception as e:
             self.log_violation(file_path, f"Error reading file: {e}")

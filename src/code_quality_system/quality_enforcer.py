@@ -184,10 +184,11 @@ class QualityEnforcer:
             json.dump(enforcement_report, f, indent=2)
 
         # Raise exception to block operation
-        raise QualityEnforcementError(
+        msg = (
             f"Quality gates failed: {len(blocking_gates)} blocking issues found. "
             f"Check {enforcement_file} for details."
         )
+        raise QualityEnforcementError(msg)
 
     def _save_metrics(self, metrics: QualityMetrics) -> None:
         """Save quality metrics for tracking and trending"""
@@ -216,7 +217,8 @@ class QualityEnforcer:
         """Configure enforcement behavior"""
         if enforcement_level is not None:
             if enforcement_level not in ["strict", "moderate", "lenient"]:
-                raise ValueError(f"Invalid enforcement level: {enforcement_level}")
+                msg = f"Invalid enforcement level: {enforcement_level}"
+                raise ValueError(msg)
             self.enforcement_level = enforcement_level
             self.logger.info(f"Set enforcement level to: {enforcement_level}")
 

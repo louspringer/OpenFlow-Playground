@@ -289,9 +289,11 @@ class GlacierSchemaDatabase:
                                 json.dumps(schema.content),
                                 json.dumps(schema.metadata),
                                 schema.processed,
-                                schema.processing_timestamp.isoformat()
-                                if schema.processing_timestamp
-                                else None,
+                                (
+                                    schema.processing_timestamp.isoformat()
+                                    if schema.processing_timestamp
+                                    else None
+                                ),
                                 json.dumps(schema.processing_errors),
                                 json.dumps(schema.child_schema_ids),
                                 schema.version,
@@ -321,9 +323,11 @@ class GlacierSchemaDatabase:
                                 json.dumps(schema.content),
                                 json.dumps(schema.metadata),
                                 schema.processed,
-                                schema.processing_timestamp.isoformat()
-                                if schema.processing_timestamp
-                                else None,
+                                (
+                                    schema.processing_timestamp.isoformat()
+                                    if schema.processing_timestamp
+                                    else None
+                                ),
                                 json.dumps(schema.processing_errors),
                                 schema.parent_schema_id,
                                 json.dumps(schema.child_schema_ids),
@@ -370,9 +374,11 @@ class GlacierSchemaDatabase:
             content=json.loads(row["content"]),
             metadata=json.loads(row["metadata"]),
             processed=bool(row["processed"]),
-            processing_timestamp=datetime.fromisoformat(row["processing_timestamp"])
-            if row["processing_timestamp"]
-            else None,
+            processing_timestamp=(
+                datetime.fromisoformat(row["processing_timestamp"])
+                if row["processing_timestamp"]
+                else None
+            ),
             processing_errors=json.loads(row["processing_errors"]),
             parent_schema_id=row["parent_schema_id"],
             child_schema_ids=json.loads(row["child_schema_ids"]),
@@ -454,9 +460,11 @@ class GlacierSchemaDatabase:
                             trigger.batch_size,
                             trigger.delay_seconds,
                             trigger.active,
-                            trigger.last_triggered.isoformat()
-                            if trigger.last_triggered
-                            else None,
+                            (
+                                trigger.last_triggered.isoformat()
+                                if trigger.last_triggered
+                                else None
+                            ),
                             trigger.trigger_count,
                         ),
                     )
@@ -502,9 +510,11 @@ class GlacierSchemaDatabase:
                         batch_size=row["batch_size"],
                         delay_seconds=row["delay_seconds"],
                         active=bool(row["active"]),
-                        last_triggered=datetime.fromisoformat(row["last_triggered"])
-                        if row["last_triggered"]
-                        else None,
+                        last_triggered=(
+                            datetime.fromisoformat(row["last_triggered"])
+                            if row["last_triggered"]
+                            else None
+                        ),
                         trigger_count=row["trigger_count"],
                     )
                     triggers.append(trigger)

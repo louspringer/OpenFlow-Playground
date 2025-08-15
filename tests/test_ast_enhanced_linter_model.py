@@ -475,7 +475,7 @@ class TestClass:
 
         # Parse the code
         try:
-            tree = ast.parse(python_code)
+            ast.parse(python_code)
 
             # Test that we can identify various issues
             import_rules = self.model.get_rules_for_strategy(

@@ -25,10 +25,12 @@ class QualityScore:
     def __post_init__(self):
         """Validate score range"""
         if not 0.0 <= self.score <= 100.0:
-            raise ValueError(f"Score must be between 0.0 and 100.0, got {self.score}")
+            msg = f"Score must be between 0.0 and 100.0, got {self.score}"
+            raise ValueError(msg)
 
         if self.weight < 0.0:
-            raise ValueError(f"Weight must be non-negative, got {self.weight}")
+            msg = f"Weight must be non-negative, got {self.weight}"
+            raise ValueError(msg)
 
 
 @dataclass

@@ -367,9 +367,11 @@ class GlacierSporeDatabase:
                             dimension.parent_dimension_id,
                             json.dumps(dimension.child_dimension_ids),
                             dimension.usage_count,
-                            dimension.last_used.isoformat()
-                            if dimension.last_used
-                            else None,
+                            (
+                                dimension.last_used.isoformat()
+                                if dimension.last_used
+                                else None
+                            ),
                         ),
                     )
 
@@ -415,9 +417,11 @@ class GlacierSporeDatabase:
                             json.dumps(spore.related_spore_ids),
                             spore.created_at.isoformat(),
                             spore.expires_at.isoformat() if spore.expires_at else None,
-                            spore.last_processed.isoformat()
-                            if spore.last_processed
-                            else None,
+                            (
+                                spore.last_processed.isoformat()
+                                if spore.last_processed
+                                else None
+                            ),
                             spore.processed,
                             json.dumps(spore.processing_errors),
                             json.dumps(spore.processing_history),
@@ -532,9 +536,9 @@ class GlacierSporeDatabase:
             parent_dimension_id=row["parent_dimension_id"],
             child_dimension_ids=json.loads(row["child_dimension_ids"]),
             usage_count=row["usage_count"],
-            last_used=datetime.fromisoformat(row["last_used"])
-            if row["last_used"]
-            else None,
+            last_used=(
+                datetime.fromisoformat(row["last_used"]) if row["last_used"] else None
+            ),
         )
 
     def _row_to_spore(self, row) -> GlacierSpore:
@@ -555,12 +559,14 @@ class GlacierSporeDatabase:
             child_spore_ids=json.loads(row["child_spore_ids"]),
             related_spore_ids=json.loads(row["related_spore_ids"]),
             created_at=datetime.fromisoformat(row["created_at"]),
-            expires_at=datetime.fromisoformat(row["expires_at"])
-            if row["expires_at"]
-            else None,
-            last_processed=datetime.fromisoformat(row["last_processed"])
-            if row["last_processed"]
-            else None,
+            expires_at=(
+                datetime.fromisoformat(row["expires_at"]) if row["expires_at"] else None
+            ),
+            last_processed=(
+                datetime.fromisoformat(row["last_processed"])
+                if row["last_processed"]
+                else None
+            ),
             processed=bool(row["processed"]),
             processing_errors=json.loads(row["processing_errors"]),
             processing_history=json.loads(row["processing_history"]),
@@ -724,15 +730,13 @@ class DimensionAnalyzer:
 
                 # Find dimensions not used in the specified period
                 cursor.execute(
-                    """
+                    f"""
                     SELECT d.*
                     FROM dimensions d
-                    WHERE (d.last_used IS NULL OR d.last_used < datetime('now', '-{} days'))
+                    WHERE (d.last_used IS NULL OR d.last_used < datetime('now', '-{min_age_days} days'))
                     AND d.usage_count > 0
                     ORDER BY d.last_used ASC NULLS FIRST, d.usage_count DESC
-                """.format(
-                        min_age_days
-                    )
+                """
                 )
 
                 rows = cursor.fetchall()
@@ -823,9 +827,9 @@ class DimensionAnalyzer:
                     {
                         "date": row["date"],
                         "usage_count": row["usage_count"],
-                        "usage_types": row["usage_types"].split(",")
-                        if row["usage_types"]
-                        else [],
+                        "usage_types": (
+                            row["usage_types"].split(",") if row["usage_types"] else []
+                        ),
                     }
                     for row in rows
                 ]

@@ -480,10 +480,9 @@ class RecursiveLinterImprover:
         if before["total_issues"] == 0:
             return 0.0
 
-        change_ratio = (
+        return (
             abs(after["total_issues"] - before["total_issues"]) / before["total_issues"]
         )
-        return change_ratio
 
     def generate_improvement_report(
         self, session: RecursiveImprovementSession, output_file: str = None

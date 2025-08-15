@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List
 
-from ..quality_enforcer import QualityEnforcer
+from src.code_quality_system.quality_enforcer import QualityEnforcer
 
 
 class PreCommitIntegration:
@@ -57,10 +57,9 @@ class PreCommitIntegration:
             if result["can_proceed"]:
                 self.logger.info("Pre-commit quality check passed")
                 return True
-            else:
-                self.logger.error("Pre-commit quality check failed")
-                self._print_failure_details(result)
-                return False
+            self.logger.error("Pre-commit quality check failed")
+            self._print_failure_details(result)
+            return False
 
         except Exception as e:
             self.logger.error(f"Pre-commit check failed with error: {e}")
@@ -190,12 +189,10 @@ class PreCommitIntegration:
                         docstring_found = False
                         for j in range(i, min(i + 3, len(lines))):
                             next_line = lines[j].strip()
-                            if next_line.startswith('"""') or next_line.startswith(
-                                "'''"
-                            ):
+                            if next_line.startswith(('"""', "'''")):
                                 docstring_found = True
                                 break
-                            elif next_line and not next_line.startswith("#"):
+                            if next_line and not next_line.startswith("#"):
                                 break
 
                         if not docstring_found:
@@ -368,9 +365,8 @@ exit $?
                 pre_commit_hook.unlink()
                 self.logger.info("Pre-commit hook uninstalled")
                 return True
-            else:
-                self.logger.info("No pre-commit hook found to uninstall")
-                return True
+            self.logger.info("No pre-commit hook found to uninstall")
+            return True
 
         except Exception as e:
             self.logger.error(f"Failed to uninstall pre-commit hook: {e}")

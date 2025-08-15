@@ -515,33 +515,34 @@ class RoundTripQualityValidator:
         try:
             json.dumps(data)
         except Exception as e:
-            raise AssertionError(f"{context} failed JSON serialization: {e}")
+            msg = f"{context} failed JSON serialization: {e}"
+            raise AssertionError(msg)
 
     def _assert_metrics_equal(
         self, metrics1: QualityMetrics, metrics2: QualityMetrics
     ) -> None:
         """Assert that two QualityMetrics objects are equal"""
         if metrics1.to_dict() != metrics2.to_dict():
-            raise AssertionError(
-                "QualityMetrics serialization/deserialization mismatch"
-            )
+            msg = "QualityMetrics serialization/deserialization mismatch"
+            raise AssertionError(msg)
 
     def _assert_valid_score(self, score: float) -> None:
         """Assert that a quality score is valid"""
         if not isinstance(score, (int, float)) or score < 0 or score > 100:
-            raise AssertionError(f"Invalid quality score: {score}")
+            msg = f"Invalid quality score: {score}"
+            raise AssertionError(msg)
 
     def _assert_gate_result(self, result: dict[str, Any], should_pass: bool) -> None:
         """Assert that a gate result matches expectations"""
         if result.get("can_proceed") != should_pass:
-            raise AssertionError(
-                f"Gate result mismatch: expected {should_pass}, got {result.get('can_proceed')}"
-            )
+            msg = f"Gate result mismatch: expected {should_pass}, got {result.get('can_proceed')}"
+            raise AssertionError(msg)
 
     def _assert_valid_analysis_result(self, result: dict[str, Any]) -> None:
         """Assert that multi-agent analysis result is valid"""
         if not isinstance(result, dict) or "status" not in result:
-            raise AssertionError(f"Invalid analysis result format: {result}")
+            msg = f"Invalid analysis result format: {result}"
+            raise AssertionError(msg)
 
     def _assert_valid_environment(self, environment: str) -> None:
         """Assert that CI/CD environment is valid"""
@@ -555,24 +556,28 @@ class RoundTripQualityValidator:
             "unknown",
         ]
         if environment not in valid_environments:
-            raise AssertionError(f"Invalid CI/CD environment: {environment}")
+            msg = f"Invalid CI/CD environment: {environment}"
+            raise AssertionError(msg)
 
     def _assert_valid_config(self, config: dict[str, Any]) -> None:
         """Assert that CI/CD configuration is valid"""
         required_keys = ["ci_environment", "quality_threshold", "fail_on_quality"]
         for key in required_keys:
             if key not in config:
-                raise AssertionError(f"Missing required config key: {key}")
+                msg = f"Missing required config key: {key}"
+                raise AssertionError(msg)
 
     def _assert_valid_environment_rules(self, rules: dict[str, Any]) -> None:
         """Assert that environment rules are valid"""
         if not isinstance(rules, dict) or len(rules) == 0:
-            raise AssertionError(f"Invalid environment rules: {rules}")
+            msg = f"Invalid environment rules: {rules}"
+            raise AssertionError(msg)
 
     def _assert_valid_hooks_config(self, hooks: dict[str, Any]) -> None:
         """Assert that pre-commit hooks configuration is valid"""
         if not isinstance(hooks, dict):
-            raise AssertionError(f"Invalid hooks configuration: {hooks}")
+            msg = f"Invalid hooks configuration: {hooks}"
+            raise AssertionError(msg)
 
 
 async def main() -> None:

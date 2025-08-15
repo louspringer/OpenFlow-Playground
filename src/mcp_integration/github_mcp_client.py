@@ -140,8 +140,7 @@ class GitHubMCPClient:
 
             if tree_result["success"]:
                 return tree_result["output"]
-            else:
-                return f"Error getting structure: {tree_result['error']}"
+            return f"Error getting structure: {tree_result['error']}"
 
         except Exception as e:
             return f"Fallback error: {str(e)}"

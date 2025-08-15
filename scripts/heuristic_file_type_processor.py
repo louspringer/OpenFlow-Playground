@@ -120,7 +120,7 @@ class HeuristicFileTypeProcessor:
 
     def _initialize_heuristic_patterns(self) -> list[HeuristicPattern]:
         """Initialize heuristic patterns for file type detection"""
-        patterns = [
+        return [
             # Python patterns
             HeuristicPattern(
                 r"^#!/usr/bin/env python", 0.95, "python", "Python shebang"
@@ -182,11 +182,10 @@ class HeuristicFileTypeProcessor:
                 r"^\s*\.PHONY:", 0.90, "makefile", "Makefile .PHONY declaration"
             ),
         ]
-        return patterns
 
     def _initialize_exception_mappings(self) -> list[ExceptionMapping]:
         """Initialize exception mappings for recovery strategies"""
-        mappings = [
+        return [
             # JSON exceptions
             ExceptionMapping(
                 "json.JSONDecodeError",
@@ -234,7 +233,6 @@ class HeuristicFileTypeProcessor:
                 0.85,
             ),
         ]
-        return mappings
 
     def discover_file_type(self, file_path: Path) -> FileTypeDiscovery:
         """
@@ -270,9 +268,11 @@ class HeuristicFileTypeProcessor:
         return FileTypeDiscovery(
             file_path=file_path,
             detected_type=file_type,
-            confidence=FileTypeConfidence.CERTAIN
-            if parsing_success
-            else FileTypeConfidence.HIGH,
+            confidence=(
+                FileTypeConfidence.CERTAIN
+                if parsing_success
+                else FileTypeConfidence.HIGH
+            ),
             confidence_score=1.0 if parsing_success else 0.8,
             discovery_strategy=DiscoveryStrategy.EXTENSION_BASED,
             parsing_success=parsing_success,
@@ -428,32 +428,31 @@ class HeuristicFileTypeProcessor:
                     ast.parse(f.read())
                 return True, []
 
-            elif file_type == "json":
+            if file_type == "json":
                 with open(file_path, encoding="utf-8") as f:
                     json.load(f)
                 return True, []
 
-            elif file_type == "yaml":
+            if file_type == "yaml":
                 with open(file_path, encoding="utf-8") as f:
                     yaml.safe_load(f)
                 return True, []
 
-            elif file_type == "toml":
+            if file_type == "toml":
                 with open(file_path, "rb") as f:
                     tomllib.load(f)
                 return True, []
 
-            elif file_type == "ini":
+            if file_type == "ini":
                 config = configparser.ConfigParser()
                 config.read(file_path)
                 return True, []
 
-            elif file_type == "xml":
+            if file_type == "xml":
                 ET.parse(file_path)
                 return True, []
 
-            else:
-                return False, [f"No parser available for {file_type}"]
+            return False, [f"No parser available for {file_type}"]
 
         except Exception as e:
             # Map exception to recovery strategy
@@ -500,9 +499,7 @@ class HeuristicFileTypeProcessor:
                 yaml_score += 1
 
             # Python patterns: 4-space indentation, function/class definitions
-            if indent % 4 == 0 and (
-                stripped.startswith("def ") or stripped.startswith("class ")
-            ):
+            if indent % 4 == 0 and (stripped.startswith(("def ", "class "))):
                 python_score += 1
 
         if total_lines > 0:

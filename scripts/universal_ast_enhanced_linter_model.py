@@ -401,14 +401,13 @@ class JSONParser(FileTypeParser):
                 self._calculate_nesting_depth(v, current_depth + 1)
                 for v in obj.values()
             )
-        elif isinstance(obj, list):
+        if isinstance(obj, list):
             if not obj:
                 return current_depth
             return max(
                 self._calculate_nesting_depth(item, current_depth + 1) for item in obj
             )
-        else:
-            return current_depth
+        return current_depth
 
 
 class YAMLParser(FileTypeParser):
@@ -463,7 +462,7 @@ class YAMLParser(FileTypeParser):
         if not parsed_data["syntax_valid"]:
             return []
 
-        data = parsed_data["data"]
+        parsed_data["data"]
         structure_issues = []
 
         # Check for inconsistent indentation
@@ -783,14 +782,13 @@ class TOMLParser(FileTypeParser):
                 self._calculate_nesting_depth(v, current_depth + 1)
                 for v in obj.values()
             )
-        elif isinstance(obj, list):
+        if isinstance(obj, list):
             if not obj:
                 return current_depth
             return max(
                 self._calculate_nesting_depth(item, current_depth + 1) for item in obj
             )
-        else:
-            return current_depth
+        return current_depth
 
 
 class UniversalASTEnhancedLinterModel:

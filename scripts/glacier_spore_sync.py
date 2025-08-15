@@ -285,9 +285,11 @@ class GlacierSporeSyncDatabase:
                             version.change_count,
                             json.dumps(list(version.change_types)),
                             version.sync_status,
-                            version.last_sync.isoformat()
-                            if version.last_sync
-                            else None,
+                            (
+                                version.last_sync.isoformat()
+                                if version.last_sync
+                                else None
+                            ),
                             json.dumps(version.conflicts),
                         ),
                     )
@@ -361,9 +363,11 @@ class GlacierSporeSyncDatabase:
                             operation.conflict_resolution.value,
                             operation.status,
                             operation.started_at.isoformat(),
-                            operation.completed_at.isoformat()
-                            if operation.completed_at
-                            else None,
+                            (
+                                operation.completed_at.isoformat()
+                                if operation.completed_at
+                                else None
+                            ),
                             operation.conflicts_found,
                             operation.conflicts_resolved,
                             operation.changes_applied,
@@ -748,9 +752,11 @@ class GlacierSporeSyncSystem:
                         ),
                         status=row["status"],
                         started_at=datetime.fromisoformat(row["started_at"]),
-                        completed_at=datetime.fromisoformat(row["completed_at"])
-                        if row["completed_at"]
-                        else None,
+                        completed_at=(
+                            datetime.fromisoformat(row["completed_at"])
+                            if row["completed_at"]
+                            else None
+                        ),
                         conflicts_found=row["conflicts_found"],
                         conflicts_resolved=row["conflicts_resolved"],
                         changes_applied=row["changes_applied"],

@@ -115,14 +115,15 @@ class ModelVersion(BaseModel):
 
     # Validation - semantic rules
     @validator("model_hash")
-    def validate_model_hash(cls, v):
+    def validate_model_hash(self, v):
         """Validate model hash format"""
         if not v or len(v) != 64:  # SHA256 is 64 hex chars
-            raise ValueError("Model hash must be a valid SHA256 hash")
+            msg = "Model hash must be a valid SHA256 hash"
+            raise ValueError(msg)
         return v
 
     @validator("change_types")
-    def validate_change_types(cls, v):
+    def validate_change_types(self, v):
         """Validate change types are semantic"""
         semantic_types = {
             "spore_created",
@@ -137,7 +138,8 @@ class ModelVersion(BaseModel):
         }
         invalid_types = v - semantic_types
         if invalid_types:
-            raise ValueError(f"Invalid change types: {invalid_types}")
+            msg = f"Invalid change types: {invalid_types}"
+            raise ValueError(msg)
         return v
 
     class Config:
@@ -220,16 +222,15 @@ class Dimension(BaseModel):
 
     # Validation - semantic rules
     @validator("name")
-    def validate_name(cls, v):
+    def validate_name(self, v):
         """Validate dimension name is semantic"""
         if not v.replace("_", "").replace("-", "").isalnum():
-            raise ValueError(
-                "Dimension name must be alphanumeric with underscores or hyphens"
-            )
+            msg = "Dimension name must be alphanumeric with underscores or hyphens"
+            raise ValueError(msg)
         return v
 
     @validator("range_min", "range_max")
-    def validate_range(cls, v, values):
+    def validate_range(self, v, values):
         """Validate range constraints are semantically valid"""
         if "range_min" in values and "range_max" in values:
             min_val = values["range_min"]
@@ -239,7 +240,8 @@ class Dimension(BaseModel):
                     max_val, (int, float)
                 ):
                     if min_val >= max_val:
-                        raise ValueError("Range min must be less than range max")
+                        msg = "Range min must be less than range max"
+                        raise ValueError(msg)
         return v
 
     class Config:
@@ -480,22 +482,25 @@ class GlacierSpore(BaseModel):
 
     # Validation - semantic rules
     @validator("content_hash")
-    def validate_content_hash(cls, v):
+    def validate_content_hash(self, v):
         """Validate content hash format"""
         if not v or len(v) != 64:
-            raise ValueError("Content hash must be a valid SHA256 hash")
+            msg = "Content hash must be a valid SHA256 hash"
+            raise ValueError(msg)
         return v
 
     @validator("embedded_schema")
-    def validate_embedded_schema(cls, v):
+    def validate_embedded_schema(self, v):
         """Validate embedded schema has required semantic fields"""
         if not isinstance(v, dict):
-            raise ValueError("Embedded schema must be a dictionary")
+            msg = "Embedded schema must be a dictionary"
+            raise ValueError(msg)
 
         required_fields = ["type", "version"]
         for field in required_fields:
             if field not in v:
-                raise ValueError(f"Embedded schema missing required field: {field}")
+                msg = f"Embedded schema missing required field: {field}"
+                raise ValueError(msg)
 
         return v
 
@@ -508,11 +513,13 @@ class GlacierSpore(BaseModel):
         # Type-specific semantic validation
         if spore_type == SporeType.DISCOVERY:
             if "repo_name" not in content:
-                raise ValueError("Discovery spores must have repo_name in content")
+                msg = "Discovery spores must have repo_name in content"
+                raise ValueError(msg)
 
         elif spore_type == SporeType.ANALYSIS:
             if "analysis_type" not in content:
-                raise ValueError("Analysis spores must have analysis_type in content")
+                msg = "Analysis spores must have analysis_type in content"
+                raise ValueError(msg)
 
         return self
 

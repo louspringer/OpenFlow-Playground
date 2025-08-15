@@ -95,7 +95,8 @@ class SemanticDiffEngine:
 
         # Validate that we're comparing compatible spores
         if not self._are_compatible_spores(old_spore, new_spore):
-            raise ValueError("Cannot compare incompatible spore types")
+            msg = "Cannot compare incompatible spore types"
+            raise ValueError(msg)
 
         # Content semantic diffs
         content_diffs = self._diff_content_semantically(
@@ -390,16 +391,15 @@ class SemanticDiffEngine:
         """Categorize a field semantically"""
         if "name" in field_name:
             return "identifier"
-        elif "score" in field_name or "quality" in field_name:
+        if "score" in field_name or "quality" in field_name:
             return "quality_metric"
-        elif "type" in field_name:
+        if "type" in field_name:
             return "classification"
-        elif "url" in field_name or "path" in field_name:
+        if "url" in field_name or "path" in field_name:
             return "location"
-        elif "time" in field_name or "date" in field_name:
+        if "time" in field_name or "date" in field_name:
             return "temporal"
-        else:
-            return "general"
+        return "general"
 
     def _assess_change_magnitude(self, old_value: Any, new_value: Any) -> str:
         """Assess the magnitude of a value change"""
@@ -407,14 +407,12 @@ class SemanticDiffEngine:
             change_ratio = abs(new_value - old_value) / max(abs(old_value), 1)
             if change_ratio > 0.5:
                 return "major"
-            elif change_ratio > 0.1:
+            if change_ratio > 0.1:
                 return "moderate"
-            else:
-                return "minor"
-        elif old_value != new_value:
+            return "minor"
+        if old_value != new_value:
             return "moderate"
-        else:
-            return "none"
+        return "none"
 
     def _is_breaking_schema_change(
         self, old_schema: dict[str, Any], new_schema: dict[str, Any]
@@ -456,11 +454,13 @@ class SemanticDiffEngine:
             "old_spore_id": old_spore.spore_id,
             "new_spore_id": new_spore.spore_id,
             "field_category": self._categorize_field(diff.field_path.split(".")[-1]),
-            "semantic_impact": "high"
-            if diff.impact_score > 0.7
-            else "medium"
-            if diff.impact_score > 0.4
-            else "low",
+            "semantic_impact": (
+                "high"
+                if diff.impact_score > 0.7
+                else "medium"
+                if diff.impact_score > 0.4
+                else "low"
+            ),
         }
 
         # Add existing context if present
