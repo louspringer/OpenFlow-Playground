@@ -4,7 +4,7 @@ Production Deployment Script with Quality Gates Enforcement
 
 This script implements the production deployment process based on meta-testing analysis
 findings. It enforces all quality gates and ensures proper workflow compliance.
-Uses API-based tools instead of subprocess for better performance and reliability.
+Uses our AST-based tools for comprehensive code quality analysis and auto-fixing.
 """
 
 import json
@@ -14,13 +14,29 @@ import time
 from pathlib import Path
 from typing import Any
 
-# Try to import API-based tools, fallback to subprocess if not available
+# Try to import our AST-based tools, fallback to subprocess if not available
+try:
+    from ast_enhanced_linter import ASTEnhancedLinter
+
+    AST_LINTER_AVAILABLE = True
+except ImportError:
+    AST_LINTER_AVAILABLE = False
+
+try:
+    from universal_ast_enhanced_linter_model import (
+        create_universal_ast_enhanced_linter_model,
+    )
+
+    UNIVERSAL_AST_AVAILABLE = True
+except ImportError:
+    UNIVERSAL_AST_AVAILABLE = False
+
 try:
     from black import FileMode, format_file_contents
 
-    BLACK_AVAILABLE = True
+    BLACK_API_AVAILABLE = True
 except ImportError:
-    BLACK_AVAILABLE = False
+    BLACK_API_AVAILABLE = False
 
 try:
     from ruff import check
@@ -48,7 +64,7 @@ QUALITY_GATES = {
     "code_quality": {
         "required": True,
         "threshold": 100.0,
-        "description": "Code quality checks",
+        "description": "Code quality checks using AST-based analysis",
     },
     "performance": {
         "required": True,
@@ -69,12 +85,23 @@ QUALITY_GATES = {
 
 
 class ProductionDeployment:
-    """Production deployment with quality gates enforcement"""
+    """Production deployment with quality gates enforcement using AST-based tools"""
 
     def __init__(self):
         self.deployment_status = {}
         self.quality_results = {}
         self.rollback_required = False
+
+        # Initialize our AST-based tools
+        if AST_LINTER_AVAILABLE:
+            self.ast_linter = ASTEnhancedLinter(".")
+        else:
+            self.ast_linter = None
+
+        if UNIVERSAL_AST_AVAILABLE:
+            self.universal_ast_model = create_universal_ast_enhanced_linter_model()
+        else:
+            self.universal_ast_model = None
 
     def run_quality_gate(self, gate_name: str, gate_config: dict[str, Any]) -> bool:
         """Run a specific quality gate"""
@@ -118,115 +145,158 @@ class ProductionDeployment:
             print(f"❌ Meta-testing gate: ERROR - {e}")
             return False
 
-    def _check_black_formatting_api(self, file_path: Path) -> bool:
-        """Check Black formatting using API"""
-        try:
-            with open(file_path, encoding="utf-8") as f:
-                content = f.read()
+    def _run_ast_based_code_quality_analysis(self) -> dict[str, Any]:
+        """Run comprehensive code quality analysis using our AST-based tools"""
+        print("🔍 Running AST-based code quality analysis...")
 
-            formatted_content = format_file_contents(
-                content, mode=FileMode(), fast=False
-            )
-            return content == formatted_content
-        except Exception as e:
-            print(f"⚠️ Black API error for {file_path}: {e}")
-            return False
+        results = {
+            "black_issues": [],
+            "ruff_issues": [],
+            "ast_issues": [],
+            "auto_fixes_applied": 0,
+        }
 
-    def _check_black_formatting_subprocess(self, file_path: Path) -> bool:
-        """Check Black formatting using subprocess (fallback)"""
-        try:
-            result = subprocess.run(
-                ["uv", "run", "black", "--check", str(file_path)],
-                capture_output=True,
-                text=True,
-            )
-            return result.returncode == 0
-        except Exception as e:
-            print(f"⚠️ Black subprocess error for {file_path}: {e}")
-            return False
+        # Use our AST-enhanced linter for comprehensive analysis
+        if self.ast_linter:
+            print("  📊 Using AST-enhanced linter for comprehensive analysis...")
 
-    def _check_ruff_linting_api(self, file_path: Path) -> list:
-        """Check Ruff linting using API"""
-        try:
-            with open(file_path, encoding="utf-8") as f:
-                content = f.read()
+            # Scan the codebase
+            self.ast_linter.scan_codebase("src/")
 
-            settings = Settings()
-            diagnostics = check(content, str(file_path), settings)
-            return [d.message for d in diagnostics]
-        except Exception as e:
-            print(f"⚠️ Ruff API error for {file_path}: {e}")
-            return []
+            # Get all issues
+            for file_path, analysis in self.ast_linter.file_analyses.items():
+                if analysis.total_issues > 0:
+                    results["ast_issues"].append(
+                        {
+                            "file": file_path,
+                            "total_issues": analysis.total_issues,
+                            "critical": analysis.critical_issues,
+                            "warnings": analysis.warnings,
+                            "suggestions": analysis.suggestions,
+                        }
+                    )
 
-    def _check_ruff_linting_subprocess(self, file_path: Path) -> list:
-        """Check Ruff linting using subprocess (fallback)"""
-        try:
-            result = subprocess.run(
-                ["uv", "run", "ruff", "check", str(file_path), "--output-format=json"],
-                capture_output=True,
-                text=True,
-            )
-            if result.returncode == 0:
-                return []
-            # Parse JSON output for errors
-            try:
-                errors = json.loads(result.stdout)
-                return [e.get("message", "Unknown error") for e in errors]
-            except json.JSONDecodeError:
-                return [result.stderr or "Unknown error"]
-        except Exception as e:
-            print(f"⚠️ Ruff subprocess error for {file_path}: {e}")
-            return []
+            # Try to auto-fix issues
+            print("  🔧 Attempting to auto-fix issues...")
+            fixes_applied = self.ast_linter.auto_fix_issues("src/")
+            results["auto_fixes_applied"] = sum(fixes_applied.values())
 
-    def _run_code_quality_gate(self) -> bool:
-        """Run code quality gate using API-based tools when possible"""
-        try:
-            print("🔍 Checking code quality...")
+            if results["auto_fixes_applied"] > 0:
+                print(f"  ✅ Auto-fixed {results['auto_fixes_applied']} issues")
 
-            # Check Black formatting
-            black_issues = []
+                # Re-scan after fixes
+                self.ast_linter.scan_codebase("src/")
+
+                # Update results
+                results["ast_issues"] = []
+                for file_path, analysis in self.ast_linter.file_analyses.items():
+                    if analysis.total_issues > 0:
+                        results["ast_issues"].append(
+                            {
+                                "file": file_path,
+                                "total_issues": analysis.total_issues,
+                                "critical": analysis.critical_issues,
+                                "warnings": analysis.warnings,
+                                "suggestions": analysis.suggestions,
+                            }
+                        )
+
+        # Fallback to Black API if available
+        if BLACK_API_AVAILABLE:
+            print("  🎨 Checking Black formatting with API...")
             python_files = list(Path("src").rglob("*.py"))
 
             for file_path in python_files:
-                if BLACK_AVAILABLE:
-                    is_formatted = self._check_black_formatting_api(file_path)
-                else:
-                    is_formatted = self._check_black_formatting_subprocess(file_path)
+                try:
+                    with open(file_path, encoding="utf-8") as f:
+                        content = f.read()
 
-                if not is_formatted:
-                    black_issues.append(str(file_path))
-
-            # Check Ruff linting
-            ruff_issues = []
-            for file_path in python_files:
-                if RUFF_AVAILABLE:
-                    file_issues = self._check_ruff_linting_api(file_path)
-                else:
-                    file_issues = self._check_ruff_linting_subprocess(file_path)
-
-                if file_issues:
-                    ruff_issues.extend(
-                        [f"{file_path}: {issue}" for issue in file_issues]
+                    formatted_content = format_file_contents(
+                        content, mode=FileMode(), fast=False
                     )
 
-            if not black_issues and not ruff_issues:
+                    if content != formatted_content:
+                        results["black_issues"].append(str(file_path))
+                except Exception as e:
+                    print(f"    ⚠️ Black API error for {file_path}: {e}")
+
+        # Fallback to Ruff if available
+        if RUFF_AVAILABLE:
+            print("  🚀 Checking Ruff linting with API...")
+            python_files = list(Path("src").rglob("*.py"))
+
+            for file_path in python_files:
+                try:
+                    with open(file_path, encoding="utf-8") as f:
+                        content = f.read()
+
+                    settings = Settings()
+                    diagnostics = check(content, str(file_path), settings)
+
+                    if diagnostics:
+                        results["ruff_issues"].extend(
+                            [f"{file_path}: {d.message}" for d in diagnostics]
+                        )
+                except Exception as e:
+                    print(f"    ⚠️ Ruff API error for {file_path}: {e}")
+
+        return results
+
+    def _run_code_quality_gate(self) -> bool:
+        """Run code quality gate using our AST-based tools"""
+        try:
+            # Run comprehensive AST-based analysis
+            analysis_results = self._run_ast_based_code_quality_analysis()
+
+            # Check if we have any issues
+            total_issues = (
+                len(analysis_results["black_issues"])
+                + len(analysis_results["ruff_issues"])
+                + len(analysis_results["ast_issues"])
+            )
+
+            if total_issues == 0:
                 print("✅ Code quality gate: PASSED")
+                if analysis_results["auto_fixes_applied"] > 0:
+                    print(
+                        f"   🔧 Auto-fixed {analysis_results['auto_fixes_applied']} issues"
+                    )
                 return True
 
             print("❌ Code quality gate: FAILED")
-            if black_issues:
-                print(f"Black formatting issues: {len(black_issues)} files")
-                for issue in black_issues[:5]:  # Show first 5
-                    print(f"  - {issue}")
-                if len(black_issues) > 5:
-                    print(f"  ... and {len(black_issues) - 5} more")
 
-            if ruff_issues:
-                print(f"Ruff linting issues: {len(ruff_issues)} total")
-                for issue in ruff_issues[:5]:  # Show first 5
+            # Report issues
+            if analysis_results["black_issues"]:
+                print(
+                    f"Black formatting issues: {len(analysis_results['black_issues'])} files"
+                )
+                for issue in analysis_results["black_issues"][:5]:  # Show first 5
                     print(f"  - {issue}")
-                if len(ruff_issues) > 5:
-                    print(f"  ... and {len(ruff_issues) - 5} more")
+                if len(analysis_results["black_issues"]) > 5:
+                    print(f"  ... and {len(analysis_results['black_issues']) - 5} more")
+
+            if analysis_results["ruff_issues"]:
+                print(
+                    f"Ruff linting issues: {len(analysis_results['ruff_issues'])} total"
+                )
+                for issue in analysis_results["ruff_issues"][:5]:  # Show first 5
+                    print(f"  - {issue}")
+                if len(analysis_results["ruff_issues"]) > 5:
+                    print(f"  ... and {len(analysis_results['ruff_issues']) - 5} more")
+
+            if analysis_results["ast_issues"]:
+                print(
+                    f"AST analysis issues: {len(analysis_results['ast_issues'])} files"
+                )
+                for issue in analysis_results["ast_issues"][:5]:  # Show first 5
+                    print(f"  - {issue}")
+                if len(analysis_results["ast_issues"]) > 5:
+                    print(f"  ... and {len(analysis_results['ast_issues']) - 5} more")
+
+            if analysis_results["auto_fixes_applied"] > 0:
+                print(
+                    f"   🔧 Auto-fixed {analysis_results['auto_fixes_applied']} issues"
+                )
 
             return False
 
@@ -263,7 +333,7 @@ class ProductionDeployment:
             print(f"❌ Performance gate: ERROR - {e}")
             return False
 
-    def _run_bandit_scan_api(self, target_path: str) -> dict:
+    def _run_bandit_scan_api(self, target_path: str) -> dict[str, Any]:
         """Run Bandit security scan using API"""
         try:
             config = BanditConfig()
@@ -288,7 +358,7 @@ class ProductionDeployment:
             print(f"⚠️ Bandit API error: {e}")
             return {"results": []}
 
-    def _run_bandit_scan_subprocess(self, target_path: str) -> dict:
+    def _run_bandit_scan_subprocess(self, target_path: str) -> dict[str, Any]:
         """Run Bandit security scan using subprocess (fallback)"""
         try:
             result = subprocess.run(
@@ -383,13 +453,11 @@ class ProductionDeployment:
 
         # Show tool availability
         print("🔧 Tool Availability:")
-        print(
-            f"  - Black API: {'✅' if BLACK_AVAILABLE else '❌'} (fallback: subprocess)"
-        )
-        print(f"  - Ruff API: {'✅' if RUFF_AVAILABLE else '❌'} (fallback: subprocess)")
-        print(
-            f"  - Bandit API: {'✅' if BANDIT_AVAILABLE else '❌'} (fallback: subprocess)"
-        )
+        print(f"  - AST Enhanced Linter: {'✅' if AST_LINTER_AVAILABLE else '❌'}")
+        print(f"  - Universal AST Model: {'✅' if UNIVERSAL_AST_AVAILABLE else '❌'}")
+        print(f"  - Black API: {'✅' if BLACK_API_AVAILABLE else '❌'}")
+        print(f"  - Ruff API: {'✅' if RUFF_AVAILABLE else '❌'}")
+        print(f"  - Bandit API: {'✅' if BANDIT_AVAILABLE else '❌'}")
         print()
 
         all_passed = True
