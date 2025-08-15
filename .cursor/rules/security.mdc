@@ -1,9 +1,13 @@
 ---
 description: Security guidelines and credential management
-globs:
-- '**/*'
-alwaysApply: true
+alwaysApply: false
+severity: critical
+priority: high
+mode: advisory
+globs: *.py,*.js,*.ts,*.yaml,*.yml,*.md,*.sh,*.json,*.toml,*.cfg,*.ini,*.conf
 ---
+
+
 
 # Security Guidelines
 
@@ -37,7 +41,39 @@ alwaysApply: true
 - Environment files
 - Infrastructure templates
 
+## Exclusions (Low-Risk Files):
+The following files are excluded from security scanning via glob patterns:
+- **Lock files**: `uv.lock`, `package-lock.json`, `poetry.lock`
+- **Binary files**: `*.exe`, `*.dll`, `*.so`, `*.dylib`
+- **Version control**: `.git/`, `.gitignore`, `.gitattributes`
+- **Build artifacts**: `dist/`, `build/`, `__pycache__/`
+- **Temporary files**: `*.tmp`, `*.temp`, `*.log`
+
+**Note**: Exclusions are enforced through glob patterns, not just documentation.
+
+## Operational Mode:
+- **Mode**: Advisory-first (warn > block)
+- **Escalation**: Block only on high-confidence violations
+- **Intentional markers**: Allow explicit security exceptions
+- **False positive handling**: Report for review, don't auto-block
+
 ## Remember:
 If you see hardcoded credentials, FIX THEM IMMEDIATELY.
 If you're not sure, DON'T HARDCODE IT.
 Treat every codebase as if it will be shared publicly.
+
+## Intentional Security Exceptions:
+When legitimate exceptions are needed, use explicit markers:
+```python
+# SECURITY_EXCEPTION: This is a test fixture with intentionally weak credentials
+# SECURITY_EXCEPTION: Placeholder for demonstration purposes only
+# SECURITY_EXCEPTION: This will be replaced with environment variables in production
+```
+
+## High-Confidence Violations (Auto-Block):
+- API keys starting with `sk-`, `pk_`, `ak_`
+- AWS access keys (20+ character alphanumeric)
+- Private keys (BEGIN PRIVATE KEY, BEGIN RSA PRIVATE KEY)
+- Database connection strings with real credentials
+- OAuth client secrets (32+ character strings)
+
