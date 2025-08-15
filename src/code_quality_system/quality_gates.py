@@ -324,10 +324,9 @@ def test_coverage_with_minimum_tests(score: float, **kwargs) -> GateResult:
             severity=GateSeverity.MEDIUM,
             message=f"Test coverage passed: {coverage_percentage:.1f}%",
         )
-    else:
-        return GateResult(
-            gate_name="test_coverage",
-            status=GateStatus.FAILED,
-            severity=GateSeverity.MEDIUM,
-            message=f"Test coverage failed: {coverage_percentage:.1f}% < 70%",
-        )
+    return GateResult(
+        gate_name="test_coverage",
+        status=GateStatus.FAILED,
+        severity=GateSeverity.MEDIUM,
+        message=f"Test coverage failed: {coverage_percentage:.1f}% < 70%",
+    )

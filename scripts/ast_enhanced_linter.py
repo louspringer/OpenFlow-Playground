@@ -224,9 +224,11 @@ class ASTEnhancedLinter:
                         description=f"Syntax error: {error.msg}",
                         suggestion="Fix the syntax error in the code",
                         auto_fixable=False,
-                        context=lines[error.lineno - 1]
-                        if error.lineno and error.lineno <= len(lines)
-                        else "Unknown",
+                        context=(
+                            lines[error.lineno - 1]
+                            if error.lineno and error.lineno <= len(lines)
+                            else "Unknown"
+                        ),
                         rule_name="Syntax Validation",
                     )
                 )
@@ -291,9 +293,11 @@ class ASTEnhancedLinter:
                                     AutoFixCapability.CAN_FIX,
                                     AutoFixCapability.CAN_PARTIALLY_FIX,
                                 ],
-                                context=lines[line_number - 1]
-                                if line_number <= len(lines)
-                                else "Unknown",
+                                context=(
+                                    lines[line_number - 1]
+                                    if line_number <= len(lines)
+                                    else "Unknown"
+                                ),
                                 rule_name=rule.name,
                                 ast_node=node,
                             )
@@ -334,9 +338,11 @@ class ASTEnhancedLinter:
                                         AutoFixCapability.CAN_FIX,
                                         AutoFixCapability.CAN_PARTIALLY_FIX,
                                     ],
-                                    context=lines[line_number - 1]
-                                    if line_number <= len(lines)
-                                    else "Unknown",
+                                    context=(
+                                        lines[line_number - 1]
+                                        if line_number <= len(lines)
+                                        else "Unknown"
+                                    ),
                                     rule_name=rule.name,
                                     ast_node=node,
                                 )
@@ -362,9 +368,11 @@ class ASTEnhancedLinter:
                                         AutoFixCapability.CAN_FIX,
                                         AutoFixCapability.CAN_PARTIALLY_FIX,
                                     ],
-                                    context=lines[line_number - 1]
-                                    if line_number <= len(lines)
-                                    else "Unknown",
+                                    context=(
+                                        lines[line_number - 1]
+                                        if line_number <= len(lines)
+                                        else "Unknown"
+                                    ),
                                     rule_name=rule.name,
                                     ast_node=node,
                                 )
@@ -402,9 +410,11 @@ class ASTEnhancedLinter:
                                     AutoFixCapability.CAN_FIX,
                                     AutoFixCapability.CAN_PARTIALLY_FIX,
                                 ],
-                                context=lines[line_number - 1]
-                                if line_number <= len(lines)
-                                else "Unknown",
+                                context=(
+                                    lines[line_number - 1]
+                                    if line_number <= len(lines)
+                                    else "Unknown"
+                                ),
                                 rule_name=rule.name,
                                 ast_node=node,
                             )
@@ -442,9 +452,11 @@ class ASTEnhancedLinter:
                                     AutoFixCapability.CAN_FIX,
                                     AutoFixCapability.CAN_PARTIALLY_FIX,
                                 ],
-                                context=lines[line_number - 1]
-                                if line_number <= len(lines)
-                                else "Unknown",
+                                context=(
+                                    lines[line_number - 1]
+                                    if line_number <= len(lines)
+                                    else "Unknown"
+                                ),
                                 rule_name=rule.name,
                                 ast_node=node,
                             )
@@ -610,11 +622,7 @@ class ASTEnhancedLinter:
 
         patterns = one_liner_patterns.get(file_type, [])
 
-        for pattern in patterns:
-            if re.match(pattern, clean_line):
-                return True
-
-        return False
+        return any(re.match(pattern, clean_line) for pattern in patterns)
 
     def _calculate_one_liner_score(self, lines: list[str]) -> float:
         """Calculate a score indicating how much the file uses one-liners"""
@@ -769,9 +777,9 @@ class ASTEnhancedLinter:
             # Break shell commands at logical points
             if " && " in line:
                 return line.replace(" && ", " \\\n    && ")
-            elif " | " in line:
+            if " | " in line:
                 return line.replace(" | ", " \\\n    | ")
-            elif "; " in line:
+            if "; " in line:
                 return line.replace("; ", " \\\n    ; ")
 
         elif file_type == "python":
@@ -794,9 +802,9 @@ class ASTEnhancedLinter:
             # Break shell commands
             if " && " in line:
                 return line.split(" && ")
-            elif " | " in line:
+            if " | " in line:
                 return line.split(" | ")
-            elif "; " in line:
+            if "; " in line:
                 return line.split("; ")
 
         # Generic line breaking
@@ -836,10 +844,9 @@ class ASTEnhancedLinter:
         """Generate a comprehensive report of all findings"""
         if output_format == "markdown":
             return self._generate_markdown_report()
-        elif output_format == "json":
+        if output_format == "json":
             return self._generate_json_report()
-        else:
-            return self._generate_text_report()
+        return self._generate_text_report()
 
     def _generate_markdown_report(self) -> str:
         """Generate markdown report"""

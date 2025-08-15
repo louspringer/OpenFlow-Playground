@@ -109,7 +109,8 @@ class ComprehensiveGitHubDiscovery:
         # Parse repository URL
         repo_info = self._parse_github_url(repo_url)
         if not repo_info:
-            raise ValueError(f"Invalid GitHub URL: {repo_url}")
+            msg = f"Invalid GitHub URL: {repo_url}"
+            raise ValueError(msg)
 
         # Create analysis object
         analysis = RepositoryAnalysis(
@@ -202,12 +203,14 @@ class ComprehensiveGitHubDiscovery:
             )
 
             if not result["success"]:
-                raise Exception(f"Failed to clone repository: {result['error']}")
+                msg = f"Failed to clone repository: {result['error']}"
+                raise Exception(msg)
 
             # Find the cloned repository directory
             repo_dirs = [d for d in self.temp_dir.iterdir() if d.is_dir()]
             if not repo_dirs:
-                raise Exception("No repository directory found after cloning")
+                msg = "No repository directory found after cloning"
+                raise Exception(msg)
 
             return repo_dirs[0]
 
@@ -605,10 +608,9 @@ class ComprehensiveGitHubDiscovery:
         """Generate a comprehensive report from analysis results"""
         if output_format == "markdown":
             return self._generate_markdown_report(analysis)
-        elif output_format == "json":
+        if output_format == "json":
             return self._generate_json_report(analysis)
-        else:
-            return self._generate_text_report(analysis)
+        return self._generate_text_report(analysis)
 
     def _generate_markdown_report(self, analysis: RepositoryAnalysis) -> str:
         """Generate markdown report"""

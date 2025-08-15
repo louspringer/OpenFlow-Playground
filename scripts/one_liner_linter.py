@@ -197,16 +197,15 @@ class OneLinerLinter:
 
         if ext == ".py":
             return "python"
-        elif ext in [".sh", ".bash", ".zsh"] or name in ["Makefile", "Dockerfile"]:
+        if ext in [".sh", ".bash", ".zsh"] or name in ["Makefile", "Dockerfile"]:
             return "shell"
-        elif ext in [".yaml", ".yml"]:
+        if ext in [".yaml", ".yml"]:
             return "yaml"
-        elif ext == ".md":
+        if ext == ".md":
             return "markdown"
-        elif ext == ".json":
+        if ext == ".json":
             return "json"
-        else:
-            return "generic"
+        return "generic"
 
     def _analyze_python_file(
         self, file_path: Path, content: str, lines: list[str]
@@ -227,9 +226,9 @@ class OneLinerLinter:
                     description=f"Syntax error: {e.msg}",
                     suggestion="Fix the syntax error in the code",
                     auto_fixable=False,
-                    context=lines[e.lineno - 1]
-                    if e.lineno <= len(lines)
-                    else "Unknown",
+                    context=(
+                        lines[e.lineno - 1] if e.lineno <= len(lines) else "Unknown"
+                    ),
                 )
             )
 

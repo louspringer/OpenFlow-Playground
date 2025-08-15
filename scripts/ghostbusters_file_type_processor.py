@@ -449,32 +449,31 @@ class GhostbustersFileTypeProcessor:
                     ast.parse(f.read())
                 return True
 
-            elif file_type == "json":
+            if file_type == "json":
                 with open(file_path, encoding="utf-8") as f:
                     json.load(f)
                 return True
 
-            elif file_type == "yaml":
+            if file_type == "yaml":
                 with open(file_path, encoding="utf-8") as f:
                     yaml.safe_load(f)
                 return True
 
-            elif file_type == "toml":
+            if file_type == "toml":
                 with open(file_path, "rb") as f:
                     tomllib.load(f)
                 return True
 
-            elif file_type == "ini":
+            if file_type == "ini":
                 config = configparser.ConfigParser()
                 config.read(file_path)
                 return True
 
-            elif file_type == "xml":
+            if file_type == "xml":
                 ET.parse(file_path)
                 return True
 
-            else:
-                return False
+            return False
 
         except Exception:
             return False

@@ -10,8 +10,11 @@ import os
 from pathlib import Path
 from typing import Any
 
-from ..multi_agent_integration import QualityMultiAgentAdapter
-from ..quality_enforcer import QualityEnforcementError, QualityEnforcer
+from src.code_quality_system.multi_agent_integration import QualityMultiAgentAdapter
+from src.code_quality_system.quality_enforcer import (
+    QualityEnforcementError,
+    QualityEnforcer,
+)
 
 
 class CICDIntegration:
@@ -34,18 +37,17 @@ class CICDIntegration:
         """Detect which CI/CD environment we're running in"""
         if os.getenv("GITHUB_ACTIONS"):
             return "github_actions"
-        elif os.getenv("GITLAB_CI"):
+        if os.getenv("GITLAB_CI"):
             return "gitlab_ci"
-        elif os.getenv("CIRCLECI"):
+        if os.getenv("CIRCLECI"):
             return "circleci"
-        elif os.getenv("JENKINS_URL"):
+        if os.getenv("JENKINS_URL"):
             return "jenkins"
-        elif os.getenv("TRAVIS"):
+        if os.getenv("TRAVIS"):
             return "travis"
-        elif os.getenv("AZURE_DEVOPS"):
+        if os.getenv("AZURE_DEVOPS"):
             return "azure_devops"
-        else:
-            return "unknown"
+        return "unknown"
 
     def _load_ci_config(self) -> dict[str, Any]:
         """Load CI/CD specific configuration"""
@@ -294,9 +296,9 @@ class CICDIntegration:
             # Recommendations
             "recommendations": quality_result.get("recommendations", []),
             # Status
-            "status": "success"
-            if quality_result.get("can_proceed", False)
-            else "failed",
+            "status": (
+                "success" if quality_result.get("can_proceed", False) else "failed"
+            ),
         }
 
     def _get_build_info(self) -> dict[str, Any]:

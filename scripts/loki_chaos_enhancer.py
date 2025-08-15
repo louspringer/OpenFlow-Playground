@@ -86,10 +86,9 @@ class LokiChaosEnhancer:
             self.chaos_level = min(self.chaos_level + 0.1, 1.0)
             print(f"✅ Transformation successful! Chaos level: {self.chaos_level:.2f}")
             return True
-        else:
-            print(f"💥 Transformation failed! Chaos increases anyway...")
-            self.chaos_level = min(self.chaos_level + 0.2, 1.0)
-            return False
+        print(f"💥 Transformation failed! Chaos increases anyway...")
+        self.chaos_level = min(self.chaos_level + 0.2, 1.0)
+        return False
 
     def apply_deception(self, target: Any, deception_type: str) -> Any:
         """Loki applies deception to make something appear different"""
@@ -107,7 +106,6 @@ class LokiChaosEnhancer:
         elif deception_type == "structure_illusion":
             # Make structure appear different
             if hasattr(target, "structure"):
-                original_structure = target.structure
                 fake_structures = [
                     "simple",
                     "complex",

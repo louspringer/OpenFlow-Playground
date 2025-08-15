@@ -212,9 +212,8 @@ def main():
     if all(results):
         print("🎉 All tests passed! Quality system is working correctly.")
         return 0
-    else:
-        print("❌ Some tests failed. Check the output above for details.")
-        return 1
+    print("❌ Some tests failed. Check the output above for details.")
+    return 1
 
 
 if __name__ == "__main__":
