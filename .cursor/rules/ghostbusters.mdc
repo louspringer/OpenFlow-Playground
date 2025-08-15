@@ -1,5 +1,8 @@
+---
 description: "Ghostbusters Component - Multi-Agent Delusion Detection & Recovery System"
-globs: ["src/multi_agent_testing/**/*.py", "tests/test_diversity_hypothesis.py", "**/*.py"]
+globs: src/ghostbusters/**/*.py,src/multi_agent_testing/**/*.py,tests/test_ghostbusters*.py
+alwaysApply: false
+---
 
 # Ghostbusters Component Rules
 

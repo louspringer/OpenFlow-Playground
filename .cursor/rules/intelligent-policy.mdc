@@ -1,6 +1,5 @@
 ---
 description: Intelligent policy over rigid tools
-globs: ["**/*"]
 alwaysApply: true
 ---
 

@@ -1,26 +1,18 @@
 ---
 description: Use deterministic tools for file editing
-globs:
-- '**/*.yaml'
-- '**/*.yml'
-- '**/*.json'
-- '**/*.toml'
-- '**/*.ini'
-- '**/*.cfg'
-- '**/*.mdc'
-- '**/*.py'
-- '**/*.xml'
-- '**/*.properties'
-- '**/*.env'
 alwaysApply: true
 ---
 
 # Deterministic File Editing
 
-## BANNED: Stochastic/Fuzzy Editors
+## Core Principle: Right Tool for Right Job
+**Use deterministic tools for modification, heuristic tools for detection and validation. The heuristic is your paranoia check, the deterministic tool is your safe fixer.**
+
+## BANNED: Stochastic/Fuzzy Modifiers
 - NEVER use `edit_file` for structured files
-- NEVER use fuzzy editing tools
+- NEVER use fuzzy editing tools for code modification
 - NEVER use tools that can introduce random formatting
+- NEVER use heuristic patchers that modify code unpredictably
 
 ## REQUIRED: Deterministic Tools
 
@@ -28,6 +20,41 @@ alwaysApply: true
 - Use `ruamel.yaml` for parsing and serializing
 - Use `PyYAML` with schema validation
 - Use `search_replace` with exact string matching
+- **⚠️ WARNING**: YAML is *special* in its own wonderfully frustrating way - bless its black fuzzy heart!
+- **YAML quirks**: Indentation matters, quotes are optional but sometimes required, lists vs strings are confusing
+- **Always validate**: YAML will silently fail in the most unexpected ways
+
+## ✅ APPROPRIATE: Heuristic Tools for Detection & Validation
+
+### Heuristic Scanners (GOOD)
+- **Pattern detection**: Use heuristic tools to identify potential issues
+- **Validation checks**: Use heuristic tools for comprehensive validation
+- **Edge case detection**: Use heuristic tools to catch what deterministic tools miss
+- **Paranoia checks**: Use heuristic tools as your safety net
+
+### Heuristic + Deterministic Combination (RECOMMENDED)
+1. **Heuristic scanner** detects the problem (paranoia check)
+2. **Model-driven approach** determines the right fix
+3. **Deterministic tool** applies the fix predictably
+4. **Heuristic scanner** validates the fix worked
+
+### Examples of Good Heuristic Usage
+```python
+# GOOD: Heuristic detection with deterministic fixing
+def fix_code_quality_issues(file_path: str):
+    # Heuristic scanner detects issues
+    issues = heuristic_scanner.scan_file(file_path)
+    
+    # Model determines fix strategy
+    fix_strategy = model_driven_fixer.plan_fixes(issues)
+    
+    # Deterministic tool applies fixes
+    deterministic_fixer.apply_fixes(file_path, fix_strategy)
+    
+    # Heuristic scanner validates fixes
+    remaining_issues = heuristic_scanner.scan_file(file_path)
+    return len(remaining_issues) == 0
+```
 
 ### JSON Files  
 - Use `json` library with proper formatting
@@ -43,11 +70,45 @@ alwaysApply: true
 - Parse YAML frontmatter with `ruamel.yaml`
 - Handle markdown content separately
 - Use exact string replacement
+- **Use dedicated MDC tools**: `mdc_parser.py`, `mdc_projector.py`, `mdc_writer.py`
+- **NEVER use generic YAML tools** for MDC files (they have special comma-separated globs format)
 
 ### Other Formats
 - TOML: Use `tomlkit` or `tomli`
 - INI: Use `configparser`
 - Markdown: Use `markdown-it-py` or `mistune`
+
+## 🎯 Special Case: MDC Files (Cursor Rules)
+
+### Why MDC Files Are Special
+- **Non-standard YAML**: Uses comma-separated globs instead of YAML lists
+- **Cursor-specific format**: `globs: *.py,*.md,*.yaml` (not `["*.py", "*.md", "*.yaml"]`)
+- **Generic YAML tools fail**: `ruamel.yaml` and `PyYAML` can't handle the format properly
+
+### Required MDC Tools
+```python
+# ALWAYS use these for MDC files
+from scripts.mdc_parser import MDCParser
+from scripts.mdc_projector import MDCProjector
+from scripts.mdc_writer import write_mdc
+
+# Parse MDC file
+parser = MDCParser()
+yaml_data, markdown_content = parser.parse_mdc('file.mdc')
+
+# Project fixes from model
+projector = MDCProjector()
+fixes = projector.project_fixes('file.mdc')
+
+# Write MDC file
+write_mdc('file.mdc', yaml_data, markdown_content)
+```
+
+### What NOT to Do with MDC Files
+- ❌ Use `ruamel.yaml` for parsing (will fail on comma-separated globs)
+- ❌ Use `PyYAML` for parsing (will fail on comma-separated globs)
+- ❌ Use generic YAML tools (will corrupt the special format)
+- ❌ Use heuristic editors (will break the structure)
 
 ## Validation Steps:
 - [ ] Used appropriate library for file type
@@ -56,6 +117,59 @@ alwaysApply: true
 - [ ] Used exact string matching for replacements
 - [ ] No random formatting changes introduced
 
+## 🐍 YAML's Special Nature (Bless Its Black Fuzzy Heart)
+
+### Why YAML Is *Special*
+- **Indentation matters**: 2 spaces vs 4 spaces vs tabs will break everything
+- **Quotes are optional**: Until they're not, and then everything explodes
+- **Lists vs strings**: `["a", "b"]` vs `a,b` vs `a, b` - pick your poison
+- **Silent failures**: YAML will parse invalid syntax and give you garbage
+- **Context-dependent**: What works in one file breaks in another
+
+### YAML Validation Checklist
+- [ ] **Indentation consistent**: All levels use same spacing
+- [ ] **Quotes when needed**: Around values with special characters
+- [ ] **List format correct**: Arrays vs comma-separated strings
+- [ ] **No trailing spaces**: YAML hates trailing whitespace
+- [ ] **Valid syntax**: Use `yamllint` or equivalent
+- [ ] **Test parsing**: Always test with target YAML parser
+
+## 🚨 Escape Hatch: When Rigid Rules Become Counterproductive
+
+### When to Break the Rules
+- **Emergency situations**: When deterministic tools are failing and you need to get things working
+- **Novel file formats**: When no deterministic tool exists for a new format
+- **Debugging scenarios**: When you need to see what's happening and heuristic tools provide better insight
+- **Model failures**: When the model itself is wrong and needs correction
+
+### How to Break the Rules Safely
+1. **Document why** you're breaking the rules
+2. **Use minimal heuristic modification** - just enough to get things working
+3. **Immediately validate** the changes with deterministic tools
+4. **Update the model** to prevent future rule violations
+5. **Consider building** a deterministic tool for this use case
+
+### Example Escape Hatch Usage
+```python
+# ESCAPE HATCH: When deterministic tools fail
+def emergency_fix(file_path: str):
+    try:
+        # Try deterministic approach first
+        deterministic_fixer.fix_file(file_path)
+    except ToolFailure as e:
+        print(f"🚨 Deterministic tool failed: {e}")
+        print("🆘 Using escape hatch with minimal heuristic modification")
+        
+        # Minimal heuristic fix with immediate validation
+        heuristic_fix = apply_minimal_heuristic_fix(file_path)
+        
+        # Validate with deterministic tools
+        if deterministic_validator.validate(file_path):
+            print("✅ Escape hatch successful, file now valid")
+            # TODO: Build deterministic tool for this case
+        else:
+            print("❌ Escape hatch failed, manual intervention needed")
+```
+
 ## Remember:
-If you don't have a deterministic tool for a format, acknowledge the limitation and use the best available approach.
-Always validate file structure after editing.
+**Use deterministic tools for modification, heuristic tools for detection and validation. The heuristic is your paranoia check, the deterministic tool is your safe fixer. But when the rules become counterproductive, use the escape hatch responsibly.**

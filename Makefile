@@ -435,7 +435,7 @@ deploy-secure-shell: ## Deploy secure shell service
 # SECURITY TARGETS
 # =============================================================================
 
-security: security-scan ## Run security checks (default: security-scan)
+security: security-scan security-enhanced ## Run security checks (default: security-scan + enhanced)
 
 security-scan: ## Run comprehensive security scan
 	@echo "$(BLUE)🔒 Running comprehensive security scan...$(NC)"
@@ -456,6 +456,16 @@ security-audit: ## Run security audit
 	@$(UV) run safety check --json --output security-audit-vulnerabilities.json
 	@$(UV) run detect-secrets audit .secrets.baseline
 	@echo "$(GREEN)✅ Security audit completed$(NC)"
+
+security-enhanced: ## Run enhanced Bandit integration scan
+	@echo "$(BLUE)🔒 Running enhanced Bandit integration scan...$(NC)"
+	@$(PYTHON) scripts/bandit_integration.py --project --report
+	@echo "$(GREEN)✅ Enhanced security scan completed$(NC)"
+
+security-enhanced-export: ## Run enhanced scan with JSON export
+	@echo "$(BLUE)🔒 Running enhanced security scan with export...$(NC)"
+	@$(PYTHON) scripts/bandit_integration.py --project --output enhanced-security-scan.json --report
+	@echo "$(GREEN)✅ Enhanced security scan exported to enhanced-security-scan.json$(NC)"
 
 # =============================================================================
 # DOCUMENTATION TARGETS

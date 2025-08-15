@@ -1,6 +1,5 @@
 ---
 description: Leverage statelessness and stochastic nature as architectural advantages
-globs: ["**/*"]
 alwaysApply: true
 ---
 

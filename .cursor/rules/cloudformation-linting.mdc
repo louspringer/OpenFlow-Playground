@@ -1,6 +1,5 @@
 ---
 description: CloudFormation linting rules and validation strategies
-globs: ["**/*cloudformation*.yaml", "**/*cloudformation*.yml", "models/*.yaml"]
 alwaysApply: true
 ---
 

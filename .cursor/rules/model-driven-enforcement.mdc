@@ -1,9 +1,6 @@
 ---
-title: "Model-Driven Tool Orchestration Enforcement"
-description: "ALWAYS consult project_model_registry.json before executing any tool or command"
-category: "orchestration"
-priority: "high"
-globs: ["*.py", "*.json", "*.yaml", "*.yml"]
+description: ALWAYS consult project_model_registry.json before executing any tool or command
+globs: *.py,*.json,*.yaml,*.yml
 alwaysApply: false
 ---
 

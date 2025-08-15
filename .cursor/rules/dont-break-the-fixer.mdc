@@ -1,9 +1,6 @@
 ---
-title: "Don't Break the Fixer Rule"
-description: "Detect when creating broken tools to fix broken things and prevent cascading failures"
-category: "tool_quality"
-priority: "high"
-globs: ["*.py", "*.sh", "*.js", "*.ts"]
+description: Detect when creating broken tools to fix broken things and prevent cascading failures
+globs: *.py,*.sh,*.js,*.ts
 alwaysApply: false
 ---
 

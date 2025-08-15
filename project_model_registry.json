@@ -72,6 +72,57 @@
       ],
       "purpose": "Provide utilities and support for demo development and deployment"
     },
+    "cursor_rules": {
+      "description": "Cursor rules for AI assistance and code quality enforcement",
+      "domains": [
+        "model_first_enforcement",
+        "security",
+        "tool_integration_patterns",
+        "ghostbusters",
+        "deterministic_editing",
+        "python_quality_enforcement",
+        "package_management_uv",
+        "make_first_enforcement",
+        "pr_procedure_enforcement",
+        "cleanup_before_next_thing",
+        "intelligent_policy",
+        "investigation_analysis",
+        "llm_architect",
+        "model_driven_enforcement",
+        "model_driven_orchestration",
+        "call_more_ghostbusters",
+        "cloudformation_linting",
+        "dont_break_the_fixer",
+        "intelligent_linter_prevention",
+        "dynamic_prevention_rules",
+        "yaml_type_specific"
+      ],
+      "purpose": "Provide AI assistance rules and code quality enforcement",
+      "rule_firing_identification": true,
+      "emoji_prefixes": {
+        "model_first_enforcement": "🧠",
+        "security": "🔒",
+        "tool_integration_patterns": "🛠️",
+        "ghostbusters": "👻",
+        "deterministic_editing": "⚙️",
+        "python_quality_enforcement": "🐍",
+        "package_management_uv": "📦",
+        "make_first_enforcement": "🎯",
+        "pr_procedure_enforcement": "📋",
+        "cleanup_before_next_thing": "🧹",
+        "intelligent_policy": "🧭",
+        "investigation_analysis": "🔍",
+        "llm_architect": "🏗️",
+        "model_driven_enforcement": "📊",
+        "model_driven_orchestration": "🎼",
+        "call_more_ghostbusters": "🚨",
+        "cloudformation_linting": "☁️",
+        "dont_break_the_fixer": "🔧",
+        "intelligent_linter_prevention": "🧹",
+        "dynamic_prevention_rules": "⚡",
+        "yaml_type_specific": "📄"
+      }
+    },
     "hackathon_coordination": {
       "description": "Central coordination domain for hackathon participation and submissions",
       "domains": [
@@ -732,7 +783,8 @@
       "patterns": [
         "src/security_first/*.py",
         "src/security_first/**/*.py",
-        "**/*security*.py"
+        "**/*security*.py",
+        "scripts/bandit_integration.py"
       ],
       "content_indicators": [
         "security",
@@ -741,11 +793,14 @@
         "authorization",
         "https",
         "ssl",
-        "tls"
+        "tls",
+        "bandit",
+        "security_scanning"
       ],
       "linter": "flake8",
       "formatter": "black",
       "validator": "ast-parse",
+      "security_scanner": "bandit",
       "exclusions": [
         "__pycache__/*",
         "*.pyc"
@@ -755,7 +810,10 @@
         "Enforce HTTPS for all demo connections",
         "Implement rate limiting and CSRF protection",
         "Support secure credential management",
-        "Provide audit logging for compliance"
+        "Provide audit logging for compliance",
+        "Integrate Bandit security scanning via Python API",
+        "Provide model-driven security scanning capabilities",
+        "Support comprehensive security issue reporting and export"
       ],
       "demo_role": "infrastructure",
       "extraction_candidate": "MEDIUM",
