@@ -1,6 +1,5 @@
 ---
 description: UV Package Management Rules
-globs: ["pyproject.toml", "requirements*.txt", "uv.lock", "*.py"]
 alwaysApply: true
 ---
 

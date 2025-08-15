@@ -1,6 +1,5 @@
 ---
 description: Model-driven tool orchestration
-globs: ["**/*"]
 alwaysApply: true
 ---
 

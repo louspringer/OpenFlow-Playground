@@ -1,6 +1,5 @@
 ---
 description: Ask better questions and investigate before answering
-globs: ["**/*"]
 alwaysApply: true
 ---
 

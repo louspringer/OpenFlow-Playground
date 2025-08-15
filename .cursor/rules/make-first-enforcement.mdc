@@ -1,9 +1,6 @@
 ---
-title: "Make-First Command Enforcement"
-description: "ALWAYS use Make targets - never run commands directly"
-category: "orchestration"
-priority: "high"
-globs: ["*.py", "*.sh", "*.bash", "*.zsh"]
+description: ALWAYS use Make targets - never run commands directly
+globs: *.py,*.sh,*.bash,*.zsh
 alwaysApply: false
 ---
 

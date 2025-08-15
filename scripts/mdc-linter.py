@@ -52,14 +52,20 @@ class MDCLinter:
             frontmatter_lines = lines[frontmatter_start + 1 : frontmatter_end]
             frontmatter_text: str = "\n".join(frontmatter_lines)
 
+            # Pre-process Cursor-specific MDC format to make it valid YAML
+            # Convert "globs: *.py,*.js,*.ts,*.yaml" to "globs: '*.py,*.js,*.ts,*.yaml'"
+            processed_text = re.sub(
+                r"globs:\s*([^,\n]+(?:,[^,\n]+)*)", r"globs: '\1'", frontmatter_text
+            )
+
             # Parse YAML frontmatter
-            frontmatter: Any = yaml.safe_load(frontmatter_text)
+            frontmatter: Any = yaml.safe_load(processed_text)
             if not frontmatter:
                 self.log_violation(file_path, "Empty or invalid YAML frontmatter")
                 return False
 
-            # Check required fields
-            required_fields: list[str] = ["description", "globs", "alwaysApply"]
+            # Check required fields based on model constraints
+            required_fields: list[str] = ["description", "alwaysApply"]
             for field in required_fields:
                 if field not in frontmatter:
                     self.log_violation(file_path, f"Missing required field: {field}")
@@ -70,19 +76,45 @@ class MDCLinter:
                 self.log_violation(file_path, "description must be a string")
                 return False
 
-            if not isinstance(frontmatter["globs"], list):
-                self.log_violation(file_path, "globs must be a list")
-                return False
-
-            if not isinstance(frontmatter["alwaysApply"], bool):
-                self.log_violation(file_path, "alwaysApply must be a boolean")
-                return False
-
-            # Validate globs patterns
-            for glob in frontmatter["globs"]:
-                if not isinstance(glob, str):
-                    self.log_violation(file_path, "globs must contain strings")
+            # Validate globs format when alwaysApply: false
+            always_apply = frontmatter["alwaysApply"]
+            if not always_apply:
+                if "globs" not in frontmatter:
+                    self.log_violation(
+                        file_path, "globs field is required when alwaysApply: false"
+                    )
                     return False
+
+                globs = frontmatter["globs"]
+                if not globs:
+                    self.log_violation(
+                        file_path, "globs field cannot be empty when alwaysApply: false"
+                    )
+                    return False
+
+                # Support both Cursor format (comma-separated string) and standard format (list)
+                if isinstance(globs, str):
+                    # Cursor format: "*.py,*.js,*.ts,*.yaml"
+                    glob_patterns = [g.strip() for g in globs.split(",")]
+                # Validate each glob pattern
+                for glob in glob_patterns:
+                    if not isinstance(glob, str) or not glob:
+                        self.log_violation(
+                            file_path, "globs must contain valid glob patterns"
+                        )
+                        return False
+            elif isinstance(globs, list):
+                # Standard format: ["*.py", "*.js", "*.ts", "*.yaml"]
+                for glob in globs:
+                    if not isinstance(glob, str):
+                        self.log_violation(file_path, "globs must contain strings")
+                        return False
+            else:
+                self.log_violation(
+                    file_path,
+                    "globs must be a string (Cursor format) or list (standard format)",
+                )
+                return False
 
             return True
 

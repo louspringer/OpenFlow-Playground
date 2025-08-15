@@ -1,3 +1,9 @@
+---
+description: Rule for pr-procedure-enforcement
+globs: *.py,*.js,*.ts,*.yaml,*.yml,*.md,*.json,*.toml
+alwaysApply: false
+---
+
 # PR Procedure Enforcement Rule
 
 ## Core Principle
@@ -119,7 +125,3 @@ gh pr create --title "feat: Add diversity hypothesis validation" --body "$(cat P
 
 ## Remember
 **The PR is not complete until the actual Pull Request is created on GitHub. A description file alone is not a PR!**
-description:
-globs:
-alwaysApply: false
----

@@ -1,9 +1,6 @@
 ---
-title: "Call More Ghostbusters Rule"
-description: "When 'call more ghostbusters' is invoked, immediately trigger multi-agent validation with all available LLMs and deterministic tools"
-category: "validation"
-priority: "high"
-globs: ["*.py", "*.md", "*.json", "*.yaml", "*.yml"]
+description: When 'call more ghostbusters' is invoked, immediately trigger multi-agent validation with all available LLMs and deterministic tools
+globs: *.py,*.md,*.json,*.yaml,*.yml
 alwaysApply: false
 ---
 

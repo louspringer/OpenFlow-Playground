@@ -1,6 +1,5 @@
 ---
 description: Model-driven, test-driven prevention architecture
-globs: ["**/*"]
 alwaysApply: true
 ---
 

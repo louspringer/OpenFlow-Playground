@@ -1,6 +1,5 @@
 ---
 description: Python Quality Enforcement Rule
-globs: ["**/*.py"]
 alwaysApply: true
 ---
 

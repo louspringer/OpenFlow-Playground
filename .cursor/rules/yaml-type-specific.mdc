@@ -1,10 +1,10 @@
 ---
 description: YAML file type-specific rules and validation strategies
-globs:
-- '**/*.yaml'
-- '**/*.yml'
-alwaysApply: true
+alwaysApply: false
+globs: *.yaml,*.yml,*.yaml.j2,*.yml.j2,*.yaml.template,*.yml.template
 ---
+
+
 
 # YAML File Type-Specific Rules
 
@@ -23,6 +23,7 @@ alwaysApply: true
 - **Container Orchestration**: Kubernetes, Docker Compose, Helm charts
 - **Application Config**: App-specific settings, database configs
 - **Schema/API**: OpenAPI specs, GraphQL schemas, data models
+- **Cursor Rules (MDC)**: Cursor-specific format with comma-separated globs
 
 ### 2. Tool Selection by Purpose
 **Choose validation tools based on the file's purpose, not just its extension:**
@@ -71,6 +72,11 @@ jsonschema -i schema.json *.yaml   # Schema validation
 **Problem**: Generic linters flag `{{ }}` as invalid YAML
 **Solution**: Use `helm template --validate` or `helm lint`
 
+#### Cursor Rules (MDC Files)
+**Problem**: Generic YAML linters flag comma-separated globs as invalid YAML
+**Solution**: Use `mdc-linter` for Cursor rules, not generic YAML tools
+**Format**: `globs: *.py,*.js,*.ts,*.yaml` (comma-separated, no quotes)
+
 #### Ansible Playbooks
 **Problem**: Generic linters don't understand Ansible-specific syntax
 **Solution**: Use `ansible-lint` for playbook validation
@@ -96,6 +102,12 @@ jsonschema -i schema.json *.yaml   # Schema validation
 4. **Check security and best practices** for that domain
 5. **Document new patterns** when discovered
 
+### MDC File Detection
+**Path-based detection**: `.cursor/rules/*.mdc`
+**Content indicators**: `---`, `description:`, `globs:`, `alwaysApply:`
+**Special handling**: Comma-separated globs are valid Cursor syntax
+**Tool**: Use `mdc-linter`, not generic YAML validators
+
 ## When You Encounter New YAML Formats
 
 **Remember: The goal is not to predict every quirk, but to have a principled approach for handling them.**
@@ -107,3 +119,5 @@ jsonschema -i schema.json *.yaml   # Schema validation
 5. **Document the pattern** - Add to this rule for future reference
 
 **The principle: Use the right tool for the job, not a generic tool for everything.**
+
+

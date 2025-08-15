@@ -1,3 +1,9 @@
+---
+description: Rule for model-first-enforcement
+globs: *.py,*.js,*.ts,*.yaml,*.yml,*.md,*.json,*.toml
+alwaysApply: false
+---
+
 # Model-First Enforcement Rule
 
 ## ALWAYS Check project_model_registry.json First
@@ -13,6 +19,8 @@
 - **Before manual linting**: Check if automated linters are configured
 - **Before writing scripts**: Check if existing tools can handle the task
 - **Before debugging**: Check if diagnostic tools are already built
+- **Before security scanning**: Check if Bandit integration is available
+- **Before manual security fixes**: Use model-driven security scanning
 
 ### Ghostbusters Priority:
 - **ALWAYS call Ghostbusters first** for any delusion detection/recovery
@@ -29,6 +37,13 @@
       "requirements": [
         "Use Ghostbusters for delusion detection and recovery",
         "Run Ghostbusters before linting to fix syntax issues"
+      ]
+    },
+    "security_first": {
+      "security_scanner": "bandit",
+      "requirements": [
+        "Integrate Bandit security scanning via Python API",
+        "Provide model-driven security scanning capabilities"
       ]
     }
   }
@@ -53,11 +68,9 @@
 - ❌ Manual type annotation fixes (use TypeAnnotationFixer)
 - ❌ Manual import resolution (use ImportResolver)
 - ❌ Manual indentation fixes (use IndentationFixer)
+- ❌ Manual security scanning (use Bandit integration)
+- ❌ Manual security issue fixes (use model-driven scanning)
 
 ### Success Pattern:
 ✅ Read model → Find existing tool → Use existing tool → Success
 ❌ Skip model → Build new tool → Manual work → Pain
-description:
-globs:
-alwaysApply: false
----

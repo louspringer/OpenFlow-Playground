@@ -1,14 +1,23 @@
 ---
-title: "Dynamic Prevention Rules"
-description: "Automatically generated prevention rules based on violations"
-globs: ["*.py", "*.js", "*.ts", "*.yaml", "*.yml", "*.json"]
-alwaysApply: true
+description: Dynamic prevention rules for automatically generated code quality enforcement
+globs: *.py,*.js,*.ts,*.yaml,.cursor/rules/*,**/.cursor/rules/*
+alwaysApply: false
 ---
 
 # Dynamic Prevention Rules
 
 ## Core Principle
 **These rules are automatically generated based on detected violations to prevent future occurrences.**
+
+## 🚨 CRITICAL: Cursor Rules Directory Protection
+
+**The `.cursor/rules` directory is a sacred space that MUST only contain `.mdc` files.**
+
+**Why this matters:**
+- Non-MDC files in `.cursor/rules` will cause Cursor to malfunction
+- This directory is automatically scanned by Cursor for rule loading
+- Any non-MDC file here is a logic bomb waiting to explode
+- Cursor expects specific YAML frontmatter format in these files
 
 ## Prevention Strategies
 
@@ -101,3 +110,32 @@ def validate_spacing(context: str, definition_type: str):
 - Check for pattern before writing code
 - Apply prevention strategy
 - Use ignore directive only when truly intentional
+
+### Cursor Rules Directory Protection
+
+**Rule Code:** CURSOR_RULES_PROTECTION
+**Description:** Prevent non-MDC files in .cursor/rules directory
+**Pattern:** .cursor/rules/**/*
+**Suggestion:** Only MDC files should exist in .cursor/rules directory
+
+#### Prevention Code
+```python
+# BEFORE creating files in .cursor/rules
+def validate_cursor_rules_directory(file_path: str):
+    """Ensure only MDC files exist in .cursor/rules directory"""
+    if file_path.startswith('.cursor/rules/'):
+        if not file_path.endswith('.mdc'):
+            raise ValueError(f"Only .mdc files allowed in .cursor/rules: {file_path}")
+        validate_mdc_structure(file_path)
+```
+
+#### Ignore Directive (if intentional)
+```python
+# No ignore directive - this is a critical safety rule
+```
+
+#### Implementation
+- Check file extension before creation
+- Validate MDC structure for all .mdc files
+- Prevent any non-MDC files in .cursor/rules
+- Use mdc-linter for validation

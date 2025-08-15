@@ -1,9 +1,6 @@
 ---
-title: "Intelligent Linter Prevention"
-description: "Prevent linter violations before they happen by integrating directly with linter APIs and using AI-powered linters"
-category: "code_quality"
-priority: "high"
-globs: ["*.py", "*.pyi"]
+description: Prevent linter violations before they happen by integrating directly with linter APIs and using AI-powered linters
+globs: *.py,*.pyi
 alwaysApply: false
 ---
 
