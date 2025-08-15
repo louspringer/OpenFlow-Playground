@@ -124,7 +124,9 @@ class ProductionDeployment:
             with open(file_path, encoding="utf-8") as f:
                 content = f.read()
 
-            formatted_content = format_file_contents(content, mode=FileMode())
+            formatted_content = format_file_contents(
+                content, mode=FileMode(), fast=False
+            )
             return content == formatted_content
         except Exception as e:
             print(f"⚠️ Black API error for {file_path}: {e}")
