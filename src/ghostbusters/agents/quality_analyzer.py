@@ -7,7 +7,7 @@ This agent specializes in analyzing code quality metrics and identifying quality
 
 import logging
 from pathlib import Path
-from typing import Any, dict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 

@@ -6,7 +6,7 @@ This agent specializes in generating actionable recommendations for code quality
 """
 
 import logging
-from typing import Any, dict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
