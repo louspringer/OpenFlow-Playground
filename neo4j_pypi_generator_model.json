@@ -1,0 +1,6 @@
+{
+  "generator_name": "neo4j_pypi_generator",
+  "purpose": "Generate PyPI packages by reverse engineering from Neo4j database using secure credentials",
+  "model_type": "generator_architecture",
+  "version": "1.0.0"
+}

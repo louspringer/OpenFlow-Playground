@@ -13,6 +13,7 @@ alwaysApply: true
 - NEVER use fuzzy editing tools for code modification
 - NEVER use tools that can introduce random formatting
 - NEVER use heuristic patchers that modify code unpredictably
+- **NEVER use heuristic editors for JSON files** - Structure and formatting must be preserved exactly
 
 ## REQUIRED: Deterministic Tools
 
@@ -60,11 +61,28 @@ def fix_code_quality_issues(file_path: str):
 - Use `json` library with proper formatting
 - Use `orjson` for performance
 - Use `pydantic` for validation
+- **Use `jq` Python API for bulk updates** - Fast, deterministic JSON manipulation
+- **NEVER use heuristic editors** - JSON structure must be preserved exactly
 
 ### Python Files
 - Use `ast` for structural edits
 - Use `libcst` for code transformations
 - Use `black` for formatting
+
+### JSON Files
+- **Use `jq` Python API for bulk updates** - Fast, deterministic field manipulation
+- **Use `json` library for simple edits** - Preserve exact formatting
+- **Use `orjson` for performance** - When speed is critical
+- **Use `pydantic` for validation** - Schema enforcement
+- **NEVER use heuristic editors** - JSON structure is fragile and must be preserved exactly
+- **Example jq usage**:
+  ```python
+  import jq
+  # Update specific field
+  updated_content = jq.compile('.domain.field = "new_value"').input(content).first()
+  # Bulk updates
+  updated_content = jq.compile('. | .domain1.score = 10 | .domain2.score = 9').input(content).first()
+  ```
 
 ### MDC Files
 - Parse YAML frontmatter with `ruamel.yaml`
@@ -116,6 +134,9 @@ write_mdc('file.mdc', yaml_data, markdown_content)
 - [ ] Validated syntax after editing
 - [ ] Used exact string matching for replacements
 - [ ] No random formatting changes introduced
+- [ ] **JSON files**: Used jq API or json library, preserved exact formatting
+- [ ] **YAML files**: Used ruamel.yaml or PyYAML, preserved indentation
+- [ ] **Python files**: Used ast or libcst, preserved code structure
 
 ## 🐍 YAML's Special Nature (Bless Its Black Fuzzy Heart)
 
@@ -135,6 +156,46 @@ write_mdc('file.mdc', yaml_data, markdown_content)
 - [ ] **Test parsing**: Always test with target YAML parser
 
 ## 🚨 Escape Hatch: When Rigid Rules Become Counterproductive
+
+## 🔧 **JSON File Updates: The jq API Approach**
+
+### **Why jq API is Preferred for JSON**
+- **Fast**: Bypasses Python JSON parsing overhead
+- **Deterministic**: Exact field targeting without structure changes
+- **Bulk operations**: Multiple updates in single expression
+- **Format preservation**: Maintains exact whitespace and structure
+
+### **jq API Usage Patterns**
+```python
+import jq
+
+# Single field update
+def update_single_field(content: str, path: str, value: any) -> str:
+    """Update single JSON field using jq"""
+    expression = f'.{path} = {repr(value)}'
+    return jq.compile(expression).input(content).first()
+
+# Bulk field updates
+def update_multiple_fields(content: str, updates: dict) -> str:
+    """Update multiple JSON fields using jq"""
+    # Build jq expression: .field1 = value1 | .field2 = value2
+    expressions = [f'.{path} = {repr(value)}' for path, value in updates.items()]
+    jq_expr = ' | '.join(expressions)
+    return jq.compile(jq_expr).input(content).first()
+
+# Example usage
+updates = {
+    'cursor_rules.package_potential.score': 9,
+    'neo4j_integration.package_potential.score': 10,
+    'ghostbusters.package_potential.score': 10
+}
+updated_content = update_multiple_fields(content, updates)
+```
+
+### **When to Use jq API vs json Library**
+- **Use jq API**: Bulk updates, complex transformations, performance-critical operations
+- **Use json library**: Simple edits, validation, when jq is not available
+- **NEVER use**: Heuristic editors, manual string manipulation, regex-based updates
 
 ### When to Break the Rules
 - **Emergency situations**: When deterministic tools are failing and you need to get things working

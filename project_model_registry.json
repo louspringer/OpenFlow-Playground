@@ -95,10 +95,30 @@
         "dont_break_the_fixer",
         "intelligent_linter_prevention",
         "dynamic_prevention_rules",
-        "yaml_type_specific"
+        "yaml_type_specific",
+        "json_type_specific"
       ],
       "purpose": "Provide AI assistance rules and code quality enforcement",
+      "neo4j_integration": "completed",
+      "round_trip_validation": "100% success",
+      "status": "completed",
       "rule_firing_identification": true,
+      "package_potential": {
+        "score": 9,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed and completed",
+          "High-value domain identified",
+          "Has description",
+          "Has purpose",
+          "External value for AI development",
+          "Reusable across projects",
+          "Production ready",
+          "Rule firing identification"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-cursor-rules"
+      },
       "emoji_prefixes": {
         "model_first_enforcement": "🧠",
         "security": "🔒",
@@ -120,11 +140,11 @@
         "dont_break_the_fixer": "🔧",
         "intelligent_linter_prevention": "🧹",
         "dynamic_prevention_rules": "⚡",
-        "yaml_type_specific": "📄"
+        "yaml_type_specific": "📄",
+        "json_type_specific": "📋"
       },
-      "status": "completed",
       "completion_date": "2024-08-15",
-      "next_phase": "neo4j_integration_and_pypi_packages"
+      "next_phase": "pypi_packages_and_visualization_tools"
     },
     "neo4j_integration": {
       "description": "Neo4j graph database integration for project model visualization and querying",
@@ -136,14 +156,64 @@
         "performance_optimization"
       ],
       "purpose": "Enable graph-based querying and visualization of project architecture",
-      "status": "planned",
+      "status": "completed",
       "priority": "high",
+      "completion_date": "2024-08-15",
+      "installation_status": "completed",
+      "current_phase": "production_ready",
       "requirements": [
         "Migrate project_model_registry.json to Neo4j graph structure",
         "Create Cypher queries for complex architectural analysis",
         "Build visualization tools for project relationships",
         "Implement performance optimization for large-scale queries"
-      ]
+      ],
+      "completed_tasks": [
+        "Neo4j Community Edition 4.4.44 installed",
+        "Service running and active",
+        "Cypher shell available",
+        "POC script generates 46 Cypher queries",
+        "ArtifactForge integration working",
+        "Round-trip validation: 100% success rate",
+        "Database population: 1 domain, 21 rules, 21 relationships",
+        "Performance: Excellent (6.7ms for complex queries)",
+        "Edge case handling: 4/4 tests passed",
+        "Model consistency: Full bidirectional validation"
+      ],
+      "next_tasks": [
+        "Build visualization tools",
+        "Scale for larger project models",
+        "Integrate with PyPI packages phase"
+      ],
+      "technical_notes": {
+        "version": "4.4.44",
+        "service_status": "active (running)",
+        "memory_usage": "1.0G",
+        "java_version": "OpenJDK 11",
+        "ports": "7474 (HTTP), 7687 (Bolt)",
+        "data_directory": "/var/lib/neo4j/data",
+        "logs_directory": "/var/log/neo4j",
+        "round_trip_tests": "5/5 passed (100% success)",
+        "cypher_queries": "46 generated and validated",
+        "performance": "6.7ms for complex queries",
+        "database_size": "1 domain, 21 rules, 21 relationships"
+      },
+      "package_potential": {
+        "score": 10,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed and completed",
+          "High-value domain identified",
+          "Has description",
+          "Has purpose",
+          "External value for graph databases",
+          "Reusable across projects",
+          "Performance validated",
+          "Round-trip tested",
+          "100% validation success"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-neo4j-integration"
+      }
     },
     "pypi_packages": {
       "description": "PyPI packages for valuable project components",
@@ -501,7 +571,24 @@
         "Could become a standalone AI-powered development tool",
         "Has potential for commercial applications",
         "Could integrate with other development environments"
-      ]
+      ],
+      "package_potential": {
+        "score": 10,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed and completed",
+          "High-value domain identified",
+          "Has description",
+          "Has purpose",
+          "External value for AI development",
+          "Reusable across projects",
+          "Multi-agent architecture",
+          "Recovery engines",
+          "Delusion detection"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-ghostbusters"
+      }
     },
     "intelligent_linter_system": {
       "patterns": [
@@ -539,7 +626,21 @@
         "Could become a standalone intelligent linting tool",
         "Has potential for IDE integration",
         "Could be used in CI/CD pipelines"
-      ]
+      ],
+      "package_potential": {
+        "score": 7,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "IDE integration potential",
+          "CI/CD pipeline integration"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-intelligent-linter"
+      }
     },
     "code_quality_system": {
       "patterns": [
@@ -597,6 +698,22 @@
         "Provides actionable insights instead of just error lists",
         "Could be used in enterprise quality management systems"
       ],
+      "package_potential": {
+        "score": 9,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Enterprise potential",
+          "Quality system integration",
+          "Comprehensive quality management",
+          "Intelligent analysis"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-code-quality"
+      },
       "implementation_status": {
         "phase_1_2": "COMPLETED",
         "phase_3": "READY_TO_START",
@@ -746,7 +863,20 @@
       "extraction_benefits": [
         "Could be useful for other large projects",
         "Has potential for documentation tools"
-      ]
+      ],
+      "package_potential": {
+        "score": 6,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Documentation tool potential"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-artifact-forge"
+      }
     },
     "model_driven_projection": {
       "patterns": [
@@ -781,7 +911,21 @@
         "Could become a standalone model-driven development tool",
         "Has potential for code generation applications",
         "Could integrate with other development frameworks"
-      ]
+      ],
+      "package_potential": {
+        "score": 7,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Code generation potential",
+          "Framework integration"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-model-driven"
+      }
     },
     "mdc_generator": {
       "patterns": [
@@ -818,7 +962,22 @@
         "Could become a standalone tool for Cursor IDE users",
         "Has potential for other IDE integrations",
         "Could be used for documentation generation"
-      ]
+      ],
+      "package_potential": {
+        "score": 8,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Cursor rule management",
+          "Development environment integration",
+          "Rule generation"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-mdc-generator"
+      }
     },
     "security_first": {
       "patterns": [
@@ -863,7 +1022,22 @@
         "Could become a standalone security framework",
         "Has potential for integration with other applications",
         "Could be used in security-focused projects"
-      ]
+      ],
+      "package_potential": {
+        "score": 8,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Enterprise security potential",
+          "Security tool integration",
+          "Comprehensive security framework"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-security-first"
+      }
     },
     "healthcare_cdc": {
       "patterns": [
@@ -902,7 +1076,21 @@
         "Has potential for healthcare organizations",
         "Could integrate with healthcare systems",
         "Has potential for regulatory compliance applications"
-      ]
+      ],
+      "package_potential": {
+        "score": 7,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Healthcare compliance",
+          "Regulatory applications"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-healthcare-cdc"
+      }
     },
     "package_management": {
       "patterns": [
@@ -936,7 +1124,20 @@
       ],
       "demo_role": "infrastructure",
       "extraction_candidate": false,
-      "reason": "Standard package management - should remain as part of project"
+      "reason": "Standard package management - should remain as part of project",
+      "package_potential": {
+        "score": 5,
+        "reasons": [
+          "Has description",
+          "Has purpose",
+          "Standard package management",
+          "UV integration",
+          "Dependency management"
+        ],
+        "pypi_ready": false,
+        "package_name": null,
+        "reason": "Standard tool, not suitable for standalone distribution"
+      }
     },
     "rule_compliance": {
       "patterns": [
@@ -970,7 +1171,20 @@
       "reason": "Specific to this project's rule enforcement needs",
       "extraction_benefits": [
         "Could be useful for other projects with strict rule requirements"
-      ]
+      ],
+      "package_potential": {
+        "score": 6,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "Rule enforcement"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-rule-compliance"
+      }
     },
     "ghostbusters_api": {
       "patterns": [
@@ -1006,7 +1220,22 @@
         "Could be deployed independently for other projects",
         "Has potential for cloud-based Ghostbusters services",
         "Could integrate with other development tools"
-      ]
+      ],
+      "package_potential": {
+        "score": 8,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "FastAPI service",
+          "Cloud deployment",
+          "Development tool integration"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-ghostbusters-api"
+      }
     },
     "ghostbusters_gcp": {
       "patterns": [
@@ -1042,7 +1271,21 @@
         "Could be deployed independently on GCP",
         "Has potential for GCP-based development tools",
         "Could integrate with other GCP services"
-      ]
+      ],
+      "package_potential": {
+        "score": 7,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "GCP integration",
+          "Cloud-based AI tools"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-ghostbusters-gcp"
+      }
     },
     "mcp_integration": {
       "patterns": [
@@ -1075,7 +1318,20 @@
       "reason": "Specific to MCP integration needs",
       "extraction_benefits": [
         "Could be useful for other MCP-based projects"
-      ]
+      ],
+      "package_potential": {
+        "score": 6,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Has description",
+          "Has purpose",
+          "External value for development",
+          "Reusable across projects",
+          "MCP integration"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-mcp-integration"
+      }
     },
     "bash": {
       "patterns": [
@@ -1108,7 +1364,19 @@
       ],
       "demo_role": "utility",
       "extraction_candidate": false,
-      "reason": "Standard bash scripting - should remain as part of project"
+      "reason": "Standard bash scripting - should remain as part of project",
+      "package_potential": {
+        "score": 4,
+        "reasons": [
+          "Has description",
+          "Has purpose",
+          "Standard bash scripting",
+          "Shell validation"
+        ],
+        "pypi_ready": false,
+        "package_name": null,
+        "reason": "Standard tool, not suitable for standalone distribution"
+      }
     },
     "documentation": {
       "patterns": [
@@ -1371,6 +1639,50 @@
       "extraction_candidate": false,
       "reason": "Kubernetes YAML - should remain as part of project"
     },
+    "cypher_queries": {
+      "description": "Neo4j Cypher query files and syntax",
+      "patterns": [
+        "*.cypher",
+        "*.cyp",
+        "*.cql"
+      ],
+      "content_indicators": [
+        "CREATE",
+        "MATCH",
+        "RETURN",
+        "WITH",
+        "MERGE",
+        "DELETE",
+        "SET"
+      ],
+      "linter": "cypher-lint",
+      "validator": "neo4j-cypher-validator",
+      "formatter": "cypher-formatter",
+      "constraints": {
+        "syntax_rules": [
+          "All Cypher statements must end with semicolon (;)",
+          "CREATE statements must have proper node labels",
+          "MATCH statements must have proper patterns",
+          "RETURN statements must specify columns",
+          "WITH clauses must have proper variable binding"
+        ],
+        "generation_rules": [
+          "Always end statements with semicolon",
+          "Use proper node labels and properties",
+          "Validate query syntax before execution",
+          "Use parameterized queries for security"
+        ]
+      },
+      "requirements": [
+        "Ensure proper Cypher syntax",
+        "Validate query structure",
+        "Use secure query patterns",
+        "Test queries before execution"
+      ],
+      "demo_role": "utility",
+      "extraction_candidate": false,
+      "reason": "Cypher queries for Neo4j integration - should remain as part of project"
+    },
     "go": {
       "patterns": [
         "*.go",
@@ -1513,7 +1825,7 @@
       "hackathon_mapping": {
         "gke_turns_10": {
           "name": "GKE Turns 10 Hackathon",
-          "dates": "August 18 \u2013 September 22, 2025",
+          "dates": "August 18 – September 22, 2025",
           "prizes": "$50,000 in cash",
           "focus": "Building next-generation microservices with AI agents",
           "relevant_domains": [
@@ -1555,10 +1867,10 @@
               "storage.googleapis.com"
             ],
             "cost_control": {
-              "monthly_budget": 25.0,
-              "development_phase": 5.0,
-              "testing_phase": 15.0,
-              "demo_phase": 25.0,
+              "monthly_budget": 25,
+              "development_phase": 5,
+              "testing_phase": 15,
+              "demo_phase": 25,
               "emergency_controls": true
             },
             "setup_status": "not_started",
@@ -1566,7 +1878,7 @@
             "script_template": {
               "filename": "setup-gcp-project.sh",
               "description": "GCP Project Setup Script for Ghostbusters AI Hackathon 2025",
-              "template": "#!/bin/bash\n\n# \ud83d\ude80 GCP Project Setup Script for Ghostbusters AI Hackathon 2025\n# This script creates a new GCP project and enables ONLY the required APIs\n\nset -e  # Exit on any error\n\n# Colors for output\nRED='\\033[0;31m'\nGREEN='\\033[0;32m'\nYELLOW='\\033[1;33m'\nBLUE='\\033[0;34m'\nNC='\\033[0m' # No Color\n\n# Configuration - EXACTLY as defined in project model\nPROJECT_ID=\"{{project_id}}\"\nPROJECT_NAME=\"{{project_name}}\"\nBILLING_ACCOUNT=\"{{billing_account}}\"\n\n# REQUIRED APIs (explicitly defined)\nREQUIRED_APIS=(\n    \"{{required_apis}}\"\n)\n\n# EXCLUDED APIs (explicitly disabled for cost control)\nEXCLUDED_APIS=(\n    \"{{excluded_apis}}\"\n)\n\n# Cost control thresholds\nMONTHLY_BUDGET={{monthly_budget}}\nDEVELOPMENT_PHASE={{development_phase}}\nTESTING_PHASE={{testing_phase}}\nDEMO_PHASE={{demo_phase}}\n\necho -e \"${BLUE}\ud83d\ude80 GCP Project Setup for {{project_name}}${NC}\"\necho -e \"${BLUE}========================================================${NC}\"\necho \"\"\n\n# Function to print colored output\nprint_status() {\n    echo -e \"${GREEN}\u2705 $1${NC}\"\n}\n\nprint_warning() {\n    echo -e \"${YELLOW}\u26a0\ufe0f  $1${NC}\"\n}\n\nprint_error() {\n    echo -e \"${RED}\u274c $1${NC}\"\n}\n\nprint_info() {\n    echo -e \"${BLUE}\u2139\ufe0f  $1${NC}\"\n}\n\n# Check prerequisites\ncheck_prerequisites() {\n    print_info \"Checking prerequisites...\"\n    \n    # Check if gcloud is installed\n    if ! command -v gcloud &> /dev/null; then\n        print_error \"gcloud CLI is not installed. Please install it first.\"\n        exit 1\n    fi\n    \n    # Check if user is authenticated\n    if ! gcloud auth list --filter=status:ACTIVE --format=\"value(account)\" | grep -q .; then\n        print_error \"Not authenticated with gcloud. Please run 'gcloud auth login' first.\"\n        exit 1\n    fi\n    \n    print_status \"All prerequisites are satisfied\"\n}\n\n# Create new GCP project\ncreate_gcp_project() {\n    print_info \"Creating new GCP project: $PROJECT_ID\"\n    \n    # Check if project already exists\n    if gcloud projects describe $PROJECT_ID &> /dev/null; then\n        print_warning \"Project $PROJECT_ID already exists\"\n        return\n    fi\n    \n    # Create new project\n    gcloud projects create $PROJECT_ID \\\n        --name=\"$PROJECT_NAME\" \\\n        --set-as-default\n    \n    print_status \"GCP project created successfully: $PROJECT_ID\"\n}\n\n# Set billing account\nsetup_billing() {\n    print_info \"Setting up billing account...\"\n    \n    # Link billing account\n    gcloud billing projects link $PROJECT_ID \\\n        --billing-account=$BILLING_ACCOUNT\n    \n    # Verify billing link\n    BILLING_STATUS=$(gcloud billing projects describe $PROJECT_ID --format=\"value(billingEnabled)\")\n    \n    if [ \"$BILLING_STATUS\" = \"True\" ]; then\n        print_status \"Billing account linked successfully\"\n    else\n        print_error \"Failed to link billing account\"\n        exit 1\n    fi\n}\n\n# Enable required APIs\nenable_required_apis() {\n    print_info \"Enabling required APIs...\"\n    \n    for api in \"${REQUIRED_APIS[@]}\"; do\n        print_info \"Enabling API: $api\"\n        gcloud services enable $api --project=$PROJECT_ID\n        print_status \"API enabled: $api\"\n    done\n    \n    print_status \"All required APIs enabled successfully\"\n}\n\n# Verify API exclusions\nverify_api_exclusions() {\n    print_info \"Verifying API exclusions...\"\n    \n    # Get list of enabled APIs\n    ENABLED_APIS=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\")\n    \n    # Check for any excluded APIs that might be enabled\n    for api in \"${EXCLUDED_APIS[@]}\"; do\n        if echo \"$ENABLED_APIS\" | grep -q \"$api\"; then\n            print_warning \"WARNING: Excluded API $api is enabled - this may cause unwanted costs!\"\n        else\n            print_status \"Excluded API $api is correctly disabled\"\n        fi\n    done\n}\n\n# Create budget for cost control\nsetup_cost_control() {\n    print_info \"Setting up cost control...\"\n    \n    # Create project budget\n    gcloud billing budgets create \\\n        --billing-account=$BILLING_ACCOUNT \\\n        --budget-amount=$MONTHLY_BUDGET \\\n        --budget-filter=\"project=$PROJECT_ID\" \\\n        --display-name=\"Ghostbusters Hackathon 2025 Budget\"\n    \n    print_status \"Budget created: $${MONTHLY_BUDGET}/month\"\n}\n\n# Verify project setup\nverify_project_setup() {\n    print_info \"Verifying project setup...\"\n    \n    echo \"\"\n    echo \"\ud83d\udcca Project Setup Verification:\"\n    echo \"================================\"\n    \n    # Check project status\n    PROJECT_STATUS=$(gcloud projects describe $PROJECT_ID --format=\"value(lifecycleState)\")\n    echo \"Project Status: $PROJECT_STATUS\"\n    \n    # Check billing status\n    BILLING_STATUS=$(gcloud billing projects describe $PROJECT_ID --format=\"value(billingEnabled)\")\n    echo \"Billing Status: $BILLING_STATUS\"\n    \n    # Count enabled APIs\n    ENABLED_API_COUNT=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\" | wc -l)\n    echo \"Enabled APIs: $ENABLED_API_COUNT\"\n    \n    # List enabled APIs\n    echo \"\"\n    echo \"Enabled APIs:\"\n    gcloud services list --enabled --project=$PROJECT_ID --format=\"table(name,title)\" | head -10\n    \n    # Check budget\n    echo \"\"\n    echo \"Budget Configuration:\"\n    gcloud billing budgets list --billing-account=$BILLING_ACCOUNT --filter=\"displayName:2025\"\n    \n    print_status \"Project setup verification completed\"\n}\n\n# Update tracking file\nupdate_tracking_file() {\n    print_info \"Updating project setup tracking...\"\n    \n    # Update the tracking file with current status\n    sed -i \"s/\u274c Project Creation - Not started/\u2705 Project Creation - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/\u274c Billing Setup - Not started/\u2705 Billing Setup - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/\u274c API Enablement - Not started/\u2705 API Enablement - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/\u274c Cost Control Configuration - Not started/\u2705 Cost Control Configuration - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    \n    # Update setup status\n    sed -i \"s/Status: \ud83d\udd04 SETUP IN PROGRESS/Status: \u2705 SETUP COMPLETED/\" PROJECT_SETUP_TRACKING.md\n    \n    print_status \"Project setup tracking updated\"\n}\n\n# Show next steps\nshow_next_steps() {\n    print_info \"Next Steps:\"\n    echo \"\"\n    echo \"\ud83c\udfaf Project Setup Complete!\"\n    echo \"==========================\"\n    echo \"\u2705 GCP Project: $PROJECT_ID\"\n    echo \"\u2705 Project Name: $PROJECT_NAME\"\n    echo \"\u2705 Billing Account: $BILLING_ACCOUNT\"\n    echo \"\u2705 Required APIs: ${#REQUIRED_APIS[@]} enabled\"\n    echo \"\u2705 Excluded APIs: ${#REQUIRED_APIS[@]} disabled\"\n    echo \"\u2705 Cost Control: $${MONTHLY_BUDGET}/month budget\"\n    echo \"\"\n    echo \"\ud83d\ude80 Ready to deploy Ghostbusters AI to GKE!\"\n    echo \"\"\n    echo \"Next Commands:\"\n    echo \"1. Deploy to GKE: ./scripts/deploy-ghostbusters.sh\"\n    echo \"2. Check costs: gcloud billing reports list --project=$PROJECT_ID\"\n    echo \"3. Monitor APIs: gcloud services list --enabled --project=$PROJECT_ID\"\n    echo \"\"\n    echo \"\ud83d\udcb0 Cost Control Active:\"\n    echo \"   - Development Phase: <$${DEVELOPMENT_PHASE}/month\"\n    echo \"   - Testing Phase: <$${TESTING_PHASE}/month\"\n    echo \"   - Demo Phase: <$${DEMO_PHASE}/month\"\n    echo \"   - Emergency Controls: Enabled\"\n}\n\n# Main setup function\nmain() {\n    echo -e \"${BLUE}Starting GCP project setup for {{project_name}}...${NC}\"\n    echo \"\"\n    \n    check_prerequisites\n    create_gcp_project\n    setup_billing\n    enable_required_apis\n    verify_api_exclusions\n    setup_cost_control\n    verify_project_setup\n    update_tracking_file\n    show_next_steps\n    \n    echo \"\"\n    print_status \"\ud83c\udf89 GCP project setup completed successfully!\"\n    echo \"\"\n    print_info \"Project $PROJECT_ID is ready for Ghostbusters AI deployment!\"\n    print_info \"All required APIs are enabled, excluded APIs are disabled.\"\n    print_info \"Cost control is configured with $${MONTHLY_BUDGET}/month budget.\"\n    echo \"\"\n    print_warning \"Remember: This project is specifically for the 2025 hackathon!\"\n    print_warning \"Costs are tracked separately and controlled to stay within budget.\"\n}\n\n# Run main function\nmain \"$@\"",
+              "template": "#!/bin/bash\n\n# 🚀 GCP Project Setup Script for Ghostbusters AI Hackathon 2025\n# This script creates a new GCP project and enables ONLY the required APIs\n\nset -e  # Exit on any error\n\n# Colors for output\nRED='\\033[0;31m'\nGREEN='\\033[0;32m'\nYELLOW='\\033[1;33m'\nBLUE='\\033[0;34m'\nNC='\\033[0m' # No Color\n\n# Configuration - EXACTLY as defined in project model\nPROJECT_ID=\"{{project_id}}\"\nPROJECT_NAME=\"{{project_name}}\"\nBILLING_ACCOUNT=\"{{billing_account}}\"\n\n# REQUIRED APIs (explicitly defined)\nREQUIRED_APIS=(\n    \"{{required_apis}}\"\n)\n\n# EXCLUDED APIs (explicitly disabled for cost control)\nEXCLUDED_APIS=(\n    \"{{excluded_apis}}\"\n)\n\n# Cost control thresholds\nMONTHLY_BUDGET={{monthly_budget}}\nDEVELOPMENT_PHASE={{development_phase}}\nTESTING_PHASE={{testing_phase}}\nDEMO_PHASE={{demo_phase}}\n\necho -e \"${BLUE}🚀 GCP Project Setup for {{project_name}}${NC}\"\necho -e \"${BLUE}========================================================${NC}\"\necho \"\"\n\n# Function to print colored output\nprint_status() {\n    echo -e \"${GREEN}✅ $1${NC}\"\n}\n\nprint_warning() {\n    echo -e \"${YELLOW}⚠️  $1${NC}\"\n}\n\nprint_error() {\n    echo -e \"${RED}❌ $1${NC}\"\n}\n\nprint_info() {\n    echo -e \"${BLUE}ℹ️  $1${NC}\"\n}\n\n# Check prerequisites\ncheck_prerequisites() {\n    print_info \"Checking prerequisites...\"\n    \n    # Check if gcloud is installed\n    if ! command -v gcloud &> /dev/null; then\n        print_error \"gcloud CLI is not installed. Please install it first.\"\n        exit 1\n    fi\n    \n    # Check if user is authenticated\n    if ! gcloud auth list --filter=status:ACTIVE --format=\"value(account)\" | grep -q .; then\n        print_error \"Not authenticated with gcloud. Please run 'gcloud auth login' first.\"\n        exit 1\n    fi\n    \n    print_status \"All prerequisites are satisfied\"\n}\n\n# Create new GCP project\ncreate_gcp_project() {\n    print_info \"Creating new GCP project: $PROJECT_ID\"\n    \n    # Check if project already exists\n    if gcloud projects describe $PROJECT_ID &> /dev/null; then\n        print_warning \"Project $PROJECT_ID already exists\"\n        return\n    fi\n    \n    # Create new project\n    gcloud projects create $PROJECT_ID \\\n        --name=\"$PROJECT_NAME\" \\\n        --set-as-default\n    \n    print_status \"GCP project created successfully: $PROJECT_ID\"\n}\n\n# Set billing account\nsetup_billing() {\n    print_info \"Setting up billing account...\"\n    \n    # Link billing account\n    gcloud billing projects link $PROJECT_ID \\\n        --billing-account=$BILLING_ACCOUNT\n    \n    # Verify billing link\n    BILLING_STATUS=$(gcloud billing projects describe $PROJECT_ID --format=\"value(billingEnabled)\")\n    \n    if [ \"$BILLING_STATUS\" = \"True\" ]; then\n        print_status \"Billing account linked successfully\"\n    else\n        print_error \"Failed to link billing account\"\n        exit 1\n    fi\n}\n\n# Enable required APIs\nenable_required_apis() {\n    print_info \"Enabling required APIs...\"\n    \n    for api in \"${REQUIRED_APIS[@]}\"; do\n        print_info \"Enabling API: $api\"\n        gcloud services enable $api --project=$PROJECT_ID\n        print_status \"API enabled: $api\"\n    done\n    \n    print_status \"All required APIs enabled successfully\"\n}\n\n# Verify API exclusions\nverify_api_exclusions() {\n    print_info \"Verifying API exclusions...\"\n    \n    # Get list of enabled APIs\n    ENABLED_APIS=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\")\n    \n    # Check for any excluded APIs that might be enabled\n    for api in \"${EXCLUDED_APIS[@]}\"; do\n        if echo \"$ENABLED_APIS\" | grep -q \"$api\"; then\n            print_warning \"WARNING: Excluded API $api is enabled - this may cause unwanted costs!\"\n        else\n            print_status \"Excluded API $api is correctly disabled\"\n        fi\n    done\n}\n\n# Create budget for cost control\nsetup_cost_control() {\n    print_info \"Setting up cost control...\"\n    \n    # Create project budget\n    gcloud billing budgets create \\\n        --billing-account=$BILLING_ACCOUNT \\\n        --budget-amount=$MONTHLY_BUDGET \\\n        --budget-filter=\"project=$PROJECT_ID\" \\\n        --display-name=\"Ghostbusters Hackathon 2025 Budget\"\n    \n    print_status \"Budget created: $${MONTHLY_BUDGET}/month\"\n}\n\n# Verify project setup\nverify_project_setup() {\n    print_info \"Verifying project setup...\"\n    \n    echo \"\"\n    echo \"📊 Project Setup Verification:\"\n    echo \"================================\"\n    \n    # Check project status\n    PROJECT_STATUS=$(gcloud projects describe $PROJECT_ID --format=\"value(lifecycleState)\")\n    echo \"Project Status: $PROJECT_STATUS\"\n    \n    # Check billing status\n    BILLING_STATUS=$(gcloud billing projects describe $PROJECT_ID --format=\"value(billingEnabled)\")\n    echo \"Billing Status: $BILLING_STATUS\"\n    \n    # Count enabled APIs\n    ENABLED_API_COUNT=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\" | wc -l)\n    echo \"Enabled APIs: $ENABLED_API_COUNT\"\n    \n    # List enabled APIs\n    echo \"\"\n    echo \"Enabled APIs:\"\n    gcloud services list --enabled --project=$PROJECT_ID --format=\"table(name,title)\" | head -10\n    \n    # Check budget\n    echo \"\"\n    echo \"Budget Configuration:\"\n    gcloud billing budgets list --billing-account=$BILLING_ACCOUNT --filter=\"displayName:2025\"\n    \n    print_status \"Project setup verification completed\"\n}\n\n# Update tracking file\nupdate_tracking_file() {\n    print_info \"Updating project setup tracking...\"\n    \n    # Update the tracking file with current status\n    sed -i \"s/❌ Project Creation - Not started/✅ Project Creation - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/❌ Billing Setup - Not started/✅ Billing Setup - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/❌ API Enablement - Not started/✅ API Enablement - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    sed -i \"s/❌ Cost Control Configuration - Not started/✅ Cost Control Configuration - Completed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n    \n    # Update setup status\n    sed -i \"s/Status: 🔄 SETUP IN PROGRESS/Status: ✅ SETUP COMPLETED/\" PROJECT_SETUP_TRACKING.md\n    \n    print_status \"Project setup tracking updated\"\n}\n\n# Show next steps\nshow_next_steps() {\n    print_info \"Next Steps:\"\n    echo \"\"\n    echo \"🎯 Project Setup Complete!\"\n    echo \"==========================\"\n    echo \"✅ GCP Project: $PROJECT_ID\"\n    echo \"✅ Project Name: $PROJECT_NAME\"\n    echo \"✅ Billing Account: $BILLING_ACCOUNT\"\n    echo \"✅ Required APIs: ${#REQUIRED_APIS[@]} enabled\"\n    echo \"✅ Excluded APIs: ${#REQUIRED_APIS[@]} disabled\"\n    echo \"✅ Cost Control: $${MONTHLY_BUDGET}/month budget\"\n    echo \"\"\n    echo \"🚀 Ready to deploy Ghostbusters AI to GKE!\"\n    echo \"\"\n    echo \"Next Commands:\"\n    echo \"1. Deploy to GKE: ./scripts/deploy-ghostbusters.sh\"\n    echo \"2. Check costs: gcloud billing reports list --project=$PROJECT_ID\"\n    echo \"3. Monitor APIs: gcloud services list --enabled --project=$PROJECT_ID\"\n    echo \"\"\n    echo \"💰 Cost Control Active:\"\n    echo \"   - Development Phase: <$${DEVELOPMENT_PHASE}/month\"\n    echo \"   - Testing Phase: <$${TESTING_PHASE}/month\"\n    echo \"   - Demo Phase: <$${DEMO_PHASE}/month\"\n    echo \"   - Emergency Controls: Enabled\"\n}\n\n# Main setup function\nmain() {\n    echo -e \"${BLUE}Starting GCP project setup for {{project_name}}...${NC}\"\n    echo \"\"\n    \n    check_prerequisites\n    create_gcp_project\n    setup_billing\n    enable_required_apis\n    verify_api_exclusions\n    setup_cost_control\n    verify_project_setup\n    update_tracking_file\n    show_next_steps\n    \n    echo \"\"\n    print_status \"🎉 GCP project setup completed successfully!\"\n    echo \"\"\n    print_info \"Project $PROJECT_ID is ready for Ghostbusters AI deployment!\"\n    print_info \"All required APIs are enabled, excluded APIs are disabled.\"\n    print_info \"Cost control is configured with $${MONTHLY_BUDGET}/month budget.\"\n    echo \"\"\n    print_warning \"Remember: This project is specifically for the 2025 hackathon!\"\n    print_warning \"Costs are tracked separately and controlled to stay within budget.\"\n}\n\n# Run main function\nmain \"$@\"",
               "variables": {
                 "project_id": "ghostbusters-hackathon-2025",
                 "project_name": "Ghostbusters AI Hackathon 2025",
@@ -1586,16 +1898,16 @@
                   "pubsub.googleapis.com",
                   "storage.googleapis.com"
                 ],
-                "monthly_budget": 25.0,
-                "development_phase": 5.0,
-                "testing_phase": 15.0,
-                "demo_phase": 25.0
+                "monthly_budget": 25,
+                "development_phase": 5,
+                "testing_phase": 15,
+                "demo_phase": 25
               }
             },
             "teardown_template": {
               "filename": "teardown-gcp-project.sh",
               "description": "GCP Project Teardown Script for Ghostbusters AI Hackathon 2025",
-              "template": "#!/bin/bash\n\n# \ud83e\uddf9 GCP Project Teardown Script for Ghostbusters AI Hackathon 2025\n# This script cleans up the hackathon project and all associated resources\n\nset -e  # Exit on any error\n\n# Colors for output\nRED='\\033[0;31m'\nGREEN='\\033[0;32m'\nYELLOW='\\033[1;33m'\nBLUE='\\033[0;34m'\nNC='\\033[0m' # No Color\n\n# Configuration - EXACTLY as defined in project model\nPROJECT_ID=\"{{project_id}}\"\nPROJECT_NAME=\"{{project_name}}\"\nBILLING_ACCOUNT=\"{{billing_account}}\"\n\n# REQUIRED APIs that were enabled (to be disabled)\nREQUIRED_APIS=(\n{{required_apis}}\n)\n\n# Cost control thresholds\nMONTHLY_BUDGET={{monthly_budget}}\nDEVELOPMENT_PHASE={{development_phase}}\nTESTING_PHASE={{testing_phase}}\nDEMO_PHASE={{demo_phase}}\n\necho -e \"${BLUE}\ud83e\uddf9 GCP Project Teardown for {{project_name}}${NC}\"\necho -e \"${BLUE}================================================${NC}\"\necho \"\"\n\necho -e \"${YELLOW}\u26a0\ufe0f  WARNING: This script will PERMANENTLY DELETE the hackathon project!${NC}\"\necho -e \"${YELLOW}\u26a0\ufe0f  All data, services, and resources will be lost!${NC}\"\necho \"\"\n\necho -e \"${YELLOW}\u26a0\ufe0f  This action cannot be undone!${NC}\"\necho \"\"\n\n# Function to print colored output\nprint_status() {\n    echo -e \"${GREEN}\u2705 $1${NC}\"\n}\n\nprint_warning() {\n    echo -e \"${YELLOW}\u26a0\ufe0f  $1${NC}\"\n}\n\nprint_error() {\n    echo -e \"${RED}\u274c $1${NC}\"\n}\n\nprint_info() {\n    echo -e \"${BLUE}\u2139\ufe0f  $1${NC}\"\n}\n\n# Confirmation prompt\nconfirm_teardown() {\n    echo -e \"${RED}Are you absolutely sure you want to delete project $PROJECT_ID?${NC}\"\n    echo -e \"${RED}Type 'DELETE' to confirm:${NC}\"\n    read -r confirmation\n    \n    if [ \"$confirmation\" != \"DELETE\" ]; then\n        print_warning \"Teardown cancelled by user\"\n        exit 0\n    fi\n    \n    print_status \"Teardown confirmed. Proceeding with deletion...\"\n}\n\n# Check prerequisites\ncheck_prerequisites() {\n    print_info \"Checking prerequisites...\"\n    \n    # Check if gcloud is installed\n    if ! command -v gcloud &> /dev/null; then\n        print_error \"gcloud CLI is not installed. Please install it first.\"\n        exit 1\n    fi\n    \n    # Check if user is authenticated\n    if ! gcloud auth list --filter=status:ACTIVE --format=\"value(account)\" | grep -q .; then\n        print_error \"Not authenticated with gcloud. Please run 'gcloud auth login' first.\"\n        exit 1\n    fi\n    \n    # Check if project exists\n    if ! gcloud projects describe $PROJECT_ID &> /dev/null; then\n        print_error \"Project $PROJECT_ID does not exist\"\n        exit 1\n    fi\n    \n    print_status \"All prerequisites are satisfied\"\n}\n\n# Disable all enabled APIs\ndisable_all_apis() {\n    print_info \"Disabling all enabled APIs...\"\n    \n    # Get list of enabled APIs\n    ENABLED_APIS=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\")\n    \n    if [ -z \"$ENABLED_APIS\" ]; then\n        print_warning \"No APIs enabled in project\"\n        return\n    fi\n    \n    # Disable each API\n    for api in $ENABLED_APIS; do\n        print_info \"Disabling API: $api\"\n        gcloud services disable $api --project=$PROJECT_ID --quiet || print_warning \"Failed to disable $api\"\n    done\n    \n    print_status \"All APIs disabled\"\n}\n\n# Delete GKE clusters\ndelete_gke_clusters() {\n    print_info \"Checking for GKE clusters...\"\n    \n    # List all clusters\n    CLUSTERS=$(gcloud container clusters list --project=$PROJECT_ID --format=\"value(name,location)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$CLUSTERS\" ]; then\n        print_warning \"Found GKE clusters. Deleting...\"\n        \n        while IFS= read -r cluster_info; do\n            if [ -n \"$cluster_info\" ]; then\n                CLUSTER_NAME=$(echo \"$cluster_info\" | cut -d' ' -f1)\n                LOCATION=$(echo \"$cluster_info\" | cut -d' ' -f2)\n                \n                print_info \"Deleting cluster: $CLUSTER_NAME in $LOCATION\"\n                gcloud container clusters delete $CLUSTER_NAME --location=$LOCATION --project=$PROJECT_ID --quiet || print_warning \"Failed to delete cluster $CLUSTER_NAME\"\n            fi\n        done <<< \"$CLUSTERS\"\n    else\n        print_status \"No GKE clusters found\"\n    fi\n}\n\n# Delete compute instances\ndelete_compute_instances() {\n    print_info \"Checking for compute instances...\"\n    \n    # List all instances\n    INSTANCES=$(gcloud compute instances list --project=$PROJECT_ID --format=\"value(name,zone)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$INSTANCES\" ]; then\n        print_warning \"Found compute instances. Deleting...\"\n        \n        while IFS= read -r instance_info; do\n            if [ -n \"$instance_info\" ]; then\n                INSTANCE_NAME=$(echo \"$instance_info\" | cut -d' ' -f1)\n                ZONE=$(echo \"$instance_info\" | cut -d' ' -f2)\n                \n                print_info \"Deleting instance: $INSTANCE_NAME in $ZONE\"\n                gcloud compute instances delete $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID --quiet || print_warning \"Failed to delete instance $INSTANCE_NAME\"\n            fi\n        done <<< \"$INSTANCES\"\n    else\n        print_status \"No compute instances found\"\n    fi\n}\n\n# Delete storage buckets\ndelete_storage_buckets() {\n    print_info \"Checking for storage buckets...\"\n    \n    # List all buckets\n    BUCKETS=$(gsutil ls -p $PROJECT_ID 2>/dev/null || echo \"\")\n    \n    if [ -n \"$BUCKETS\" ]; then\n        print_warning \"Found storage buckets. Deleting...\"\n        \n        for bucket in $BUCKETS; do\n            if [ -n \"$bucket\" ]; then\n                print_info \"Deleting bucket: $bucket\"\n                gsutil -m rm -r $bucket || print_warning \"Failed to delete bucket $bucket\"\n            fi\n        done\n    else\n        print_status \"No storage buckets found\"\n    fi\n}\n\n# Delete budgets\ndelete_budgets() {\n    print_info \"Deleting project budgets...\"\n    \n    # List budgets for this project\n    BUDGETS=$(gcloud billing budgets list --billing-account=$BILLING_ACCOUNT --filter=\"displayName:2025\" --format=\"value(name)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$BUDGETS\" ]; then\n        for budget in $BUDGETS; do\n            if [ -n \"$budget\" ]; then\n                print_info \"Deleting budget: $budget\"\n                gcloud billing budgets delete $budget --quiet || print_warning \"Failed to delete budget $budget\"\n            fi\n        done\n    else\n        print_status \"No budgets found\"\n    fi\n}\n\n# Unlink billing account\nunlink_billing() {\n    print_info \"Unlinking billing account...\"\n    \n    # Unlink billing account\n    gcloud billing projects unlink $PROJECT_ID --quiet || print_warning \"Failed to unlink billing account\"\n    \n    print_status \"Billing account unlinked\"\n}\n\n# Delete the project\ndelete_project() {\n    print_info \"Deleting project $PROJECT_ID...\"\n    \n    # Delete the project\n    gcloud projects delete $PROJECT_ID --quiet\n    \n    print_status \"Project $PROJECT_ID deleted successfully\"\n}\n\n# Update tracking file\nupdate_tracking_file() {\n    print_info \"Updating project tracking...\"\n    \n    if [ -f \"PROJECT_SETUP_TRACKING.md\" ]; then\n        # Update the tracking file with teardown status\n        sed -i \"s/Status: \u2705 SETUP COMPLETED/Status: \ud83d\uddd1\ufe0f PROJECT DELETED/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/\u2705 Project Creation - Completed.*/\u274c Project Creation - Deleted $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/\u2705 Billing Setup - Completed.*/\u274c Billing Setup - Removed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/\u2705 API Enablement - Completed.*/\u274c API Enablement - Disabled $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/\u2705 Cost Control Configuration - Completed.*/\u274c Cost Control Configuration - Removed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        \n        print_status \"Project tracking updated\"\n    else\n        print_warning \"Tracking file not found\"\n    fi\n}\n\n# Show teardown summary\nshow_teardown_summary() {\n    print_info \"Teardown Summary:\"\n    echo \"\"\n    echo \"\ud83d\uddd1\ufe0f  Project Deleted: $PROJECT_ID\"\n    echo \"\ud83d\uddd1\ufe0f  Project Name: $PROJECT_NAME\"\n    echo \"\ud83d\uddd1\ufe0f  Billing Account: Unlinked\"\n    echo \"\ud83d\uddd1\ufe0f  All APIs: Disabled\"\n    echo \"\ud83d\uddd1\ufe0f  All Resources: Deleted\"\n    echo \"\ud83d\uddd1\ufe0f  Budgets: Removed\"\n    echo \"\"\n    echo \"\ud83d\udcb0 Cost Control: Terminated\"\n    echo \"\ud83d\udeab No more charges from this project\"\n    echo \"\"\n    echo \"\u2705 Teardown completed successfully!\"\n}\n\n# Main teardown function\nmain() {\n    echo -e \"${BLUE}Starting GCP project teardown for {{project_name}}...${NC}\"\n    echo \"\"\n    \n    confirm_teardown\n    check_prerequisites\n    disable_all_apis\n    delete_gke_clusters\n    delete_compute_instances\n    delete_storage_buckets\n    delete_budgets\n    unlink_billing\n    delete_project\n    update_tracking_file\n    show_teardown_summary\n    \n    echo \"\"\n    print_status \"\ud83c\udf89 GCP project teardown completed successfully!\"\n    echo \"\"\n    print_info \"Project $PROJECT_ID has been completely removed.\"\n    print_info \"All resources, services, and billing have been cleaned up.\"\n    echo \"\"\n    print_warning \"Remember: This project was specifically for the 2025 hackathon!\"\n    print_warning \"All data and configurations have been permanently deleted.\"\n}\n\n# Run main function\nmain \"$@\"",
+              "template": "#!/bin/bash\n\n# 🧹 GCP Project Teardown Script for Ghostbusters AI Hackathon 2025\n# This script cleans up the hackathon project and all associated resources\n\nset -e  # Exit on any error\n\n# Colors for output\nRED='\\033[0;31m'\nGREEN='\\033[0;32m'\nYELLOW='\\033[1;33m'\nBLUE='\\033[0;34m'\nNC='\\033[0m' # No Color\n\n# Configuration - EXACTLY as defined in project model\nPROJECT_ID=\"{{project_id}}\"\nPROJECT_NAME=\"{{project_name}}\"\nBILLING_ACCOUNT=\"{{billing_account}}\"\n\n# REQUIRED APIs that were enabled (to be disabled)\nREQUIRED_APIS=(\n{{required_apis}}\n)\n\n# Cost control thresholds\nMONTHLY_BUDGET={{monthly_budget}}\nDEVELOPMENT_PHASE={{development_phase}}\nTESTING_PHASE={{testing_phase}}\nDEMO_PHASE={{demo_phase}}\n\necho -e \"${BLUE}🧹 GCP Project Teardown for {{project_name}}${NC}\"\necho -e \"${BLUE}================================================${NC}\"\necho \"\"\n\necho -e \"${YELLOW}⚠️  WARNING: This script will PERMANENTLY DELETE the hackathon project!${NC}\"\necho -e \"${YELLOW}⚠️  All data, services, and resources will be lost!${NC}\"\necho \"\"\n\necho -e \"${YELLOW}⚠️  This action cannot be undone!${NC}\"\necho \"\"\n\n# Function to print colored output\nprint_status() {\n    echo -e \"${GREEN}✅ $1${NC}\"\n}\n\nprint_warning() {\n    echo -e \"${YELLOW}⚠️  $1${NC}\"\n}\n\nprint_error() {\n    echo -e \"${RED}❌ $1${NC}\"\n}\n\nprint_info() {\n    echo -e \"${BLUE}ℹ️  $1${NC}\"\n}\n\n# Confirmation prompt\nconfirm_teardown() {\n    echo -e \"${RED}Are you absolutely sure you want to delete project $PROJECT_ID?${NC}\"\n    echo -e \"${RED}Type 'DELETE' to confirm:${NC}\"\n    read -r confirmation\n    \n    if [ \"$confirmation\" != \"DELETE\" ]; then\n        print_warning \"Teardown cancelled by user\"\n        exit 0\n    fi\n    \n    print_status \"Teardown confirmed. Proceeding with deletion...\"\n}\n\n# Check prerequisites\ncheck_prerequisites() {\n    print_info \"Checking prerequisites...\"\n    \n    # Check if gcloud is installed\n    if ! command -v gcloud &> /dev/null; then\n        print_error \"gcloud CLI is not installed. Please install it first.\"\n        exit 1\n    fi\n    \n    # Check if user is authenticated\n    if ! gcloud auth list --filter=status:ACTIVE --format=\"value(account)\" | grep -q .; then\n        print_error \"Not authenticated with gcloud. Please run 'gcloud auth login' first.\"\n        exit 1\n    fi\n    \n    # Check if project exists\n    if ! gcloud projects describe $PROJECT_ID &> /dev/null; then\n        print_error \"Project $PROJECT_ID does not exist\"\n        exit 1\n    fi\n    \n    print_status \"All prerequisites are satisfied\"\n}\n\n# Disable all enabled APIs\ndisable_all_apis() {\n    print_info \"Disabling all enabled APIs...\"\n    \n    # Get list of enabled APIs\n    ENABLED_APIS=$(gcloud services list --enabled --project=$PROJECT_ID --format=\"value(name)\")\n    \n    if [ -z \"$ENABLED_APIS\" ]; then\n        print_warning \"No APIs enabled in project\"\n        return\n    fi\n    \n    # Disable each API\n    for api in $ENABLED_APIS; do\n        print_info \"Disabling API: $api\"\n        gcloud services disable $api --project=$PROJECT_ID --quiet || print_warning \"Failed to disable $api\"\n    done\n    \n    print_status \"All APIs disabled\"\n}\n\n# Delete GKE clusters\ndelete_gke_clusters() {\n    print_info \"Checking for GKE clusters...\"\n    \n    # List all clusters\n    CLUSTERS=$(gcloud container clusters list --project=$PROJECT_ID --format=\"value(name,location)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$CLUSTERS\" ]; then\n        print_warning \"Found GKE clusters. Deleting...\"\n        \n        while IFS= read -r cluster_info; do\n            if [ -n \"$cluster_info\" ]; then\n                CLUSTER_NAME=$(echo \"$cluster_info\" | cut -d' ' -f1)\n                LOCATION=$(echo \"$cluster_info\" | cut -d' ' -f2)\n                \n                print_info \"Deleting cluster: $CLUSTER_NAME in $LOCATION\"\n                gcloud container clusters delete $CLUSTER_NAME --location=$LOCATION --project=$PROJECT_ID --quiet || print_warning \"Failed to delete cluster $CLUSTER_NAME\"\n            fi\n        done <<< \"$CLUSTERS\"\n    else\n        print_status \"No GKE clusters found\"\n    fi\n}\n\n# Delete compute instances\ndelete_compute_instances() {\n    print_info \"Checking for compute instances...\"\n    \n    # List all instances\n    INSTANCES=$(gcloud compute instances list --project=$PROJECT_ID --format=\"value(name,zone)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$INSTANCES\" ]; then\n        print_warning \"Found compute instances. Deleting...\"\n        \n        while IFS= read -r instance_info; do\n            if [ -n \"$instance_info\" ]; then\n                INSTANCE_NAME=$(echo \"$instance_info\" | cut -d' ' -f1)\n                ZONE=$(echo \"$instance_info\" | cut -d' ' -f2)\n                \n                print_info \"Deleting instance: $INSTANCE_NAME in $ZONE\"\n                gcloud compute instances delete $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID --quiet || print_warning \"Failed to delete instance $INSTANCE_NAME\"\n            fi\n        done <<< \"$INSTANCES\"\n    else\n        print_status \"No compute instances found\"\n    fi\n}\n\n# Delete storage buckets\ndelete_storage_buckets() {\n    print_info \"Checking for storage buckets...\"\n    \n    # List all buckets\n    BUCKETS=$(gsutil ls -p $PROJECT_ID 2>/dev/null || echo \"\")\n    \n    if [ -n \"$BUCKETS\" ]; then\n        print_warning \"Found storage buckets. Deleting...\"\n        \n        for bucket in $BUCKETS; do\n            if [ -n \"$bucket\" ]; then\n                print_info \"Deleting bucket: $bucket\"\n                gsutil -m rm -r $bucket || print_warning \"Failed to delete bucket $bucket\"\n            fi\n        done\n    else\n        print_status \"No storage buckets found\"\n    fi\n}\n\n# Delete budgets\ndelete_budgets() {\n    print_info \"Deleting project budgets...\"\n    \n    # List budgets for this project\n    BUDGETS=$(gcloud billing budgets list --billing-account=$BILLING_ACCOUNT --filter=\"displayName:2025\" --format=\"value(name)\" 2>/dev/null || echo \"\")\n    \n    if [ -n \"$BUDGETS\" ]; then\n        for budget in $BUDGETS; do\n            if [ -n \"$budget\" ]; then\n                print_info \"Deleting budget: $budget\"\n                gcloud billing budgets delete $budget --quiet || print_warning \"Failed to delete budget $budget\"\n            fi\n        done\n    else\n        print_status \"No budgets found\"\n    fi\n}\n\n# Unlink billing account\nunlink_billing() {\n    print_info \"Unlinking billing account...\"\n    \n    # Unlink billing account\n    gcloud billing projects unlink $PROJECT_ID --quiet || print_warning \"Failed to unlink billing account\"\n    \n    print_status \"Billing account unlinked\"\n}\n\n# Delete the project\ndelete_project() {\n    print_info \"Deleting project $PROJECT_ID...\"\n    \n    # Delete the project\n    gcloud projects delete $PROJECT_ID --quiet\n    \n    print_status \"Project $PROJECT_ID deleted successfully\"\n}\n\n# Update tracking file\nupdate_tracking_file() {\n    print_info \"Updating project tracking...\"\n    \n    if [ -f \"PROJECT_SETUP_TRACKING.md\" ]; then\n        # Update the tracking file with teardown status\n        sed -i \"s/Status: ✅ SETUP COMPLETED/Status: 🗑️ PROJECT DELETED/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/✅ Project Creation - Completed.*/❌ Project Creation - Deleted $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/✅ Billing Setup - Completed.*/❌ Billing Setup - Removed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/✅ API Enablement - Completed.*/❌ API Enablement - Disabled $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        sed -i \"s/✅ Cost Control Configuration - Completed.*/❌ Cost Control Configuration - Removed $(date +%Y-%m-%d)/\" PROJECT_SETUP_TRACKING.md\n        \n        print_status \"Project tracking updated\"\n    else\n        print_warning \"Tracking file not found\"\n    fi\n}\n\n# Show teardown summary\nshow_teardown_summary() {\n    print_info \"Teardown Summary:\"\n    echo \"\"\n    echo \"🗑️  Project Deleted: $PROJECT_ID\"\n    echo \"🗑️  Project Name: $PROJECT_NAME\"\n    echo \"🗑️  Billing Account: Unlinked\"\n    echo \"🗑️  All APIs: Disabled\"\n    echo \"🗑️  All Resources: Deleted\"\n    echo \"🗑️  Budgets: Removed\"\n    echo \"\"\n    echo \"💰 Cost Control: Terminated\"\n    echo \"🚫 No more charges from this project\"\n    echo \"\"\n    echo \"✅ Teardown completed successfully!\"\n}\n\n# Main teardown function\nmain() {\n    echo -e \"${BLUE}Starting GCP project teardown for {{project_name}}...${NC}\"\n    echo \"\"\n    \n    confirm_teardown\n    check_prerequisites\n    disable_all_apis\n    delete_gke_clusters\n    delete_compute_instances\n    delete_storage_buckets\n    delete_budgets\n    unlink_billing\n    delete_project\n    update_tracking_file\n    show_teardown_summary\n    \n    echo \"\"\n    print_status \"🎉 GCP project teardown completed successfully!\"\n    echo \"\"\n    print_info \"Project $PROJECT_ID has been completely removed.\"\n    print_info \"All resources, services, and billing have been cleaned up.\"\n    echo \"\"\n    print_warning \"Remember: This project was specifically for the 2025 hackathon!\"\n    print_warning \"All data and configurations have been permanently deleted.\"\n}\n\n# Run main function\nmain \"$@\"",
               "variables": {
                 "project_id": "ghostbusters-hackathon-2025",
                 "project_name": "Ghostbusters AI Hackathon 2025",
@@ -1615,10 +1927,10 @@
                   "pubsub.googleapis.com",
                   "storage.googleapis.com"
                 ],
-                "monthly_budget": 25.0,
-                "development_phase": 5.0,
-                "testing_phase": 15.0,
-                "demo_phase": 25.0
+                "monthly_budget": 25,
+                "development_phase": 5,
+                "testing_phase": 15,
+                "demo_phase": 25
               }
             },
             "deploy_template": {
@@ -1795,13 +2107,13 @@
                 "cost_trend": "unknown"
               },
               "last_updated": "2025-08-14T22:58:28.187202+00:00",
-              "deployment_health": "\u274c All services pending"
+              "deployment_health": "❌ All services pending"
             }
           }
         },
         "tidb_agentx": {
           "name": "TiDB AgentX Hackathon 2025",
-          "dates": "August 1 \u2013 September 15, 2025",
+          "dates": "August 1 – September 15, 2025",
           "prizes": "$30,500 in cash",
           "focus": "Forging agentic AI for real-world impact using TiDB Serverless",
           "relevant_domains": [
@@ -2903,7 +3215,7 @@
           "total_tests": 30,
           "passed": 30,
           "failed": 0,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "key_achievements": [
           "Migrated from dataclasses to pydantic v2",
@@ -3355,7 +3667,7 @@
         "basic_validation": {
           "passed": 15,
           "total": 15,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "code_quality": {
           "passed": 8,
@@ -3365,17 +3677,17 @@
         "security": {
           "passed": 6,
           "total": 6,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_integration": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_gcp": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_orchestrator": {
           "passed": 2,
@@ -3385,7 +3697,7 @@
         "healthcare_cdc": {
           "passed": 4,
           "total": 4,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "type_safety": {
           "passed": 2,
@@ -3395,27 +3707,27 @@
         "uv_package_management": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "rule_compliance": {
           "passed": 10,
           "total": 10,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "file_organization": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "mdc_generator": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "makefile_integration": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         }
       },
       "failed_tests": [
@@ -3464,126 +3776,126 @@
       "total_tests": 144,
       "passed": 144,
       "failed": 0,
-      "success_rate": 1.0,
+      "success_rate": 1,
       "test_categories": {
         "basic_validation": {
           "passed": 15,
           "total": 15,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "code_quality": {
           "passed": 8,
           "total": 8,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "security": {
           "passed": 6,
           "total": 6,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_integration": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_gcp": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_orchestrator": {
           "passed": 4,
           "total": 4,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "healthcare_cdc": {
           "passed": 4,
           "total": 4,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "type_safety": {
           "passed": 3,
           "total": 3,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "uv_package_management": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "rule_compliance": {
           "passed": 10,
           "total": 10,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "file_organization": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "mdc_generator": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "makefile_integration": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "intelligent_linter_system": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "visualization": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_api": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "code_quality_system": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "round_trip_generated": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "artifact_forge": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "multi_agent_testing": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "bash": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "documentation": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "data": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         }
       },
       "key_achievements": [
-        "\ud83c\udf89 ACHIEVED 100% TEST SUCCESS RATE!",
+        "🎉 ACHIEVED 100% TEST SUCCESS RATE!",
         "All 144 tests now passing successfully",
         "Successfully resolved all previous test failures",
         "Added comprehensive domain coverage (25 domains)",
@@ -3599,32 +3911,32 @@
       "total_tests": 30,
       "passed": 30,
       "failed": 0,
-      "success_rate": 1.0,
+      "success_rate": 1,
       "test_categories": {
         "ghostbusters_orchestrator": {
           "passed": 5,
           "total": 5,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_agents": {
           "passed": 8,
           "total": 8,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_recovery_engines": {
           "passed": 6,
           "total": 6,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_validators": {
           "passed": 4,
           "total": 4,
-          "success_rate": 1.0
+          "success_rate": 1
         },
         "ghostbusters_integration": {
           "passed": 7,
           "total": 7,
-          "success_rate": 1.0
+          "success_rate": 1
         }
       },
       "key_achievements": [
@@ -3661,7 +3973,16 @@
           "Multi-strategy discovery fallback"
         ],
         "file_types_supported": [
-          "python", "json", "yaml", "toml", "ini", "xml", "markdown", "shell", "dockerfile", "makefile"
+          "python",
+          "json",
+          "yaml",
+          "toml",
+          "ini",
+          "xml",
+          "markdown",
+          "shell",
+          "dockerfile",
+          "makefile"
         ],
         "discovery_strategies": [
           "extension_based",
@@ -3716,7 +4037,7 @@
         ],
         "diff_categories": [
           "content_changes",
-          "schema_changes", 
+          "schema_changes",
           "dimension_changes",
           "relationship_changes",
           "processing_instruction_changes"
@@ -3738,7 +4059,7 @@
         },
         "analysis_strategies": [
           "syntax_validation",
-          "structure_analysis", 
+          "structure_analysis",
           "semantic_analysis",
           "pattern_analysis",
           "quality_analysis",
@@ -3764,14 +4085,14 @@
         },
         "spore_types": [
           "discovery_spore",
-          "analysis_spore", 
+          "analysis_spore",
           "validation_spore",
           "transformation_spore",
           "integration_spore"
         ],
         "dimension_types": [
           "temporal",
-          "spatial", 
+          "spatial",
           "semantic",
           "processing",
           "quality",
@@ -3831,5 +4152,131 @@
         "Loki's transformative chaos powers"
       ]
     }
+  },
+  "cursor_rules": {
+    "package_potential": {
+      "score": 9
+    }
+  },
+  "neo4j_integration": {
+    "status": "completed",
+    "next_phase": "pypi_package_generation_completed",
+    "completed_tasks": [
+      "neo4j_setup",
+      "cypher_validation",
+      "round_trip_testing"
+    ],
+    "requirements": [
+      "neo4j_community_edition",
+      "cypher_syntax",
+      "python_driver"
+    ]
+  },
+  "ghostbusters": {
+    "package_potential": {
+      "score": 10
+    }
+  },
+  "credential_mappings": {
+    "neo4j_password": "op://OpenFlow-Playground/Neo4j/password",
+    "neo4j_username": "op://OpenFlow-Playground/Neo4j/username"
+  },
+  "pypi_package_generation": {
+    "status": "completed",
+    "next_phase": "neo4j_visualization",
+    "completed_tasks": [
+      "package_analysis",
+      "package_generation",
+      "structure_creation"
+    ],
+    "generated_packages": [
+      "openflow-ghostbusters",
+      "openflow-code-quality",
+      "openflow-mdc-generator",
+      "openflow-security-first",
+      "openflow-ghostbusters-api"
+    ],
+    "requirements": [
+      "high_package_potential_scores",
+      "neo4j_integration",
+      "model_driven_generation"
+    ],
+    "credential_mappings": {
+      "neo4j_password": "op://OpenFlow-Playground/Neo4j/password",
+      "neo4j_username": "op://OpenFlow-Playground/Neo4j/username"
+    }
+  },
+  "neo4j_visualization": {
+    "status": "completed",
+    "next_phase": "model_validation",
+    "completed_tasks": [
+      "neo4j_analysis",
+      "visualization_summary",
+      "package_generation"
+    ],
+    "requirements": [
+      "neo4j_integration",
+      "credential_mapping",
+      "visualization_output"
+    ],
+    "output_files": [
+      "NEO4J_VISUALIZATION_SUMMARY.md",
+      "generated_packages/"
+    ]
+  },
+  "advanced_neo4j_integration": {
+    "status": "completed",
+    "next_phase": "graph_ml_integration",
+    "completed_tasks": [
+      "script_creation",
+      "credential_integration",
+      "complex_cypher_queries",
+      "performance_analysis"
+    ],
+    "requirements": [
+      "neo4j_ml_libraries",
+      "graph_algorithms",
+      "predictive_models",
+      "recommendation_engines"
+    ]
+  },
+  "graph_ml_integration": {
+    "status": "completed",
+    "next_phase": "production_deployment",
+    "completed_tasks": [
+      "ml_framework_creation",
+      "credential_integration",
+      "feature_extraction",
+      "ml_predictions",
+      "round_trip_validation",
+      "smoke_test_verification"
+    ],
+    "requirements": [
+      "neo4j_ml_libraries",
+      "graph_algorithms",
+      "predictive_models",
+      "recommendation_engines"
+    ],
+    "ml_outputs": [
+      "ML_PREDICTIONS.md"
+    ]
+  },
+  "production_deployment": {
+    "status": "ready_to_start",
+    "next_phase": "system_optimization",
+    "description": "Deploy the complete system to production environment with monitoring and security hardening",
+    "completed_tasks": [],
+    "requirements": [
+      "production_environment",
+      "monitoring_setup",
+      "security_hardening",
+      "performance_optimization",
+      "backup_strategy"
+    ],
+    "deployment_targets": [
+      "cloud_infrastructure",
+      "container_orchestration",
+      "monitoring_dashboards"
+    ]
   }
 }
