@@ -9,7 +9,7 @@ of code quality issues and multi-agent testing coordination.
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
