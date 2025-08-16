@@ -14,7 +14,7 @@ ORDER BY count DESC;
 
 // 3. Discover domain structure
 MATCH (d:Domain)
-RETURN d.name as domain_name, 
+RETURN d.name as domain_name,
        d.description as description,
        d.status as status,
        d.priority as priority,
@@ -22,7 +22,7 @@ RETURN d.name as domain_name,
 
 // 4. Discover rule patterns
 MATCH (r:Rule)
-RETURN r.type as rule_type, 
+RETURN r.type as rule_type,
        r.emoji as emoji,
        count(r) as count
 ORDER BY count DESC;

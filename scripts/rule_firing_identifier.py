@@ -159,8 +159,7 @@ class RuleFiringIdentifier:
         """Get the reason why a rule is firing"""
         if operation:
             return f"Operation '{operation}' matches rule purpose"
-        else:
-            return f"File '{file_path}' matches rule globs"
+        return f"File '{file_path}' matches rule globs"
 
     def print_firing_rules(self, file_path: str, operation: str = None):
         """Print which rules are firing with emoji prefixes"""

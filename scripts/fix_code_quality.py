@@ -1,5 +1,7 @@
 from typing import Any
 
+from code_quality_system.quality_model import CodeQualityModel
+
 #!/usr/bin/env python3
 """
 Code Quality Fixer - Comprehensive Linting and Fixing Tool
@@ -11,8 +13,6 @@ from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from code_quality_system.quality_model import CodeQualityModel
 
 
 def main() -> None:

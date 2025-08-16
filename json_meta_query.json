@@ -1,1414 +1,1414 @@
 {
   "meta_model_discovery": {
     "top_level_dimensions": [
-      "neo4j_integration",
-      "tool_selection_logic",
-      "pypi_package_generation",
-      "violations",
-      "linters",
-      "test_results",
-      "credential_mappings",
       "author",
+      "linters",
+      "advanced_neo4j_integration",
+      "project_purpose",
+      "credential_mappings",
+      "domains",
+      "ghostbusters",
+      "extraction_recommendations",
+      "dependency_relationships",
+      "pypi_package_generation",
       "domain_architecture",
       "implementation_plan",
-      "advanced_neo4j_integration",
-      "description",
-      "file_organization",
-      "production_deployment",
-      "extraction_recommendations",
-      "domains",
-      "requirements_traceability",
-      "cursor_rules",
-      "graph_ml_integration",
-      "meta",
-      "project_purpose",
-      "neo4j_visualization",
+      "violations",
       "chaos_integration",
-      "dependency_relationships",
-      "ghostbusters"
+      "production_deployment",
+      "neo4j_visualization",
+      "tool_selection_logic",
+      "test_results",
+      "neo4j_integration",
+      "requirements_traceability",
+      "description",
+      "cursor_rules",
+      "meta",
+      "graph_ml_integration",
+      "file_organization"
     ],
     "domain_count": 34,
     "cursor_rules_count": 0,
     "meta_dimensions": [
-      "model_completeness",
       "extraction_potential",
-      "domain_architecture",
-      "domain_coverage",
-      "test_coverage",
-      "project_purpose",
-      "model_type",
-      "tests",
+      "model_completeness",
       "rules",
+      "domain_architecture",
+      "project",
+      "project_purpose",
+      "domain_coverage",
+      "tests",
       "file",
-      "project"
+      "test_coverage",
+      "model_type"
     ],
     "total_dimensions": 1056,
     "dimension_breakdown": {
       "top_level": [
-        "neo4j_integration",
-        "tool_selection_logic",
-        "pypi_package_generation",
-        "violations",
-        "linters",
-        "test_results",
-        "credential_mappings",
         "author",
+        "linters",
+        "advanced_neo4j_integration",
+        "project_purpose",
+        "credential_mappings",
+        "domains",
+        "ghostbusters",
+        "extraction_recommendations",
+        "dependency_relationships",
+        "pypi_package_generation",
         "domain_architecture",
         "implementation_plan",
-        "advanced_neo4j_integration",
-        "description",
-        "file_organization",
-        "production_deployment",
-        "extraction_recommendations",
-        "domains",
-        "requirements_traceability",
-        "cursor_rules",
-        "graph_ml_integration",
-        "meta",
-        "project_purpose",
-        "neo4j_visualization",
+        "violations",
         "chaos_integration",
-        "dependency_relationships",
-        "ghostbusters"
+        "production_deployment",
+        "neo4j_visualization",
+        "tool_selection_logic",
+        "test_results",
+        "neo4j_integration",
+        "requirements_traceability",
+        "description",
+        "cursor_rules",
+        "meta",
+        "graph_ml_integration",
+        "file_organization"
       ],
       "domains": [
-        "mdc_generator",
         "ghostbusters_gcp",
-        "code_quality_system",
-        "intelligent_linter_system",
-        "mcp_integration",
-        "security_first",
-        "documentation",
-        "yaml_infrastructure",
-        "artifact_forge",
-        "yaml_config",
-        "setup_wizard",
-        "snowflake_openflow_demo",
-        "streamlit_demo_app",
-        "bash",
-        "cloudformation",
-        "ide_performance",
-        "multi_agent_testing",
-        "mdc_cursor_rules",
-        "project_management_design",
-        "secure_shell",
         "data",
-        "visualization",
-        "yaml_kubernetes",
-        "package_management",
-        "model_driven_projection",
-        "ghostbusters_api",
-        "healthcare_cdc",
-        "deployment_automation",
-        "yaml_cicd",
-        "rule_compliance",
-        "go",
+        "code_quality_system",
         "cypher_queries",
+        "yaml_infrastructure",
+        "hackathon",
+        "snowflake_openflow_demo",
+        "go",
         "ghostbusters",
-        "hackathon"
+        "secure_shell",
+        "bash",
+        "ide_performance",
+        "ghostbusters_api",
+        "cloudformation",
+        "project_management_design",
+        "model_driven_projection",
+        "mdc_cursor_rules",
+        "yaml_kubernetes",
+        "security_first",
+        "healthcare_cdc",
+        "multi_agent_testing",
+        "mcp_integration",
+        "visualization",
+        "yaml_config",
+        "deployment_automation",
+        "rule_compliance",
+        "streamlit_demo_app",
+        "documentation",
+        "mdc_generator",
+        "setup_wizard",
+        "package_management",
+        "yaml_cicd",
+        "artifact_forge",
+        "intelligent_linter_system"
       ],
       "meta": [
-        "model_completeness",
         "extraction_potential",
-        "domain_architecture",
-        "domain_coverage",
-        "test_coverage",
-        "project_purpose",
-        "model_type",
-        "tests",
+        "model_completeness",
         "rules",
+        "domain_architecture",
+        "project",
+        "project_purpose",
+        "domain_coverage",
+        "tests",
         "file",
-        "project"
+        "test_coverage",
+        "model_type"
       ],
       "neo4j_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "neo4j_completed_tasks": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_snowflake_openflow_demo_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_snowflake_openflow_demo_patterns": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_snowflake_openflow_demo_indicators": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "7",
+        "3",
+        "1"
       ],
       "domain_snowflake_openflow_demo_requirements": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "7",
+        "3",
+        "1"
       ],
       "domain_deployment_automation_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_deployment_automation_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_deployment_automation_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_deployment_automation_requirements": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_setup_wizard_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_setup_wizard_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_setup_wizard_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_setup_wizard_requirements": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_streamlit_demo_app_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_streamlit_demo_app_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_streamlit_demo_app_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_streamlit_demo_app_requirements": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_ghostbusters_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_ghostbusters_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_ghostbusters_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_ghostbusters_requirements": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_ghostbusters_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_intelligent_linter_system_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_intelligent_linter_system_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_intelligent_linter_system_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_intelligent_linter_system_requirements": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_intelligent_linter_system_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_code_quality_system_structure": [
-        "implementation_status",
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "implementation_status",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_code_quality_system_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_code_quality_system_indicators": [
-        "7",
         "9",
-        "3",
         "2",
+        "10",
+        "11",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "11",
-        "1",
         "12",
-        "5",
-        "10",
-        "4"
+        "1"
       ],
       "domain_code_quality_system_requirements": [
-        "7",
         "13",
         "9",
-        "3",
         "2",
+        "10",
+        "11",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "11",
-        "1",
         "12",
-        "5",
-        "10",
-        "4"
+        "1"
       ],
       "domain_code_quality_system_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_multi_agent_testing_structure": [
-        "implementation_status",
         "linter",
-        "formatter",
-        "requirements",
         "reason",
-        "patterns",
-        "github_repositories",
-        "demo_role",
-        "extraction_candidate",
-        "github_organization",
         "exclusions",
-        "validator",
+        "patterns",
+        "demo_role",
         "extraction_benefits",
-        "content_indicators"
+        "content_indicators",
+        "github_repositories",
+        "formatter",
+        "implementation_status",
+        "validator",
+        "github_organization",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_multi_agent_testing_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_multi_agent_testing_indicators": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "1",
-        "5",
-        "4"
+        "1"
       ],
       "domain_multi_agent_testing_requirements": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_visualization_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
-        "validator",
         "extraction_benefits",
-        "content_indicators"
+        "content_indicators",
+        "formatter",
+        "validator",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_visualization_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_visualization_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_visualization_requirements": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_artifact_forge_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_artifact_forge_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_artifact_forge_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_artifact_forge_requirements": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_artifact_forge_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_model_driven_projection_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_model_driven_projection_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_model_driven_projection_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_model_driven_projection_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_model_driven_projection_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_mdc_generator_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_mdc_generator_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_mdc_generator_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_mdc_generator_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_mdc_generator_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_security_first_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
-        "patterns",
-        "security_scanner",
-        "demo_role",
-        "extraction_candidate",
         "exclusions",
-        "package_potential",
-        "validator",
+        "patterns",
+        "demo_role",
         "extraction_benefits",
-        "content_indicators"
+        "content_indicators",
+        "formatter",
+        "package_potential",
+        "security_scanner",
+        "validator",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_security_first_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_security_first_indicators": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "1",
-        "5",
-        "4"
+        "1"
       ],
       "domain_security_first_requirements": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "7",
+        "3",
+        "1"
       ],
       "domain_security_first_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_healthcare_cdc_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_healthcare_cdc_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_healthcare_cdc_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_healthcare_cdc_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_healthcare_cdc_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_package_management_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_package_management_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_package_management_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_package_management_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_package_management_package": [
         "reason",
-        "reasons",
         "pypi_ready",
         "score",
+        "reasons",
         "package_name"
       ],
       "domain_rule_compliance_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_rule_compliance_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_rule_compliance_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_rule_compliance_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_rule_compliance_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_ghostbusters_api_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_ghostbusters_api_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_ghostbusters_api_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_ghostbusters_api_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_ghostbusters_api_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_ghostbusters_gcp_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_ghostbusters_gcp_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_ghostbusters_gcp_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_ghostbusters_gcp_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_ghostbusters_gcp_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_mcp_integration_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "extraction_benefits",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "extraction_benefits",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_mcp_integration_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_mcp_integration_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_mcp_integration_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_mcp_integration_package": [
-        "package_name",
         "score",
+        "package_name",
         "reasons",
         "pypi_ready"
       ],
       "domain_bash_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "package_potential",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_bash_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_bash_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_bash_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_bash_package": [
         "reason",
-        "reasons",
         "pypi_ready",
         "score",
+        "reasons",
         "package_name"
       ],
       "domain_documentation_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_documentation_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_documentation_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_documentation_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_data_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_data_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_data_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_data_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_cloudformation_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_cloudformation_patterns": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_cloudformation_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_cloudformation_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_mdc_cursor_rules_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
-        "patterns",
-        "constraints",
-        "demo_role",
-        "extraction_candidate",
         "exclusions",
+        "patterns",
+        "demo_role",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "constraints",
+        "extraction_candidate"
       ],
       "domain_mdc_cursor_rules_patterns": [
-        "1",
-        "0"
+        "0",
+        "1"
       ],
       "domain_mdc_cursor_rules_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_mdc_cursor_rules_requirements": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_yaml_infrastructure_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_yaml_infrastructure_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_yaml_infrastructure_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_yaml_infrastructure_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_yaml_config_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_yaml_config_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_yaml_config_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_yaml_config_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_yaml_cicd_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_yaml_cicd_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_yaml_cicd_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_yaml_cicd_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_yaml_kubernetes_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_yaml_kubernetes_patterns": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_yaml_kubernetes_indicators": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_yaml_kubernetes_requirements": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_cypher_queries_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
         "patterns",
-        "constraints",
         "description",
         "demo_role",
-        "extraction_candidate",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "constraints",
+        "extraction_candidate"
       ],
       "domain_cypher_queries_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_cypher_queries_indicators": [
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "3",
+        "1"
       ],
       "domain_cypher_queries_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_go_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
+        "content_indicators",
+        "formatter",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_go_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_go_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_go_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_secure_shell_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
-        "validator",
         "extraction_benefits",
-        "content_indicators"
+        "content_indicators",
+        "formatter",
+        "validator",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_secure_shell_patterns": [
-        "1",
+        "0",
         "2",
-        "0"
+        "1"
       ],
       "domain_secure_shell_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_secure_shell_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_ide_performance_structure": [
         "linter",
-        "requirements",
         "reason",
+        "exclusions",
         "patterns",
         "demo_role",
-        "extraction_candidate",
-        "exclusions",
-        "validator",
         "extraction_benefits",
-        "content_indicators"
+        "content_indicators",
+        "validator",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_ide_performance_patterns": [
-        "1",
-        "0"
+        "0",
+        "1"
       ],
       "domain_ide_performance_indicators": [
-        "3",
         "2",
+        "4",
         "0",
-        "1",
-        "4"
+        "3",
+        "1"
       ],
       "domain_ide_performance_requirements": [
-        "1",
-        "2",
+        "3",
         "0",
-        "3"
+        "2",
+        "1"
       ],
       "domain_hackathon_structure": [
-        "implementation_status",
         "linter",
-        "formatter",
-        "requirements",
         "reason",
-        "patterns",
-        "github_repositories",
         "hackathon_mapping",
-        "demo_role",
-        "extraction_candidate",
         "exclusions",
-        "validator",
+        "patterns",
+        "demo_role",
         "content_indicators",
-        "submission_coordination"
+        "github_repositories",
+        "formatter",
+        "submission_coordination",
+        "validator",
+        "implementation_status",
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_hackathon_patterns": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "7",
+        "3",
+        "1"
       ],
       "domain_hackathon_indicators": [
-        "7",
         "9",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "1",
-        "5",
-        "4"
+        "1"
       ],
       "domain_hackathon_requirements": [
-        "3",
         "2",
-        "0",
-        "1",
+        "4",
         "5",
-        "4"
+        "0",
+        "3",
+        "1"
       ],
       "domain_project_management_design_structure": [
         "linter",
-        "formatter",
-        "requirements",
         "reason",
-        "patterns",
-        "project_management_capabilities",
-        "integration_points",
-        "demo_role",
-        "extraction_candidate",
         "exclusions",
+        "integration_points",
+        "patterns",
+        "demo_role",
+        "content_indicators",
+        "formatter",
+        "project_management_capabilities",
         "validator",
-        "content_indicators"
+        "requirements",
+        "extraction_candidate"
       ],
       "domain_project_management_design_patterns": [
-        "7",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
-        "1",
-        "5",
-        "4"
+        "7",
+        "3",
+        "1"
       ],
       "domain_project_management_design_indicators": [
-        "7",
         "13",
         "9",
-        "15",
-        "3",
         "2",
+        "10",
+        "11",
+        "14",
+        "4",
+        "5",
         "0",
         "6",
-        "14",
+        "15",
+        "7",
+        "3",
         "8",
-        "11",
-        "1",
         "12",
-        "5",
-        "10",
-        "4"
+        "1"
       ],
       "domain_project_management_design_requirements": [
-        "7",
         "9",
-        "3",
         "2",
+        "4",
+        "5",
         "0",
         "6",
+        "7",
+        "3",
         "8",
-        "1",
-        "5",
-        "4"
+        "1"
       ]
     }
   }

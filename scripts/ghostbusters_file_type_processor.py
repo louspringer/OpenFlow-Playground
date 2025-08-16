@@ -498,7 +498,9 @@ class GhostbustersFileTypeProcessor:
             )
 
         if ghost_class.ghost_class in [GhostClass.CLASS_4, GhostClass.CLASS_5]:
-            recommendations.append("🚨 High threat file - isolate and analyze carefully")
+            recommendations.append(
+                "🚨 High threat file - isolate and analyze carefully"
+            )
 
         if not proton_status.containment_success:
             recommendations.append(

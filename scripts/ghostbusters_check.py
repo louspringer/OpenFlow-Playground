@@ -8,12 +8,12 @@ import asyncio
 import sys
 from pathlib import Path
 
+from src.ghostbusters.ghostbusters_orchestrator import run_ghostbusters
+from src.secure_shell_service.elegant_client import secure_execute
+
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
-
-from src.ghostbusters.ghostbusters_orchestrator import run_ghostbusters
-from src.secure_shell_service.elegant_client import secure_execute
 
 
 async def run_ghostbusters_check():

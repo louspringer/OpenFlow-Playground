@@ -113,7 +113,9 @@ class SubprojectScrubber:
             if final_ruff_result["success"]:
                 result["ruff_issues_after"] = final_ruff_result["issue_count"]
                 print(
-                    f"   📊 Issues: {result['ruff_issues_before']} → {result['ruff_issues_after']}"
+                    f"   📊 Issues: {
+                        result['ruff_issues_before']} → {
+                        result['ruff_issues_after']}"
                 )
             else:
                 result["errors"].append(
@@ -247,9 +249,9 @@ class SubprojectScrubber:
 
     def print_summary(self) -> None:
         """Print a summary of all scrubbing results"""
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"📊 SUBPROJECT SCRUBBING SUMMARY")
-        print(f"{'='*60}")
+        print(f"{'=' * 60}")
 
         total_issues_before = sum(
             r["ruff_issues_before"] for r in self.results.values()
@@ -284,7 +286,9 @@ class SubprojectScrubber:
             }.get(result["status"], "❓")
 
             print(
-                f"   {status_emoji} {name}: {result['ruff_issues_before']} → {result['ruff_issues_after']} issues"
+                f"   {status_emoji} {name}: {
+                    result['ruff_issues_before']} → {
+                    result['ruff_issues_after']} issues"
             )
 
             if result["errors"]:

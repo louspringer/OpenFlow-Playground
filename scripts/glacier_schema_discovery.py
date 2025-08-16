@@ -600,7 +600,7 @@ class GlacierSchemaProcessor:
                 # Get item from queue with timeout
                 try:
                     queue_item = self.processing_queue.get(timeout=1.0)
-                except:
+                except BaseException:
                     continue
 
                 schema_id, trigger_id = queue_item
@@ -731,7 +731,9 @@ class GlacierSchemaProcessor:
 
             # Log processing result
             logging.info(
-                f"Processed schema {schema_id} with {trigger.processor_function} in {end_time - start_time:.2f}s"
+                f"Processed schema {schema_id} with {
+                    trigger.processor_function} in {
+                    end_time - start_time:.2f}s"
             )
 
         except Exception as e:

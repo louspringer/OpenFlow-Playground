@@ -64,7 +64,8 @@ class MDCEditor:
         if self.yaml and RUAMEL_AVAILABLE:
             try:
                 # Pre-process Cursor-specific MDC format to make it valid YAML
-                # Convert "globs: *.py,*.js,*.ts,*.yaml" to "globs: '*.py,*.js,*.ts,*.yaml'"
+                # Convert "globs: *.py,*.js,*.ts,*.yaml" to "globs:
+                # '*.py,*.js,*.ts,*.yaml'"
                 processed_text = re.sub(
                     r"globs:\s*([^,\n]+(?:,[^,\n]+)*)", r"globs: '\1'", yaml_text
                 )
@@ -91,9 +92,12 @@ class MDCEditor:
                 value = value.strip()
 
                 # Handle quoted strings
-                if value.startswith('"') and value.endswith('"'):
-                    value = value[1:-1]
-                elif value.startswith("'") and value.endswith("'"):
+                if (
+                    value.startswith('"')
+                    and value.endswith('"')
+                    or value.startswith("'")
+                    and value.endswith("'")
+                ):
                     value = value[1:-1]
 
                 # Handle lists
@@ -235,7 +239,8 @@ class MDCEditor:
             # Validate globs format when alwaysApply: false
             if not always_apply:
                 globs = yaml_data.get("globs")
-                # Support both Cursor format (comma-separated string) and standard format (list)
+                # Support both Cursor format (comma-separated string) and standard
+                # format (list)
                 if isinstance(globs, str):
                     # Cursor format: "*.py,*.js,*.ts,*.yaml"
                     glob_patterns = [g.strip() for g in globs.split(",")]

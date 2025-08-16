@@ -429,7 +429,7 @@ class ModelSynchronizer:
                 # Get sync operation from queue
                 try:
                     operation = self.sync_queue.get(timeout=1.0)
-                except:
+                except BaseException:
                     continue
 
                 # Process sync operation

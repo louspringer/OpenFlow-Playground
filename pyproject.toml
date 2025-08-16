@@ -106,6 +106,7 @@ dev-dependencies = [
     "autoflake>=2.3.1",
     "pymarkdown>=0.1.4",
     "ruff>=0.12.9",
+    "autopep8>=2.3.2",
 ]
 
 [tool.black]
