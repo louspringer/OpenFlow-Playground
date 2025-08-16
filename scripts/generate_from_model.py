@@ -6,7 +6,7 @@ Creates Python scripts based on JSON models.
 """
 
 import json
-from typing import Any, Dict
+from typing import Any
 
 
 def load_model(model_file: str) -> dict[str, Any]:
@@ -15,8 +15,8 @@ def load_model(model_file: str) -> dict[str, Any]:
         return json.load(f)
 
 
-def generate_model_dimension_analyzer(model: dict[str, Any]) -> str:
-    """Generate the model dimension analyzer from the model"""
+def generate_auto_formatter(model: dict[str, Any]) -> str:
+    """Generate the comprehensive auto-formatter using abstract factory pattern from the model"""
 
     code = f'''#!/usr/bin/env python3
 """
@@ -342,16 +342,13 @@ def print_validation_report(
 
     status_emoji = "✅" if all_critical_passed else "❌"
     print(
-        f"{status_emoji} Overall Status: {
-            'PASSED' if all_critical_passed else 'FAILED'}"
+        f"{status_emoji} Overall Status: {'PASSED' if all_critical_passed else 'FAILED'}"
     )
 
     # Critical checks
     print("\n🔴 CRITICAL CHECKS:")
     print(
-        f"  {
-            '✅' if validation_results['syntax_valid'] else '❌'} Syntax Valid: {
-            validation_results['syntax_valid']}"
+        f"  {'✅' if validation_results['syntax_valid'] else '❌'} Syntax Valid: {validation_results['syntax_valid']}"
     )
     print(
         f"  {
@@ -408,8 +405,8 @@ def main():
     print("🚀 Generator from Model")
 
     # Generate model dimension analyzer
-    model = load_model("model_dimension_analyzer_model.json")
-    code = generate_model_dimension_analyzer(model)
+    model = load_model("auto_format_all_model.json")
+    code = generate_auto_formatter(model)
 
     # Validate the generated code
     validation_results = validate_generated_code(code, "model_dimension_analyzer.py")

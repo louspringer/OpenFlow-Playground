@@ -325,7 +325,7 @@ format-all: format-python format-bash format-docs format-go format-secure-shell 
 
 format-python: ## Format Python code
 	@echo "$(BLUE)🐍 Formatting Python code...$(NC)"
-	@$(UV) run black src/ tests/
+	@$(UV) run black src/ tests/ scripts/
 	@echo "$(GREEN)✅ Python formatting completed$(NC)"
 format-bash: ## Format bash scripts
 	@echo "$(BLUE)🐚 Formatting bash scripts...$(NC)"
