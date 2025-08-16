@@ -351,7 +351,8 @@ class GeminiGCPBillingAnalyzer:
                     "outputs": [],
                     "source": [
                         "# Load Gemini analysis results\n",
-                        f"analysis_results = {json.dumps(analysis_results, indent=2)}\n",
+                        f"analysis_results = {json.dumps(analysis_results,
+                                                                                indent=2)}\n",
                         "\n",
                         "print('🤖 Gemini Analysis Results:')\n",
                         "print('=' * 50)",

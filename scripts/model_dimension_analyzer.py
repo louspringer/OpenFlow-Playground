@@ -190,7 +190,9 @@ RETURN m.model_type as model_type,
         print(f"🎯 Total Dimensions Discovered: {total_dimensions}")
         print(f"🏗️  Top-Level Categories: {len(self.dimensions.get('top_level', []))}")
         print(f"🌐 Domain Categories: {len(self.dimensions.get('domains', []))}")
-        print(f"📋 Cursor Rules: {len(self.dimensions.get('cursor_rules_domains', []))}")
+        print(
+            f"📋 Cursor Rules: {len(self.dimensions.get('cursor_rules_domains', []))}"
+        )
         print(f"🔧 Meta Categories: {len(self.dimensions.get('meta', []))}")
 
         print("\n📋 DETAILED BREAKDOWN:")
@@ -202,7 +204,7 @@ RETURN m.model_type as model_type,
                         print(f"    - {dim}")
                 else:
                     print(
-                        f"    - {', '.join(sorted(list(dims)[:5]))}... and {len(dims)-5} more"
+                        f"    - {', '.join(sorted(list(dims)[:5]))}... and {len(dims) - 5} more"
                     )
 
         print("\n🚀 NEXT STEPS:")

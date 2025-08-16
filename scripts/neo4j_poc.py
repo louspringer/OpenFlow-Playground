@@ -96,7 +96,11 @@ class Neo4jPOC:
         cursor_rules = self.model["domain_architecture"]["cursor_rules"]
 
         # Create cursor_rules domain - single line query
-        domain_query = f"CREATE (cursor_rules:Domain {{name: 'cursor_rules', description: '{cursor_rules['description']}', status: '{cursor_rules['status']}', rule_firing_identification: {str(cursor_rules['rule_firing_identification']).lower()}}}) RETURN cursor_rules;"
+        domain_query = f"CREATE (cursor_rules:Domain {{name: 'cursor_rules', description: '{
+            cursor_rules['description']}', status: '{
+            cursor_rules['status']}', rule_firing_identification: {
+            str(
+                cursor_rules['rule_firing_identification']).lower()}}}) RETURN cursor_rules;"
         queries.append(domain_query)
 
         print("    ✅ Created cursor_rules domain")

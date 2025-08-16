@@ -6,10 +6,10 @@ Regenerate all .mdc files using the Python model
 import sys
 from pathlib import Path
 
+from mdc_generator import MDCGenerator
+
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from mdc_generator import MDCGenerator
 
 
 def main() -> None:

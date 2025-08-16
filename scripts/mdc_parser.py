@@ -71,9 +71,12 @@ class MDCParser:
                     yaml_data[key] = True
                 elif value.lower() == "false":
                     yaml_data[key] = False
-                elif value.startswith('"') and value.endswith('"'):
-                    yaml_data[key] = value[1:-1]
-                elif value.startswith("'") and value.endswith("'"):
+                elif (
+                    value.startswith('"')
+                    and value.endswith('"')
+                    or value.startswith("'")
+                    and value.endswith("'")
+                ):
                     yaml_data[key] = value[1:-1]
                 elif value.startswith("[") and value.endswith("]"):
                     # Handle YAML list format

@@ -65,8 +65,8 @@ class GCPBillingDailyReporter:
             start_date = end_date - timedelta(days=days)
 
             print(
-                f"📅 Fetching billing data from {start_date.strftime( \
-    '%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}",
+                f"📅 Fetching billing data from {start_date.strftime(
+                    '%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}",
             )
 
             # Generate mock billing data since we can't access real billing API
@@ -637,7 +637,9 @@ class GCPBillingDailyReporter:
             report.append("")
 
             # Date Range
-            date_range = f"{df['date'].min().strftime('%Y-%m-%d')} to {df['date'].max().strftime('%Y-%m-%d')}"
+            date_range = f"{
+                df['date'].min().strftime('%Y-%m-%d')} to {
+                df['date'].max().strftime('%Y-%m-%d')}"
             report.append("## 📅 Report Period")
             report.append(f"- **Date Range**: {date_range}")
             report.append(f"- **Total Days**: {len(daily_summary)}")
@@ -671,9 +673,7 @@ class GCPBillingDailyReporter:
             trend_direction = (
                 "increasing"
                 if cost_trend > 0
-                else "decreasing"
-                if cost_trend < 0
-                else "stable"
+                else "decreasing" if cost_trend < 0 else "stable"
             )
             report.append("## 📈 Cost Trends")
             report.append(f"- **Trend**: {trend_direction}")

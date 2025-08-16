@@ -92,7 +92,8 @@ class MDCLinter:
                     )
                     return False
 
-                # Support both Cursor format (comma-separated string) and standard format (list)
+                # Support both Cursor format (comma-separated string) and standard
+                # format (list)
                 if isinstance(globs, str):
                     # Cursor format: "*.py,*.js,*.ts,*.yaml"
                     glob_patterns = [g.strip() for g in globs.split(",")]

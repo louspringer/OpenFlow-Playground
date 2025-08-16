@@ -78,7 +78,11 @@ except ImportError as e:
                 diffs.append(
                     {
                         "type": "content_chaos",
-                        "description": f"Content changed from {type(old_spore.content)} to {type(new_spore.content)}",
+                        "description": f"Content changed from {
+                            type(
+                                old_spore.content)} to {
+                            type(
+                                new_spore.content)}",
                         "impact_score": 0.8,
                         "chaos_level": "HIGH",
                     }
@@ -89,7 +93,9 @@ except ImportError as e:
                 diffs.append(
                     {
                         "type": "type_chaos",
-                        "description": f"Spore type changed from {old_spore.spore_type} to {new_spore.spore_type}",
+                        "description": f"Spore type changed from {
+                            old_spore.spore_type} to {
+                            new_spore.spore_type}",
                         "impact_score": 0.9,
                         "chaos_level": "CRITICAL",
                     }
@@ -356,7 +362,11 @@ def run_chaos_diffing(chaos_spores: dict[str, GlacierSpore]):
         for j, type2 in enumerate(spore_types):
             if i != j:  # Don't diff with self
                 print(
-                    f"🔥 CHAOS DIFF #{total_diffs + 1}: {type1.upper()} vs {type2.upper()}"
+                    f"🔥 CHAOS DIFF #{
+                        total_diffs +
+                        1}: {
+                        type1.upper()} vs {
+                        type2.upper()}"
                 )
                 print("-" * 40)
 
@@ -371,7 +381,9 @@ def run_chaos_diffing(chaos_spores: dict[str, GlacierSpore]):
                         for diff in diffs:
                             print(f"      • {diff.change_type}: {diff.field_path}")
                             print(
-                                f"        Impact: {diff.impact_score:.2f}, Breaking: {diff.is_breaking_change}"
+                                f"        Impact: {
+                                    diff.impact_score:.2f}, Breaking: {
+                                    diff.is_breaking_change}"
                             )
                             chaos_score += diff.impact_score
                     else:
@@ -393,7 +405,8 @@ def run_chaos_diffing(chaos_spores: dict[str, GlacierSpore]):
     print(f"📊 Total Diffs: {total_diffs}")
     print(f"🔥 Chaos Score: {final_chaos_score:.2f}")
     print(
-        f"🚨 Chaos Level: {'MAXIMUM' if final_chaos_score > 0.8 else 'HIGH' if final_chaos_score > 0.6 else 'MEDIUM' if final_chaos_score > 0.4 else 'LOW'}"
+        f"🚨 Chaos Level: {
+            'MAXIMUM' if final_chaos_score > 0.8 else 'HIGH' if final_chaos_score > 0.6 else 'MEDIUM' if final_chaos_score > 0.4 else 'LOW'}"
     )
 
     if final_chaos_score > 0.8:
@@ -428,14 +441,17 @@ def test_ghostbusters_investigation(chaos_files: dict[str, str]):
                 result = processor.investigate_file(temp_path)
 
                 print(
-                    f"   👻 Ghost Class: {result['ghost_classification'].ghost_class.value}"
+                    f"   👻 Ghost Class: {
+                        result['ghost_classification'].ghost_class.value}"
                 )
                 print(f"   📡 PKE Energy: {result['pke_reading'].energy_level.value}")
                 print(
-                    f"   ⚡ Proton Status: {result['proton_pack_status'].stream_mode.value}"
+                    f"   ⚡ Proton Status: {
+                        result['proton_pack_status'].stream_mode.value}"
                 )
                 print(
-                    f"   ✅ Containment: {'Success' if result['proton_pack_status'].containment_success else 'Failed'}"
+                    f"   ✅ Containment: {
+                        'Success' if result['proton_pack_status'].containment_success else 'Failed'}"
                 )
                 print()
 

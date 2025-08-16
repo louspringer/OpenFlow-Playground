@@ -249,12 +249,16 @@ class BanditSecurityScanner:
 
             for issue in issue_list:
                 security_issue = SecurityIssue(
-                    severity=issue.severity.name
-                    if hasattr(issue.severity, "name")
-                    else str(issue.severity),
-                    confidence=issue.confidence.name
-                    if hasattr(issue.confidence, "name")
-                    else str(issue.confidence),
+                    severity=(
+                        issue.severity.name
+                        if hasattr(issue.severity, "name")
+                        else str(issue.severity)
+                    ),
+                    confidence=(
+                        issue.confidence.name
+                        if hasattr(issue.confidence, "name")
+                        else str(issue.confidence)
+                    ),
                     issue_type=issue.test_id,
                     message=issue.text,
                     filename=issue.fname,

@@ -10,10 +10,10 @@ import asyncio
 import sys
 from pathlib import Path
 
+from comprehensive_github_discovery import ComprehensiveGitHubDiscovery
+
 # Add the scripts directory to the path
 sys.path.append(str(Path(__file__).parent))
-
-from comprehensive_github_discovery import ComprehensiveGitHubDiscovery
 
 
 async def demo_discovery():

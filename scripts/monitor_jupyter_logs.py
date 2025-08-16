@@ -51,7 +51,8 @@ def monitor_jupyter_logs():
                 current_modified = notebook_path.stat().st_mtime
                 if current_modified > last_modified:
                     print(
-                        f"\n📝 Notebook modified at {datetime.now().strftime('%H:%M:%S')}",
+                        f"\n📝 Notebook modified at {
+                            datetime.now().strftime('%H:%M:%S')}"
                     )
                     last_modified = current_modified
 

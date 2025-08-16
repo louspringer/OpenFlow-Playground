@@ -66,7 +66,9 @@ def update_package_scores():
                 if new_content != content:
                     content = new_content
                     updates_applied += 1
-                    print(f"  ✅ Updated {domain_name}: score {old_score} → {new_score}")
+                    print(
+                        f"  ✅ Updated {domain_name}: score {old_score} → {new_score}"
+                    )
                     break  # Only update the first match for this domain
         else:
             print(f"  ❌ Domain {domain_name} not found or no package_potential")

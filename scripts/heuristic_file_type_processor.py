@@ -617,7 +617,9 @@ def main():
             print(f"\n📁 {test_file}")
             print(f"   Type: {discovery.detected_type}")
             print(
-                f"   Confidence: {discovery.confidence.value} ({discovery.confidence_score:.2f})"
+                f"   Confidence: {
+                    discovery.confidence.value} ({
+                    discovery.confidence_score:.2f})"
             )
             print(f"   Strategy: {discovery.discovery_strategy.value}")
             print(f"   Parsing: {'✅' if discovery.parsing_success else '❌'}")

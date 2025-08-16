@@ -23,10 +23,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 from urllib.parse import urlparse
 
-# Import our existing tools
-sys.path.append(str(Path(__file__).parent.parent / "src"))
 from artifact_forge.agents.artifact_detector import ArtifactDetector, ArtifactInfo
 from mcp_integration.github_mcp_client import GitHubMCPClient
+
+# Import our existing tools
+sys.path.append(str(Path(__file__).parent.parent / "src"))
 
 
 @dataclass

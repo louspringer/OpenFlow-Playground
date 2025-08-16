@@ -15,9 +15,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-# Add the scripts directory to the path
-sys.path.append(str(Path(__file__).parent))
-
 from glacier_spore_models import (
     Dimension,
     DimensionType,
@@ -26,6 +23,9 @@ from glacier_spore_models import (
     SemanticDiff,
     SporeType,
 )
+
+# Add the scripts directory to the path
+sys.path.append(str(Path(__file__).parent))
 
 
 class SemanticDiffEngine:
@@ -457,9 +457,7 @@ class SemanticDiffEngine:
             "semantic_impact": (
                 "high"
                 if diff.impact_score > 0.7
-                else "medium"
-                if diff.impact_score > 0.4
-                else "low"
+                else "medium" if diff.impact_score > 0.4 else "low"
             ),
         }
 
