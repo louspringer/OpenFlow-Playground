@@ -92,3 +92,4 @@ repos:
         stages: [pre-commit]
         description: "Enforce code quality standards and prevent direct editing violations"
         args: [--pre-commit]
+
