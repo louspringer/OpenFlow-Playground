@@ -129,22 +129,18 @@ class CodeQualityEnforcer:
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
         ]
         documented_classes = sum(
-
-                1
-                for cls in classes
-                if cls.body
-                and isinstance(cls.body[0], ast.Expr)
-                and isinstance(cls.body[0].value, ast.Constant)
-
+            1
+            for cls in classes
+            if cls.body
+            and isinstance(cls.body[0], ast.Expr)
+            and isinstance(cls.body[0].value, ast.Constant)
         )
         documented_functions = sum(
-
-                1
-                for func in functions
-                if func.body
-                and isinstance(func.body[0], ast.Expr)
-                and isinstance(func.body[0].value, ast.Constant)
-
+            1
+            for func in functions
+            if func.body
+            and isinstance(func.body[0], ast.Expr)
+            and isinstance(func.body[0].value, ast.Constant)
         )
         total_definitions = len(classes) + len(functions)
         if total_definitions == 0:

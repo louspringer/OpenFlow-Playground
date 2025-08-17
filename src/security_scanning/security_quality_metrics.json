@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-08-17T20:31:41.503503",
+  "total_security_issues": 2,
+  "high_severity_issues": 2,
+  "medium_severity_issues": 0,
+  "low_severity_issues": 0,
+  "security_score": 80.0,
+  "critical_issues": [
+    "2 high severity security issues detected"
+  ],
+  "actionable_items": [
+    "Update security policies to prevent credential exposure",
+    "Implement pre-commit hooks for credential scanning",
+    "Schedule security training for development team"
+  ]
+}

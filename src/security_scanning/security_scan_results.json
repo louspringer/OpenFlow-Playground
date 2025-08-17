@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-08-17T20:31:41.503503",
+  "total_issues": 2,
+  "high_severity": 2,
+  "medium_severity": 0,
+  "low_severity": 0,
+  "summary": "Security scan completed with 2 total issues:\n- High severity: 2\n- Medium severity: 0\n- Low severity: 0\n\u26a0\ufe0f  CRITICAL: High severity issues require immediate attention!",
+  "actionable_items": [
+    "Update security policies to prevent credential exposure",
+    "Implement pre-commit hooks for credential scanning",
+    "Schedule security training for development team"
+  ],
+  "issues": [
+    {
+      "id": 20223841,
+      "detector_name": "username_password",
+      "severity": "high",
+      "status": "TRIGGERED",
+      "filepath": "scripts/cypher_validator.py",
+      "line_number": null,
+      "description": "Username Password detected in 2 location(s)",
+      "remediation": "Remove sensitive information from code, use secure configuration management",
+      "priority": "CRITICAL"
+    },
+    {
+      "id": 20223841,
+      "detector_name": "username_password",
+      "severity": "high",
+      "status": "TRIGGERED",
+      "filepath": "scripts/neo4j_round_trip_tests.py",
+      "line_number": null,
+      "description": "Username Password detected in 2 location(s)",
+      "remediation": "Remove sensitive information from code, use secure configuration management",
+      "priority": "CRITICAL"
+    }
+  ]
+}

@@ -6,8 +6,9 @@ This script validates Cypher queries using our existing Neo4j database
 through the official Python driver instead of subprocess calls.
 """
 
+import os
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from neo4j import GraphDatabase
 
@@ -18,8 +19,8 @@ class CypherValidator:
     def __init__(
         self,
         uri: str = "neo4j://localhost:7687",
-        username: str = "neo4j",
-        password: str = "qwzx8187",
+        username: str = os.getenv("NEO4J_USERNAME", "neo4j"),
+        password: str = os.getenv("NEO4J_PASSWORD", ""),
     ):
         self.driver = GraphDatabase.driver(uri, auth=(username, password))
 

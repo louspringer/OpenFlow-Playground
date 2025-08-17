@@ -11,8 +11,9 @@ Critical for ensuring our model-driven approach works end-to-end.
 """
 
 import json
+import os
 import time
-from typing import Any, Dict
+from typing import Any
 
 from neo4j import GraphDatabase
 
@@ -23,8 +24,8 @@ class Neo4jRoundTripTester:
     def __init__(
         self,
         uri: str = "neo4j://localhost:7687",
-        username: str = "neo4j",
-        password: str = "qwzx8187",
+        username: str = os.getenv("NEO4J_USERNAME", "neo4j"),
+        password: str = os.getenv("NEO4J_PASSWORD", ""),
     ):
         self.driver = GraphDatabase.driver(uri, auth=(username, password))
         self.test_results = []
@@ -220,9 +221,7 @@ class Neo4jRoundTripTester:
                             passed += 1
                         else:
                             print(
-                                f"    ❌ {
-                                    test['name']}: Expected {
-                                    test['expected']}, got {result_dict}"
+                                f"    ❌ {test['name']}: Expected {test['expected']}, got {result_dict}"
                             )
                     else:
                         print(f"    ❌ {test['name']}: No results returned")
