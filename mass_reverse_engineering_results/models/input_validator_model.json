@@ -1,0 +1,414 @@
+{
+  "system_name": "",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "InputValidator": {
+      "responsibility": "Input validation utilities",
+      "methods": [
+        {
+          "name": "validate_url",
+          "signature": "validate_url(self, url: str) -> bool",
+          "docstring": "Validate URL format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 10,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_snowflake_url",
+          "signature": "validate_snowflake_url(self, url: str) -> bool",
+          "docstring": "Validate Snowflake URL format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 19,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_uuid",
+          "signature": "validate_uuid(self, uuid_str: str) -> bool",
+          "docstring": "Validate UUID format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 24,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "uuid_str",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_oauth_credentials",
+          "signature": "validate_oauth_credentials(self, credentials: dict[Tuple[str, str]]) -> bool",
+          "docstring": "Validate OAuth credentials",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 30,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 6
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_input_validator",
+      "signature": "test_input_validator() -> None",
+      "docstring": "Test input validator functionality",
+      "decorators": [],
+      "line_number": 35,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "validate_input",
+      "signature": "validate_input(input_str: str, input_type: str) -> bool",
+      "docstring": "Validate general input based on type",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 53,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "input_str",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "input_type",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_email",
+      "signature": "validate_email(email: str) -> bool",
+      "docstring": "Validate email format",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 71,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_password_strength",
+      "signature": "validate_password_strength(password: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Validate password strength",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 78,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "password",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_phone_number",
+      "signature": "validate_phone_number(phone: str) -> bool",
+      "docstring": "Validate phone number format",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 92,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "phone",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_credit_card",
+      "signature": "validate_credit_card(card_number: str) -> bool",
+      "docstring": "Validate credit card number using Luhn algorithm",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 99,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "card_number",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_json_schema",
+      "signature": "validate_json_schema(data: dict[Tuple[str, Any]], schema: dict[Tuple[str, Any]]) -> bool",
+      "docstring": "Validate data against JSON schema",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 114,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        },
+        {
+          "name": "schema",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_file_extension",
+      "signature": "validate_file_extension(filename: str, allowed_extensions: list[str]) -> bool",
+      "docstring": "Validate file extension",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 126,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filename",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "allowed_extensions",
+          "type": "list[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_file_size",
+      "signature": "validate_file_size(file_size: int, max_size_mb: int) -> bool",
+      "docstring": "Validate file size",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 135,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_size",
+          "type": "int",
+          "default": null
+        },
+        {
+          "name": "max_size_mb",
+          "type": "int",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_sql_injection_safe",
+      "signature": "validate_sql_injection_safe(sql: str) -> bool",
+      "docstring": "Check if SQL string is safe from injection",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 142,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "sql",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_xss_safe",
+      "signature": "validate_xss_safe(text: str) -> bool",
+      "docstring": "Check if text is safe from XSS attacks",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 155,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "text",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_file_upload",
+      "signature": "validate_file_upload(filename: str, file_size: int, allowed_extensions: list[str], max_size_mb: int) -> dict[Tuple[str, Any]]",
+      "docstring": "Validate file upload for security and size constraints",
+      "decorators": [
+        "staticmethod"
+      ],
+      "line_number": 170,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "filename",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "file_size",
+          "type": "int",
+          "default": null
+        },
+        {
+          "name": "allowed_extensions",
+          "type": "list[str]",
+          "default": null
+        },
+        {
+          "name": "max_size_mb",
+          "type": "int",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import re",
+    "from typing import Any",
+    "from urllib.parse import urlparse",
+    "from jsonschema import validate"
+  ],
+  "module_docstring": "",
+  "file_structure": {
+    "total_lines": 202,
+    "code_lines": 170,
+    "comment_lines": 0,
+    "blank_lines": 32,
+    "total_nodes": 1106,
+    "class_nodes": 1,
+    "function_nodes": 16,
+    "import_nodes": 4,
+    "expression_nodes": 23,
+    "assignment_nodes": 25,
+    "return_nodes": 25
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 202
+  },
+  "used_names": [
+    "Exception",
+    "digits_only",
+    "allowed_extensions",
+    "credentials",
+    "password",
+    "email",
+    "text_lower",
+    "schema",
+    "dangerous_extensions",
+    "staticmethod",
+    "dict",
+    "input_type",
+    "result",
+    "urlparse",
+    "isinstance",
+    "email_pattern",
+    "file_ext",
+    "str",
+    "sum",
+    "ImportError",
+    "text",
+    "pattern",
+    "ext",
+    "input_str",
+    "list",
+    "uuid_str",
+    "even_digits",
+    "checks",
+    "len",
+    "url",
+    "suspicious_patterns",
+    "card_number",
+    "filename",
+    "print",
+    "phone",
+    "file_size",
+    "InputValidator",
+    "bool",
+    "odd_digits",
+    "validation_result",
+    "data",
+    "uuid_pattern",
+    "re",
+    "sql",
+    "digits",
+    "checksum",
+    "dangerous_patterns",
+    "max_size_mb",
+    "validator",
+    "max_size_bytes",
+    "all",
+    "int",
+    "divmod",
+    "validate",
+    "Any",
+    "sql_lower",
+    "d"
+  ]
+}

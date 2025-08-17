@@ -1,0 +1,175 @@
+{
+  "system_name": "Secure Shell Service Client - Replaces subprocess calls with secure gRPC interface",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MockSecureShellServiceStub": {
+      "responsibility": "Mock implementation until protobuf is generated",
+      "methods": [
+        {
+          "name": "ExecuteCommand",
+          "signature": "ExecuteCommand(self, request: Any) -> Any",
+          "docstring": "Mock command execution",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "request",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 20
+    },
+    "SecureShellClient": {
+      "responsibility": "Secure shell client to replace subprocess calls",
+      "methods": [
+        {
+          "name": "connect",
+          "signature": "connect(self) -> bool",
+          "docstring": "Connect to the secure shell service",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": "bool",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_command",
+          "signature": "execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[Tuple[str, Any]]",
+          "docstring": "Execute command securely via gRPC",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "validate_input",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "health_check",
+          "signature": "health_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Check service health",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "close",
+          "signature": "close(self) -> None",
+          "docstring": "Close the connection",
+          "decorators": [],
+          "line_number": 132,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 41
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "import grpc",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nSecure Shell Service Client - Replaces subprocess calls with secure gRPC interface\n",
+  "file_structure": {
+    "total_lines": 170,
+    "code_lines": 127,
+    "comment_lines": 11,
+    "blank_lines": 32,
+    "total_nodes": 603,
+    "class_nodes": 2,
+    "function_nodes": 2,
+    "import_nodes": 5,
+    "expression_nodes": 20,
+    "assignment_nodes": 16,
+    "return_nodes": 10
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 170
+  },
+  "used_names": [
+    "object",
+    "__name__",
+    "Exception",
+    "response",
+    "logging",
+    "timeout",
+    "client",
+    "port",
+    "validate_input",
+    "dict",
+    "result",
+    "str",
+    "grpc",
+    "health",
+    "command",
+    "print",
+    "main",
+    "self",
+    "getattr",
+    "asyncio",
+    "bool",
+    "type",
+    "channel",
+    "host",
+    "int",
+    "MockSecureShellServiceStub",
+    "e",
+    "SecureShellClient",
+    "Any",
+    "request"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "system_name": "Test file to check Flake8 errors",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PerfectCodeGenerator": {
+      "responsibility": "Generator that CANNOT emit non-conforming code\n    Integrates with linting tools and validates before emission",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "CodeGenerator"
+      ],
+      "line_number": 13
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from code_generator import CodeGenerator"
+  ],
+  "module_docstring": "\nTest file to check Flake8 errors\n",
+  "file_structure": {
+    "total_lines": 28,
+    "code_lines": 21,
+    "comment_lines": 1,
+    "blank_lines": 6,
+    "total_nodes": 61,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 3,
+    "assignment_nodes": 3,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 28
+  },
+  "used_names": [
+    "__name__",
+    "logging",
+    "CodeGenerator",
+    "self",
+    "super"
+  ]
+}

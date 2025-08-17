@@ -1,0 +1,140 @@
+{
+  "system_name": "Simple Round-trip test: reverse engineer \u2192 generate code \u2192 compare results",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_json_file",
+      "signature": "load_json_file(file_path: str) -> dict",
+      "docstring": "Load JSON file",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_reverse_engineered_model",
+      "signature": "fix_reverse_engineered_model(model: dict) -> dict",
+      "docstring": "Fix issues in the reverse engineered model",
+      "decorators": [],
+      "line_number": 16,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_design_spec_from_model",
+      "signature": "create_design_spec_from_model(model: dict) -> dict",
+      "docstring": "Convert reverse engineered model to design spec format",
+      "decorators": [],
+      "line_number": 27,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "run_round_trip_test",
+      "signature": "run_round_trip_test() -> None",
+      "docstring": "Run the complete round-trip test",
+      "decorators": [],
+      "line_number": 52,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from round_trip_model_system import RoundTripModelSystem"
+  ],
+  "module_docstring": "\nSimple Round-trip test: reverse engineer \u2192 generate code \u2192 compare results\n",
+  "file_structure": {
+    "total_lines": 180,
+    "code_lines": 115,
+    "comment_lines": 22,
+    "blank_lines": 43,
+    "total_nodes": 801,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 43,
+    "assignment_nodes": 26,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 180
+  },
+  "used_names": [
+    "structure_match",
+    "__name__",
+    "f",
+    "Exception",
+    "enumerate",
+    "generated_methods",
+    "load_json_file",
+    "RoundTripModelSystem",
+    "abs",
+    "dict",
+    "original_methods",
+    "content",
+    "original_returns",
+    "system",
+    "open",
+    "str",
+    "functionality_match",
+    "fix_reverse_engineered_model",
+    "calc_methods",
+    "create_design_spec_from_model",
+    "design_spec",
+    "generated_has_calc",
+    "json",
+    "comp_data",
+    "run_round_trip_test",
+    "original_classes",
+    "generated_files",
+    "len",
+    "model_obj",
+    "file_path",
+    "filename",
+    "comp_name",
+    "print",
+    "original_has_calc",
+    "original_types",
+    "generated_lines",
+    "original_lines",
+    "generated_classes",
+    "generated_returns",
+    "generated_types",
+    "method",
+    "i",
+    "model",
+    "original_content",
+    "generated_content",
+    "all",
+    "func",
+    "e",
+    "component"
+  ]
+}

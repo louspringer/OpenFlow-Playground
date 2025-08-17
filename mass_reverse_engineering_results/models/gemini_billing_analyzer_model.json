@@ -1,0 +1,177 @@
+{
+  "system_name": "Gemini-Integrated Billing Analyzer for Elmo Fuzzy Giggle",
+  "description": "Clean implementation combining Ghostbusters with Gemini LLM for GCP billing insights",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GeminiBillingAnalyzer": {
+      "responsibility": "Gemini-integrated billing analyzer for GCP cost optimization",
+      "methods": [
+        {
+          "name": "_setup_gemini_llm",
+          "signature": "_setup_gemini_llm(self) -> Optional[ChatGoogleGenerativeAI]",
+          "docstring": "Setup Gemini LLM with proper API key",
+          "decorators": [],
+          "line_number": 28,
+          "return_type": "Optional[ChatGoogleGenerativeAI]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_billing_data",
+          "signature": "get_billing_data(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get current GCP billing data",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_billing_with_gemini",
+          "signature": "analyze_billing_with_gemini(self, billing_data: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze billing data using Gemini LLM",
+          "decorators": [],
+          "line_number": 160,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "billing_data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_ghostbusters_analysis",
+          "signature": "run_ghostbusters_analysis(self, project_path: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Run Ghostbusters analysis on the project",
+          "decorators": [],
+          "line_number": 207,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_project",
+          "signature": "analyze_project(self, project_path: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Complete analysis combining Ghostbusters with Gemini billing insights",
+          "decorators": [],
+          "line_number": 231,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 17
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import json",
+    "import logging",
+    "import os",
+    "import subprocess",
+    "import uuid",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from typing import Any",
+    "from typing import Optional",
+    "from langchain_core.messages import HumanMessage",
+    "from langchain_google_genai import ChatGoogleGenerativeAI",
+    "import asyncio",
+    "from src.ghostbusters.ghostbusters_orchestrator import GhostbustersOrchestrator"
+  ],
+  "module_docstring": "Gemini-Integrated Billing Analyzer for Elmo Fuzzy Giggle\nClean implementation combining Ghostbusters with Gemini LLM for GCP billing insights",
+  "file_structure": {
+    "total_lines": 346,
+    "code_lines": 272,
+    "comment_lines": 19,
+    "blank_lines": 55,
+    "total_nodes": 1391,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 12,
+    "expression_nodes": 45,
+    "assignment_nodes": 36,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 346
+  },
+  "used_names": [
+    "__name__",
+    "gemini_analysis",
+    "Exception",
+    "response",
+    "logging",
+    "llm",
+    "orchestrator",
+    "api_key",
+    "dict",
+    "analyzer",
+    "result",
+    "billing_data",
+    "enabled_services",
+    "databases",
+    "os",
+    "logger",
+    "str",
+    "HumanMessage",
+    "uuid",
+    "subprocess",
+    "billing_account",
+    "json",
+    "combined_result",
+    "len",
+    "prompt",
+    "print",
+    "ChatGoogleGenerativeAI",
+    "analysis_id",
+    "main",
+    "self",
+    "resources",
+    "asyncio",
+    "project_id",
+    "functions",
+    "ghostbusters_result",
+    "GhostbustersOrchestrator",
+    "GeminiBillingAnalyzer",
+    "datetime",
+    "run_services",
+    "e",
+    "Optional",
+    "project_path",
+    "Any",
+    "timezone"
+  ]
+}

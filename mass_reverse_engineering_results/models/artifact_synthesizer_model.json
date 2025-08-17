@@ -1,0 +1,315 @@
+{
+  "system_name": "ArtifactSynthesizer Agent",
+  "description": "Creates unified artifact insights and recommendations",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactInsight": {
+      "responsibility": "A unified insight about the codebase",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 18
+    },
+    "ArtifactSynthesizer": {
+      "responsibility": "Creates unified insights from artifact analysis",
+      "methods": [
+        {
+          "name": "synthesize_insights",
+          "signature": "synthesize_insights(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Create unified insights from all artifact data",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_codebase_health",
+          "signature": "_analyze_codebase_health(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Analyze overall codebase health",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_complexity_distribution",
+          "signature": "_analyze_complexity_distribution(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Analyze complexity distribution across artifacts",
+          "decorators": [],
+          "line_number": 139,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_quality_metrics",
+          "signature": "_analyze_quality_metrics(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Analyze code quality metrics",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_security_issues",
+          "signature": "_analyze_security_issues(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Analyze security issues",
+          "decorators": [],
+          "line_number": 272,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_performance_patterns",
+          "signature": "_analyze_performance_patterns(self, artifacts: list[dict[Tuple[str, Any]]], relationships: list[dict[Tuple[str, Any]]], opportunities: list[dict[Tuple[str, Any]]]) -> list[ArtifactInsight]",
+          "docstring": "Analyze performance patterns",
+          "decorators": [],
+          "line_number": 315,
+          "return_type": "list[ArtifactInsight]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "relationships",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "opportunities",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_severity_score",
+          "signature": "_severity_score(self, severity: str) -> int",
+          "docstring": "Convert severity to numeric score for sorting",
+          "decorators": [],
+          "line_number": 380,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "severity",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 31
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test ArtifactSynthesizer",
+      "decorators": [],
+      "line_number": 386,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nArtifactSynthesizer Agent\nCreates unified artifact insights and recommendations\n",
+  "file_structure": {
+    "total_lines": 440,
+    "code_lines": 372,
+    "comment_lines": 14,
+    "blank_lines": 54,
+    "total_nodes": 1699,
+    "class_nodes": 2,
+    "function_nodes": 9,
+    "import_nodes": 4,
+    "expression_nodes": 34,
+    "assignment_nodes": 34,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 440
+  },
+  "used_names": [
+    "type_insights",
+    "parsed_data",
+    "__name__",
+    "complexities",
+    "insight_type",
+    "a",
+    "error_opportunities",
+    "Exception",
+    "logging",
+    "description",
+    "scores",
+    "artifact_type",
+    "opp",
+    "doc_ratio",
+    "c",
+    "x",
+    "type_counts",
+    "severity",
+    "float",
+    "dict",
+    "logger",
+    "str",
+    "python_artifacts",
+    "complexity",
+    "created_at",
+    "artifacts",
+    "sum",
+    "critical_security",
+    "sample_artifacts",
+    "rel",
+    "import_relationships",
+    "dataclass",
+    "list",
+    "opportunities",
+    "len",
+    "synthesizer",
+    "print",
+    "primary_type",
+    "main",
+    "self",
+    "analyzer_func",
+    "avg_complexity",
+    "title",
+    "max",
+    "artifact",
+    "affected_artifacts",
+    "insight",
+    "datetime",
+    "ArtifactSynthesizer",
+    "markdown_artifacts",
+    "quality_opportunities",
+    "critical_errors",
+    "recommendations",
+    "security_opportunities",
+    "int",
+    "insights",
+    "ArtifactInsight",
+    "performance_opportunities",
+    "relationships",
+    "e",
+    "Any",
+    "sample_relationships",
+    "sample_opportunities",
+    "high_complexity_count",
+    "confidence"
+  ]
+}

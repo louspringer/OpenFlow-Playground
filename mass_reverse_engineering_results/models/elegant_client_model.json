@@ -1,0 +1,228 @@
+{
+  "system_name": "Elegant Secure Shell Client - NO MORE CRINGING! \ud83d\ude04",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ElegantSecureShellClient": {
+      "responsibility": "Elegant secure shell client - NO MORE SHELL COMMANDS! \ud83c\udf89",
+      "methods": [
+        {
+          "name": "connect",
+          "signature": "connect(self) -> bool",
+          "docstring": "Connect to the secure shell service",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": "bool",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_create_mock_stub",
+          "signature": "_create_mock_stub(self, channel: Any) -> Any",
+          "docstring": "Create a mock stub that simulates the real service",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "channel",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "execute_command",
+          "signature": "execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[Tuple[str, Any]]",
+          "docstring": "Execute command elegantly - NO MORE CRINGING! \ud83d\ude04",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "validate_input",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "health_check",
+          "signature": "health_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Check service health elegantly",
+          "decorators": [],
+          "line_number": 164,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "close",
+          "signature": "close(self) -> None",
+          "docstring": "Close the connection elegantly",
+          "decorators": [],
+          "line_number": 183,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 17
+    },
+    "MockStub": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "ExecuteCommand",
+          "signature": "ExecuteCommand(self, request: Any, timeout: Any) -> Any",
+          "docstring": "Elegant command execution - NO MORE CRINGING! \ud83d\ude04",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "request",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "HealthCheck",
+          "signature": "HealthCheck(self, request: Any, timeout: Any) -> Any",
+          "docstring": "Elegant health check",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "request",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 48
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "import grpc",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nElegant Secure Shell Client - NO MORE CRINGING! \ud83d\ude04\n",
+  "file_structure": {
+    "total_lines": 239,
+    "code_lines": 182,
+    "comment_lines": 13,
+    "blank_lines": 44,
+    "total_nodes": 912,
+    "class_nodes": 2,
+    "function_nodes": 3,
+    "import_nodes": 5,
+    "expression_nodes": 30,
+    "assignment_nodes": 33,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 239
+  },
+  "used_names": [
+    "stderr",
+    "object",
+    "__name__",
+    "Exception",
+    "response",
+    "logging",
+    "timeout",
+    "client",
+    "timeout_sec",
+    "port",
+    "validate_input",
+    "cmd",
+    "dict",
+    "result",
+    "str",
+    "grpc",
+    "process",
+    "health",
+    "command",
+    "print",
+    "main",
+    "self",
+    "stdout",
+    "getattr",
+    "asyncio",
+    "success",
+    "error",
+    "bool",
+    "MockStub",
+    "channel",
+    "type",
+    "ElegantSecureShellClient",
+    "output",
+    "exit_code",
+    "commands",
+    "host",
+    "int",
+    "e",
+    "Any",
+    "request"
+  ]
+}

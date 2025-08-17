@@ -1,0 +1,263 @@
+{
+  "system_name": "State Manager: Centralized state management for clewcrew workflows.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "StateSnapshot": {
+      "responsibility": "Snapshot of state at a point in time.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 16
+    },
+    "StateManager": {
+      "responsibility": "Centralized state management for workflows.",
+      "methods": [
+        {
+          "name": "set_state",
+          "signature": "set_state(self, key: str, value: Any) -> None",
+          "docstring": "Set a state value.",
+          "decorators": [],
+          "line_number": 38,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_state",
+          "signature": "get_state(self, key: str, default: Any) -> Any",
+          "docstring": "Get a state value.",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "default",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_all_state",
+          "signature": "get_all_state(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get all current state.",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "delete_state",
+          "signature": "delete_state(self, key: str) -> None",
+          "docstring": "Delete a state value.",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "clear_state",
+          "signature": "clear_state(self) -> None",
+          "docstring": "Clear all state.",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_snapshot",
+          "signature": "save_snapshot(self, version: str, metadata: Optional[Dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Save current state as a snapshot.",
+          "decorators": [],
+          "line_number": 62,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "version",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "metadata",
+              "type": "Optional[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_snapshot",
+          "signature": "load_snapshot(self, version: str) -> Optional[StateSnapshot]",
+          "docstring": "Load a specific snapshot by version.",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "Optional[StateSnapshot]",
+          "parameters": [
+            {
+              "name": "version",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_snapshot_history",
+          "signature": "get_snapshot_history(self) -> List[StateSnapshot]",
+          "docstring": "Get all available snapshots.",
+          "decorators": [],
+          "line_number": 100,
+          "return_type": "List[StateSnapshot]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "export_state",
+          "signature": "export_state(self, filepath: str) -> None",
+          "docstring": "Export current state to a file.",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "import_state",
+          "signature": "import_state(self, filepath: str) -> None",
+          "docstring": "Import state from a file.",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 25
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import Optional",
+    "from typing import List",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "import logging",
+    "from clewcrew_common.file_ops import FileOperations"
+  ],
+  "module_docstring": "\nState Manager: Centralized state management for clewcrew workflows.\n\nProvides persistent, versioned state storage and management.\n",
+  "file_structure": {
+    "total_lines": 127,
+    "code_lines": 99,
+    "comment_lines": 2,
+    "blank_lines": 26,
+    "total_nodes": 658,
+    "class_nodes": 2,
+    "function_nodes": 11,
+    "import_nodes": 5,
+    "expression_nodes": 27,
+    "assignment_nodes": 11,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 127
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "filepath",
+    "logging",
+    "snapshot_data",
+    "default",
+    "value",
+    "dict",
+    "Dict",
+    "str",
+    "storage_path",
+    "List",
+    "export_data",
+    "reversed",
+    "import_data",
+    "dataclass",
+    "len",
+    "filename",
+    "StateSnapshot",
+    "version",
+    "self",
+    "metadata",
+    "ValueError",
+    "field",
+    "datetime",
+    "data",
+    "timestamp",
+    "snapshot",
+    "FileOperations",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

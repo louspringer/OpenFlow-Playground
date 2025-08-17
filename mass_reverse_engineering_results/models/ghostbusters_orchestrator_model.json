@@ -1,0 +1,276 @@
+{
+  "system_name": "Ghostbusters Orchestrator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GhostbustersOrchestrator": {
+      "responsibility": "Ghostbusters Orchestrator for paranormal investigation of code quality issues.\n\n    This orchestrator coordinates multiple agents to investigate and resolve\n    code quality problems through systematic analysis and testing.",
+      "methods": [
+        {
+          "name": "add_agent",
+          "signature": "add_agent(self, agent_name: str, agent_config: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Add an investigation agent to the orchestrator",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "agent_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "agent_config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "investigate_quality_issues",
+          "signature": "investigate_quality_issues(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Investigate quality issues in the target path",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_quality_analysis",
+          "signature": "_run_quality_analysis(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run comprehensive quality analysis",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_single_file",
+          "signature": "_analyze_single_file(self, file_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze a single Python file for quality issues",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_directory",
+          "signature": "_analyze_directory(self, dir_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze a directory for quality issues",
+          "decorators": [],
+          "line_number": 162,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "dir_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self, analysis: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Generate recommendations based on analysis results",
+          "decorators": [],
+          "line_number": 188,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_quality_score",
+          "signature": "_calculate_quality_score(self, analysis: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate overall quality score based on analysis",
+          "decorators": [],
+          "line_number": 231,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_timestamp",
+          "signature": "_get_timestamp(self) -> str",
+          "docstring": "Get current timestamp string",
+          "decorators": [],
+          "line_number": 254,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_investigation_summary",
+          "signature": "get_investigation_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all investigations",
+          "decorators": [],
+          "line_number": 260,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_overall_trend",
+          "signature": "_calculate_overall_trend(self) -> str",
+          "docstring": "Calculate overall quality trend",
+          "decorators": [],
+          "line_number": 269,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    }
+  },
+  "module_functions": [
+    {
+      "name": "run_ghostbusters",
+      "signature": "run_ghostbusters(target_path: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Run Ghostbusters investigation on the specified target path.\n\n    Args:\n        target_path: Path to investigate (file or directory)\n\n    Returns:\n        Investigation results dictionary",
+      "decorators": [],
+      "line_number": 289,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "target_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "from datetime import datetime"
+  ],
+  "module_docstring": "\nGhostbusters Orchestrator\n\nThis module provides the main GhostbustersOrchestrator class for paranormal investigation\nof code quality issues and multi-agent testing coordination.\n",
+  "file_structure": {
+    "total_lines": 324,
+    "code_lines": 241,
+    "comment_lines": 15,
+    "blank_lines": 68,
+    "total_nodes": 1371,
+    "class_nodes": 1,
+    "function_nodes": 12,
+    "import_nodes": 5,
+    "expression_nodes": 45,
+    "assignment_nodes": 45,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 324
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "round",
+    "logging",
+    "python_files",
+    "scores",
+    "orchestrator",
+    "severity_weights",
+    "severity",
+    "Any",
+    "dict",
+    "float",
+    "target_path",
+    "agent_name",
+    "content",
+    "result",
+    "analysis",
+    "logger",
+    "str",
+    "Path",
+    "path",
+    "sum",
+    "todo_count",
+    "all_issues",
+    "avg_score",
+    "list",
+    "penalty",
+    "json",
+    "min",
+    "dir_path",
+    "len",
+    "quality_score",
+    "agent_config",
+    "file_path",
+    "print",
+    "self",
+    "file_issues",
+    "issue",
+    "bool",
+    "results",
+    "max",
+    "quality_analysis",
+    "GhostbustersOrchestrator",
+    "max_penalty",
+    "datetime",
+    "hack_count",
+    "investigation_results",
+    "config",
+    "run_ghostbusters",
+    "i",
+    "recommendations",
+    "weight",
+    "e",
+    "Optional",
+    "fixme_count",
+    "score",
+    "total_weight",
+    "issues"
+  ]
+}

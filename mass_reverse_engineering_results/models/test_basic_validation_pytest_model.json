@@ -1,0 +1,283 @@
+{
+  "system_name": "Pytest-compatible Basic Validation Tests",
+  "description": "Tests core functionality with proper mocking",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestSecurityManager": {
+      "responsibility": "Test SecurityManager functionality",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_credential_encryption",
+          "signature": "test_credential_encryption(self) -> Any",
+          "docstring": "Test credential encryption",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    },
+    "TestInputValidator": {
+      "responsibility": "Test InputValidator functionality",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_input_validation",
+          "signature": "test_input_validation(self) -> Any",
+          "docstring": "Test input validation",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 34
+    },
+    "TestHTTPSEnforcement": {
+      "responsibility": "Test HTTPS enforcement",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_https_enforcement",
+          "signature": "test_https_enforcement(self) -> Any",
+          "docstring": "Test HTTPS enforcement",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 49
+    },
+    "TestDeploymentManager": {
+      "responsibility": "Test DeploymentManager functionality",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 70,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_deployment_management",
+          "signature": "test_deployment_management(self) -> Any",
+          "docstring": "Test deployment management",
+          "decorators": [],
+          "line_number": 76,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 67
+    },
+    "TestMonitoringDashboard": {
+      "responsibility": "Test MonitoringDashboard functionality",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_monitoring_dashboard",
+          "signature": "test_monitoring_dashboard(self) -> Any",
+          "docstring": "Test monitoring dashboard",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 82
+    },
+    "TestOpenFlowQuickstartApp": {
+      "responsibility": "Test OpenFlowQuickstartApp functionality",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_streamlit_app",
+          "signature": "test_streamlit_app(self) -> Any",
+          "docstring": "Test Streamlit app",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 98
+    },
+    "TestSecurityConfiguration": {
+      "responsibility": "Test security configuration",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 116,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_configuration",
+          "signature": "test_security_configuration(self) -> Any",
+          "docstring": "Test security configuration",
+          "decorators": [],
+          "line_number": 125,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 113
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from unittest.mock import Mock"
+  ],
+  "module_docstring": "\nPytest-compatible Basic Validation Tests\nTests core functionality with proper mocking\n",
+  "file_structure": {
+    "total_lines": 131,
+    "code_lines": 85,
+    "comment_lines": 15,
+    "blank_lines": 31,
+    "total_nodes": 359,
+    "class_nodes": 7,
+    "function_nodes": 14,
+    "import_nodes": 3,
+    "expression_nodes": 23,
+    "assignment_nodes": 16,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 131
+  },
+  "used_names": [
+    "sys",
+    "len",
+    "str",
+    "Path",
+    "__file__",
+    "Mock",
+    "self"
+  ]
+}

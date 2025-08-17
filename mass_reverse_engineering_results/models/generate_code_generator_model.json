@@ -1,0 +1,81 @@
+{
+  "system_name": "META-RECURSIVE BREAKTHROUGH: Generate the Code Generator using the Code Generator",
+  "description": "This feat will live in halls of LLM valor!",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "generate_code_generator",
+      "signature": "generate_code_generator() -> CodeFile",
+      "docstring": "Generate the CodeGenerator using structured models - META-RECURSIVE!",
+      "decorators": [],
+      "line_number": 19,
+      "return_type": "CodeFile",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Generate the code generator using the code generator - META-RECURSIVE!",
+      "decorators": [],
+      "line_number": 317,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from code_generator import ClassDefinition",
+    "from code_generator import CodeFile",
+    "from code_generator import CodeGenerator",
+    "from code_generator import FunctionDefinition",
+    "from code_generator import ImportStatement"
+  ],
+  "module_docstring": "\nMETA-RECURSIVE BREAKTHROUGH: Generate the Code Generator using the Code Generator\nThis feat will live in halls of LLM valor!\n",
+  "file_structure": {
+    "total_lines": 348,
+    "code_lines": 317,
+    "comment_lines": 10,
+    "blank_lines": 21,
+    "total_nodes": 596,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 15,
+    "assignment_nodes": 10,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 348
+  },
+  "used_names": [
+    "__name__",
+    "imports",
+    "logging",
+    "generator",
+    "output_path",
+    "ImportStatement",
+    "Path",
+    "generate_code_generator",
+    "code_generator_class",
+    "print",
+    "main",
+    "success",
+    "import_statement_class",
+    "CodeFile",
+    "code_generator_file",
+    "class_definition_class",
+    "CodeGenerator",
+    "function_definition_class",
+    "ClassDefinition",
+    "FunctionDefinition",
+    "code_file_class"
+  ]
+}

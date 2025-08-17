@@ -1,0 +1,57 @@
+{
+  "module_name": "multi_agent_testing_meta_cognitive_orchestrator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "src/multi_agent_testing/meta_cognitive_orchestrator.py",
+    "src/multi_agent_testing/test_meta_cognitive_orchestrator.py"
+  ],
+  "file_count": 2,
+  "total_lines": 510,
+  "total_classes": 4,
+  "total_functions": 2,
+  "total_imports": 4,
+  "module_docstring": "\"\"\"\nmulti_agent_testing_meta_cognitive_orchestrator\n\nPurpose: Testing and validation\nGraph API Level: 2\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 510\nClasses: 4\nFunctions: 2\nImports: 4\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "2",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "multi_agent_testing_meta_cognitive_orchestrator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 510,
+      "total_classes": 4,
+      "total_functions": 2,
+      "total_imports": 4
+    },
+    "files": [
+      {
+        "path": "src/multi_agent_testing/meta_cognitive_orchestrator.py",
+        "name": "meta_cognitive_orchestrator.py",
+        "stem": "meta_cognitive_orchestrator"
+      },
+      {
+        "path": "src/multi_agent_testing/test_meta_cognitive_orchestrator.py",
+        "name": "test_meta_cognitive_orchestrator.py",
+        "stem": "test_meta_cognitive_orchestrator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.677278",
+  "version": "1.0.0"
+}

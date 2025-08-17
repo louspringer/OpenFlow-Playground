@@ -1,0 +1,63 @@
+{
+  "module_name": "prove_round_trip",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "prove_round_trip.py",
+    "round_trip_model_system.py",
+    "prove_round_trip.py"
+  ],
+  "file_count": 3,
+  "total_lines": 1101,
+  "total_classes": 3,
+  "total_functions": 5,
+  "total_imports": 12,
+  "module_docstring": "\"\"\"\nprove_round_trip\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 3\nTotal Lines: 1101\nClasses: 3\nFunctions: 5\nImports: 12\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "prove_round_trip",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 3
+    },
+    "metrics": {
+      "total_lines": 1101,
+      "total_classes": 3,
+      "total_functions": 5,
+      "total_imports": 12
+    },
+    "files": [
+      {
+        "path": "prove_round_trip.py",
+        "name": "prove_round_trip.py",
+        "stem": "prove_round_trip"
+      },
+      {
+        "path": "round_trip_model_system.py",
+        "name": "round_trip_model_system.py",
+        "stem": "round_trip_model_system"
+      },
+      {
+        "path": "prove_round_trip.py",
+        "name": "prove_round_trip.py",
+        "stem": "prove_round_trip"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.321181",
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "module_name": "ghostbusters_enhanced_learning_timeout_agent",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "backup/ghostbusters/ghostbusters/enhanced_learning_timeout_agent.py"
+  ],
+  "file_count": 1,
+  "total_lines": 658,
+  "total_classes": 2,
+  "total_functions": 0,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\nghostbusters_enhanced_learning_timeout_agent\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 658\nClasses: 2\nFunctions: 0\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "ghostbusters_enhanced_learning_timeout_agent",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 658,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "backup/ghostbusters/ghostbusters/enhanced_learning_timeout_agent.py",
+        "name": "enhanced_learning_timeout_agent.py",
+        "stem": "enhanced_learning_timeout_agent"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.055312",
+  "version": "1.0.0"
+}

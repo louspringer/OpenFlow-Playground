@@ -1,0 +1,63 @@
+{
+  "module_name": "complete_linting_aware_generator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "src/complete_linting_aware_generator.py",
+    "src/linting_aware_model.py",
+    "src/generate_linting_aware_generator.py"
+  ],
+  "file_count": 3,
+  "total_lines": 1101,
+  "total_classes": 5,
+  "total_functions": 5,
+  "total_imports": 9,
+  "module_docstring": "\"\"\"\ncomplete_linting_aware_generator\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 3\nTotal Lines: 1101\nClasses: 5\nFunctions: 5\nImports: 9\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "complete_linting_aware_generator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 3
+    },
+    "metrics": {
+      "total_lines": 1101,
+      "total_classes": 5,
+      "total_functions": 5,
+      "total_imports": 9
+    },
+    "files": [
+      {
+        "path": "src/complete_linting_aware_generator.py",
+        "name": "complete_linting_aware_generator.py",
+        "stem": "complete_linting_aware_generator"
+      },
+      {
+        "path": "src/linting_aware_model.py",
+        "name": "linting_aware_model.py",
+        "stem": "linting_aware_model"
+      },
+      {
+        "path": "src/generate_linting_aware_generator.py",
+        "name": "generate_linting_aware_generator.py",
+        "stem": "generate_linting_aware_generator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.319637",
+  "version": "1.0.0"
+}

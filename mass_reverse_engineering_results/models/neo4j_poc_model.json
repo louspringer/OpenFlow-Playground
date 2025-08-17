@@ -1,0 +1,211 @@
+{
+  "system_name": "Neo4j Proof of Concept - Graph Model Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Neo4jPOC": {
+      "responsibility": "Neo4j Proof of Concept using ArtifactForge infrastructure",
+      "methods": [
+        {
+          "name": "load_project_model",
+          "signature": "load_project_model(self, model_path: str) -> None",
+          "docstring": "Load the project model registry",
+          "decorators": [],
+          "line_number": 28,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "model_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_with_artifact_forge",
+          "signature": "validate_with_artifact_forge(self) -> bool",
+          "docstring": "Validate the project model using ArtifactForge infrastructure",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_cypher_queries",
+          "signature": "generate_cypher_queries(self) -> list[str]",
+          "docstring": "Generate Cypher queries for Neo4j graph creation",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_domain_nodes",
+          "signature": "_create_domain_nodes(self) -> list[str]",
+          "docstring": "Create Cypher queries for domain nodes",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_rule_nodes",
+          "signature": "_create_rule_nodes(self) -> list[str]",
+          "docstring": "Create Cypher queries for rule nodes",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_relationships",
+          "signature": "_create_relationships(self) -> list[str]",
+          "docstring": "Create Cypher queries for relationships",
+          "decorators": [],
+          "line_number": 136,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_example_queries",
+          "signature": "_generate_example_queries(self) -> list[str]",
+          "docstring": "Generate example Cypher queries for analysis",
+          "decorators": [],
+          "line_number": 151,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_cypher_queries",
+          "signature": "save_cypher_queries(self, queries: list[str], output_file: str) -> None",
+          "docstring": "Save Cypher queries to file",
+          "decorators": [],
+          "line_number": 165,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "queries",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_poc",
+          "signature": "run_poc(self) -> None",
+          "docstring": "Run the complete Neo4j POC",
+          "decorators": [],
+          "line_number": 190,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 217,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import List",
+    "from src.artifact_forge.agents.artifact_detector import ArtifactDetector",
+    "from src.artifact_forge.agents.artifact_parser import ArtifactParser"
+  ],
+  "module_docstring": "\nNeo4j Proof of Concept - Graph Model Integration\n\nThis script demonstrates converting the project model to Neo4j graph structure\nusing our existing ArtifactForge infrastructure for round-trip validation.\n",
+  "file_structure": {
+    "total_lines": 225,
+    "code_lines": 153,
+    "comment_lines": 21,
+    "blank_lines": 51,
+    "total_nodes": 918,
+    "class_nodes": 1,
+    "function_nodes": 11,
+    "import_nodes": 5,
+    "expression_nodes": 52,
+    "assignment_nodes": 27,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 225
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "rule_file",
+    "validation_count",
+    "description",
+    "enumerate",
+    "Neo4jPOC",
+    "queries",
+    "emoji_prefixes",
+    "result",
+    "query",
+    "domain_query",
+    "query_text",
+    "open",
+    "str",
+    "model_path",
+    "Path",
+    "cursor_rules",
+    "ArtifactParser",
+    "artifacts",
+    "hasattr",
+    "relationship_query",
+    "rule_query",
+    "list",
+    "json",
+    "len",
+    "print",
+    "main",
+    "self",
+    "bool",
+    "ValueError",
+    "artifact",
+    "output_file",
+    "poc",
+    "i",
+    "emoji",
+    "rule_name",
+    "e",
+    "ArtifactDetector"
+  ]
+}

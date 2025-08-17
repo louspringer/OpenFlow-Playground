@@ -1,0 +1,72 @@
+{
+  "system_name": "\ud83d\ude80 Launch Billing Analysis Jupyter Notebook",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "launch_jupyter_analysis",
+      "signature": "launch_jupyter_analysis() -> Any",
+      "docstring": "Launch Jupyter notebook with billing analysis",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to launch Jupyter analysis",
+      "decorators": [],
+      "line_number": 65,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83d\ude80 Launch Billing Analysis Jupyter Notebook\n\nLaunch Jupyter notebook with billing analysis data.\n",
+  "file_structure": {
+    "total_lines": 81,
+    "code_lines": 57,
+    "comment_lines": 5,
+    "blank_lines": 19,
+    "total_nodes": 249,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 21,
+    "assignment_nodes": 5,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 81
+  },
+  "used_names": [
+    "sys",
+    "__name__",
+    "Exception",
+    "str",
+    "Path",
+    "required_files",
+    "print",
+    "main",
+    "missing_files",
+    "success",
+    "file",
+    "subprocess",
+    "data_dir",
+    "e",
+    "result",
+    "launch_jupyter_analysis"
+  ]
+}

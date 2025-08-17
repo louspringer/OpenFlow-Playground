@@ -1,0 +1,82 @@
+{
+  "system_name": "Structured Generator for Gemini Billing Analyzer",
+  "description": "Uses deterministic code generation system to create linting-compliant code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "generate_gemini_billing_analyzer",
+      "signature": "generate_gemini_billing_analyzer() -> CodeFile",
+      "docstring": "Generate the Gemini billing analyzer using structured models",
+      "decorators": [],
+      "line_number": 18,
+      "return_type": "CodeFile",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Generate the Gemini billing analyzer",
+      "decorators": [],
+      "line_number": 403,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path",
+    "from code_generator import ClassDefinition",
+    "from code_generator import CodeFile",
+    "from code_generator import CodeGenerator",
+    "from code_generator import FunctionDefinition",
+    "from code_generator import ImportStatement"
+  ],
+  "module_docstring": "\nStructured Generator for Gemini Billing Analyzer\nUses deterministic code generation system to create linting-compliant code\n",
+  "file_structure": {
+    "total_lines": 425,
+    "code_lines": 395,
+    "comment_lines": 7,
+    "blank_lines": 23,
+    "total_nodes": 611,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 8,
+    "assignment_nodes": 13,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 425
+  },
+  "used_names": [
+    "get_billing_method",
+    "__name__",
+    "imports",
+    "generator",
+    "output_path",
+    "ImportStatement",
+    "analyzer_file",
+    "Path",
+    "setup_method",
+    "main_func",
+    "analyze_project_method",
+    "generate_gemini_billing_analyzer",
+    "print",
+    "main",
+    "success",
+    "run_ghostbusters_method",
+    "CodeFile",
+    "analyze_method",
+    "gemini_analyzer_class",
+    "CodeGenerator",
+    "setup_llm_method",
+    "ClassDefinition",
+    "FunctionDefinition"
+  ]
+}

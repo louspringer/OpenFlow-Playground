@@ -1,0 +1,312 @@
+{
+  "system_name": "Event Bus: Asynchronous event handling and messaging system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EventPriority": {
+      "responsibility": "Event priority levels.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 17
+    },
+    "Event": {
+      "responsibility": "Event object with metadata.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 27
+    },
+    "EventBus": {
+      "responsibility": "Asynchronous event bus for workflow communication.",
+      "methods": [
+        {
+          "name": "start",
+          "signature": "start(self) -> None",
+          "docstring": "Start the event bus.",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "stop",
+          "signature": "stop(self) -> None",
+          "docstring": "Stop the event bus.",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "subscribe",
+          "signature": "subscribe(self, event_name: str, callback: Callable) -> None",
+          "docstring": "Subscribe to an event type.",
+          "decorators": [],
+          "line_number": 62,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "event_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "callback",
+              "type": "Callable",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "unsubscribe",
+          "signature": "unsubscribe(self, event_name: str, callback: Callable) -> None",
+          "docstring": "Unsubscribe from an event type.",
+          "decorators": [],
+          "line_number": 70,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "event_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "callback",
+              "type": "Callable",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "publish",
+          "signature": "publish(self, event: Event) -> None",
+          "docstring": "Publish an event to all subscribers.",
+          "decorators": [],
+          "line_number": 79,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "event",
+              "type": "Event",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "publish_sync",
+          "signature": "publish_sync(self, event: Event) -> None",
+          "docstring": "Publish an event and wait for all handlers to complete.",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "event",
+              "type": "Event",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_process_events",
+          "signature": "_process_events(self) -> None",
+          "docstring": "Process events from the queue.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_handle_event",
+          "signature": "_handle_event(self, event: Event) -> None",
+          "docstring": "Handle a single event.",
+          "decorators": [],
+          "line_number": 124,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "event",
+              "type": "Event",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_event_history",
+          "signature": "get_event_history(self, event_name: Optional[str]) -> List[Event]",
+          "docstring": "Get event history, optionally filtered by event name.",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": "List[Event]",
+          "parameters": [
+            {
+              "name": "event_name",
+              "type": "Optional[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "clear_history",
+          "signature": "clear_history(self) -> None",
+          "docstring": "Clear event history.",
+          "decorators": [],
+          "line_number": 144,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_subscriber_count",
+          "signature": "get_subscriber_count(self, event_name: str) -> int",
+          "docstring": "Get number of subscribers for an event type.",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "event_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_all_event_types",
+          "signature": "get_all_event_types(self) -> Set[str]",
+          "docstring": "Get all registered event types.",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "Set[str]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 38
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "from typing import Callable",
+    "from typing import Optional",
+    "from typing import Set",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "import asyncio",
+    "import logging",
+    "from datetime import datetime",
+    "from clewcrew_common.async_utils import AsyncExecutor"
+  ],
+  "module_docstring": "\nEvent Bus: Asynchronous event handling and messaging system.\n\nProvides pub/sub messaging, event routing, and async event processing.\n",
+  "file_structure": {
+    "total_lines": 156,
+    "code_lines": 120,
+    "comment_lines": 4,
+    "blank_lines": 32,
+    "total_nodes": 823,
+    "class_nodes": 3,
+    "function_nodes": 7,
+    "import_nodes": 7,
+    "expression_nodes": 39,
+    "assignment_nodes": 16,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 156
+  },
+  "used_names": [
+    "task",
+    "__name__",
+    "Exception",
+    "logging",
+    "HIGH",
+    "set",
+    "LOW",
+    "event",
+    "Any",
+    "dict",
+    "Dict",
+    "Enum",
+    "Callable",
+    "str",
+    "List",
+    "NORMAL",
+    "event_name",
+    "tasks",
+    "priority",
+    "dataclass",
+    "Set",
+    "len",
+    "handlers",
+    "EventPriority",
+    "self",
+    "asyncio",
+    "metadata",
+    "ValueError",
+    "handler",
+    "field",
+    "AsyncExecutor",
+    "datetime",
+    "data",
+    "callback",
+    "timestamp",
+    "name",
+    "source",
+    "int",
+    "Event",
+    "Optional",
+    "e",
+    "CRITICAL"
+  ]
+}

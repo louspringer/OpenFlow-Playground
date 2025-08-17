@@ -1,0 +1,70 @@
+{
+  "system_name": "Create Ghostbusters Battle Analysis Notebook",
+  "description": "Using nbformat to create a proper Jupyter notebook",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "create_ghostbusters_notebook",
+      "signature": "create_ghostbusters_notebook() -> None",
+      "docstring": "Create a Jupyter notebook for Ghostbusters battle analysis",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import nbformat as nbf"
+  ],
+  "module_docstring": "\nCreate Ghostbusters Battle Analysis Notebook\nUsing nbformat to create a proper Jupyter notebook\n",
+  "file_structure": {
+    "total_lines": 275,
+    "code_lines": 198,
+    "comment_lines": 32,
+    "blank_lines": 45,
+    "total_nodes": 316,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 1,
+    "expression_nodes": 6,
+    "assignment_nodes": 22,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 275
+  },
+  "used_names": [
+    "structure_code",
+    "delusions_code",
+    "create_ghostbusters_notebook",
+    "__name__",
+    "metadata_cell",
+    "nb",
+    "deep_dive_cell",
+    "validation_code",
+    "validation_cell",
+    "analysis_cell",
+    "battle_code",
+    "title_cell",
+    "run_cell",
+    "structure_cell",
+    "recovery_code",
+    "print",
+    "nbf",
+    "recovery_results_cell",
+    "battle_cell",
+    "deep_dive_code",
+    "delusions_cell",
+    "recovery_cell",
+    "recovery_results_code",
+    "imports_cell",
+    "metadata_code"
+  ]
+}

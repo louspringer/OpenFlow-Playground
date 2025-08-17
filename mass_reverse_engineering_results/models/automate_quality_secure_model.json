@@ -1,0 +1,102 @@
+{
+  "system_name": "Secure CLI tool for code quality automation",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "run_command_safe",
+      "signature": "run_command_safe(cmd_list: Any, description: Any, cwd: Any) -> Any",
+      "docstring": "Run a command safely without shell=True",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "cmd_list",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "description",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "cwd",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main automation sequence",
+      "decorators": [],
+      "line_number": 26,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "Secure CLI tool for code quality automation",
+  "file_structure": {
+    "total_lines": 90,
+    "code_lines": 68,
+    "comment_lines": 6,
+    "blank_lines": 16,
+    "total_nodes": 471,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 25,
+    "assignment_nodes": 15,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 90
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "precommit_success",
+    "f",
+    "python_files",
+    "cmd_list",
+    "description",
+    "target_dir",
+    "ruff_success",
+    "result",
+    "target_path",
+    "black_cmd",
+    "run_command_safe",
+    "str",
+    "Path",
+    "subprocess",
+    "list",
+    "sys",
+    "len",
+    "print",
+    "main",
+    "file_paths",
+    "ruff_cmd",
+    "black_success",
+    "cwd",
+    "precommit_cmd",
+    "all",
+    "e",
+    "issue_count",
+    "check_cmd"
+  ]
+}

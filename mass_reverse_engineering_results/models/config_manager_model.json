@@ -1,0 +1,322 @@
+{
+  "system_name": "Config Manager: Centralized configuration management system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ConfigSource": {
+      "responsibility": "Configuration source information.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 19
+    },
+    "ConfigManager": {
+      "responsibility": "Centralized configuration management.",
+      "methods": [
+        {
+          "name": "load_config",
+          "signature": "load_config(self, config_path: Optional[str]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Load configuration from files and environment.",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "config_path",
+              "type": "Optional[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_file_config",
+          "signature": "_load_file_config(self, config_path: str) -> None",
+          "docstring": "Load configuration from a specific file.",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "config_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_directory_config",
+          "signature": "_load_directory_config(self, config_dir: str) -> None",
+          "docstring": "Load configuration from a directory.",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "config_dir",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_environment_config",
+          "signature": "_load_environment_config(self) -> None",
+          "docstring": "Load configuration from environment variables.",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_default_config",
+          "signature": "_load_default_config(self) -> None",
+          "docstring": "Load default configuration values.",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get",
+          "signature": "get(self, key: str, default: Any) -> Any",
+          "docstring": "Get a configuration value using dot notation.",
+          "decorators": [],
+          "line_number": 155,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "default",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "set",
+          "signature": "set(self, key: str, value: Any) -> None",
+          "docstring": "Set a configuration value using dot notation.",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "has",
+          "signature": "has(self, key: str) -> bool",
+          "docstring": "Check if a configuration key exists.",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_config",
+          "signature": "validate_config(self, schema: Dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate configuration against a schema.",
+          "decorators": [],
+          "line_number": 186,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "export_config",
+          "signature": "export_config(self, filepath: str, format: str) -> None",
+          "docstring": "Export current configuration to a file.",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "format",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "reload_config",
+          "signature": "reload_config(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Reload configuration from all sources.",
+          "decorators": [],
+          "line_number": 210,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_config_sources",
+          "signature": "get_config_sources(self) -> List[ConfigSource]",
+          "docstring": "Get information about configuration sources.",
+          "decorators": [],
+          "line_number": 216,
+          "return_type": "List[ConfigSource]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_config_summary",
+          "signature": "get_config_summary(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get a summary of the current configuration.",
+          "decorators": [],
+          "line_number": 220,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 28
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import Optional",
+    "from typing import List",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "import os",
+    "import logging",
+    "from datetime import datetime",
+    "from clewcrew_common.file_ops import FileOperations",
+    "from clewcrew_common.validation import ValidationUtils"
+  ],
+  "module_docstring": "\nConfig Manager: Centralized configuration management system.\n\nProvides configuration loading, validation, and management capabilities.\n",
+  "file_structure": {
+    "total_lines": 235,
+    "code_lines": 173,
+    "comment_lines": 15,
+    "blank_lines": 47,
+    "total_nodes": 1218,
+    "class_nodes": 2,
+    "function_nodes": 14,
+    "import_nodes": 8,
+    "expression_nodes": 43,
+    "assignment_nodes": 25,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 235
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "config_key",
+    "filepath",
+    "config_dir",
+    "logging",
+    "keys",
+    "schema",
+    "default",
+    "set",
+    "isinstance",
+    "value",
+    "dict",
+    "Dict",
+    "os",
+    "config_file",
+    "ConfigSource",
+    "str",
+    "k",
+    "Path",
+    "path",
+    "List",
+    "config_dirs",
+    "priority",
+    "last_modified",
+    "config_files",
+    "ext",
+    "TypeError",
+    "dataclass",
+    "list",
+    "format",
+    "config_path",
+    "subkey",
+    "len",
+    "self",
+    "env_config",
+    "bool",
+    "max",
+    "type",
+    "ValueError",
+    "datetime",
+    "default_config",
+    "ValidationUtils",
+    "config_data",
+    "KeyError",
+    "config",
+    "source",
+    "FileOperations",
+    "int",
+    "e",
+    "Optional",
+    "subvalue",
+    "Any"
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "system_name": "Tests for the WorkflowEngine module.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestWorkflowEngine": {
+      "responsibility": "Test cases for WorkflowEngine.",
+      "methods": [
+        {
+          "name": "test_init",
+          "signature": "test_init(self, workflow_engine: Any) -> Any",
+          "docstring": "Test workflow engine initialization.",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_register_workflow",
+          "signature": "test_register_workflow(self, workflow_engine: Any, sample_steps: Any) -> Any",
+          "docstring": "Test workflow registration.",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_steps",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_register_workflow_overwrite",
+          "signature": "test_register_workflow_overwrite(self, workflow_engine: Any, sample_steps: Any) -> Any",
+          "docstring": "Test that registering a workflow overwrites existing one.",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_steps",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow_success",
+          "signature": "test_execute_workflow_success(self, workflow_engine: Any, sample_steps: Any, sample_context: Any) -> Any",
+          "docstring": "Test successful workflow execution.",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_steps",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_context",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow_not_found",
+          "signature": "test_execute_workflow_not_found(self, workflow_engine: Any, sample_context: Any) -> Any",
+          "docstring": "Test executing non-existent workflow.",
+          "decorators": [],
+          "line_number": 87,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_context",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow_with_dependencies",
+          "signature": "test_execute_workflow_with_dependencies(self, workflow_engine: Any, sample_context: Any) -> Any",
+          "docstring": "Test workflow execution with dependencies.",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_context",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow_dependency_missing",
+          "signature": "test_execute_workflow_dependency_missing(self, workflow_engine: Any, sample_context: Any) -> Any",
+          "docstring": "Test workflow execution with missing dependency.",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_context",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow_step_failure",
+          "signature": "test_execute_workflow_step_failure(self, workflow_engine: Any, sample_context: Any) -> Any",
+          "docstring": "Test workflow execution with step failure.",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_context",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_workflow_status",
+          "signature": "test_get_workflow_status(self, workflow_engine: Any, sample_steps: Any) -> Any",
+          "docstring": "Test getting workflow status.",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_steps",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_workflow_status_not_found",
+          "signature": "test_get_workflow_status_not_found(self, workflow_engine: Any) -> Any",
+          "docstring": "Test getting status of non-existent workflow.",
+          "decorators": [],
+          "line_number": 170,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "workflow_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 43
+    },
+    "TestWorkflowStep": {
+      "responsibility": "Test cases for WorkflowStep.",
+      "methods": [
+        {
+          "name": "test_workflow_step_init",
+          "signature": "test_workflow_step_init(self) -> Any",
+          "docstring": "Test WorkflowStep initialization.",
+          "decorators": [],
+          "line_number": 179,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_workflow_step_defaults",
+          "signature": "test_workflow_step_defaults(self) -> Any",
+          "docstring": "Test WorkflowStep default values.",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 176
+    },
+    "TestWorkflowContext": {
+      "responsibility": "Test cases for WorkflowContext.",
+      "methods": [
+        {
+          "name": "test_workflow_context_init",
+          "signature": "test_workflow_context_init(self) -> Any",
+          "docstring": "Test WorkflowContext initialization.",
+          "decorators": [],
+          "line_number": 211,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_workflow_context_defaults",
+          "signature": "test_workflow_context_defaults(self) -> Any",
+          "docstring": "Test WorkflowContext default values.",
+          "decorators": [],
+          "line_number": 219,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 208
+    }
+  },
+  "module_functions": [
+    {
+      "name": "workflow_engine",
+      "signature": "workflow_engine() -> Any",
+      "docstring": "Create a workflow engine for testing.",
+      "decorators": [],
+      "line_number": 16,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "sample_context",
+      "signature": "sample_context() -> Any",
+      "docstring": "Create a sample workflow context.",
+      "decorators": [],
+      "line_number": 22,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "sample_steps",
+      "signature": "sample_steps() -> Any",
+      "docstring": "Create sample workflow steps.",
+      "decorators": [],
+      "line_number": 28,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "step1",
+      "signature": "step1(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 31,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step2",
+      "signature": "step2(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 34,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step1",
+      "signature": "step1(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 98,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step2",
+      "signature": "step2(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 101,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step3",
+      "signature": "step3(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 104,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step1",
+      "signature": "step1(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 127,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "step2",
+      "signature": "step2(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 130,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "failing_step",
+      "signature": "failing_step(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 152,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_func",
+      "signature": "test_func(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 182,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_func",
+      "signature": "test_func(context: Any, results: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 197,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "results",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import pytest",
+    "from clewcrew_framework.workflow_engine import WorkflowEngine",
+    "from clewcrew_framework.workflow_engine import WorkflowStep",
+    "from clewcrew_framework.workflow_engine import WorkflowContext",
+    "from clewcrew_framework.workflow_engine import WorkflowStatus"
+  ],
+  "module_docstring": "\nTests for the WorkflowEngine module.\n",
+  "file_structure": {
+    "total_lines": 229,
+    "code_lines": 167,
+    "comment_lines": 0,
+    "blank_lines": 62,
+    "total_nodes": 927,
+    "class_nodes": 3,
+    "function_nodes": 22,
+    "import_nodes": 2,
+    "expression_nodes": 33,
+    "assignment_nodes": 12,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 229
+  },
+  "used_names": [
+    "__name__",
+    "__file__",
+    "WorkflowContext",
+    "steps",
+    "step",
+    "step2",
+    "sample_steps",
+    "status",
+    "workflow_engine",
+    "failing_step",
+    "pytest",
+    "len",
+    "step3",
+    "WorkflowEngine",
+    "RuntimeError",
+    "results",
+    "ValueError",
+    "WorkflowStatus",
+    "new_steps",
+    "s",
+    "context",
+    "step1",
+    "WorkflowStep",
+    "all",
+    "test_func",
+    "sample_context"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "system_name": "Pre-test model consultation hook.",
+  "description": "This script MUST be run before any testing to ensure model-driven approach.",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> dict[Tuple[str, Any]]",
+      "docstring": "Load the project model registry.",
+      "decorators": [],
+      "line_number": 17,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": []
+    },
+    {
+      "name": "check_testing_domain",
+      "signature": "check_testing_domain(model: Any) -> Any",
+      "docstring": "Check the testing domain requirements.",
+      "decorators": [],
+      "line_number": 34,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "run_model_driven_tests",
+      "signature": "run_model_driven_tests(model: Any, testing_domain: Any) -> None",
+      "docstring": "Run tests according to the model-driven approach.",
+      "decorators": [],
+      "line_number": 52,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "testing_domain",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function - enforce model-driven testing.",
+      "decorators": [],
+      "line_number": 114,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nPre-test model consultation hook.\nThis script MUST be run before any testing to ensure model-driven approach.\n",
+  "file_structure": {
+    "total_lines": 135,
+    "code_lines": 100,
+    "comment_lines": 9,
+    "blank_lines": 26,
+    "total_nodes": 524,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 5,
+    "expression_nodes": 35,
+    "assignment_nodes": 10,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 135
+  },
+  "used_names": [
+    "testing_domain",
+    "__name__",
+    "f",
+    "req",
+    "isinstance",
+    "dict",
+    "result",
+    "open",
+    "str",
+    "model_path",
+    "Path",
+    "secure_execute",
+    "run_model_driven_tests",
+    "json",
+    "sys",
+    "len",
+    "load_project_model",
+    "print",
+    "main",
+    "requirements",
+    "check_testing_domain",
+    "data",
+    "model",
+    "Any"
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "system_name": "Improved Projection System: Fix functional equivalence issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ImprovedProjectionSystem": {
+      "responsibility": "Improved projection system with better functional equivalence.",
+      "methods": [
+        {
+          "name": "extract_and_project_file",
+          "signature": "extract_and_project_file(self, file_path: str) -> str",
+          "docstring": "Extract and project with improved functional equivalence.",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_with_improvements",
+          "signature": "_extract_with_improvements(self, tree: Any, file_path: str) -> list[CodeNode]",
+          "docstring": "Extract with improvements for functional equivalence.",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports_improved",
+          "signature": "_extract_imports_improved(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract imports with better handling.",
+          "decorators": [],
+          "line_number": 100,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_constants_improved",
+          "signature": "_extract_constants_improved(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract constants with better handling.",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes_with_methods_improved",
+          "signature": "_extract_classes_with_methods_improved(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract class definitions with their methods (improved).",
+          "decorators": [],
+          "line_number": 286,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_standalone_functions_improved",
+          "signature": "_extract_standalone_functions_improved(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract standalone functions (not class methods) with improvements.",
+          "decorators": [],
+          "line_number": 338,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_parent_node",
+          "signature": "_get_parent_node(self, tree: Any, target_node: Any) -> Any",
+          "docstring": "Get the parent node of a target node.",
+          "decorators": [],
+          "line_number": 401,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "target_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_project_with_improvements",
+          "signature": "_project_with_improvements(self, nodes: list[CodeNode], file_path: str) -> str",
+          "docstring": "Project nodes with improvements for functional equivalence.",
+          "decorators": [],
+          "line_number": 409,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": "list[CodeNode]",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_header_improved",
+          "signature": "_generate_file_header_improved(self, file_path: str) -> str",
+          "docstring": "Generate improved file header.",
+          "decorators": [],
+          "line_number": 459,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_footer_improved",
+          "signature": "_generate_file_footer_improved(self, file_path: str) -> str",
+          "docstring": "Generate improved file footer.",
+          "decorators": [],
+          "line_number": 465,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_determine_context",
+          "signature": "_determine_context(self, file_path: str) -> str",
+          "docstring": "Determine the context from file path.",
+          "decorators": [],
+          "line_number": 471,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 24
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test improved projection system.",
+      "decorators": [],
+      "line_number": 497,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "from pathlib import Path",
+    "from level1_granular_nodes import CodeNode"
+  ],
+  "module_docstring": "\nImproved Projection System: Fix functional equivalence issues\n\nThis system addresses the linting issues found in the projected artifacts:\n1. Missing imports (Dict, Optional, List, os, re, etc.)\n2. Missing constants (SECURITY_CONFIG, AWS_CONFIG)\n3. Missing class definitions\n4. Improper spacing and formatting\n5. Undefined names\n",
+  "file_structure": {
+    "total_lines": 533,
+    "code_lines": 407,
+    "comment_lines": 33,
+    "blank_lines": 93,
+    "total_nodes": 2087,
+    "class_nodes": 1,
+    "function_nodes": 13,
+    "import_nodes": 4,
+    "expression_nodes": 56,
+    "assignment_nodes": 63,
+    "return_nodes": 26
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 533
+  },
+  "used_names": [
+    "classes",
+    "node_id",
+    "__name__",
+    "path_str",
+    "f",
+    "parent",
+    "CodeNode",
+    "imports",
+    "logging",
+    "line_number",
+    "constant_code",
+    "node",
+    "enumerate",
+    "import_nodes",
+    "sorted",
+    "set",
+    "isinstance",
+    "dict",
+    "content",
+    "child",
+    "open",
+    "system",
+    "seen_constants",
+    "hash",
+    "logger",
+    "str",
+    "nodes",
+    "Path",
+    "test_file",
+    "path",
+    "func_name",
+    "unique_id",
+    "line",
+    "hasattr",
+    "position",
+    "constant_nodes",
+    "list",
+    "ast",
+    "ImprovedProjectionSystem",
+    "SyntaxError",
+    "ordered_nodes",
+    "len",
+    "class_code",
+    "n",
+    "FileNotFoundError",
+    "class_nodes",
+    "file_path",
+    "print",
+    "main",
+    "constants",
+    "self",
+    "lines",
+    "required_imports",
+    "projected_content",
+    "getattr",
+    "tuple",
+    "code_node",
+    "functions",
+    "target_node",
+    "seen_imports",
+    "context",
+    "tree",
+    "i",
+    "constant_line",
+    "function_nodes",
+    "class_name",
+    "int",
+    "e",
+    "UnicodeDecodeError",
+    "definition_code",
+    "import_line",
+    "required_constants",
+    "import_code",
+    "content_parts"
+  ]
+}

@@ -1,0 +1,472 @@
+{
+  "system_name": "\ud83e\uddea COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestDiversityHypothesis": {
+      "responsibility": "Test suite for diversity hypothesis components",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> None",
+          "docstring": "Set up test environment",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "tearDown",
+          "signature": "tearDown(self) -> None",
+          "docstring": "Clean up test environment",
+          "decorators": [],
+          "line_number": 79,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_multi_dimensional_smoke_test_initialization",
+          "signature": "test_multi_dimensional_smoke_test_initialization(self) -> None",
+          "docstring": "Test MultiDimensionalSmokeTest initialization",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_extract_questions",
+          "signature": "test_extract_questions(self) -> None",
+          "docstring": "Test question extraction from LLM responses",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_confidence",
+          "signature": "test_calculate_confidence(self) -> None",
+          "docstring": "Test confidence calculation",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_agreement",
+          "signature": "test_calculate_agreement(self) -> None",
+          "docstring": "Test agreement calculation",
+          "decorators": [],
+          "line_number": 142,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_generate_insights",
+          "signature": "test_generate_insights(self) -> None",
+          "docstring": "Test insight generation",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_call_llm_success",
+          "signature": "test_call_llm_success(self, mock_post: Any) -> None",
+          "docstring": "Test successful LLM API call",
+          "decorators": [],
+          "line_number": 171,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_post",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_call_llm_error",
+          "signature": "test_call_llm_error(self, mock_post: Any) -> None",
+          "docstring": "Test LLM API call error handling",
+          "decorators": [],
+          "line_number": 187,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_post",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_run_test_success",
+          "signature": "test_run_test_success(self) -> None",
+          "docstring": "Test successful test run",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_run_test_error",
+          "signature": "test_run_test_error(self) -> None",
+          "docstring": "Test test run with error",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 28
+    },
+    "TestLangGraphDiversityOrchestrator": {
+      "responsibility": "Test suite for LangGraph diversity orchestrator",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> None",
+          "docstring": "Set up test environment",
+          "decorators": [],
+          "line_number": 245,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "tearDown",
+          "signature": "tearDown(self) -> None",
+          "docstring": "Clean up test environment",
+          "decorators": [],
+          "line_number": 281,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_orchestrator_initialization",
+          "signature": "test_orchestrator_initialization(self) -> None",
+          "docstring": "Test LangGraphDiversityOrchestrator initialization",
+          "decorators": [],
+          "line_number": 286,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_create_llm_client",
+          "signature": "test_create_llm_client(self) -> None",
+          "docstring": "Test LLM client creation",
+          "decorators": [],
+          "line_number": 299,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_diversity_metrics",
+          "signature": "test_calculate_diversity_metrics(self) -> None",
+          "docstring": "Test diversity metrics calculation",
+          "decorators": [],
+          "line_number": 313,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 242
+    },
+    "TestDiversitySynthesisOrchestrator": {
+      "responsibility": "Test suite for diversity synthesis orchestrator",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> None",
+          "docstring": "Set up test environment",
+          "decorators": [],
+          "line_number": 365,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "tearDown",
+          "signature": "tearDown(self) -> None",
+          "docstring": "Clean up test environment",
+          "decorators": [],
+          "line_number": 391,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_synthesis_orchestrator_initialization",
+          "signature": "test_synthesis_orchestrator_initialization(self) -> None",
+          "docstring": "Test DiversitySynthesisOrchestrator initialization",
+          "decorators": [],
+          "line_number": 396,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_stakeholder_impact_matrix",
+          "signature": "test_calculate_stakeholder_impact_matrix(self) -> None",
+          "docstring": "Test stakeholder impact matrix calculation",
+          "decorators": [],
+          "line_number": 409,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 362
+    },
+    "TestIntegration": {
+      "responsibility": "Integration tests for the complete diversity hypothesis system",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> None",
+          "docstring": "Set up integration test environment",
+          "decorators": [],
+          "line_number": 442,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "tearDown",
+          "signature": "tearDown(self) -> None",
+          "docstring": "Clean up integration test environment",
+          "decorators": [],
+          "line_number": 452,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_end_to_end_workflow",
+          "signature": "test_end_to_end_workflow(self) -> None",
+          "docstring": "Test complete end-to-end workflow",
+          "decorators": [],
+          "line_number": 457,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_cost_analysis",
+          "signature": "test_cost_analysis(self) -> None",
+          "docstring": "Test cost analysis functionality",
+          "decorators": [],
+          "line_number": 462,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 439
+    },
+    "TestPerformance": {
+      "responsibility": "Performance tests for the diversity hypothesis system",
+      "methods": [
+        {
+          "name": "test_multi_threaded_performance",
+          "signature": "test_multi_threaded_performance(self) -> None",
+          "docstring": "Test multi-threaded performance",
+          "decorators": [],
+          "line_number": 481,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_memory_usage",
+          "signature": "test_memory_usage(self) -> None",
+          "docstring": "Test memory usage under load",
+          "decorators": [],
+          "line_number": 485,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_api_rate_limiting",
+          "signature": "test_api_rate_limiting(self) -> None",
+          "docstring": "Test API rate limiting handling",
+          "decorators": [],
+          "line_number": 489,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 478
+    }
+  },
+  "module_functions": [
+    {
+      "name": "run_comprehensive_tests",
+      "signature": "run_comprehensive_tests() -> None",
+      "docstring": "Run comprehensive test suite",
+      "decorators": [],
+      "line_number": 494,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import shutil",
+    "import sys",
+    "import tempfile",
+    "import unittest",
+    "from unittest.mock import Mock",
+    "from unittest.mock import patch",
+    "from diversity_synthesis_orchestrator import DiversitySynthesisOrchestrator",
+    "from langgraph_diversity_orchestrator import LangGraphDiversityOrchestrator",
+    "from multi_dimensional_smoke_test import MultiDimensionalSmokeTest",
+    "from langgraph_diversity_orchestrator import BlindSpotFinding",
+    "from langgraph_diversity_orchestrator import DiversityAnalysis",
+    "from diversity_synthesis_orchestrator import FixSynthesis",
+    "from cost_analysis import estimate_tokens"
+  ],
+  "module_docstring": "\n\ud83e\uddea COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS\n\nUnit tests, integration tests, and performance tests for the diversity hypothesis.\n",
+  "file_structure": {
+    "total_lines": 542,
+    "code_lines": 407,
+    "comment_lines": 41,
+    "blank_lines": 94,
+    "total_nodes": 2094,
+    "class_nodes": 5,
+    "function_nodes": 28,
+    "import_nodes": 13,
+    "expression_nodes": 121,
+    "assignment_nodes": 67,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 542
+  },
+  "used_names": [
+    "TestDiversityHypothesis",
+    "__name__",
+    "Exception",
+    "__file__",
+    "long_text",
+    "runner",
+    "long_tokens",
+    "Mock",
+    "orchestrator",
+    "client",
+    "FixSynthesis",
+    "estimate_tokens",
+    "suite",
+    "result",
+    "shutil",
+    "mock_call",
+    "os",
+    "mock_response",
+    "agent",
+    "high_confidence_questions",
+    "low_confidence_questions",
+    "metrics",
+    "agent_names",
+    "fixes",
+    "impact_matrix",
+    "text",
+    "json",
+    "run_comprehensive_tests",
+    "tempfile",
+    "sys",
+    "len",
+    "json_content",
+    "print",
+    "DiversitySynthesisOrchestrator",
+    "text_content",
+    "traceback",
+    "mock_post",
+    "self",
+    "TestIntegration",
+    "success",
+    "LangGraphDiversityOrchestrator",
+    "patch",
+    "TestDiversitySynthesisOrchestrator",
+    "MultiDimensionalSmokeTest",
+    "TestLangGraphDiversityOrchestrator",
+    "ValueError",
+    "s",
+    "unittest",
+    "analyses",
+    "stakeholder_names",
+    "loader",
+    "DiversityAnalysis",
+    "config",
+    "tokens",
+    "test",
+    "insights",
+    "TestPerformance",
+    "BlindSpotFinding",
+    "questions",
+    "confidence"
+  ]
+}

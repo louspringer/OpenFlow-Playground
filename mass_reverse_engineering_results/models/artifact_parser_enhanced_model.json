@@ -1,0 +1,677 @@
+{
+  "system_name": "Enhanced ArtifactParser Agent",
+  "description": "Uses recursive descent to find enclosing blocks and handle indentation errors gracefully",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BlockBoundary": {
+      "responsibility": "Represents a code block boundary",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 21
+    },
+    "ParsedArtifact": {
+      "responsibility": "Enhanced parsed artifact model with block analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 33
+    },
+    "EnhancedArtifactParser": {
+      "responsibility": "Enhanced parser with recursive descent block analysis",
+      "methods": [
+        {
+          "name": "parse_artifact",
+          "signature": "parse_artifact(self, artifact_path: str, artifact_type: str) -> ParsedArtifact",
+          "docstring": "Parse an artifact with enhanced error recovery",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "ParsedArtifact",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "artifact_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_python_enhanced",
+          "signature": "_parse_python_enhanced(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Enhanced Python parsing with recursive descent block analysis",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_blocks_recursive_descent",
+          "signature": "_analyze_blocks_recursive_descent(self, lines: list[str]) -> dict[Tuple[str, Any]]",
+          "docstring": "Use recursive descent to find block boundaries despite indentation errors",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_block_start",
+          "signature": "_detect_block_start(self, line: str) -> Optional[str]",
+          "docstring": "Detect if line starts a new block",
+          "decorators": [],
+          "line_number": 180,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_block_end",
+          "signature": "_is_block_end(self, line: str, block_type: str) -> bool",
+          "docstring": "Check if line ends the current block",
+          "decorators": [],
+          "line_number": 214,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "block_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_from_blocks",
+          "signature": "_extract_from_blocks(self, block_analysis: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Extract structured data from block analysis",
+          "decorators": [],
+          "line_number": 234,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "block_analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_function_from_block",
+          "signature": "_extract_function_from_block(self, block: dict[Tuple[str, Any]]) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Extract function information from block content",
+          "decorators": [],
+          "line_number": 269,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "block",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_class_from_block",
+          "signature": "_extract_class_from_block(self, block: dict[Tuple[str, Any]]) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Extract class information from block content",
+          "decorators": [],
+          "line_number": 302,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "block",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports_from_content",
+          "signature": "_extract_imports_from_content(self, content: str) -> list[str]",
+          "docstring": "Extract import statements from content",
+          "decorators": [],
+          "line_number": 335,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_indentation_issues",
+          "signature": "_detect_indentation_issues(self, lines: list[str]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Detect indentation issues in the code",
+          "decorators": [],
+          "line_number": 347,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_block_to_dict",
+          "signature": "_block_to_dict(self, block: BlockBoundary) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert BlockBoundary to dictionary",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "block",
+              "type": "BlockBoundary",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_count_block_types",
+          "signature": "_count_block_types(self, blocks: list[BlockBoundary]) -> dict[Tuple[str, int]]",
+          "docstring": "Count blocks by type",
+          "decorators": [],
+          "line_number": 390,
+          "return_type": "dict[Tuple[str, int]]",
+          "parameters": [
+            {
+              "name": "blocks",
+              "type": "list[BlockBoundary]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_mdc",
+          "signature": "_parse_mdc(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Parse MDC file (Markdown with YAML frontmatter)",
+          "decorators": [],
+          "line_number": 398,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_markdown",
+          "signature": "_parse_markdown(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Parse Markdown file",
+          "decorators": [],
+          "line_number": 427,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_yaml",
+          "signature": "_parse_yaml(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Parse YAML file",
+          "decorators": [],
+          "line_number": 441,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_json",
+          "signature": "_parse_json(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Parse JSON file",
+          "decorators": [],
+          "line_number": 460,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_sql",
+          "signature": "_parse_sql(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "docstring": "Parse SQL file",
+          "decorators": [],
+          "line_number": 479,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_generic",
+          "signature": "_parse_generic(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Parse generic file",
+          "decorators": [],
+          "line_number": 492,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports",
+          "signature": "_extract_imports(self, tree: Any) -> list[str]",
+          "docstring": "Extract import statements",
+          "decorators": [],
+          "line_number": 504,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_functions",
+          "signature": "_extract_functions(self, tree: Any) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Extract function definitions",
+          "decorators": [],
+          "line_number": 512,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes",
+          "signature": "_extract_classes(self, tree: Any) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Extract class definitions",
+          "decorators": [],
+          "line_number": 526,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_variables",
+          "signature": "_extract_variables(self, tree: Any) -> list[str]",
+          "docstring": "Extract variable assignments",
+          "decorators": [],
+          "line_number": 542,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_complexity",
+          "signature": "_calculate_complexity(self, tree: Any) -> int",
+          "docstring": "Calculate cyclomatic complexity",
+          "decorators": [],
+          "line_number": 552,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_headings",
+          "signature": "_extract_headings(self, content: str) -> list[str]",
+          "docstring": "Extract markdown headings",
+          "decorators": [],
+          "line_number": 560,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_links",
+          "signature": "_extract_links(self, content: str) -> list[str]",
+          "docstring": "Extract markdown links",
+          "decorators": [],
+          "line_number": 568,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_sql_statements",
+          "signature": "_extract_sql_statements(self, content: str) -> list[str]",
+          "docstring": "Extract SQL statements",
+          "decorators": [],
+          "line_number": 573,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_yaml_structure",
+          "signature": "_analyze_yaml_structure(self, data: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze YAML structure",
+          "decorators": [],
+          "line_number": 582,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_json_structure",
+          "signature": "_analyze_json_structure(self, data: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze JSON structure",
+          "decorators": [],
+          "line_number": 598,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_depth",
+          "signature": "_calculate_depth(self, obj: Any, current_depth: int) -> int",
+          "docstring": "Calculate depth of nested structure",
+          "decorators": [],
+          "line_number": 602,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "current_depth",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 44
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test Enhanced ArtifactParser",
+      "decorators": [],
+      "line_number": 617,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "import re",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "import yaml",
+    "import json",
+    "import yaml"
+  ],
+  "module_docstring": "\nEnhanced ArtifactParser Agent\nUses recursive descent to find enclosing blocks and handle indentation errors gracefully\n",
+  "file_structure": {
+    "total_lines": 650,
+    "code_lines": 510,
+    "comment_lines": 31,
+    "blank_lines": 109,
+    "total_nodes": 3354,
+    "class_nodes": 3,
+    "function_nodes": 31,
+    "import_nodes": 10,
+    "expression_nodes": 65,
+    "assignment_nodes": 90,
+    "return_nodes": 51
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 650
+  },
+  "used_names": [
+    "Exception",
+    "obj",
+    "imports",
+    "class_info",
+    "dict",
+    "Path",
+    "test_file",
+    "path",
+    "current_block",
+    "parsing_errors",
+    "text",
+    "item",
+    "list",
+    "ast",
+    "url",
+    "print",
+    "bool",
+    "parsing_timestamp",
+    "links",
+    "headings",
+    "re",
+    "parser",
+    "__name__",
+    "logging",
+    "enumerate",
+    "v",
+    "args_count",
+    "yaml",
+    "line",
+    "method_count",
+    "blocks",
+    "func_info",
+    "SyntaxError",
+    "counts",
+    "stripped",
+    "block_stack",
+    "functions",
+    "end_line",
+    "block_analysis",
+    "frontmatter",
+    "arg",
+    "issues",
+    "parent_block",
+    "f",
+    "artifact_type",
+    "node",
+    "ParsedArtifact",
+    "content",
+    "indent_level",
+    "open",
+    "block_type",
+    "func_name",
+    "block_start",
+    "sum",
+    "block",
+    "errors",
+    "current_depth",
+    "n",
+    "parsed",
+    "main",
+    "BlockBoundary",
+    "first_block",
+    "datetime",
+    "tree",
+    "i",
+    "class_name",
+    "Optional",
+    "isinstance",
+    "Any",
+    "classes",
+    "parsed_data",
+    "new_block",
+    "logger",
+    "str",
+    "complexity",
+    "parts",
+    "args_str",
+    "variables",
+    "statements",
+    "dataclass",
+    "json",
+    "len",
+    "artifact_path",
+    "file_path",
+    "EnhancedArtifactParser",
+    "self",
+    "lines",
+    "tuple",
+    "max",
+    "first_line",
+    "line_num",
+    "target",
+    "data",
+    "match",
+    "start_line",
+    "int",
+    "markdown_content",
+    "e"
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "system_name": "Schema Validator: JSON Schema and data structure validation.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SchemaValidator": {
+      "responsibility": "Validator for JSON Schema and data structure validation.",
+      "methods": [
+        {
+          "name": "validate",
+          "signature": "validate(self, data: Any) -> ValidationResult",
+          "docstring": "Validate data against a schema.\n\n        Args:\n            data: The data to validate\n            **kwargs: Additional parameters including 'schema' or 'schema_name'\n\n        Returns:\n            ValidationResult: The validation result",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "ValidationResult",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_basic_validation",
+          "signature": "_basic_validation(self, data: Any, schema: Dict[Tuple[str, Any]]) -> ValidationResult",
+          "docstring": "Basic validation when jsonschema is not available.",
+          "decorators": [],
+          "line_number": 86,
+          "return_type": "ValidationResult",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "schema",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_schema",
+          "signature": "add_schema(self, name: str, schema: Dict[Tuple[str, Any]]) -> None",
+          "docstring": "Add a named schema.\n\n        Args:\n            name: Schema name\n            schema: Schema definition",
+          "decorators": [],
+          "line_number": 152,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "schema",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "set_default_schema",
+          "signature": "set_default_schema(self, schema: Dict[Tuple[str, Any]]) -> None",
+          "docstring": "Set the default schema for validation.\n\n        Args:\n            schema: Schema definition",
+          "decorators": [],
+          "line_number": 162,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_schema",
+          "signature": "get_schema(self, name: str) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Get a schema by name.\n\n        Args:\n            name: Schema name\n\n        Returns:\n            Schema definition or None if not found",
+          "decorators": [],
+          "line_number": 171,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_schemas",
+          "signature": "list_schemas(self) -> list",
+          "docstring": "List all available schema names.\n\n        Returns:\n            List of schema names",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "list",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_schema",
+          "signature": "remove_schema(self, name: str) -> bool",
+          "docstring": "Remove a schema.\n\n        Args:\n            name: Schema name to remove\n\n        Returns:\n            True if schema was removed, False if not found",
+          "decorators": [],
+          "line_number": 190,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 13
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Optional",
+    "from base_validator import BaseValidator",
+    "from validation_result import ValidationResult",
+    "from validation_result import ValidationSeverity",
+    "import jsonschema"
+  ],
+  "module_docstring": "\nSchema Validator: JSON Schema and data structure validation.\n\nProvides schema-based validation using multiple validation libraries.\n",
+  "file_structure": {
+    "total_lines": 204,
+    "code_lines": 170,
+    "comment_lines": 3,
+    "blank_lines": 31,
+    "total_nodes": 742,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 4,
+    "expression_nodes": 19,
+    "assignment_nodes": 7,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 204
+  },
+  "used_names": [
+    "Exception",
+    "BaseValidator",
+    "schema",
+    "Any",
+    "dict",
+    "float",
+    "Dict",
+    "str",
+    "expected_type",
+    "jsonschema",
+    "ImportError",
+    "ValidationResult",
+    "list",
+    "kwargs",
+    "self",
+    "bool",
+    "ValidationSeverity",
+    "type",
+    "field",
+    "data",
+    "name",
+    "int",
+    "super",
+    "Optional",
+    "e",
+    "isinstance",
+    "issues"
+  ]
+}

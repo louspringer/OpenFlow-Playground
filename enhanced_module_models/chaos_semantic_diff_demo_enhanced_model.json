@@ -1,0 +1,69 @@
+{
+  "module_name": "chaos_semantic_diff_demo",
+  "module_type": "package",
+  "confidence_score": 0.7,
+  "files": [
+    "scripts/chaos_semantic_diff_demo.py",
+    "scripts/semantic_diff_engine.py",
+    "scripts/glacier_spore_models.py",
+    "scripts/ghostbusters_file_type_processor.py"
+  ],
+  "file_count": 4,
+  "total_lines": 2448,
+  "total_classes": 19,
+  "total_functions": 8,
+  "total_imports": 36,
+  "module_docstring": "\"\"\"\nchaos_semantic_diff_demo\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: package\nFiles: 4\nTotal Lines: 2448\nClasses: 19\nFunctions: 8\nImports: 36\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "chaos_semantic_diff_demo",
+      "type": "package",
+      "confidence": 0.7,
+      "file_count": 4
+    },
+    "metrics": {
+      "total_lines": 2448,
+      "total_classes": 19,
+      "total_functions": 8,
+      "total_imports": 36
+    },
+    "files": [
+      {
+        "path": "scripts/chaos_semantic_diff_demo.py",
+        "name": "chaos_semantic_diff_demo.py",
+        "stem": "chaos_semantic_diff_demo"
+      },
+      {
+        "path": "scripts/semantic_diff_engine.py",
+        "name": "semantic_diff_engine.py",
+        "stem": "semantic_diff_engine"
+      },
+      {
+        "path": "scripts/glacier_spore_models.py",
+        "name": "glacier_spore_models.py",
+        "stem": "glacier_spore_models"
+      },
+      {
+        "path": "scripts/ghostbusters_file_type_processor.py",
+        "name": "ghostbusters_file_type_processor.py",
+        "stem": "ghostbusters_file_type_processor"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.490077",
+  "version": "1.0.0"
+}

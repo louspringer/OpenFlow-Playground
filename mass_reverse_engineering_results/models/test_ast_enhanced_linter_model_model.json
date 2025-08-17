@@ -1,0 +1,510 @@
+{
+  "system_name": "Test-Driven Development Suite for AST-Enhanced Linter Model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestASTEnhancedLinterModel": {
+      "responsibility": "Test suite for the AST-Enhanced Linter Model",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Set up test fixtures before each test method",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_model_creation",
+          "signature": "test_model_creation(self) -> Any",
+          "docstring": "Test that the model can be created successfully",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_analysis_rules_initialization",
+          "signature": "test_analysis_rules_initialization(self) -> Any",
+          "docstring": "Test that analysis rules are properly initialized",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_transformation_rules_initialization",
+          "signature": "test_transformation_rules_initialization(self) -> Any",
+          "docstring": "Test that transformation rules are properly initialized",
+          "decorators": [],
+          "line_number": 65,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_quality_thresholds_initialization",
+          "signature": "test_quality_thresholds_initialization(self) -> Any",
+          "docstring": "Test that quality thresholds are properly initialized",
+          "decorators": [],
+          "line_number": 75,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_rules_for_strategy",
+          "signature": "test_get_rules_for_strategy(self) -> Any",
+          "docstring": "Test getting rules for a specific analysis strategy",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_rules_for_issue_type",
+          "signature": "test_get_rules_for_issue_type(self) -> Any",
+          "docstring": "Test getting rules for a specific issue type",
+          "decorators": [],
+          "line_number": 100,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_auto_fixable_rules",
+          "signature": "test_get_auto_fixable_rules(self) -> Any",
+          "docstring": "Test getting rules that can be auto-fixed",
+          "decorators": [],
+          "line_number": 111,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_import_analysis_rules",
+          "signature": "test_import_analysis_rules(self) -> Any",
+          "docstring": "Test that import analysis rules are properly configured",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_function_analysis_rules",
+          "signature": "test_function_analysis_rules(self) -> Any",
+          "docstring": "Test that function analysis rules are properly configured",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_complexity_analysis_rules",
+          "signature": "test_complexity_analysis_rules(self) -> Any",
+          "docstring": "Test that complexity analysis rules are properly configured",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_smell_detection_rules",
+          "signature": "test_code_smell_detection_rules(self) -> Any",
+          "docstring": "Test that code smell detection rules are properly configured",
+          "decorators": [],
+          "line_number": 204,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_condition_methods",
+          "signature": "test_condition_methods(self) -> Any",
+          "docstring": "Test that condition methods work correctly",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_wildcard_import_detection",
+          "signature": "test_wildcard_import_detection(self) -> Any",
+          "docstring": "Test wildcard import detection",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_function_length_analysis",
+          "signature": "test_function_length_analysis(self) -> Any",
+          "docstring": "Test function length analysis",
+          "decorators": [],
+          "line_number": 245,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_magic_number_detection",
+          "signature": "test_magic_number_detection(self) -> Any",
+          "docstring": "Test magic number detection",
+          "decorators": [],
+          "line_number": 257,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_hardcoded_string_detection",
+          "signature": "test_hardcoded_string_detection(self) -> Any",
+          "docstring": "Test hardcoded string detection",
+          "decorators": [],
+          "line_number": 271,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_transformation_rule_validation",
+          "signature": "test_transformation_rule_validation(self) -> Any",
+          "docstring": "Test that transformation rules have proper validation methods",
+          "decorators": [],
+          "line_number": 283,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_rollback_capabilities",
+          "signature": "test_rollback_capabilities(self) -> Any",
+          "docstring": "Test that transformation rules have rollback capabilities",
+          "decorators": [],
+          "line_number": 291,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_quality_threshold_consistency",
+          "signature": "test_quality_threshold_consistency(self) -> Any",
+          "docstring": "Test that quality thresholds are consistent and reasonable",
+          "decorators": [],
+          "line_number": 297,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_ast_node_type_consistency",
+          "signature": "test_ast_node_type_consistency(self) -> Any",
+          "docstring": "Test that AST node types in rules are valid",
+          "decorators": [],
+          "line_number": 313,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_rule_severity_consistency",
+          "signature": "test_rule_severity_consistency(self) -> Any",
+          "docstring": "Test that rule severities are appropriate for their issue types",
+          "decorators": [],
+          "line_number": 320,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 41
+    },
+    "TestASTAnalysisResult": {
+      "responsibility": "Test suite for AST Analysis Result data structure",
+      "methods": [
+        {
+          "name": "test_ast_analysis_result_creation",
+          "signature": "test_ast_analysis_result_creation(self) -> Any",
+          "docstring": "Test creating an AST analysis result",
+          "decorators": [],
+          "line_number": 345,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 342
+    },
+    "TestCodeQualityMetric": {
+      "responsibility": "Test suite for Code Quality Metric data structure",
+      "methods": [
+        {
+          "name": "test_code_quality_metric_creation",
+          "signature": "test_code_quality_metric_creation(self) -> Any",
+          "docstring": "Test creating a code quality metric",
+          "decorators": [],
+          "line_number": 369,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_quality_metric_threshold_validation",
+          "signature": "test_code_quality_metric_threshold_validation(self) -> Any",
+          "docstring": "Test that metrics can validate against thresholds",
+          "decorators": [],
+          "line_number": 387,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 366
+    },
+    "TestTransformationRule": {
+      "responsibility": "Test suite for Transformation Rule data structure",
+      "methods": [
+        {
+          "name": "test_transformation_rule_creation",
+          "signature": "test_transformation_rule_creation(self) -> Any",
+          "docstring": "Test creating a transformation rule",
+          "decorators": [],
+          "line_number": 405,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 402
+    },
+    "TestModelIntegration": {
+      "responsibility": "Test suite for model integration and real-world scenarios",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> Any",
+          "docstring": "Set up test fixtures before each test method",
+          "decorators": [],
+          "line_number": 433,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_model_with_real_python_code",
+          "signature": "test_model_with_real_python_code(self) -> Any",
+          "docstring": "Test the model with actual Python code",
+          "decorators": [],
+          "line_number": 437,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_model_extensibility",
+          "signature": "test_model_extensibility(self) -> Any",
+          "docstring": "Test that the model can be extended with new rules",
+          "decorators": [],
+          "line_number": 499,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 430
+    }
+  },
+  "module_functions": [
+    {
+      "name": "mock_transformer",
+      "signature": "mock_transformer(tree: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 408,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "tree",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "mock_validator",
+      "signature": "mock_validator(original: Any, transformed: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 411,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "original",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "transformed",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import sys",
+    "from pathlib import Path",
+    "from unittest.mock import Mock",
+    "from unittest.mock import patch",
+    "import pytest",
+    "from ast_enhanced_linter_model import AnalysisStrategy",
+    "from ast_enhanced_linter_model import ASTAnalysisResult",
+    "from ast_enhanced_linter_model import ASTAnalysisRule",
+    "from ast_enhanced_linter_model import ASTEnhancedLinterModel",
+    "from ast_enhanced_linter_model import AutoFixCapability",
+    "from ast_enhanced_linter_model import CodeQualityMetric",
+    "from ast_enhanced_linter_model import IssueSeverity",
+    "from ast_enhanced_linter_model import IssueType",
+    "from ast_enhanced_linter_model import TransformationRule",
+    "from ast_enhanced_linter_model import create_ast_enhanced_linter_model"
+  ],
+  "module_docstring": "\nTest-Driven Development Suite for AST-Enhanced Linter Model\n\nThis test suite validates the domain model and ensures it behaves correctly\nbefore implementing the actual linter functionality.\n\nTest Strategy:\n1. Test model creation and initialization\n2. Test analysis rule configuration\n3. Test transformation rule setup\n4. Test quality threshold validation\n5. Test AST analysis capabilities\n6. Test auto-fix capabilities\n",
+  "file_structure": {
+    "total_lines": 531,
+    "code_lines": 403,
+    "comment_lines": 37,
+    "blank_lines": 91,
+    "total_nodes": 1943,
+    "class_nodes": 5,
+    "function_nodes": 31,
+    "import_nodes": 6,
+    "expression_nodes": 40,
+    "assignment_nodes": 51,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 531
+  },
+  "used_names": [
+    "mock_short_function_node",
+    "mock_import_node",
+    "__name__",
+    "__file__",
+    "mock_long_string_node",
+    "Mock",
+    "python_code",
+    "auto_fixable_rules",
+    "strategies",
+    "IssueSeverity",
+    "issue_types",
+    "unused_import_rule",
+    "ASTAnalysisResult",
+    "result",
+    "callable",
+    "ASTAnalysisRule",
+    "rule",
+    "AutoFixCapability",
+    "str",
+    "mock_function_node",
+    "Path",
+    "mock_transformer",
+    "CodeQualityMetric",
+    "hasattr",
+    "pattern_rules",
+    "TransformationRule",
+    "mock_specific_node",
+    "complexity_rules",
+    "function_too_long_rule",
+    "ASTEnhancedLinterModel",
+    "ast",
+    "pytest",
+    "SyntaxError",
+    "sys",
+    "len",
+    "issubclass",
+    "create_ast_enhanced_linter_model",
+    "code_smell_rules",
+    "multiple_imports_rules",
+    "file_path",
+    "deeply_nested_rule",
+    "magic_numbers_rule",
+    "custom_rule",
+    "self",
+    "mock_single_import_node",
+    "function_rules",
+    "thresholds",
+    "non_magic_num",
+    "IssueType",
+    "mock_num_node",
+    "next",
+    "mock_short_string_node",
+    "import_rules",
+    "missing_docstring_rule",
+    "AnalysisStrategy",
+    "tree",
+    "multiple_imports_rule",
+    "mock_wildcard_node",
+    "magic_num",
+    "mock_validator",
+    "metric",
+    "isinstance",
+    "node_type"
+  ]
+}

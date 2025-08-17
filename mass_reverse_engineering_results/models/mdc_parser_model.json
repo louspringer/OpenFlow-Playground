@@ -1,0 +1,192 @@
+{
+  "system_name": "MDC Parser - Direct parsing of Cursor MDC files without YAML kludges",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MDCParser": {
+      "responsibility": "Direct MDC file parser that understands Cursor's format",
+      "methods": [
+        {
+          "name": "parse_mdc",
+          "signature": "parse_mdc(self, file_path: str) -> tuple[Tuple[dict[Tuple[str, Any]], str]]",
+          "docstring": "Parse MDC file directly without YAML complications\n\n        Args:\n            file_path: Path to MDC file\n\n        Returns:\n            Tuple of (yaml_data, markdown_content)",
+          "decorators": [],
+          "line_number": 17,
+          "return_type": "tuple[Tuple[dict[Tuple[str, Any]], str]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_frontmatter",
+          "signature": "_parse_frontmatter(self, lines: list[str]) -> dict[Tuple[str, Any]]",
+          "docstring": "Parse frontmatter lines directly without YAML",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_mdc_structure",
+          "signature": "validate_mdc_structure(self, file_path: str) -> bool",
+          "docstring": "Validate MDC file structure using direct parsing\n\n        Args:\n            file_path: Path to MDC file\n\n        Returns:\n            True if valid, False otherwise",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_rule_heuristics",
+          "signature": "_validate_rule_heuristics(self, file_path: str, yaml_data: dict[Tuple[str, Any]], markdown_content: str) -> Any",
+          "docstring": "Heuristic fuzzy checks for rule purpose vs configuration\n\n        Args:\n            file_path: Path to MDC file\n            yaml_data: Parsed YAML frontmatter\n            markdown_content: Markdown content",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "yaml_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "markdown_content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Test the MDC parser",
+      "decorators": [],
+      "line_number": 237,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Tuple"
+  ],
+  "module_docstring": "\nMDC Parser - Direct parsing of Cursor MDC files without YAML kludges\n",
+  "file_structure": {
+    "total_lines": 256,
+    "code_lines": 188,
+    "comment_lines": 23,
+    "blank_lines": 45,
+    "total_nodes": 1087,
+    "class_nodes": 1,
+    "function_nodes": 6,
+    "import_nodes": 3,
+    "expression_nodes": 30,
+    "assignment_nodes": 37,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 256
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "required_fields",
+    "items",
+    "description",
+    "enumerate",
+    "yaml_data",
+    "warnings",
+    "isinstance",
+    "dict",
+    "value",
+    "content",
+    "has_yaml_targets",
+    "missing_fields",
+    "str",
+    "Path",
+    "test_file",
+    "line",
+    "glob_patterns",
+    "warning",
+    "pattern",
+    "item",
+    "ext",
+    "list",
+    "delimiter_positions",
+    "len",
+    "file_path",
+    "filename",
+    "print",
+    "frontmatter_lines",
+    "main",
+    "self",
+    "lines",
+    "globs",
+    "tuple",
+    "bool",
+    "ValueError",
+    "field",
+    "keyword",
+    "frontmatter_start",
+    "re",
+    "yaml_extensions",
+    "i",
+    "MDCParser",
+    "always_apply",
+    "parser",
+    "markdown_content",
+    "g",
+    "all",
+    "frontmatter_end",
+    "e",
+    "Any",
+    "any"
+  ]
+}

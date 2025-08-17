@@ -1,0 +1,51 @@
+{
+  "module_name": "test_test_type_safety",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "tests/test_type_safety.py"
+  ],
+  "file_count": 1,
+  "total_lines": 256,
+  "total_classes": 1,
+  "total_functions": 4,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\ntest_test_type_safety\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 256\nClasses: 1\nFunctions: 4\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_type_safety",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 256,
+      "total_classes": 1,
+      "total_functions": 4,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "tests/test_type_safety.py",
+        "name": "test_type_safety.py",
+        "stem": "test_type_safety"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:19.257377",
+  "version": "1.0.0"
+}

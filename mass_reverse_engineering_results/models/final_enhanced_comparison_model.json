@@ -1,0 +1,115 @@
+{
+  "system_name": "Final Enhanced Comparison - Compare original with enhanced generated complete module",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "compare_files",
+      "signature": "compare_files(original_file: str, generated_file: str) -> None",
+      "docstring": "Compare original and generated files comprehensively",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "original_file",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "generated_file",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 157,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast"
+  ],
+  "module_docstring": "\nFinal Enhanced Comparison - Compare original with enhanced generated complete module\n",
+  "file_structure": {
+    "total_lines": 164,
+    "code_lines": 118,
+    "comment_lines": 11,
+    "blank_lines": 35,
+    "total_nodes": 918,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 1,
+    "expression_nodes": 48,
+    "assignment_nodes": 31,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 164
+  },
+  "used_names": [
+    "structure_match",
+    "__name__",
+    "Exception",
+    "f",
+    "generated_functions",
+    "passed_checks",
+    "node",
+    "abs",
+    "isinstance",
+    "original_returns",
+    "generated_docstring",
+    "module_elements_match",
+    "original_ast",
+    "open",
+    "str",
+    "total_checks",
+    "functionality_match",
+    "sum",
+    "calc_methods",
+    "original_file",
+    "generated_ast",
+    "generated_has_calc",
+    "ast",
+    "original_classes",
+    "len",
+    "original_docstring",
+    "generated_purpose",
+    "print",
+    "main",
+    "original_types",
+    "original_has_calc",
+    "generated_lines",
+    "generated_classes",
+    "original_lines",
+    "success_rate",
+    "generated_returns",
+    "original_functions",
+    "compare_files",
+    "generated_types",
+    "method",
+    "original_purpose",
+    "original_main",
+    "generated_main",
+    "original_content",
+    "generated_content",
+    "all",
+    "e",
+    "generated_graph_level",
+    "original_graph_level",
+    "generated_file"
+  ]
+}

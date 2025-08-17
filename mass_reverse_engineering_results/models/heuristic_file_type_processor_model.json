@@ -1,0 +1,498 @@
+{
+  "system_name": "Heuristic File Type Processor - Dynamic Discovery and Exception Mapping",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "FileTypeConfidence": {
+      "responsibility": "Confidence levels for heuristic file type detection",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 30
+    },
+    "DiscoveryStrategy": {
+      "responsibility": "Strategies for discovering file types",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 40
+    },
+    "HeuristicPattern": {
+      "responsibility": "A pattern used for heuristic file type detection",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 52
+    },
+    "FileTypeDiscovery": {
+      "responsibility": "Result of file type discovery",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 67
+    },
+    "ExceptionMapping": {
+      "responsibility": "Mapping of parsing exceptions to recovery strategies",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 82
+    },
+    "HeuristicFileTypeProcessor": {
+      "responsibility": "Heuristic processor for dynamic file type discovery and exception handling",
+      "methods": [
+        {
+          "name": "_initialize_heuristic_patterns",
+          "signature": "_initialize_heuristic_patterns(self) -> list[HeuristicPattern]",
+          "docstring": "Initialize heuristic patterns for file type detection",
+          "decorators": [],
+          "line_number": 121,
+          "return_type": "list[HeuristicPattern]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_initialize_exception_mappings",
+          "signature": "_initialize_exception_mappings(self) -> list[ExceptionMapping]",
+          "docstring": "Initialize exception mappings for recovery strategies",
+          "decorators": [],
+          "line_number": 186,
+          "return_type": "list[ExceptionMapping]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "discover_file_type",
+          "signature": "discover_file_type(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Discover file type using multiple strategies with fallback to heuristics",
+          "decorators": [],
+          "line_number": 237,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extension_based_discovery",
+          "signature": "_extension_based_discovery(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Discover file type based on extension and attempt parsing",
+          "decorators": [],
+          "line_number": 263,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_content_pattern_discovery",
+          "signature": "_content_pattern_discovery(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Discover file type based on content patterns",
+          "decorators": [],
+          "line_number": 282,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_structure_analysis_discovery",
+          "signature": "_structure_analysis_discovery(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Discover file type based on structural analysis",
+          "decorators": [],
+          "line_number": 331,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_heuristic_fallback_discovery",
+          "signature": "_heuristic_fallback_discovery(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Final fallback using general heuristics",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_unknown_discovery",
+          "signature": "_create_unknown_discovery(self, file_path: Path) -> FileTypeDiscovery",
+          "docstring": "Create a discovery result for unknown file types",
+          "decorators": [],
+          "line_number": 409,
+          "return_type": "FileTypeDiscovery",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_attempt_parsing",
+          "signature": "_attempt_parsing(self, file_path: Path, file_type: str) -> tuple[Tuple[bool, list[str]]]",
+          "docstring": "Attempt to parse a file with the given type",
+          "decorators": [],
+          "line_number": 421,
+          "return_type": "tuple[Tuple[bool, list[str]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_map_exception_to_recovery",
+          "signature": "_map_exception_to_recovery(self, exception_type: str, exception_message: str, file_type: str) -> str",
+          "docstring": "Map parsing exceptions to recovery strategies",
+          "decorators": [],
+          "line_number": 467,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "exception_type",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "exception_message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_indentation_patterns",
+          "signature": "_analyze_indentation_patterns(self, lines: list[str]) -> dict[Tuple[str, float]]",
+          "docstring": "Analyze indentation patterns to infer file type",
+          "decorators": [],
+          "line_number": 482,
+          "return_type": "dict[Tuple[str, float]]",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_bracket_patterns",
+          "signature": "_analyze_bracket_patterns(self, lines: list[str]) -> dict[Tuple[str, float]]",
+          "docstring": "Analyze bracket patterns to infer file type",
+          "decorators": [],
+          "line_number": 511,
+          "return_type": "dict[Tuple[str, float]]",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "learn_from_discovery",
+          "signature": "learn_from_discovery(self, discovery: FileTypeDiscovery, actual_type: str) -> Any",
+          "docstring": "Learn from discovery results to improve future classifications",
+          "decorators": [],
+          "line_number": 538,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "discovery",
+              "type": "FileTypeDiscovery",
+              "default": null
+            },
+            {
+              "name": "actual_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_discovery_statistics",
+          "signature": "get_discovery_statistics(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get statistics about discovery performance",
+          "decorators": [],
+          "line_number": 560,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 93
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Demo the heuristic file type processor",
+      "decorators": [],
+      "line_number": 598,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import configparser",
+    "import hashlib",
+    "import json",
+    "import os",
+    "import re",
+    "import xml.etree.ElementTree as ET",
+    "from abc import ABC",
+    "from abc import abstractmethod",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Optional",
+    "import tomllib",
+    "import yaml"
+  ],
+  "module_docstring": "\nHeuristic File Type Processor - Dynamic Discovery and Exception Mapping\n\nThis module implements a heuristic approach to file type discovery that can:\n1. Handle parsing exceptions gracefully\n2. Heuristically classify unknown file types\n3. Map exceptions to recovery strategies\n4. Learn from failures to improve future classification\n5. Support TOML and other artifact types with semantic diffing\n",
+  "file_structure": {
+    "total_lines": 639,
+    "code_lines": 505,
+    "comment_lines": 39,
+    "blank_lines": 95,
+    "total_nodes": 2690,
+    "class_nodes": 6,
+    "function_nodes": 17,
+    "import_nodes": 14,
+    "expression_nodes": 42,
+    "assignment_nodes": 86,
+    "return_nodes": 30
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 639
+  },
+  "used_names": [
+    "Exception",
+    "HIGH",
+    "description",
+    "HeuristicFileTypeProcessor",
+    "dict",
+    "tomllib",
+    "ExceptionMapping",
+    "discovery_strategy",
+    "python_score",
+    "MEDIUM",
+    "best_score",
+    "Path",
+    "test_file",
+    "bracket_patterns",
+    "parsing_errors",
+    "list",
+    "ast",
+    "discovery",
+    "successful",
+    "t",
+    "print",
+    "pattern_scores",
+    "stats",
+    "MIME_TYPE",
+    "bool",
+    "type",
+    "regex",
+    "re",
+    "total",
+    "configparser",
+    "total_strategy",
+    "__name__",
+    "HEURISTIC_FALLBACK",
+    "LOW",
+    "yaml",
+    "strategy",
+    "FileTypeConfidence",
+    "line",
+    "CERTAIN",
+    "HeuristicPattern",
+    "MAGIC_BYTES",
+    "indent_patterns",
+    "entry",
+    "stripped",
+    "exception_message",
+    "recovery_strategy",
+    "confidence_score",
+    "CONTENT_PATTERN",
+    "field",
+    "usage_count",
+    "strategy_performance",
+    "config",
+    "FileTypeDiscovery",
+    "file_type",
+    "heuristic_patterns",
+    "total_lines",
+    "score",
+    "f",
+    "learning_entry",
+    "float",
+    "content",
+    "os",
+    "Enum",
+    "successful_strategy",
+    "json_score",
+    "matches",
+    "open",
+    "parsing_success",
+    "sum",
+    "exception_type",
+    "errors",
+    "pattern",
+    "detected_type",
+    "indent",
+    "main",
+    "_",
+    "yaml_score",
+    "s",
+    "processor",
+    "structure_scores",
+    "mapping",
+    "Optional",
+    "Any",
+    "actual_type",
+    "patterns",
+    "confidence",
+    "DiscoveryStrategy",
+    "str",
+    "ET",
+    "best_type",
+    "dataclass",
+    "json",
+    "min",
+    "len",
+    "p",
+    "file_path",
+    "STRUCTURE_ANALYSIS",
+    "self",
+    "lines",
+    "metadata",
+    "tuple",
+    "max",
+    "success_rate",
+    "xml_score",
+    "EXTENSION_BASED",
+    "int",
+    "UNKNOWN",
+    "e",
+    "test_files"
+  ]
+}

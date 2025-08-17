@@ -1,0 +1,301 @@
+{
+  "system_name": "MDC File Model and Generator",
+  "description": "Uses standard Python libraries to model and generate .mdc files",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MDCFrontmatter": {
+      "responsibility": "Model for MDC file YAML frontmatter",
+      "methods": [
+        {
+          "name": "to_yaml",
+          "signature": "to_yaml(self) -> str",
+          "docstring": "Convert to YAML string",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 15
+    },
+    "MDCFile": {
+      "responsibility": "Complete MDC file model",
+      "methods": [
+        {
+          "name": "to_mdc_content",
+          "signature": "to_mdc_content(self) -> str",
+          "docstring": "Generate complete .mdc file content",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save",
+          "signature": "save(self, file_path: Optional[Path]) -> None",
+          "docstring": "Save .mdc file",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Optional[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "from_file",
+          "signature": "from_file(self, cls: Any, file_path: Path) -> MDCFile",
+          "docstring": "Load .mdc file from disk",
+          "decorators": [
+            "classmethod"
+          ],
+          "line_number": 56,
+          "return_type": "MDCFile",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_rule",
+          "signature": "create_rule(self, cls: Any, description: str, globs: list[str], content: str, file_path: Optional[Path], always_apply: bool) -> MDCFile",
+          "docstring": "Create a new MDC rule file",
+          "decorators": [
+            "classmethod"
+          ],
+          "line_number": 100,
+          "return_type": "MDCFile",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "description",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "globs",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "Optional[Path]",
+              "default": null
+            },
+            {
+              "name": "always_apply",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 33
+    },
+    "MDCGenerator": {
+      "responsibility": "Generator for MDC files",
+      "methods": [
+        {
+          "name": "generate_all_rules",
+          "signature": "generate_all_rules(self) -> None",
+          "docstring": "Generate all standard .mdc rules",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_standard_rules",
+          "signature": "_get_standard_rules(self) -> dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "docstring": "Get standard rule definitions",
+          "decorators": [],
+          "line_number": 144,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_mdc_file",
+          "signature": "validate_mdc_file(self, file_path: Path) -> bool",
+          "docstring": "Validate a single .mdc file",
+          "decorators": [],
+          "line_number": 258,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_all_mdc_files",
+          "signature": "validate_all_mdc_files(self) -> dict[Tuple[Path, bool]]",
+          "docstring": "Validate all .mdc files in the project",
+          "decorators": [],
+          "line_number": 267,
+          "return_type": "dict[Tuple[Path, bool]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 122
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function for command-line usage",
+      "decorators": [],
+      "line_number": 275,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "import yaml",
+    "import argparse"
+  ],
+  "module_docstring": "\nMDC File Model and Generator\nUses standard Python libraries to model and generate .mdc files\n",
+  "file_structure": {
+    "total_lines": 319,
+    "code_lines": 246,
+    "comment_lines": 20,
+    "blank_lines": 53,
+    "total_nodes": 966,
+    "class_nodes": 3,
+    "function_nodes": 11,
+    "import_nodes": 5,
+    "expression_nodes": 33,
+    "assignment_nodes": 29,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 319
+  },
+  "used_names": [
+    "classmethod",
+    "__name__",
+    "f",
+    "Exception",
+    "frontmatter_end",
+    "valid_files",
+    "description",
+    "enumerate",
+    "generator",
+    "yaml_content",
+    "dict",
+    "target_path",
+    "content",
+    "MDCFile",
+    "yaml",
+    "open",
+    "MDCFrontmatter",
+    "str",
+    "Path",
+    "line",
+    "frontmatter_text",
+    "msg",
+    "mdc_file",
+    "rule_data",
+    "list",
+    "dataclass",
+    "valid",
+    "len",
+    "file_path",
+    "rules",
+    "print",
+    "main",
+    "lines",
+    "self",
+    "globs",
+    "file",
+    "bool",
+    "results",
+    "base_dir",
+    "ValueError",
+    "invalid_files",
+    "frontmatter_data",
+    "MDCGenerator",
+    "content_lines",
+    "data",
+    "frontmatter",
+    "i",
+    "always_apply",
+    "parser",
+    "args",
+    "argparse",
+    "cls",
+    "rule_name",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

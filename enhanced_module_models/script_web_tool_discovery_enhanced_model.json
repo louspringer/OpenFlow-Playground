@@ -1,0 +1,51 @@
+{
+  "module_name": "script_web_tool_discovery",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "backup/ghostbusters/ghostbusters/web_tool_discovery.py"
+  ],
+  "file_count": 1,
+  "total_lines": 237,
+  "total_classes": 1,
+  "total_functions": 0,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\nscript_web_tool_discovery\n\nPurpose: Utility scripts and tools\nGraph API Level: 1\nProjection System: script_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 237\nClasses: 1\nFunctions: 0\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Utility scripts and tools",
+  "graph_api_level": "1",
+  "projection_system": "script_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "script_web_tool_discovery",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 237,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "backup/ghostbusters/ghostbusters/web_tool_discovery.py",
+        "name": "web_tool_discovery.py",
+        "stem": "web_tool_discovery"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.057798",
+  "version": "1.0.0"
+}

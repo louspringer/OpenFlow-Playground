@@ -1,0 +1,57 @@
+{
+  "module_name": "model_driven_projection_improved_projection",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "src/model_driven_projection/improved_projection.py",
+    "src/model_driven_projection/improved_projection_system.py"
+  ],
+  "file_count": 2,
+  "total_lines": 572,
+  "total_classes": 2,
+  "total_functions": 1,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\nmodel_driven_projection_improved_projection\n\nPurpose: Data models and schemas\nGraph API Level: 2\nProjection System: model_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 572\nClasses: 2\nFunctions: 1\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "2",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_driven_projection_improved_projection",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 572,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "src/model_driven_projection/improved_projection.py",
+        "name": "improved_projection.py",
+        "stem": "improved_projection"
+      },
+      {
+        "path": "src/model_driven_projection/improved_projection_system.py",
+        "name": "improved_projection_system.py",
+        "stem": "improved_projection_system"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.391910",
+  "version": "1.0.0"
+}

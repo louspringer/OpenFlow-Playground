@@ -1,0 +1,297 @@
+{
+  "system_name": "Secure Shell Executor - Safe replacement for subprocess",
+  "description": "Provides secure command execution without subprocess vulnerabilities",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CommandResult": {
+      "responsibility": "Result of a secure command execution",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 21
+    },
+    "SecureExecutor": {
+      "responsibility": "Secure command execution without subprocess vulnerabilities",
+      "methods": [
+        {
+          "name": "_load_allowed_commands",
+          "signature": "_load_allowed_commands(self) -> dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "docstring": "Load allowed commands from configuration",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_command",
+          "signature": "_validate_command(self, command: Union[Tuple[str, list[str]]]) -> bool",
+          "docstring": "Validate command is allowed and safe",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "Union[Tuple[str, list[str]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_sanitize_command",
+          "signature": "_sanitize_command(self, command: Union[Tuple[str, list[str]]]) -> list[str]",
+          "docstring": "Sanitize command for safe execution",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "Union[Tuple[str, list[str]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "execute",
+          "signature": "execute(self, command: Union[Tuple[str, list[str]]], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult",
+          "docstring": "Execute command securely",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "CommandResult",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "Union[Tuple[str, list[str]]]",
+              "default": null
+            },
+            {
+              "name": "capture_output",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "text",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_sync",
+          "signature": "execute_sync(self, command: Union[Tuple[str, list[str]]], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult",
+          "docstring": "Synchronous version of execute",
+          "decorators": [],
+          "line_number": 313,
+          "return_type": "CommandResult",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "Union[Tuple[str, list[str]]]",
+              "default": null
+            },
+            {
+              "name": "capture_output",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "text",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run",
+          "signature": "run(self, command: Union[Tuple[str, list[str]]], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult",
+          "docstring": "Alias for execute_sync",
+          "decorators": [],
+          "line_number": 326,
+          "return_type": "CommandResult",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "Union[Tuple[str, list[str]]]",
+              "default": null
+            },
+            {
+              "name": "capture_output",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "text",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    }
+  },
+  "module_functions": [
+    {
+      "name": "secure_execute",
+      "signature": "secure_execute(command: Union[Tuple[str, list[str]]], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult",
+      "docstring": "Convenience function for secure command execution",
+      "decorators": [],
+      "line_number": 341,
+      "return_type": "CommandResult",
+      "parameters": [
+        {
+          "name": "command",
+          "type": "Union[Tuple[str, list[str]]]",
+          "default": null
+        },
+        {
+          "name": "capture_output",
+          "type": "Optional[bool]",
+          "default": null
+        },
+        {
+          "name": "text",
+          "type": "Optional[bool]",
+          "default": null
+        },
+        {
+          "name": "timeout",
+          "type": "Optional[int]",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "import os",
+    "import tempfile",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "from typing import Union"
+  ],
+  "module_docstring": "\nSecure Shell Executor - Safe replacement for subprocess\nProvides secure command execution without subprocess vulnerabilities\n",
+  "file_structure": {
+    "total_lines": 369,
+    "code_lines": 288,
+    "comment_lines": 36,
+    "blank_lines": 45,
+    "total_nodes": 1639,
+    "class_nodes": 2,
+    "function_nodes": 7,
+    "import_nodes": 7,
+    "expression_nodes": 24,
+    "assignment_nodes": 38,
+    "return_nodes": 20
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 369
+  },
+  "used_names": [
+    "stderr",
+    "__name__",
+    "duration",
+    "working_dir",
+    "SecureExecutor",
+    "Exception",
+    "return_code",
+    "logging",
+    "timeout",
+    "stderr_str",
+    "CommandResult",
+    "original_dir",
+    "capture_output",
+    "float",
+    "result",
+    "dict",
+    "cmd",
+    "sanitized_cmd",
+    "Any",
+    "os",
+    "stdout_str",
+    "logger",
+    "str",
+    "Path",
+    "process",
+    "parts",
+    "text",
+    "allowed_args",
+    "part",
+    "clean_part",
+    "dataclass",
+    "list",
+    "tempfile",
+    "subcommand",
+    "command",
+    "len",
+    "temp_dir",
+    "print",
+    "Union",
+    "stdout",
+    "self",
+    "success",
+    "asyncio",
+    "subcommand_args",
+    "bool",
+    "prefix",
+    "sanitized",
+    "start_time",
+    "args",
+    "int",
+    "timeout_actual",
+    "arg",
+    "Optional",
+    "e",
+    "isinstance",
+    "executor",
+    "any"
+  ]
+}

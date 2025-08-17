@@ -1,0 +1,303 @@
+{
+  "system_name": "Code Quality Expert Agent for clewcrew",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CodeQualityExpert": {
+      "responsibility": "Code quality expert that analyzes existing tool outputs and logs",
+      "methods": [
+        {
+          "name": "detect_hallucinations",
+          "signature": "detect_hallucinations(self, project_path: Path) -> HallucinationResult",
+          "docstring": "Analyze existing code quality data and provide recommendations",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "HallucinationResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_find_existing_tool_outputs",
+          "signature": "_find_existing_tool_outputs(self, project_path: Path) -> list[Path]",
+          "docstring": "Find existing tool output files without running tools",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "list[Path]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_existing_flake8_outputs",
+          "signature": "_analyze_existing_flake8_outputs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing flake8 output files",
+          "decorators": [],
+          "line_number": 116,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_existing_black_outputs",
+          "signature": "_analyze_existing_black_outputs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing black output files",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_existing_mypy_outputs",
+          "signature": "_analyze_existing_mypy_outputs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing mypy output files",
+          "decorators": [],
+          "line_number": 201,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_existing_ci_logs",
+          "signature": "_analyze_existing_ci_logs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing CI/CD logs for quality information",
+          "decorators": [],
+          "line_number": 234,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "suggest_fixes",
+          "signature": "suggest_fixes(self, issues: list[dict[Tuple[str, Any]]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Suggest fixes based on existing tool outputs",
+          "decorators": [],
+          "line_number": 262,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "generate_quality_metrics",
+          "signature": "generate_quality_metrics(self, project_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate code quality metrics for integration with quality system.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            Dictionary containing code quality metrics",
+          "decorators": [],
+          "line_number": 295,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "provide_quality_recommendations",
+          "signature": "provide_quality_recommendations(self, project_path: Path) -> list[str]",
+          "docstring": "Provide code quality improvement recommendations.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            List of actionable code quality recommendations",
+          "decorators": [],
+          "line_number": 346,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "assess_quality_impact",
+          "signature": "assess_quality_impact(self, changes: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Assess the impact of proposed changes on code quality.\n        \n        Args:\n            changes: List of proposed changes\n            \n        Returns:\n            Dictionary containing code quality impact assessment",
+          "decorators": [],
+          "line_number": 359,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "changes",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_name",
+          "signature": "get_quality_metric_name(self) -> str",
+          "docstring": "Get the name of the code quality metric.",
+          "decorators": [],
+          "line_number": 400,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_weight",
+          "signature": "get_quality_metric_weight(self) -> float",
+          "docstring": "Get the weight of the code quality metric.",
+          "decorators": [],
+          "line_number": 404,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 16
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_expert import BaseExpert",
+    "from base_expert import HallucinationResult"
+  ],
+  "module_docstring": "\nCode Quality Expert Agent for clewcrew\n\nCRITICAL: This agent analyzes existing tool outputs and logs.\nIt does NOT run expensive tools like flake8, black, or mypy.\n",
+  "file_structure": {
+    "total_lines": 406,
+    "code_lines": 322,
+    "comment_lines": 24,
+    "blank_lines": 60,
+    "total_nodes": 1615,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 37,
+    "assignment_nodes": 45,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 406
+  },
+  "used_names": [
+    "black_issues",
+    "mypy_file",
+    "Exception",
+    "f",
+    "output_files",
+    "ci_dir",
+    "change",
+    "flake8_file",
+    "change_content",
+    "float",
+    "result",
+    "dict",
+    "content",
+    "tool_outputs",
+    "config_file",
+    "open",
+    "str",
+    "BaseExpert",
+    "Path",
+    "changes",
+    "line",
+    "parts",
+    "mypy_files",
+    "fixes",
+    "flake8_issues",
+    "list",
+    "hallucination",
+    "json",
+    "ci_dirs",
+    "mypy_issues",
+    "len",
+    "quality_score",
+    "flake8_files",
+    "file_path",
+    "complexity_issues",
+    "hallucinations",
+    "self",
+    "black_files",
+    "issue",
+    "max",
+    "ci_issues",
+    "ci_path",
+    "code_style_issues",
+    "risk_level",
+    "quality_risks",
+    "output_file",
+    "data",
+    "HallucinationResult",
+    "black_file",
+    "h",
+    "recommendations",
+    "int",
+    "e",
+    "project_path",
+    "Any",
+    "issues",
+    "confidence"
+  ]
+}

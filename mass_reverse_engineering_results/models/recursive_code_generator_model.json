@@ -1,0 +1,376 @@
+{
+  "system_name": "Recursive Code Generator with AST-Based Decomposition",
+  "description": "Based on Python reverse engineering patterns from de4py and Python-Reversal-Bot",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "DecompositionResult": {
+      "responsibility": "Result of string decomposition analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 23
+    },
+    "StringPattern": {
+      "responsibility": "Pattern for string decomposition",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 35
+    },
+    "RecursiveCodeGenerator": {
+      "responsibility": "Enhanced code generator with recursive AST-based decomposition\n    Based on de4py and Python-Reversal-Bot reverse engineering patterns",
+      "methods": [
+        {
+          "name": "_build_patterns",
+          "signature": "_build_patterns(self) -> list[StringPattern]",
+          "docstring": "Build decomposition patterns based on reverse engineering research",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "list[StringPattern]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "decompose_string",
+          "signature": "decompose_string(self, string: str, depth: int) -> Optional[DecompositionResult]",
+          "docstring": "Recursively decompose strings using established reverse engineering patterns\n        Based on de4py AST analysis and Python-Reversal-Bot bytecode patterns",
+          "decorators": [],
+          "line_number": 98,
+          "return_type": "Optional[DecompositionResult]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "depth",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_with_pattern",
+          "signature": "_decompose_with_pattern(self, string: str, pattern: StringPattern) -> Optional[Any]",
+          "docstring": "Decompose string using specific pattern",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "Optional[Any]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "pattern",
+              "type": "StringPattern",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_import_statement",
+          "signature": "_decompose_import_statement(self, string: str) -> Optional[ImportStatement]",
+          "docstring": "Decompose import statement using AST analysis (de4py pattern)",
+          "decorators": [],
+          "line_number": 174,
+          "return_type": "Optional[ImportStatement]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_function_call",
+          "signature": "_decompose_function_call(self, string: str) -> Optional[FunctionDefinition]",
+          "docstring": "Decompose function call using AST analysis",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "Optional[FunctionDefinition]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_class_definition",
+          "signature": "_decompose_class_definition(self, string: str) -> Optional[ClassDefinition]",
+          "docstring": "Decompose class definition using AST analysis",
+          "decorators": [],
+          "line_number": 227,
+          "return_type": "Optional[ClassDefinition]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_variable_assignment",
+          "signature": "_decompose_variable_assignment(self, string: str) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Decompose variable assignment",
+          "decorators": [],
+          "line_number": 251,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_decompose_string_literal",
+          "signature": "_decompose_string_literal(self, string: str) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Decompose string literal (memory analysis pattern from de4py)",
+          "decorators": [],
+          "line_number": 274,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "string",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_decomposition",
+          "signature": "_validate_decomposition(self, original: str, decomposed_model: Any) -> bool",
+          "docstring": "Validate decomposition mathematically\n        Input == Output validation",
+          "decorators": [],
+          "line_number": 289,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "original",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "decomposed_model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_with_recursion",
+          "signature": "generate_with_recursion(self, model: CodeFile) -> str",
+          "docstring": "Generate code with recursive decomposition\n        Enhanced version that analyzes and decomposes generated strings",
+          "decorators": [],
+          "line_number": 323,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "CodeFile",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_strings_from_code",
+          "signature": "_extract_strings_from_code(self, code: str) -> list[str]",
+          "docstring": "Extract potential strings for decomposition from generated code",
+          "decorators": [],
+          "line_number": 355,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_log_decomposition_summary",
+          "signature": "_log_decomposition_summary(self) -> Any",
+          "docstring": "Log summary of decomposition analysis",
+          "decorators": [],
+          "line_number": 384,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "CodeGenerator"
+      ],
+      "line_number": 44
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Test the recursive code generator",
+      "decorators": [],
+      "line_number": 408,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "import re",
+    "from dataclasses import dataclass",
+    "from typing import Any",
+    "from typing import Optional",
+    "from code_generator import ClassDefinition",
+    "from code_generator import CodeFile",
+    "from code_generator import CodeGenerator",
+    "from code_generator import FunctionDefinition",
+    "from code_generator import ImportStatement"
+  ],
+  "module_docstring": "\nRecursive Code Generator with AST-Based Decomposition\nBased on Python reverse engineering patterns from de4py and Python-Reversal-Bot\n",
+  "file_structure": {
+    "total_lines": 441,
+    "code_lines": 331,
+    "comment_lines": 36,
+    "blank_lines": 74,
+    "total_nodes": 1785,
+    "class_nodes": 3,
+    "function_nodes": 14,
+    "import_nodes": 6,
+    "expression_nodes": 53,
+    "assignment_nodes": 46,
+    "return_nodes": 31
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 441
+  },
+  "used_names": [
+    "Exception",
+    "imports",
+    "DecompositionResult",
+    "imp",
+    "class_pattern",
+    "dict",
+    "regex_pattern",
+    "r",
+    "validated",
+    "confidence_threshold",
+    "module",
+    "list",
+    "ast",
+    "print",
+    "bool",
+    "type",
+    "original_string",
+    "RecursiveCodeGenerator",
+    "re",
+    "model",
+    "var_name",
+    "ClassDefinition",
+    "__name__",
+    "logging",
+    "model_class",
+    "generator",
+    "decomposition",
+    "depth",
+    "strings",
+    "line",
+    "var_value",
+    "SyntaxError",
+    "string",
+    "decomposed_model",
+    "CodeGenerator",
+    "name",
+    "validation_passed",
+    "test_string",
+    "arg",
+    "float",
+    "result",
+    "func_name",
+    "sum",
+    "strings_to_analyze",
+    "count",
+    "decomp_type",
+    "pattern",
+    "StringPattern",
+    "func_pattern",
+    "main",
+    "code",
+    "CodeFile",
+    "original",
+    "recursion_depth",
+    "args",
+    "class_name",
+    "decomposition_type",
+    "super",
+    "Optional",
+    "isinstance",
+    "Any",
+    "ImportStatement",
+    "FunctionDefinition",
+    "decompositions_found",
+    "confidence",
+    "import_pattern",
+    "inheritance",
+    "str",
+    "hasattr",
+    "args_str",
+    "dataclass",
+    "by_type",
+    "len",
+    "test_strings",
+    "self",
+    "generated",
+    "match",
+    "int",
+    "e"
+  ]
+}

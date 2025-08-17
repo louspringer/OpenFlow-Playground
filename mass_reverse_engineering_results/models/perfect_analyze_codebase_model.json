@@ -1,0 +1,73 @@
+{
+  "system_name": "Analyze Current Codebase with Enhanced AST Models",
+  "description": "Detect model issues as we build the complex model",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "analyze_codebase",
+      "signature": "analyze_codebase() -> None",
+      "docstring": "Analyze current codebase with Enhanced AST Models",
+      "decorators": [],
+      "line_number": 16,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "from artifact_forge.agents.artifact_parser_enhanced import EnhancedArtifactParser"
+  ],
+  "module_docstring": "\nAnalyze Current Codebase with Enhanced AST Models\nDetect model issues as we build the complex model\n",
+  "file_structure": {
+    "total_lines": 109,
+    "code_lines": 82,
+    "comment_lines": 5,
+    "blank_lines": 22,
+    "total_nodes": 508,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 37,
+    "assignment_nodes": 11,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 109
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "Exception",
+    "total_classes",
+    "total_imports",
+    "imports",
+    "python_files",
+    "result",
+    "os",
+    "files",
+    "str",
+    "model_issues",
+    "total_functions",
+    "root",
+    "sys",
+    "len",
+    "print",
+    "EnhancedArtifactParser",
+    "dirs",
+    "file",
+    "issue",
+    "functions",
+    "files_with_errors",
+    "parser",
+    "analyze_codebase",
+    "e"
+  ]
+}

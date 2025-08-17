@@ -267,7 +267,7 @@ lint-all: lint-python lint-bash lint-cloudformation lint-docs lint-security lint
 lint-python: ## Lint Python code
 	@echo "$(BLUE)🐍 Linting Python code...$(NC)"
 	@$(UV) run flake8 src/ tests/
-	@$(UV) run mypy src/
+	@$(UV) run mypy src/ scripts/
 	@echo "$(GREEN)✅ Python linting completed$(NC)"
 
 lint-bash: ## Lint bash scripts

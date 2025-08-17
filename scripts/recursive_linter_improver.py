@@ -175,8 +175,7 @@ class RecursiveLinterImprover:
             # Check for convergence
             if convergence_metric < convergence_threshold:
                 print(
-                    f"🎯 Convergence Reached! Metric: {
-                        convergence_metric:.4f} < {convergence_threshold}"
+                    f"🎯 Convergence Reached! Metric: {convergence_metric:.4f}< {convergence_threshold}"
                 )
                 session.convergence_reached = True
                 break
@@ -184,8 +183,7 @@ class RecursiveLinterImprover:
             # Check for diminishing returns
             if improvement_score < 0.01:  # Less than 1% improvement
                 print(
-                    f"📉 Diminishing Returns Detected. Improvement: {
-                        improvement_score:.2%}"
+                    f"📉 Diminishing Returns Detected. Improvement: {improvement_score:.2%}"
                 )
                 break
 
@@ -332,8 +330,7 @@ class RecursiveLinterImprover:
                     lines.insert(i, "")
                     modified = True
                     improvements.append(
-                        f"Added blank lines before definition at {
-                            i + 1}"
+                        f"Added blank lines before definition at {i + 1}"
                     )
 
         # Write back if modified

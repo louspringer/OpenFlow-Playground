@@ -1,0 +1,231 @@
+{
+  "system_name": "Tests for the SyntaxRecoveryEngine.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestSyntaxRecoveryEngine": {
+      "responsibility": "Test the SyntaxRecoveryEngine class.",
+      "methods": [
+        {
+          "name": "syntax_engine",
+          "signature": "syntax_engine(self) -> Any",
+          "docstring": "Create a test syntax recovery engine.",
+          "decorators": [],
+          "line_number": 14,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_engine_initialization",
+          "signature": "test_engine_initialization(self, syntax_engine: Any) -> Any",
+          "docstring": "Test engine initialization.",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_recovery_actions",
+          "signature": "test_get_recovery_actions(self, syntax_engine: Any) -> Any",
+          "docstring": "Test getting available recovery actions.",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_action_valid",
+          "signature": "test_validate_action_valid(self, syntax_engine: Any) -> Any",
+          "docstring": "Test action validation with valid action.",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_action_invalid_no_target_files",
+          "signature": "test_validate_action_invalid_no_target_files(self, syntax_engine: Any) -> Any",
+          "docstring": "Test action validation with missing target_files.",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_action_invalid_file_extension",
+          "signature": "test_validate_action_invalid_file_extension(self, syntax_engine: Any) -> Any",
+          "docstring": "Test action validation with non-Python files.",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_recovery_valid_syntax",
+          "signature": "test_execute_recovery_valid_syntax(self, syntax_engine: Any, tmp_path: Any) -> Any",
+          "docstring": "Test recovery execution with valid syntax.",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "tmp_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_recovery_invalid_syntax",
+          "signature": "test_execute_recovery_invalid_syntax(self, syntax_engine: Any, tmp_path: Any) -> Any",
+          "docstring": "Test recovery execution with invalid syntax.",
+          "decorators": [],
+          "line_number": 78,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "tmp_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_recovery_nonexistent_file",
+          "signature": "test_execute_recovery_nonexistent_file(self, syntax_engine: Any) -> Any",
+          "docstring": "Test recovery execution with nonexistent file.",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_confidence",
+          "signature": "test_calculate_confidence(self, syntax_engine: Any) -> Any",
+          "docstring": "Test confidence calculation.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "syntax_engine",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 10
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import pytest",
+    "from clewcrew_recovery.syntax_recovery_engine import SyntaxRecoveryEngine"
+  ],
+  "module_docstring": "\nTests for the SyntaxRecoveryEngine.\n",
+  "file_structure": {
+    "total_lines": 134,
+    "code_lines": 98,
+    "comment_lines": 6,
+    "blank_lines": 30,
+    "total_nodes": 519,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 2,
+    "expression_nodes": 15,
+    "assignment_nodes": 16,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 134
+  },
+  "used_names": [
+    "tmp_path",
+    "pytest",
+    "__file__",
+    "SyntaxRecoveryEngine",
+    "len",
+    "test_file",
+    "__name__",
+    "confidence",
+    "actions",
+    "action",
+    "result",
+    "str",
+    "syntax_engine"
+  ]
+}

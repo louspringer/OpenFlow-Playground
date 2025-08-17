@@ -1,0 +1,59 @@
+{
+  "system_name": "Migration Example - From CRINGY subprocess to ELEGANT secure shell! \ud83d\ude04",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "cringy_old_way",
+      "signature": "cringy_old_way() -> None",
+      "docstring": "The old way - makes you cringe every time you see it \ud83d\ude31",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import asyncio",
+    "from elegant_client import secure_execute",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nMigration Example - From CRINGY subprocess to ELEGANT secure shell! \ud83d\ude04\n",
+  "file_structure": {
+    "total_lines": 166,
+    "code_lines": 98,
+    "comment_lines": 23,
+    "blank_lines": 45,
+    "total_nodes": 507,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 51,
+    "assignment_nodes": 15,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 166
+  },
+  "used_names": [
+    "len",
+    "__name__",
+    "old_code",
+    "print",
+    "main",
+    "user_input",
+    "secure_execute",
+    "new_code",
+    "asyncio",
+    "migrate_file_example",
+    "result",
+    "migration_examples"
+  ]
+}

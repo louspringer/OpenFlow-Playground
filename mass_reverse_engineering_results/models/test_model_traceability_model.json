@@ -1,0 +1,150 @@
+{
+  "system_name": "Test Model Traceability: Requirements \u2192 Implementation \u2192 Validation",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_requirement_1_cloudformation_detection",
+      "signature": "test_requirement_1_cloudformation_detection() -> None",
+      "docstring": "REQUIREMENT: Don't lint CloudFormation with generic YAML tools",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_2_tool_selection",
+      "signature": "test_requirement_2_tool_selection() -> None",
+      "docstring": "REQUIREMENT: Use domain-specific tools",
+      "decorators": [],
+      "line_number": 38,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_3_exclusion_generation",
+      "signature": "test_requirement_3_exclusion_generation() -> None",
+      "docstring": "REQUIREMENT: Generate proper exclusions",
+      "decorators": [],
+      "line_number": 61,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_4_content_analysis",
+      "signature": "test_requirement_4_content_analysis() -> None",
+      "docstring": "REQUIREMENT: Intelligent content analysis",
+      "decorators": [],
+      "line_number": 78,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_5_confidence_scoring",
+      "signature": "test_requirement_5_confidence_scoring() -> None",
+      "docstring": "REQUIREMENT: Intelligent confidence scoring",
+      "decorators": [],
+      "line_number": 100,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_6_tool_execution",
+      "signature": "test_requirement_6_tool_execution() -> None",
+      "docstring": "REQUIREMENT: Actual tool execution works",
+      "decorators": [],
+      "line_number": 122,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_7_domain_registry",
+      "signature": "test_requirement_7_domain_registry() -> None",
+      "docstring": "REQUIREMENT: Extensible domain registry",
+      "decorators": [],
+      "line_number": 140,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Run all traceability tests",
+      "decorators": [],
+      "line_number": 159,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "from project_model import ProjectModel",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nTest Model Traceability: Requirements \u2192 Implementation \u2192 Validation\n",
+  "file_structure": {
+    "total_lines": 197,
+    "code_lines": 126,
+    "comment_lines": 17,
+    "blank_lines": 54,
+    "total_nodes": 794,
+    "class_nodes": 0,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 39,
+    "assignment_nodes": 25,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 197
+  },
+  "used_names": [
+    "cloudformation_config",
+    "test_requirement_5_confidence_scoring",
+    "__name__",
+    "f",
+    "Exception",
+    "test_requirement_7_domain_registry",
+    "test_requirement_1_cloudformation_detection",
+    "ProjectModel",
+    "yaml_result",
+    "result",
+    "content",
+    "open",
+    "required_domains",
+    "test_requirement_6_tool_execution",
+    "hasattr",
+    "secure_execute",
+    "subprocess",
+    "test_requirement_4_content_analysis",
+    "list",
+    "len",
+    "found_indicators",
+    "FileNotFoundError",
+    "print",
+    "main",
+    "py_result",
+    "cf_result",
+    "ind",
+    "passed",
+    "indicators",
+    "test_requirement_3_exclusion_generation",
+    "config",
+    "model",
+    "total",
+    "tests",
+    "domain",
+    "test_requirement_2_tool_selection",
+    "test",
+    "e",
+    "yaml_ignore",
+    "domain_name"
+  ]
+}

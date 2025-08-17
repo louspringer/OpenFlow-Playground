@@ -1,0 +1,242 @@
+{
+  "system_name": "Graph ML Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GraphMLIntegration": {
+      "responsibility": "Machine learning integration with Neo4j graphs",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> None",
+          "docstring": "Load the project model with credential mappings",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_credentials",
+          "signature": "get_credentials(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get Neo4j credentials using 1Password item pointers",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "execute_cypher_query",
+          "signature": "execute_cypher_query(self, query: str, credentials: dict[Tuple[str, str]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Execute Cypher query with secure credentials",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "query",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_cypher_output",
+          "signature": "_parse_cypher_output(self, output: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Parse cypher-shell output into structured data",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "output",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "extract_graph_features",
+          "signature": "extract_graph_features(self, credentials: dict[Tuple[str, str]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Extract features from Neo4j graph for ML models",
+          "decorators": [],
+          "line_number": 102,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_package_potential_ml",
+          "signature": "calculate_package_potential_ml(self, graph_features: dict[Tuple[str, Any]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Calculate package potential using ML algorithms",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "graph_features",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_ml_report",
+          "signature": "create_ml_report(self, predictions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Create ML analysis report",
+          "decorators": [],
+          "line_number": 156,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "predictions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_ml_integration",
+          "signature": "run_ml_integration(self) -> None",
+          "docstring": "Run the complete Graph ML integration",
+          "decorators": [],
+          "line_number": 184,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 212,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import subprocess",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List"
+  ],
+  "module_docstring": "\nGraph ML Integration\n\nMachine learning on Neo4j graphs with predictive analytics and recommendations.\n",
+  "file_structure": {
+    "total_lines": 226,
+    "code_lines": 160,
+    "comment_lines": 12,
+    "blank_lines": 54,
+    "total_nodes": 1066,
+    "class_nodes": 1,
+    "function_nodes": 10,
+    "import_nodes": 5,
+    "expression_nodes": 36,
+    "assignment_nodes": 37,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 226
+  },
+  "used_names": [
+    "key",
+    "env_key",
+    "__name__",
+    "Exception",
+    "f",
+    "credentials",
+    "result_dict",
+    "password",
+    "prediction",
+    "enumerate",
+    "sorted",
+    "domain_features",
+    "x",
+    "username",
+    "op_pointer",
+    "cmd",
+    "dict",
+    "features",
+    "query",
+    "domain_query",
+    "result",
+    "base_score",
+    "open",
+    "os",
+    "model_file",
+    "str",
+    "domain_data",
+    "Path",
+    "line",
+    "parts",
+    "subprocess",
+    "part",
+    "total_score",
+    "list",
+    "json",
+    "credential_mappings",
+    "graph_features",
+    "min",
+    "len",
+    "FileNotFoundError",
+    "print",
+    "main",
+    "self",
+    "lines",
+    "rule_count",
+    "results",
+    "ValueError",
+    "pred",
+    "GraphMLIntegration",
+    "data_lines",
+    "output",
+    "predictions",
+    "predictions_summary",
+    "domain_name",
+    "i",
+    "int",
+    "e",
+    "domain_bonus",
+    "Any",
+    "ml_integration",
+    "confidence"
+  ]
+}

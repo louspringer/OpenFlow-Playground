@@ -1,0 +1,318 @@
+{
+  "system_name": "GCP Ghostbusters Main Module",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GCPGhostbustersOrchestrator": {
+      "responsibility": "GCP Ghostbusters Orchestrator for cloud infrastructure investigation.\n\n    This orchestrator specializes in GCP-specific quality analysis including\n    Cloud Build, Cloud Run, and infrastructure as code validation.",
+      "methods": [
+        {
+          "name": "investigate_gcp_infrastructure",
+          "signature": "investigate_gcp_infrastructure(self, project_id: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Investigate GCP infrastructure quality issues",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_cloud_build",
+          "signature": "_analyze_cloud_build(self, project_id: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze Cloud Build configuration quality",
+          "decorators": [],
+          "line_number": 87,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_cloudbuild_config",
+          "signature": "_analyze_cloudbuild_config(self, config_file: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze individual Cloud Build configuration file",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "config_file",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_cloud_run",
+          "signature": "_analyze_cloud_run(self, project_id: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze Cloud Run configuration quality",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_deployment_quality",
+          "signature": "_calculate_deployment_quality(self, investigation_results: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate overall deployment quality score",
+          "decorators": [],
+          "line_number": 216,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "investigation_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_security_posture",
+          "signature": "_assess_security_posture(self, investigation_results: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Assess overall security posture",
+          "decorators": [],
+          "line_number": 241,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "investigation_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_cost_optimization",
+          "signature": "_assess_cost_optimization(self, investigation_results: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Assess cost optimization status",
+          "decorators": [],
+          "line_number": 258,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "investigation_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_timestamp",
+          "signature": "_get_timestamp(self) -> str",
+          "docstring": "Get current timestamp string",
+          "decorators": [],
+          "line_number": 270,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_gcp_investigation_summary",
+          "signature": "get_gcp_investigation_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all GCP investigations",
+          "decorators": [],
+          "line_number": 276,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_overall_gcp_quality",
+          "signature": "_calculate_overall_gcp_quality(self) -> str",
+          "docstring": "Calculate overall GCP quality trend",
+          "decorators": [],
+          "line_number": 291,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    }
+  },
+  "module_functions": [
+    {
+      "name": "run_gcp_ghostbusters",
+      "signature": "run_gcp_ghostbusters(project_id: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Run GCP Ghostbusters investigation on the specified project.\n\n    Args:\n        project_id: GCP project ID to investigate\n\n    Returns:\n        Investigation results dictionary",
+      "decorators": [],
+      "line_number": 311,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "ghostbusters_analyze",
+      "signature": "ghostbusters_analyze(project_id: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Analyze GCP infrastructure using Ghostbusters (alias for run_gcp_ghostbusters).\n\n    Args:\n        project_id: GCP project ID to investigate\n\n    Returns:\n        Investigation results dictionary",
+      "decorators": [],
+      "line_number": 334,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "ghostbusters_history",
+      "signature": "ghostbusters_history(project_id: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Get GCP infrastructure investigation history.\n\n    Args:\n        project_id: GCP project ID to investigate\n\n    Returns:\n        Investigation history dictionary",
+      "decorators": [],
+      "line_number": 347,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "ghostbusters_status",
+      "signature": "ghostbusters_status(request: Any) -> tuple[Tuple[dict[Tuple[str, Any]], int]]",
+      "docstring": "Get status of a GCP infrastructure analysis.\n\n    Args:\n        request: Request object containing analysis_id\n\n    Returns:\n        Tuple of (response_dict, status_code)",
+      "decorators": [],
+      "line_number": 361,
+      "return_type": "tuple[Tuple[dict[Tuple[str, Any]], int]]",
+      "parameters": [
+        {
+          "name": "request",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "from datetime import datetime"
+  ],
+  "module_docstring": "\nGCP Ghostbusters Main Module\n\nThis module provides the GCPGhostbustersOrchestrator for investigating\nGCP-specific infrastructure and deployment quality issues.\n",
+  "file_structure": {
+    "total_lines": 412,
+    "code_lines": 318,
+    "comment_lines": 16,
+    "blank_lines": 78,
+    "total_nodes": 1449,
+    "class_nodes": 1,
+    "function_nodes": 15,
+    "import_nodes": 5,
+    "expression_nodes": 42,
+    "assignment_nodes": 44,
+    "return_nodes": 25
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 412
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "round",
+    "f",
+    "logging",
+    "scores",
+    "orchestrator",
+    "severity_weights",
+    "severity",
+    "Any",
+    "dict",
+    "float",
+    "content",
+    "result",
+    "analysis",
+    "config_file",
+    "logger",
+    "str",
+    "Path",
+    "sum",
+    "high_security_issues",
+    "service",
+    "avg_score",
+    "cloud_run_analysis",
+    "GCPGhostbustersOrchestrator",
+    "config_files",
+    "list",
+    "penalty",
+    "json",
+    "config_issues",
+    "min",
+    "len",
+    "run_gcp_ghostbusters",
+    "cloud_build_analysis",
+    "print",
+    "analysis_id",
+    "self",
+    "deployment_files",
+    "project_id",
+    "tuple",
+    "results",
+    "issue",
+    "max",
+    "max_penalty",
+    "mock_analysis",
+    "cost_related_issues",
+    "data",
+    "datetime",
+    "investigation_results",
+    "config",
+    "i",
+    "critical_security_issues",
+    "int",
+    "weight",
+    "e",
+    "Optional",
+    "score",
+    "total_weight",
+    "issues",
+    "request"
+  ]
+}

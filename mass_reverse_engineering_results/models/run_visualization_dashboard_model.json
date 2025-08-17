@@ -1,0 +1,59 @@
+{
+  "system_name": "OpenFlow Playground - Visualization Dashboard Launcher",
+  "description": "Simple launcher for the comprehensive SVG visualization dashboard",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Launch the visualization dashboard",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nOpenFlow Playground - Visualization Dashboard Launcher\nSimple launcher for the comprehensive SVG visualization dashboard\n",
+  "file_structure": {
+    "total_lines": 74,
+    "code_lines": 57,
+    "comment_lines": 5,
+    "blank_lines": 12,
+    "total_nodes": 217,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 20,
+    "assignment_nodes": 2,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 74
+  },
+  "used_names": [
+    "sys",
+    "__name__",
+    "Exception",
+    "Path",
+    "print",
+    "main",
+    "subprocess",
+    "svg_dir",
+    "KeyboardInterrupt",
+    "e",
+    "list",
+    "result"
+  ]
+}

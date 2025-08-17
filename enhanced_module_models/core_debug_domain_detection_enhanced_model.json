@@ -1,0 +1,57 @@
+{
+  "module_name": "core_debug_domain_detection",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "debug_domain_detection.py",
+    "test_domain_detection.py"
+  ],
+  "file_count": 2,
+  "total_lines": 211,
+  "total_classes": 0,
+  "total_functions": 6,
+  "total_imports": 4,
+  "module_docstring": "\"\"\"\ncore_debug_domain_detection\n\nPurpose: Core functionality and business logic\nGraph API Level: 1\nProjection System: core_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 211\nClasses: 0\nFunctions: 6\nImports: 4\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Core functionality and business logic",
+  "graph_api_level": "1",
+  "projection_system": "core_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "core_debug_domain_detection",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 211,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 4
+    },
+    "files": [
+      {
+        "path": "debug_domain_detection.py",
+        "name": "debug_domain_detection.py",
+        "stem": "debug_domain_detection"
+      },
+      {
+        "path": "test_domain_detection.py",
+        "name": "test_domain_detection.py",
+        "stem": "test_domain_detection"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.222943",
+  "version": "1.0.0"
+}

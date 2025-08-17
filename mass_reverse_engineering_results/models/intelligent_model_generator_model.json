@@ -1,0 +1,222 @@
+{
+  "system_name": "Intelligent Model-Driven Code Generator",
+  "description": "The model IS the intelligence - no edge cases possible",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "IntelligentImportModel": {
+      "responsibility": "Import model that knows about usage and linting rules",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate import code - model knows if it should be included",
+          "decorators": [],
+          "line_number": 20,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 11
+    },
+    "IntelligentFunctionModel": {
+      "responsibility": "Function model that knows about spacing and linting rules",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate function code - model knows all spacing rules",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 35
+    },
+    "IntelligentCodeModel": {
+      "responsibility": "Intelligent code model that knows ALL linting rules",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate perfect code - model knows ALL rules",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 74
+    },
+    "IntelligentModelGenerator": {
+      "responsibility": "Intelligent model-driven generator - the model IS the intelligence",
+      "methods": [
+        {
+          "name": "generate_intelligent_perfect_code",
+          "signature": "generate_intelligent_perfect_code(self, model: IntelligentCodeModel) -> str",
+          "docstring": "Generate intelligent perfect code - model knows everything",
+          "decorators": [],
+          "line_number": 127,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "IntelligentCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_syntax",
+          "signature": "_validate_syntax(self, code: str) -> bool",
+          "docstring": "Validate that the generated code has correct syntax",
+          "decorators": [],
+          "line_number": 139,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 122
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_intelligent_model_generator",
+      "signature": "test_intelligent_model_generator() -> None",
+      "docstring": "Test the intelligent model generator",
+      "decorators": [],
+      "line_number": 152,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "import subprocess",
+    "import ast"
+  ],
+  "module_docstring": "\nIntelligent Model-Driven Code Generator\nThe model IS the intelligence - no edge cases possible\n",
+  "file_structure": {
+    "total_lines": 232,
+    "code_lines": 166,
+    "comment_lines": 18,
+    "blank_lines": 48,
+    "total_nodes": 808,
+    "class_nodes": 4,
+    "function_nodes": 6,
+    "import_nodes": 3,
+    "expression_nodes": 38,
+    "assignment_nodes": 11,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 232
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "IntelligentFunctionModel",
+    "f",
+    "imports",
+    "generator",
+    "imp",
+    "is_from",
+    "module_docstring",
+    "result",
+    "IntelligentModelGenerator",
+    "open",
+    "requires_blank_line_before",
+    "str",
+    "line",
+    "args_str",
+    "module",
+    "subprocess",
+    "decorator",
+    "dataclass",
+    "list",
+    "ast",
+    "requires_blank_lines_after",
+    "SyntaxError",
+    "decorators",
+    "IntelligentCodeModel",
+    "filename",
+    "print",
+    "IntelligentImportModel",
+    "self",
+    "lines",
+    "alias",
+    "is_used",
+    "bool",
+    "test_intelligent_model_generator",
+    "functions",
+    "body",
+    "code",
+    "field",
+    "perfect_code",
+    "intelligent_code",
+    "import_lines",
+    "name",
+    "model",
+    "args",
+    "cls",
+    "func",
+    "e"
+  ]
+}

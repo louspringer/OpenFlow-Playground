@@ -1,0 +1,109 @@
+{
+  "system_name": "Simple type annotation fixes",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_yaml_imports",
+      "signature": "fix_yaml_imports(filepath: str) -> bool",
+      "docstring": "Add type ignore for yaml imports",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_return_value_issues_simple",
+      "signature": "fix_return_value_issues_simple(filepath: str) -> bool",
+      "docstring": "Fix functions that return values when they shouldn't - simple approach",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix simple type annotation issues",
+      "decorators": [],
+      "line_number": 81,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nSimple type annotation fixes\n",
+  "file_structure": {
+    "total_lines": 127,
+    "code_lines": 88,
+    "comment_lines": 11,
+    "blank_lines": 28,
+    "total_nodes": 551,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 3,
+    "expression_nodes": 23,
+    "assignment_nodes": 20,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 127
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "filepath",
+    "f",
+    "python_files",
+    "func_start",
+    "func_end",
+    "fix_yaml_imports",
+    "result",
+    "content",
+    "fix_return_value_issues_simple",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "func_name",
+    "secure_execute",
+    "yaml_fixes",
+    "fixed_lines",
+    "len",
+    "func_body",
+    "print",
+    "main",
+    "lines",
+    "bool",
+    "re",
+    "original_content",
+    "error_lines",
+    "error_count",
+    "e",
+    "return_fixes"
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "system_name": "Linter API Integration System",
+  "description": "Direct integration with linter APIs for proactive violation prevention",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LinterViolation": {
+      "responsibility": "Represents a linter violation",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 22
+    },
+    "LinterConfig": {
+      "responsibility": "Linter configuration",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 36
+    },
+    "LinterAPIIntegration": {
+      "responsibility": "Direct integration with linter APIs",
+      "methods": [
+        {
+          "name": "query_linter_api",
+          "signature": "query_linter_api(self, linter_name: str, file_path: str) -> list[LinterViolation]",
+          "docstring": "Query a specific linter API",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "list[LinterViolation]",
+          "parameters": [
+            {
+              "name": "linter_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_query_flake8_api",
+          "signature": "_query_flake8_api(self, file_path: str, config: LinterConfig) -> list[LinterViolation]",
+          "docstring": "Query flake8 API",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "list[LinterViolation]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "LinterConfig",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_query_black_api",
+          "signature": "_query_black_api(self, file_path: str, config: LinterConfig) -> list[LinterViolation]",
+          "docstring": "Query black API",
+          "decorators": [],
+          "line_number": 159,
+          "return_type": "list[LinterViolation]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "LinterConfig",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_query_mypy_api",
+          "signature": "_query_mypy_api(self, file_path: str, config: LinterConfig) -> list[LinterViolation]",
+          "docstring": "Query mypy API",
+          "decorators": [],
+          "line_number": 200,
+          "return_type": "list[LinterViolation]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "LinterConfig",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_query_ruff_api",
+          "signature": "_query_ruff_api(self, file_path: str, config: LinterConfig) -> list[LinterViolation]",
+          "docstring": "Query Ruff API (AI-powered)",
+          "decorators": [],
+          "line_number": 243,
+          "return_type": "list[LinterViolation]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "LinterConfig",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_ai_suggestions",
+          "signature": "get_ai_suggestions(self, file_path: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get AI-powered suggestions from Ru",
+          "decorators": [],
+          "line_number": 291,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "prevent_violations_before_writing",
+          "signature": "prevent_violations_before_writing(self, file_path: str, code_block: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Prevent violations before writing code",
+          "decorators": [],
+          "line_number": 323,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "code_block",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_code_block",
+          "signature": "_analyze_code_block(self, code_block: str, linter_results: dict[Tuple[str, list[LinterViolation]]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze code block for potential violations",
+          "decorators": [],
+          "line_number": 358,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "code_block",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "linter_results",
+              "type": "dict[Tuple[str, list[LinterViolation]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_prevention_suggestions",
+          "signature": "_generate_prevention_suggestions(self, violations: list[dict[Tuple[str, Any]]]) -> list[str]",
+          "docstring": "Generate prevention suggestions",
+          "decorators": [],
+          "line_number": 416,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "violations",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_auto_fixes",
+          "signature": "_get_auto_fixes(self, violations: list[dict[Tuple[str, Any]]], ai_suggestions: list[dict[Tuple[str, Any]]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get automatic fixes for violations",
+          "decorators": [],
+          "line_number": 437,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "violations",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "ai_suggestions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "suggest_ignore_directive",
+          "signature": "suggest_ignore_directive(self, violation: LinterViolation) -> str",
+          "docstring": "Suggest appropriate ignore directive",
+          "decorators": [],
+          "line_number": 476,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "violation",
+              "type": "LinterViolation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 47
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the linter API integration",
+      "decorators": [],
+      "line_number": 490,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "import subprocess",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nLinter API Integration System\nDirect integration with linter APIs for proactive violation prevention\n",
+  "file_structure": {
+    "total_lines": 538,
+    "code_lines": 438,
+    "comment_lines": 18,
+    "blank_lines": 82,
+    "total_nodes": 2353,
+    "class_nodes": 3,
+    "function_nodes": 13,
+    "import_nodes": 7,
+    "expression_nodes": 73,
+    "assignment_nodes": 38,
+    "return_nodes": 31
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 538
+  },
+  "used_names": [
+    "output_format",
+    "prevention_suggestions",
+    "fix_available",
+    "__name__",
+    "line_number",
+    "enabled_rules",
+    "Exception",
+    "ruff_output",
+    "logging",
+    "disabled_rules",
+    "enumerate",
+    "flake8_output",
+    "message",
+    "severity",
+    "cmd",
+    "dict",
+    "result",
+    "config_file",
+    "LinterConfig",
+    "logger",
+    "str",
+    "Path",
+    "test_file",
+    "line",
+    "secure_execute",
+    "subprocess",
+    "ai_suggestions",
+    "sample_code",
+    "LinterAPIIntegration",
+    "dataclass",
+    "list",
+    "json",
+    "code_block",
+    "command",
+    "auto_fixes",
+    "len",
+    "linter_name",
+    "file_path",
+    "self",
+    "linter_config",
+    "auto_fix",
+    "lines",
+    "suggestions",
+    "violation",
+    "bool",
+    "code",
+    "all_violations",
+    "potential_violations",
+    "column",
+    "i",
+    "name",
+    "config",
+    "mypy_output",
+    "int",
+    "LinterViolation",
+    "e",
+    "Optional",
+    "Any",
+    "suggestion",
+    "integration",
+    "violations"
+  ]
+}

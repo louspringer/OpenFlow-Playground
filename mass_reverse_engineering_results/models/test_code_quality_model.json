@@ -1,0 +1,97 @@
+{
+  "system_name": "Code Quality Tests",
+  "description": "Tests code quality using projected artifact patterns",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_python_syntax",
+      "signature": "test_python_syntax() -> None",
+      "docstring": "Test that Python files have valid syntax",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_code_structure",
+      "signature": "test_code_structure() -> None",
+      "docstring": "Test that code has expected structure",
+      "decorators": [],
+      "line_number": 45,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "run_code_quality_tests",
+      "signature": "run_code_quality_tests() -> None",
+      "docstring": "Run all code quality tests",
+      "decorators": [],
+      "line_number": 81,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nCode Quality Tests\nTests code quality using projected artifact patterns\n",
+  "file_structure": {
+    "total_lines": 108,
+    "code_lines": 78,
+    "comment_lines": 6,
+    "blank_lines": 24,
+    "total_nodes": 449,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 3,
+    "expression_nodes": 21,
+    "assignment_nodes": 13,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 108
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "f",
+    "Exception",
+    "__file__",
+    "imports",
+    "node",
+    "run_code_quality_tests",
+    "AssertionError",
+    "test_code_structure",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "ast",
+    "SyntaxError",
+    "sys",
+    "len",
+    "error_msg",
+    "file_path",
+    "print",
+    "test_python_syntax",
+    "functions",
+    "passed",
+    "total",
+    "tree",
+    "tests",
+    "streamlit_file",
+    "test",
+    "e",
+    "isinstance",
+    "test_files"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module_name": "model_fast_model_updater",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "scripts/fast_model_updater.py",
+    "scripts/fast_model_updater_jq.py"
+  ],
+  "file_count": 2,
+  "total_lines": 112,
+  "total_classes": 0,
+  "total_functions": 2,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\nmodel_fast_model_updater\n\nPurpose: Data models and schemas\nGraph API Level: 1\nProjection System: model_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 112\nClasses: 0\nFunctions: 2\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "1",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_fast_model_updater",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 112,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "scripts/fast_model_updater.py",
+        "name": "fast_model_updater.py",
+        "stem": "fast_model_updater"
+      },
+      {
+        "path": "scripts/fast_model_updater_jq.py",
+        "name": "fast_model_updater_jq.py",
+        "stem": "fast_model_updater_jq"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.553236",
+  "version": "1.0.0"
+}

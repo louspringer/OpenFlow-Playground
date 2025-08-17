@@ -1,0 +1,217 @@
+{
+  "system_name": "\ud83d\udcb0 Actual GCP Billing Analyzer",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ActualBillingAnalyzer": {
+      "responsibility": "Get actual billing data from GCP",
+      "methods": [
+        {
+          "name": "get_project_info",
+          "signature": "get_project_info(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get current project information",
+          "decorators": [],
+          "line_number": 24,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_actual_usage",
+          "signature": "get_actual_usage(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get actual usage data for the current month",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_cost_estimates",
+          "signature": "get_cost_estimates(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get cost estimates based on actual usage",
+          "decorators": [],
+          "line_number": 180,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_high_cost_services",
+          "signature": "get_high_cost_services(self) -> list[str]",
+          "docstring": "Identify services that might be causing high costs",
+          "decorators": [],
+          "line_number": 286,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_billing_discrepancy",
+          "signature": "analyze_billing_discrepancy(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze why estimated costs don't match actual $50 charge",
+          "decorators": [],
+          "line_number": 332,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, analysis: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate a comprehensive billing discrepancy report",
+          "decorators": [],
+          "line_number": 382,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_analysis",
+          "signature": "save_analysis(self, analysis: dict[Tuple[str, Any]], filename: str) -> Any",
+          "docstring": "Save analysis to JSON file",
+          "decorators": [],
+          "line_number": 463,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to run the billing discrepancy analysis",
+      "decorators": [],
+      "line_number": 483,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\n\ud83d\udcb0 Actual GCP Billing Analyzer\n\nGet real billing data and charges from GCP.\n",
+  "file_structure": {
+    "total_lines": 515,
+    "code_lines": 420,
+    "comment_lines": 23,
+    "blank_lines": 72,
+    "total_nodes": 2176,
+    "class_nodes": 1,
+    "function_nodes": 9,
+    "import_nodes": 6,
+    "expression_nodes": 79,
+    "assignment_nodes": 65,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 515
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "causes",
+    "total_estimated",
+    "discrepancy",
+    "dict",
+    "analyzer",
+    "result",
+    "output_path",
+    "usage_data",
+    "analysis",
+    "open",
+    "services",
+    "databases",
+    "db",
+    "str",
+    "actual_charge",
+    "high_cost_services",
+    "Path",
+    "fs_result",
+    "ActualBillingAnalyzer",
+    "sum",
+    "count",
+    "subprocess",
+    "st_result",
+    "service",
+    "saved_file",
+    "buckets",
+    "storage_count",
+    "cost_data",
+    "list",
+    "json",
+    "sys",
+    "high_cost_indicators",
+    "len",
+    "monthly",
+    "print",
+    "cr_count",
+    "main",
+    "filename",
+    "cause",
+    "self",
+    "usage",
+    "resources",
+    "report",
+    "cost",
+    "cf_count",
+    "cr_result",
+    "cf_result",
+    "functions",
+    "expensive_services",
+    "fs_count",
+    "s",
+    "services_to_check",
+    "costs",
+    "datetime",
+    "data",
+    "estimated_total",
+    "end_date",
+    "billing_accounts",
+    "project_info",
+    "e",
+    "start_date",
+    "Any"
+  ]
+}

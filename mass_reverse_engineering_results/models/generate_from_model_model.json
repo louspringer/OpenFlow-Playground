@@ -1,0 +1,143 @@
+{
+  "system_name": "Generator from Model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_model",
+      "signature": "load_model(model_file: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Load a model file",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "model_file",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_auto_formatter",
+      "signature": "generate_auto_formatter(model: dict[Tuple[str, Any]]) -> str",
+      "docstring": "Generate the comprehensive auto-formatter using abstract factory pattern from the model",
+      "decorators": [],
+      "line_number": 18,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "validate_generated_code",
+      "signature": "validate_generated_code(code: str, script_name: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Heuristic validator to catch new issues in generated code",
+      "decorators": [],
+      "line_number": 254,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "code",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "script_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "print_validation_report",
+      "signature": "print_validation_report(validation_results: dict[Tuple[str, Any]], script_name: str) -> None",
+      "docstring": "Print comprehensive validation report",
+      "decorators": [],
+      "line_number": 329,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "validation_results",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        },
+        {
+          "name": "script_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to generate scripts from models",
+      "decorators": [],
+      "line_number": 403,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nGenerator from Model\n\nCreates Python scripts based on JSON models.\n",
+  "file_structure": {
+    "total_lines": 434,
+    "code_lines": 323,
+    "comment_lines": 29,
+    "blank_lines": 82,
+    "total_nodes": 898,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 2,
+    "expression_nodes": 46,
+    "assignment_nodes": 16,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 434
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "load_model",
+    "status_emoji",
+    "print_validation_report",
+    "triple_quotes",
+    "dict",
+    "open",
+    "model_file",
+    "str",
+    "script_name",
+    "generate_auto_formatter",
+    "warning",
+    "validate_generated_code",
+    "json",
+    "SyntaxError",
+    "print",
+    "main",
+    "issue",
+    "code",
+    "compile",
+    "model",
+    "all_critical_passed",
+    "e",
+    "validation_results",
+    "Any"
+  ]
+}

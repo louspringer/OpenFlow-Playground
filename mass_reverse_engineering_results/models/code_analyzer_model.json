@@ -1,0 +1,274 @@
+{
+  "system_name": "Code Analyzer: Static code analysis tools.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CodeAnalyzer": {
+      "responsibility": "Static code analysis tool.",
+      "methods": [
+        {
+          "name": "analyze_file",
+          "signature": "analyze_file(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Analyze a single Python file.\n\n        Args:\n            file_path: Path to Python file\n\n        Returns:\n            Analysis results",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_ast",
+          "signature": "_analyze_ast(self, tree: Any, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Analyze AST for code metrics.",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_directory",
+          "signature": "analyze_directory(self, directory: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Analyze all Python files in a directory.\n\n        Args:\n            directory: Directory path\n\n        Returns:\n            Directory analysis results",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "directory",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_summary",
+          "signature": "_generate_summary(self, file_results: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Generate summary statistics from file results.",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_results",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    },
+    "ASTAnalyzer": {
+      "responsibility": "AST visitor for code analysis.",
+      "methods": [
+        {
+          "name": "visit_FunctionDef",
+          "signature": "visit_FunctionDef(self, node: Any) -> None",
+          "docstring": "Visit function definitions.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "visit_ClassDef",
+          "signature": "visit_ClassDef(self, node: Any) -> None",
+          "docstring": "Visit class definitions.",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "visit_Import",
+          "signature": "visit_Import(self, node: Any) -> None",
+          "docstring": "Visit import statements.",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "visit_ImportFrom",
+          "signature": "visit_ImportFrom(self, node: Any) -> None",
+          "docstring": "Visit from-import statements.",
+          "decorators": [],
+          "line_number": 128,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "visit_Assign",
+          "signature": "visit_Assign(self, node: Any) -> None",
+          "docstring": "Visit assignment statements.",
+          "decorators": [],
+          "line_number": 133,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_metrics",
+          "signature": "get_metrics(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get collected metrics.",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_issues",
+          "signature": "get_issues(self) -> List[Dict[Tuple[str, Any]]]",
+          "docstring": "Get detected issues.",
+          "decorators": [],
+          "line_number": 142,
+          "return_type": "List[Dict[Tuple[str, Any]]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 100
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "from pathlib import Path",
+    "import ast",
+    "import logging",
+    "from clewcrew_common.file_ops import FileOperations"
+  ],
+  "module_docstring": "\nCode Analyzer: Static code analysis tools.\n\nProvides code quality analysis, complexity metrics, and issue detection.\n",
+  "file_structure": {
+    "total_lines": 145,
+    "code_lines": 111,
+    "comment_lines": 0,
+    "blank_lines": 34,
+    "total_nodes": 684,
+    "class_nodes": 2,
+    "function_nodes": 13,
+    "import_nodes": 5,
+    "expression_nodes": 23,
+    "assignment_nodes": 16,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 145
+  },
+  "used_names": [
+    "file_results",
+    "__name__",
+    "Exception",
+    "f",
+    "total_classes",
+    "py_file",
+    "logging",
+    "node",
+    "analyzer",
+    "content",
+    "Dict",
+    "open",
+    "r",
+    "str",
+    "ASTAnalyzer",
+    "Path",
+    "List",
+    "sum",
+    "file_result",
+    "ast",
+    "total_functions",
+    "list",
+    "len",
+    "file_path",
+    "self",
+    "results",
+    "max",
+    "py_files",
+    "total_files",
+    "tree",
+    "FileOperations",
+    "total_lines",
+    "e",
+    "Any",
+    "directory"
+  ]
+}

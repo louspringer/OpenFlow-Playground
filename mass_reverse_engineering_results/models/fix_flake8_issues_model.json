@@ -1,0 +1,139 @@
+{
+  "system_name": "Fix Common Flake8 Issues - Systematic Style Fixes",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_unused_imports",
+      "signature": "fix_unused_imports(filepath: str) -> bool",
+      "docstring": "Remove unused imports",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_f_strings",
+      "signature": "fix_f_strings(filepath: str) -> bool",
+      "docstring": "Fix f-strings without placeholders",
+      "decorators": [],
+      "line_number": 104,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_unused_variables",
+      "signature": "fix_unused_variables(filepath: str) -> bool",
+      "docstring": "Fix unused variables by adding underscore prefix",
+      "decorators": [],
+      "line_number": 141,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to fix Flake8 issues",
+      "decorators": [],
+      "line_number": 196,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import re",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nFix Common Flake8 Issues - Systematic Style Fixes\n",
+  "file_structure": {
+    "total_lines": 249,
+    "code_lines": 182,
+    "comment_lines": 21,
+    "blank_lines": 46,
+    "total_nodes": 1148,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 4,
+    "expression_nodes": 41,
+    "assignment_nodes": 49,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 249
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "py_file",
+    "filepath",
+    "imports",
+    "python_files",
+    "new_line",
+    "node",
+    "imp",
+    "set",
+    "result",
+    "content",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "file_fixed",
+    "secure_execute",
+    "errors",
+    "module",
+    "total_fixed",
+    "fixed_lines",
+    "list",
+    "ast",
+    "src_path",
+    "used_names",
+    "len",
+    "fix_f_strings",
+    "import_list",
+    "fix_unused_variables",
+    "print",
+    "main",
+    "lines",
+    "fix_unused_imports",
+    "bool",
+    "re",
+    "match",
+    "i",
+    "tree",
+    "name",
+    "changes_made",
+    "var_name",
+    "e",
+    "isinstance"
+  ]
+}

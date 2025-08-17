@@ -1,0 +1,156 @@
+{
+  "system_name": "Recommendation Engine Agent",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RecommendationEngine": {
+      "responsibility": "Agent for generating quality improvement recommendations",
+      "methods": [
+        {
+          "name": "generate_recommendations",
+          "signature": "generate_recommendations(self, analysis_data: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive recommendations based on analysis data",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_priority_recommendations",
+          "signature": "_generate_priority_recommendations(self, analysis_data: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Generate high-priority recommendations",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_category_recommendations",
+          "signature": "_generate_category_recommendations(self, analysis_data: dict[Tuple[str, Any]]) -> dict[Tuple[str, list[str]]]",
+          "docstring": "Generate recommendations by category",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "dict[Tuple[str, list[str]]]",
+          "parameters": [
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_implementation_plan",
+          "signature": "_create_implementation_plan(self, priority_recommendations: list[str]) -> list[str]",
+          "docstring": "Create a step-by-step implementation plan",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "priority_recommendations",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_estimate_effort",
+          "signature": "_estimate_effort(self, priority_recommendations: list[str]) -> str",
+          "docstring": "Estimate the effort required for recommendations",
+          "decorators": [],
+          "line_number": 195,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "priority_recommendations",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 14
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nRecommendation Engine Agent\n\nThis agent specializes in generating actionable recommendations for code quality improvements.\n",
+  "file_structure": {
+    "total_lines": 202,
+    "code_lines": 151,
+    "comment_lines": 14,
+    "blank_lines": 37,
+    "total_nodes": 739,
+    "class_nodes": 1,
+    "function_nodes": 6,
+    "import_nodes": 2,
+    "expression_nodes": 24,
+    "assignment_nodes": 23,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 202
+  },
+  "used_names": [
+    "analysis_data",
+    "__name__",
+    "Exception",
+    "logging",
+    "Any",
+    "dict",
+    "priority_recommendations",
+    "logger",
+    "str",
+    "list",
+    "category_recommendations",
+    "len",
+    "implementation_plan",
+    "complexity_issues",
+    "self",
+    "todo_issues",
+    "rec",
+    "config",
+    "i",
+    "recommendations",
+    "security_issues",
+    "e",
+    "quality_metrics",
+    "issues",
+    "any"
+  ]
+}

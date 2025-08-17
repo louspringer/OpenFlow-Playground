@@ -1,0 +1,537 @@
+{
+  "system_name": "Comprehensive GitHub Repository Discovery and Analysis Tool",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RepositoryAnalysis": {
+      "responsibility": "Comprehensive analysis of a GitHub repository",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 34
+    },
+    "ComprehensiveGitHubDiscovery": {
+      "responsibility": "Comprehensive GitHub repository discovery and analysis\n\n    This tool provides deep insights into any GitHub repository by:\n    1. Cloning and analyzing the repository structure\n    2. Discovering and classifying all artifacts\n    3. Inferring schemas and patterns\n    4. Analyzing quality and providing recommendations",
+      "methods": [
+        {
+          "name": "analyze_repository",
+          "signature": "analyze_repository(self, repo_url: str) -> RepositoryAnalysis",
+          "docstring": "Comprehensive analysis of a GitHub repository\n\n        Args:\n            repo_url: GitHub repository URL (e.g., https://github.com/user/repo)\n\n        Returns:\n            RepositoryAnalysis with comprehensive insights",
+          "decorators": [],
+          "line_number": 96,
+          "return_type": "RepositoryAnalysis",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_github_url",
+          "signature": "_parse_github_url(self, repo_url: str) -> Optional[dict[Tuple[str, str]]]",
+          "docstring": "Parse GitHub URL to extract repository information",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": "Optional[dict[Tuple[str, str]]]",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_clone_repository",
+          "signature": "_clone_repository(self, clone_url: str) -> Path",
+          "docstring": "Clone repository to temporary directory",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": "Path",
+          "parameters": [
+            {
+              "name": "clone_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_metadata",
+          "signature": "_analyze_metadata(self, analysis: RepositoryAnalysis, repo_info: dict[Tuple[str, str]]) -> Any",
+          "docstring": "Analyze basic repository metadata",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "repo_info",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_structure",
+          "signature": "_analyze_structure(self, analysis: RepositoryAnalysis, repo_path: Path) -> Any",
+          "docstring": "Analyze repository structure",
+          "decorators": [],
+          "line_number": 238,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_get_directory_structure",
+          "signature": "_get_directory_structure(self, repo_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Get directory structure in a tree-like format",
+          "decorators": [],
+          "line_number": 272,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_manual_directory_traversal",
+          "signature": "_manual_directory_traversal(self, repo_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Manual directory traversal when tree command is not available",
+          "decorators": [],
+          "line_number": 292,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_discover_artifacts",
+          "signature": "_discover_artifacts(self, analysis: RepositoryAnalysis, repo_path: Path) -> Any",
+          "docstring": "Discover and classify artifacts in the repository",
+          "decorators": [],
+          "line_number": 310,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_infer_schemas",
+          "signature": "_infer_schemas(self, analysis: RepositoryAnalysis, repo_path: Path) -> Any",
+          "docstring": "Infer schemas and patterns from repository contents",
+          "decorators": [],
+          "line_number": 348,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_dependency_file",
+          "signature": "_analyze_dependency_file(self, analysis: RepositoryAnalysis, file_path: Path, file_type: str) -> Any",
+          "docstring": "Analyze dependency files for insights",
+          "decorators": [],
+          "line_number": 398,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_infer_file_schemas",
+          "signature": "_infer_file_schemas(self, analysis: RepositoryAnalysis, repo_path: Path) -> Any",
+          "docstring": "Infer schemas from file patterns and contents",
+          "decorators": [],
+          "line_number": 435,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "repo_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_quality",
+          "signature": "_analyze_quality(self, analysis: RepositoryAnalysis) -> Any",
+          "docstring": "Analyze repository quality and generate recommendations",
+          "decorators": [],
+          "line_number": 500,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_execute_command",
+          "signature": "_execute_command(self, command: str, cwd: Optional[Path]) -> dict[Tuple[str, Any]]",
+          "docstring": "Execute a shell command and return results",
+          "decorators": [],
+          "line_number": 582,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "cwd",
+              "type": "Optional[Path]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, analysis: RepositoryAnalysis, output_format: str) -> str",
+          "docstring": "Generate a comprehensive report from analysis results",
+          "decorators": [],
+          "line_number": 606,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            },
+            {
+              "name": "output_format",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_markdown_report",
+          "signature": "_generate_markdown_report(self, analysis: RepositoryAnalysis) -> str",
+          "docstring": "Generate markdown report",
+          "decorators": [],
+          "line_number": 616,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_json_report",
+          "signature": "_generate_json_report(self, analysis: RepositoryAnalysis) -> str",
+          "docstring": "Generate JSON report",
+          "decorators": [],
+          "line_number": 713,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_text_report",
+          "signature": "_generate_text_report(self, analysis: RepositoryAnalysis) -> str",
+          "docstring": "Generate plain text report",
+          "decorators": [],
+          "line_number": 740,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "RepositoryAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 75
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import json",
+    "import logging",
+    "import re",
+    "import shutil",
+    "import subprocess",
+    "import sys",
+    "import tempfile",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Set",
+    "from urllib.parse import urlparse",
+    "from artifact_forge.agents.artifact_detector import ArtifactDetector",
+    "from artifact_forge.agents.artifact_detector import ArtifactInfo",
+    "from mcp_integration.github_mcp_client import GitHubMCPClient",
+    "import argparse",
+    "import time"
+  ],
+  "module_docstring": "\nComprehensive GitHub Repository Discovery and Analysis Tool\n\nThis tool can analyze any GitHub repository URL and provide:\n1. Repository structure and metadata\n2. File type discovery and classification\n3. Schema inference and pattern recognition\n4. Quality analysis and recommendations\n5. Dependency and ecosystem analysis\n",
+  "file_structure": {
+    "total_lines": 840,
+    "code_lines": 640,
+    "comment_lines": 67,
+    "blank_lines": 133,
+    "total_nodes": 3928,
+    "class_nodes": 2,
+    "function_nodes": 7,
+    "import_nodes": 16,
+    "expression_nodes": 132,
+    "assignment_nodes": 91,
+    "return_nodes": 16
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 840
+  },
+  "used_names": [
+    "output_format",
+    "Exception",
+    "description",
+    "detected_schemas",
+    "sorted",
+    "dict",
+    "shutil",
+    "Path",
+    "artifacts",
+    "path_parts",
+    "test_count",
+    "schema_name",
+    "item",
+    "list",
+    "config_path",
+    "discovery",
+    "print",
+    "version",
+    "report",
+    "pattern_name",
+    "repo_info",
+    "rec",
+    "re",
+    "repo_dirs",
+    "recommendations",
+    "parser",
+    "stars",
+    "file_types",
+    "stderr",
+    "__name__",
+    "__file__",
+    "clone_url",
+    "logging",
+    "clone_path",
+    "repo_path",
+    "analysis",
+    "config_file",
+    "suffix",
+    "tempfile",
+    "dir_path",
+    "total_size",
+    "owner",
+    "time",
+    "artifact_summary",
+    "field",
+    "directory_structure",
+    "start_time",
+    "name",
+    "file_type",
+    "ArtifactDetector",
+    "d",
+    "f",
+    "configuration_files",
+    "artifact_type",
+    "structure",
+    "x",
+    "pattern_list",
+    "float",
+    "result",
+    "content",
+    "essential_files",
+    "urlparse",
+    "open",
+    "process",
+    "language",
+    "count",
+    "errors",
+    "config_files",
+    "pattern",
+    "parsed",
+    "repo_name",
+    "main",
+    "quality_issues",
+    "analysis_dict",
+    "file_count",
+    "dependencies",
+    "stdout",
+    "error",
+    "deps",
+    "issue",
+    "dependency_files",
+    "artifact",
+    "doc_count",
+    "ArtifactInfo",
+    "total_files",
+    "info",
+    "args",
+    "Optional",
+    "Any",
+    "patterns",
+    "schema_info",
+    "GitHubMCPClient",
+    "analysis_timestamp",
+    "missing_essential",
+    "str",
+    "matching_files",
+    "dir_pattern",
+    "msg",
+    "last_updated",
+    "dataclass",
+    "json",
+    "min",
+    "command",
+    "sys",
+    "len",
+    "analysis_duration",
+    "quality_score",
+    "file_path",
+    "workspace_path",
+    "self",
+    "asyncio",
+    "ValueError",
+    "ComprehensiveGitHubDiscovery",
+    "report_lines",
+    "repo_url",
+    "data",
+    "forks",
+    "cwd",
+    "RepositoryAnalysis",
+    "int",
+    "argparse",
+    "e",
+    "dev_deps"
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "system_name": "Validators for clewcrew Core",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BaseValidator": {
+      "responsibility": "Base validator class",
+      "methods": [
+        {
+          "name": "validate_findings",
+          "signature": "validate_findings(self, findings: List[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate findings from hallucination detection",
+          "decorators": [],
+          "line_number": 14,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "findings",
+              "type": "List[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    },
+    "SecurityValidator": {
+      "responsibility": "Security validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 19
+    },
+    "CodeQualityValidator": {
+      "responsibility": "Code quality validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 24
+    },
+    "TestValidator": {
+      "responsibility": "Test validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 29
+    },
+    "BuildValidator": {
+      "responsibility": "Build validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 34
+    },
+    "ArchitectureValidator": {
+      "responsibility": "Architecture validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 39
+    },
+    "ModelValidator": {
+      "responsibility": "Model validator placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 44
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "from typing import List"
+  ],
+  "module_docstring": "\nValidators for clewcrew Core\n\nThese are placeholder validators that will be implemented later.\n",
+  "file_structure": {
+    "total_lines": 47,
+    "code_lines": 28,
+    "comment_lines": 1,
+    "blank_lines": 18,
+    "total_nodes": 87,
+    "class_nodes": 7,
+    "function_nodes": 0,
+    "import_nodes": 1,
+    "expression_nodes": 9,
+    "assignment_nodes": 0,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 47
+  },
+  "used_names": [
+    "len",
+    "str",
+    "BaseValidator",
+    "List",
+    "findings",
+    "Any",
+    "dict"
+  ]
+}

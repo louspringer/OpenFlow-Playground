@@ -1,0 +1,183 @@
+{
+  "system_name": "\ud83d\ude80 Script Generator for GCP Project Setup",
+  "description": "Generates setup-gcp-project.sh from the project model registry template",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "extract_script_template",
+      "signature": "extract_script_template(model: Any) -> Any",
+      "docstring": "Extract the script template from the GKE hackathon configuration",
+      "decorators": [],
+      "line_number": 27,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_script",
+      "signature": "generate_script(template_data: Any) -> Any",
+      "docstring": "Generate the script from the template and variables",
+      "decorators": [],
+      "line_number": 40,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "template_data",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "write_script",
+      "signature": "write_script(script_content: Any, output_path: Any) -> Any",
+      "docstring": "Write the generated script to the output file",
+      "decorators": [],
+      "line_number": 117,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "script_content",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "output_path",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "verify_script_generation",
+      "signature": "verify_script_generation(original_path: Any, generated_path: Any) -> Any",
+      "docstring": "Verify that the generated script matches the original",
+      "decorators": [],
+      "line_number": 133,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "original_path",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "generated_path",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 174,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83d\ude80 Script Generator for GCP Project Setup\nGenerates setup-gcp-project.sh from the project model registry template\n",
+  "file_structure": {
+    "total_lines": 226,
+    "code_lines": 165,
+    "comment_lines": 20,
+    "blank_lines": 41,
+    "total_nodes": 1016,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 4,
+    "expression_nodes": 58,
+    "assignment_nodes": 37,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 226
+  },
+  "used_names": [
+    "extract_script_template",
+    "__name__",
+    "script_content",
+    "Exception",
+    "f",
+    "__file__",
+    "verify_script_generation",
+    "enumerate",
+    "comment",
+    "write_script",
+    "placeholder",
+    "output_path",
+    "os",
+    "open",
+    "api",
+    "model_path",
+    "Path",
+    "api_comments",
+    "orig",
+    "str",
+    "generated_path",
+    "var_value",
+    "variables",
+    "json",
+    "list",
+    "sys",
+    "len",
+    "bash_array",
+    "load_project_model",
+    "original_clean",
+    "print",
+    "main",
+    "locals",
+    "gen",
+    "generated_lines",
+    "original_path",
+    "hackathon_config",
+    "original_lines",
+    "available_keys",
+    "zip",
+    "generate_script",
+    "verification_result",
+    "KeyError",
+    "template",
+    "script_template",
+    "i",
+    "model",
+    "generated_clean",
+    "api_list",
+    "original_content",
+    "generated_content",
+    "var_name",
+    "bash_array_lines",
+    "template_data",
+    "e",
+    "isinstance"
+  ]
+}

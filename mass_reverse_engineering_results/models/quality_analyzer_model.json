@@ -1,0 +1,146 @@
+{
+  "system_name": "Quality Analyzer Agent",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityAnalyzer": {
+      "responsibility": "Agent for analyzing code quality metrics",
+      "methods": [
+        {
+          "name": "analyze_code_quality",
+          "signature": "analyze_code_quality(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze code quality for the target path",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_single_file_quality",
+          "signature": "_analyze_single_file_quality(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze quality metrics for a single file",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_directory_quality",
+          "signature": "_analyze_directory_quality(self, dir_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze quality metrics for a directory",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "dir_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_quality_recommendations",
+          "signature": "_generate_quality_recommendations(self, metrics: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Generate quality improvement recommendations",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "metrics",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nQuality Analyzer Agent\n\nThis agent specializes in analyzing code quality metrics and identifying quality issues.\n",
+  "file_structure": {
+    "total_lines": 145,
+    "code_lines": 107,
+    "comment_lines": 4,
+    "blank_lines": 34,
+    "total_nodes": 639,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 17,
+    "assignment_nodes": 28,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 145
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "file_metrics",
+    "py_file",
+    "logging",
+    "python_files",
+    "dict",
+    "target_path",
+    "content",
+    "analysis",
+    "logger",
+    "str",
+    "metrics",
+    "Path",
+    "line",
+    "path",
+    "complexity",
+    "total_quality",
+    "list",
+    "dir_path",
+    "len",
+    "file_path",
+    "stripped",
+    "self",
+    "lines",
+    "max",
+    "config",
+    "recommendations",
+    "e",
+    "Any"
+  ]
+}

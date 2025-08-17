@@ -1,0 +1,252 @@
+{
+  "system_name": "Intelligent Linter System",
+  "description": "Comprehensive integration of linter APIs, AI-powered linters, and dynamic rule updates",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "IntelligentLinterSystem": {
+      "responsibility": "Comprehensive intelligent linter system",
+      "methods": [
+        {
+          "name": "setup_ai_powered_linters",
+          "signature": "setup_ai_powered_linters(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Setup AI-powered linters (Ruff, etc.)",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "query_all_linter_apis",
+          "signature": "query_all_linter_apis(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Query all available linter APIs for a file",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "prevent_violations_before_writing",
+          "signature": "prevent_violations_before_writing(self, file_path: str, code_block: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Prevent violations before writing code",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "code_block",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "update_rules_on_violations",
+          "signature": "update_rules_on_violations(self, violations: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Update rules when violations are detected",
+          "decorators": [],
+          "line_number": 163,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "violations",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_pre_commit_config",
+          "signature": "create_pre_commit_config(self) -> str",
+          "docstring": "Create pre-commit configuration with AI-powered linters",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_ruff_config",
+          "signature": "create_ruff_config(self) -> str",
+          "docstring": "Create Ruff configuration for AI-powered linting",
+          "decorators": [],
+          "line_number": 276,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_comprehensive_analysis",
+          "signature": "run_comprehensive_analysis(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run comprehensive analysis of a file",
+          "decorators": [],
+          "line_number": 380,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self, violations: list[dict[Tuple[str, Any]]], ai_suggestions: list[dict[Tuple[str, Any]]]) -> list[str]",
+          "docstring": "Generate recommendations based on analysis",
+          "decorators": [],
+          "line_number": 442,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "violations",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "ai_suggestions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_summary_report",
+          "signature": "generate_summary_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate summary report of all activities",
+          "decorators": [],
+          "line_number": 492,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 23
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the intelligent linter system",
+      "decorators": [],
+      "line_number": 538,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.dynamic_rule_updater import DynamicRuleUpdater",
+    "from src.linter_api_integration import LinterAPIIntegration",
+    "from src.linter_api_integration import LinterViolation",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nIntelligent Linter System\nComprehensive integration of linter APIs, AI-powered linters, and dynamic rule updates\n",
+  "file_structure": {
+    "total_lines": 576,
+    "code_lines": 439,
+    "comment_lines": 49,
+    "blank_lines": 88,
+    "total_nodes": 1950,
+    "class_nodes": 1,
+    "function_nodes": 11,
+    "import_nodes": 7,
+    "expression_nodes": 95,
+    "assignment_nodes": 41,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 576
+  },
+  "used_names": [
+    "rule_frequencies",
+    "__name__",
+    "Exception",
+    "f",
+    "rule_code",
+    "logging",
+    "violations_obj",
+    "fix",
+    "prevention_result",
+    "sorted",
+    "x",
+    "update_results",
+    "v",
+    "isinstance",
+    "dict",
+    "result",
+    "setup_results",
+    "unique_rules",
+    "system",
+    "violation_types",
+    "open",
+    "logger",
+    "str",
+    "learning_report",
+    "Path",
+    "test_file",
+    "total_violations",
+    "count",
+    "secure_execute",
+    "ai_suggestions",
+    "unique_files",
+    "LinterAPIIntegration",
+    "list",
+    "code_block",
+    "len",
+    "linter_name",
+    "file_path",
+    "summary",
+    "main",
+    "self",
+    "violation",
+    "results",
+    "IntelligentLinterSystem",
+    "config_content",
+    "linter_results",
+    "datetime",
+    "all_violations",
+    "DynamicRuleUpdater",
+    "recommendations",
+    "LinterViolation",
+    "e",
+    "violations",
+    "Any",
+    "analysis_report",
+    "suggestion"
+  ]
+}

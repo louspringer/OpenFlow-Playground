@@ -1,0 +1,303 @@
+{
+  "system_name": "Cost analysis for diversity systems",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CostMetric": {
+      "responsibility": "Represents a cost metric for diversity analysis",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 17
+    },
+    "CostBreakdown": {
+      "responsibility": "Breakdown of costs by component",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 38
+    },
+    "CostAnalysis": {
+      "responsibility": "Analyzes costs of diversity systems",
+      "methods": [
+        {
+          "name": "add_cost_metric",
+          "signature": "add_cost_metric(self, metric_name: str, value: float, unit: str, context: str) -> Any",
+          "docstring": "Add a cost metric",
+          "decorators": [],
+          "line_number": 69,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "metric_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "unit",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_model_costs",
+          "signature": "calculate_model_costs(self, models: list[str], requests_per_hour: int) -> list[CostBreakdown]",
+          "docstring": "Calculate costs for different AI models",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "list[CostBreakdown]",
+          "parameters": [
+            {
+              "name": "models",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "requests_per_hour",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_diversity_benefits",
+          "signature": "calculate_diversity_benefits(self, diversity_score: float, base_cost: float) -> dict[Tuple[str, Any]]",
+          "docstring": "Calculate cost-benefit of diversity improvements",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "diversity_score",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "base_cost",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "optimize_diversity_cost",
+          "signature": "optimize_diversity_cost(self, target_diversity: float, budget: float) -> dict[Tuple[str, Any]]",
+          "docstring": "Optimize diversity system for cost and performance",
+          "decorators": [],
+          "line_number": 150,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_diversity",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "budget",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_cost_report",
+          "signature": "generate_cost_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive cost analysis report",
+          "decorators": [],
+          "line_number": 195,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_report",
+          "signature": "save_report(self, filename: str) -> Any",
+          "docstring": "Save cost analysis report to file",
+          "decorators": [],
+          "line_number": 234,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 60
+    }
+  },
+  "module_functions": [
+    {
+      "name": "estimate_tokens",
+      "signature": "estimate_tokens(text: str) -> int",
+      "docstring": "Estimate token count for text (rough approximation)",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "int",
+      "parameters": [
+        {
+          "name": "text",
+          "type": "str",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any"
+  ],
+  "module_docstring": "Cost analysis for diversity systems",
+  "file_structure": {
+    "total_lines": 245,
+    "code_lines": 198,
+    "comment_lines": 10,
+    "blank_lines": 37,
+    "total_nodes": 988,
+    "class_nodes": 3,
+    "function_nodes": 10,
+    "import_nodes": 4,
+    "expression_nodes": 19,
+    "assignment_nodes": 29,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 245
+  },
+  "used_names": [
+    "diversity_score",
+    "avg_tokens_per_request",
+    "f",
+    "net_cost",
+    "sorted",
+    "requests_per_hour",
+    "budget",
+    "x",
+    "metric_name",
+    "hourly_cost",
+    "current_cost",
+    "dict",
+    "value",
+    "float",
+    "total_savings",
+    "model_efficiency",
+    "CostMetric",
+    "model_cost",
+    "open",
+    "cm",
+    "str",
+    "monthly_cost",
+    "total_daily_cost",
+    "cost_per_1k_tokens",
+    "sum",
+    "models",
+    "quality_improvement",
+    "bd",
+    "base_cost",
+    "rework_savings",
+    "text",
+    "dataclass",
+    "list",
+    "quality_savings",
+    "json",
+    "min",
+    "total_monthly_cost",
+    "len",
+    "selected_models",
+    "filename",
+    "breakdown",
+    "self",
+    "breakdowns",
+    "report",
+    "unit",
+    "rework_reduction",
+    "efficiency",
+    "current_diversity",
+    "infrastructure_costs",
+    "datetime",
+    "context",
+    "CostBreakdown",
+    "timestamp",
+    "model",
+    "cost_per_request",
+    "daily_cost",
+    "int",
+    "model_costs",
+    "metric",
+    "Any",
+    "component",
+    "target_diversity"
+  ]
+}

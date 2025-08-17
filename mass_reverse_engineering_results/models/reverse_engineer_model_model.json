@@ -1,0 +1,367 @@
+{
+  "system_name": "Reverse engineer Python code back into model JSON format using enhanced AST parser",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedPythonCodeReverseEngineer": {
+      "responsibility": "Reverse engineer Python code into model JSON using enhanced AST parser",
+      "methods": [
+        {
+          "name": "reverse_engineer_file",
+          "signature": "reverse_engineer_file(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Reverse engineer a Python file into model JSON using enhanced AST",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_reverse_engineer_with_enhanced_ast",
+          "signature": "_reverse_engineer_with_enhanced_ast(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Use enhanced AST parser for comprehensive analysis",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_module_info_enhanced",
+          "signature": "_extract_module_info_enhanced(self, file_path: str) -> None",
+          "docstring": "Extract module information using enhanced AST analysis",
+          "decorators": [],
+          "line_number": 73,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes_enhanced",
+          "signature": "_extract_classes_enhanced(self, file_path: str) -> None",
+          "docstring": "Extract class information using enhanced AST analysis",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_class_info_enhanced",
+          "signature": "_extract_class_info_enhanced(self, class_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract comprehensive class information using enhanced AST",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "class_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_method_info_enhanced",
+          "signature": "_extract_method_info_enhanced(self, func_node: Any) -> Optional[str]",
+          "docstring": "Extract method information with enhanced AST analysis",
+          "decorators": [],
+          "line_number": 144,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_type_annotation_enhanced",
+          "signature": "_extract_type_annotation_enhanced(self, annotation: Any) -> str",
+          "docstring": "Extract type annotation with enhanced AST analysis",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "annotation",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_functions_enhanced",
+          "signature": "_extract_functions_enhanced(self, file_path: str) -> None",
+          "docstring": "Extract module-level functions using enhanced AST",
+          "decorators": [],
+          "line_number": 191,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_module_docstring",
+          "signature": "_parse_module_docstring(self, docstring: str) -> None",
+          "docstring": "Parse module docstring for metadata",
+          "decorators": [],
+          "line_number": 214,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "docstring",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_reverse_engineer_with_basic_ast",
+          "signature": "_reverse_engineer_with_basic_ast(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Fallback to basic AST parsing if enhanced parser unavailable",
+          "decorators": [],
+          "line_number": 235,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_module_info_basic",
+          "signature": "_extract_module_info_basic(self, tree: Any) -> None",
+          "docstring": "Extract module information using basic AST",
+          "decorators": [],
+          "line_number": 260,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes_basic",
+          "signature": "_extract_classes_basic(self, tree: Any) -> None",
+          "docstring": "Extract class definitions using basic AST",
+          "decorators": [],
+          "line_number": 271,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_class_info_basic",
+          "signature": "_extract_class_info_basic(self, class_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract class information using basic AST",
+          "decorators": [],
+          "line_number": 280,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "class_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_method_info_basic",
+          "signature": "_extract_method_info_basic(self, func_node: Any) -> Optional[str]",
+          "docstring": "Extract method information using basic AST",
+          "decorators": [],
+          "line_number": 309,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_functions_basic",
+          "signature": "_extract_functions_basic(self, tree: Any) -> None",
+          "docstring": "Extract module-level functions using basic AST",
+          "decorators": [],
+          "line_number": 344,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 25
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to reverse engineer Python files",
+      "decorators": [],
+      "line_number": 358,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Optional",
+    "import ast",
+    "from enhanced_ast_wrapper import get_enhanced_ast_linter"
+  ],
+  "module_docstring": "\nReverse engineer Python code back into model JSON format using enhanced AST parser\n",
+  "file_structure": {
+    "total_lines": 395,
+    "code_lines": 290,
+    "comment_lines": 31,
+    "blank_lines": 74,
+    "total_nodes": 2159,
+    "class_nodes": 1,
+    "function_nodes": 17,
+    "import_nodes": 5,
+    "expression_nodes": 53,
+    "assignment_nodes": 65,
+    "return_nodes": 21
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 395
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "base_type",
+    "reverse_engineer",
+    "class_info",
+    "parent",
+    "node",
+    "level",
+    "ENHANCED_AST_AVAILABLE",
+    "isinstance",
+    "param_name",
+    "content",
+    "Dict",
+    "open",
+    "str",
+    "get_enhanced_ast_linter",
+    "Path",
+    "line",
+    "method_info",
+    "return_type",
+    "hasattr",
+    "ASTEnhancedLinter",
+    "func_info",
+    "param_str",
+    "slice_type",
+    "ImportError",
+    "types",
+    "item",
+    "ast",
+    "json",
+    "t",
+    "docstring",
+    "len",
+    "func_node",
+    "file_path",
+    "print",
+    "comp_name",
+    "main",
+    "self",
+    "class_node",
+    "lines",
+    "param_type",
+    "functions",
+    "ValueError",
+    "comp_info",
+    "linter_class",
+    "params",
+    "annotation",
+    "output_file",
+    "IndexError",
+    "EnhancedPythonCodeReverseEngineer",
+    "model",
+    "tree",
+    "class_name",
+    "int",
+    "arg",
+    "Optional",
+    "e",
+    "Any",
+    "any"
+  ]
+}

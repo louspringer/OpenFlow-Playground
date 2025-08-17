@@ -1,0 +1,51 @@
+{
+  "module_name": "test_test_healthcare_cdc_requirements",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "tests/test_healthcare_cdc_requirements.py"
+  ],
+  "file_count": 1,
+  "total_lines": 116,
+  "total_classes": 0,
+  "total_functions": 5,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\ntest_test_healthcare_cdc_requirements\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 116\nClasses: 0\nFunctions: 5\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_healthcare_cdc_requirements",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 116,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "tests/test_healthcare_cdc_requirements.py",
+        "name": "test_healthcare_cdc_requirements.py",
+        "stem": "test_healthcare_cdc_requirements"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:19.191244",
+  "version": "1.0.0"
+}

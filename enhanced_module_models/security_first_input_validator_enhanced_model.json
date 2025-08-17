@@ -1,0 +1,57 @@
+{
+  "module_name": "security_first_input_validator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+    "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py"
+  ],
+  "file_count": 2,
+  "total_lines": 404,
+  "total_classes": 2,
+  "total_functions": 24,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\nsecurity_first_input_validator\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 404\nClasses: 2\nFunctions: 24\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "security_first_input_validator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 404,
+      "total_classes": 2,
+      "total_functions": 24,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+        "name": "input_validator.py",
+        "stem": "input_validator"
+      },
+      {
+        "path": "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+        "name": "input_validator.py",
+        "stem": "input_validator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.403792",
+  "version": "1.0.0"
+}

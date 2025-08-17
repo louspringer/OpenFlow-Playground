@@ -1,0 +1,413 @@
+{
+  "system_name": "Artifact Requirement Mapper - Maps individual AST models to specific requirements",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactRequirementMapping": {
+      "responsibility": "Mapping between individual artifacts and requirements",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 14
+    },
+    "ArtifactRequirementMapper": {
+      "responsibility": "Map individual AST models to specific requirements",
+      "methods": [
+        {
+          "name": "_load_project_model",
+          "signature": "_load_project_model(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load project model registry",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_ast_models",
+          "signature": "_load_ast_models(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load AST models",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_test_requirements",
+          "signature": "_load_test_requirements(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load test-driven requirements",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "map_artifact_to_requirements",
+          "signature": "map_artifact_to_requirements(self, artifact_path: str) -> list[ArtifactRequirementMapping]",
+          "docstring": "Map a specific artifact to its requirements",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "list[ArtifactRequirementMapping]",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_determine_artifact_domain",
+          "signature": "_determine_artifact_domain(self, artifact_path: str, artifact_model: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Determine which domain an artifact belongs to",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "artifact_model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_path_matches_pattern",
+          "signature": "_path_matches_pattern(self, path: Path, pattern: str) -> bool",
+          "docstring": "Check if path matches pattern",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "pattern",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_content_contains_indicator",
+          "signature": "_content_contains_indicator(self, content: dict[Tuple[str, Any]], indicator: str) -> bool",
+          "docstring": "Check if content contains indicator",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "indicator",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_requirements_for_domain",
+          "signature": "_get_requirements_for_domain(self, domain: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get requirements for a specific domain",
+          "decorators": [],
+          "line_number": 148,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "domain",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_artifact_requirement_mapping",
+          "signature": "_create_artifact_requirement_mapping(self, artifact_path: str, artifact_model: dict[Tuple[str, Any]], requirement: dict[Tuple[str, Any]]) -> Optional[ArtifactRequirementMapping]",
+          "docstring": "Create mapping between artifact and requirement",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "Optional[ArtifactRequirementMapping]",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "artifact_model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "requirement",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_coverage_score",
+          "signature": "_calculate_coverage_score(self, artifact_path: str, requirement: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate how well the artifact covers the requirement",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "requirement",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_compliance_score",
+          "signature": "_calculate_compliance_score(self, artifact_path: str, requirement: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate compliance score for the requirement",
+          "decorators": [],
+          "line_number": 195,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "requirement",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_implementation_files",
+          "signature": "_get_implementation_files(self, requirement: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Get implementation files for a requirement",
+          "decorators": [],
+          "line_number": 205,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "requirement",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_test_files",
+          "signature": "_get_test_files(self, requirement: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Get test files for a requirement",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "requirement",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "generate_artifact_requirement_report",
+          "signature": "generate_artifact_requirement_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive report of artifact-requirement mappings",
+          "decorators": [],
+          "line_number": 219,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "find_requirements_for_artifact",
+          "signature": "find_requirements_for_artifact(self, artifact_path: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Find all requirements that apply to a specific artifact",
+          "decorators": [],
+          "line_number": 265,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "artifact_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "find_artifacts_for_requirement",
+          "signature": "find_artifacts_for_requirement(self, requirement_id: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Find all artifacts that implement a specific requirement",
+          "decorators": [],
+          "line_number": 273,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "requirement_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 31
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function for testing",
+      "decorators": [],
+      "line_number": 298,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nArtifact Requirement Mapper - Maps individual AST models to specific requirements\n",
+  "file_structure": {
+    "total_lines": 324,
+    "code_lines": 249,
+    "comment_lines": 21,
+    "blank_lines": 54,
+    "total_nodes": 1534,
+    "class_nodes": 2,
+    "function_nodes": 18,
+    "import_nodes": 5,
+    "expression_nodes": 35,
+    "assignment_nodes": 35,
+    "return_nodes": 26
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 324
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "imports",
+    "patterns",
+    "req",
+    "artifact_type",
+    "requirement_id",
+    "implementation",
+    "coverage_score",
+    "compliance_score",
+    "float",
+    "dict",
+    "content",
+    "import_item",
+    "complexity_score",
+    "open",
+    "ArtifactRequirementMapper",
+    "str",
+    "Path",
+    "test_file",
+    "path",
+    "artifact_model",
+    "mappings",
+    "artifacts",
+    "coverage_stats",
+    "last_updated",
+    "example_artifact",
+    "pattern",
+    "indicator",
+    "docstrings",
+    "dataclass",
+    "list",
+    "requirement",
+    "json",
+    "ArtifactRequirementMapping",
+    "docstring",
+    "len",
+    "artifact_path",
+    "all_mappings",
+    "print",
+    "main",
+    "self",
+    "domain_config",
+    "report",
+    "stats",
+    "bool",
+    "asdict",
+    "requirements",
+    "functions",
+    "mapper",
+    "mapping",
+    "indicators",
+    "datetime",
+    "requirement_domain",
+    "domain",
+    "ast_model",
+    "func",
+    "Optional",
+    "e",
+    "Any",
+    "domain_name",
+    "requirement_description",
+    "test_files",
+    "implementation_files"
+  ]
+}

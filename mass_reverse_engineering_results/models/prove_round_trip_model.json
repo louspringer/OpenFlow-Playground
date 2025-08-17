@@ -1,0 +1,86 @@
+{
+  "system_name": "PROOF: Round-Trip Model System",
+  "description": "Demonstrates complete cycle: Design \u2192 Model \u2192 Code \u2192 Model",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "create_real_design_spec",
+      "signature": "create_real_design_spec() -> dict",
+      "docstring": "Create a real design specification for a code quality system",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "dict",
+      "parameters": []
+    },
+    {
+      "name": "prove_round_trip",
+      "signature": "prove_round_trip() -> Any",
+      "docstring": "Prove the round-trip system works with real data",
+      "decorators": [],
+      "line_number": 133,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from round_trip_model_system import RoundTripModelSystem"
+  ],
+  "module_docstring": "\nPROOF: Round-Trip Model System\nDemonstrates complete cycle: Design \u2192 Model \u2192 Code \u2192 Model\n",
+  "file_structure": {
+    "total_lines": 256,
+    "code_lines": 217,
+    "comment_lines": 14,
+    "blank_lines": 25,
+    "total_nodes": 960,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 47,
+    "assignment_nodes": 15,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 256
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "set",
+    "comp",
+    "RoundTripModelSystem",
+    "create_real_design_spec",
+    "loaded",
+    "dict",
+    "open",
+    "system",
+    "model_file",
+    "str",
+    "prove_round_trip",
+    "loaded_components",
+    "design_spec",
+    "json",
+    "generated_files",
+    "len",
+    "filename",
+    "print",
+    "lines",
+    "code",
+    "original",
+    "loaded_model",
+    "output_file",
+    "original_components",
+    "model",
+    "name",
+    "original_names",
+    "model_data",
+    "loaded_names"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module_name": "test_test_quality_system",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "test_quality_system.py",
+    "tests/test_code_quality_system.py"
+  ],
+  "file_count": 2,
+  "total_lines": 555,
+  "total_classes": 2,
+  "total_functions": 19,
+  "total_imports": 18,
+  "module_docstring": "\"\"\"\ntest_test_quality_system\n\nPurpose: Testing and validation\nGraph API Level: 2\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 555\nClasses: 2\nFunctions: 19\nImports: 18\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "2",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_quality_system",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 555,
+      "total_classes": 2,
+      "total_functions": 19,
+      "total_imports": 18
+    },
+    "files": [
+      {
+        "path": "test_quality_system.py",
+        "name": "test_quality_system.py",
+        "stem": "test_quality_system"
+      },
+      {
+        "path": "tests/test_code_quality_system.py",
+        "name": "test_code_quality_system.py",
+        "stem": "test_code_quality_system"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:19.088171",
+  "version": "1.0.0"
+}

@@ -1,0 +1,586 @@
+{
+  "system_name": "One-Liner Linter and Code Quality Tool",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LintingIssue": {
+      "responsibility": "Represents a linting issue found in the codebase",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 29
+    },
+    "FileAnalysis": {
+      "responsibility": "Represents analysis results for a single file",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 43
+    },
+    "OneLinerLinter": {
+      "responsibility": "Comprehensive linter for detecting and fixing one-liner issues",
+      "methods": [
+        {
+          "name": "scan_codebase",
+          "signature": "scan_codebase(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Scan the entire codebase for linting issues",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_files_to_analyze",
+          "signature": "_get_files_to_analyze(self, target_path: Path) -> list[Path]",
+          "docstring": "Get list of files to analyze, respecting exclusions",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "list[Path]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_file",
+          "signature": "_analyze_file(self, file_path: Path) -> Any",
+          "docstring": "Analyze a single file for linting issues",
+          "decorators": [],
+          "line_number": 150,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_file_type",
+          "signature": "_detect_file_type(self, file_path: Path) -> str",
+          "docstring": "Detect the type of file based on extension and content",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_python_file",
+          "signature": "_analyze_python_file(self, file_path: Path, content: str, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze Python file for linting issues",
+          "decorators": [],
+          "line_number": 210,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_shell_file",
+          "signature": "_analyze_shell_file(self, file_path: Path, content: str, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze shell file for linting issues",
+          "decorators": [],
+          "line_number": 289,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_yaml_file",
+          "signature": "_analyze_yaml_file(self, file_path: Path, content: str, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze YAML file for linting issues",
+          "decorators": [],
+          "line_number": 348,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_markdown_file",
+          "signature": "_analyze_markdown_file(self, file_path: Path, content: str, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze Markdown file for linting issues",
+          "decorators": [],
+          "line_number": 401,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_generic_file",
+          "signature": "_analyze_generic_file(self, file_path: Path, content: str, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze generic file for basic linting issues",
+          "decorators": [],
+          "line_number": 444,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_one_liner_score",
+          "signature": "_calculate_one_liner_score(self, lines: list[str]) -> float",
+          "docstring": "Calculate a score indicating how much the file uses one-liners (0.0  =      perfect, 1.0 = all one-liners)",
+          "decorators": [],
+          "line_number": 473,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_summary",
+          "signature": "_generate_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate a summary of all linting issues",
+          "decorators": [],
+          "line_number": 500,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, output_file: str) -> str",
+          "docstring": "Generate a detailed report of all linting issues",
+          "decorators": [],
+          "line_number": 534,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "auto_fix_issues",
+          "signature": "auto_fix_issues(self) -> dict[Tuple[str, int]]",
+          "docstring": "Automatically fix issues that can be fixed",
+          "decorators": [],
+          "line_number": 644,
+          "return_type": "dict[Tuple[str, int]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_file_issues",
+          "signature": "_fix_file_issues(self, file_path: str, issues: list[LintingIssue]) -> bool",
+          "docstring": "Fix issues in a specific file",
+          "decorators": [],
+          "line_number": 672,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "issues",
+              "type": "list[LintingIssue]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_long_line",
+          "signature": "_fix_long_line(self, lines: list[str], line_idx: int, file_type: str) -> bool",
+          "docstring": "Fix a line that's too long",
+          "decorators": [],
+          "line_number": 719,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "line_idx",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_missing_blank_lines",
+          "signature": "_fix_missing_blank_lines(self, lines: list[str], line_idx: int) -> bool",
+          "docstring": "Fix missing blank lines before class/function definitions",
+          "decorators": [],
+          "line_number": 764,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "line_idx",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_one_line_import",
+          "signature": "_fix_one_line_import(self, lines: list[str], line_idx: int) -> bool",
+          "docstring": "Fix one-line imports by splitting them",
+          "decorators": [],
+          "line_number": 781,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "line_idx",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unquoted_variable",
+          "signature": "_fix_unquoted_variable(self, lines: list[str], line_idx: int) -> bool",
+          "docstring": "Fix unquoted variables in shell scripts",
+          "decorators": [],
+          "line_number": 816,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "line_idx",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 56
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main entry point for the one-liner linter",
+      "decorators": [],
+      "line_number": 834,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "quote_var",
+      "signature": "quote_var(match: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 821,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "match",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import argparse",
+    "import ast",
+    "import json",
+    "import os",
+    "import re",
+    "import subprocess",
+    "import sys",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Tuple",
+    "import traceback"
+  ],
+  "module_docstring": "\nOne-Liner Linter and Code Quality Tool\n\nThis tool detects, analyzes, and fixes one-liner issues and other linting problems\nin the codebase. It provides comprehensive analysis and automated fixes where possible.\n\nUsage:\n    python scripts/one_liner_linter.py --scan .                    # Scan entire codebase\n    python scripts/one_liner_linter.py --fix .                     # Fix issues automatically\n    python scripts/one_liner_linter.py --report .                  # Generate detailed report\n    python scripts/one_liner_linter.py --check-file path/to/file   # Check specific file\n",
+  "file_structure": {
+    "total_lines": 935,
+    "code_lines": 752,
+    "comment_lines": 43,
+    "blank_lines": 140,
+    "total_nodes": 4521,
+    "class_nodes": 3,
+    "function_nodes": 21,
+    "import_nodes": 12,
+    "expression_nodes": 116,
+    "assignment_nodes": 93,
+    "return_nodes": 43
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 935
+  },
+  "used_names": [
+    "Exception",
+    "OneLinerLinter",
+    "new_line",
+    "description",
+    "sorted",
+    "severity",
+    "dict",
+    "prev_line",
+    "files",
+    "warning_issues",
+    "line_idx",
+    "Path",
+    "part",
+    "total_score",
+    "list",
+    "ast",
+    "print",
+    "report",
+    "suggestions",
+    "pattern_name",
+    "bool",
+    "re",
+    "issues_by_type",
+    "filenames",
+    "break_points",
+    "parser",
+    "modified",
+    "__name__",
+    "enumerate",
+    "target_path",
+    "analysis",
+    "line",
+    "var",
+    "LintingIssue",
+    "root",
+    "SyntaxError",
+    "filename",
+    "linter",
+    "FileAnalysis",
+    "one_liner_score",
+    "one_liner_count",
+    "name",
+    "file_type",
+    "total_lines",
+    "suggestion_count",
+    "bp",
+    "issues",
+    "d",
+    "from_part",
+    "any",
+    "line_number",
+    "total_issues",
+    "f",
+    "last_space",
+    "x",
+    "prev_prev_line",
+    "float",
+    "content",
+    "os",
+    "suggestion_issues",
+    "open",
+    "open_paren",
+    "sum",
+    "KeyboardInterrupt",
+    "pattern",
+    "ext",
+    "main",
+    "issue_type",
+    "dirs",
+    "file_issues",
+    "issue",
+    "datetime",
+    "fixed_counts",
+    "credential_patterns",
+    "i",
+    "args",
+    "Any",
+    "suggestion",
+    "warning_count",
+    "warnings",
+    "new_lines",
+    "import_part",
+    "str",
+    "parts",
+    "quote_var",
+    "dataclass",
+    "critical_count",
+    "json",
+    "sys",
+    "len",
+    "avg_one_liner_score",
+    "file_path",
+    "summary",
+    "workspace_path",
+    "traceback",
+    "self",
+    "lines",
+    "current_line",
+    "critical_issues",
+    "report_lines",
+    "auto_fixable",
+    "target",
+    "context",
+    "output_file",
+    "match",
+    "int",
+    "argparse",
+    "e",
+    "issues_by_file",
+    "lines_to_fix"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "module_name": "generated_ASTGuidedCodeGenerator",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "generated_ASTGuidedCodeGenerator.py"
+  ],
+  "file_count": 1,
+  "total_lines": 38,
+  "total_classes": 1,
+  "total_functions": 0,
+  "total_imports": 7,
+  "module_docstring": "\"\"\"\ngenerated_ASTGuidedCodeGenerator\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 38\nClasses: 1\nFunctions: 0\nImports: 7\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "generated_ASTGuidedCodeGenerator",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 38,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 7
+    },
+    "files": [
+      {
+        "path": "generated_ASTGuidedCodeGenerator.py",
+        "name": "generated_ASTGuidedCodeGenerator.py",
+        "stem": "generated_ASTGuidedCodeGenerator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.902370",
+  "version": "1.0.0"
+}

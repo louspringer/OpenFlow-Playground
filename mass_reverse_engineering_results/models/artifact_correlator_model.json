@@ -1,0 +1,296 @@
+{
+  "system_name": "ArtifactCorrelator Agent",
+  "description": "Finds relationships between artifacts",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactRelationship": {
+      "responsibility": "Relationship between artifacts",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 19
+    },
+    "ArtifactCorrelator": {
+      "responsibility": "Finds relationships between artifacts",
+      "methods": [
+        {
+          "name": "correlate_artifacts",
+          "signature": "correlate_artifacts(self, artifacts: list[dict[Tuple[str, Any]]]) -> list[ArtifactRelationship]",
+          "docstring": "Find relationships between artifacts",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_import_relationships",
+          "signature": "_find_import_relationships(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> list[ArtifactRelationship]",
+          "docstring": "Find import relationships between artifacts",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_reference_relationships",
+          "signature": "_find_reference_relationships(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> list[ArtifactRelationship]",
+          "docstring": "Find reference relationships between artifacts",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_dependency_relationships",
+          "signature": "_find_dependency_relationships(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> list[ArtifactRelationship]",
+          "docstring": "Find dependency relationships between artifacts",
+          "decorators": [],
+          "line_number": 155,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_similarity_relationships",
+          "signature": "_find_similarity_relationships(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> list[ArtifactRelationship]",
+          "docstring": "Find similarity relationships between artifacts",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_configuration_relationships",
+          "signature": "_find_configuration_relationships(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> list[ArtifactRelationship]",
+          "docstring": "Find configuration relationships between artifacts",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": "list[ArtifactRelationship]",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_artifact_content",
+          "signature": "_get_artifact_content(self, artifact: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Get content of an artifact",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_similarity",
+          "signature": "_calculate_similarity(self, artifact1: dict[Tuple[str, Any]], artifact2: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate similarity between artifacts",
+          "decorators": [],
+          "line_number": 253,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "artifact1",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "artifact2",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 30
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test ArtifactCorrelator",
+      "decorators": [],
+      "line_number": 287,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nArtifactCorrelator Agent\nFinds relationships between artifacts\n",
+  "file_structure": {
+    "total_lines": 330,
+    "code_lines": 259,
+    "comment_lines": 17,
+    "blank_lines": 54,
+    "total_nodes": 1476,
+    "class_nodes": 2,
+    "function_nodes": 10,
+    "import_nodes": 5,
+    "expression_nodes": 35,
+    "assignment_nodes": 33,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 330
+  },
+  "used_names": [
+    "content1",
+    "__name__",
+    "target_artifact",
+    "relationship_type",
+    "Exception",
+    "imports",
+    "f",
+    "logging",
+    "ratio",
+    "enumerate",
+    "finder_func",
+    "rels",
+    "float",
+    "dict",
+    "data1",
+    "open",
+    "evidence",
+    "artifact1",
+    "logger",
+    "str",
+    "comparison_count",
+    "Path",
+    "created_at",
+    "correlator",
+    "artifacts",
+    "rel",
+    "sample_artifacts",
+    "rel_type",
+    "list",
+    "dataclass",
+    "funcs2",
+    "source_artifact",
+    "min",
+    "len",
+    "target_name",
+    "print",
+    "main",
+    "data2",
+    "import_stmt",
+    "self",
+    "func_ratio",
+    "max",
+    "ArtifactRelationship",
+    "config_content",
+    "total_comparisons",
+    "ArtifactCorrelator",
+    "artifact",
+    "datetime",
+    "lines2",
+    "artifact2",
+    "funcs1",
+    "j",
+    "i",
+    "similarity_score",
+    "lines1",
+    "e",
+    "relationships",
+    "Any",
+    "confidence"
+  ]
+}

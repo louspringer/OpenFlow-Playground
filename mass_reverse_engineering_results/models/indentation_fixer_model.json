@@ -1,0 +1,112 @@
+{
+  "system_name": "Indentation fixer recovery engine.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "IndentationFixer": {
+      "responsibility": "Recovery engine for fixing indentation issues.",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: dict[Tuple[str, Any]]) -> RecoveryResult",
+          "docstring": "Execute indentation recovery action.",
+          "decorators": [],
+          "line_number": 16,
+          "return_type": "RecoveryResult",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_indentation",
+          "signature": "_fix_indentation(self, file_path: Path) -> list[str]",
+          "docstring": "Fix indentation issues in a file.",
+          "decorators": [],
+          "line_number": 59,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 9
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_recovery_engine import BaseRecoveryEngine",
+    "from base_recovery_engine import RecoveryResult"
+  ],
+  "module_docstring": "Indentation fixer recovery engine.",
+  "file_structure": {
+    "total_lines": 107,
+    "code_lines": 81,
+    "comment_lines": 7,
+    "blank_lines": 19,
+    "total_nodes": 395,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 10,
+    "assignment_nodes": 11,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 107
+  },
+  "used_names": [
+    "Exception",
+    "enumerate",
+    "dict",
+    "prev_line",
+    "content",
+    "RecoveryResult",
+    "action",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "fixed_lines",
+    "list",
+    "BaseRecoveryEngine",
+    "file_path",
+    "lines",
+    "self",
+    "fixed_line",
+    "line_num",
+    "changes_made",
+    "super",
+    "e",
+    "Any"
+  ]
+}

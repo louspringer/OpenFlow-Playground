@@ -1,0 +1,104 @@
+{
+  "system_name": "Main orchestrator for code quality operations",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityOrchestrator": {
+      "responsibility": "Main orchestrator for code quality operations",
+      "methods": [
+        {
+          "name": "load_rules",
+          "signature": "load_rules(self) -> list[QualityRule]",
+          "docstring": "Load quality rules from configuration",
+          "decorators": [],
+          "line_number": 24,
+          "return_type": "list[QualityRule]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "process_files",
+          "signature": "process_files(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Process files with quality checks",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "apply_fixes",
+          "signature": "apply_fixes(self) -> dict[Tuple[str, bool]]",
+          "docstring": "Apply fixes to files",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "dict[Tuple[str, bool]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self) -> str",
+          "docstring": "Generate quality report",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from dataclasses import *",
+    "from dataclasses import dataclass",
+    "from logging import *",
+    "from pathlib import *",
+    "from typing import *",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nMain orchestrator for code quality operations\n",
+  "file_structure": {
+    "total_lines": 47,
+    "code_lines": 32,
+    "comment_lines": 6,
+    "blank_lines": 9,
+    "total_nodes": 72,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 6,
+    "expression_nodes": 6,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 47
+  },
+  "used_names": [
+    "dict",
+    "str",
+    "list",
+    "bool",
+    "Any",
+    "dataclass",
+    "QualityRule"
+  ]
+}

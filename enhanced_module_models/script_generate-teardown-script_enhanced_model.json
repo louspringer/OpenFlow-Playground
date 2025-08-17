@@ -1,0 +1,51 @@
+{
+  "module_name": "script_generate-teardown-script",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "gke-ai-microservices-hackathon/scripts/generate-teardown-script.py"
+  ],
+  "file_count": 1,
+  "total_lines": 176,
+  "total_classes": 0,
+  "total_functions": 5,
+  "total_imports": 4,
+  "module_docstring": "\"\"\"\nscript_generate-teardown-script\n\nPurpose: Utility scripts and tools\nGraph API Level: 1\nProjection System: script_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 176\nClasses: 0\nFunctions: 5\nImports: 4\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Utility scripts and tools",
+  "graph_api_level": "1",
+  "projection_system": "script_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "script_generate-teardown-script",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 176,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 4
+    },
+    "files": [
+      {
+        "path": "gke-ai-microservices-hackathon/scripts/generate-teardown-script.py",
+        "name": "generate-teardown-script.py",
+        "stem": "generate-teardown-script"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.142792",
+  "version": "1.0.0"
+}

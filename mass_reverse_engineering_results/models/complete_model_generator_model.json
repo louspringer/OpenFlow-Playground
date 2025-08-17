@@ -1,0 +1,275 @@
+{
+  "system_name": "Complete Model-Driven Code Generator",
+  "description": "Encodes ALL linting rules in the model - no post-generation fixes needed",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CompleteImportModel": {
+      "responsibility": "Complete import model that knows about usage",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate import code with only used items",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "CompleteFunctionModel": {
+      "responsibility": "Complete function model that knows about spacing and usage",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate function code with proper spacing and only used variables",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 37
+    },
+    "CompleteCodeModel": {
+      "responsibility": "Complete code model that encodes ALL linting rules",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate perfect code that passes ALL linting checks",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 79
+    },
+    "CompleteModelGenerator": {
+      "responsibility": "Complete model-driven generator that can't emit imperfect code",
+      "methods": [
+        {
+          "name": "generate_complete_perfect_code",
+          "signature": "generate_complete_perfect_code(self, model: CompleteCodeModel) -> str",
+          "docstring": "Generate complete perfect code - no post-generation fixes needed",
+          "decorators": [],
+          "line_number": 141,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "CompleteCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_perfect_code_from_analysis",
+          "signature": "_generate_perfect_code_from_analysis(self, initial_code: str, analysis: Any) -> str",
+          "docstring": "Generate perfect code by removing unused elements",
+          "decorators": [],
+          "line_number": 159,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "initial_code",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_used",
+          "signature": "_is_import_used(self, import_line: str, analysis: Any) -> bool",
+          "docstring": "Check if an import is actually used",
+          "decorators": [],
+          "line_number": 188,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "import_line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_syntax",
+          "signature": "_validate_syntax(self, code: str) -> bool",
+          "docstring": "Validate that the generated code has correct syntax",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 136
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_complete_model_generator",
+      "signature": "test_complete_model_generator() -> None",
+      "docstring": "Test the complete model generator",
+      "decorators": [],
+      "line_number": 210,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "import subprocess"
+  ],
+  "module_docstring": "\nComplete Model-Driven Code Generator\nEncodes ALL linting rules in the model - no post-generation fixes needed\n",
+  "file_structure": {
+    "total_lines": 296,
+    "code_lines": 213,
+    "comment_lines": 27,
+    "blank_lines": 56,
+    "total_nodes": 1211,
+    "class_nodes": 4,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 46,
+    "assignment_nodes": 24,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 296
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "f",
+    "imports",
+    "generator",
+    "imp",
+    "CompleteCodeModel",
+    "set",
+    "func_lines",
+    "complete_code",
+    "is_from",
+    "module_docstring",
+    "result",
+    "test_complete_model_generator",
+    "analysis",
+    "open",
+    "requires_blank_line_before",
+    "str",
+    "initial_code",
+    "line",
+    "args_str",
+    "imported_name",
+    "module",
+    "subprocess",
+    "decorator",
+    "item",
+    "repr",
+    "dataclass",
+    "list",
+    "ast",
+    "SyntaxError",
+    "len",
+    "decorators",
+    "filename",
+    "print",
+    "used_variables",
+    "CompleteFunctionModel",
+    "self",
+    "lines",
+    "alias",
+    "bool",
+    "CompleteModelGenerator",
+    "functions",
+    "body",
+    "perfect_lines",
+    "code",
+    "field",
+    "perfect_code",
+    "CompleteImportModel",
+    "used_items",
+    "import_lines",
+    "name",
+    "model",
+    "args",
+    "cls",
+    "var_name",
+    "func",
+    "e",
+    "import_line"
+  ]
+}

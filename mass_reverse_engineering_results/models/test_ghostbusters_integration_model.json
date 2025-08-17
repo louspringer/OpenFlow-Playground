@@ -1,0 +1,118 @@
+{
+  "system_name": "Test Ghostbusters integration with project model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_ghostbusters_domain_in_model",
+      "signature": "test_ghostbusters_domain_in_model() -> None",
+      "docstring": "Test that Ghostbusters domain is properly configured in project model",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_requirements_traceability",
+      "signature": "test_ghostbusters_requirements_traceability() -> None",
+      "docstring": "Test that Ghostbusters requirements are properly traced",
+      "decorators": [],
+      "line_number": 97,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_rule_exists",
+      "signature": "test_ghostbusters_rule_exists() -> None",
+      "docstring": "Test that Ghostbusters rule file exists and is properly configured",
+      "decorators": [],
+      "line_number": 134,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_component_structure",
+      "signature": "test_ghostbusters_component_structure() -> None",
+      "docstring": "Test that Ghostbusters component has proper structure",
+      "decorators": [],
+      "line_number": 155,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_file_organization",
+      "signature": "test_ghostbusters_file_organization() -> None",
+      "docstring": "Test that Ghostbusters is properly included in file organization",
+      "decorators": [],
+      "line_number": 184,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nTest Ghostbusters integration with project model\n",
+  "file_structure": {
+    "total_lines": 214,
+    "code_lines": 155,
+    "comment_lines": 21,
+    "blank_lines": 38,
+    "total_nodes": 609,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 2,
+    "expression_nodes": 12,
+    "assignment_nodes": 20,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 214
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "rule_file",
+    "req",
+    "content",
+    "requirements_traceability",
+    "open",
+    "Path",
+    "test_ghostbusters_component_structure",
+    "test_ghostbusters_rule_exists",
+    "ghostbusters_rule",
+    "req_text",
+    "file_organization",
+    "test_ghostbusters_domain_in_model",
+    "requirement_texts",
+    "indicator",
+    "requirement",
+    "json",
+    "expected_req",
+    "content_indicators",
+    "len",
+    "ghostbusters_domain",
+    "file_path",
+    "domain_rules",
+    "print",
+    "requirements",
+    "test_ghostbusters_file_organization",
+    "expected_requirements",
+    "expected_indicators",
+    "model_data",
+    "test_ghostbusters_requirements_traceability",
+    "component_files",
+    "ghostbusters_requirements",
+    "patterns",
+    "test_files",
+    "any"
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "system_name": "Model-Driven Tool Glue Layer",
+  "description": "Intelligent tool selection and orchestration across domains",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "DomainConfig": {
+      "responsibility": "Configuration for a specific domain",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 19
+    },
+    "FileAnalysis": {
+      "responsibility": "Analysis of a file's domain and tooling needs",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 32
+    },
+    "ProjectModel": {
+      "responsibility": "Model-driven tool orchestration",
+      "methods": [
+        {
+          "name": "_initialize_domains",
+          "signature": "_initialize_domains(self) -> dict[Tuple[str, DomainConfig]]",
+          "docstring": "Initialize domain configurations",
+          "decorators": [],
+          "line_number": 50,
+          "return_type": "dict[Tuple[str, DomainConfig]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_file",
+          "signature": "analyze_file(self, filepath: str) -> FileAnalysis",
+          "docstring": "Analyze a file to determine its domain and tooling needs",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": "FileAnalysis",
+          "parameters": [
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_file",
+          "signature": "validate_file(self, filepath: str) -> dict",
+          "docstring": "Validate a file using the appropriate tools",
+          "decorators": [],
+          "line_number": 201,
+          "return_type": "dict",
+          "parameters": [
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_project",
+          "signature": "validate_project(self) -> dict",
+          "docstring": "Validate entire project using model-driven tool selection",
+          "decorators": [],
+          "line_number": 237,
+          "return_type": "dict",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_tool_config",
+          "signature": "generate_tool_config(self) -> dict",
+          "docstring": "Generate tool configurations based on project model",
+          "decorators": [],
+          "line_number": 259,
+          "return_type": "dict",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 42
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the model-driven tool orchestration",
+      "decorators": [],
+      "line_number": 274,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Optional",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nModel-Driven Tool Glue Layer\nIntelligent tool selection and orchestration across domains\n",
+  "file_structure": {
+    "total_lines": 291,
+    "code_lines": 237,
+    "comment_lines": 12,
+    "blank_lines": 42,
+    "total_nodes": 1154,
+    "class_nodes": 3,
+    "function_nodes": 7,
+    "import_nodes": 6,
+    "expression_nodes": 27,
+    "assignment_nodes": 24,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 291
+  },
+  "used_names": [
+    "__name__",
+    "exclude_patterns",
+    "filepath",
+    "Exception",
+    "recommended_tools",
+    "ProjectModel",
+    "x",
+    "set",
+    "validation_commands",
+    "dict",
+    "result",
+    "float",
+    "content",
+    "os",
+    "analysis",
+    "all_files",
+    "files",
+    "tools",
+    "str",
+    "Path",
+    "path",
+    "best_domain",
+    "detected_domain",
+    "exclude_pattern",
+    "secure_execute",
+    "DomainConfig",
+    "file_result",
+    "pattern",
+    "indicator",
+    "dataclass",
+    "list",
+    "root",
+    "json",
+    "command",
+    "content_indicators",
+    "len",
+    "FileNotFoundError",
+    "print",
+    "main",
+    "linter",
+    "self",
+    "dirs",
+    "file",
+    "formatter",
+    "FileAnalysis",
+    "domain_config",
+    "results",
+    "max",
+    "project_root",
+    "field",
+    "commands",
+    "config",
+    "name",
+    "model",
+    "validator",
+    "domain_scores",
+    "Optional",
+    "score",
+    "domain_name",
+    "patterns",
+    "confidence"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "system_name": "Fix Return Value Issues - Targeted Fix for Most Common MyPy Pattern",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "find_return_value_issues",
+      "signature": "find_return_value_issues(filepath: str) -> list[dict[Tuple[str, Any]]]",
+      "docstring": "Find functions with return value issues",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "list[dict[Tuple[str, Any]]]",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_return_value_issues",
+      "signature": "fix_return_value_issues(filepath: str) -> bool",
+      "docstring": "Fix return value issues in a file",
+      "decorators": [],
+      "line_number": 51,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to fix return value issues",
+      "decorators": [],
+      "line_number": 141,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import re",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nFix Return Value Issues - Targeted Fix for Most Common MyPy Pattern\n",
+  "file_structure": {
+    "total_lines": 187,
+    "code_lines": 137,
+    "comment_lines": 12,
+    "blank_lines": 38,
+    "total_nodes": 891,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 5,
+    "expression_nodes": 28,
+    "assignment_nodes": 30,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 187
+  },
+  "used_names": [
+    "__name__",
+    "total_issues",
+    "Exception",
+    "py_file",
+    "f",
+    "filepath",
+    "python_files",
+    "next_line",
+    "node",
+    "enumerate",
+    "isinstance",
+    "dict",
+    "result",
+    "content",
+    "indent_level",
+    "import_line",
+    "child",
+    "open",
+    "fixed_content",
+    "str",
+    "fix_return_value_issues",
+    "Path",
+    "line",
+    "k",
+    "find_return_value_issues",
+    "secure_execute",
+    "errors",
+    "total_fixed",
+    "next_indent",
+    "fixed_lines",
+    "list",
+    "ast",
+    "src_path",
+    "len",
+    "func_body",
+    "print",
+    "main",
+    "lines",
+    "bool",
+    "re",
+    "import_added",
+    "j",
+    "body_line",
+    "tree",
+    "i",
+    "changes_made",
+    "has_return_value",
+    "e",
+    "Any",
+    "issues"
+  ]
+}

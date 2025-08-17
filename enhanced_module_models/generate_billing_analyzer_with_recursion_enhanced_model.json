@@ -1,0 +1,63 @@
+{
+  "module_name": "generate_billing_analyzer_with_recursion",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+    "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+    "elmo-fuzzy-giggle/src/recursive_code_generator.py"
+  ],
+  "file_count": 3,
+  "total_lines": 543,
+  "total_classes": 3,
+  "total_functions": 3,
+  "total_imports": 14,
+  "module_docstring": "\"\"\"\ngenerate_billing_analyzer_with_recursion\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 3\nTotal Lines: 543\nClasses: 3\nFunctions: 3\nImports: 14\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "generate_billing_analyzer_with_recursion",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 3
+    },
+    "metrics": {
+      "total_lines": 543,
+      "total_classes": 3,
+      "total_functions": 3,
+      "total_imports": 14
+    },
+    "files": [
+      {
+        "path": "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+        "name": "generate_billing_analyzer_with_recursion.py",
+        "stem": "generate_billing_analyzer_with_recursion"
+      },
+      {
+        "path": "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+        "name": "generate_billing_analyzer_with_recursion.py",
+        "stem": "generate_billing_analyzer_with_recursion"
+      },
+      {
+        "path": "elmo-fuzzy-giggle/src/recursive_code_generator.py",
+        "name": "recursive_code_generator.py",
+        "stem": "recursive_code_generator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.502347",
+  "version": "1.0.0"
+}

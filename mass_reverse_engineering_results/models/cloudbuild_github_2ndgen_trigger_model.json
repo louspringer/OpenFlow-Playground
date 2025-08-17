@@ -1,0 +1,125 @@
+{
+  "system_name": "GitHub Cloud Build Setup Script using 2nd-gen connection",
+  "description": "Now that the connection is complete, create the trigger",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "run_gcloud_auth",
+      "signature": "run_gcloud_auth() -> str",
+      "docstring": "Get access token for REST API calls.",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "make_rest_call",
+      "signature": "make_rest_call(method: str, url: str, data: Optional[dict[Tuple[str, Any]]], token: Optional[str]) -> dict[Tuple[str, Any]]",
+      "docstring": "Make REST API call to Google Cloud.",
+      "decorators": [],
+      "line_number": 24,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "method",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "url",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "data",
+          "type": "Optional[dict[Tuple[str, Any]]]",
+          "default": null
+        },
+        {
+          "name": "token",
+          "type": "Optional[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_2ndgen_trigger",
+      "signature": "create_2ndgen_trigger(token: str) -> None",
+      "docstring": "Create build trigger using 2nd-gen connection.",
+      "decorators": [],
+      "line_number": 64,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "token",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main setup function using 2nd-gen connection.",
+      "decorators": [],
+      "line_number": 104,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nGitHub Cloud Build Setup Script using 2nd-gen connection\nNow that the connection is complete, create the trigger\n",
+  "file_structure": {
+    "total_lines": 146,
+    "code_lines": 117,
+    "comment_lines": 3,
+    "blank_lines": 26,
+    "total_nodes": 476,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 4,
+    "expression_nodes": 38,
+    "assignment_nodes": 8,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 146
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "response",
+    "create_2ndgen_trigger",
+    "cmd",
+    "dict",
+    "result",
+    "token",
+    "str",
+    "subprocess",
+    "json",
+    "make_rest_call",
+    "sys",
+    "url",
+    "print",
+    "main",
+    "data",
+    "method",
+    "e",
+    "Optional",
+    "Any",
+    "run_gcloud_auth"
+  ]
+}

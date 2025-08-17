@@ -1,0 +1,353 @@
+{
+  "system_name": "Enhanced ArtifactForge Workflow with LangGraph Orchestration",
+  "description": "Integrates enhanced parser with intelligent fixes and full codebase scaling",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedArtifactForgeState": {
+      "responsibility": "Enhanced state for ArtifactForge workflow with intelligent fixes",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 31
+    },
+    "EnhancedArtifactForgeWorkflow": {
+      "responsibility": "Enhanced ArtifactForge workflow with LangGraph orchestration",
+      "methods": [
+        {
+          "name": "_create_workflow",
+          "signature": "_create_workflow(self) -> StateGraph",
+          "docstring": "Create LangGraph workflow with enhanced orchestration",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "StateGraph",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_artifacts_node",
+          "signature": "_detect_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Detect artifacts in the codebase",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_artifacts_node",
+          "signature": "_parse_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Parse artifacts with enhanced error recovery",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_correlate_artifacts_node",
+          "signature": "_correlate_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Correlate artifacts with performance limits",
+          "decorators": [],
+          "line_number": 155,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_optimize_artifacts_node",
+          "signature": "_optimize_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Find optimization opportunities including syntax errors",
+          "decorators": [],
+          "line_number": 177,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_intelligent_fixes_node",
+          "signature": "_apply_intelligent_fixes_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Apply intelligent fixes based on block analysis",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_syntax_fix",
+          "signature": "_apply_syntax_fix(self, opportunity: dict[Tuple[str, Any]], state: EnhancedArtifactForgeState) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Apply intelligent syntax fix based on block analysis",
+          "decorators": [],
+          "line_number": 219,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "opportunity",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_block_indentation",
+          "signature": "_fix_block_indentation(self, file_path: str, block: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Fix indentation within a specific block scope",
+          "decorators": [],
+          "line_number": 262,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "block",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_synthesize_insights_node",
+          "signature": "_synthesize_insights_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Synthesize insights from all analysis",
+          "decorators": [],
+          "line_number": 297,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_fixes_node",
+          "signature": "_validate_fixes_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState",
+          "docstring": "Validate that fixes were successful",
+          "decorators": [],
+          "line_number": 319,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_workflow",
+          "signature": "run_workflow(self, root_path: str) -> EnhancedArtifactForgeState",
+          "docstring": "Run the enhanced ArtifactForge workflow",
+          "decorators": [],
+          "line_number": 365,
+          "return_type": "EnhancedArtifactForgeState",
+          "parameters": [
+            {
+              "name": "root_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 47
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the enhanced ArtifactForge workflow",
+      "decorators": [],
+      "line_number": 418,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "import logging",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any",
+    "from typing import Optional",
+    "from langgraph.graph import END",
+    "from langgraph.graph import StateGraph",
+    "from src.artifact_forge.agents.artifact_correlator import ArtifactCorrelator",
+    "from src.artifact_forge.agents.artifact_detector import ArtifactDetector",
+    "from src.artifact_forge.agents.artifact_optimizer import ArtifactOptimizer",
+    "from src.artifact_forge.agents.artifact_parser import ArtifactParser",
+    "from src.artifact_forge.agents.artifact_synthesizer import ArtifactSynthesizer",
+    "import ast"
+  ],
+  "module_docstring": "\nEnhanced ArtifactForge Workflow with LangGraph Orchestration\nIntegrates enhanced parser with intelligent fixes and full codebase scaling\n",
+  "file_structure": {
+    "total_lines": 455,
+    "code_lines": 352,
+    "comment_lines": 21,
+    "blank_lines": 82,
+    "total_nodes": 2373,
+    "class_nodes": 2,
+    "function_nodes": 13,
+    "import_nodes": 13,
+    "expression_nodes": 88,
+    "assignment_nodes": 69,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 455
+  },
+  "used_names": [
+    "Exception",
+    "a",
+    "EnhancedArtifactForgeWorkflow",
+    "workflow",
+    "fixes_applied",
+    "dict",
+    "artifacts",
+    "fix_result",
+    "END",
+    "processing_time",
+    "root_path",
+    "list",
+    "ast",
+    "print",
+    "bool",
+    "successful_fixes",
+    "ArtifactCorrelator",
+    "ArtifactSynthesizer",
+    "initial_state",
+    "relationships",
+    "__name__",
+    "__file__",
+    "logging",
+    "fix",
+    "current_indent",
+    "line",
+    "ArtifactParser",
+    "blocks",
+    "total_artifacts",
+    "opportunities",
+    "SyntaxError",
+    "stripped",
+    "StateGraph",
+    "confidence_score",
+    "end_line",
+    "new_indent",
+    "block_analysis",
+    "final_state",
+    "start_time",
+    "insights",
+    "optimization_opportunities",
+    "ArtifactDetector",
+    "issues",
+    "line_number",
+    "f",
+    "parsed_artifact",
+    "float",
+    "result",
+    "content",
+    "os",
+    "open",
+    "block",
+    "errors",
+    "parsed",
+    "main",
+    "error",
+    "artifact",
+    "datetime",
+    "EnhancedArtifactForgeState",
+    "parsed_artifacts",
+    "i",
+    "Optional",
+    "Any",
+    "range",
+    "parse_rate",
+    "status_emoji",
+    "logger",
+    "str",
+    "successful_parses",
+    "state",
+    "dataclass",
+    "sys",
+    "len",
+    "opportunity",
+    "file_path",
+    "target_block",
+    "self",
+    "lines",
+    "max",
+    "start_line",
+    "fix_rate",
+    "e",
+    "validation_results",
+    "ArtifactOptimizer"
+  ]
+}

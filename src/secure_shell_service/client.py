@@ -9,7 +9,7 @@ from typing import Any
 
 import grpc  # type: ignore
 
-from src.secure_shell_service.secure_executor import secure_execute
+# from src.secure_shell_service.secure_executor import secure_execute
 
 # Import generated protobuf (would be generated from .proto file)
 # from secure_shell_pb2 import CommandRequest, CommandResponse, HealthRequest, HealthResponse
@@ -136,7 +136,7 @@ class SecureShellClient:
 
 
 # Convenience function to replace secure_execute
-async def secure_execute(  # type: ignore
+async def secure_execute_command(  # type: ignore
     command: str,
     timeout: int = 30,
     validate_input: bool = True,

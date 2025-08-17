@@ -1,0 +1,199 @@
+{
+  "system_name": "Verify IDE Linting Hypothesis - Test if IDE linting data is fragmented and unreliable.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LintingDataPoint": {
+      "responsibility": "A single data point for linting verification.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 14
+    },
+    "IDELintingHypothesisVerifier": {
+      "responsibility": "Verify the hypothesis that IDE linting data is fragmented and unreliable.",
+      "methods": [
+        {
+          "name": "collect_data_points",
+          "signature": "collect_data_points(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Collect data points from different sources to test the hypothesis.",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_command_line_data",
+          "signature": "_get_command_line_data(self) -> list[LintingDataPoint]",
+          "docstring": "Get data from command line linters.",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "list[LintingDataPoint]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_ide_cache_data",
+          "signature": "_get_ide_cache_data(self) -> list[LintingDataPoint]",
+          "docstring": "Get data from IDE cache files.",
+          "decorators": [],
+          "line_number": 132,
+          "return_type": "list[LintingDataPoint]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_linting_process_data",
+          "signature": "_get_linting_process_data(self) -> list[LintingDataPoint]",
+          "docstring": "Get data from running linting processes.",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": "list[LintingDataPoint]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_data_fragmentation",
+          "signature": "_analyze_data_fragmentation(self, data_points: list[LintingDataPoint]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze if the data is fragmented and unreliable.",
+          "decorators": [],
+          "line_number": 226,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "data_points",
+              "type": "list[LintingDataPoint]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_verification_report",
+          "signature": "generate_verification_report(self) -> str",
+          "docstring": "Generate a comprehensive verification report.",
+          "decorators": [],
+          "line_number": 288,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 24
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to run the hypothesis verification.",
+      "decorators": [],
+      "line_number": 332,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import time",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nVerify IDE Linting Hypothesis - Test if IDE linting data is fragmented and unreliable.\n",
+  "file_structure": {
+    "total_lines": 346,
+    "code_lines": 271,
+    "comment_lines": 18,
+    "blank_lines": 57,
+    "total_nodes": 1335,
+    "class_nodes": 2,
+    "function_nodes": 8,
+    "import_nodes": 5,
+    "expression_nodes": 32,
+    "assignment_nodes": 40,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 346
+  },
+  "used_names": [
+    "data_points",
+    "LintingDataPoint",
+    "__name__",
+    "Exception",
+    "point",
+    "mypy_processes",
+    "mypy_cache",
+    "Any",
+    "dict",
+    "float",
+    "result",
+    "flake8_processes",
+    "points",
+    "analysis",
+    "str",
+    "process_data",
+    "ruff_cache",
+    "Path",
+    "line",
+    "cache_files",
+    "subprocess",
+    "unique_linters",
+    "dataclass",
+    "list",
+    "ide_data",
+    "min",
+    "len",
+    "dp",
+    "p",
+    "error_counts",
+    "time",
+    "print",
+    "main",
+    "linter",
+    "self",
+    "report",
+    "conclusion",
+    "max",
+    "verification_data",
+    "project_root",
+    "variance",
+    "processes",
+    "unique_sources",
+    "IDELintingHypothesisVerifier",
+    "verifier",
+    "method",
+    "timestamp",
+    "data",
+    "error_count",
+    "source",
+    "int",
+    "cl_data",
+    "total_points",
+    "ruff_processes"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "system_name": "Make-First Command Enforcement Hook.",
+  "description": "This script checks if a Make target exists before allowing direct commands.",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "get_make_targets",
+      "signature": "get_make_targets() -> list[str]",
+      "docstring": "Get all available Make targets.",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "list[str]",
+      "parameters": []
+    },
+    {
+      "name": "check_command_has_make_target",
+      "signature": "check_command_has_make_target(command: str) -> tuple[Tuple[bool, str]]",
+      "docstring": "Check if a command has a corresponding Make target.",
+      "decorators": [],
+      "line_number": 29,
+      "return_type": "tuple[Tuple[bool, str]]",
+      "parameters": [
+        {
+          "name": "command",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "suggest_make_target",
+      "signature": "suggest_make_target(command: str) -> str",
+      "docstring": "Suggest the appropriate Make target for a command.",
+      "decorators": [],
+      "line_number": 64,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "command",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function - enforce Make-first approach.",
+      "decorators": [],
+      "line_number": 73,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys"
+  ],
+  "module_docstring": "\nMake-First Command Enforcement Hook.\nThis script checks if a Make target exists before allowing direct commands.\n",
+  "file_structure": {
+    "total_lines": 101,
+    "code_lines": 76,
+    "comment_lines": 4,
+    "blank_lines": 21,
+    "total_nodes": 335,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 1,
+    "expression_nodes": 16,
+    "assignment_nodes": 7,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 101
+  },
+  "used_names": [
+    "cmd_pattern",
+    "__name__",
+    "check_command_has_make_target",
+    "sorted",
+    "str",
+    "list",
+    "command",
+    "t",
+    "len",
+    "sys",
+    "get_make_targets",
+    "print",
+    "main",
+    "tuple",
+    "bool",
+    "alternatives",
+    "alt",
+    "command_mappings",
+    "target",
+    "targets",
+    "has_target"
+  ]
+}

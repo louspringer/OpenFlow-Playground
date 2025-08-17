@@ -1,0 +1,300 @@
+{
+  "system_name": "Complex Model, Simple Code Generator",
+  "description": "Generates mypy-compliant code from a complex model instead of fixing individual errors",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MypyCompliantCodeModel": {
+      "responsibility": "Complex model that generates simple, mypy-compliant code",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "MypyCompliantFunction": {
+      "responsibility": "Function definition that's mypy-compliant by design",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate mypy-compliant function code",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 30
+    },
+    "MypyCompliantParameter": {
+      "responsibility": "Parameter with proper type annotation",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate mypy-compliant parameter code",
+          "decorators": [],
+          "line_number": 69,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 62
+    },
+    "MypyCompliantClass": {
+      "responsibility": "Class definition that's mypy-compliant by design",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate mypy-compliant class code",
+          "decorators": [],
+          "line_number": 86,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 77
+    },
+    "MypyCompliantAttribute": {
+      "responsibility": "Class attribute with proper type annotation",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate mypy-compliant attribute code",
+          "decorators": [],
+          "line_number": 125,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 118
+    },
+    "MypyCompliantImport": {
+      "responsibility": "Import statement that's mypy-compliant by design",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate mypy-compliant import code",
+          "decorators": [],
+          "line_number": 141,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 133
+    },
+    "ComplexModelSimpleCodeGenerator": {
+      "responsibility": "Complex model that generates simple, mypy-compliant code",
+      "methods": [
+        {
+          "name": "generate_mypy_compliant_code",
+          "signature": "generate_mypy_compliant_code(self, model: MypyCompliantCodeModel) -> str",
+          "docstring": "Generate mypy-compliant code from complex model",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "MypyCompliantCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_ghostbusters_agent_model",
+          "signature": "create_ghostbusters_agent_model(self) -> MypyCompliantCodeModel",
+          "docstring": "Create a complex model for Ghostbusters agents",
+          "decorators": [],
+          "line_number": 189,
+          "return_type": "MypyCompliantCodeModel",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 155
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_complex_model_simple_code_generator",
+      "signature": "test_complex_model_simple_code_generator() -> None",
+      "docstring": "Test the complex model that generates simple, mypy-compliant code",
+      "decorators": [],
+      "line_number": 282,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from typing import Optional",
+    "import subprocess"
+  ],
+  "module_docstring": "\nComplex Model, Simple Code Generator\nGenerates mypy-compliant code from a complex model instead of fixing individual errors\n",
+  "file_structure": {
+    "total_lines": 324,
+    "code_lines": 240,
+    "comment_lines": 22,
+    "blank_lines": 62,
+    "total_nodes": 1236,
+    "class_nodes": 7,
+    "function_nodes": 9,
+    "import_nodes": 3,
+    "expression_nodes": 40,
+    "assignment_nodes": 18,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 324
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "f",
+    "bases_str",
+    "imports",
+    "method_code",
+    "test_complex_model_simple_code_generator",
+    "MypyCompliantAttribute",
+    "ComplexModelSimpleCodeGenerator",
+    "generator",
+    "async_prefix",
+    "imp",
+    "is_from",
+    "module_docstring",
+    "result",
+    "MypyCompliantParameter",
+    "enforce_return_types",
+    "open",
+    "str",
+    "line",
+    "return_type",
+    "base_class",
+    "security_expert",
+    "MypyCompliantCodeModel",
+    "attributes",
+    "signature",
+    "module",
+    "subprocess",
+    "MypyCompliantFunction",
+    "dataclass",
+    "list",
+    "methods",
+    "docstring",
+    "default_value",
+    "attr",
+    "indented_method",
+    "use_strict_typing",
+    "filename",
+    "print",
+    "bases",
+    "param_type",
+    "lines",
+    "self",
+    "alias",
+    "attr_type",
+    "bool",
+    "code",
+    "functions",
+    "body",
+    "param",
+    "field",
+    "params",
+    "is_async",
+    "enforce_import_types",
+    "parameters",
+    "method",
+    "name",
+    "model",
+    "items_str",
+    "MypyCompliantImport",
+    "cls",
+    "func",
+    "Optional",
+    "MypyCompliantClass",
+    "enforce_param_types"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "system_name": "Fix indentation issues in test files",
+  "description": "This script removes merge conflict markers and fixes indentation problems",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_test_file",
+      "signature": "fix_test_file(file_path: str) -> None",
+      "docstring": "Fix indentation issues in a test file",
+      "decorators": [],
+      "line_number": 11,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to fix all test files",
+      "decorators": [],
+      "line_number": 65,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import re"
+  ],
+  "module_docstring": "\nFix indentation issues in test files\nThis script removes merge conflict markers and fixes indentation problems\n",
+  "file_structure": {
+    "total_lines": 99,
+    "code_lines": 65,
+    "comment_lines": 12,
+    "blank_lines": 22,
+    "total_nodes": 327,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 16,
+    "assignment_nodes": 6,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 99
+  },
+  "used_names": [
+    "open",
+    "__name__",
+    "str",
+    "f",
+    "line",
+    "file_path",
+    "print",
+    "re",
+    "main",
+    "fix_test_file",
+    "lines",
+    "pattern",
+    "fixed_lines",
+    "content",
+    "test_files",
+    "os"
+  ]
+}

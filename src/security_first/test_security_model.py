@@ -34,7 +34,7 @@ def test_no_hardcoded_credentials() -> None:
                 for pattern in patterns:
                     if re.search(pattern, content):
                         violations.append(f"{file_path}: {pattern}")
-            except:
+            except Exception:
                 continue
 
     assert not violations, f"Found potential credentials: {violations}"

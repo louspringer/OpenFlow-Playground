@@ -1,0 +1,278 @@
+{
+  "system_name": "MDC Linter - Lint .mdc files for proper structure and content",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MDCLinter": {
+      "responsibility": "Linter for .mdc files with YAML frontmatter",
+      "methods": [
+        {
+          "name": "log_violation",
+          "signature": "log_violation(self, file_path: str, message: str) -> None",
+          "docstring": "Log a violation",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "log_warning",
+          "signature": "log_warning(self, file_path: str, message: str) -> None",
+          "docstring": "Log a warning",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_yaml_frontmatter",
+          "signature": "validate_yaml_frontmatter(self, file_path: str, content: str) -> bool",
+          "docstring": "Validate YAML frontmatter structure",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_markdown_content",
+          "signature": "validate_markdown_content(self, file_path: str, content: str) -> bool",
+          "docstring": "Validate markdown content structure",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_file_organization",
+          "signature": "validate_file_organization(self, file_path: str) -> bool",
+          "docstring": "Validate file is in appropriate directory",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_deterministic_editing_compliance",
+          "signature": "validate_deterministic_editing_compliance(self, file_path: str, content: str) -> bool",
+          "docstring": "Check for deterministic editing compliance",
+          "decorators": [],
+          "line_number": 181,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "lint_file",
+          "signature": "lint_file(self, file_path: str) -> bool",
+          "docstring": "Lint a single .mdc file",
+          "decorators": [],
+          "line_number": 204,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "lint_directory",
+          "signature": "lint_directory(self, directory: str) -> int",
+          "docstring": "Lint all .mdc files in directory",
+          "decorators": [],
+          "line_number": 230,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "directory",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 275,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import argparse",
+    "import re",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "import yaml"
+  ],
+  "module_docstring": "\nMDC Linter - Lint .mdc files for proper structure and content\n",
+  "file_structure": {
+    "total_lines": 316,
+    "code_lines": 229,
+    "comment_lines": 27,
+    "blank_lines": 60,
+    "total_nodes": 1381,
+    "class_nodes": 1,
+    "function_nodes": 10,
+    "import_nodes": 6,
+    "expression_nodes": 56,
+    "assignment_nodes": 6,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 316
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "required_fields",
+    "f",
+    "MDCLinter",
+    "glob",
+    "message",
+    "isinstance",
+    "has_headers",
+    "content",
+    "non_deterministic_patterns",
+    "yaml",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "path",
+    "frontmatter_text",
+    "parent_dir",
+    "glob_patterns",
+    "warning",
+    "pattern",
+    "list",
+    "sys",
+    "content_after_frontmatter",
+    "len",
+    "file_path",
+    "print",
+    "frontmatter_lines",
+    "main",
+    "linter",
+    "self",
+    "lines",
+    "success",
+    "violation",
+    "globs",
+    "bool",
+    "valid_dirs",
+    "ValueError",
+    "failed_files",
+    "field",
+    "exit_code",
+    "frontmatter_start",
+    "frontmatter",
+    "mdc_files",
+    "re",
+    "directory_path",
+    "always_apply",
+    "parser",
+    "args",
+    "int",
+    "delimiter_count",
+    "argparse",
+    "g",
+    "frontmatter_end",
+    "e",
+    "Any",
+    "directory",
+    "processed_text",
+    "any"
+  ]
+}

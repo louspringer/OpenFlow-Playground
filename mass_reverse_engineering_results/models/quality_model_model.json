@@ -1,0 +1,340 @@
+{
+  "system_name": "Code Quality System - Model-Driven Linting and Fixing",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LintingRule": {
+      "responsibility": "Defines a linting rule and its fix",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 16
+    },
+    "CodeQualityModel": {
+      "responsibility": "Model-driven code quality system",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_define_rules",
+          "signature": "_define_rules(self) -> dict[Tuple[str, LintingRule]]",
+          "docstring": "Define all linting rules with their fixes",
+          "decorators": [],
+          "line_number": 35,
+          "return_type": "dict[Tuple[str, LintingRule]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_define_fixers",
+          "signature": "_define_fixers(self) -> dict[Tuple[str, Callable]]",
+          "docstring": "Define automated fixers for each rule type",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "dict[Tuple[str, Callable]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_autoflake",
+          "signature": "_run_autoflake(self, file_path: Path) -> bool",
+          "docstring": "Run autoflake to fix unused imports and variables",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_black",
+          "signature": "_run_black(self, file_path: Path) -> bool",
+          "docstring": "Run black to format code",
+          "decorators": [],
+          "line_number": 108,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_custom_fixes",
+          "signature": "_apply_custom_fixes(self, file_path: Path) -> bool",
+          "docstring": "Apply custom fixes for specific issues",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unused_imports",
+          "signature": "_fix_unused_imports(self, file_path: Path) -> bool",
+          "docstring": "Fix unused imports",
+          "decorators": [],
+          "line_number": 164,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_f_strings",
+          "signature": "_fix_f_strings(self, file_path: Path) -> bool",
+          "docstring": "Fix f-string issues",
+          "decorators": [],
+          "line_number": 168,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_trailing_whitespace",
+          "signature": "_fix_trailing_whitespace(self, file_path: Path) -> bool",
+          "docstring": "Fix trailing whitespace",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_bare_except",
+          "signature": "_fix_bare_except(self, file_path: Path) -> bool",
+          "docstring": "Fix bare except clauses",
+          "decorators": [],
+          "line_number": 176,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_import_order",
+          "signature": "_fix_import_order(self, file_path: Path) -> bool",
+          "docstring": "Fix import order issues",
+          "decorators": [],
+          "line_number": 180,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unused_variables",
+          "signature": "_fix_unused_variables(self, file_path: Path) -> bool",
+          "docstring": "Fix unused variables",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_file",
+          "signature": "analyze_file(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze a single file for all linting issues",
+          "decorators": [],
+          "line_number": 189,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_file",
+          "signature": "fix_file(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Fix all issues in a file",
+          "decorators": [],
+          "line_number": 218,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_all_files",
+          "signature": "fix_all_files(self, directories: Optional[list[str]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Fix all files in the project",
+          "decorators": [],
+          "line_number": 238,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "directories",
+              "type": "Optional[list[str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 28
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import re",
+    "import subprocess",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nCode Quality System - Model-Driven Linting and Fixing\n",
+  "file_structure": {
+    "total_lines": 274,
+    "code_lines": 223,
+    "comment_lines": 11,
+    "blank_lines": 40,
+    "total_nodes": 1154,
+    "class_nodes": 2,
+    "function_nodes": 15,
+    "import_nodes": 5,
+    "expression_nodes": 24,
+    "assignment_nodes": 15,
+    "return_nodes": 17
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 274
+  },
+  "used_names": [
+    "after_analysis",
+    "fix_function",
+    "Exception",
+    "f",
+    "examples",
+    "patterns",
+    "py_file",
+    "LintingRule",
+    "description",
+    "all_results",
+    "directories",
+    "severity",
+    "dict",
+    "result",
+    "content",
+    "Callable",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "fix_result",
+    "parts",
+    "subprocess",
+    "fixer_name",
+    "before_analysis",
+    "list",
+    "dataclass",
+    "m",
+    "len",
+    "file_path",
+    "self",
+    "issue",
+    "bool",
+    "code",
+    "results",
+    "field",
+    "re",
+    "int",
+    "fixer_func",
+    "Optional",
+    "e",
+    "Any",
+    "directory",
+    "issues"
+  ]
+}

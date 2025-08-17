@@ -1,0 +1,504 @@
+{
+  "system_name": "Level 1: Granular Code Nodes Implementation",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CodeNode": {
+      "responsibility": "A granular code node (\u226450 lines).",
+      "methods": [
+        {
+          "name": "validate_granularity",
+          "signature": "validate_granularity(self) -> bool",
+          "docstring": "Ensure node is paragraph-sized (\u226450 lines).",
+          "decorators": [],
+          "line_number": 35,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for JSON serialization.",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 24
+    },
+    "DependencyResolver": {
+      "responsibility": "Resolve dependencies between nodes.",
+      "methods": [
+        {
+          "name": "add_node",
+          "signature": "add_node(self, node: CodeNode) -> None",
+          "docstring": "Add a node to the resolver.",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "CodeNode",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "resolve_order",
+          "signature": "resolve_order(self, node_ids: list[str]) -> list[str]",
+          "docstring": "Resolve node ordering based on dependencies.",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "node_ids",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "detect_cycles",
+          "signature": "detect_cycles(self, node_ids: list[str]) -> list[str]",
+          "docstring": "Detect circular dependencies.",
+          "decorators": [],
+          "line_number": 99,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "node_ids",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 45
+    },
+    "NodeProjector": {
+      "responsibility": "Project nodes into code.",
+      "methods": [
+        {
+          "name": "add_node",
+          "signature": "add_node(self, node: CodeNode) -> None",
+          "docstring": "Add a node to the projector.",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "CodeNode",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "project_node",
+          "signature": "project_node(self, node_id: str, context: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Project a single node into code.",
+          "decorators": [],
+          "line_number": 133,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "node_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "compose_nodes",
+          "signature": "compose_nodes(self, node_ids: list[str], context: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Compose multiple nodes into a file.",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "node_ids",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_composition",
+          "signature": "validate_composition(self, composition: str) -> bool",
+          "docstring": "Validate the composed result.",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "composition",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_header",
+          "signature": "_generate_file_header(self, context: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate file header.",
+          "decorators": [],
+          "line_number": 209,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_footer",
+          "signature": "_generate_file_footer(self, context: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate file footer.",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_add_type_hints",
+          "signature": "_add_type_hints(self, content: str) -> str",
+          "docstring": "Add type hints to function content.",
+          "decorators": [],
+          "line_number": 226,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_add_docstring",
+          "signature": "_add_docstring(self, content: str) -> str",
+          "docstring": "Add docstring to function content.",
+          "decorators": [],
+          "line_number": 234,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 123
+    },
+    "ModelRegistry": {
+      "responsibility": "Registry for managing model nodes.",
+      "methods": [
+        {
+          "name": "add_node",
+          "signature": "add_node(self, node: CodeNode) -> None",
+          "docstring": "Add a node to the registry.",
+          "decorators": [],
+          "line_number": 257,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "CodeNode",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_file",
+          "signature": "create_file(self, file_name: str, node_ids: list[str], context: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Create a file from nodes.",
+          "decorators": [],
+          "line_number": 263,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "node_ids",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_model",
+          "signature": "save_model(self, file_path: str) -> None",
+          "docstring": "Save the model to a file.",
+          "decorators": [],
+          "line_number": 288,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_model",
+          "signature": "load_model(self, file_path: str) -> None",
+          "docstring": "Load the model from a file.",
+          "decorators": [],
+          "line_number": 301,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 250
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_sample_nodes",
+      "signature": "create_sample_nodes() -> list[CodeNode]",
+      "docstring": "Create sample nodes for demonstration.",
+      "decorators": [],
+      "line_number": 314,
+      "return_type": "list[CodeNode]",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Demonstrate Level 1 implementation.",
+      "decorators": [],
+      "line_number": 364,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "visit",
+      "signature": "visit(node_id: str) -> None",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 76,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "node_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "find_cycles",
+      "signature": "find_cycles(node_id: str, path: list[str]) -> None",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 103,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "node_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "path",
+          "type": "list[str]",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nLevel 1: Granular Code Nodes Implementation\n\nThis implements the first level of model-driven projection:\n- Granular code nodes (\u226450 lines)\n- Basic projection engine\n- Dependency resolution\n- Composition into files\n",
+  "file_structure": {
+    "total_lines": 405,
+    "code_lines": 297,
+    "comment_lines": 27,
+    "blank_lines": 81,
+    "total_nodes": 1858,
+    "class_nodes": 4,
+    "function_nodes": 24,
+    "import_nodes": 5,
+    "expression_nodes": 69,
+    "assignment_nodes": 44,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 405
+  },
+  "used_names": [
+    "node_id",
+    "__name__",
+    "create_sample_nodes",
+    "Exception",
+    "f",
+    "CodeNode",
+    "other_nodes",
+    "logging",
+    "node",
+    "enumerate",
+    "import_nodes",
+    "set",
+    "node_data",
+    "dict",
+    "result",
+    "content",
+    "file_name",
+    "open",
+    "visited",
+    "logger",
+    "str",
+    "nodes",
+    "graph",
+    "nid",
+    "path",
+    "line",
+    "msg",
+    "node_ids",
+    "ModelRegistry",
+    "list",
+    "dataclass",
+    "find_cycles",
+    "json",
+    "SyntaxError",
+    "dep",
+    "ordered_nodes",
+    "len",
+    "docstring",
+    "n",
+    "file_content",
+    "indent",
+    "file_path",
+    "print",
+    "main",
+    "dependencies",
+    "id",
+    "lines",
+    "self",
+    "composition",
+    "metadata",
+    "bool",
+    "cycle",
+    "type",
+    "cycles",
+    "ValueError",
+    "compile",
+    "visit",
+    "DependencyResolver",
+    "datetime",
+    "context",
+    "temp_visited",
+    "header",
+    "registry",
+    "missing_nodes",
+    "i",
+    "model_data",
+    "NodeProjector",
+    "asdict",
+    "e",
+    "Any",
+    "projection_rules"
+  ]
+}

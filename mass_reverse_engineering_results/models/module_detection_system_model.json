@@ -1,0 +1,313 @@
+{
+  "system_name": "Module Detection System - Phase 2 of Mass Reverse Engineering",
+  "description": "",
+  "purpose": "Group related Python files into logical modules and create aggregated models",
+  "graph_api_level": 2,
+  "projection_system": "module_detection",
+  "components": {
+    "ModuleInfo": {
+      "responsibility": "Information about a detected module",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 19
+    },
+    "ModuleDetector": {
+      "responsibility": "Detect logical modules from Python files",
+      "methods": [
+        {
+          "name": "discover_python_files",
+          "signature": "discover_python_files(self) -> List[Path]",
+          "docstring": "Discover all Python files in the workspace",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "List[Path]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_file_relationships",
+          "signature": "analyze_file_relationships(self) -> Dict[Tuple[str, Set[str]]]",
+          "docstring": "Analyze relationships between files based on imports and naming",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "Dict[Tuple[str, Set[str]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports",
+          "signature": "_extract_imports(self, content: str) -> Set[str]",
+          "docstring": "Extract import statements from file content",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "Set[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_name_similarity",
+          "signature": "_calculate_name_similarity(self, name1: str, name2: str) -> float",
+          "docstring": "Calculate similarity between two file names",
+          "decorators": [],
+          "line_number": 136,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "name1",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "name2",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "detect_modules",
+          "signature": "detect_modules(self) -> Dict[Tuple[str, ModuleInfo]]",
+          "docstring": "Detect logical modules from Python files",
+          "decorators": [],
+          "line_number": 165,
+          "return_type": "Dict[Tuple[str, ModuleInfo]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_group_files_into_modules",
+          "signature": "_group_files_into_modules(self, relationships: Dict[Tuple[str, Set[str]]]) -> Dict[Tuple[str, List[Path]]]",
+          "docstring": "Group files into logical modules based on relationships",
+          "decorators": [],
+          "line_number": 183,
+          "return_type": "Dict[Tuple[str, List[Path]]]",
+          "parameters": [
+            {
+              "name": "relationships",
+              "type": "Dict[Tuple[str, Set[str]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_module_name",
+          "signature": "_generate_module_name(self, file_path: Path) -> str",
+          "docstring": "Generate a logical module name from file path",
+          "decorators": [],
+          "line_number": 220,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_module_info",
+          "signature": "_create_module_info(self, module_name: str, files: List[Path]) -> ModuleInfo",
+          "docstring": "Create ModuleInfo object for a module",
+          "decorators": [],
+          "line_number": 237,
+          "return_type": "ModuleInfo",
+          "parameters": [
+            {
+              "name": "module_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "files",
+              "type": "List[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_module_summary",
+          "signature": "generate_module_summary(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Generate summary of all detected modules",
+          "decorators": [],
+          "line_number": 287,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_module_summary",
+          "signature": "save_module_summary(self, output_path: str) -> str",
+          "docstring": "Save module detection summary to JSON file",
+          "decorators": [],
+          "line_number": 319,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main entry point for module detection",
+      "decorators": [],
+      "line_number": 330,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import re",
+    "from pathlib import Path",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Set",
+    "from typing import Any",
+    "from collections import defaultdict",
+    "from dataclasses import dataclass"
+  ],
+  "module_docstring": "\nModule Detection System - Phase 2 of Mass Reverse Engineering\n\nPurpose: Group related Python files into logical modules and create aggregated models\nGraph API Level: 2\nProjection System: module_detection\n",
+  "file_structure": {
+    "total_lines": 367,
+    "code_lines": 260,
+    "comment_lines": 33,
+    "blank_lines": 74,
+    "total_nodes": 1861,
+    "class_nodes": 2,
+    "function_nodes": 12,
+    "import_nodes": 6,
+    "expression_nodes": 51,
+    "assignment_nodes": 54,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 367
+  },
+  "used_names": [
+    "Exception",
+    "imports",
+    "file_deps",
+    "imp",
+    "sorted",
+    "module_groups",
+    "dict",
+    "file_name",
+    "files",
+    "Path",
+    "parent_dir",
+    "list",
+    "print",
+    "summary_path",
+    "pattern_name",
+    "module_files",
+    "re",
+    "relationships",
+    "detector",
+    "__name__",
+    "python_files",
+    "exclusions",
+    "Dict",
+    "line",
+    "filtered_files",
+    "common_prefix",
+    "m",
+    "common_suffix",
+    "confidence_score",
+    "similarity",
+    "name",
+    "total_lines",
+    "related_file",
+    "any",
+    "f",
+    "min_len",
+    "total_classes",
+    "ModuleInfo",
+    "float",
+    "content",
+    "defaultdict",
+    "open",
+    "name2",
+    "modules",
+    "List",
+    "sum",
+    "pattern",
+    "main",
+    "dependencies",
+    "total_similarity",
+    "related_files",
+    "i",
+    "processed_files",
+    "ModuleDetector",
+    "Any",
+    "range",
+    "module_type",
+    "total_imports",
+    "max_length",
+    "exclusion",
+    "set",
+    "name1",
+    "related_name",
+    "output_path",
+    "str",
+    "module_info",
+    "dataclass",
+    "total_functions",
+    "Set",
+    "json",
+    "min",
+    "len",
+    "file_path",
+    "summary",
+    "workspace_path",
+    "self",
+    "lines",
+    "max",
+    "next",
+    "other_file",
+    "module_name",
+    "match",
+    "int",
+    "e"
+  ]
+}

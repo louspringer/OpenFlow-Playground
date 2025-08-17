@@ -1,0 +1,51 @@
+{
+  "module_name": "model_model_dimension_analyzer",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/model_dimension_analyzer.py"
+  ],
+  "file_count": 1,
+  "total_lines": 245,
+  "total_classes": 1,
+  "total_functions": 1,
+  "total_imports": 4,
+  "module_docstring": "\"\"\"\nmodel_model_dimension_analyzer\n\nPurpose: Data models and schemas\nGraph API Level: 1\nProjection System: model_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 245\nClasses: 1\nFunctions: 1\nImports: 4\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "1",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_model_dimension_analyzer",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 245,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4
+    },
+    "files": [
+      {
+        "path": "scripts/model_dimension_analyzer.py",
+        "name": "model_dimension_analyzer.py",
+        "stem": "model_dimension_analyzer"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.880306",
+  "version": "1.0.0"
+}

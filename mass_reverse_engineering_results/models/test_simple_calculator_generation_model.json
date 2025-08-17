@@ -1,0 +1,69 @@
+{
+  "system_name": "Test script to generate simple_calculator.py from test_model.json",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test simple calculator generation",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from round_trip_model_system import RoundTripModelSystem",
+    "import subprocess"
+  ],
+  "module_docstring": "\nTest script to generate simple_calculator.py from test_model.json\n",
+  "file_structure": {
+    "total_lines": 76,
+    "code_lines": 53,
+    "comment_lines": 7,
+    "blank_lines": 16,
+    "total_nodes": 301,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 15,
+    "assignment_nodes": 7,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 76
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "RoundTripModelSystem",
+    "result",
+    "content",
+    "open",
+    "system",
+    "design_spec",
+    "subprocess",
+    "json",
+    "comp_data",
+    "generated_files",
+    "len",
+    "test_model_data",
+    "filename",
+    "comp_name",
+    "print",
+    "main",
+    "model",
+    "e",
+    "component"
+  ]
+}

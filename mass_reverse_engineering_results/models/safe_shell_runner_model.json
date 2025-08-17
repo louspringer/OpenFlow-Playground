@@ -1,0 +1,253 @@
+{
+  "system_name": "Safe Shell Runner",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "run_command_safely",
+      "signature": "run_command_safely(cmd_args: list[str], description: str, capture_output: bool, check: bool) -> tuple[Tuple[bool, Optional[str], Optional[str]]]",
+      "docstring": "Run a command safely using subprocess with argument lists\n\n    Args:\n        cmd_args: List of command arguments (e.g., [\"gh\", \"pr\", \"create\", \"--title\", \"My PR\"])\n        description: Human-readable description of what the command does\n        capture_output: Whether to capture stdout/stderr\n        check: Whether to raise CalledProcessError on non-zero exit code\n\n    Returns:\n        Tuple of (success, stdout, stderr)",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "tuple[Tuple[bool, Optional[str], Optional[str]]]",
+      "parameters": [
+        {
+          "name": "cmd_args",
+          "type": "list[str]",
+          "default": null
+        },
+        {
+          "name": "description",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "capture_output",
+          "type": "bool",
+          "default": null
+        },
+        {
+          "name": "check",
+          "type": "bool",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_github_pr",
+      "signature": "create_github_pr(title: str, body: str, base: str, head: Optional[str]) -> bool",
+      "docstring": "Create GitHub PR without dquote issues\n\n    Args:\n        title: PR title\n        body: PR description\n        base: Base branch (default: develop)\n        head: Head branch (default: current branch)\n\n    Returns:\n        True if successful, False otherwise",
+      "decorators": [],
+      "line_number": 71,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "body",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "base",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "head",
+          "type": "Optional[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_commit_safely",
+      "signature": "git_commit_safely(message: str) -> bool",
+      "docstring": "Commit changes without dquote issues\n\n    Args:\n        message: Commit message\n\n    Returns:\n        True if successful, False otherwise",
+      "decorators": [],
+      "line_number": 101,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_push_safely",
+      "signature": "git_push_safely(remote: str, branch: Optional[str]) -> bool",
+      "docstring": "Push changes without dquote issues\n\n    Args:\n        remote: Remote name (default: origin)\n        branch: Branch name (default: current branch)\n\n    Returns:\n        True if successful, False otherwise",
+      "decorators": [],
+      "line_number": 120,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "remote",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "branch",
+          "type": "Optional[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_add_safely",
+      "signature": "git_add_safely(files: Union[Tuple[str, list[str]]]) -> bool",
+      "docstring": "Add files to git without dquote issues\n\n    Args:\n        files: File path(s) to add\n\n    Returns:\n        True if successful, False otherwise",
+      "decorators": [],
+      "line_number": 143,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "files",
+          "type": "Union[Tuple[str, list[str]]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "docker_run_safely",
+      "signature": "docker_run_safely(image: str, env_vars: Optional[dict], volumes: Optional[list[str]], ports: Optional[list[str]], command: Optional[list[str]]) -> bool",
+      "docstring": "Run Docker container without dquote issues\n\n    Args:\n        image: Docker image name\n        env_vars: Environment variables dict\n        volumes: Volume mappings list\n        ports: Port mappings list\n        command: Command to run in container\n\n    Returns:\n        True if successful, False otherwise",
+      "decorators": [],
+      "line_number": 165,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "image",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "env_vars",
+          "type": "Optional[dict]",
+          "default": null
+        },
+        {
+          "name": "volumes",
+          "type": "Optional[list[str]]",
+          "default": null
+        },
+        {
+          "name": "ports",
+          "type": "Optional[list[str]]",
+          "default": null
+        },
+        {
+          "name": "command",
+          "type": "Optional[list[str]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "quick_recovery_script",
+      "signature": "quick_recovery_script() -> Any",
+      "docstring": "Quick recovery script template for dquote issues",
+      "decorators": [],
+      "line_number": 216,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function for command-line usage",
+      "decorators": [],
+      "line_number": 236,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Tuple",
+    "from typing import Union"
+  ],
+  "module_docstring": "\nSafe Shell Runner\n\nThis module provides safe alternatives to shell commands that commonly cause dquote issues.\nUses Python subprocess with argument lists instead of shell string construction.\n",
+  "file_structure": {
+    "total_lines": 275,
+    "code_lines": 205,
+    "comment_lines": 6,
+    "blank_lines": 64,
+    "total_nodes": 1105,
+    "class_nodes": 0,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 47,
+    "assignment_nodes": 24,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 275
+  },
+  "used_names": [
+    "volume",
+    "stderr",
+    "key",
+    "__name__",
+    "Exception",
+    "description",
+    "check",
+    "head",
+    "message",
+    "port",
+    "remote",
+    "cmd",
+    "dict",
+    "result",
+    "value",
+    "capture_output",
+    "branch",
+    "git_add_safely",
+    "files",
+    "quick_recovery_script",
+    "str",
+    "subprocess",
+    "env_vars",
+    "git_commit_safely",
+    "git_push_safely",
+    "list",
+    "command",
+    "cmd_args",
+    "len",
+    "sys",
+    "create_github_pr",
+    "image",
+    "FileNotFoundError",
+    "print",
+    "Union",
+    "main",
+    "stdout",
+    "success",
+    "tuple",
+    "bool",
+    "title",
+    "body",
+    "volumes",
+    "run_command_safely",
+    "ports",
+    "e",
+    "Optional",
+    "isinstance",
+    "base"
+  ]
+}

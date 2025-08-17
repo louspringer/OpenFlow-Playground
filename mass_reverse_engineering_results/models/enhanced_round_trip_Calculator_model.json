@@ -1,0 +1,133 @@
+{
+  "system_name": "Perform basic mathematical operations",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Calculator": {
+      "responsibility": "Perform basic mathematical operations",
+      "methods": [
+        {
+          "name": "add",
+          "signature": "add(self, a: float, b: float) -> float",
+          "docstring": "add(self, a: float, b: float) -> float",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "a",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "b",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "subtract",
+          "signature": "subtract(self, a: float, b: float) -> float",
+          "docstring": "subtract(self, a: float, b: float) -> float",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "a",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "b",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "multiply",
+          "signature": "multiply(self, a: float, b: float) -> float",
+          "docstring": "multiply(self, a: float, b: float) -> float",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "a",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "b",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "divide",
+          "signature": "divide(self, a: float, b: float) -> float",
+          "docstring": "divide(self, a: float, b: float) -> float",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "a",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "b",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 9
+    }
+  },
+  "module_functions": [],
+  "imports": [],
+  "module_docstring": "\nPerform basic mathematical operations\n",
+  "file_structure": {
+    "total_lines": 45,
+    "code_lines": 29,
+    "comment_lines": 6,
+    "blank_lines": 10,
+    "total_nodes": 72,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 0,
+    "expression_nodes": 6,
+    "assignment_nodes": 0,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 45
+  },
+  "used_names": [
+    "float"
+  ]
+}

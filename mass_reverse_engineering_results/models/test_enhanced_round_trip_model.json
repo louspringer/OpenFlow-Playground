@@ -1,0 +1,70 @@
+{
+  "system_name": "Test Enhanced Round-Trip Model System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "create_test_design_spec",
+      "signature": "create_test_design_spec() -> dict",
+      "docstring": "Create a test design specification with proper dependencies",
+      "decorators": [],
+      "line_number": 11,
+      "return_type": "dict",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import asyncio",
+    "from src.round_trip_model_system import RoundTripModelSystem",
+    "import ast"
+  ],
+  "module_docstring": "\nTest Enhanced Round-Trip Model System\n",
+  "file_structure": {
+    "total_lines": 224,
+    "code_lines": 183,
+    "comment_lines": 14,
+    "blank_lines": 27,
+    "total_nodes": 770,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 41,
+    "assignment_nodes": 12,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 224
+  },
+  "used_names": [
+    "__name__",
+    "json_path",
+    "create_test_design_spec",
+    "RoundTripModelSystem",
+    "dict",
+    "regenerated_files",
+    "system",
+    "integrity_check",
+    "design_spec",
+    "ast",
+    "SyntaxError",
+    "generated_files",
+    "len",
+    "filename",
+    "print",
+    "dependency_check",
+    "asyncio",
+    "code",
+    "success_rate",
+    "loaded_model",
+    "test_enhanced_round_trip",
+    "model",
+    "e"
+  ]
+}

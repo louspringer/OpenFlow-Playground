@@ -1,0 +1,169 @@
+{
+  "system_name": "MDC Projector - Uses parser and model to project changes to MDC files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MDCProjector": {
+      "responsibility": "Projects model-driven changes to MDC files",
+      "methods": [
+        {
+          "name": "_load_model",
+          "signature": "_load_model(self, model_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Load the project model",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_mdc_constraints",
+          "signature": "get_mdc_constraints(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get MDC domain constraints from model",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_generation_rules",
+          "signature": "get_generation_rules(self) -> list[str]",
+          "docstring": "Get MDC generation rules from model",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_against_model",
+          "signature": "validate_against_model(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate MDC file against model constraints\n\n        Returns:\n            Dict with validation results and recommendations",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "project_fixes",
+          "signature": "project_fixes(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Project fixes based on model constraints\n\n        Returns:\n            Dict with projected fixes",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 13
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Test the MDC projector",
+      "decorators": [],
+      "line_number": 174,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from scripts.mdc_parser import MDCParser"
+  ],
+  "module_docstring": "\nMDC Projector - Uses parser and model to project changes to MDC files\n",
+  "file_structure": {
+    "total_lines": 209,
+    "code_lines": 156,
+    "comment_lines": 17,
+    "blank_lines": 36,
+    "total_nodes": 902,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 4,
+    "expression_nodes": 31,
+    "assignment_nodes": 25,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 209
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "required_fields",
+    "Exception",
+    "items",
+    "projection",
+    "yaml_data",
+    "isinstance",
+    "dict",
+    "content",
+    "open",
+    "str",
+    "model_path",
+    "Path",
+    "test_file",
+    "fixes",
+    "item",
+    "validation",
+    "list",
+    "json",
+    "projector",
+    "file_path",
+    "rules",
+    "print",
+    "main",
+    "self",
+    "globs",
+    "results",
+    "bool",
+    "MDCProjector",
+    "field",
+    "constraints",
+    "MDCParser",
+    "always_apply",
+    "e",
+    "Any"
+  ]
+}

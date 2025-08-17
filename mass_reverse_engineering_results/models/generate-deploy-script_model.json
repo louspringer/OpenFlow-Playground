@@ -1,0 +1,162 @@
+{
+  "system_name": "\ud83d\ude80 Deploy Script Generator for GKE Project",
+  "description": "Generates deploy-ghostbusters.sh from the project model registry template",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "calculate_model_hash",
+      "signature": "calculate_model_hash(model: Any) -> Any",
+      "docstring": "Calculate a hash of the model for version tracking",
+      "decorators": [],
+      "line_number": 28,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "extract_deploy_template",
+      "signature": "extract_deploy_template(model: Any) -> Any",
+      "docstring": "Extract the deploy script template from the GKE hackathon configuration",
+      "decorators": [],
+      "line_number": 35,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_script",
+      "signature": "generate_script(template_data: Any, model_hash: Any) -> Any",
+      "docstring": "Generate the script from the template and variables with version tracking",
+      "decorators": [],
+      "line_number": 48,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "template_data",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "model_hash",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "write_script",
+      "signature": "write_script(script_content: Any, output_path: Any) -> Any",
+      "docstring": "Write the generated script to the output file",
+      "decorators": [],
+      "line_number": 132,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "script_content",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "output_path",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 148,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import sys",
+    "import hashlib",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83d\ude80 Deploy Script Generator for GKE Project\nGenerates deploy-ghostbusters.sh from the project model registry template\n",
+  "file_structure": {
+    "total_lines": 193,
+    "code_lines": 120,
+    "comment_lines": 43,
+    "blank_lines": 30,
+    "total_nodes": 685,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 5,
+    "expression_nodes": 46,
+    "assignment_nodes": 21,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 193
+  },
+  "used_names": [
+    "extract_deploy_template",
+    "__import__",
+    "model_str",
+    "script_content",
+    "__name__",
+    "f",
+    "Exception",
+    "__file__",
+    "write_script",
+    "output_path",
+    "model_hash",
+    "os",
+    "open",
+    "existing_script_path",
+    "deploy_template",
+    "model_path",
+    "Path",
+    "variables",
+    "json",
+    "list",
+    "sys",
+    "load_project_model",
+    "print",
+    "main",
+    "hashlib",
+    "hackathon_config",
+    "version_header",
+    "available_keys",
+    "generate_script",
+    "KeyError",
+    "model",
+    "template_data",
+    "calculate_model_hash",
+    "e"
+  ]
+}

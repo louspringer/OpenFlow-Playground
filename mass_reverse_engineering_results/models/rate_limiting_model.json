@@ -1,0 +1,163 @@
+{
+  "system_name": "Rate Limiting Module",
+  "description": "Separate module for rate limiting functionality to avoid coupling with HTTPS enforcement.",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RateLimiting": {
+      "responsibility": "Rate limiting implementation to prevent abuse.",
+      "methods": [
+        {
+          "name": "check_rate_limit",
+          "signature": "check_rate_limit(self, user_id: str, endpoint: str) -> bool",
+          "docstring": "Check if user has exceeded rate limit for endpoint.",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_remaining_requests",
+          "signature": "get_remaining_requests(self, user_id: str, endpoint: str) -> int",
+          "docstring": "Get remaining requests for user on endpoint.",
+          "decorators": [],
+          "line_number": 38,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "reset_rate_limit",
+          "signature": "reset_rate_limit(self, user_id: str, endpoint: str) -> bool",
+          "docstring": "Reset rate limit for user on endpoint.",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rate_limit_info",
+          "signature": "get_rate_limit_info(self, user_id: str, endpoint: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Get detailed rate limit information.",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 14
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "import time",
+    "from typing import Any",
+    "import redis"
+  ],
+  "module_docstring": "\nRate Limiting Module\nSeparate module for rate limiting functionality to avoid coupling with HTTPS enforcement.\n",
+  "file_structure": {
+    "total_lines": 100,
+    "code_lines": 74,
+    "comment_lines": 4,
+    "blank_lines": 22,
+    "total_nodes": 496,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 4,
+    "expression_nodes": 13,
+    "assignment_nodes": 18,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 100
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "user_id",
+    "logging",
+    "rate_limiter",
+    "current",
+    "dict",
+    "redis_client",
+    "logger",
+    "str",
+    "count",
+    "RateLimiting",
+    "endpoint",
+    "current_count",
+    "time",
+    "print",
+    "self",
+    "bool",
+    "max",
+    "ttl",
+    "redis",
+    "int",
+    "e",
+    "mock_redis",
+    "Any"
+  ]
+}

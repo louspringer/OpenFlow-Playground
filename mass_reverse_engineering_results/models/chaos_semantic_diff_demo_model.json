@@ -1,0 +1,290 @@
+{
+  "system_name": "Chaos Semantic Diff Demo - Maximum Chaos Testing Across File Types",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SporeType": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 30
+    },
+    "DimensionType": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 35
+    },
+    "Dimension": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 40
+    },
+    "GlacierSpore": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "add_dimension",
+          "signature": "add_dimension(self, dimension: Dimension) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "dimension",
+              "type": "Dimension",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 46
+    },
+    "SemanticDiffEngine": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "diff_spores",
+          "signature": "diff_spores(self, old_spore: GlacierSpore, new_spore: GlacierSpore) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Create semantic diffs between spores with MAXIMUM CHAOS",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "old_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "new_spore",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 64
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_chaos_files",
+      "signature": "create_chaos_files() -> dict[Tuple[str, str]]",
+      "docstring": "Create different file types for maximum chaos",
+      "decorators": [],
+      "line_number": 120,
+      "return_type": "dict[Tuple[str, str]]",
+      "parameters": []
+    },
+    {
+      "name": "create_chaos_spores",
+      "signature": "create_chaos_spores(chaos_files: dict[Tuple[str, str]]) -> dict[Tuple[str, GlacierSpore]]",
+      "docstring": "Convert chaos files to GlacierSpores",
+      "decorators": [],
+      "line_number": 268,
+      "return_type": "dict[Tuple[str, GlacierSpore]]",
+      "parameters": [
+        {
+          "name": "chaos_files",
+          "type": "dict[Tuple[str, str]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "run_chaos_diffing",
+      "signature": "run_chaos_diffing(chaos_spores: dict[Tuple[str, GlacierSpore]]) -> Any",
+      "docstring": "Run MAXIMUM CHAOS semantic diffing between different file types",
+      "decorators": [],
+      "line_number": 344,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "chaos_spores",
+          "type": "dict[Tuple[str, GlacierSpore]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_ghostbusters_investigation",
+      "signature": "test_ghostbusters_investigation(chaos_files: dict[Tuple[str, str]]) -> Any",
+      "docstring": "Test Ghostbusters investigation on chaos files",
+      "decorators": [],
+      "line_number": 418,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "chaos_files",
+          "type": "dict[Tuple[str, str]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main chaos function",
+      "decorators": [],
+      "line_number": 465,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import hashlib",
+    "import json",
+    "import tempfile",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from ghostbusters_file_type_processor import GhostbustersFileTypeProcessor",
+    "from glacier_spore_models import Dimension",
+    "from glacier_spore_models import DimensionType",
+    "from glacier_spore_models import GlacierSpore",
+    "from glacier_spore_models import SporeType",
+    "from semantic_diff_engine import SemanticDiffEngine"
+  ],
+  "module_docstring": "\nChaos Semantic Diff Demo - Maximum Chaos Testing Across File Types\n\nThis script creates MAXIMUM CHAOS by:\n1. Creating different file types (Python, TOML, JSON, Shell)\n2. Converting them to GlacierSpores\n3. Attempting semantic diffing between completely different types\n4. Seeing what chaos ensues!\n\nBecause we <3 chaos! \ud83c\udfaa\ud83d\udd25\n",
+  "file_structure": {
+    "total_lines": 500,
+    "code_lines": 392,
+    "comment_lines": 26,
+    "blank_lines": 82,
+    "total_nodes": 1498,
+    "class_nodes": 5,
+    "function_nodes": 10,
+    "import_nodes": 8,
+    "expression_nodes": 71,
+    "assignment_nodes": 51,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 500
+  },
+  "used_names": [
+    "spore1",
+    "temp_files",
+    "__name__",
+    "Exception",
+    "ANALYSIS",
+    "dimension_type",
+    "f",
+    "spore_types",
+    "enumerate",
+    "SporeType",
+    "spore2",
+    "chaos_files",
+    "chaos_score",
+    "old_dim_count",
+    "dict",
+    "GlacierSpore",
+    "content",
+    "chaos_spores",
+    "PROCESSING",
+    "value",
+    "result",
+    "open",
+    "Dimension",
+    "str",
+    "Path",
+    "type1",
+    "new_spore",
+    "ImportError",
+    "toml_content",
+    "spore_type",
+    "new_dim_count",
+    "temp_path",
+    "json",
+    "list",
+    "tempfile",
+    "min",
+    "len",
+    "json_content",
+    "temp_dir",
+    "diff_engine",
+    "print",
+    "GhostbustersFileTypeProcessor",
+    "main",
+    "self",
+    "hashlib",
+    "diffs",
+    "total_diffs",
+    "TEMPORAL",
+    "metadata",
+    "dimension",
+    "SEMANTIC",
+    "type",
+    "create_chaos_files",
+    "processor",
+    "VALIDATION",
+    "DISCOVERY",
+    "final_chaos_score",
+    "old_spore",
+    "j",
+    "test_ghostbusters_investigation",
+    "python_content",
+    "i",
+    "create_chaos_spores",
+    "name",
+    "diff",
+    "run_chaos_diffing",
+    "shell_content",
+    "file_type",
+    "content_dict",
+    "e",
+    "SemanticDiffEngine",
+    "Any",
+    "spore",
+    "type2"
+  ]
+}

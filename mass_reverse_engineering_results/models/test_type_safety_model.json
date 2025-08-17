@@ -1,0 +1,213 @@
+{
+  "system_name": "Type Safety Test Suite",
+  "description": "Validates that all Python files have proper type annotations",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TypeSafetyValidator": {
+      "responsibility": "Validates type safety across the codebase efficiently",
+      "methods": [
+        {
+          "name": "find_python_files",
+          "signature": "find_python_files(self) -> list[Path]",
+          "docstring": "Find all Python files in the project (efficiently)",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "list[Path]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_file_type_annotations",
+          "signature": "validate_file_type_annotations(self, file_path: Path) -> list[str]",
+          "docstring": "Validate type annotations in a single file (efficiently)",
+          "decorators": [],
+          "line_number": 41,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_mypy_check",
+          "signature": "run_mypy_check(self, file_path: Path) -> list[str]",
+          "docstring": "Run mypy on a single file (with timeout)",
+          "decorators": [],
+          "line_number": 75,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_all_files",
+          "signature": "validate_all_files(self) -> dict[Tuple[str, list[str]]]",
+          "docstring": "Validate type safety across all Python files (efficiently)",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": "dict[Tuple[str, list[str]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_type_safety_report",
+          "signature": "generate_type_safety_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate a comprehensive type safety report (efficiently)",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_type_safety_enforcement",
+      "signature": "test_type_safety_enforcement() -> None",
+      "docstring": "Test that type safety is properly enforced (efficiently)",
+      "decorators": [],
+      "line_number": 140,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_mypy_configuration",
+      "signature": "test_mypy_configuration() -> None",
+      "docstring": "Test that mypy is properly configured (efficiently)",
+      "decorators": [],
+      "line_number": 167,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_type_annotation_coverage",
+      "signature": "test_type_annotation_coverage() -> None",
+      "docstring": "Test that type annotations are properly covered (efficiently)",
+      "decorators": [],
+      "line_number": 197,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Run all type safety tests (efficiently)",
+      "decorators": [],
+      "line_number": 222,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nType Safety Test Suite\nValidates that all Python files have proper type annotations\n",
+  "file_structure": {
+    "total_lines": 256,
+    "code_lines": 184,
+    "comment_lines": 17,
+    "blank_lines": 55,
+    "total_nodes": 1206,
+    "class_nodes": 1,
+    "function_nodes": 10,
+    "import_nodes": 6,
+    "expression_nodes": 51,
+    "assignment_nodes": 27,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 256
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "test_type_annotation_coverage",
+    "__file__",
+    "py_file",
+    "python_files",
+    "node",
+    "mypy_errors",
+    "isinstance",
+    "dict",
+    "result",
+    "content",
+    "source_dir",
+    "open",
+    "str",
+    "TypeSafetyValidator",
+    "Path",
+    "test_file",
+    "test_type_safety_enforcement",
+    "file_errors",
+    "sum",
+    "secure_execute",
+    "errors",
+    "subprocess",
+    "test_mypy_configuration",
+    "part",
+    "total_annotation_errors",
+    "list",
+    "ast",
+    "sys",
+    "all_errors",
+    "len",
+    "FileNotFoundError",
+    "file_path",
+    "compliance_rate",
+    "print",
+    "main",
+    "self",
+    "source_path",
+    "source_dirs",
+    "report",
+    "error",
+    "files_to_check",
+    "passed",
+    "total_files",
+    "files_with_errors",
+    "total_errors",
+    "total",
+    "tree",
+    "tests",
+    "validator",
+    "test",
+    "arg",
+    "e",
+    "Any",
+    "annotation_errors",
+    "test_files",
+    "any"
+  ]
+}

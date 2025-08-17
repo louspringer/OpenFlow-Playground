@@ -1,0 +1,65 @@
+{
+  "system_name": "Safe Model Update Script",
+  "description": "Demonstrates how to safely manipulate JSON models without corruption",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Demonstrate safe model manipulation",
+      "decorators": [],
+      "line_number": 20,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from model_manager import ModelManager"
+  ],
+  "module_docstring": "\nSafe Model Update Script\nDemonstrates how to safely manipulate JSON models without corruption\n",
+  "file_structure": {
+    "total_lines": 82,
+    "code_lines": 58,
+    "comment_lines": 7,
+    "blank_lines": 17,
+    "total_nodes": 256,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 21,
+    "assignment_nodes": 6,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 82
+  },
+  "used_names": [
+    "sys",
+    "len",
+    "dict",
+    "__name__",
+    "str",
+    "Path",
+    "__file__",
+    "print",
+    "main",
+    "backup",
+    "success",
+    "manager",
+    "schema",
+    "ImportError",
+    "ModelManager",
+    "list",
+    "is_valid",
+    "backups"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "system_name": "Fix critical syntax errors in smoke test files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_smoke_test_file",
+      "signature": "fix_smoke_test_file(filepath: str) -> bool",
+      "docstring": "Fix critical syntax errors in a smoke test file",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix all smoke test files",
+      "decorators": [],
+      "line_number": 107,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path",
+    "from src.model_driven_projection.final_projection_system import FinalProjectionSystem"
+  ],
+  "module_docstring": "\nFix critical syntax errors in smoke test files\n",
+  "file_structure": {
+    "total_lines": 156,
+    "code_lines": 121,
+    "comment_lines": 9,
+    "blank_lines": 26,
+    "total_nodes": 542,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 20,
+    "assignment_nodes": 16,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 156
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "filepath",
+    "Exception",
+    "enumerate",
+    "content",
+    "open",
+    "system",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "fixed_lines",
+    "len",
+    "in_class",
+    "fix_smoke_test_file",
+    "print",
+    "stripped",
+    "main",
+    "lines",
+    "smoke_test_files",
+    "bool",
+    "in_function",
+    "success_count",
+    "FinalProjectionSystem",
+    "i",
+    "original_content",
+    "e",
+    "any"
+  ]
+}

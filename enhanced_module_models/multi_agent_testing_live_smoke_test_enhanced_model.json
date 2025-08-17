@@ -1,0 +1,57 @@
+{
+  "module_name": "multi_agent_testing_live_smoke_test",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "src/multi_agent_testing/live_smoke_test.py",
+    "src/multi_agent_testing/test_live_smoke_test.py"
+  ],
+  "file_count": 2,
+  "total_lines": 106,
+  "total_classes": 1,
+  "total_functions": 5,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\nmulti_agent_testing_live_smoke_test\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 106\nClasses: 1\nFunctions: 5\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "multi_agent_testing_live_smoke_test",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 106,
+      "total_classes": 1,
+      "total_functions": 5,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "src/multi_agent_testing/live_smoke_test.py",
+        "name": "live_smoke_test.py",
+        "stem": "live_smoke_test"
+      },
+      {
+        "path": "src/multi_agent_testing/test_live_smoke_test.py",
+        "name": "test_live_smoke_test.py",
+        "stem": "test_live_smoke_test"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.643837",
+  "version": "1.0.0"
+}

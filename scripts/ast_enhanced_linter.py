@@ -892,15 +892,9 @@ class ASTEnhancedLinter:
             report_lines.extend(
                 [
                     f"### {file_path}",
-                    f"- **Type:** {
-                        analysis.file_type}",
-                    f"- **Issues:** {
-                        analysis.total_issues} (Critical: {
-                        analysis.critical_issues}, Warnings: {
-                        analysis.warnings}, Suggestions: {
-                            analysis.suggestions})",
-                    f"- **One-liner Score:** {
-                                analysis.one_liner_score:.2%}",
+                    f"- **Type:** {analysis.file_type}",
+                    f"- **Issues:** {analysis.total_issues} (Critical: {analysis.critical_issues}, Warnings: {analysis.warnings}, Suggestions: {analysis.suggestions})",
+                    f"- **One-liner Score:** {analysis.one_liner_score:.2%}",
                     "",
                 ]
             )
@@ -1044,15 +1038,9 @@ class ASTEnhancedLinter:
             report_lines.extend(
                 [
                     f"{file_path}:",
-                    f"  Type: {
-                        analysis.file_type}",
-                    f"  Issues: {
-                        analysis.total_issues} (Critical: {
-                        analysis.critical_issues}, Warnings: {
-                        analysis.warnings}, Suggestions: {
-                            analysis.suggestions})",
-                    f"  One-liner Score: {
-                                analysis.one_liner_score:.2%}",
+                    f"  Type: {analysis.file_type}",
+                    f"  Issues: {analysis.total_issues} (Critical: {analysis.critical_issues}, Warnings: {analysis.warnings}, Suggestions: {analysis.suggestions})",
+                    f"  One-liner Score: {analysis.one_liner_score:.2%}",
                     "",
                 ]
             )

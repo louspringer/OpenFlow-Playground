@@ -1,0 +1,122 @@
+{
+  "system_name": "Basic Validation Tests",
+  "description": "Tests core functionality using projected artifact patterns",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_security_manager_initialization",
+      "signature": "test_security_manager_initialization() -> Any",
+      "docstring": "Test SecurityManager initialization",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_input_validator_methods",
+      "signature": "test_input_validator_methods() -> Any",
+      "docstring": "Test InputValidator methods",
+      "decorators": [],
+      "line_number": 26,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_deployment_manager_initialization",
+      "signature": "test_deployment_manager_initialization() -> Any",
+      "docstring": "Test DeploymentManager initialization",
+      "decorators": [],
+      "line_number": 37,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_monitoring_dashboard_initialization",
+      "signature": "test_monitoring_dashboard_initialization() -> Any",
+      "docstring": "Test MonitoringDashboard initialization",
+      "decorators": [],
+      "line_number": 48,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_openflow_app_initialization",
+      "signature": "test_openflow_app_initialization() -> Any",
+      "docstring": "Test OpenFlowQuickstartApp initialization",
+      "decorators": [],
+      "line_number": 60,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "run_basic_tests",
+      "signature": "run_basic_tests() -> Any",
+      "docstring": "Run all basic validation tests",
+      "decorators": [],
+      "line_number": 71,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from unittest.mock import Mock"
+  ],
+  "module_docstring": "\nBasic Validation Tests\nTests core functionality using projected artifact patterns\n",
+  "file_structure": {
+    "total_lines": 102,
+    "code_lines": 64,
+    "comment_lines": 12,
+    "blank_lines": 26,
+    "total_nodes": 285,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 3,
+    "expression_nodes": 19,
+    "assignment_nodes": 14,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 102
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "__file__",
+    "monitoring_dashboard",
+    "Mock",
+    "test_security_manager_initialization",
+    "str",
+    "security_manager",
+    "Path",
+    "test_deployment_manager_initialization",
+    "sys",
+    "len",
+    "app",
+    "print",
+    "OpenFlowQuickstartApp",
+    "DeploymentManager",
+    "test_monitoring_dashboard_initialization",
+    "InputValidator",
+    "test_input_validator_methods",
+    "MonitoringDashboard",
+    "passed",
+    "run_basic_tests",
+    "test_openflow_app_initialization",
+    "SecurityManager",
+    "total",
+    "tests",
+    "validator",
+    "test",
+    "e",
+    "deployment_manager"
+  ]
+}

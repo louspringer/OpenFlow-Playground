@@ -1,0 +1,391 @@
+{
+  "system_name": "Model Manager - Safe JSON Model Manipulation",
+  "description": "Prevents corruption of fragile JSON models by using proper Python packages",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ModelBackup": {
+      "responsibility": "Backup information for model files",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 22
+    },
+    "ModelManager": {
+      "responsibility": "Safe JSON model manipulation with backup and validation",
+      "methods": [
+        {
+          "name": "_create_backup",
+          "signature": "_create_backup(self, file_path: Path) -> ModelBackup",
+          "docstring": "Create a backup of a model file before modification",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": "ModelBackup",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_json",
+          "signature": "_validate_json(self, data: Any) -> bool",
+          "docstring": "Validate JSON structure",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_safe_load_json",
+          "signature": "_safe_load_json(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Safely load JSON with error handling",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_safe_save_json",
+          "signature": "_safe_save_json(self, file_path: Path, data: dict[Tuple[str, Any]], backup: bool) -> bool",
+          "docstring": "Safely save JSON with backup and validation",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "backup",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_model",
+          "signature": "load_model(self, model_name: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Load a model file safely",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_model",
+          "signature": "save_model(self, model_name: str, data: dict[Tuple[str, Any]], backup: bool) -> bool",
+          "docstring": "Save a model file safely with backup",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "backup",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "update_model_field",
+          "signature": "update_model_field(self, model_name: str, field_path: list[str], value: Any) -> bool",
+          "docstring": "Safely update a specific field in a model",
+          "decorators": [],
+          "line_number": 130,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "field_path",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_model_entry",
+          "signature": "add_model_entry(self, model_name: str, entry_path: list[str], entry_data: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Safely add a new entry to a model",
+          "decorators": [],
+          "line_number": 158,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "entry_path",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "entry_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_model_entry",
+          "signature": "remove_model_entry(self, model_name: str, entry_path: list[str]) -> bool",
+          "docstring": "Safely remove an entry from a model",
+          "decorators": [],
+          "line_number": 186,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "entry_path",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_model_structure",
+          "signature": "validate_model_structure(self, model_name: str, schema: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate model structure against a schema",
+          "decorators": [],
+          "line_number": 210,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_against_schema",
+          "signature": "_validate_against_schema(self, data: Any, schema: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Recursively validate data against schema",
+          "decorators": [],
+          "line_number": 219,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_backups",
+          "signature": "list_backups(self) -> list[ModelBackup]",
+          "docstring": "List all available backups",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": "list[ModelBackup]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "restore_backup",
+          "signature": "restore_backup(self, backup: ModelBackup) -> bool",
+          "docstring": "Restore a model from backup",
+          "decorators": [],
+          "line_number": 264,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "backup",
+              "type": "ModelBackup",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 31
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import json",
+    "import logging",
+    "import shutil",
+    "import tempfile",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "import hashlib"
+  ],
+  "module_docstring": "\nModel Manager - Safe JSON Model Manipulation\nPrevents corruption of fragile JSON models by using proper Python packages\n",
+  "file_structure": {
+    "total_lines": 305,
+    "code_lines": 228,
+    "comment_lines": 23,
+    "blank_lines": 54,
+    "total_nodes": 1507,
+    "class_nodes": 2,
+    "function_nodes": 14,
+    "import_nodes": 9,
+    "expression_nodes": 46,
+    "assignment_nodes": 36,
+    "return_nodes": 30
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 305
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "f",
+    "Exception",
+    "logging",
+    "backup",
+    "sorted",
+    "manager",
+    "ModelManager",
+    "schema",
+    "backup_info",
+    "current",
+    "isinstance",
+    "dict",
+    "backups",
+    "shutil",
+    "value",
+    "open",
+    "logger",
+    "str",
+    "Path",
+    "parts",
+    "expected_type",
+    "item",
+    "TypeError",
+    "dataclass",
+    "list",
+    "json",
+    "tempfile",
+    "models_dir",
+    "field_path",
+    "entry_data",
+    "len",
+    "original_name",
+    "FileNotFoundError",
+    "file_path",
+    "print",
+    "self",
+    "hashlib",
+    "success",
+    "original_path",
+    "bool",
+    "type",
+    "ValueError",
+    "field",
+    "temp_file",
+    "model_name",
+    "backup_file",
+    "entry_path",
+    "datetime",
+    "timestamp_str",
+    "backup_name",
+    "data",
+    "timestamp",
+    "b",
+    "checksum",
+    "backup_path",
+    "all",
+    "e",
+    "Any",
+    "ModelBackup"
+  ]
+}

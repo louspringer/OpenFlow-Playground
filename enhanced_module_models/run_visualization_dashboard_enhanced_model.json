@@ -1,0 +1,57 @@
+{
+  "module_name": "run_visualization_dashboard",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "run_visualization_dashboard.py",
+    "simple_visualization_dashboard.py"
+  ],
+  "file_count": 2,
+  "total_lines": 169,
+  "total_classes": 0,
+  "total_functions": 2,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\nrun_visualization_dashboard\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 169\nClasses: 0\nFunctions: 2\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "run_visualization_dashboard",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 169,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "run_visualization_dashboard.py",
+        "name": "run_visualization_dashboard.py",
+        "stem": "run_visualization_dashboard"
+      },
+      {
+        "path": "simple_visualization_dashboard.py",
+        "name": "simple_visualization_dashboard.py",
+        "stem": "simple_visualization_dashboard"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.358539",
+  "version": "1.0.0"
+}

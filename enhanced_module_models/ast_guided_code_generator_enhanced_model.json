@@ -1,0 +1,57 @@
+{
+  "module_name": "ast_guided_code_generator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "ast_guided_code_generator.py",
+    "clewcrew-common/src/clewcrew_common/logging.py"
+  ],
+  "file_count": 2,
+  "total_lines": 419,
+  "total_classes": 5,
+  "total_functions": 2,
+  "total_imports": 9,
+  "module_docstring": "\"\"\"\nast_guided_code_generator\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 419\nClasses: 5\nFunctions: 2\nImports: 9\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "ast_guided_code_generator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 419,
+      "total_classes": 5,
+      "total_functions": 2,
+      "total_imports": 9
+    },
+    "files": [
+      {
+        "path": "ast_guided_code_generator.py",
+        "name": "ast_guided_code_generator.py",
+        "stem": "ast_guided_code_generator"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/logging.py",
+        "name": "logging.py",
+        "stem": "logging"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:14.016785",
+  "version": "1.0.0"
+}

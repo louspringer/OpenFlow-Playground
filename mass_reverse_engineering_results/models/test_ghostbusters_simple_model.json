@@ -1,0 +1,57 @@
+{
+  "system_name": "Simple test for the Ghostbusters system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "from pathlib import Path",
+    "from src.ghostbusters import GhostbustersOrchestrator",
+    "import shutil"
+  ],
+  "module_docstring": "Simple test for the Ghostbusters system.",
+  "file_structure": {
+    "total_lines": 51,
+    "code_lines": 32,
+    "comment_lines": 5,
+    "blank_lines": 14,
+    "total_nodes": 196,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 4,
+    "expression_nodes": 12,
+    "assignment_nodes": 5,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 51
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "orchestrator",
+    "shutil",
+    "exit",
+    "r",
+    "str",
+    "Path",
+    "test_file",
+    "test_ghostbusters_basic",
+    "state",
+    "len",
+    "print",
+    "test_dir",
+    "success",
+    "asyncio",
+    "bool",
+    "GhostbustersOrchestrator",
+    "e"
+  ]
+}

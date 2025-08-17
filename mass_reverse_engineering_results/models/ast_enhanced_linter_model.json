@@ -1,0 +1,688 @@
+{
+  "system_name": "AST-Enhanced Linter Implementation",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LintingIssue": {
+      "responsibility": "Represents a linting issue found in the code",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 52
+    },
+    "FileAnalysis": {
+      "responsibility": "Analysis results for a single file",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 68
+    },
+    "ASTEnhancedLinter": {
+      "responsibility": "AST-Enhanced Linter Implementation\n\n    This linter uses AST parsing for semantic analysis and provides\n    comprehensive code quality analysis with intelligent auto-fixing.",
+      "methods": [
+        {
+          "name": "scan_codebase",
+          "signature": "scan_codebase(self, target_path: str, file_types: list[str]) -> dict[Tuple[str, FileAnalysis]]",
+          "docstring": "Scan the codebase for linting issues using AST-enhanced analysis\n\n        Args:\n            target_path: Path to scan (defaults to workspace_path)\n            file_types: List of file types to scan (defaults to all supported types)\n\n        Returns:\n            Dictionary mapping file paths to analysis results",
+          "decorators": [],
+          "line_number": 110,
+          "return_type": "dict[Tuple[str, FileAnalysis]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_types",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_file",
+          "signature": "_analyze_file(self, file_path: Path) -> Any",
+          "docstring": "Analyze a single file for linting issues",
+          "decorators": [],
+          "line_number": 162,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_file_type",
+          "signature": "_detect_file_type(self, file_path: Path) -> str",
+          "docstring": "Detect the type of file based on extension",
+          "decorators": [],
+          "line_number": 171,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_python_file_with_ast",
+          "signature": "_analyze_python_file_with_ast(self, file_path: Path) -> Any",
+          "docstring": "Analyze Python file using AST for comprehensive analysis",
+          "decorators": [],
+          "line_number": 181,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_imports_with_ast",
+          "signature": "_analyze_imports_with_ast(self, tree: Any, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze imports using AST for semantic understanding",
+          "decorators": [],
+          "line_number": 279,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_functions_and_classes_with_ast",
+          "signature": "_analyze_functions_and_classes_with_ast(self, tree: Any, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze functions and classes using AST",
+          "decorators": [],
+          "line_number": 323,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_complexity_with_ast",
+          "signature": "_analyze_complexity_with_ast(self, tree: Any, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze code complexity using AST",
+          "decorators": [],
+          "line_number": 398,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_code_smells_with_ast",
+          "signature": "_analyze_code_smells_with_ast(self, tree: Any, lines: list[str]) -> list[LintingIssue]",
+          "docstring": "Analyze code smells using AST",
+          "decorators": [],
+          "line_number": 440,
+          "return_type": "list[LintingIssue]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_quality_metrics",
+          "signature": "_calculate_quality_metrics(self, tree: Any, lines: list[str]) -> list[CodeQualityMetric]",
+          "docstring": "Calculate quality metrics from AST analysis",
+          "decorators": [],
+          "line_number": 482,
+          "return_type": "list[CodeQualityMetric]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_file_with_patterns",
+          "signature": "_analyze_file_with_patterns(self, file_path: Path, file_type: str) -> Any",
+          "docstring": "Analyze non-Python files using pattern-based analysis",
+          "decorators": [],
+          "line_number": 547,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_one_liner",
+          "signature": "_is_one_liner(self, line: str, file_type: str) -> bool",
+          "docstring": "Check if a line is a one-liner that should be broken up",
+          "decorators": [],
+          "line_number": 608,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_one_liner_score",
+          "signature": "_calculate_one_liner_score(self, lines: list[str]) -> float",
+          "docstring": "Calculate a score indicating how much the file uses one-liners",
+          "decorators": [],
+          "line_number": 642,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "auto_fix_issues",
+          "signature": "auto_fix_issues(self, target_path: str) -> dict[Tuple[str, int]]",
+          "docstring": "Automatically fix issues that can be resolved\n\n        Args:\n            target_path: Path to fix (defaults to workspace_path)\n\n        Returns:\n            Dictionary mapping file paths to number of fixes applied",
+          "decorators": [],
+          "line_number": 654,
+          "return_type": "dict[Tuple[str, int]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_python_file_with_ast",
+          "signature": "_fix_python_file_with_ast(self, file_path: str, analysis: FileAnalysis) -> int",
+          "docstring": "Fix Python file issues using AST transformations",
+          "decorators": [],
+          "line_number": 686,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "FileAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_file_with_patterns",
+          "signature": "_fix_file_with_patterns(self, file_path: str, analysis: FileAnalysis) -> int",
+          "docstring": "Fix non-Python file issues using pattern-based transformations",
+          "decorators": [],
+          "line_number": 737,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "FileAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_transformation_rule",
+          "signature": "_find_transformation_rule(self, issue_type: str) -> Optional[TransformationRule]",
+          "docstring": "Find transformation rule for a specific issue type",
+          "decorators": [],
+          "line_number": 780,
+          "return_type": "Optional[TransformationRule]",
+          "parameters": [
+            {
+              "name": "issue_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_one_liner",
+          "signature": "_fix_one_liner(self, line: str, file_type: str) -> str",
+          "docstring": "Fix a one-liner by breaking it into multiple lines",
+          "decorators": [],
+          "line_number": 789,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_long_line",
+          "signature": "_fix_long_line(self, line: str, max_length: int, file_type: str) -> list[str]",
+          "docstring": "Fix a long line by breaking it into multiple lines",
+          "decorators": [],
+          "line_number": 811,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "max_length",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_write_ast_to_file",
+          "signature": "_write_ast_to_file(self, file_path: str, tree: Any) -> Any",
+          "docstring": "Write AST tree back to file",
+          "decorators": [],
+          "line_number": 843,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, output_format: str) -> str",
+          "docstring": "Generate a comprehensive report of all findings",
+          "decorators": [],
+          "line_number": 858,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "output_format",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_markdown_report",
+          "signature": "_generate_markdown_report(self) -> str",
+          "docstring": "Generate markdown report",
+          "decorators": [],
+          "line_number": 866,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_json_report",
+          "signature": "_generate_json_report(self) -> str",
+          "docstring": "Generate JSON report",
+          "decorators": [],
+          "line_number": 957,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_text_report",
+          "signature": "_generate_text_report(self) -> str",
+          "docstring": "Generate plain text report",
+          "decorators": [],
+          "line_number": 1020,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 86
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main entry point for the AST-enhanced linter",
+      "decorators": [],
+      "line_number": 1078,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import time",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Tuple",
+    "from ast_enhanced_linter_model import AnalysisStrategy",
+    "from ast_enhanced_linter_model import ASTAnalysisResult",
+    "from ast_enhanced_linter_model import ASTAnalysisRule",
+    "from ast_enhanced_linter_model import ASTEnhancedLinterModel",
+    "from ast_enhanced_linter_model import AutoFixCapability",
+    "from ast_enhanced_linter_model import CodeQualityMetric",
+    "from ast_enhanced_linter_model import IssueSeverity",
+    "from ast_enhanced_linter_model import IssueType",
+    "from ast_enhanced_linter_model import TransformationRule",
+    "from ast_enhanced_linter_model import create_ast_enhanced_linter_model",
+    "import argparse",
+    "from ast_enhanced_linter_model import AnalysisStrategy",
+    "from ast_enhanced_linter_model import ASTAnalysisResult",
+    "from ast_enhanced_linter_model import ASTAnalysisRule",
+    "from ast_enhanced_linter_model import ASTEnhancedLinterModel",
+    "from ast_enhanced_linter_model import AutoFixCapability",
+    "from ast_enhanced_linter_model import CodeQualityMetric",
+    "from ast_enhanced_linter_model import IssueSeverity",
+    "from ast_enhanced_linter_model import IssueType",
+    "from ast_enhanced_linter_model import TransformationRule",
+    "from ast_enhanced_linter_model import create_ast_enhanced_linter_model",
+    "import re",
+    "import json",
+    "import astor"
+  ],
+  "module_docstring": "\nAST-Enhanced Linter Implementation\n\nThis module implements the actual AST-enhanced linting functionality\nbased on the domain model defined in ast_enhanced_linter_model.py.\n\nThe linter uses AST parsing for semantic analysis and provides:\n1. Comprehensive code quality analysis\n2. Intelligent issue detection\n3. AST-based auto-fixing\n4. Quality metrics and reporting\n",
+  "file_structure": {
+    "total_lines": 1134,
+    "code_lines": 909,
+    "comment_lines": 65,
+    "blank_lines": 160,
+    "total_nodes": 4812,
+    "class_nodes": 3,
+    "function_nodes": 26,
+    "import_nodes": 11,
+    "expression_nodes": 93,
+    "assignment_nodes": 108,
+    "return_nodes": 35
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 1134
+  },
+  "used_names": [
+    "output_format",
+    "transformed_tree",
+    "Exception",
+    "description",
+    "sorted",
+    "IssueSeverity",
+    "fixes_applied",
+    "condition",
+    "severity",
+    "dict",
+    "Path",
+    "words",
+    "TransformationRule",
+    "ImportError",
+    "fixes",
+    "part",
+    "fixed_lines",
+    "ast",
+    "list",
+    "auto_fixable_issues",
+    "print",
+    "transformation_rule",
+    "getattr",
+    "report",
+    "suggestions",
+    "bool",
+    "ignored_dirs",
+    "IssueType",
+    "fix_path",
+    "re",
+    "AnalysisStrategy",
+    "parser",
+    "modified",
+    "rule_name",
+    "threshold_info",
+    "file_types",
+    "severity_icon",
+    "__name__",
+    "syntax_valid",
+    "import_count",
+    "class_rules",
+    "enumerate",
+    "total_suggestions",
+    "ASTAnalysisResult",
+    "target_path",
+    "rule",
+    "analysis",
+    "AutoFixCapability",
+    "clean_line",
+    "line",
+    "CodeQualityMetric",
+    "ASTEnhancedLinter",
+    "word",
+    "suffix",
+    "LintingIssue",
+    "SyntaxError",
+    "create_ast_enhanced_linter_model",
+    "code_smell_rules",
+    "time",
+    "linter",
+    "FileAnalysis",
+    "one_liner_score",
+    "function_rules",
+    "extensions",
+    "one_liner_count",
+    "import_rules",
+    "start_time",
+    "file_type",
+    "metric",
+    "one_liner_patterns",
+    "issues",
+    "any",
+    "line_number",
+    "total_issues",
+    "f",
+    "ignored_dir",
+    "node",
+    "float",
+    "result",
+    "content",
+    "open",
+    "metrics",
+    "sum",
+    "status",
+    "pattern",
+    "file_analysis",
+    "main",
+    "issue_type",
+    "line_count",
+    "error",
+    "issue",
+    "code",
+    "report_data",
+    "syntax_errors",
+    "ast_node",
+    "tree",
+    "i",
+    "args",
+    "Optional",
+    "isinstance",
+    "suggestion",
+    "patterns",
+    "max_length",
+    "warnings",
+    "ast_result",
+    "ast_analysis_result",
+    "class_count",
+    "str",
+    "files_to_analyze",
+    "parts",
+    "complexity_rules",
+    "dataclass",
+    "json",
+    "total_critical",
+    "len",
+    "file_path",
+    "scan_path",
+    "workspace_path",
+    "self",
+    "lines",
+    "current_line",
+    "extension",
+    "fixed_line",
+    "tuple",
+    "critical_issues",
+    "function_count",
+    "report_lines",
+    "auto_fixable",
+    "context",
+    "astor",
+    "total_warnings",
+    "int",
+    "argparse",
+    "all",
+    "e"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "system_name": "Regenerate corrupted source files using AST projection system",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "regenerate_file",
+      "signature": "regenerate_file(source_file: str, target_file: str) -> bool",
+      "docstring": "Regenerate a file using the AST projection system",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "source_file",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "target_file",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Regenerate key corrupted files",
+      "decorators": [],
+      "line_number": 42,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import shutil",
+    "from src.model_driven_projection.final_projection_system import FinalProjectionSystem",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nRegenerate corrupted source files using AST projection system\n",
+  "file_structure": {
+    "total_lines": 80,
+    "code_lines": 55,
+    "comment_lines": 6,
+    "blank_lines": 19,
+    "total_nodes": 254,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 16,
+    "assignment_nodes": 5,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 80
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "source_file",
+    "shutil",
+    "files_to_regenerate",
+    "os",
+    "open",
+    "system",
+    "str",
+    "regenerate_file",
+    "secure_execute",
+    "len",
+    "target_file",
+    "print",
+    "main",
+    "projected_content",
+    "bool",
+    "backup_file",
+    "success_count",
+    "FinalProjectionSystem",
+    "e"
+  ]
+}

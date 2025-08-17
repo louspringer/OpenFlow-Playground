@@ -1,0 +1,117 @@
+{
+  "system_name": "Fix remaining type annotation issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_return_value_issues",
+      "signature": "fix_return_value_issues(filepath: str) -> bool",
+      "docstring": "Fix functions that return values when they shouldn't",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_missing_library_stubs",
+      "signature": "fix_missing_library_stubs(filepath: str) -> bool",
+      "docstring": "Add type ignore comments for missing library stubs",
+      "decorators": [],
+      "line_number": 106,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix remaining type annotation issues",
+      "decorators": [],
+      "line_number": 142,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nFix remaining type annotation issues\n",
+  "file_structure": {
+    "total_lines": 191,
+    "code_lines": 136,
+    "comment_lines": 16,
+    "blank_lines": 39,
+    "total_nodes": 856,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 3,
+    "expression_nodes": 29,
+    "assignment_nodes": 31,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 191
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "filepath",
+    "f",
+    "python_files",
+    "next_line",
+    "enumerate",
+    "fix_missing_library_stubs",
+    "result",
+    "content",
+    "indent_level",
+    "open",
+    "fixed_content",
+    "str",
+    "fix_return_value_issues",
+    "Path",
+    "line",
+    "k",
+    "secure_execute",
+    "next_indent",
+    "fixed_lines",
+    "len",
+    "func_body",
+    "print",
+    "main",
+    "lines",
+    "bool",
+    "re",
+    "import_added",
+    "j",
+    "body_line",
+    "i",
+    "original_content",
+    "error_lines",
+    "error_count",
+    "has_return_value",
+    "e",
+    "stub_fixes",
+    "import_line",
+    "return_fixes"
+  ]
+}

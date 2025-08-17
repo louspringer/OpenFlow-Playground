@@ -1,0 +1,706 @@
+{
+  "system_name": "Glacier Spore System - Self-Describing Messages with Embedded Schemata",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SporeType": {
+      "responsibility": "Types of glacier spores",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 37
+    },
+    "DimensionType": {
+      "responsibility": "Types of dimensions in the system",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 52
+    },
+    "Dimension": {
+      "responsibility": "A dimension in the glacier spore system",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 68
+    },
+    "GlacierSpore": {
+      "responsibility": "A glacier spore - a self-describing message with embedded schemata\n\n    Every spore contains:\n    1. Self-describing metadata\n    2. Embedded schemata\n    3. Dimensional vectors\n    4. Processing instructions\n    5. Content integrity",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for storage",
+          "decorators": [],
+          "line_number": 160,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension_value",
+          "signature": "get_dimension_value(self, dimension_name: str) -> Optional[Any]",
+          "docstring": "Get value for a specific dimension",
+          "decorators": [],
+          "line_number": 171,
+          "return_type": "Optional[Any]",
+          "parameters": [
+            {
+              "name": "dimension_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "set_dimension_value",
+          "signature": "set_dimension_value(self, dimension_name: str, value: Any) -> Any",
+          "docstring": "Set value for a specific dimension",
+          "decorators": [],
+          "line_number": 175,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "dimension_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_processing_trigger",
+          "signature": "add_processing_trigger(self, trigger_id: str) -> Any",
+          "docstring": "Add a processing trigger",
+          "decorators": [],
+          "line_number": 179,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "trigger_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_integrity",
+          "signature": "validate_integrity(self) -> bool",
+          "docstring": "Validate spore integrity",
+          "decorators": [],
+          "line_number": 184,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 108
+    },
+    "GlacierSporeDatabase": {
+      "responsibility": "Database for storing glacier spores and dimensions",
+      "methods": [
+        {
+          "name": "_init_database",
+          "signature": "_init_database(self) -> Any",
+          "docstring": "Initialize database tables",
+          "decorators": [],
+          "line_number": 209,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_connection",
+          "signature": "_get_connection(self) -> Any",
+          "docstring": "Get database connection",
+          "decorators": [
+            "contextmanager"
+          ],
+          "line_number": 329,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "store_dimension",
+          "signature": "store_dimension(self, dimension: Dimension) -> bool",
+          "docstring": "Store a dimension",
+          "decorators": [],
+          "line_number": 338,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "dimension",
+              "type": "Dimension",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_spore",
+          "signature": "store_spore(self, spore: GlacierSpore) -> bool",
+          "docstring": "Store a glacier spore",
+          "decorators": [],
+          "line_number": 385,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "spore",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_track_dimension_usage",
+          "signature": "_track_dimension_usage(self, spore: GlacierSpore, conn: Any) -> Any",
+          "docstring": "Track dimension usage for a spore",
+          "decorators": [],
+          "line_number": 443,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "conn",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension",
+          "signature": "get_dimension(self, dimension_id: str) -> Optional[Dimension]",
+          "docstring": "Get a dimension by ID",
+          "decorators": [],
+          "line_number": 488,
+          "return_type": "Optional[Dimension]",
+          "parameters": [
+            {
+              "name": "dimension_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_spore",
+          "signature": "get_spore(self, spore_id: str) -> Optional[GlacierSpore]",
+          "docstring": "Get a spore by ID",
+          "decorators": [],
+          "line_number": 506,
+          "return_type": "Optional[GlacierSpore]",
+          "parameters": [
+            {
+              "name": "spore_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_row_to_dimension",
+          "signature": "_row_to_dimension(self, row: Any) -> Dimension",
+          "docstring": "Convert database row to Dimension object",
+          "decorators": [],
+          "line_number": 522,
+          "return_type": "Dimension",
+          "parameters": [
+            {
+              "name": "row",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_row_to_spore",
+          "signature": "_row_to_spore(self, row: Any) -> GlacierSpore",
+          "docstring": "Convert database row to GlacierSpore object",
+          "decorators": [],
+          "line_number": 544,
+          "return_type": "GlacierSpore",
+          "parameters": [
+            {
+              "name": "row",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "query_dimensions",
+          "signature": "query_dimensions(self, dimension_type: Optional[DimensionType], tags: Optional[set[str]], min_usage: Optional[int]) -> list[Dimension]",
+          "docstring": "Query dimensions with filters",
+          "decorators": [],
+          "line_number": 577,
+          "return_type": "list[Dimension]",
+          "parameters": [
+            {
+              "name": "dimension_type",
+              "type": "Optional[DimensionType]",
+              "default": null
+            },
+            {
+              "name": "tags",
+              "type": "Optional[set[str]]",
+              "default": null
+            },
+            {
+              "name": "min_usage",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "query_spores",
+          "signature": "query_spores(self, spore_type: Optional[SporeType], processed: Optional[bool], dimensions: Optional[dict[Tuple[str, Any]]]) -> list[GlacierSpore]",
+          "docstring": "Query spores with filters",
+          "decorators": [],
+          "line_number": 617,
+          "return_type": "list[GlacierSpore]",
+          "parameters": [
+            {
+              "name": "spore_type",
+              "type": "Optional[SporeType]",
+              "default": null
+            },
+            {
+              "name": "processed",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "dimensions",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 201
+    },
+    "DimensionAnalyzer": {
+      "responsibility": "Analyzes dimensions across the glacier spore system",
+      "methods": [
+        {
+          "name": "count_dimensions",
+          "signature": "count_dimensions(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Count all dimensions in the system",
+          "decorators": [],
+          "line_number": 663,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "find_orphaned_dimensions",
+          "signature": "find_orphaned_dimensions(self, min_age_days: int) -> list[Dimension]",
+          "docstring": "Find dimensions that haven't been used recently",
+          "decorators": [],
+          "line_number": 725,
+          "return_type": "list[Dimension]",
+          "parameters": [
+            {
+              "name": "min_age_days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_dimension_relationships",
+          "signature": "analyze_dimension_relationships(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze relationships between dimensions",
+          "decorators": [],
+          "line_number": 749,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension_usage_timeline",
+          "signature": "get_dimension_usage_timeline(self, dimension_id: str, days: int) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get usage timeline for a specific dimension",
+          "decorators": [],
+          "line_number": 802,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "dimension_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 657
+    },
+    "GlacierSporeSystem": {
+      "responsibility": "Main system for managing glacier spores",
+      "methods": [
+        {
+          "name": "_initialize_default_dimensions",
+          "signature": "_initialize_default_dimensions(self) -> Any",
+          "docstring": "Initialize default dimensions in the system",
+          "decorators": [],
+          "line_number": 852,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_discovery_spore",
+          "signature": "create_discovery_spore(self, repo_url: str, analysis_data: dict[Tuple[str, Any]]) -> GlacierSpore",
+          "docstring": "Create a discovery spore from repository analysis",
+          "decorators": [],
+          "line_number": 900,
+          "return_type": "GlacierSpore",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension_analysis",
+          "signature": "get_dimension_analysis(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get comprehensive dimension analysis",
+          "decorators": [],
+          "line_number": 966,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "find_orphaned_dimensions",
+          "signature": "find_orphaned_dimensions(self, min_age_days: int) -> list[Dimension]",
+          "docstring": "Find orphaned dimensions",
+          "decorators": [],
+          "line_number": 976,
+          "return_type": "list[Dimension]",
+          "parameters": [
+            {
+              "name": "min_age_days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension_usage_timeline",
+          "signature": "get_dimension_usage_timeline(self, dimension_id: str, days: int) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get usage timeline for a dimension",
+          "decorators": [],
+          "line_number": 980,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "dimension_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 842
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import hashlib",
+    "import json",
+    "import logging",
+    "import pickle",
+    "import sqlite3",
+    "import threading",
+    "import time",
+    "import uuid",
+    "from contextlib import contextmanager",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from queue import Queue",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Set",
+    "from typing import Tuple",
+    "from typing import Union"
+  ],
+  "module_docstring": "\nGlacier Spore System - Self-Describing Messages with Embedded Schemata\n\nEvery object is a message that contains:\n1. Self-describing schemata\n2. Dimensional metadata\n3. Relationship vectors\n4. Processing instructions\n5. Content hash for integrity\n\nThis creates a dimension-aware system that can:\n- Count dimensions across all spores\n- Analyze orphaned dimensions\n- Track relationship patterns\n- Enable post-processing via triggers\n",
+  "file_structure": {
+    "total_lines": 1034,
+    "code_lines": 849,
+    "comment_lines": 46,
+    "blank_lines": 139,
+    "total_nodes": 3812,
+    "class_nodes": 7,
+    "function_nodes": 29,
+    "import_nodes": 16,
+    "expression_nodes": 100,
+    "assignment_nodes": 85,
+    "return_nodes": 33
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 1034
+  },
+  "used_names": [
+    "analysis_data",
+    "Exception",
+    "parent_dimension_id",
+    "description",
+    "content_str",
+    "range_max",
+    "min_usage",
+    "DimensionAnalyzer",
+    "dict",
+    "GlacierSpore",
+    "cardinality",
+    "last_processed",
+    "embedded_schema",
+    "created_at",
+    "trigger_id",
+    "processing_triggers",
+    "spore_type",
+    "list",
+    "orphaned",
+    "dim",
+    "database",
+    "print",
+    "hashlib",
+    "TEMPORAL",
+    "bool",
+    "dimensions_by_type",
+    "SEMANTIC",
+    "contextmanager",
+    "SPATIAL",
+    "threading",
+    "asdict",
+    "spore",
+    "timezone",
+    "__name__",
+    "QUALITY",
+    "dimension_id",
+    "logging",
+    "SporeType",
+    "row",
+    "processing_errors",
+    "METRIC",
+    "validation_checksum",
+    "analysis",
+    "processor_requirements",
+    "DimensionType",
+    "uuid",
+    "tag_conditions",
+    "spore_id",
+    "days",
+    "PERFORMANCE",
+    "parent_spore_id",
+    "dimension_name",
+    "related_spore_ids",
+    "processed",
+    "field",
+    "DEPENDENCY",
+    "content_schema",
+    "usage_count",
+    "expires_at",
+    "rows",
+    "name",
+    "SCHEMA",
+    "TECHNOLOGY",
+    "TRIGGER",
+    "dimension_type",
+    "child_spore_ids",
+    "potential_circular",
+    "GlacierSporeDatabase",
+    "usage_id",
+    "DIMENSION",
+    "dimension_refs",
+    "value",
+    "content",
+    "float",
+    "query",
+    "Enum",
+    "system",
+    "processing_history",
+    "Dimension",
+    "signature",
+    "PATTERN",
+    "STRUCTURAL",
+    "tag",
+    "parent_child_stats",
+    "Union",
+    "main",
+    "dimension",
+    "orphaned_count",
+    "unit",
+    "dimension_value",
+    "recent_activity",
+    "datetime",
+    "child_dimension_ids",
+    "ARCHITECTURE",
+    "GlacierSporeSystem",
+    "usage_stats",
+    "Optional",
+    "Any",
+    "PROCESSOR",
+    "ANALYSIS",
+    "RELATIONSHIP",
+    "set",
+    "last_used",
+    "str",
+    "range_min",
+    "conn",
+    "last_updated",
+    "dataclass",
+    "json",
+    "dim_value",
+    "SECURITY",
+    "dimensions",
+    "EVENT",
+    "len",
+    "min_age_days",
+    "db_path",
+    "content_hash",
+    "self",
+    "calculated_hash",
+    "asyncio",
+    "metadata",
+    "sqlite3",
+    "DISCOVERY",
+    "params",
+    "dim_name",
+    "data",
+    "sample_analysis",
+    "total_dimensions",
+    "cursor",
+    "int",
+    "e",
+    "tags",
+    "default_dimensions"
+  ]
+}

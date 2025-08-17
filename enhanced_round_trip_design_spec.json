@@ -1,0 +1,90 @@
+{
+  "name": "Round-Trip Model System",
+  "description": "Can create models from design AND generate code from models",
+  "components": [
+    {
+      "name": "ModelComponent",
+      "type": "class",
+      "description": "A component in our design model",
+      "requirements": [
+        "A component in our design model"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "methods": [],
+        "line_number": 18,
+        "bases": [],
+        "decorators": [
+          "dataclass"
+        ]
+      }
+    },
+    {
+      "name": "DesignModel",
+      "type": "class",
+      "description": "A complete design model that can be converted to/from code",
+      "requirements": [
+        "A complete design model that can be converted to/from code"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "methods": [],
+        "line_number": 30,
+        "bases": [],
+        "decorators": [
+          "dataclass"
+        ]
+      }
+    },
+    {
+      "name": "RoundTripModelSystem",
+      "type": "class",
+      "description": "System that can create models from design AND generate code from models",
+      "requirements": [
+        "System that can create models from design AND generate code from models"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "methods": [
+          "__init__(self) -> None",
+          "create_model_from_design(self, design_spec: dict[Tuple[str, Any]]) -> DesignModel",
+          "generate_code_from_model(self, model_name: str) -> dict[Tuple[str, str]]",
+          "generate_code_from_extracted_model(self, extracted_model: dict[Tuple[str, Any]]) -> str",
+          "_clean_generated_code(self, code: str) -> str",
+          "_generate_class_from_extracted_model(self, class_name: str, class_info: dict[Tuple[str, Any]]) -> str",
+          "_generate_method_from_extracted_model(self, method_info: dict[Tuple[str, Any]]) -> str",
+          "_generate_function_from_extracted_model(self, func_name: str, func_info: dict[Tuple[str, Any]]) -> str",
+          "_generate_function_code(self, component: ModelComponent) -> str",
+          "_generate_class_code(self, component: ModelComponent) -> str",
+          "_parse_method_signature(self, method_signature: str) -> dict[Tuple[str, Any]]",
+          "_generate_method_from_parsed(self, parsed_method: dict) -> str",
+          "_generate_method_from_dict(self, method: dict) -> str",
+          "_clean_complex_type(self, type_annotation: str) -> str",
+          "_get_default_value(self, type_name: str) -> str",
+          "_generate_module_code(self, component: ModelComponent) -> str",
+          "_generate_domain_code(self, component: ModelComponent) -> str",
+          "save_model(self, model_name: str, file_path: str) -> None",
+          "load_model(self, file_path: str) -> DesignModel"
+        ],
+        "line_number": 40,
+        "bases": [],
+        "decorators": []
+      }
+    },
+    {
+      "name": "main",
+      "type": "function",
+      "description": "Demonstrate round-trip model system",
+      "requirements": [
+        "Demonstrate round-trip model system"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "signature": "main() -> None",
+        "line_number": 1107,
+        "return_type": null,
+        "parameters": []
+      }
+    }
+  ]
+}

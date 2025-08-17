@@ -1,0 +1,97 @@
+{
+  "system_name": "Dynamic Rule Updater",
+  "description": "Updates Cursor rules automatically when linter violations are detected",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ViolationPattern": {
+      "responsibility": "Represents a violation pattern for rule learning",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 18
+    },
+    "DynamicRuleUpdater": {
+      "responsibility": "Updates Cursor rules dynamically based on violations",
+      "methods": [
+        {
+          "name": "_load_rule_templates",
+          "signature": "_load_rule_templates(self) -> dict[Tuple[str, dict[Tuple[str, str]]]]",
+          "docstring": "Load rule templates for different violation types",
+          "decorators": [],
+          "line_number": 38,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, str]]]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 30
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nDynamic Rule Updater\nUpdates Cursor rules automatically when linter violations are detected\n",
+  "file_structure": {
+    "total_lines": 49,
+    "code_lines": 37,
+    "comment_lines": 2,
+    "blank_lines": 10,
+    "total_nodes": 167,
+    "class_nodes": 2,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 5,
+    "assignment_nodes": 3,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 49
+  },
+  "used_names": [
+    "__name__",
+    "rule_code",
+    "line_number",
+    "logging",
+    "frequency",
+    "ignore_directive",
+    "dict",
+    "logger",
+    "str",
+    "Path",
+    "ViolationPattern",
+    "dataclass",
+    "rules_dir",
+    "prevention_strategy",
+    "file_path",
+    "self",
+    "context",
+    "int",
+    "Optional"
+  ]
+}

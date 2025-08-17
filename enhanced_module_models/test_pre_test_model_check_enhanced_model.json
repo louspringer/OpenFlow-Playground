@@ -1,0 +1,51 @@
+{
+  "module_name": "test_pre_test_model_check",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/pre_test_model_check.py"
+  ],
+  "file_count": 1,
+  "total_lines": 135,
+  "total_classes": 0,
+  "total_functions": 4,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\ntest_pre_test_model_check\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 135\nClasses: 0\nFunctions: 4\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_pre_test_model_check",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 135,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "scripts/pre_test_model_check.py",
+        "name": "pre_test_model_check.py",
+        "stem": "pre_test_model_check"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.015838",
+  "version": "1.0.0"
+}

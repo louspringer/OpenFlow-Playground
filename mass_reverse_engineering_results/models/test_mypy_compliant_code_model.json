@@ -1,0 +1,113 @@
+{
+  "system_name": "Mypy-compliant Ghostbusters agents",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BaseExpert": {
+      "responsibility": "Base class for all expert agents",
+      "methods": [
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, project_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Detect delusions in the project",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 7
+    },
+    "SecurityExpert": {
+      "responsibility": "Expert agent for detecting security vulnerabilities",
+      "methods": [
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, project_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Detect security vulnerabilities",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 23
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "Mypy-compliant Ghostbusters agents",
+  "file_structure": {
+    "total_lines": 33,
+    "code_lines": 22,
+    "comment_lines": 0,
+    "blank_lines": 11,
+    "total_nodes": 127,
+    "class_nodes": 2,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 8,
+    "assignment_nodes": 2,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 33
+  },
+  "used_names": [
+    "logger",
+    "str",
+    "BaseExpert",
+    "NotImplementedError",
+    "__name__",
+    "SecurityExpert",
+    "logging",
+    "name",
+    "self",
+    "super",
+    "Optional",
+    "Any",
+    "dict"
+  ]
+}

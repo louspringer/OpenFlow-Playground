@@ -1,0 +1,200 @@
+{
+  "system_name": "\ud83d\udcca Artifact Analysis Findings Summary",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_analysis_report",
+      "signature": "load_analysis_report() -> dict[Tuple[str, Any]]",
+      "docstring": "Load the comprehensive analysis report",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": []
+    },
+    {
+      "name": "analyze_untraced_artifacts",
+      "signature": "analyze_untraced_artifacts(report: dict[Tuple[str, Any]]) -> list[str]",
+      "docstring": "Analyze untraced artifacts to identify patterns",
+      "decorators": [],
+      "line_number": 27,
+      "return_type": "list[str]",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "analyze_missing_domains",
+      "signature": "analyze_missing_domains(report: dict[Tuple[str, Any]]) -> list[str]",
+      "docstring": "Get missing domains from the analysis",
+      "decorators": [],
+      "line_number": 41,
+      "return_type": "list[str]",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "analyze_missing_requirements",
+      "signature": "analyze_missing_requirements(report: dict[Tuple[str, Any]]) -> list[str]",
+      "docstring": "Get missing requirements from the analysis",
+      "decorators": [],
+      "line_number": 46,
+      "return_type": "list[str]",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "analyze_python_issues",
+      "signature": "analyze_python_issues(report: dict[Tuple[str, Any]]) -> list[dict[Tuple[str, Any]]]",
+      "docstring": "Get Python files with AST parsing issues",
+      "decorators": [],
+      "line_number": 51,
+      "return_type": "list[dict[Tuple[str, Any]]]",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_action_plan",
+      "signature": "generate_action_plan(report: dict[Tuple[str, Any]]) -> dict[Tuple[str, list[str]]]",
+      "docstring": "Generate actionable plan based on analysis findings",
+      "decorators": [],
+      "line_number": 56,
+      "return_type": "dict[Tuple[str, list[str]]]",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "print_findings_summary",
+      "signature": "print_findings_summary(report: dict[Tuple[str, Any]]) -> Any",
+      "docstring": "Print a comprehensive findings summary",
+      "decorators": [],
+      "line_number": 109,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "report",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "print_action_plan",
+      "signature": "print_action_plan(action_plan: dict[Tuple[str, list[str]]]) -> Any",
+      "docstring": "Print the action plan",
+      "decorators": [],
+      "line_number": 160,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "action_plan",
+          "type": "dict[Tuple[str, list[str]]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to analyze findings",
+      "decorators": [],
+      "line_number": 172,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\n\ud83d\udcca Artifact Analysis Findings Summary\n\nThis script analyzes the comprehensive artifact analysis report and provides\nactionable insights for improving model coverage and requirements tracing.\n",
+  "file_structure": {
+    "total_lines": 197,
+    "code_lines": 138,
+    "comment_lines": 14,
+    "blank_lines": 45,
+    "total_nodes": 976,
+    "class_nodes": 0,
+    "function_nodes": 9,
+    "import_nodes": 3,
+    "expression_nodes": 49,
+    "assignment_nodes": 16,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 197
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "domain_analysis",
+    "req",
+    "python_analysis",
+    "dict",
+    "python_issues",
+    "category",
+    "action",
+    "open",
+    "action_plan",
+    "str",
+    "Path",
+    "artifacts",
+    "count",
+    "req_analysis",
+    "list",
+    "json",
+    "analyze_missing_domains",
+    "missing_reqs",
+    "summary",
+    "missing_requirements",
+    "analyze_missing_requirements",
+    "print",
+    "main",
+    "print_findings_summary",
+    "report",
+    "issue",
+    "report_file",
+    "load_analysis_report",
+    "artifact",
+    "missing_domains",
+    "analyze_python_issues",
+    "generate_action_plan",
+    "domain",
+    "untraced",
+    "print_action_plan",
+    "actions",
+    "Any"
+  ]
+}

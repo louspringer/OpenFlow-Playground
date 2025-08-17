@@ -1,0 +1,124 @@
+{
+  "system_name": "Syntax Recovery Engine for clewcrew",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SyntaxRecoveryEngine": {
+      "responsibility": "Syntax recovery engine for fixing syntax errors",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: Dict[Tuple[str, Any]]) -> RecoveryResult",
+          "docstring": "Execute syntax recovery",
+          "decorators": [],
+          "line_number": 15,
+          "return_type": "RecoveryResult",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_recovery_actions",
+          "signature": "get_recovery_actions(self) -> List[str]",
+          "docstring": "Get list of available recovery actions for this engine",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": "List[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_action",
+          "signature": "validate_action(self, action: Dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate that the action is valid for this engine",
+          "decorators": [],
+          "line_number": 59,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 12
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from base_recovery_engine import BaseRecoveryEngine",
+    "from base_recovery_engine import RecoveryResult"
+  ],
+  "module_docstring": "\nSyntax Recovery Engine for clewcrew\n",
+  "file_structure": {
+    "total_lines": 71,
+    "code_lines": 53,
+    "comment_lines": 4,
+    "blank_lines": 14,
+    "total_nodes": 316,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 12,
+    "assignment_nodes": 8,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 71
+  },
+  "used_names": [
+    "Exception",
+    "warnings",
+    "Dict",
+    "RecoveryResult",
+    "action",
+    "str",
+    "Path",
+    "path",
+    "List",
+    "errors",
+    "SyntaxError",
+    "len",
+    "BaseRecoveryEngine",
+    "file_path",
+    "files_fixed",
+    "self",
+    "compile",
+    "bool",
+    "changes_made",
+    "target_files",
+    "super",
+    "e",
+    "Any",
+    "confidence"
+  ]
+}

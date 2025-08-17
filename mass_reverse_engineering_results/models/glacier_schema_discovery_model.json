@@ -1,0 +1,849 @@
+{
+  "system_name": "Glacier Schema Discovery System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SchemaType": {
+      "responsibility": "Types of schemas we can discover",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 26
+    },
+    "TriggerType": {
+      "responsibility": "Types of triggers for post-processing",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 41
+    },
+    "DiscoverySchema": {
+      "responsibility": "Base schema for any discovery",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for storage",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 52
+    },
+    "ProcessingTrigger": {
+      "responsibility": "Trigger for post-processing schemas",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for storage",
+          "decorators": [],
+          "line_number": 117,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 95
+    },
+    "GlacierSchemaDatabase": {
+      "responsibility": "SQLite database for storing glacier schemas",
+      "methods": [
+        {
+          "name": "_init_database",
+          "signature": "_init_database(self) -> Any",
+          "docstring": "Initialize database tables",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_connection",
+          "signature": "_get_connection(self) -> Any",
+          "docstring": "Get database connection with proper error handling",
+          "decorators": [
+            "contextmanager"
+          ],
+          "line_number": 248,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "store_schema",
+          "signature": "store_schema(self, schema: DiscoverySchema) -> bool",
+          "docstring": "Store a schema in the database",
+          "decorators": [],
+          "line_number": 257,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_schema",
+          "signature": "get_schema(self, schema_id: str) -> Optional[DiscoverySchema]",
+          "docstring": "Retrieve a schema from the database",
+          "decorators": [],
+          "line_number": 348,
+          "return_type": "Optional[DiscoverySchema]",
+          "parameters": [
+            {
+              "name": "schema_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_row_to_schema",
+          "signature": "_row_to_schema(self, row: Any) -> DiscoverySchema",
+          "docstring": "Convert database row to DiscoverySchema object",
+          "decorators": [],
+          "line_number": 366,
+          "return_type": "DiscoverySchema",
+          "parameters": [
+            {
+              "name": "row",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "query_schemas",
+          "signature": "query_schemas(self, schema_type: Optional[SchemaType], processed: Optional[bool], tags: Optional[set[str]], limit: Optional[int]) -> list[DiscoverySchema]",
+          "docstring": "Query schemas with filters",
+          "decorators": [],
+          "line_number": 391,
+          "return_type": "list[DiscoverySchema]",
+          "parameters": [
+            {
+              "name": "schema_type",
+              "type": "Optional[SchemaType]",
+              "default": null
+            },
+            {
+              "name": "processed",
+              "type": "Optional[bool]",
+              "default": null
+            },
+            {
+              "name": "tags",
+              "type": "Optional[set[str]]",
+              "default": null
+            },
+            {
+              "name": "limit",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_trigger",
+          "signature": "store_trigger(self, trigger: ProcessingTrigger) -> bool",
+          "docstring": "Store a processing trigger",
+          "decorators": [],
+          "line_number": 437,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "trigger",
+              "type": "ProcessingTrigger",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_triggers",
+          "signature": "get_triggers(self, schema_type: Optional[SchemaType], active_only: bool) -> list[ProcessingTrigger]",
+          "docstring": "Get processing triggers",
+          "decorators": [],
+          "line_number": 479,
+          "return_type": "list[ProcessingTrigger]",
+          "parameters": [
+            {
+              "name": "schema_type",
+              "type": "Optional[SchemaType]",
+              "default": null
+            },
+            {
+              "name": "active_only",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 127
+    },
+    "GlacierSchemaProcessor": {
+      "responsibility": "Processor for post-processing glacier schemas",
+      "methods": [
+        {
+          "name": "_register_default_processors",
+          "signature": "_register_default_processors(self) -> Any",
+          "docstring": "Register default processing functions",
+          "decorators": [],
+          "line_number": 542,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "register_processor",
+          "signature": "register_processor(self, name: str, processor_func: Callable) -> Any",
+          "docstring": "Register a processing function",
+          "decorators": [],
+          "line_number": 558,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "processor_func",
+              "type": "Callable",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "start_processing",
+          "signature": "start_processing(self, num_workers: int) -> Any",
+          "docstring": "Start the processing workers",
+          "decorators": [],
+          "line_number": 563,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "num_workers",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "stop_processing",
+          "signature": "stop_processing(self) -> Any",
+          "docstring": "Stop the processing workers",
+          "decorators": [],
+          "line_number": 584,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_worker_loop",
+          "signature": "_worker_loop(self, worker_id: int) -> Any",
+          "docstring": "Main worker loop for processing schemas",
+          "decorators": [],
+          "line_number": 594,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "worker_id",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_trigger_monitor_loop",
+          "signature": "_trigger_monitor_loop(self) -> Any",
+          "docstring": "Monitor for triggers that need to be activated",
+          "decorators": [],
+          "line_number": 619,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_immediate_triggers",
+          "signature": "_check_immediate_triggers(self) -> Any",
+          "docstring": "Check for immediate triggers",
+          "decorators": [],
+          "line_number": 642,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_scheduled_triggers",
+          "signature": "_check_scheduled_triggers(self) -> Any",
+          "docstring": "Check for scheduled triggers",
+          "decorators": [],
+          "line_number": 656,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_conditional_triggers",
+          "signature": "_check_conditional_triggers(self) -> Any",
+          "docstring": "Check for conditional triggers",
+          "decorators": [],
+          "line_number": 660,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_evaluate_conditions",
+          "signature": "_evaluate_conditions(self, conditions: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Evaluate trigger conditions",
+          "decorators": [],
+          "line_number": 676,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "conditions",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_schema_matches_conditions",
+          "signature": "_schema_matches_conditions(self, schema: DiscoverySchema, conditions: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Check if schema matches trigger conditions",
+          "decorators": [],
+          "line_number": 681,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "conditions",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_queue_processing",
+          "signature": "_queue_processing(self, schema_id: str, trigger_id: str) -> Any",
+          "docstring": "Queue a schema for processing",
+          "decorators": [],
+          "line_number": 688,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "schema_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "trigger_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_process_schema",
+          "signature": "_process_schema(self, schema_id: str, trigger_id: str) -> Any",
+          "docstring": "Process a schema with a specific trigger",
+          "decorators": [],
+          "line_number": 695,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "schema_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "trigger_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_code_complexity",
+          "signature": "_analyze_code_complexity(self, schema: DiscoverySchema, config: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze code complexity from schema",
+          "decorators": [],
+          "line_number": 743,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_security_patterns",
+          "signature": "_detect_security_patterns(self, schema: DiscoverySchema, config: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Detect security patterns from schema",
+          "decorators": [],
+          "line_number": 779,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_dependencies",
+          "signature": "_analyze_dependencies(self, schema: DiscoverySchema, config: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze dependencies from schema",
+          "decorators": [],
+          "line_number": 811,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_quality_report",
+          "signature": "_generate_quality_report(self, schema: DiscoverySchema, config: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate quality report from schema",
+          "decorators": [],
+          "line_number": 831,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_architecture_patterns",
+          "signature": "_extract_architecture_patterns(self, schema: DiscoverySchema, config: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Extract architecture patterns from schema",
+          "decorators": [],
+          "line_number": 861,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 529
+    },
+    "GlacierSchemaDiscovery": {
+      "responsibility": "Main class for glacier schema discovery system",
+      "methods": [
+        {
+          "name": "create_repository_schema",
+          "signature": "create_repository_schema(self, repo_url: str, analysis_data: dict[Tuple[str, Any]]) -> DiscoverySchema",
+          "docstring": "Create a glacier schema for repository discovery",
+          "decorators": [],
+          "line_number": 899,
+          "return_type": "DiscoverySchema",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_child_schemas",
+          "signature": "_create_child_schemas(self, parent_schema: DiscoverySchema, analysis_data: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Create child schemas for different aspects of the analysis",
+          "decorators": [],
+          "line_number": 933,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "parent_schema",
+              "type": "DiscoverySchema",
+              "default": null
+            },
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_processing_trigger",
+          "signature": "add_processing_trigger(self, trigger: ProcessingTrigger) -> Any",
+          "docstring": "Add a processing trigger",
+          "decorators": [],
+          "line_number": 1012,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "trigger",
+              "type": "ProcessingTrigger",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "query_schemas",
+          "signature": "query_schemas(self) -> list[DiscoverySchema]",
+          "docstring": "Query schemas with filters",
+          "decorators": [],
+          "line_number": 1017,
+          "return_type": "list[DiscoverySchema]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_schema",
+          "signature": "get_schema(self, schema_id: str) -> Optional[DiscoverySchema]",
+          "docstring": "Get a specific schema",
+          "decorators": [],
+          "line_number": 1021,
+          "return_type": "Optional[DiscoverySchema]",
+          "parameters": [
+            {
+              "name": "schema_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "shutdown",
+          "signature": "shutdown(self) -> Any",
+          "docstring": "Shutdown the discovery system",
+          "decorators": [],
+          "line_number": 1025,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 889
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import hashlib",
+    "import json",
+    "import logging",
+    "import pickle",
+    "import sqlite3",
+    "import threading",
+    "import time",
+    "from contextlib import contextmanager",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from queue import Queue",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nGlacier Schema Discovery System\n\nThis system creates persistent, queryable schemas for each discovery\nthat can be post-processed via triggers for long-term analysis.\n",
+  "file_structure": {
+    "total_lines": 1095,
+    "code_lines": 858,
+    "comment_lines": 64,
+    "blank_lines": 173,
+    "total_nodes": 4329,
+    "class_nodes": 7,
+    "function_nodes": 37,
+    "import_nodes": 15,
+    "expression_nodes": 142,
+    "assignment_nodes": 99,
+    "return_nodes": 33
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 1095
+  },
+  "used_names": [
+    "analysis_data",
+    "Exception",
+    "PERFORMANCE_PATTERNS",
+    "trigger_type",
+    "imp",
+    "content_str",
+    "dict",
+    "CODE_STRUCTURE",
+    "Callable",
+    "active",
+    "batch_size",
+    "trigger_id",
+    "immediate_trigger",
+    "list",
+    "GlacierSchemaDatabase",
+    "discovery",
+    "t",
+    "GlacierSchemaDiscovery",
+    "database",
+    "print",
+    "version",
+    "hashlib",
+    "schema_type",
+    "source_url",
+    "bool",
+    "dangerous",
+    "Queue",
+    "contextmanager",
+    "threading",
+    "func",
+    "asdict",
+    "processed_schemas",
+    "deps_schema",
+    "worker_id",
+    "timezone",
+    "TESTING_PATTERNS",
+    "trigger",
+    "__name__",
+    "worker",
+    "logging",
+    "row",
+    "processing_errors",
+    "parent_schema_id",
+    "limit",
+    "ARCHITECTURE_PATTERNS",
+    "last_triggered",
+    "BATCH",
+    "tag_conditions",
+    "triggers",
+    "time",
+    "dangerous_functions",
+    "code_schema",
+    "processor_function",
+    "confidence_score",
+    "processed",
+    "ProcessingTrigger",
+    "DiscoverySchema",
+    "num_workers",
+    "field",
+    "rows",
+    "name",
+    "start_time",
+    "SCHEDULED",
+    "security_issues",
+    "issues",
+    "any",
+    "REPOSITORY",
+    "schemas",
+    "schema",
+    "processor_config",
+    "float",
+    "result",
+    "content",
+    "query",
+    "Enum",
+    "complexity_score",
+    "metrics",
+    "QUALITY_METRICS",
+    "security_trigger",
+    "CONDITIONAL",
+    "parent_schema",
+    "EVENT_DRIVEN",
+    "tag",
+    "DEPENDENCIES",
+    "delay_seconds",
+    "quality_schema",
+    "main",
+    "dependencies",
+    "BaseException",
+    "GlacierSchemaProcessor",
+    "queue_item",
+    "processor_func",
+    "dangerous_imports",
+    "datetime",
+    "i",
+    "trigger_count",
+    "TriggerType",
+    "Optional",
+    "discovery_timestamp",
+    "Any",
+    "patterns",
+    "range",
+    "DEPLOYMENT_PATTERNS",
+    "SECURITY_PATTERNS",
+    "set",
+    "active_only",
+    "str",
+    "schema_id",
+    "child_schema_ids",
+    "conn",
+    "previous_version_id",
+    "dataclass",
+    "json",
+    "DOCUMENTATION_PATTERNS",
+    "min",
+    "IMMEDIATE",
+    "len",
+    "quality_score",
+    "db_path",
+    "content_hash",
+    "kwargs",
+    "self",
+    "asyncio",
+    "metadata",
+    "max",
+    "processing_timestamp",
+    "conditions",
+    "next",
+    "sqlite3",
+    "end_time",
+    "params",
+    "trigger_monitor",
+    "repo_url",
+    "data",
+    "SchemaType",
+    "sample_analysis",
+    "cursor",
+    "int",
+    "e",
+    "tags",
+    "schedule_cron"
+  ]
+}

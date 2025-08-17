@@ -1,0 +1,57 @@
+{
+  "module_name": "enhanced_round_trip_Calculator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "enhanced_round_trip_Calculator.py",
+    "enhanced_round_trip_CalculatorUI.py"
+  ],
+  "file_count": 2,
+  "total_lines": 83,
+  "total_classes": 2,
+  "total_functions": 0,
+  "total_imports": 0,
+  "module_docstring": "\"\"\"\nenhanced_round_trip_Calculator\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 83\nClasses: 2\nFunctions: 0\nImports: 0\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "enhanced_round_trip_Calculator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 83,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 0
+    },
+    "files": [
+      {
+        "path": "enhanced_round_trip_Calculator.py",
+        "name": "enhanced_round_trip_Calculator.py",
+        "stem": "enhanced_round_trip_Calculator"
+      },
+      {
+        "path": "enhanced_round_trip_CalculatorUI.py",
+        "name": "enhanced_round_trip_CalculatorUI.py",
+        "stem": "enhanced_round_trip_CalculatorUI"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.607880",
+  "version": "1.0.0"
+}

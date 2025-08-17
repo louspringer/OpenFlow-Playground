@@ -1,0 +1,32 @@
+{
+  "system_name": "File Existence and Structure Validation Tests",
+  "description": "Tests that all expected files exist and are properly structured",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [],
+  "module_docstring": "\nFile Existence and Structure Validation Tests\nTests that all expected files exist and are properly structured\n",
+  "file_structure": {
+    "total_lines": 6,
+    "code_lines": 4,
+    "comment_lines": 1,
+    "blank_lines": 1,
+    "total_nodes": 3,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 0,
+    "expression_nodes": 1,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 6
+  },
+  "used_names": []
+}

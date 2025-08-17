@@ -1,0 +1,69 @@
+{
+  "system_name": "pytest wrapper - only allows execution through make",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "check_parent_process",
+      "signature": "check_parent_process() -> Any",
+      "docstring": "Check if we're being called by make",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 47,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "import psutil"
+  ],
+  "module_docstring": "\npytest wrapper - only allows execution through make\n",
+  "file_structure": {
+    "total_lines": 67,
+    "code_lines": 39,
+    "comment_lines": 11,
+    "blank_lines": 17,
+    "total_nodes": 203,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 17,
+    "assignment_nodes": 4,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 67
+  },
+  "used_names": [
+    "sys",
+    "__name__",
+    "Exception",
+    "parent",
+    "original_pytest",
+    "current_process",
+    "print",
+    "parent_name",
+    "main",
+    "psutil",
+    "check_parent_process",
+    "e",
+    "os"
+  ]
+}

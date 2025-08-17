@@ -1,0 +1,479 @@
+{
+  "system_name": "Enhanced Module Modeling System - Phase 3 of Mass Reverse Engineering",
+  "description": "",
+  "purpose": "Create comprehensive models for each detected module by combining individual file models",
+  "graph_api_level": 3,
+  "projection_system": "enhanced_module_modeling",
+  "components": {
+    "EnhancedModuleModel": {
+      "responsibility": "Comprehensive model for a logical module",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 26
+    },
+    "EnhancedModuleModeler": {
+      "responsibility": "Create comprehensive models for detected modules",
+      "methods": [
+        {
+          "name": "load_module_detection_results",
+          "signature": "load_module_detection_results(self, summary_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Load previously generated module detection results",
+          "decorators": [],
+          "line_number": 73,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "summary_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_module_detection",
+          "signature": "_run_module_detection(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Run module detection if summary doesn't exist",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_enhanced_module_models",
+          "signature": "create_enhanced_module_models(self, summary: Dict[Tuple[str, Any]]) -> Dict[Tuple[str, EnhancedModuleModel]]",
+          "docstring": "Create enhanced models for all detected modules",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "Dict[Tuple[str, EnhancedModuleModel]]",
+          "parameters": [
+            {
+              "name": "summary",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_single_module_model",
+          "signature": "_create_single_module_model(self, module_name: str, module_data: Dict[Tuple[str, Any]]) -> EnhancedModuleModel",
+          "docstring": "Create enhanced model for a single module",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "EnhancedModuleModel",
+          "parameters": [
+            {
+              "name": "module_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_class_dependencies",
+          "signature": "_analyze_class_dependencies(self, classes: List[Dict[Tuple[str, Any]]], file_models: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, List[str]]]",
+          "docstring": "Analyze dependencies between classes in the module",
+          "decorators": [],
+          "line_number": 210,
+          "return_type": "Dict[Tuple[str, List[str]]]",
+          "parameters": [
+            {
+              "name": "classes",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_function_dependencies",
+          "signature": "_analyze_function_dependencies(self, functions: List[Dict[Tuple[str, Any]]], file_models: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, List[str]]]",
+          "docstring": "Analyze dependencies between functions in the module",
+          "decorators": [],
+          "line_number": 238,
+          "return_type": "Dict[Tuple[str, List[str]]]",
+          "parameters": [
+            {
+              "name": "functions",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_type_dependencies",
+          "signature": "_extract_type_dependencies(self, item: Dict[Tuple[str, Any]]) -> List[str]",
+          "docstring": "Extract type dependencies from a function or method",
+          "decorators": [],
+          "line_number": 253,
+          "return_type": "List[str]",
+          "parameters": [
+            {
+              "name": "item",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_module_docstring",
+          "signature": "_create_module_docstring(self, module_name: str, module_data: Dict[Tuple[str, Any]], file_models: List[Dict[Tuple[str, Any]]]) -> str",
+          "docstring": "Create a comprehensive module-level docstring",
+          "decorators": [],
+          "line_number": 271,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "module_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_module_purpose",
+          "signature": "_extract_module_purpose(self, module_data: Dict[Tuple[str, Any]], file_models: List[Dict[Tuple[str, Any]]]) -> str",
+          "docstring": "Extract the purpose of the module from its content",
+          "decorators": [],
+          "line_number": 295,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_determine_graph_api_level",
+          "signature": "_determine_graph_api_level(self, module_data: Dict[Tuple[str, Any]], file_models: List[Dict[Tuple[str, Any]]]) -> str",
+          "docstring": "Determine the Graph API level for this module",
+          "decorators": [],
+          "line_number": 332,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_determine_projection_system",
+          "signature": "_determine_projection_system(self, module_name: str, module_data: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Determine the projection system for this module",
+          "decorators": [],
+          "line_number": 355,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "module_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_module_structure",
+          "signature": "_create_module_structure(self, module_data: Dict[Tuple[str, Any]], file_models: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Create a comprehensive module structure",
+          "decorators": [],
+          "line_number": 372,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "module_data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_models",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_timestamp",
+          "signature": "_get_timestamp(self) -> str",
+          "docstring": "Get current timestamp for metadata",
+          "decorators": [],
+          "line_number": 423,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_enhanced_module_models",
+          "signature": "save_enhanced_module_models(self, output_dir: str) -> str",
+          "docstring": "Save all enhanced module models to JSON files",
+          "decorators": [],
+          "line_number": 428,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "output_dir",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_enhanced_summary",
+          "signature": "generate_enhanced_summary(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive summary of all enhanced module models",
+          "decorators": [],
+          "line_number": 476,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 64
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main entry point for enhanced module modeling",
+      "decorators": [],
+      "line_number": 519,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "convert_sets",
+      "signature": "convert_sets(obj: Any) -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 441,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "obj",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "import re",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Set",
+    "from typing import Any",
+    "from collections import defaultdict",
+    "from dataclasses import dataclass",
+    "from dataclasses import asdict",
+    "from enhanced_reverse_engineer import EnhancedReverseEngineer",
+    "from scripts.module_detection_system import ModuleDetector",
+    "from datetime import datetime"
+  ],
+  "module_docstring": "\nEnhanced Module Modeling System - Phase 3 of Mass Reverse Engineering\n\nPurpose: Create comprehensive models for each detected module by combining individual file models\nGraph API Level: 3\nProjection System: enhanced_module_modeling\n",
+  "file_structure": {
+    "total_lines": 567,
+    "code_lines": 402,
+    "comment_lines": 53,
+    "blank_lines": 112,
+    "total_nodes": 3040,
+    "class_nodes": 2,
+    "function_nodes": 18,
+    "import_nodes": 10,
+    "expression_nodes": 69,
+    "assignment_nodes": 71,
+    "return_nodes": 34
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 567
+  },
+  "used_names": [
+    "Exception",
+    "obj",
+    "class_info",
+    "EnhancedReverseEngineer",
+    "dict",
+    "enhanced_summary",
+    "files",
+    "module_structure",
+    "Path",
+    "function_dependencies",
+    "item",
+    "list",
+    "all_functions",
+    "methods",
+    "projection_system",
+    "FileNotFoundError",
+    "print",
+    "version",
+    "summary_path",
+    "file_paths",
+    "total_modules",
+    "safe_name",
+    "modules_data",
+    "re",
+    "convert_sets",
+    "asdict",
+    "__name__",
+    "__file__",
+    "enumerate",
+    "level",
+    "v",
+    "model_dict",
+    "Dict",
+    "file_info",
+    "model_file",
+    "return_type",
+    "func_info",
+    "m",
+    "EnhancedModuleModel",
+    "module_models",
+    "bases",
+    "param_type",
+    "confidence_score",
+    "functions",
+    "parameters",
+    "total_lines",
+    "file_models",
+    "f",
+    "total_classes",
+    "structure",
+    "float",
+    "defaultdict",
+    "open",
+    "system",
+    "all_imports",
+    "output_dir",
+    "summary_file",
+    "func_name",
+    "creation_timestamp",
+    "List",
+    "sum",
+    "count",
+    "pattern",
+    "module_model",
+    "main",
+    "dependencies",
+    "file_count",
+    "datetime",
+    "method",
+    "graph_api_level",
+    "i",
+    "class_name",
+    "module_data",
+    "ModuleDetector",
+    "docstring_parts",
+    "Any",
+    "isinstance",
+    "module_type",
+    "method_deps",
+    "classes",
+    "module_purpose",
+    "total_imports",
+    "modeler",
+    "set",
+    "output_path",
+    "module_docstring",
+    "str",
+    "k",
+    "file_model",
+    "purpose_patterns",
+    "dataclass",
+    "total_functions",
+    "Set",
+    "json",
+    "sys",
+    "len",
+    "file_path",
+    "summary",
+    "workspace_path",
+    "self",
+    "all_classes",
+    "param",
+    "module_name",
+    "match",
+    "class_dependencies",
+    "int",
+    "e",
+    "EnhancedModuleModeler",
+    "base"
+  ]
+}

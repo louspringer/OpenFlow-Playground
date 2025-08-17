@@ -1,0 +1,292 @@
+{
+  "system_name": "\ud83d\udcb0 GKE Cost Monitor",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GKECostMonitor": {
+      "responsibility": "Monitor and control GKE costs for hackathon implementation",
+      "methods": [
+        {
+          "name": "_get_project_id",
+          "signature": "_get_project_id(self) -> str",
+          "docstring": "Get current GCP project ID",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_billing_account",
+          "signature": "_get_billing_account(self) -> str",
+          "docstring": "Get current GCP billing account",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_gke_cluster_status",
+          "signature": "get_gke_cluster_status(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get current GKE cluster status",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_gke_pod_status",
+          "signature": "get_gke_pod_status(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get current GKE pod status and resource usage",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "estimate_gke_costs",
+          "signature": "estimate_gke_costs(self) -> Dict[Tuple[str, float]]",
+          "docstring": "Estimate current GKE costs based on resource usage",
+          "decorators": [],
+          "line_number": 176,
+          "return_type": "Dict[Tuple[str, float]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_cost_thresholds",
+          "signature": "check_cost_thresholds(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Check if current costs exceed thresholds",
+          "decorators": [],
+          "line_number": 231,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_cost_optimization_recommendations",
+          "signature": "get_cost_optimization_recommendations(self) -> List[str]",
+          "docstring": "Get recommendations for cost optimization",
+          "decorators": [],
+          "line_number": 282,
+          "return_type": "List[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_cost_report",
+          "signature": "generate_cost_report(self) -> str",
+          "docstring": "Generate comprehensive cost report",
+          "decorators": [],
+          "line_number": 328,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_cost_report",
+          "signature": "save_cost_report(self, report: str) -> str",
+          "docstring": "Save cost report to file",
+          "decorators": [],
+          "line_number": 413,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "report",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "set_phase",
+          "signature": "set_phase(self, phase: str) -> bool",
+          "docstring": "Set current development phase",
+          "decorators": [],
+          "line_number": 429,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "phase",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "emergency_cost_control",
+          "signature": "emergency_cost_control(self) -> bool",
+          "docstring": "Emergency cost control - scale down everything",
+          "decorators": [],
+          "line_number": 439,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_cost_monitoring",
+          "signature": "run_cost_monitoring(self, interval_minutes: int) -> None",
+          "docstring": "Run continuous cost monitoring",
+          "decorators": [],
+          "line_number": 473,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "interval_minutes",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 17
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function for GKE cost monitoring",
+      "decorators": [],
+      "line_number": 520,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import time",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List"
+  ],
+  "module_docstring": "\n\ud83d\udcb0 GKE Cost Monitor\n\nMonitor and control costs for GKE hackathon implementation.\nIntegrates with existing GCP cost control system.\n",
+  "file_structure": {
+    "total_lines": 615,
+    "code_lines": 450,
+    "comment_lines": 51,
+    "blank_lines": 114,
+    "total_nodes": 3016,
+    "class_nodes": 1,
+    "function_nodes": 14,
+    "import_nodes": 6,
+    "expression_nodes": 94,
+    "assignment_nodes": 88,
+    "return_nodes": 24
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 615
+  },
+  "used_names": [
+    "GKECostMonitor",
+    "cpu_str",
+    "Exception",
+    "filepath",
+    "input",
+    "Path",
+    "daily_storage_cost",
+    "list",
+    "cluster_status",
+    "preemptible",
+    "pod_status",
+    "print",
+    "storage_cost_per_gb_month",
+    "usage",
+    "report",
+    "bool",
+    "costs",
+    "machine_costs",
+    "rec",
+    "recommendations",
+    "emoji",
+    "disk_size_gb",
+    "__name__",
+    "round",
+    "Dict",
+    "choice",
+    "monthly_cost",
+    "cpu_util",
+    "memory_util",
+    "total_daily_cost",
+    "interval",
+    "warning",
+    "subprocess",
+    "total_memory",
+    "time",
+    "filename",
+    "usage_info",
+    "pods_info",
+    "daily_network_cost",
+    "node_count",
+    "pod",
+    "total_pods",
+    "f",
+    "response",
+    "daily_threshold",
+    "monitor",
+    "failed_pods",
+    "float",
+    "result",
+    "alert",
+    "memory_str",
+    "open",
+    "List",
+    "sum",
+    "weekly_cost",
+    "base_cost",
+    "status",
+    "machine_type",
+    "KeyboardInterrupt",
+    "main",
+    "thresholds",
+    "cluster_info",
+    "datetime",
+    "total_cpu",
+    "daily_cost",
+    "Any",
+    "phase",
+    "monthly_threshold",
+    "status_emoji",
+    "warnings",
+    "running_pods",
+    "str",
+    "alerts",
+    "json",
+    "min",
+    "len",
+    "interval_minutes",
+    "self",
+    "threshold_check",
+    "weekly_threshold",
+    "ValueError",
+    "current_phase",
+    "pending_pods",
+    "timestamp",
+    "billing_accounts",
+    "int",
+    "e"
+  ]
+}

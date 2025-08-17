@@ -1,0 +1,400 @@
+{
+  "system_name": "HTTPS enforcement and SSL/TLS configuration for security-first architecture",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "HTTPSEnforcement": {
+      "responsibility": "HTTPS enforcement and SSL/TLS configuration for security-first architecture.",
+      "methods": [
+        {
+          "name": "_create_ssl_context",
+          "signature": "_create_ssl_context(self) -> Any",
+          "docstring": "Create secure SSL context with modern TLS configuration.",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_https_url",
+          "signature": "validate_https_url(self, url: str) -> bool",
+          "docstring": "Validate that URL uses HTTPS protocol.",
+          "decorators": [],
+          "line_number": 35,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "enforce_https_redirect",
+          "signature": "enforce_https_redirect(self, url: str) -> str",
+          "docstring": "Enforce HTTPS redirect for HTTP URLs.",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_ssl_certificate",
+          "signature": "validate_ssl_certificate(self, hostname: str, port: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate SSL certificate for given hostname.",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "hostname",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "port",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "configure_secure_requests_session",
+          "signature": "configure_secure_requests_session(self) -> Any",
+          "docstring": "Configure requests session with secure SSL settings.",
+          "decorators": [],
+          "line_number": 76,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "enforce_csrf_protection",
+          "signature": "enforce_csrf_protection(self, token: str, session_id: str) -> bool",
+          "docstring": "Enforce CSRF protection by validating tokens",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "token",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_csrf_token",
+          "signature": "_generate_csrf_token(self, session_id: str) -> str",
+          "docstring": "Generate CSRF token for session",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    },
+    "RateLimiting": {
+      "responsibility": "Rate limiting implementation to prevent abuse.",
+      "methods": [
+        {
+          "name": "check_rate_limit",
+          "signature": "check_rate_limit(self, user_id: str, endpoint: str) -> bool",
+          "docstring": "Check if user has exceeded rate limit for endpoint.",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_remaining_requests",
+          "signature": "get_remaining_requests(self, user_id: str, endpoint: str) -> int",
+          "docstring": "Get remaining requests for user on endpoint.",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 96
+    },
+    "CSRFProtection": {
+      "responsibility": "CSRF protection implementation.",
+      "methods": [
+        {
+          "name": "generate_csrf_token",
+          "signature": "generate_csrf_token(self, session_id: str) -> str",
+          "docstring": "Generate CSRF token for session.",
+          "decorators": [],
+          "line_number": 137,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_csrf_token",
+          "signature": "validate_csrf_token(self, token: str, session_id: str) -> bool",
+          "docstring": "Validate CSRF token for session.",
+          "decorators": [],
+          "line_number": 142,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "token",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 131
+    },
+    "SecurityManager": {
+      "responsibility": "Comprehensive security manager implementing all critical blind spots.",
+      "methods": [
+        {
+          "name": "validate_request",
+          "signature": "validate_request(self, user_id: str, endpoint: str, url: str, csrf_token: Optional[str], session_id: Optional[str]) -> dict[Tuple[str, Any]]",
+          "docstring": "Comprehensive request validation.",
+          "decorators": [],
+          "line_number": 156,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "endpoint",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "csrf_token",
+              "type": "Optional[str]",
+              "default": null
+            },
+            {
+              "name": "session_id",
+              "type": "Optional[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_security_headers",
+          "signature": "get_security_headers(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get security headers for responses.",
+          "decorators": [],
+          "line_number": 183,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 148
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_https_enforcement",
+      "signature": "test_https_enforcement() -> None",
+      "docstring": "Test HTTPS enforcement functionality",
+      "decorators": [],
+      "line_number": 195,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import hashlib",
+    "import logging",
+    "import os",
+    "import socket",
+    "import ssl",
+    "import time",
+    "from typing import Any",
+    "from typing import Optional",
+    "from urllib.parse import urlparse",
+    "import certifi",
+    "import requests"
+  ],
+  "module_docstring": "HTTPS enforcement and SSL/TLS configuration for security-first architecture",
+  "file_structure": {
+    "total_lines": 221,
+    "code_lines": 170,
+    "comment_lines": 7,
+    "blank_lines": 44,
+    "total_nodes": 1021,
+    "class_nodes": 4,
+    "function_nodes": 18,
+    "import_nodes": 10,
+    "expression_nodes": 29,
+    "assignment_nodes": 36,
+    "return_nodes": 19
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 221
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "user_id",
+    "logging",
+    "hostname",
+    "port",
+    "current",
+    "dict",
+    "urlparse",
+    "token",
+    "HTTPSEnforcement",
+    "os",
+    "test_https_enforcement",
+    "redis_client",
+    "logger",
+    "str",
+    "test_urls",
+    "count",
+    "RateLimiting",
+    "csrf_token",
+    "sock",
+    "is_valid",
+    "endpoint",
+    "ssl",
+    "url",
+    "enforcement",
+    "socket",
+    "parsed",
+    "time",
+    "session",
+    "print",
+    "https_url",
+    "self",
+    "http_url",
+    "session_id",
+    "hashlib",
+    "expected_token",
+    "bool",
+    "results",
+    "max",
+    "CSRFProtection",
+    "context",
+    "data",
+    "secret_key",
+    "certifi",
+    "ssock",
+    "requests",
+    "int",
+    "cert",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

@@ -1,0 +1,356 @@
+{
+  "system_name": "Enhanced Learning Timeout Agent - Incorporates web-discovered memory and learning techniques",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedLearningTimeoutState": {
+      "responsibility": "Enhanced state for learning timeout process with memory techniques",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 22
+    },
+    "EnhancedLearningTimeoutAgent": {
+      "responsibility": "Enhanced agent that forces learning with web-discovered memory techniques",
+      "methods": [
+        {
+          "name": "force_enhanced_learning_timeout",
+          "signature": "force_enhanced_learning_timeout(self) -> EnhancedLearningTimeoutState",
+          "docstring": "Force enhanced learning timeout with memory techniques",
+          "decorators": [],
+          "line_number": 65,
+          "return_type": "EnhancedLearningTimeoutState",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_memory_techniques",
+          "signature": "_apply_memory_techniques(self, state: EnhancedLearningTimeoutState) -> list[str]",
+          "docstring": "Apply web-discovered memory techniques to improve learning",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_create_spaced_repetition_schedule",
+          "signature": "_create_spaced_repetition_schedule(self, state: EnhancedLearningTimeoutState) -> dict[Tuple[str, Any]]",
+          "docstring": "Create spaced repetition schedule based on web-discovered techniques",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_active_recall_sessions",
+          "signature": "_generate_active_recall_sessions(self, state: EnhancedLearningTimeoutState) -> list[str]",
+          "docstring": "Generate active recall sessions based on web-discovered techniques",
+          "decorators": [],
+          "line_number": 282,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_knowledge_retention_score",
+          "signature": "_calculate_knowledge_retention_score(self, state: EnhancedLearningTimeoutState) -> float",
+          "docstring": "Calculate knowledge retention score using web-discovered metrics",
+          "decorators": [],
+          "line_number": 331,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_identify_knowledge_gaps_with_memory_techniques",
+          "signature": "_identify_knowledge_gaps_with_memory_techniques(self, state: EnhancedLearningTimeoutState) -> list[str]",
+          "docstring": "Identify knowledge gaps using memory technique insights",
+          "decorators": [],
+          "line_number": 364,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_enhanced_learning_confidence",
+          "signature": "_calculate_enhanced_learning_confidence(self, state: EnhancedLearningTimeoutState) -> float",
+          "docstring": "Calculate enhanced learning confidence with memory techniques",
+          "decorators": [],
+          "line_number": 415,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_force_enhanced_learning_completion",
+          "signature": "_force_enhanced_learning_completion(self, state: EnhancedLearningTimeoutState) -> bool",
+          "docstring": "Force completion of enhanced learning with memory techniques",
+          "decorators": [],
+          "line_number": 448,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "EnhancedLearningTimeoutState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_discover_files_i_created",
+          "signature": "_discover_files_i_created(self) -> list[str]",
+          "docstring": "Discover files I created (based on patterns and content)",
+          "decorators": [],
+          "line_number": 493,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_is_file_i_created",
+          "signature": "_is_file_i_created(self, file_path: Path) -> bool",
+          "docstring": "Determine if I created this file based on content patterns",
+          "decorators": [],
+          "line_number": 514,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_identify_systems_i_built",
+          "signature": "_identify_systems_i_built(self) -> list[str]",
+          "docstring": "Identify systems I built",
+          "decorators": [],
+          "line_number": 542,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_recognize_patterns_i_established",
+          "signature": "_recognize_patterns_i_established(self) -> list[str]",
+          "docstring": "Recognize patterns I established",
+          "decorators": [],
+          "line_number": 562,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_find_rules_i_wrote",
+          "signature": "_find_rules_i_wrote(self) -> list[str]",
+          "docstring": "Find rules I wrote",
+          "decorators": [],
+          "line_number": 576,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_locate_documentation_i_authored",
+          "signature": "_locate_documentation_i_authored(self) -> list[str]",
+          "docstring": "Locate documentation I authored",
+          "decorators": [],
+          "line_number": 594,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_is_documentation_i_authored",
+          "signature": "_is_documentation_i_authored(self, file_path: Path) -> bool",
+          "docstring": "Determine if I authored this documentation",
+          "decorators": [],
+          "line_number": 614,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 40
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "import time",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nEnhanced Learning Timeout Agent - Incorporates web-discovered memory and learning techniques\n",
+  "file_structure": {
+    "total_lines": 658,
+    "code_lines": 489,
+    "comment_lines": 58,
+    "blank_lines": 111,
+    "total_nodes": 2317,
+    "class_nodes": 2,
+    "function_nodes": 5,
+    "import_nodes": 6,
+    "expression_nodes": 92,
+    "assignment_nodes": 51,
+    "return_nodes": 21
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 658
+  },
+  "used_names": [
+    "retention_bonus",
+    "key_systems",
+    "doc_patterns",
+    "__name__",
+    "schedule",
+    "Exception",
+    "logging",
+    "total_items",
+    "systems",
+    "patterns_i_established",
+    "enumerate",
+    "files_i_created",
+    "float",
+    "dict",
+    "base_score",
+    "content",
+    "system",
+    "files",
+    "key_patterns",
+    "logger",
+    "str",
+    "agent",
+    "Path",
+    "run_enhanced_learning_timeout",
+    "time",
+    "EnhancedLearningTimeoutAgent",
+    "spaced_repetition_schedule",
+    "technique_bonus",
+    "applied_techniques",
+    "state",
+    "pattern",
+    "indicator",
+    "dataclass",
+    "list",
+    "session_bonus",
+    "knowledge_gaps",
+    "min",
+    "memory_techniques_applied",
+    "systems_i_built",
+    "len",
+    "system_patterns",
+    "rules",
+    "documentation_i_authored",
+    "sessions",
+    "file_path",
+    "print",
+    "learning_complete",
+    "self",
+    "knowledge_retention_score",
+    "gaps",
+    "asyncio",
+    "main",
+    "file",
+    "gap",
+    "confidence_score",
+    "bool",
+    "max",
+    "gap_penalty",
+    "docs",
+    "rule_patterns",
+    "rules_i_wrote",
+    "indicators",
+    "EnhancedLearningTimeoutState",
+    "base_confidence",
+    "i",
+    "project_path",
+    "Any",
+    "intervals",
+    "patterns",
+    "active_recall_sessions",
+    "any"
+  ]
+}

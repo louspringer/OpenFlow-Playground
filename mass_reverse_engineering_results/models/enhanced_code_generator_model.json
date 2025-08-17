@@ -1,0 +1,195 @@
+{
+  "system_name": "Enhanced Code Generator - Creates complete module files with all components",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedCodeGenerator": {
+      "responsibility": "Enhanced code generator that creates complete module files",
+      "methods": [
+        {
+          "name": "generate_complete_module",
+          "signature": "generate_complete_module(self, enhanced_model: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate a complete module file with all components",
+          "decorators": [],
+          "line_number": 16,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "enhanced_model",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_class_code",
+          "signature": "_generate_class_code(self, class_name: str, class_info: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate complete class code",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "class_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "class_info",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_method_code",
+          "signature": "_generate_method_code(self, method_info: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate method code from enhanced method info",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "method_info",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_module_function_code",
+          "signature": "_generate_module_function_code(self, func_info: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate module-level function code",
+          "decorators": [],
+          "line_number": 143,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "func_info",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_main_function_code",
+          "signature": "_generate_main_function_code(self, main_func: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate enhanced main function code",
+          "decorators": [],
+          "line_number": 197,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "main_func",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 10
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the enhanced code generator",
+      "decorators": [],
+      "line_number": 214,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nEnhanced Code Generator - Creates complete module files with all components\n",
+  "file_structure": {
+    "total_lines": 250,
+    "code_lines": 174,
+    "comment_lines": 26,
+    "blank_lines": 50,
+    "total_nodes": 1151,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 2,
+    "expression_nodes": 21,
+    "assignment_nodes": 43,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 250
+  },
+  "used_names": [
+    "module_functions",
+    "__name__",
+    "line_number",
+    "f",
+    "imports",
+    "class_info",
+    "enumerate",
+    "generator",
+    "imp",
+    "complete_code",
+    "param_name",
+    "Dict",
+    "open",
+    "chr",
+    "str",
+    "method_info",
+    "main_func",
+    "line",
+    "return_type",
+    "func_info",
+    "signature",
+    "param_str",
+    "json",
+    "methods",
+    "func_signature",
+    "docstring",
+    "len",
+    "enhanced_model",
+    "print",
+    "main",
+    "lines",
+    "self",
+    "param_parts",
+    "param_type",
+    "EnhancedCodeGenerator",
+    "code",
+    "param",
+    "next",
+    "method_signature",
+    "components",
+    "parameters",
+    "i",
+    "name",
+    "responsibility",
+    "class_name",
+    "Any"
+  ]
+}

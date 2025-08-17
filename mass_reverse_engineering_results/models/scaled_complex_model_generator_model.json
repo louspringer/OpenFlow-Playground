@@ -1,0 +1,399 @@
+{
+  "system_name": "Scaled Complex Model Generator",
+  "description": "Tackles all 151 mypy errors across all 123 Python files",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MypyErrorFix": {
+      "responsibility": "Represents a mypy error that needs fixing",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "ScaledComplexModel": {
+      "responsibility": "Scaled complex model for fixing all mypy AND flake8 errors",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 23
+    },
+    "ScaledComplexModelGenerator": {
+      "responsibility": "Scaled complex model generator for all 151 mypy errors",
+      "methods": [
+        {
+          "name": "scan_all_files",
+          "signature": "scan_all_files(self) -> None",
+          "docstring": "Scan all 123 Python files for mypy errors",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_comprehensive_errors",
+          "signature": "analyze_comprehensive_errors(self) -> None",
+          "docstring": "Analyze BOTH mypy AND flake8 errors and update the model",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_all_errors",
+          "signature": "fix_all_errors(self) -> None",
+          "docstring": "Fix all 151 mypy errors using complex model approach",
+          "decorators": [],
+          "line_number": 225,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_missing_return_type",
+          "signature": "_fix_missing_return_type(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix missing return type annotations",
+          "decorators": [],
+          "line_number": 236,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unexpected_return",
+          "signature": "_fix_unexpected_return(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix unexpected return values",
+          "decorators": [],
+          "line_number": 258,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_attribute_error",
+          "signature": "_fix_attribute_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix attribute errors",
+          "decorators": [],
+          "line_number": 280,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_assignment_error",
+          "signature": "_fix_assignment_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix assignment errors",
+          "decorators": [],
+          "line_number": 302,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_import_error",
+          "signature": "_fix_import_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix import errors",
+          "decorators": [],
+          "line_number": 324,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_arg_type_error",
+          "signature": "_fix_arg_type_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix argument type errors",
+          "decorators": [],
+          "line_number": 346,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unreachable_error",
+          "signature": "_fix_unreachable_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix unreachable statement errors",
+          "decorators": [],
+          "line_number": 368,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unknown_error",
+          "signature": "_fix_unknown_error(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix unknown error types",
+          "decorators": [],
+          "line_number": 390,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_flake8_errors",
+          "signature": "analyze_flake8_errors(self) -> None",
+          "docstring": "Analyze flake8 errors and update the model",
+          "decorators": [],
+          "line_number": 412,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_all_flake8_errors",
+          "signature": "fix_all_flake8_errors(self) -> None",
+          "docstring": "Fix all flake8 errors",
+          "decorators": [],
+          "line_number": 473,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_import_order",
+          "signature": "_fix_import_order(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix import order issues",
+          "decorators": [],
+          "line_number": 484,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_missing_blank_lines",
+          "signature": "_fix_missing_blank_lines(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix missing blank lines",
+          "decorators": [],
+          "line_number": 511,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_trailing_whitespace",
+          "signature": "_fix_trailing_whitespace(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix trailing whitespace",
+          "decorators": [],
+          "line_number": 530,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_missing_newline",
+          "signature": "_fix_missing_newline(self, error: MypyErrorFix) -> None",
+          "docstring": "Fix missing newline at end of file",
+          "decorators": [],
+          "line_number": 550,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "error",
+              "type": "MypyErrorFix",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self) -> None",
+          "docstring": "Generate comprehensive report",
+          "decorators": [],
+          "line_number": 567,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 69
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_scaled_complex_model_generator",
+      "signature": "test_scaled_complex_model_generator() -> None",
+      "docstring": "Test the scaled complex model generator",
+      "decorators": [],
+      "line_number": 579,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "import subprocess",
+    "import subprocess"
+  ],
+  "module_docstring": "\nScaled Complex Model Generator\nTackles all 151 mypy errors across all 123 Python files\n",
+  "file_structure": {
+    "total_lines": 605,
+    "code_lines": 466,
+    "comment_lines": 25,
+    "blank_lines": 114,
+    "total_nodes": 3193,
+    "class_nodes": 3,
+    "function_nodes": 20,
+    "import_nodes": 4,
+    "expression_nodes": 110,
+    "assignment_nodes": 109,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 605
+  },
+  "used_names": [
+    "__name__",
+    "line_number",
+    "Exception",
+    "f",
+    "python_files",
+    "generator",
+    "mypy_errors",
+    "fixed_files",
+    "ScaledComplexModel",
+    "dict",
+    "result",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "flake8_compliance",
+    "parts",
+    "ScaledComplexModelGenerator",
+    "subprocess",
+    "mypy_compliance",
+    "test_scaled_complex_model_generator",
+    "fixed_lines",
+    "dataclass",
+    "list",
+    "src_path",
+    "error_type",
+    "len",
+    "generation_rules",
+    "error_code",
+    "file_path",
+    "print",
+    "self",
+    "lines",
+    "error",
+    "fixed_line",
+    "code",
+    "field",
+    "line_num",
+    "flake8_errors",
+    "error_message",
+    "total_files",
+    "total_errors",
+    "import_lines",
+    "flake8_result",
+    "error_lines",
+    "fix_strategy",
+    "target_files",
+    "int",
+    "mypy_result",
+    "MypyErrorFix",
+    "e",
+    "other_lines",
+    "any"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "system_name": "\ud83d\udd0d Script Version Verifier",
+  "description": "Verifies that generated scripts match the current model version",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "calculate_model_hash",
+      "signature": "calculate_model_hash(model: Any) -> Any",
+      "docstring": "Calculate a hash of the model for version tracking",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "extract_script_version",
+      "signature": "extract_script_version(script_path: Any) -> Any",
+      "docstring": "Extract the model version from a generated script",
+      "decorators": [],
+      "line_number": 36,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "script_path",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "verify_script_version",
+      "signature": "verify_script_version(script_path: Any, current_hash: Any) -> Any",
+      "docstring": "Verify that a script matches the current model version",
+      "decorators": [],
+      "line_number": 53,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "script_path",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "current_hash",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 72,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import hashlib",
+    "import re",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83d\udd0d Script Version Verifier\nVerifies that generated scripts match the current model version\n",
+  "file_structure": {
+    "total_lines": 113,
+    "code_lines": 83,
+    "comment_lines": 4,
+    "blank_lines": 26,
+    "total_nodes": 461,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 5,
+    "expression_nodes": 35,
+    "assignment_nodes": 9,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 113
+  },
+  "used_names": [
+    "model_str",
+    "__name__",
+    "Exception",
+    "f",
+    "__file__",
+    "content",
+    "open",
+    "model_path",
+    "Path",
+    "is_valid",
+    "json",
+    "sys",
+    "len",
+    "load_project_model",
+    "print",
+    "main",
+    "hashlib",
+    "verify_script_version",
+    "script_hash",
+    "re",
+    "current_hash",
+    "match",
+    "model",
+    "extract_script_version",
+    "script_path",
+    "calculate_model_hash",
+    "e"
+  ]
+}

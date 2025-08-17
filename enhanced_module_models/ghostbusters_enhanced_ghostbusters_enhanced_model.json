@@ -1,0 +1,57 @@
+{
+  "module_name": "ghostbusters_enhanced_ghostbusters",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "backup/ghostbusters/ghostbusters/enhanced_ghostbusters.py",
+    "backup/ghostbusters/ghostbusters/tool_discovery.py"
+  ],
+  "file_count": 2,
+  "total_lines": 482,
+  "total_classes": 3,
+  "total_functions": 0,
+  "total_imports": 13,
+  "module_docstring": "\"\"\"\nghostbusters_enhanced_ghostbusters\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 482\nClasses: 3\nFunctions: 0\nImports: 13\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "ghostbusters_enhanced_ghostbusters",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 482,
+      "total_classes": 3,
+      "total_functions": 0,
+      "total_imports": 13
+    },
+    "files": [
+      {
+        "path": "backup/ghostbusters/ghostbusters/enhanced_ghostbusters.py",
+        "name": "enhanced_ghostbusters.py",
+        "stem": "enhanced_ghostbusters"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/tool_discovery.py",
+        "name": "tool_discovery.py",
+        "stem": "tool_discovery"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.036058",
+  "version": "1.0.0"
+}

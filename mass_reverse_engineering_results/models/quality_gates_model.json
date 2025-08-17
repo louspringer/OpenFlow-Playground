@@ -1,0 +1,413 @@
+{
+  "system_name": "Quality Gates System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GateStatus": {
+      "responsibility": "Status of a quality gate",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 16
+    },
+    "GateSeverity": {
+      "responsibility": "Severity level of a quality gate",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 25
+    },
+    "GateResult": {
+      "responsibility": "Result of a quality gate evaluation",
+      "methods": [
+        {
+          "name": "is_blocking",
+          "signature": "is_blocking(self) -> bool",
+          "docstring": "Whether this gate result should block the operation",
+          "decorators": [
+            "property"
+          ],
+          "line_number": 46,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 35
+    },
+    "QualityGate": {
+      "responsibility": "Individual quality gate with configurable thresholds",
+      "methods": [
+        {
+          "name": "evaluate",
+          "signature": "evaluate(self, score: float) -> GateResult",
+          "docstring": "Evaluate whether the gate passes based on the score",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "GateResult",
+          "parameters": [
+            {
+              "name": "score",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 55
+    },
+    "QualityGateManager": {
+      "responsibility": "Manages multiple quality gates and their evaluation",
+      "methods": [
+        {
+          "name": "_setup_default_gates",
+          "signature": "_setup_default_gates(self) -> None",
+          "docstring": "Set up default quality gates",
+          "decorators": [],
+          "line_number": 111,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "add_gate",
+          "signature": "add_gate(self, gate: QualityGate) -> None",
+          "docstring": "Add a quality gate",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "gate",
+              "type": "QualityGate",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_gate",
+          "signature": "remove_gate(self, gate_name: str) -> bool",
+          "docstring": "Remove a quality gate by name",
+          "decorators": [],
+          "line_number": 159,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "gate_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_gate",
+          "signature": "get_gate(self, gate_name: str) -> Optional[QualityGate]",
+          "docstring": "Get a quality gate by name",
+          "decorators": [],
+          "line_number": 168,
+          "return_type": "Optional[QualityGate]",
+          "parameters": [
+            {
+              "name": "gate_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "update_gate",
+          "signature": "update_gate(self, gate_name: str) -> bool",
+          "docstring": "Update a quality gate's properties",
+          "decorators": [],
+          "line_number": 175,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "gate_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "evaluate_gates",
+          "signature": "evaluate_gates(self, metrics: Any) -> list[GateResult]",
+          "docstring": "Evaluate all gates against the provided metrics",
+          "decorators": [],
+          "line_number": 186,
+          "return_type": "list[GateResult]",
+          "parameters": [
+            {
+              "name": "metrics",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_blocking_gates",
+          "signature": "get_blocking_gates(self, results: list[GateResult]) -> list[GateResult]",
+          "docstring": "Get gates that would block the operation",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": "list[GateResult]",
+          "parameters": [
+            {
+              "name": "results",
+              "type": "list[GateResult]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_gate_summary",
+          "signature": "get_gate_summary(self, results: list[GateResult]) -> dict[Tuple[str, Any]]",
+          "docstring": "Get a summary of gate evaluation results",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "results",
+              "type": "list[GateResult]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_gates_config",
+          "signature": "save_gates_config(self, file_path: Path) -> None",
+          "docstring": "Save gates configuration to a file",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_gates_config",
+          "signature": "load_gates_config(self, file_path: Path) -> None",
+          "docstring": "Load gates configuration from a file",
+          "decorators": [],
+          "line_number": 254,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 100
+    }
+  },
+  "module_functions": [
+    {
+      "name": "no_critical_security_issues",
+      "signature": "no_critical_security_issues(score: float) -> GateResult",
+      "docstring": "Custom evaluator for security gate - no critical issues allowed",
+      "decorators": [],
+      "line_number": 278,
+      "return_type": "GateResult",
+      "parameters": [
+        {
+          "name": "score",
+          "type": "float",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_coverage_with_minimum_tests",
+      "signature": "test_coverage_with_minimum_tests(score: float) -> GateResult",
+      "docstring": "Custom evaluator for test coverage - must have minimum number of tests",
+      "decorators": [],
+      "line_number": 300,
+      "return_type": "GateResult",
+      "parameters": [
+        {
+          "name": "score",
+          "type": "float",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "import json",
+    "import json"
+  ],
+  "module_docstring": "\nQuality Gates System\n\nEnforces quality thresholds and policies to ensure code meets quality standards.\n",
+  "file_structure": {
+    "total_lines": 333,
+    "code_lines": 271,
+    "comment_lines": 8,
+    "blank_lines": 54,
+    "total_nodes": 1500,
+    "class_nodes": 5,
+    "function_nodes": 15,
+    "import_nodes": 8,
+    "expression_nodes": 33,
+    "assignment_nodes": 36,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 333
+  },
+  "used_names": [
+    "failed_gates",
+    "key",
+    "FAILED",
+    "__name__",
+    "QualityGate",
+    "f",
+    "error_gates",
+    "logging",
+    "HIGH",
+    "description",
+    "enumerate",
+    "blocking_gates",
+    "ERROR",
+    "LOW",
+    "message",
+    "metric_name",
+    "severity",
+    "Any",
+    "float",
+    "dict",
+    "result",
+    "removed_gate",
+    "value",
+    "Enum",
+    "Callable",
+    "MEDIUM",
+    "r",
+    "open",
+    "str",
+    "score",
+    "Path",
+    "metrics",
+    "threshold",
+    "hasattr",
+    "status",
+    "min_tests_required",
+    "gate_name",
+    "warning_gates",
+    "dataclass",
+    "GateStatus",
+    "property",
+    "WARNING",
+    "list",
+    "json",
+    "len",
+    "score_obj",
+    "gate",
+    "custom_evaluator",
+    "gate_config",
+    "file_path",
+    "kwargs",
+    "self",
+    "default_gates",
+    "bool",
+    "GateSeverity",
+    "critical_issues",
+    "results",
+    "field",
+    "details",
+    "enabled",
+    "passed_gates",
+    "datetime",
+    "setattr",
+    "timestamp",
+    "total_gates",
+    "config",
+    "name",
+    "i",
+    "GateResult",
+    "security_issues",
+    "coverage_percentage",
+    "Optional",
+    "project_path",
+    "CRITICAL",
+    "PASSED",
+    "total_tests"
+  ]
+}

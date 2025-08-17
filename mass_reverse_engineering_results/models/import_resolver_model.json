@@ -1,0 +1,134 @@
+{
+  "system_name": "Import resolver recovery engine.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ImportResolver": {
+      "responsibility": "Recovery engine for fixing import issues.",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: dict[Tuple[str, Any]]) -> RecoveryResult",
+          "docstring": "Execute import recovery action.",
+          "decorators": [],
+          "line_number": 16,
+          "return_type": "RecoveryResult",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_imports",
+          "signature": "_fix_imports(self, file_path: Path) -> list[str]",
+          "docstring": "Fix import issues in a file.",
+          "decorators": [],
+          "line_number": 59,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_used",
+          "signature": "_is_import_used(self, content: str, import_name: str) -> bool",
+          "docstring": "Check if an import is used in the content.",
+          "decorators": [],
+          "line_number": 110,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "import_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 9
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_recovery_engine import BaseRecoveryEngine",
+    "from base_recovery_engine import RecoveryResult"
+  ],
+  "module_docstring": "Import resolver recovery engine.",
+  "file_structure": {
+    "total_lines": 114,
+    "code_lines": 86,
+    "comment_lines": 8,
+    "blank_lines": 20,
+    "total_nodes": 428,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 11,
+    "assignment_nodes": 11,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 114
+  },
+  "used_names": [
+    "Exception",
+    "enumerate",
+    "dict",
+    "content",
+    "RecoveryResult",
+    "action",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "fixed_lines",
+    "list",
+    "import_name",
+    "BaseRecoveryEngine",
+    "file_path",
+    "lines",
+    "self",
+    "fixed_line",
+    "bool",
+    "line_num",
+    "changes_made",
+    "super",
+    "e",
+    "Any"
+  ]
+}

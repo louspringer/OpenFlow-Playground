@@ -1,0 +1,310 @@
+{
+  "system_name": "LangGraph diversity orchestrator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Agent": {
+      "responsibility": "Represents an agent in the diversity system",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 11
+    },
+    "AnalysisType": {
+      "responsibility": "Types of diversity analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 23
+    },
+    "BlindSpotFinding": {
+      "responsibility": "Represents a blind spot found in diversity analysis",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 33
+    },
+    "DiversityAnalysis": {
+      "responsibility": "Represents a diversity analysis result",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 54
+    },
+    "LangGraphDiversityOrchestrator": {
+      "responsibility": "LangGraph-based diversity orchestrator",
+      "methods": [
+        {
+          "name": "create_llm_client",
+          "signature": "create_llm_client(self, agent: Any) -> Any",
+          "docstring": "Create LLM client for an agent",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "agent",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_diversity_metrics",
+          "signature": "calculate_diversity_metrics(self, analyses: list[DiversityAnalysis]) -> dict[Tuple[str, Any]]",
+          "docstring": "Calculate diversity metrics from analyses",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "analyses",
+              "type": "list[DiversityAnalysis]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "detect_blind_spots",
+          "signature": "detect_blind_spots(self, model_responses: dict[Tuple[str, list[str]]], role_responses: dict[Tuple[str, list[str]]]) -> list[BlindSpotFinding]",
+          "docstring": "Detect blind spots in model and role diversity",
+          "decorators": [],
+          "line_number": 143,
+          "return_type": "list[BlindSpotFinding]",
+          "parameters": [
+            {
+              "name": "model_responses",
+              "type": "dict[Tuple[str, list[str]]]",
+              "default": null
+            },
+            {
+              "name": "role_responses",
+              "type": "dict[Tuple[str, list[str]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_diversity",
+          "signature": "analyze_diversity(self, analysis_type: AnalysisType, model_responses: dict[Tuple[str, list[str]]], role_responses: dict[Tuple[str, list[str]]]) -> DiversityAnalysis",
+          "docstring": "Perform diversity analysis of specified type",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "DiversityAnalysis",
+          "parameters": [
+            {
+              "name": "analysis_type",
+              "type": "AnalysisType",
+              "default": null
+            },
+            {
+              "name": "model_responses",
+              "type": "dict[Tuple[str, list[str]]]",
+              "default": null
+            },
+            {
+              "name": "role_responses",
+              "type": "dict[Tuple[str, list[str]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_analysis_summary",
+          "signature": "get_analysis_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all analyses performed",
+          "decorators": [],
+          "line_number": 280,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 74
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import os",
+    "from dataclasses import dataclass",
+    "from enum import Enum",
+    "from typing import Any"
+  ],
+  "module_docstring": "LangGraph diversity orchestrator",
+  "file_structure": {
+    "total_lines": 309,
+    "code_lines": 245,
+    "comment_lines": 16,
+    "blank_lines": 48,
+    "total_nodes": 1298,
+    "class_nodes": 5,
+    "function_nodes": 9,
+    "import_nodes": 4,
+    "expression_nodes": 27,
+    "assignment_nodes": 37,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 309
+  },
+  "used_names": [
+    "diversity_score",
+    "unique_responses",
+    "ROLE_DIVERSITY",
+    "a",
+    "common_role_responses",
+    "category_coverage",
+    "response",
+    "f",
+    "enumerate",
+    "avg_diversity_score",
+    "bs",
+    "set",
+    "any",
+    "findings",
+    "high_blind_spots",
+    "float",
+    "dict",
+    "role_responses",
+    "category",
+    "agent_name",
+    "MODEL_DIVERSITY",
+    "Enum",
+    "analysis",
+    "Agent",
+    "os",
+    "agreement_rate",
+    "str",
+    "agent",
+    "unique_findings",
+    "sum",
+    "AGREEMENT_ANALYSIS",
+    "recommendation",
+    "msg",
+    "common_responses",
+    "role_sets",
+    "model_responses",
+    "AnalysisType",
+    "all_findings",
+    "indicator",
+    "dataclass",
+    "list",
+    "BLIND_SPOT_DETECTION",
+    "agreement_count",
+    "len",
+    "total_findings",
+    "total_blind_spots",
+    "finding",
+    "question",
+    "response1",
+    "self",
+    "responses",
+    "all_responses",
+    "edge_case_coverage",
+    "confidence_score",
+    "ValueError",
+    "blind_spots",
+    "total_comparisons",
+    "role",
+    "analyses",
+    "agent_coverage",
+    "total_responses",
+    "critical_blind_spots",
+    "DiversityAnalysis",
+    "i",
+    "name",
+    "response2",
+    "recommendations",
+    "response_sets",
+    "int",
+    "all_categories",
+    "BlindSpotFinding",
+    "edge_case_indicators",
+    "Any",
+    "expertise",
+    "confidence"
+  ]
+}

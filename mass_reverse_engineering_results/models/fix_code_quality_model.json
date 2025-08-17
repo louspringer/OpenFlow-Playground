@@ -1,0 +1,181 @@
+{
+  "system_name": "",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function for the code quality fixer",
+      "decorators": [],
+      "line_number": 18,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "analyze_all_files",
+      "signature": "analyze_all_files(model: CodeQualityModel, directories: list[str], verbose: bool) -> dict[Tuple[str, Any]]",
+      "docstring": "Analyze all files for linting issues",
+      "decorators": [],
+      "line_number": 61,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "CodeQualityModel",
+          "default": null
+        },
+        {
+          "name": "directories",
+          "type": "list[str]",
+          "default": null
+        },
+        {
+          "name": "verbose",
+          "type": "bool",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_all_files",
+      "signature": "fix_all_files(model: CodeQualityModel, directories: list[str], verbose: bool) -> dict[Tuple[str, Any]]",
+      "docstring": "Fix all files",
+      "decorators": [],
+      "line_number": 98,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "CodeQualityModel",
+          "default": null
+        },
+        {
+          "name": "directories",
+          "type": "list[str]",
+          "default": null
+        },
+        {
+          "name": "verbose",
+          "type": "bool",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "analyze_and_fix_all_files",
+      "signature": "analyze_and_fix_all_files(model: CodeQualityModel, directories: list[str], verbose: bool) -> dict[Tuple[str, Any]]",
+      "docstring": "Analyze, fix, and re-analyze all files",
+      "decorators": [],
+      "line_number": 107,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "CodeQualityModel",
+          "default": null
+        },
+        {
+          "name": "directories",
+          "type": "list[str]",
+          "default": null
+        },
+        {
+          "name": "verbose",
+          "type": "bool",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "print_summary",
+      "signature": "print_summary(results: dict[Tuple[str, Any]]) -> None",
+      "docstring": "Print a summary of the results",
+      "decorators": [],
+      "line_number": 138,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "results",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "from typing import Any",
+    "from code_quality_system.quality_model import CodeQualityModel",
+    "import json",
+    "import sys",
+    "from pathlib import Path",
+    "import argparse"
+  ],
+  "module_docstring": "",
+  "file_structure": {
+    "total_lines": 194,
+    "code_lines": 148,
+    "comment_lines": 8,
+    "blank_lines": 38,
+    "total_nodes": 970,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 6,
+    "expression_nodes": 48,
+    "assignment_nodes": 16,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 194
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "py_file",
+    "__file__",
+    "directories",
+    "sorted",
+    "issue_code",
+    "after_results",
+    "dict",
+    "after",
+    "open",
+    "print_summary",
+    "analysis",
+    "str",
+    "Path",
+    "CodeQualityModel",
+    "verbose",
+    "before",
+    "count",
+    "analyze_all_files",
+    "list",
+    "json",
+    "fix_results",
+    "sys",
+    "before_results",
+    "print",
+    "main",
+    "issue_type",
+    "improvement",
+    "analyze_and_fix_all_files",
+    "issue",
+    "bool",
+    "results",
+    "max",
+    "fix_all_files",
+    "model",
+    "parser",
+    "args",
+    "argparse",
+    "Any",
+    "directory"
+  ]
+}

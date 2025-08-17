@@ -1,0 +1,169 @@
+{
+  "system_name": "GitHub Cloud Build Setup Script using REST API",
+  "description": "Bypasses broken Google Cloud client libraries",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "run_gcloud_auth",
+      "signature": "run_gcloud_auth() -> str",
+      "docstring": "Get access token for REST API calls.",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "make_rest_call",
+      "signature": "make_rest_call(method: str, url: str, data: Optional[dict[Tuple[str, Any]]], token: Optional[str]) -> dict[Tuple[str, Any]]",
+      "docstring": "Make REST API call to Google Cloud.",
+      "decorators": [],
+      "line_number": 24,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "method",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "url",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "data",
+          "type": "Optional[dict[Tuple[str, Any]]]",
+          "default": null
+        },
+        {
+          "name": "token",
+          "type": "Optional[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_github_connection",
+      "signature": "create_github_connection(token: str) -> str",
+      "docstring": "Create GitHub connection using REST API.",
+      "decorators": [],
+      "line_number": 64,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "token",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_repository",
+      "signature": "create_repository(connection_name: str, token: str) -> str",
+      "docstring": "Create repository link using REST API.",
+      "decorators": [],
+      "line_number": 89,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "connection_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "token",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_trigger",
+      "signature": "create_trigger(repository_name: str, token: str) -> None",
+      "docstring": "Create build trigger using REST API.",
+      "decorators": [],
+      "line_number": 103,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "repository_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "token",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main setup function using REST API.",
+      "decorators": [],
+      "line_number": 140,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nGitHub Cloud Build Setup Script using REST API\nBypasses broken Google Cloud client libraries\n",
+  "file_structure": {
+    "total_lines": 188,
+    "code_lines": 142,
+    "comment_lines": 8,
+    "blank_lines": 38,
+    "total_nodes": 623,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 4,
+    "expression_nodes": 45,
+    "assignment_nodes": 16,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 188
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "response",
+    "cmd",
+    "dict",
+    "result",
+    "token",
+    "str",
+    "subprocess",
+    "json",
+    "make_rest_call",
+    "sys",
+    "url",
+    "create_repository",
+    "print",
+    "main",
+    "repository_name",
+    "connection_name",
+    "data",
+    "method",
+    "create_github_connection",
+    "create_trigger",
+    "e",
+    "Optional",
+    "Any",
+    "run_gcloud_auth"
+  ]
+}

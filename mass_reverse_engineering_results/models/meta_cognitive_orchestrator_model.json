@@ -1,0 +1,211 @@
+{
+  "system_name": "Meta-Cognitive Orchestrator",
+  "description": "Mitigates \"not knowing what you don't know\" through Jeopardy-style questioning",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MetaCognitiveOrchestrator": {
+      "responsibility": "Orchestrates meta-cognitive awareness through partner LLM questioning",
+      "methods": [
+        {
+          "name": "detect_assumptions",
+          "signature": "detect_assumptions(self, context: str) -> list[str]",
+          "docstring": "Detect when I'm making assumptions or missing information",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_jeopardy_question",
+          "signature": "generate_jeopardy_question(self, context: str) -> str",
+          "docstring": "Generate Jeopardy-style question for partner LLM",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "simulate_partner_investigation",
+          "signature": "simulate_partner_investigation(self, context: str) -> list[str]",
+          "docstring": "Simulate partner LLM investigation with Jeopardy-style questions",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "identify_blind_spots",
+          "signature": "identify_blind_spots(self, partner_questions: list[str]) -> list[str]",
+          "docstring": "Analyze partner LLM feedback and identify blind spots",
+          "decorators": [],
+          "line_number": 74,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "partner_questions",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_confidence",
+          "signature": "calculate_confidence(self, assumptions: list[str], blind_spots: list[str]) -> float",
+          "docstring": "Calculate confidence based on detected issues",
+          "decorators": [],
+          "line_number": 90,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "assumptions",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "blind_spots",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "make_decision",
+          "signature": "make_decision(self, confidence: float, blind_spots: list[str]) -> str",
+          "docstring": "Make final decision based on confidence and blind spots",
+          "decorators": [],
+          "line_number": 99,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "confidence",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "blind_spots",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "orchestrate",
+          "signature": "orchestrate(self, context: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Orchestrate meta-cognitive awareness for a given context",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_meta_cognitive_orchestrator",
+      "signature": "test_meta_cognitive_orchestrator() -> None",
+      "docstring": "Test the meta-cognitive orchestrator with our PR workflow case",
+      "decorators": [],
+      "line_number": 142,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nMeta-Cognitive Orchestrator\nMitigates \"not knowing what you don't know\" through Jeopardy-style questioning\n",
+  "file_structure": {
+    "total_lines": 177,
+    "code_lines": 135,
+    "comment_lines": 8,
+    "blank_lines": 34,
+    "total_nodes": 688,
+    "class_nodes": 1,
+    "function_nodes": 9,
+    "import_nodes": 2,
+    "expression_nodes": 28,
+    "assignment_nodes": 11,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 177
+  },
+  "used_names": [
+    "__name__",
+    "detected_assumptions",
+    "enumerate",
+    "test_meta_cognitive_orchestrator",
+    "orchestrator",
+    "jeopardy_question",
+    "dict",
+    "float",
+    "result",
+    "partner_questions",
+    "str",
+    "confidence_threshold",
+    "indicator",
+    "list",
+    "json",
+    "len",
+    "print",
+    "question",
+    "self",
+    "max",
+    "blind_spots",
+    "final_decision",
+    "MetaCognitiveOrchestrator",
+    "context",
+    "i",
+    "Any",
+    "assumptions",
+    "confidence"
+  ]
+}

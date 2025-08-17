@@ -1,0 +1,216 @@
+{
+  "system_name": "GitHub MCP Client - Integration with mcp-git-ingest",
+  "description": "Provides intelligent repository context and file discovery",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GitHubMCPClient": {
+      "responsibility": "GitHub MCP Client for intelligent repository analysis",
+      "methods": [
+        {
+          "name": "_setup_mcp_server",
+          "signature": "_setup_mcp_server(self) -> Any",
+          "docstring": "Setup the MCP server connection",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_repository_structure",
+          "signature": "get_repository_structure(self, repo_url: str) -> str",
+          "docstring": "Get repository directory structure using MCP",
+          "decorators": [],
+          "line_number": 38,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "read_important_files",
+          "signature": "read_important_files(self, repo_url: str, file_paths: list[str]) -> dict[Tuple[str, str]]",
+          "docstring": "Read important files using MCP",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_paths",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_repository",
+          "signature": "analyze_repository(self, repo_url: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Comprehensive repository analysis using MCP",
+          "decorators": [],
+          "line_number": 79,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_fallback_repository_structure",
+          "signature": "_fallback_repository_structure(self, repo_url: str) -> str",
+          "docstring": "Fallback method for repository structure analysis",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_fallback_read_files",
+          "signature": "_fallback_read_files(self, repo_url: str, file_paths: list[str]) -> dict[Tuple[str, str]]",
+          "docstring": "Fallback method for reading files",
+          "decorators": [],
+          "line_number": 148,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [
+            {
+              "name": "repo_url",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_paths",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_repository_content",
+          "signature": "_analyze_repository_content(self, analysis: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze repository content and provide insights",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import json",
+    "import logging",
+    "from typing import Any",
+    "from src.secure_shell_service.elegant_client import secure_execute"
+  ],
+  "module_docstring": "\nGitHub MCP Client - Integration with mcp-git-ingest\nProvides intelligent repository context and file discovery\n",
+  "file_structure": {
+    "total_lines": 286,
+    "code_lines": 210,
+    "comment_lines": 24,
+    "blank_lines": 52,
+    "total_nodes": 1344,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 5,
+    "expression_nodes": 38,
+    "assignment_nodes": 40,
+    "return_nodes": 17
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 286
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "file_paths_str",
+    "logging",
+    "structure",
+    "client",
+    "set",
+    "GitHubMCPClient",
+    "read_result",
+    "dict",
+    "result",
+    "content",
+    "file_name",
+    "analysis",
+    "hash",
+    "str",
+    "line",
+    "secure_execute",
+    "ext",
+    "list",
+    "json",
+    "len",
+    "temp_dir",
+    "full_path",
+    "file_path",
+    "print",
+    "main",
+    "self",
+    "tree_result",
+    "asyncio",
+    "file_paths",
+    "file_extensions",
+    "clone_result",
+    "results",
+    "repo_url",
+    "important_files",
+    "insights",
+    "e",
+    "Any",
+    "any"
+  ]
+}

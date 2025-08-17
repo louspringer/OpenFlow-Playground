@@ -1,0 +1,124 @@
+{
+  "system_name": "Live smoke test using LangChain",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LiveLLMOrchestrator": {
+      "responsibility": "Live LLM orchestrator using LangChain",
+      "methods": [
+        {
+          "name": "call_live_llm",
+          "signature": "call_live_llm(self, context: str, jeopardy_question: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Call live LLM API using LangChain",
+          "decorators": [],
+          "line_number": 74,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "jeopardy_question",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_live_scenario_1",
+      "signature": "test_live_scenario_1() -> None",
+      "docstring": "Test with real LLM - Healthcare CDC implementation",
+      "decorators": [],
+      "line_number": 97,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 118,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from typing import Any",
+    "from typing import Optional",
+    "from langchain_core.output_parsers import JsonOutputParser",
+    "from langchain_core.prompts import ChatPromptTemplate",
+    "from langchain_openai import ChatOpenAI",
+    "from langchain_anthropic import ChatAnthropic"
+  ],
+  "module_docstring": "Live smoke test using LangChain",
+  "file_structure": {
+    "total_lines": 125,
+    "code_lines": 89,
+    "comment_lines": 8,
+    "blank_lines": 28,
+    "total_nodes": 444,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 7,
+    "expression_nodes": 11,
+    "assignment_nodes": 16,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 125
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "ChatPromptTemplate",
+    "api_key",
+    "jeopardy_question",
+    "dict",
+    "ChatAnthropic",
+    "os",
+    "str",
+    "msg",
+    "ImportError",
+    "JsonOutputParser",
+    "json",
+    "print",
+    "ChatOpenAI",
+    "main",
+    "self",
+    "LiveLLMOrchestrator",
+    "ValueError",
+    "openai_llm",
+    "context",
+    "test_live_scenario_1",
+    "provider",
+    "e",
+    "Optional",
+    "Any",
+    "live_result"
+  ]
+}

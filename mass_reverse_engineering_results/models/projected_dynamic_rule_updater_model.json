@@ -1,0 +1,100 @@
+{
+  "system_name": "Generated from final model-driven projection",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ViolationPattern": {
+      "responsibility": "Represents a violation pattern for rule learning",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 26
+    },
+    "DynamicRuleUpdater": {
+      "responsibility": "Updates Cursor rules dynamically based on violations",
+      "methods": [
+        {
+          "name": "_load_rule_templates",
+          "signature": "_load_rule_templates(self) -> dict[Tuple[str, dict[Tuple[str, str]]]]",
+          "docstring": "Load rule templates for different violation types",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, str]]]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 38
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import os",
+    "from dataclasses import dataclass",
+    "from typing import Optional",
+    "from cryptography.fernet import Fernet"
+  ],
+  "module_docstring": "Generated from final model-driven projection",
+  "file_structure": {
+    "total_lines": 61,
+    "code_lines": 47,
+    "comment_lines": 1,
+    "blank_lines": 13,
+    "total_nodes": 247,
+    "class_nodes": 2,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 5,
+    "assignment_nodes": 4,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 61
+  },
+  "used_names": [
+    "__name__",
+    "rule_code",
+    "line_number",
+    "frequency",
+    "ignore_directive",
+    "dict",
+    "Fernet",
+    "os",
+    "AWS_CONFIG",
+    "str",
+    "Path",
+    "ViolationPattern",
+    "dataclass",
+    "rules_dir",
+    "prevention_strategy",
+    "file_path",
+    "main",
+    "self",
+    "context",
+    "SECURITY_CONFIG",
+    "int",
+    "Optional"
+  ]
+}

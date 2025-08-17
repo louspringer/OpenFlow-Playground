@@ -1,0 +1,338 @@
+{
+  "system_name": "Security Manager - Comprehensive security implementation for OpenFlow Playground",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SecurityManager": {
+      "responsibility": "Comprehensive security manager implementing all critical security functions",
+      "methods": [
+        {
+          "name": "encrypt_credential",
+          "signature": "encrypt_credential(self, credential: str) -> str",
+          "docstring": "Encrypt sensitive credentials using Fernet",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "credential",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "decrypt_credential",
+          "signature": "decrypt_credential(self, encrypted_credential: str) -> str",
+          "docstring": "Decrypt sensitive credentials using Fernet",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "encrypted_credential",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_credential",
+          "signature": "store_credential(self, key: str, value: str) -> None",
+          "docstring": "Store credential securely in Redis with encryption",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_credential",
+          "signature": "get_credential(self, key: str) -> Optional[str]",
+          "docstring": "Retrieve credential securely from Redis",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_session_token",
+          "signature": "validate_session_token(self, session_token: str) -> bool",
+          "docstring": "Validate JWT session token",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "session_token",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_session_token",
+          "signature": "create_session_token(self, user_id: str, role: str) -> str",
+          "docstring": "Create JWT session token with proper expiration",
+          "decorators": [],
+          "line_number": 77,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "role",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "enforce_csrf_protection",
+          "signature": "enforce_csrf_protection(self, token: str, session_id: str) -> bool",
+          "docstring": "Enforce CSRF protection by validating tokens",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "token",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_csrf_token",
+          "signature": "_generate_csrf_token(self, session_id: str) -> str",
+          "docstring": "Generate CSRF token for session",
+          "decorators": [],
+          "line_number": 96,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "session_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_security_headers",
+          "signature": "get_security_headers(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get security headers for responses",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_security_config",
+          "signature": "validate_security_config(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate security configuration and return status",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "enforce_security_policies",
+          "signature": "enforce_security_policies(self, user_id: str, action: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Enforce security policies for user actions",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "action",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "audit_security_events",
+          "signature": "audit_security_events(self, user_id: str, event_type: str, details: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Audit security events for compliance and monitoring",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "event_type",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "details",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 26
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_security_manager",
+      "signature": "test_security_manager() -> None",
+      "docstring": "Test security manager functionality",
+      "decorators": [],
+      "line_number": 200,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import hashlib",
+    "import logging",
+    "import os",
+    "import time",
+    "from datetime import datetime",
+    "from datetime import timedelta",
+    "from datetime import timezone",
+    "from typing import Any",
+    "from typing import Optional",
+    "import jwt",
+    "import redis",
+    "from cryptography.fernet import Fernet"
+  ],
+  "module_docstring": "Security Manager - Comprehensive security implementation for OpenFlow Playground",
+  "file_structure": {
+    "total_lines": 219,
+    "code_lines": 173,
+    "comment_lines": 10,
+    "blank_lines": 36,
+    "total_nodes": 981,
+    "class_nodes": 1,
+    "function_nodes": 14,
+    "import_nodes": 9,
+    "expression_nodes": 25,
+    "assignment_nodes": 30,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 219
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "required_fields",
+    "recent_events",
+    "user_id",
+    "logging",
+    "manager",
+    "encrypted_value",
+    "current_attempts",
+    "timedelta",
+    "Any",
+    "dict",
+    "value",
+    "token",
+    "os",
+    "Fernet",
+    "action",
+    "logger",
+    "str",
+    "audit_key",
+    "payload",
+    "jwt",
+    "session_token",
+    "decrypted",
+    "len",
+    "fernet_key",
+    "time",
+    "print",
+    "self",
+    "session_id",
+    "hashlib",
+    "bool",
+    "expected_token",
+    "policies",
+    "audit_entry",
+    "field",
+    "login_attempts_key",
+    "details",
+    "role",
+    "timeout_minutes",
+    "encrypted",
+    "datetime",
+    "data",
+    "SECURITY_CONFIG",
+    "test_security_manager",
+    "credential",
+    "action_key",
+    "SecurityManager",
+    "encrypted_credential",
+    "redis",
+    "event_type",
+    "int",
+    "test_credential",
+    "Optional",
+    "validation_results",
+    "isinstance",
+    "timezone"
+  ]
+}

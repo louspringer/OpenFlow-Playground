@@ -1,0 +1,51 @@
+{
+  "module_name": "model_quality_model",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/code_quality_system/quality_model.py"
+  ],
+  "file_count": 1,
+  "total_lines": 274,
+  "total_classes": 2,
+  "total_functions": 0,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\nmodel_quality_model\n\nPurpose: Data models and schemas\nGraph API Level: 1\nProjection System: model_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 274\nClasses: 2\nFunctions: 0\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "1",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_quality_model",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 274,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "src/code_quality_system/quality_model.py",
+        "name": "quality_model.py",
+        "stem": "quality_model"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.306300",
+  "version": "1.0.0"
+}

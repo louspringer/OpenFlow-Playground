@@ -1,0 +1,247 @@
+{
+  "system_name": "Logging Framework",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ClewcrewLogger": {
+      "responsibility": "Unified logger for Ghostbusters components",
+      "methods": [
+        {
+          "name": "info",
+          "signature": "info(self, message: str, context: Optional[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Log info message with optional context",
+          "decorators": [],
+          "line_number": 35,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "warning",
+          "signature": "warning(self, message: str, severity: str, context: Optional[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Log warning message with severity and optional context",
+          "decorators": [],
+          "line_number": 41,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "severity",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "error",
+          "signature": "error(self, message: str, context: Optional[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Log error message with optional context",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "debug",
+          "signature": "debug(self, message: str, context: Optional[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Log debug message with optional context",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "critical",
+          "signature": "critical(self, message: str, context: Optional[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Log critical message with optional context",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "message",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "Optional[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 14
+    },
+    "LoggingConfig": {
+      "responsibility": "Configuration for Ghostbusters logging",
+      "methods": [
+        {
+          "name": "configure_file_logging",
+          "signature": "configure_file_logging(self, log_file_path: str) -> Any",
+          "docstring": "Configure logging to file",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "log_file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_logger",
+          "signature": "get_logger(self, component_name: str) -> ClewcrewLogger",
+          "docstring": "Get a configured logger for a component",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "ClewcrewLogger",
+          "parameters": [
+            {
+              "name": "component_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 73
+    }
+  },
+  "module_functions": [
+    {
+      "name": "get_logger",
+      "signature": "get_logger(component_name: str) -> ClewcrewLogger",
+      "docstring": "Get a logger for a component",
+      "decorators": [],
+      "line_number": 100,
+      "return_type": "ClewcrewLogger",
+      "parameters": [
+        {
+          "name": "component_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import logging",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nLogging Framework\n\nUnified logging and monitoring for Ghostbusters components.\nThis module provides consistent logging across all components.\n",
+  "file_structure": {
+    "total_lines": 103,
+    "code_lines": 76,
+    "comment_lines": 4,
+    "blank_lines": 23,
+    "total_nodes": 500,
+    "class_nodes": 2,
+    "function_nodes": 10,
+    "import_nodes": 4,
+    "expression_nodes": 21,
+    "assignment_nodes": 19,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 103
+  },
+  "used_names": [
+    "handler",
+    "sys",
+    "self",
+    "LoggingConfig",
+    "str",
+    "Any",
+    "log_level",
+    "logging_config",
+    "formatter",
+    "Optional",
+    "level",
+    "Path",
+    "getattr",
+    "ClewcrewLogger",
+    "component_name",
+    "severity",
+    "message",
+    "context",
+    "logging",
+    "log_file_path",
+    "dict"
+  ]
+}

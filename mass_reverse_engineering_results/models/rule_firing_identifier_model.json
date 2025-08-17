@@ -1,0 +1,310 @@
+{
+  "system_name": "Rule Firing Identifier - Identifies which Cursor rules are firing",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RuleFiringIdentifier": {
+      "responsibility": "Identifies which Cursor rules are firing based on project model",
+      "methods": [
+        {
+          "name": "_load_project_model",
+          "signature": "_load_project_model(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load the project model registry",
+          "decorators": [],
+          "line_number": 24,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_cursor_rules",
+          "signature": "_extract_cursor_rules(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Extract cursor rules configuration from project model",
+          "decorators": [],
+          "line_number": 33,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rule_emoji",
+          "signature": "get_rule_emoji(self, rule_name: str) -> str",
+          "docstring": "Get the emoji prefix for a rule",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "rule_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "identify_firing_rules",
+          "signature": "identify_firing_rules(self, file_path: str, operation: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Identify which rules should be firing for a given file and operation",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "operation",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_rule_config",
+          "signature": "_get_rule_config(self, rule_name: str) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Get configuration for a specific rule",
+          "decorators": [],
+          "line_number": 75,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "rule_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_should_rule_fire",
+          "signature": "_should_rule_fire(self, rule_name: str, rule_config: dict[Tuple[str, Any]], file_path: str, operation: str) -> bool",
+          "docstring": "Determine if a rule should fire for the given file and operation",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "rule_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "rule_config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "operation",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_file_matches_globs",
+          "signature": "_file_matches_globs(self, file_path: str, globs: str) -> bool",
+          "docstring": "Check if file matches glob patterns",
+          "decorators": [],
+          "line_number": 110,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "globs",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_operation_matches_rule",
+          "signature": "_operation_matches_rule(self, rule_name: str, operation: str) -> bool",
+          "docstring": "Check if operation matches rule purpose",
+          "decorators": [],
+          "line_number": 132,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "rule_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "operation",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_firing_reason",
+          "signature": "_get_firing_reason(self, rule_name: str, file_path: str, operation: str) -> str",
+          "docstring": "Get the reason why a rule is firing",
+          "decorators": [],
+          "line_number": 156,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "rule_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "operation",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "print_firing_rules",
+          "signature": "print_firing_rules(self, file_path: str, operation: str) -> Any",
+          "docstring": "Print which rules are firing with emoji prefixes",
+          "decorators": [],
+          "line_number": 164,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "operation",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rule_summary",
+          "signature": "get_rule_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all available rules",
+          "decorators": [],
+          "line_number": 184,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function for command-line usage",
+      "decorators": [],
+      "line_number": 195,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "import argparse"
+  ],
+  "module_docstring": "\nRule Firing Identifier - Identifies which Cursor rules are firing\n\nThis script analyzes the project model and identifies which rules should be\napplying to different file types and operations, with emoji prefixes for\neasy identification.\n",
+  "file_structure": {
+    "total_lines": 241,
+    "code_lines": 186,
+    "comment_lines": 12,
+    "blank_lines": 43,
+    "total_nodes": 1066,
+    "class_nodes": 1,
+    "function_nodes": 13,
+    "import_nodes": 4,
+    "expression_nodes": 37,
+    "assignment_nodes": 19,
+    "return_nodes": 23
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 241
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "section",
+    "input",
+    "operation_lower",
+    "rule_config",
+    "dict",
+    "rule",
+    "open",
+    "str",
+    "project_model_path",
+    "Path",
+    "RuleFiringIdentifier",
+    "glob_patterns",
+    "pattern",
+    "list",
+    "json",
+    "firing_rules",
+    "len",
+    "file_path",
+    "summary",
+    "print",
+    "main",
+    "self",
+    "globs",
+    "identifier",
+    "rule_list",
+    "bool",
+    "section_name",
+    "operation",
+    "op_key",
+    "parser",
+    "args",
+    "operation_rule_mapping",
+    "argparse",
+    "rule_name",
+    "emoji",
+    "Optional",
+    "e",
+    "Any"
+  ]
+}

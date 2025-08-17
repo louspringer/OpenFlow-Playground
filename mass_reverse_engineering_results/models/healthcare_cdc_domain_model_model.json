@@ -1,0 +1,396 @@
+{
+  "system_name": "Healthcare CDC Domain Model",
+  "description": "Model-driven implementation of Snowflake Healthcare CDC with DynamoDB and Openflow",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EventType": {
+      "responsibility": "CDC Event Types",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 19
+    },
+    "ClaimStatus": {
+      "responsibility": "Healthcare Claim Status",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 27
+    },
+    "PaymentStatus": {
+      "responsibility": "Payment Status",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 37
+    },
+    "PatientInfo": {
+      "responsibility": "Patient Information",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 47
+    },
+    "ProviderInfo": {
+      "responsibility": "Healthcare Provider Information",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 64
+    },
+    "PayerInfo": {
+      "responsibility": "Insurance Payer Information",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 76
+    },
+    "HealthcareClaim": {
+      "responsibility": "Healthcare Insurance Claim",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 85
+    },
+    "CDCEvent": {
+      "responsibility": "Change Data Capture Event",
+      "methods": [
+        {
+          "name": "to_json",
+          "signature": "to_json(self) -> str",
+          "docstring": "Convert to JSON for DynamoDB stream",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 105
+    },
+    "InfrastructureComponents": {
+      "responsibility": "Infrastructure Components for Healthcare CDC",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 153
+    },
+    "PipelineConfiguration": {
+      "responsibility": "Openflow Pipeline Configuration",
+      "methods": [
+        {
+          "name": "add_processor",
+          "signature": "add_processor(self, processor_type: str, config: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Add a processor to the pipeline",
+          "decorators": [],
+          "line_number": 187,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "processor_type",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 181
+    },
+    "HealthcareCDCDomainModel": {
+      "responsibility": "Domain Model for Healthcare CDC System",
+      "methods": [
+        {
+          "name": "_setup_pipeline",
+          "signature": "_setup_pipeline(self) -> Any",
+          "docstring": "Setup the Openflow pipeline configuration",
+          "decorators": [],
+          "line_number": 201,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_merge_sql",
+          "signature": "_get_merge_sql(self) -> str",
+          "docstring": "Get the SQL merge statement for CDC operations",
+          "decorators": [],
+          "line_number": 303,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_cloudformation_template",
+          "signature": "generate_cloudformation_template(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate CloudFormation template for the healthcare CDC infrastructure",
+          "decorators": [],
+          "line_number": 331,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_snowflake_schema",
+          "signature": "generate_snowflake_schema(self) -> str",
+          "docstring": "Generate Snowflake schema creation SQL",
+          "decorators": [],
+          "line_number": 459,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 192
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to demonstrate the domain model",
+      "decorators": [],
+      "line_number": 584,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nHealthcare CDC Domain Model\nModel-driven implementation of Snowflake Healthcare CDC with DynamoDB and Openflow\n\nBased on: https://quickstarts.snowflake.com/guide/Streamline_Healthcare_CDC_DDB_And_Openflow/\nOriginal Contributors: Snowflake Inc.\n",
+  "file_structure": {
+    "total_lines": 655,
+    "code_lines": 571,
+    "comment_lines": 15,
+    "blank_lines": 69,
+    "total_nodes": 1736,
+    "class_nodes": 11,
+    "function_nodes": 8,
+    "import_nodes": 7,
+    "expression_nodes": 40,
+    "assignment_nodes": 26,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 655
+  },
+  "used_names": [
+    "vpc_id",
+    "kinesis_stream",
+    "warehouse",
+    "EventType",
+    "dict",
+    "HealthcareCDCDomainModel",
+    "Path",
+    "first_name",
+    "list",
+    "FileNotFoundError",
+    "database",
+    "subnet_id",
+    "print",
+    "diagnosis_codes",
+    "date_of_birth",
+    "zip_code",
+    "claim_id",
+    "role",
+    "event_history_table",
+    "created_timestamp",
+    "destination_table",
+    "model",
+    "PAID",
+    "processor_type",
+    "PatientInfo",
+    "data_plane_url",
+    "payer_name",
+    "patient",
+    "dynamodb_table",
+    "__name__",
+    "__file__",
+    "claim",
+    "processors",
+    "payer",
+    "PROCESSING",
+    "InfrastructureComponents",
+    "PayerInfo",
+    "CDCEvent",
+    "openflow_runtime",
+    "INSERT",
+    "gender",
+    "member_id",
+    "HealthcareClaim",
+    "APPROVED",
+    "cdc_table",
+    "phone",
+    "PipelineConfiguration",
+    "event_creation_unix_time",
+    "field",
+    "ClaimStatus",
+    "cdc_event",
+    "last_name",
+    "config",
+    "ProviderInfo",
+    "ec2_instance_type",
+    "f",
+    "procedure_details",
+    "city",
+    "email",
+    "schema",
+    "provider_npi",
+    "street",
+    "float",
+    "os",
+    "Enum",
+    "open",
+    "PaymentStatus",
+    "control_plane_url",
+    "TypeError",
+    "REJECTED",
+    "provider_name",
+    "pipeline_name",
+    "main",
+    "sql_template_path",
+    "COMPLETED",
+    "total_charge",
+    "datetime",
+    "Optional",
+    "Any",
+    "IN_REVIEW",
+    "date_of_service",
+    "FAILED",
+    "patient_id",
+    "contact_number",
+    "str",
+    "event_name",
+    "msg",
+    "MODIFY",
+    "OSError",
+    "state",
+    "payer_id",
+    "dataclass",
+    "json",
+    "PENDING",
+    "self",
+    "ValueError",
+    "REMOVE",
+    "payment_status",
+    "claim_status",
+    "sql_file_path",
+    "insurance_plan",
+    "provider",
+    "int",
+    "e",
+    "bill_submit_date"
+  ]
+}

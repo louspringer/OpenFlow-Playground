@@ -1,0 +1,110 @@
+{
+  "system_name": "Fix common type annotation issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_type_annotations_in_file",
+      "signature": "fix_type_annotations_in_file(filepath: str) -> bool",
+      "docstring": "Fix common type annotation issues in a Python file",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "add_missing_imports",
+      "signature": "add_missing_imports(filepath: str) -> bool",
+      "docstring": "Add missing imports for common type issues",
+      "decorators": [],
+      "line_number": 53,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix type annotations in all Python files",
+      "decorators": [],
+      "line_number": 118,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nFix common type annotation issues\n",
+  "file_structure": {
+    "total_lines": 164,
+    "code_lines": 112,
+    "comment_lines": 14,
+    "blank_lines": 38,
+    "total_nodes": 759,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 3,
+    "expression_nodes": 32,
+    "assignment_nodes": 20,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 164
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "filepath",
+    "f",
+    "type_fixes",
+    "python_files",
+    "enumerate",
+    "imports_to_add",
+    "result",
+    "content",
+    "new_lines",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "secure_execute",
+    "fix_type_annotations_in_file",
+    "import_fixes",
+    "fixed_lines",
+    "len",
+    "add_missing_imports",
+    "print",
+    "main",
+    "lines",
+    "bool",
+    "re",
+    "i",
+    "original_content",
+    "error_count",
+    "import_section_end",
+    "e",
+    "import_line"
+  ]
+}

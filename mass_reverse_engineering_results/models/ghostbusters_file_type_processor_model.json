@@ -1,0 +1,434 @@
+{
+  "system_name": "Ghostbusters File Type Processor - Paranormal Investigation for Unknown File Types",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PKEEnergyLevel": {
+      "responsibility": "PKE Meter energy levels for file type detection",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 27
+    },
+    "GhostClass": {
+      "responsibility": "Ghost classification system for file types",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 37
+    },
+    "ProtonStreamMode": {
+      "responsibility": "Proton Pack stream modes for exception handling",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 47
+    },
+    "PKEMeterReading": {
+      "responsibility": "PKE Meter reading for file type detection",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 57
+    },
+    "GhostClassification": {
+      "responsibility": "Ghost classification result for file type",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 68
+    },
+    "ProtonPackStatus": {
+      "responsibility": "Proton Pack status for exception handling",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 79
+    },
+    "GhostbustersFileTypeProcessor": {
+      "responsibility": "Ghostbusters-enhanced file type processor using paranormal investigation techniques",
+      "methods": [
+        {
+          "name": "_initialize_ghost_rules",
+          "signature": "_initialize_ghost_rules(self) -> dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "docstring": "Initialize ghost classification rules",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_initialize_proton_modes",
+          "signature": "_initialize_proton_modes(self) -> dict[Tuple[str, ProtonStreamMode]]",
+          "docstring": "Initialize proton pack stream modes for different file types",
+          "decorators": [],
+          "line_number": 177,
+          "return_type": "dict[Tuple[str, ProtonStreamMode]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "investigate_file",
+          "signature": "investigate_file(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Full Ghostbusters investigation of a file",
+          "decorators": [],
+          "line_number": 192,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_scan_with_pke_meter",
+          "signature": "_scan_with_pke_meter(self, file_path: Path) -> PKEMeterReading",
+          "docstring": "Scan file with PKE Meter for pattern detection",
+          "decorators": [],
+          "line_number": 234,
+          "return_type": "PKEMeterReading",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_file_patterns",
+          "signature": "_detect_file_patterns(self, content: str) -> dict[Tuple[str, float]]",
+          "docstring": "Detect file type patterns in content",
+          "decorators": [],
+          "line_number": 287,
+          "return_type": "dict[Tuple[str, float]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_classify_ghost",
+          "signature": "_classify_ghost(self, file_path: Path, pke_reading: PKEMeterReading) -> GhostClassification",
+          "docstring": "Classify file using ghost classification system",
+          "decorators": [],
+          "line_number": 350,
+          "return_type": "GhostClassification",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "pke_reading",
+              "type": "PKEMeterReading",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_engage_proton_pack",
+          "signature": "_engage_proton_pack(self, file_path: Path, pke_reading: PKEMeterReading, ghost_class: GhostClassification) -> ProtonPackStatus",
+          "docstring": "Engage Proton Pack for file parsing and exception handling",
+          "decorators": [],
+          "line_number": 393,
+          "return_type": "ProtonPackStatus",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "pke_reading",
+              "type": "PKEMeterReading",
+              "default": null
+            },
+            {
+              "name": "ghost_class",
+              "type": "GhostClassification",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_attempt_parsing",
+          "signature": "_attempt_parsing(self, file_path: Path, file_type: str) -> bool",
+          "docstring": "Attempt to parse file with detected type",
+          "decorators": [],
+          "line_number": 444,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self, pke_reading: PKEMeterReading, ghost_class: GhostClassification, proton_status: ProtonPackStatus) -> list[str]",
+          "docstring": "Generate recommendations based on investigation results",
+          "decorators": [],
+          "line_number": 481,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "pke_reading",
+              "type": "PKEMeterReading",
+              "default": null
+            },
+            {
+              "name": "ghost_class",
+              "type": "GhostClassification",
+              "default": null
+            },
+            {
+              "name": "proton_status",
+              "type": "ProtonPackStatus",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_investigation_summary",
+          "signature": "get_investigation_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all investigations",
+          "decorators": [],
+          "line_number": 515,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 89
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Demo the Ghostbusters file type processor",
+      "decorators": [],
+      "line_number": 552,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import configparser",
+    "import json",
+    "import os",
+    "import re",
+    "import xml.etree.ElementTree as ET",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Tuple",
+    "import tomllib",
+    "import yaml"
+  ],
+  "module_docstring": "\nGhostbusters File Type Processor - Paranormal Investigation for Unknown File Types\n\nThis module implements Ghostbusters technology for file type discovery:\n- PKE Meter: Detects file type patterns and measures confidence\n- Ghost Classification: Categorizes files by type and threat level\n- Proton Pack: Handles parsing exceptions gracefully\n- Paranormal Investigation: Systematic discovery with learning\n",
+  "file_structure": {
+    "total_lines": 597,
+    "code_lines": 487,
+    "comment_lines": 24,
+    "blank_lines": 86,
+    "total_nodes": 2443,
+    "class_nodes": 7,
+    "function_nodes": 12,
+    "import_nodes": 12,
+    "expression_nodes": 65,
+    "assignment_nodes": 87,
+    "return_nodes": 19
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 597
+  },
+  "used_names": [
+    "Exception",
+    "HIGH",
+    "CLASS_2",
+    "dict",
+    "tomllib",
+    "python_score",
+    "MEDIUM",
+    "r",
+    "Path",
+    "test_file",
+    "threat_level",
+    "NEUTRALIZE",
+    "list",
+    "ast",
+    "successful",
+    "CONTAIN",
+    "ghost_class",
+    "print",
+    "PKEMeterReading",
+    "risk_factors",
+    "bool",
+    "threat",
+    "type",
+    "rec",
+    "re",
+    "total",
+    "CAPTURE",
+    "recommendations",
+    "configparser",
+    "__name__",
+    "GhostClass",
+    "PKEEnergyLevel",
+    "LOW",
+    "yaml",
+    "stream_mode",
+    "pke_reading",
+    "toml_score",
+    "rules",
+    "recovery_strategy",
+    "confidence_score",
+    "energy_level",
+    "field",
+    "pke_distribution",
+    "config",
+    "file_type",
+    "CRITICAL",
+    "CLASS_4",
+    "f",
+    "CLASS_3",
+    "float",
+    "result",
+    "content",
+    "investigation_result",
+    "Enum",
+    "os",
+    "json_score",
+    "open",
+    "ghost_distribution",
+    "CLASS_1",
+    "sum",
+    "count",
+    "CLASS_5",
+    "detected_type",
+    "damage_assessment",
+    "main",
+    "threat_assessment",
+    "STUN",
+    "yaml_score",
+    "processor",
+    "GhostClassification",
+    "ProtonPackStatus",
+    "Any",
+    "patterns",
+    "str",
+    "containment_success",
+    "ET",
+    "containment_strategy",
+    "proton_status",
+    "dataclass",
+    "json",
+    "min",
+    "len",
+    "file_path",
+    "detected_patterns",
+    "ProtonStreamMode",
+    "summary",
+    "GhostbustersFileTypeProcessor",
+    "self",
+    "recommended_approach",
+    "max",
+    "ini_score",
+    "success_rate",
+    "pattern_strength",
+    "e",
+    "ZERO",
+    "test_files"
+  ]
+}

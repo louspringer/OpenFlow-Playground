@@ -1,0 +1,114 @@
+{
+  "system_name": "Security expert agent for detecting security vulnerabilities.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SecurityExpert": {
+      "responsibility": "Expert agent for detecting security vulnerabilities.",
+      "methods": [
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, project_path: Path) -> DelusionResult",
+          "docstring": "Detect security vulnerabilities in the project.",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "DelusionResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_scan_file",
+          "signature": "_scan_file(self, file_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Scan a single file for security issues.",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 10
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_expert import BaseExpert",
+    "from base_expert import DelusionResult"
+  ],
+  "module_docstring": "Security expert agent for detecting security vulnerabilities.",
+  "file_structure": {
+    "total_lines": 122,
+    "code_lines": 96,
+    "comment_lines": 7,
+    "blank_lines": 19,
+    "total_nodes": 347,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 4,
+    "expression_nodes": 12,
+    "assignment_nodes": 9,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 122
+  },
+  "used_names": [
+    "Exception",
+    "py_file",
+    "DelusionResult",
+    "enumerate",
+    "dict",
+    "content",
+    "str",
+    "BaseExpert",
+    "Path",
+    "line",
+    "pattern",
+    "list",
+    "file_path",
+    "self",
+    "lines",
+    "delusions",
+    "line_num",
+    "re",
+    "file_delusions",
+    "recommendations",
+    "super",
+    "project_path",
+    "Any",
+    "confidence"
+  ]
+}

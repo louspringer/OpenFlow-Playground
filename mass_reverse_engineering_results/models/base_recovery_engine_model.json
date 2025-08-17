@@ -1,0 +1,200 @@
+{
+  "system_name": "Base Recovery Engine for clewcrew",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RecoveryResult": {
+      "responsibility": "Result from recovery action",
+      "methods": [
+        {
+          "name": "validate_confidence",
+          "signature": "validate_confidence(self, cls: Any, v: Any) -> Any",
+          "docstring": "Ensure confidence is between 0.0 and 1.0.",
+          "decorators": [
+            "classmethod"
+          ],
+          "line_number": 28,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 13
+    },
+    "BaseRecoveryEngine": {
+      "responsibility": "Base class for all recovery engines",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: Dict[Tuple[str, Any]]) -> RecoveryResult",
+          "docstring": "Execute recovery action",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 41,
+          "return_type": "RecoveryResult",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_recovery_actions",
+          "signature": "get_recovery_actions(self) -> List[str]",
+          "docstring": "Get list of available recovery actions for this engine",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "List[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_action",
+          "signature": "validate_action(self, action: Dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate that the action is valid for this engine",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_confidence",
+          "signature": "calculate_confidence(self, errors: List[str], warnings: List[str]) -> float",
+          "docstring": "Calculate confidence score based on errors and warnings",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "errors",
+              "type": "List[str]",
+              "default": null
+            },
+            {
+              "name": "warnings",
+              "type": "List[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "ABC"
+      ],
+      "line_number": 33
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from abc import ABC",
+    "from abc import abstractmethod",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from pydantic import field_validator"
+  ],
+  "module_docstring": "\nBase Recovery Engine for clewcrew\n",
+  "file_structure": {
+    "total_lines": 67,
+    "code_lines": 47,
+    "comment_lines": 3,
+    "blank_lines": 17,
+    "total_nodes": 340,
+    "class_nodes": 2,
+    "function_nodes": 5,
+    "import_nodes": 4,
+    "expression_nodes": 8,
+    "assignment_nodes": 4,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 67
+  },
+  "used_names": [
+    "classmethod",
+    "required_fields",
+    "abstractmethod",
+    "logging",
+    "field_validator",
+    "message",
+    "BaseModel",
+    "warnings",
+    "v",
+    "float",
+    "dict",
+    "Dict",
+    "Field",
+    "RecoveryResult",
+    "action",
+    "str",
+    "engine_name",
+    "List",
+    "errors",
+    "ABC",
+    "list",
+    "min",
+    "len",
+    "files_fixed",
+    "self",
+    "success",
+    "metadata",
+    "bool",
+    "max",
+    "field",
+    "base_confidence",
+    "changes_made",
+    "all",
+    "Any",
+    "confidence"
+  ]
+}

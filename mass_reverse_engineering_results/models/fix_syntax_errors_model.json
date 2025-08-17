@@ -1,0 +1,84 @@
+{
+  "system_name": "Fix critical syntax errors in Python files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_file",
+      "signature": "fix_file(filepath: str) -> bool",
+      "docstring": "Fix syntax errors in a Python file",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix syntax errors in Python files",
+      "decorators": [],
+      "line_number": 74,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nFix critical syntax errors in Python files\n",
+  "file_structure": {
+    "total_lines": 101,
+    "code_lines": 74,
+    "comment_lines": 8,
+    "blank_lines": 19,
+    "total_nodes": 383,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 11,
+    "assignment_nodes": 7,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 101
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "filepath",
+    "Exception",
+    "enumerate",
+    "content",
+    "os",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "fixed_lines",
+    "problematic_files",
+    "print",
+    "main",
+    "lines",
+    "bool",
+    "fixed_count",
+    "i",
+    "original_content",
+    "fix_file",
+    "e"
+  ]
+}

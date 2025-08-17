@@ -1,0 +1,423 @@
+{
+  "module_name": "ghostbusters___init__",
+  "module_type": "package",
+  "confidence_score": 0.7,
+  "files": [
+    "backup/ghostbusters/ghostbusters/__init__.py",
+    "clewcrew-tools/src/clewcrew_tools/config_utility.py",
+    "src/code_quality_system/integrations/pre_commit_integration.py",
+    "clewcrew-agents/src/clewcrew_agents/devops_expert.py",
+    "clewcrew-validators/src/clewcrew_validators/data_validator.py",
+    "src/code_quality_system/quality_metrics.py",
+    "clewcrew-common/src/clewcrew_common/confidence.py",
+    "backup/ghostbusters/ghostbusters/recovery_engines/syntax_recovery_engine.py",
+    "backup/ghostbusters/ghostbusters/recovery_engines/type_annotation_fixer.py",
+    "generated_packages/openflow-code-quality/src/openflow_code_quality/main.py",
+    "backup/ghostbusters/ghostbusters/agents/model_expert.py",
+    "backup/ghostbusters/ghostbusters/recovery_engines/base_recovery_engine.py",
+    "backup/ghostbusters/ghostbusters/agents/base_expert.py",
+    "backup/ghostbusters/ghostbusters/agents/architecture_expert.py",
+    "clewcrew-framework/src/clewcrew_framework/workflow_engine.py",
+    "clewcrew-validators/src/clewcrew_validators/validation_result.py",
+    "src/ghostbusters/agents/quality_analyzer.py",
+    "src/security_first/https_enforcement.py",
+    "healthcare-cdc/healthcare_cdc_domain_model.py",
+    "backup/ghostbusters/ghostbusters/agents.py",
+    "backup/ghostbusters/ghostbusters/__init__.py",
+    "clewcrew-framework/src/clewcrew_framework/plugin_manager.py",
+    "clewcrew-tools/src/clewcrew_tools/integration_tool.py",
+    "src/mdc_generator/mdc_model.py",
+    "clewcrew-tools/src/clewcrew_tools/code_analyzer.py",
+    "clewcrew-common/src/clewcrew_common/data_models.py",
+    "backup/ghostbusters/ghostbusters/validators.py",
+    "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/workflows.py",
+    "backup/ghostbusters/ghostbusters/ghostbusters_orchestrator.py",
+    "src/ghostbusters/agents/recommendation_engine.py",
+    "clewcrew-tools/src/clewcrew_tools/dev_helper.py",
+    "clewcrew-framework/src/clewcrew_framework/state_manager.py",
+    "clewcrew-validators/src/clewcrew_validators/rule_validator.py",
+    "src/ghostbusters/agents/issue_detector.py",
+    "backup/ghostbusters/ghostbusters/recovery.py",
+    "backup/ghostbusters/ghostbusters/validators/base_validator.py",
+    "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/core.py",
+    "backup/ghostbusters/ghostbusters/recovery_engines/indentation_fixer.py",
+    "src/code_quality_system/quality_gates.py",
+    "clewcrew-core/src/clewcrew_core/orchestrator.py",
+    "clewcrew-common/src/clewcrew_common/async_utils.py",
+    "backup/ghostbusters/ghostbusters/recovery_engines/import_resolver.py",
+    "backup/ghostbusters/ghostbusters/agents/test_expert.py",
+    "clewcrew-framework/src/clewcrew_framework/event_bus.py",
+    "clewcrew-validators/src/clewcrew_validators/schema_validator.py",
+    "proven_QualityRule.py",
+    "src/code_quality_system/quality_enforcer.py",
+    "clewcrew-common/src/clewcrew_common/file_ops.py",
+    "src/code_quality_system/multi_agent_integration.py",
+    "backup/ghostbusters/ghostbusters/agents/security_expert.py",
+    "clewcrew-common/src/clewcrew_common/validation.py",
+    "backup/ghostbusters/ghostbusters/agents/code_quality_expert.py",
+    "src/model_driven_projection/level1_granular_nodes.py",
+    "clewcrew-tools/src/clewcrew_tools/report_generator.py",
+    "backup/ghostbusters/ghostbusters/agents/mcp_expert.py",
+    "src/code_quality_system/integrations/ci_cd_integration.py",
+    "src/model_driven_projection/final_projection_system.py",
+    "proven_ASTAnalyzer.py",
+    "src/visualization/svg_engine.py",
+    "clewcrew-common/src/clewcrew_common/configuration.py",
+    "proven_QualityOrchestrator.py",
+    "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/tidb_integration.py",
+    "clewcrew-framework/src/clewcrew_framework/config_manager.py"
+  ],
+  "file_count": 63,
+  "total_lines": 13221,
+  "total_classes": 129,
+  "total_functions": 11,
+  "total_imports": 238,
+  "module_docstring": "\"\"\"\nghostbusters___init__\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: package\nFiles: 63\nTotal Lines: 13221\nClasses: 129\nFunctions: 11\nImports: 238\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "ghostbusters___init__",
+      "type": "package",
+      "confidence": 0.7,
+      "file_count": 63
+    },
+    "metrics": {
+      "total_lines": 13221,
+      "total_classes": 129,
+      "total_functions": 11,
+      "total_imports": 238
+    },
+    "files": [
+      {
+        "path": "backup/ghostbusters/ghostbusters/__init__.py",
+        "name": "__init__.py",
+        "stem": "__init__"
+      },
+      {
+        "path": "clewcrew-tools/src/clewcrew_tools/config_utility.py",
+        "name": "config_utility.py",
+        "stem": "config_utility"
+      },
+      {
+        "path": "src/code_quality_system/integrations/pre_commit_integration.py",
+        "name": "pre_commit_integration.py",
+        "stem": "pre_commit_integration"
+      },
+      {
+        "path": "clewcrew-agents/src/clewcrew_agents/devops_expert.py",
+        "name": "devops_expert.py",
+        "stem": "devops_expert"
+      },
+      {
+        "path": "clewcrew-validators/src/clewcrew_validators/data_validator.py",
+        "name": "data_validator.py",
+        "stem": "data_validator"
+      },
+      {
+        "path": "src/code_quality_system/quality_metrics.py",
+        "name": "quality_metrics.py",
+        "stem": "quality_metrics"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/confidence.py",
+        "name": "confidence.py",
+        "stem": "confidence"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery_engines/syntax_recovery_engine.py",
+        "name": "syntax_recovery_engine.py",
+        "stem": "syntax_recovery_engine"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery_engines/type_annotation_fixer.py",
+        "name": "type_annotation_fixer.py",
+        "stem": "type_annotation_fixer"
+      },
+      {
+        "path": "generated_packages/openflow-code-quality/src/openflow_code_quality/main.py",
+        "name": "main.py",
+        "stem": "main"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/model_expert.py",
+        "name": "model_expert.py",
+        "stem": "model_expert"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery_engines/base_recovery_engine.py",
+        "name": "base_recovery_engine.py",
+        "stem": "base_recovery_engine"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/base_expert.py",
+        "name": "base_expert.py",
+        "stem": "base_expert"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/architecture_expert.py",
+        "name": "architecture_expert.py",
+        "stem": "architecture_expert"
+      },
+      {
+        "path": "clewcrew-framework/src/clewcrew_framework/workflow_engine.py",
+        "name": "workflow_engine.py",
+        "stem": "workflow_engine"
+      },
+      {
+        "path": "clewcrew-validators/src/clewcrew_validators/validation_result.py",
+        "name": "validation_result.py",
+        "stem": "validation_result"
+      },
+      {
+        "path": "src/ghostbusters/agents/quality_analyzer.py",
+        "name": "quality_analyzer.py",
+        "stem": "quality_analyzer"
+      },
+      {
+        "path": "src/security_first/https_enforcement.py",
+        "name": "https_enforcement.py",
+        "stem": "https_enforcement"
+      },
+      {
+        "path": "healthcare-cdc/healthcare_cdc_domain_model.py",
+        "name": "healthcare_cdc_domain_model.py",
+        "stem": "healthcare_cdc_domain_model"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents.py",
+        "name": "agents.py",
+        "stem": "agents"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/__init__.py",
+        "name": "__init__.py",
+        "stem": "__init__"
+      },
+      {
+        "path": "clewcrew-framework/src/clewcrew_framework/plugin_manager.py",
+        "name": "plugin_manager.py",
+        "stem": "plugin_manager"
+      },
+      {
+        "path": "clewcrew-tools/src/clewcrew_tools/integration_tool.py",
+        "name": "integration_tool.py",
+        "stem": "integration_tool"
+      },
+      {
+        "path": "src/mdc_generator/mdc_model.py",
+        "name": "mdc_model.py",
+        "stem": "mdc_model"
+      },
+      {
+        "path": "clewcrew-tools/src/clewcrew_tools/code_analyzer.py",
+        "name": "code_analyzer.py",
+        "stem": "code_analyzer"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/data_models.py",
+        "name": "data_models.py",
+        "stem": "data_models"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/validators.py",
+        "name": "validators.py",
+        "stem": "validators"
+      },
+      {
+        "path": "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/workflows.py",
+        "name": "workflows.py",
+        "stem": "workflows"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/ghostbusters_orchestrator.py",
+        "name": "ghostbusters_orchestrator.py",
+        "stem": "ghostbusters_orchestrator"
+      },
+      {
+        "path": "src/ghostbusters/agents/recommendation_engine.py",
+        "name": "recommendation_engine.py",
+        "stem": "recommendation_engine"
+      },
+      {
+        "path": "clewcrew-tools/src/clewcrew_tools/dev_helper.py",
+        "name": "dev_helper.py",
+        "stem": "dev_helper"
+      },
+      {
+        "path": "clewcrew-framework/src/clewcrew_framework/state_manager.py",
+        "name": "state_manager.py",
+        "stem": "state_manager"
+      },
+      {
+        "path": "clewcrew-validators/src/clewcrew_validators/rule_validator.py",
+        "name": "rule_validator.py",
+        "stem": "rule_validator"
+      },
+      {
+        "path": "src/ghostbusters/agents/issue_detector.py",
+        "name": "issue_detector.py",
+        "stem": "issue_detector"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery.py",
+        "name": "recovery.py",
+        "stem": "recovery"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/validators/base_validator.py",
+        "name": "base_validator.py",
+        "stem": "base_validator"
+      },
+      {
+        "path": "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/core.py",
+        "name": "core.py",
+        "stem": "core"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery_engines/indentation_fixer.py",
+        "name": "indentation_fixer.py",
+        "stem": "indentation_fixer"
+      },
+      {
+        "path": "src/code_quality_system/quality_gates.py",
+        "name": "quality_gates.py",
+        "stem": "quality_gates"
+      },
+      {
+        "path": "clewcrew-core/src/clewcrew_core/orchestrator.py",
+        "name": "orchestrator.py",
+        "stem": "orchestrator"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/async_utils.py",
+        "name": "async_utils.py",
+        "stem": "async_utils"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/recovery_engines/import_resolver.py",
+        "name": "import_resolver.py",
+        "stem": "import_resolver"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/test_expert.py",
+        "name": "test_expert.py",
+        "stem": "test_expert"
+      },
+      {
+        "path": "clewcrew-framework/src/clewcrew_framework/event_bus.py",
+        "name": "event_bus.py",
+        "stem": "event_bus"
+      },
+      {
+        "path": "clewcrew-validators/src/clewcrew_validators/schema_validator.py",
+        "name": "schema_validator.py",
+        "stem": "schema_validator"
+      },
+      {
+        "path": "proven_QualityRule.py",
+        "name": "proven_QualityRule.py",
+        "stem": "proven_QualityRule"
+      },
+      {
+        "path": "src/code_quality_system/quality_enforcer.py",
+        "name": "quality_enforcer.py",
+        "stem": "quality_enforcer"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/file_ops.py",
+        "name": "file_ops.py",
+        "stem": "file_ops"
+      },
+      {
+        "path": "src/code_quality_system/multi_agent_integration.py",
+        "name": "multi_agent_integration.py",
+        "stem": "multi_agent_integration"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/security_expert.py",
+        "name": "security_expert.py",
+        "stem": "security_expert"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/validation.py",
+        "name": "validation.py",
+        "stem": "validation"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/code_quality_expert.py",
+        "name": "code_quality_expert.py",
+        "stem": "code_quality_expert"
+      },
+      {
+        "path": "src/model_driven_projection/level1_granular_nodes.py",
+        "name": "level1_granular_nodes.py",
+        "stem": "level1_granular_nodes"
+      },
+      {
+        "path": "clewcrew-tools/src/clewcrew_tools/report_generator.py",
+        "name": "report_generator.py",
+        "stem": "report_generator"
+      },
+      {
+        "path": "backup/ghostbusters/ghostbusters/agents/mcp_expert.py",
+        "name": "mcp_expert.py",
+        "stem": "mcp_expert"
+      },
+      {
+        "path": "src/code_quality_system/integrations/ci_cd_integration.py",
+        "name": "ci_cd_integration.py",
+        "stem": "ci_cd_integration"
+      },
+      {
+        "path": "src/model_driven_projection/final_projection_system.py",
+        "name": "final_projection_system.py",
+        "stem": "final_projection_system"
+      },
+      {
+        "path": "proven_ASTAnalyzer.py",
+        "name": "proven_ASTAnalyzer.py",
+        "stem": "proven_ASTAnalyzer"
+      },
+      {
+        "path": "src/visualization/svg_engine.py",
+        "name": "svg_engine.py",
+        "stem": "svg_engine"
+      },
+      {
+        "path": "clewcrew-common/src/clewcrew_common/configuration.py",
+        "name": "configuration.py",
+        "stem": "configuration"
+      },
+      {
+        "path": "proven_QualityOrchestrator.py",
+        "name": "proven_QualityOrchestrator.py",
+        "stem": "proven_QualityOrchestrator"
+      },
+      {
+        "path": "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/tidb_integration.py",
+        "name": "tidb_integration.py",
+        "stem": "tidb_integration"
+      },
+      {
+        "path": "clewcrew-framework/src/clewcrew_framework/config_manager.py",
+        "name": "config_manager.py",
+        "stem": "config_manager"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:15.955654",
+  "version": "1.0.0"
+}

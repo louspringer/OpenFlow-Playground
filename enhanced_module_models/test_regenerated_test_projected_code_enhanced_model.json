@@ -1,0 +1,51 @@
+{
+  "module_name": "test_regenerated_test_projected_code",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "regenerated_test_projected_code.py"
+  ],
+  "file_count": 1,
+  "total_lines": 114,
+  "total_classes": 0,
+  "total_functions": 3,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\ntest_regenerated_test_projected_code\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 114\nClasses: 0\nFunctions: 3\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_regenerated_test_projected_code",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 114,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "regenerated_test_projected_code.py",
+        "name": "regenerated_test_projected_code.py",
+        "stem": "regenerated_test_projected_code"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.331205",
+  "version": "1.0.0"
+}

@@ -1,0 +1,338 @@
+{
+  "system_name": "Perfect Code Generator - CANNOT emit non-conforming code",
+  "description": "Integrates with linting tools and validates before emission",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PerfectCodeGenerator": {
+      "responsibility": "Generator that CANNOT emit non-conforming code\n    Integrates with linting tools and validates before emission",
+      "methods": [
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, model: CodeFile) -> str",
+          "docstring": "Generate code that MUST pass all linting\n        Never emits non-conforming code",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "CodeFile",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_perfect",
+          "signature": "_is_perfect(self, code: str) -> bool",
+          "docstring": "Check if code passes all linting checks",
+          "decorators": [],
+          "line_number": 65,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_ast",
+          "signature": "_validate_ast(self, code: str) -> bool",
+          "docstring": "Validate code parses correctly with AST",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_black_formatting",
+          "signature": "_check_black_formatting(self, code: str) -> bool",
+          "docstring": "Check if code is properly formatted with Black",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_black",
+          "signature": "_run_black(self, code: str) -> str",
+          "docstring": "Format code with Black",
+          "decorators": [],
+          "line_number": 117,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_flake8",
+          "signature": "_run_flake8(self, code: str) -> list[str]",
+          "docstring": "Check code with Flake8",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_linting_issues",
+          "signature": "_fix_linting_issues(self, code: str) -> str",
+          "docstring": "Automatically fix common linting issues",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_imports",
+          "signature": "_fix_imports(self, code: str) -> str",
+          "docstring": "Fix import-related issues",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unused_variables",
+          "signature": "_fix_unused_variables(self, code: str) -> str",
+          "docstring": "Fix unused variable issues",
+          "decorators": [],
+          "line_number": 180,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_f_strings",
+          "signature": "_fix_f_strings(self, code: str) -> str",
+          "docstring": "Fix f-string logging issues",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_return_statements",
+          "signature": "_fix_return_statements(self, code: str) -> str",
+          "docstring": "Fix unnecessary else after return statements",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_private_access",
+          "signature": "_fix_private_access(self, code: str) -> str",
+          "docstring": "Fix private member access issues",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "write_perfect_file",
+          "signature": "write_perfect_file(self, model: CodeFile, filepath: Path) -> bool",
+          "docstring": "Write perfect code file to disk",
+          "decorators": [],
+          "line_number": 236,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "CodeFile",
+              "default": null
+            },
+            {
+              "name": "filepath",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "CodeGenerator"
+      ],
+      "line_number": 21
+    }
+  },
+  "module_functions": [
+    {
+      "name": "generate_perfect_code_generator",
+      "signature": "generate_perfect_code_generator() -> CodeFile",
+      "docstring": "Generate the PerfectCodeGenerator using structured models",
+      "decorators": [],
+      "line_number": 255,
+      "return_type": "CodeFile",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Generate the perfect code generator",
+      "decorators": [],
+      "line_number": 404,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "import subprocess",
+    "from pathlib import Path",
+    "from code_generator import ClassDefinition",
+    "from code_generator import CodeFile",
+    "from code_generator import CodeGenerator",
+    "from code_generator import FunctionDefinition",
+    "from code_generator import ImportStatement"
+  ],
+  "module_docstring": "\nPerfect Code Generator - CANNOT emit non-conforming code\nIntegrates with linting tools and validates before emission\n",
+  "file_structure": {
+    "total_lines": 434,
+    "code_lines": 352,
+    "comment_lines": 24,
+    "blank_lines": 58,
+    "total_nodes": 1473,
+    "class_nodes": 1,
+    "function_nodes": 16,
+    "import_nodes": 5,
+    "expression_nodes": 57,
+    "assignment_nodes": 37,
+    "return_nodes": 26
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 434
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "filepath",
+    "f",
+    "imports",
+    "logging",
+    "enumerate",
+    "generator",
+    "output_path",
+    "result",
+    "perfect_generator_class",
+    "ImportStatement",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "msg",
+    "subprocess",
+    "errors",
+    "perfect_generator_file",
+    "fixed_lines",
+    "list",
+    "ast",
+    "SyntaxError",
+    "len",
+    "print",
+    "main",
+    "self",
+    "lines",
+    "success",
+    "code",
+    "bool",
+    "CodeFile",
+    "ValueError",
+    "flake8_errors",
+    "perfect_code",
+    "PerfectCodeGenerator",
+    "CodeGenerator",
+    "i",
+    "model",
+    "generate_perfect_code_generator",
+    "super",
+    "e",
+    "ClassDefinition",
+    "FunctionDefinition",
+    "attempts"
+  ]
+}

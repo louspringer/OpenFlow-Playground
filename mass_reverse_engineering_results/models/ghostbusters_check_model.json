@@ -1,0 +1,56 @@
+{
+  "system_name": "Ghostbusters Check Script - Uses Secure Shell Service",
+  "description": "NO MORE DIRECT SHELL COMMANDS! \ud83d\udee1\ufe0f",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import sys",
+    "from pathlib import Path",
+    "from src.ghostbusters.ghostbusters_orchestrator import run_ghostbusters",
+    "from src.secure_shell_service.elegant_client import secure_execute"
+  ],
+  "module_docstring": "\nGhostbusters Check Script - Uses Secure Shell Service\nNO MORE DIRECT SHELL COMMANDS! \ud83d\udee1\ufe0f\n",
+  "file_structure": {
+    "total_lines": 64,
+    "code_lines": 41,
+    "comment_lines": 5,
+    "blank_lines": 18,
+    "total_nodes": 225,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 5,
+    "expression_nodes": 19,
+    "assignment_nodes": 4,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 64
+  },
+  "used_names": [
+    "sys",
+    "len",
+    "__name__",
+    "str",
+    "Exception",
+    "Path",
+    "__file__",
+    "print",
+    "cleanup_result",
+    "run_ghostbusters_check",
+    "main",
+    "run_ghostbusters",
+    "secure_execute",
+    "asyncio",
+    "e",
+    "result",
+    "project_root"
+  ]
+}

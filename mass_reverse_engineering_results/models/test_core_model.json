@@ -1,0 +1,275 @@
+{
+  "system_name": "Tests for TiDB AgentX Hackathon core functionality",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestTiDBAgentOrchestrator": {
+      "responsibility": "Test the main TiDB agent orchestrator",
+      "methods": [
+        {
+          "name": "orchestrator",
+          "signature": "orchestrator(self) -> Any",
+          "docstring": "Create a fresh orchestrator for each test",
+          "decorators": [],
+          "line_number": 17,
+          "return_type": "Any",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "sample_agent",
+          "signature": "sample_agent(self) -> Any",
+          "docstring": "Sample agent configuration",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "sample_workflow",
+          "signature": "sample_workflow(self) -> Any",
+          "docstring": "Sample workflow configuration",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_register_agent",
+          "signature": "test_register_agent(self, orchestrator: Any, sample_agent: Any) -> Any",
+          "docstring": "Test agent registration",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_agent",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_create_workflow",
+          "signature": "test_create_workflow(self, orchestrator: Any, sample_agent: Any, sample_workflow: Any) -> Any",
+          "docstring": "Test workflow creation",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_agent",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_workflow",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_execute_workflow",
+          "signature": "test_execute_workflow(self, orchestrator: Any, sample_agent: Any, sample_workflow: Any) -> Any",
+          "docstring": "Test workflow execution",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_agent",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_workflow",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_list_agents",
+          "signature": "test_list_agents(self, orchestrator: Any, sample_agent: Any) -> Any",
+          "docstring": "Test listing agents",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_agent",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_list_workflows",
+          "signature": "test_list_workflows(self, orchestrator: Any, sample_workflow: Any) -> Any",
+          "docstring": "Test listing workflows",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "sample_workflow",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 13
+    },
+    "TestAgentConfig": {
+      "responsibility": "Test agent configuration model",
+      "methods": [
+        {
+          "name": "test_agent_config_creation",
+          "signature": "test_agent_config_creation(self) -> Any",
+          "docstring": "Test creating agent configuration",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_agent_config_defaults",
+          "signature": "test_agent_config_defaults(self) -> Any",
+          "docstring": "Test agent configuration defaults",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 109
+    },
+    "TestWorkflowConfig": {
+      "responsibility": "Test workflow configuration model",
+      "methods": [
+        {
+          "name": "test_workflow_config_creation",
+          "signature": "test_workflow_config_creation(self) -> Any",
+          "docstring": "Test creating workflow configuration",
+          "decorators": [],
+          "line_number": 137,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 134
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import pytest",
+    "from tidb_agentx_hackathon.core import AgentConfig",
+    "from tidb_agentx_hackathon.core import TiDBAgentOrchestrator",
+    "from tidb_agentx_hackathon.core import WorkflowConfig"
+  ],
+  "module_docstring": "Tests for TiDB AgentX Hackathon core functionality",
+  "file_structure": {
+    "total_lines": 156,
+    "code_lines": 109,
+    "comment_lines": 13,
+    "blank_lines": 34,
+    "total_nodes": 554,
+    "class_nodes": 3,
+    "function_nodes": 7,
+    "import_nodes": 3,
+    "expression_nodes": 19,
+    "assignment_nodes": 10,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 156
+  },
+  "used_names": [
+    "agents",
+    "len",
+    "sample_agent",
+    "agent",
+    "workflows",
+    "TiDBAgentOrchestrator",
+    "workflow",
+    "AgentConfig",
+    "WorkflowConfig",
+    "orchestrator",
+    "asyncio",
+    "sample_workflow",
+    "result",
+    "pytest"
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "system_name": "\ud83d\udd14 GKE Change Notification Setup",
+  "description": "Configures push notifications for GKE cluster changes using Cloud Monitoring",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "get_project_config",
+      "signature": "get_project_config() -> Any",
+      "docstring": "Get GKE project configuration from model",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "enable_required_apis",
+      "signature": "enable_required_apis(project_id: str) -> Any",
+      "docstring": "Enable required APIs for GKE notifications",
+      "decorators": [],
+      "line_number": 41,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_notification_channel",
+      "signature": "create_notification_channel(project_id: str, cluster_name: str) -> Any",
+      "docstring": "Create Cloud Monitoring notification channel",
+      "decorators": [],
+      "line_number": 67,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_alerting_policies",
+      "signature": "create_alerting_policies(project_id: str, cluster_name: str, channel_name: str) -> Any",
+      "docstring": "Create GKE alerting policies",
+      "decorators": [],
+      "line_number": 94,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "channel_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "setup_log_based_alerts",
+      "signature": "setup_log_based_alerts(project_id: str, cluster_name: str, channel_name: str) -> Any",
+      "docstring": "Setup log-based alerts for GKE events",
+      "decorators": [],
+      "line_number": 193,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "channel_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_webhook_endpoint",
+      "signature": "create_webhook_endpoint(project_id: str, cluster_name: str) -> Any",
+      "docstring": "Create webhook endpoint for notifications",
+      "decorators": [],
+      "line_number": 228,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "setup_email_notifications",
+      "signature": "setup_email_notifications(project_id: str, cluster_name: str, channel_name: str) -> Any",
+      "docstring": "Setup email notifications",
+      "decorators": [],
+      "line_number": 313,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "channel_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_dashboard",
+      "signature": "create_dashboard(project_id: str, cluster_name: str) -> Any",
+      "docstring": "Create GKE monitoring dashboard",
+      "decorators": [],
+      "line_number": 339,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "cluster_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 412,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Dict",
+    "from typing import Any",
+    "import shutil"
+  ],
+  "module_docstring": "\n\ud83d\udd14 GKE Change Notification Setup\nConfigures push notifications for GKE cluster changes using Cloud Monitoring\n",
+  "file_structure": {
+    "total_lines": 487,
+    "code_lines": 368,
+    "comment_lines": 32,
+    "blank_lines": 87,
+    "total_nodes": 1714,
+    "class_nodes": 0,
+    "function_nodes": 10,
+    "import_nodes": 6,
+    "expression_nodes": 97,
+    "assignment_nodes": 37,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 487
+  },
+  "used_names": [
+    "setup_log_based_alerts",
+    "dashboard_info",
+    "__name__",
+    "main_py",
+    "f",
+    "Exception",
+    "channel_name",
+    "function_dir",
+    "channel_info",
+    "sink_info",
+    "__file__",
+    "create_webhook_endpoint",
+    "cluster_name",
+    "create_alerting_policies",
+    "create_dashboard",
+    "created_policies",
+    "result",
+    "shutil",
+    "open",
+    "gcp_setup",
+    "api",
+    "model_path",
+    "str",
+    "webhook_url",
+    "dashboard_file",
+    "Path",
+    "policy_info",
+    "policy",
+    "subprocess",
+    "json",
+    "required_apis",
+    "function_name",
+    "sys",
+    "policy_file",
+    "sink_name",
+    "len",
+    "load_project_model",
+    "print",
+    "main",
+    "dashboard_config",
+    "gcp_config",
+    "project_id",
+    "hackathon_config",
+    "dashboard_name",
+    "policies",
+    "enable_required_apis",
+    "function_info",
+    "email_channel",
+    "KeyError",
+    "create_notification_channel",
+    "model",
+    "get_project_config",
+    "requirements_txt",
+    "e",
+    "setup_email_notifications"
+  ]
+}

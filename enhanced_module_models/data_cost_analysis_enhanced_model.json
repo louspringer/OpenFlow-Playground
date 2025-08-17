@@ -1,0 +1,57 @@
+{
+  "module_name": "data_cost_analysis",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "data/cost_analysis.py",
+    "data/cost_analysis.py"
+  ],
+  "file_count": 2,
+  "total_lines": 614,
+  "total_classes": 0,
+  "total_functions": 10,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\ndata_cost_analysis\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 614\nClasses: 0\nFunctions: 10\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "data_cost_analysis",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 614,
+      "total_classes": 0,
+      "total_functions": 10,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "data/cost_analysis.py",
+        "name": "cost_analysis.py",
+        "stem": "cost_analysis"
+      },
+      {
+        "path": "data/cost_analysis.py",
+        "name": "cost_analysis.py",
+        "stem": "cost_analysis"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.219009",
+  "version": "1.0.0"
+}

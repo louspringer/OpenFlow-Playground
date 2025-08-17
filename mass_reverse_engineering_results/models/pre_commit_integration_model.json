@@ -1,0 +1,255 @@
+{
+  "system_name": "Pre-commit Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PreCommitIntegration": {
+      "responsibility": "Integrates quality enforcement with git pre-commit hooks",
+      "methods": [
+        {
+          "name": "run_pre_commit_check",
+          "signature": "run_pre_commit_check(self) -> bool",
+          "docstring": "Run quality check for pre-commit hook",
+          "decorators": [],
+          "line_number": 29,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_git_repository",
+          "signature": "_is_git_repository(self) -> bool",
+          "docstring": "Check if current directory is a git repository",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_staged_files",
+          "signature": "_get_staged_files(self) -> list[Path]",
+          "docstring": "Get list of staged files",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "list[Path]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_full_quality_check",
+          "signature": "_run_full_quality_check(self, staged_files: list[Path]) -> dict[Tuple[str, Any]]",
+          "docstring": "Run full quality check on staged files",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "staged_files",
+              "type": "list[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_staged_files",
+          "signature": "_analyze_staged_files(self, staged_files: list[Path]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze staged files for quality issues",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "staged_files",
+              "type": "list[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_python_quality",
+          "signature": "_check_python_quality(self, python_files: list[Path]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Check Python files for quality issues",
+          "decorators": [],
+          "line_number": 143,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "python_files",
+              "type": "list[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_security_issues",
+          "signature": "_check_security_issues(self, staged_files: list[Path]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Check staged files for security issues",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "staged_files",
+              "type": "list[Path]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_test_coverage",
+          "signature": "_get_test_coverage(self) -> float",
+          "docstring": "Get current test coverage percentage",
+          "decorators": [],
+          "line_number": 278,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "_print_failure_details",
+          "signature": "_print_failure_details(self, result: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Print detailed failure information",
+          "decorators": [],
+          "line_number": 305,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "result",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "install_pre_commit_hook",
+          "signature": "install_pre_commit_hook(self) -> bool",
+          "docstring": "Install pre-commit hook in the current repository",
+          "decorators": [],
+          "line_number": 329,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "uninstall_pre_commit_hook",
+          "signature": "uninstall_pre_commit_hook(self) -> bool",
+          "docstring": "Uninstall pre-commit hook",
+          "decorators": [],
+          "line_number": 360,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 17
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from src.code_quality_system.quality_enforcer import QualityEnforcer",
+    "import re",
+    "import xml.etree.ElementTree as ET"
+  ],
+  "module_docstring": "\nPre-commit Integration\n\nIntegrates quality enforcement with git pre-commit hooks.\n",
+  "file_structure": {
+    "total_lines": 374,
+    "code_lines": 283,
+    "comment_lines": 24,
+    "blank_lines": 67,
+    "total_nodes": 1536,
+    "class_nodes": 1,
+    "function_nodes": 12,
+    "import_nodes": 8,
+    "expression_nodes": 52,
+    "assignment_nodes": 41,
+    "return_nodes": 25
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 374
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "analysis_results",
+    "py_file",
+    "f",
+    "hook_content",
+    "python_files",
+    "logging",
+    "pre_commit_hook",
+    "enumerate",
+    "range",
+    "QualityEnforcer",
+    "next_line",
+    "dict",
+    "staged_files",
+    "float",
+    "result",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "coverage_file",
+    "ET",
+    "subprocess",
+    "pattern",
+    "list",
+    "root",
+    "min",
+    "sys",
+    "len",
+    "file_path",
+    "gate",
+    "print",
+    "self",
+    "lines",
+    "line_rate",
+    "htmlcov_dir",
+    "bool",
+    "git_hooks_dir",
+    "status_icon",
+    "coverage_elem",
+    "rec",
+    "re",
+    "j",
+    "credential_patterns",
+    "dangerous_patterns",
+    "tree",
+    "i",
+    "security_issues",
+    "docstring_found",
+    "e",
+    "project_path",
+    "Any",
+    "issues",
+    "test_files"
+  ]
+}

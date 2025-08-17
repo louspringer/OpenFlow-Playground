@@ -1,0 +1,351 @@
+{
+  "system_name": "AST-Based Usage Tracker",
+  "description": "Analyzes generated code to find what's actually used vs. what's imported",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "UsageAnalysis": {
+      "responsibility": "Results of AST usage analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "ASTUsageTracker": {
+      "responsibility": "AST-based usage tracker that analyzes Python code to find actual usage",
+      "methods": [
+        {
+          "name": "analyze_code",
+          "signature": "analyze_code(self, code: str) -> UsageAnalysis",
+          "docstring": "Analyze code using AST to find what's actually used",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "UsageAnalysis",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_visit_node",
+          "signature": "_visit_node(self, node: Any) -> None",
+          "docstring": "Recursively visit AST nodes to extract usage",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_function_mypy_rules",
+          "signature": "_analyze_function_mypy_rules(self, node: Any) -> None",
+          "docstring": "Analyze function with mypy type checking rules",
+          "decorators": [],
+          "line_number": 97,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_for_unexpected_returns",
+          "signature": "_check_for_unexpected_returns(self, node: Any) -> None",
+          "docstring": "Check for unexpected return statements in -> None functions",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "find_unused_imports",
+          "signature": "find_unused_imports(self, imports: list[str], used_names: set[str]) -> set[str]",
+          "docstring": "Find imports that are not actually used",
+          "decorators": [],
+          "line_number": 134,
+          "return_type": "set[str]",
+          "parameters": [
+            {
+              "name": "imports",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "used_names",
+              "type": "set[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "find_unused_variables",
+          "signature": "find_unused_variables(self, assignments: list[str], used_names: set[str]) -> set[str]",
+          "docstring": "Find variables that are assigned but not used",
+          "decorators": [],
+          "line_number": 151,
+          "return_type": "set[str]",
+          "parameters": [
+            {
+              "name": "assignments",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "used_names",
+              "type": "set[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 28
+    },
+    "ASTBasedCodeGenerator": {
+      "responsibility": "Code generator that uses AST analysis to ensure only used imports/variables are included",
+      "methods": [
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, initial_code: str) -> str",
+          "docstring": "Generate perfect code with mypy compliance",
+          "decorators": [],
+          "line_number": 175,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "initial_code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_mypy_fixes",
+          "signature": "_apply_mypy_fixes(self, code: str, analysis: UsageAnalysis) -> str",
+          "docstring": "Apply mypy fixes to code",
+          "decorators": [],
+          "line_number": 186,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_has_return_statement",
+          "signature": "_has_return_statement(self, node: Any) -> bool",
+          "docstring": "Check if function has return statements",
+          "decorators": [],
+          "line_number": 207,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_perfect_code_from_analysis",
+          "signature": "_generate_perfect_code_from_analysis(self, initial_code: str, analysis: UsageAnalysis) -> str",
+          "docstring": "Generate perfect code by analyzing usage and removing unused elements",
+          "decorators": [],
+          "line_number": 211,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "initial_code",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_used",
+          "signature": "_is_import_used(self, import_line: str, analysis: UsageAnalysis) -> bool",
+          "docstring": "Check if an import line is actually used",
+          "decorators": [],
+          "line_number": 263,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "import_line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 167
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_ast_usage_tracker",
+      "signature": "test_ast_usage_tracker() -> None",
+      "docstring": "Test the AST usage tracker with sample code",
+      "decorators": [],
+      "line_number": 276,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field"
+  ],
+  "module_docstring": "\nAST-Based Usage Tracker\nAnalyzes generated code to find what's actually used vs. what's imported\n",
+  "file_structure": {
+    "total_lines": 323,
+    "code_lines": 229,
+    "comment_lines": 33,
+    "blank_lines": 61,
+    "total_nodes": 1673,
+    "class_nodes": 3,
+    "function_nodes": 14,
+    "import_nodes": 2,
+    "expression_nodes": 53,
+    "assignment_nodes": 36,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 323
+  },
+  "used_names": [
+    "filtered_lines",
+    "__name__",
+    "imports",
+    "unused",
+    "UsageAnalysis",
+    "node",
+    "generator",
+    "mypy_errors",
+    "imp",
+    "set",
+    "used_modules",
+    "fixed_code",
+    "import_line",
+    "child",
+    "analysis",
+    "initial_code",
+    "str",
+    "line",
+    "used_attributes",
+    "imported_name",
+    "sample_code",
+    "missing_param_types",
+    "ASTBasedCodeGenerator",
+    "item",
+    "dataclass",
+    "list",
+    "functions_without_param_types",
+    "ast",
+    "used_names",
+    "SyntaxError",
+    "test_ast_usage_tracker",
+    "len",
+    "assignment",
+    "functions_without_return_types",
+    "used_functions",
+    "print",
+    "self",
+    "lines",
+    "unused_variables",
+    "alias",
+    "fixed_line",
+    "bool",
+    "unused_imports",
+    "code",
+    "tracker",
+    "field",
+    "line_num",
+    "perfect_code",
+    "final_lines",
+    "tree",
+    "used_classes",
+    "var_name",
+    "arg",
+    "func",
+    "ASTUsageTracker",
+    "isinstance",
+    "e",
+    "assignments",
+    "any"
+  ]
+}

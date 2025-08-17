@@ -1,0 +1,485 @@
+{
+  "system_name": "Enhanced Reverse Engineering using Enhanced AST Parser",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedReverseEngineer": {
+      "responsibility": "Enhanced Python code reverse engineer using AST analysis",
+      "methods": [
+        {
+          "name": "_cache_tree_nodes",
+          "signature": "_cache_tree_nodes(self, tree: Any) -> None",
+          "docstring": "Cache AST nodes to avoid multiple ast.walk() calls",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_cached_nodes",
+          "signature": "_get_cached_nodes(self) -> List[Any]",
+          "docstring": "Get cached AST nodes or empty list if not available",
+          "decorators": [],
+          "line_number": 67,
+          "return_type": "List[Any]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "reverse_engineer",
+          "signature": "reverse_engineer(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Reverse engineer Python file to enhanced model",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_module_docstring",
+          "signature": "_extract_module_docstring(self, tree: Any, content: str) -> None",
+          "docstring": "Extract comprehensive module docstring",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_module_docstring",
+          "signature": "_parse_module_docstring(self, docstring: str) -> None",
+          "docstring": "Parse module docstring for metadata",
+          "decorators": [],
+          "line_number": 148,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "docstring",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_file_metadata",
+          "signature": "_extract_file_metadata(self, tree: Any, content: str) -> None",
+          "docstring": "Extract file-level metadata like executable status, test status, etc.",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports",
+          "signature": "_extract_imports(self, tree: Any) -> None",
+          "docstring": "Extract import statements with enhanced analysis and usage detection",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes",
+          "signature": "_extract_classes(self, tree: Any) -> None",
+          "docstring": "Extract class definitions with enhanced analysis",
+          "decorators": [],
+          "line_number": 290,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_class_info_enhanced",
+          "signature": "_extract_class_info_enhanced(self, class_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract comprehensive class information",
+          "decorators": [],
+          "line_number": 305,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "class_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_method_info_enhanced",
+          "signature": "_extract_method_info_enhanced(self, func_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract comprehensive method information",
+          "decorators": [],
+          "line_number": 363,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_async_method_info_enhanced",
+          "signature": "_extract_async_method_info_enhanced(self, func_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract comprehensive async method information",
+          "decorators": [],
+          "line_number": 409,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_method_signature",
+          "signature": "_build_method_signature(self, func_node: Any) -> str",
+          "docstring": "Build complete method signature string",
+          "decorators": [],
+          "line_number": 456,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_parameters",
+          "signature": "_extract_parameters(self, args: Any) -> List[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract detailed parameter information",
+          "decorators": [],
+          "line_number": 475,
+          "return_type": "List[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "args",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_type_annotation",
+          "signature": "_extract_type_annotation(self, annotation: Any) -> str",
+          "docstring": "Extract type annotation with enhanced analysis",
+          "decorators": [],
+          "line_number": 503,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "annotation",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_async_method_signature",
+          "signature": "_build_async_method_signature(self, func_node: Any) -> str",
+          "docstring": "Build complete async method signature string",
+          "decorators": [],
+          "line_number": 527,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_module_functions",
+          "signature": "_extract_module_functions(self, tree: Any) -> None",
+          "docstring": "Extract module-level functions (not inside classes)",
+          "decorators": [],
+          "line_number": 546,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_inside_class",
+          "signature": "_is_inside_class(self, func_node: Any) -> bool",
+          "docstring": "Check if a function is inside a class",
+          "decorators": [],
+          "line_number": 565,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_function_info_enhanced",
+          "signature": "_extract_function_info_enhanced(self, func_node: Any) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Extract comprehensive function information",
+          "decorators": [],
+          "line_number": 586,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_function_signature",
+          "signature": "_build_function_signature(self, func_node: Any) -> str",
+          "docstring": "Build complete function signature string",
+          "decorators": [],
+          "line_number": 612,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "func_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_file_structure",
+          "signature": "_extract_file_structure(self, tree: Any, content: str) -> None",
+          "docstring": "Extract overall file structure information",
+          "decorators": [],
+          "line_number": 630,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 26
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to test enhanced reverse engineering",
+      "decorators": [],
+      "line_number": 664,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import json",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Optional",
+    "from typing import List",
+    "from enhanced_ast_wrapper import get_enhanced_ast_linter",
+    "from enhanced_ast_wrapper import get_enhanced_ast_linter"
+  ],
+  "module_docstring": "\nEnhanced Reverse Engineering using Enhanced AST Parser\n",
+  "file_structure": {
+    "total_lines": 723,
+    "code_lines": 554,
+    "comment_lines": 54,
+    "blank_lines": 115,
+    "total_nodes": 4777,
+    "class_nodes": 1,
+    "function_nodes": 22,
+    "import_nodes": 5,
+    "expression_nodes": 165,
+    "assignment_nodes": 98,
+    "return_nodes": 32
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 723
+  },
+  "used_names": [
+    "Exception",
+    "imports",
+    "class_info",
+    "walk_result",
+    "EnhancedReverseEngineer",
+    "get_enhanced_ast_linter",
+    "module",
+    "ImportError",
+    "types",
+    "item",
+    "ast",
+    "list",
+    "used_names",
+    "t",
+    "func_node",
+    "print",
+    "getattr",
+    "bool",
+    "type",
+    "model",
+    "func",
+    "__name__",
+    "base_type",
+    "import_type",
+    "level",
+    "has_main_block",
+    "Dict",
+    "line",
+    "return_type",
+    "ASTEnhancedLinter",
+    "func_info",
+    "decorator",
+    "param_type",
+    "class_node",
+    "functions",
+    "comp_info",
+    "linter_class",
+    "parameters",
+    "IndexError",
+    "file_type",
+    "arg",
+    "has_shebang",
+    "f",
+    "node",
+    "structure",
+    "nodes_list",
+    "ENHANCED_AST_AVAILABLE",
+    "source_lines",
+    "content",
+    "open",
+    "method_info",
+    "List",
+    "param_str",
+    "all_nodes",
+    "repr",
+    "docstring",
+    "n",
+    "param_info",
+    "comp_name",
+    "main",
+    "alias",
+    "annotation",
+    "tree",
+    "args",
+    "class_name",
+    "Optional",
+    "isinstance",
+    "Any",
+    "reverse_engineer",
+    "import_nodes",
+    "set",
+    "param_name",
+    "is_test_method",
+    "str",
+    "hasattr",
+    "slice_type",
+    "json",
+    "len",
+    "file_path",
+    "locals",
+    "self",
+    "lines",
+    "ValueError",
+    "params",
+    "output_file",
+    "int",
+    "e",
+    "is_test_file",
+    "base"
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "system_name": "Quality Enforcer",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityEnforcer": {
+      "responsibility": "Main quality enforcement engine",
+      "methods": [
+        {
+          "name": "enforce_quality",
+          "signature": "enforce_quality(self, analysis_results: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Main quality enforcement method",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_enforcement_report",
+          "signature": "_generate_enforcement_report(self, metrics: QualityMetrics, gate_results: list[GateResult], gate_summary: dict[Tuple[str, Any]], can_proceed: bool) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive enforcement report",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "metrics",
+              "type": "QualityMetrics",
+              "default": null
+            },
+            {
+              "name": "gate_results",
+              "type": "list[GateResult]",
+              "default": null
+            },
+            {
+              "name": "gate_summary",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "can_proceed",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self, metrics: QualityMetrics, gate_results: list[GateResult]) -> list[str]",
+          "docstring": "Generate actionable recommendations based on results",
+          "decorators": [],
+          "line_number": 124,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "metrics",
+              "type": "QualityMetrics",
+              "default": null
+            },
+            {
+              "name": "gate_results",
+              "type": "list[GateResult]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_take_enforcement_actions",
+          "signature": "_take_enforcement_actions(self, blocking_gates: list[GateResult], enforcement_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Take enforcement actions when gates fail",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "blocking_gates",
+              "type": "list[GateResult]",
+              "default": null
+            },
+            {
+              "name": "enforcement_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_save_metrics",
+          "signature": "_save_metrics(self, metrics: QualityMetrics) -> None",
+          "docstring": "Save quality metrics for tracking and trending",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "metrics",
+              "type": "QualityMetrics",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "configure_enforcement",
+          "signature": "configure_enforcement(self, enforcement_level: str, auto_fix_enabled: bool, block_on_failure: bool) -> None",
+          "docstring": "Configure enforcement behavior",
+          "decorators": [],
+          "line_number": 211,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "enforcement_level",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "auto_fix_enabled",
+              "type": "bool",
+              "default": null
+            },
+            {
+              "name": "block_on_failure",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_trends",
+          "signature": "get_quality_trends(self, days: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Get quality trends over time",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_quick_quality_check",
+          "signature": "run_quick_quality_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run a quick quality check without full analysis",
+          "decorators": [],
+          "line_number": 283,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    },
+    "QualityEnforcementError": {
+      "responsibility": "Exception raised when quality enforcement blocks an operation",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Exception"
+      ],
+      "line_number": 313
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from quality_gates import GateResult",
+    "from quality_gates import QualityGateManager",
+    "from quality_metrics import QualityMetrics",
+    "from quality_metrics import QualityMetricsCalculator",
+    "import json",
+    "from datetime import datetime",
+    "from datetime import timedelta"
+  ],
+  "module_docstring": "\nQuality Enforcer\n\nCoordinates quality metrics calculation, gate evaluation, and enforcement actions.\n",
+  "file_structure": {
+    "total_lines": 315,
+    "code_lines": 226,
+    "comment_lines": 33,
+    "blank_lines": 56,
+    "total_nodes": 1314,
+    "class_nodes": 2,
+    "function_nodes": 9,
+    "import_nodes": 7,
+    "expression_nodes": 38,
+    "assignment_nodes": 38,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 315
+  },
+  "used_names": [
+    "failed_gates",
+    "historical_files",
+    "Exception",
+    "__name__",
+    "f",
+    "analysis_results",
+    "logging",
+    "enforcement_file",
+    "QualityEnforcementError",
+    "QualityGateManager",
+    "blocking_gates",
+    "trends",
+    "sorted",
+    "timedelta",
+    "Any",
+    "dict",
+    "result",
+    "QualityMetricsCalculator",
+    "open",
+    "r",
+    "str",
+    "metrics",
+    "metrics_dir",
+    "Path",
+    "gate_results",
+    "block_on_failure",
+    "performance_score",
+    "msg",
+    "historical_file",
+    "metrics_file",
+    "enforcement_report",
+    "failed_gate",
+    "list",
+    "json",
+    "cutoff_date",
+    "score_breakdown",
+    "len",
+    "can_proceed",
+    "days",
+    "gate",
+    "current_metrics_file",
+    "QualityMetrics",
+    "self",
+    "bool",
+    "ValueError",
+    "gate_summary",
+    "datetime",
+    "current_file",
+    "timestamp",
+    "enforcement_level",
+    "auto_fix_enabled",
+    "GateResult",
+    "recommendations",
+    "int",
+    "e",
+    "project_path",
+    "score"
+  ]
+}

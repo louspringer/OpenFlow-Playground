@@ -1,0 +1,236 @@
+{
+  "system_name": "Base Expert Class for clewcrew Agents",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "HallucinationResult": {
+      "responsibility": "Result from hallucination detection",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 21
+    },
+    "BaseExpert": {
+      "responsibility": "Base class for all expert agents\n    \n    CRITICAL: This class enforces the principle that agents analyze existing data,\n    they do NOT run expensive tools. All agents must follow this principle.",
+      "methods": [
+        {
+          "name": "detect_hallucinations",
+          "signature": "detect_hallucinations(self, project_path: Path) -> HallucinationResult",
+          "docstring": "Detect hallucinations by analyzing existing tool outputs and logs\n        \n        CRITICAL REQUIREMENTS:\n        - MUST analyze existing files, logs, and tool outputs\n        - MUST NOT run expensive tools (flake8, black, mypy, etc.)\n        - MUST be lightweight and efficient\n        - MUST provide actionable recommendations based on existing data",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 41,
+          "return_type": "HallucinationResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "validate_findings",
+          "signature": "validate_findings(self, findings: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate findings from hallucination detection",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "findings",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, issues: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Execute recovery actions for detected issues",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_confidence",
+          "signature": "calculate_confidence(self, findings: list[dict[Tuple[str, Any]]]) -> float",
+          "docstring": "Calculate confidence score based on findings",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "findings",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_quality_metrics",
+          "signature": "generate_quality_metrics(self, project_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate quality metrics for this expert's domain.\n        \n        This method should be implemented by subclasses to provide\n        domain-specific quality metrics that can be integrated with\n        the quality system.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            Dictionary containing quality metrics and scores",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "provide_quality_recommendations",
+          "signature": "provide_quality_recommendations(self, project_path: Path) -> list[str]",
+          "docstring": "Provide quality improvement recommendations for this expert's domain.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            List of actionable quality improvement recommendations",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "assess_quality_impact",
+          "signature": "assess_quality_impact(self, changes: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Assess the impact of proposed changes on quality metrics.\n        \n        Args:\n            changes: List of proposed changes\n            \n        Returns:\n            Dictionary containing impact assessment",
+          "decorators": [],
+          "line_number": 119,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "changes",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_name",
+          "signature": "get_quality_metric_name(self) -> str",
+          "docstring": "Get the name of the quality metric this expert contributes to.\n        \n        Returns:\n            String identifier for the quality metric",
+          "decorators": [],
+          "line_number": 136,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_weight",
+          "signature": "get_quality_metric_weight(self) -> float",
+          "docstring": "Get the weight of this expert's quality metric.\n        \n        Returns:\n            Float weight for the quality metric (higher = more important)",
+          "decorators": [],
+          "line_number": 146,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "ABC"
+      ],
+      "line_number": 29
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from abc import ABC",
+    "from abc import abstractmethod",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nBase Expert Class for clewcrew Agents\n\nCRITICAL REQUIREMENTS:\n- Agents MUST analyze existing tool outputs, logs, and artifacts\n- Agents MUST NOT run expensive linting, testing, or analysis tools\n- Agents MUST provide recommendations based on existing data\n- Agents MUST be lightweight and efficient\n- This is a FUNDAMENTAL principle - do not violate it\n",
+  "file_structure": {
+    "total_lines": 155,
+    "code_lines": 112,
+    "comment_lines": 10,
+    "blank_lines": 33,
+    "total_nodes": 397,
+    "class_nodes": 2,
+    "function_nodes": 4,
+    "import_nodes": 5,
+    "expression_nodes": 12,
+    "assignment_nodes": 6,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 155
+  },
+  "used_names": [
+    "f",
+    "abstractmethod",
+    "logging",
+    "findings",
+    "dict",
+    "float",
+    "critical_priority",
+    "str",
+    "Path",
+    "ABC",
+    "list",
+    "dataclass",
+    "min",
+    "len",
+    "hallucinations",
+    "self",
+    "max",
+    "base_confidence",
+    "HallucinationResult",
+    "recommendations",
+    "high_priority",
+    "Any",
+    "issues",
+    "confidence"
+  ]
+}

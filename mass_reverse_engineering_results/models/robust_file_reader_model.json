@@ -1,0 +1,141 @@
+{
+  "system_name": "Robust File Reader",
+  "description": "Handles multiple encodings with fallback strategy",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RobustFileReader": {
+      "responsibility": "Reads files with multiple encoding support",
+      "methods": [
+        {
+          "name": "read_file",
+          "signature": "read_file(self, file_path: Path) -> Optional[str]",
+          "docstring": "Read file with multiple encoding attempts",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "can_read_file",
+          "signature": "can_read_file(self, file_path: Path) -> bool",
+          "docstring": "Check if file can be read with any encoding",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_failed_files_report",
+          "signature": "get_failed_files_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get report of files that couldn't be read",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_suggest_new_encodings",
+          "signature": "_suggest_new_encodings(self) -> list[str]",
+          "docstring": "Suggest new encodings based on failures",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test the robust file reader",
+      "decorators": [],
+      "line_number": 71,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nRobust File Reader\nHandles multiple encodings with fallback strategy\n",
+  "file_structure": {
+    "total_lines": 104,
+    "code_lines": 77,
+    "comment_lines": 8,
+    "blank_lines": 19,
+    "total_nodes": 408,
+    "class_nodes": 1,
+    "function_nodes": 6,
+    "import_nodes": 3,
+    "expression_nodes": 16,
+    "assignment_nodes": 9,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 104
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "logging",
+    "normal_file",
+    "dict",
+    "reader",
+    "content",
+    "RobustFileReader",
+    "str",
+    "Path",
+    "test_file",
+    "list",
+    "encoding",
+    "len",
+    "UnicodeDecodeError",
+    "file_path",
+    "print",
+    "encodings",
+    "main",
+    "self",
+    "file",
+    "report",
+    "bool",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

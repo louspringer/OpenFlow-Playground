@@ -1,0 +1,80 @@
+{
+  "system_name": "Jupyter Notebook Monitor",
+  "description": "Monitors Jupyter server logs and notebook execution in real-time",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "monitor_jupyter_logs",
+      "signature": "monitor_jupyter_logs() -> Any",
+      "docstring": "Monitor Jupyter server logs and notebook activity",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "check_notebook_status",
+      "signature": "check_notebook_status() -> Any",
+      "docstring": "Check the current status of the notebook",
+      "decorators": [],
+      "line_number": 83,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "import time",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "import json"
+  ],
+  "module_docstring": "\nJupyter Notebook Monitor\nMonitors Jupyter server logs and notebook execution in real-time\n",
+  "file_structure": {
+    "total_lines": 121,
+    "code_lines": 94,
+    "comment_lines": 7,
+    "blank_lines": 20,
+    "total_nodes": 465,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 6,
+    "expression_nodes": 35,
+    "assignment_nodes": 8,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 121
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "monitor_jupyter_logs",
+    "check_notebook_status",
+    "result",
+    "open",
+    "Path",
+    "notebook_path",
+    "subprocess",
+    "KeyboardInterrupt",
+    "last_modified",
+    "json",
+    "sys",
+    "len",
+    "time",
+    "print",
+    "datetime",
+    "data",
+    "current_modified",
+    "e"
+  ]
+}

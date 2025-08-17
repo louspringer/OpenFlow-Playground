@@ -1,0 +1,229 @@
+{
+  "system_name": "Cypher Validator - Uses Neo4j Python API to validate Cypher syntax",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CypherValidator": {
+      "responsibility": "Validates Cypher queries using Neo4j Python API",
+      "methods": [
+        {
+          "name": "close",
+          "signature": "close(self) -> Any",
+          "docstring": "Close the database connection",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_query",
+          "signature": "validate_query(self, query: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate a single Cypher query",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "query",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_file",
+          "signature": "validate_file(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate all Cypher queries in a file",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_split_queries",
+          "signature": "_split_queries(self, content: str) -> list[str]",
+          "docstring": "Split content into individual Cypher queries",
+          "decorators": [],
+          "line_number": 90,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_cypher_file",
+          "signature": "fix_cypher_file(self, input_file: str, output_file: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Fix common Cypher syntax issues in a file",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "input_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_cypher_syntax",
+          "signature": "_fix_cypher_syntax(self, content: str) -> str",
+          "docstring": "Fix common Cypher syntax issues",
+          "decorators": [],
+          "line_number": 156,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_fixes_applied",
+          "signature": "_get_fixes_applied(self, original: str, fixed: str) -> list[str]",
+          "docstring": "Get list of fixes applied",
+          "decorators": [],
+          "line_number": 190,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "original",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "fixed",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function for Cypher validation",
+      "decorators": [],
+      "line_number": 206,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from neo4j import GraphDatabase"
+  ],
+  "module_docstring": "\nCypher Validator - Uses Neo4j Python API to validate Cypher syntax\n\nThis script validates Cypher queries using our existing Neo4j database\nthrough the official Python driver instead of subprocess calls.\n",
+  "file_structure": {
+    "total_lines": 252,
+    "code_lines": 174,
+    "comment_lines": 24,
+    "blank_lines": 54,
+    "total_nodes": 1001,
+    "class_nodes": 1,
+    "function_nodes": 9,
+    "import_nodes": 3,
+    "expression_nodes": 34,
+    "assignment_nodes": 31,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 252
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "password",
+    "enumerate",
+    "GraphDatabase",
+    "original_semicolons",
+    "queries",
+    "username",
+    "input_file",
+    "dict",
+    "query",
+    "valid_count",
+    "content",
+    "result",
+    "open",
+    "fixed",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "fix_result",
+    "CypherValidator",
+    "fixed_semicolons",
+    "fixes",
+    "fixed_lines",
+    "list",
+    "uri",
+    "len",
+    "clean_query",
+    "file_path",
+    "stripped",
+    "session",
+    "main",
+    "print",
+    "self",
+    "lines",
+    "results",
+    "q",
+    "validation_result",
+    "original",
+    "output_file",
+    "in_query",
+    "i",
+    "validator",
+    "invalid_count",
+    "e",
+    "Any",
+    "current_query"
+  ]
+}

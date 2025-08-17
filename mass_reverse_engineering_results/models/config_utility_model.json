@@ -1,0 +1,170 @@
+{
+  "system_name": "Config Utility: Configuration management utilities.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ConfigUtility": {
+      "responsibility": "Configuration utility tools.",
+      "methods": [
+        {
+          "name": "load_config",
+          "signature": "load_config(self, file_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Load configuration from file.\n\n        Args:\n            file_path: Path to configuration file\n\n        Returns:\n            Configuration data",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_config",
+          "signature": "save_config(self, config: Dict[Tuple[str, Any]], file_path: str) -> str",
+          "docstring": "Save configuration to file.\n\n        Args:\n            config: Configuration data\n            file_path: Output file path\n\n        Returns:\n            Saved file path",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "config",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "convert_config",
+          "signature": "convert_config(self, input_path: str, output_path: str) -> str",
+          "docstring": "Convert configuration between formats.\n\n        Args:\n            input_path: Input configuration file\n            output_path: Output configuration file\n\n        Returns:\n            Output file path",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "input_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "merge_configs",
+          "signature": "merge_configs(self, configs: list, output_path: str) -> str",
+          "docstring": "Merge multiple configuration files.\n\n        Args:\n            configs: List of configuration file paths\n            output_path: Output configuration file\n\n        Returns:\n            Output file path",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "configs",
+              "type": "list",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_config",
+          "signature": "validate_config(self, config: Dict[Tuple[str, Any]], schema: Dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate configuration against schema.\n\n        Args:\n            config: Configuration to validate\n            schema: Validation schema\n\n        Returns:\n            True if valid, False otherwise",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "config",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "schema",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from clewcrew_common.file_ops import FileOperations"
+  ],
+  "module_docstring": "\nConfig Utility: Configuration management utilities.\n\nProvides configuration file management, validation, and conversion tools.\n",
+  "file_structure": {
+    "total_lines": 102,
+    "code_lines": 74,
+    "comment_lines": 1,
+    "blank_lines": 27,
+    "total_nodes": 309,
+    "class_nodes": 1,
+    "function_nodes": 6,
+    "import_nodes": 2,
+    "expression_nodes": 10,
+    "assignment_nodes": 5,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 102
+  },
+  "used_names": [
+    "input_path",
+    "merged_config",
+    "str",
+    "required_fields",
+    "file_path",
+    "field",
+    "output_path",
+    "config",
+    "self",
+    "FileOperations",
+    "configs",
+    "schema",
+    "ValueError",
+    "bool",
+    "Any",
+    "list",
+    "Dict",
+    "config_path"
+  ]
+}

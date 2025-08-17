@@ -1,0 +1,70 @@
+{
+  "system_name": "Test script for the SVG visualization system",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_visualization_system",
+      "signature": "test_visualization_system() -> Any",
+      "docstring": "Test the visualization system components",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from src.visualization.svg_engine import SVGVisualizationEngine",
+    "from src.visualization.comprehensive_dashboard import ComprehensiveDashboard"
+  ],
+  "module_docstring": "\nTest script for the SVG visualization system\n",
+  "file_structure": {
+    "total_lines": 85,
+    "code_lines": 61,
+    "comment_lines": 8,
+    "blank_lines": 16,
+    "total_nodes": 275,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 4,
+    "expression_nodes": 19,
+    "assignment_nodes": 8,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 85
+  },
+  "used_names": [
+    "viz_modules",
+    "test_visualization_system",
+    "__name__",
+    "svg_files",
+    "Exception",
+    "dashboard_class",
+    "result",
+    "svg_file",
+    "Path",
+    "module",
+    "ComprehensiveDashboard",
+    "ImportError",
+    "list",
+    "sys",
+    "len",
+    "print",
+    "SVGVisualizationEngine",
+    "success",
+    "engine",
+    "data_sources",
+    "svg_dir",
+    "e"
+  ]
+}

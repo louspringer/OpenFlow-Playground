@@ -1,0 +1,146 @@
+{
+  "system_name": "Simple validation script for Healthcare CDC requirements (27-32).",
+  "description": "Based on GA Gemini 2.5 Pro implementation plan.",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> dict[Tuple[str, Any]]",
+      "docstring": "Load project model registry.",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_27_hipaa_compliance_validation",
+      "signature": "test_requirement_27_hipaa_compliance_validation() -> None",
+      "docstring": "Test HIPAA compliance validation requirement.",
+      "decorators": [],
+      "line_number": 23,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_28_phi_detection_validation",
+      "signature": "test_requirement_28_phi_detection_validation() -> None",
+      "docstring": "Test PHI detection and validation requirement.",
+      "decorators": [],
+      "line_number": 28,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_29_immutable_audit_logging",
+      "signature": "test_requirement_29_immutable_audit_logging() -> None",
+      "docstring": "Test immutable audit logging requirement.",
+      "decorators": [],
+      "line_number": 33,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_30_healthcare_data_encryption",
+      "signature": "test_requirement_30_healthcare_data_encryption() -> None",
+      "docstring": "Test healthcare data encryption requirement.",
+      "decorators": [],
+      "line_number": 38,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_31_healthcare_access_control",
+      "signature": "test_requirement_31_healthcare_access_control() -> None",
+      "docstring": "Test healthcare access control requirement.",
+      "decorators": [],
+      "line_number": 43,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_requirement_32_healthcare_cdc_cicd_integration",
+      "signature": "test_requirement_32_healthcare_cdc_cicd_integration() -> None",
+      "docstring": "Test healthcare CDC CI/CD integration requirement.",
+      "decorators": [],
+      "line_number": 48,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_healthcare_cdc_domain_completeness",
+      "signature": "test_healthcare_cdc_domain_completeness() -> None",
+      "docstring": "Test healthcare CDC domain completeness.",
+      "decorators": [],
+      "line_number": 53,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> int",
+      "docstring": "Main validation function.",
+      "decorators": [],
+      "line_number": 58,
+      "return_type": "int",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nSimple validation script for Healthcare CDC requirements (27-32).\nBased on GA Gemini 2.5 Pro implementation plan.\n",
+  "file_structure": {
+    "total_lines": 96,
+    "code_lines": 64,
+    "comment_lines": 4,
+    "blank_lines": 28,
+    "total_nodes": 263,
+    "class_nodes": 0,
+    "function_nodes": 9,
+    "import_nodes": 3,
+    "expression_nodes": 33,
+    "assignment_nodes": 3,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 96
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "test_requirement_29_immutable_audit_logging",
+    "AssertionError",
+    "dict",
+    "exit",
+    "open",
+    "model_file",
+    "str",
+    "Path",
+    "test_requirement_28_phi_detection_validation",
+    "msg",
+    "test_requirement_30_healthcare_data_encryption",
+    "json",
+    "FileNotFoundError",
+    "load_project_model",
+    "print",
+    "main",
+    "test_healthcare_cdc_domain_completeness",
+    "test_requirement_31_healthcare_access_control",
+    "test_requirement_32_healthcare_cdc_cicd_integration",
+    "model",
+    "int",
+    "test_requirement_27_hipaa_compliance_validation",
+    "e",
+    "Any"
+  ]
+}

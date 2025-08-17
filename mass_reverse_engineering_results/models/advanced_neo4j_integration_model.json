@@ -1,0 +1,286 @@
+{
+  "system_name": "Advanced Neo4j Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "AdvancedNeo4jIntegration": {
+      "responsibility": "Advanced Neo4j operations and analysis",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> None",
+          "docstring": "Load the project model with credential mappings",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_credentials",
+          "signature": "get_credentials(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get Neo4j credentials using 1Password item pointers",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "execute_cypher_query",
+          "signature": "execute_cypher_query(self, query: str, credentials: dict[Tuple[str, str]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Execute Cypher query with secure credentials",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "query",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_cypher_output",
+          "signature": "_parse_cypher_output(self, output: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Parse cypher-shell output into structured data",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "output",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_graph_structure",
+          "signature": "analyze_graph_structure(self, credentials: dict[Tuple[str, str]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze the complete graph structure",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "discover_cross_domain_patterns",
+          "signature": "discover_cross_domain_patterns(self, credentials: dict[Tuple[str, str]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Discover patterns across different domains",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "optimize_neo4j_performance",
+          "signature": "optimize_neo4j_performance(self, credentials: dict[Tuple[str, str]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze and suggest Neo4j performance optimizations",
+          "decorators": [],
+          "line_number": 197,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_advanced_visualizations",
+          "signature": "create_advanced_visualizations(self, analysis_data: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Create advanced visualization data for external tools",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "analysis_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_advanced_analysis",
+          "signature": "run_advanced_analysis(self) -> None",
+          "docstring": "Run the complete advanced Neo4j analysis",
+          "decorators": [],
+          "line_number": 309,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_update_project_model",
+          "signature": "_update_project_model(self) -> None",
+          "docstring": "Update the project model with advanced integration results",
+          "decorators": [],
+          "line_number": 356,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 394,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import subprocess",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List"
+  ],
+  "module_docstring": "\nAdvanced Neo4j Integration\n\nEnhanced graph operations, cross-domain analysis, and performance optimization.\n",
+  "file_structure": {
+    "total_lines": 408,
+    "code_lines": 301,
+    "comment_lines": 29,
+    "blank_lines": 78,
+    "total_nodes": 1562,
+    "class_nodes": 1,
+    "function_nodes": 12,
+    "import_nodes": 5,
+    "expression_nodes": 45,
+    "assignment_nodes": 68,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 408
+  },
+  "used_names": [
+    "analysis_data",
+    "Exception",
+    "op_pointer",
+    "dict",
+    "Path",
+    "part",
+    "list",
+    "performance_results",
+    "FileNotFoundError",
+    "print",
+    "components_results",
+    "density_results",
+    "integration",
+    "current_model",
+    "key",
+    "complexity_query",
+    "env_key",
+    "__name__",
+    "enumerate",
+    "username",
+    "cmd",
+    "viz_dir",
+    "analysis",
+    "model_file",
+    "rel_query",
+    "line",
+    "rule_patterns_query",
+    "advanced_phase",
+    "subprocess",
+    "performance_analysis",
+    "credential_mappings",
+    "memory_query",
+    "components_query",
+    "index_results",
+    "data_lines",
+    "AdvancedNeo4jIntegration",
+    "node_results",
+    "metric",
+    "f",
+    "credentials",
+    "result_dict",
+    "password",
+    "node",
+    "all_analysis",
+    "emoji_patterns_query",
+    "query",
+    "result",
+    "os",
+    "open",
+    "performance_query",
+    "memory_results",
+    "rel",
+    "pattern",
+    "complexity_patterns",
+    "patterns_summary",
+    "main",
+    "rel_results",
+    "results",
+    "i",
+    "node_query",
+    "index_query",
+    "cross_domain_patterns",
+    "Any",
+    "patterns",
+    "str",
+    "parts",
+    "json",
+    "graph_analysis",
+    "len",
+    "self",
+    "lines",
+    "structure_summary",
+    "optimizations",
+    "ValueError",
+    "output",
+    "density_query",
+    "rule_patterns",
+    "emoji_patterns",
+    "e"
+  ]
+}

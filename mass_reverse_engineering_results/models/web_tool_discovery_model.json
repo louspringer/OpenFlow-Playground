@@ -1,0 +1,133 @@
+{
+  "system_name": "Web Tool Discovery - Find existing tools in the ecosystem",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "WebToolDiscovery": {
+      "responsibility": "Discover tools from web search and GitHub",
+      "methods": [
+        {
+          "name": "search_github_tools",
+          "signature": "search_github_tools(self, issue_type: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Search GitHub for tools that solve specific issues",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "issue_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "search_pypi_tools",
+          "signature": "search_pypi_tools(self, issue_type: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Search PyPI for packages that solve specific issues",
+          "decorators": [],
+          "line_number": 79,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "issue_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_web_recommendations",
+          "signature": "get_web_recommendations(self, analysis_results: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Get web-based recommendations for issues",
+          "decorators": [],
+          "line_number": 124,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "import requests"
+  ],
+  "module_docstring": "\nWeb Tool Discovery - Find existing tools in the ecosystem\n",
+  "file_structure": {
+    "total_lines": 237,
+    "code_lines": 184,
+    "comment_lines": 11,
+    "blank_lines": 42,
+    "total_nodes": 979,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 20,
+    "assignment_nodes": 37,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 237
+  },
+  "used_names": [
+    "sample_results",
+    "__name__",
+    "Exception",
+    "response",
+    "analysis_results",
+    "mypy_errors",
+    "shell_security_issues",
+    "dict",
+    "github_tools",
+    "search_terms",
+    "subprocess_vulnerabilities",
+    "web_discovery",
+    "str",
+    "search_term",
+    "WebToolDiscovery",
+    "repo",
+    "list",
+    "url",
+    "print",
+    "issue_type",
+    "self",
+    "tools_found",
+    "ast_errors",
+    "params",
+    "flake8_errors",
+    "rec",
+    "data",
+    "pypi_terms",
+    "requests",
+    "recommendations",
+    "pypi_tools",
+    "e",
+    "top_tool",
+    "Any"
+  ]
+}

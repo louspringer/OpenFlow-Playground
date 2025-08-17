@@ -1,0 +1,146 @@
+{
+  "system_name": "Brutal Encoding Fixer",
+  "description": "Fixes encoding issues with extreme prejudice - assumes UTF-8 and forces it",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BrutalEncodingFixer": {
+      "responsibility": "Fixes encoding issues by forcing UTF-8 with extreme prejudice",
+      "methods": [
+        {
+          "name": "read_file_brutally",
+          "signature": "read_file_brutally(self, file_path: Path) -> Optional[str]",
+          "docstring": "Read file with extreme prejudice - force UTF-8",
+          "decorators": [],
+          "line_number": 20,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_encoding_brutally",
+          "signature": "fix_encoding_brutally(self, file_path: Path) -> bool",
+          "docstring": "Fix file encoding by forcing UTF-8",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "fix_directory_brutally",
+          "signature": "fix_directory_brutally(self, directory: Path) -> None",
+          "docstring": "Fix all Python files in directory with extreme prejudice",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "directory",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_report",
+          "signature": "get_report(self) -> dict",
+          "docstring": "Get brutal fixing report",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "dict",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function - fix encoding with extreme prejudice",
+      "decorators": [],
+      "line_number": 81,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nBrutal Encoding Fixer\nFixes encoding issues with extreme prejudice - assumes UTF-8 and forces it\n",
+  "file_structure": {
+    "total_lines": 121,
+    "code_lines": 89,
+    "comment_lines": 9,
+    "blank_lines": 23,
+    "total_nodes": 512,
+    "class_nodes": 1,
+    "function_nodes": 6,
+    "import_nodes": 3,
+    "expression_nodes": 31,
+    "assignment_nodes": 7,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 121
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "py_file",
+    "logging",
+    "fixer",
+    "dict",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "problem_file",
+    "list",
+    "len",
+    "file_path",
+    "print",
+    "main",
+    "BrutalEncodingFixer",
+    "self",
+    "report",
+    "bool",
+    "raw_bytes",
+    "e",
+    "UnicodeDecodeError",
+    "directory",
+    "Optional"
+  ]
+}

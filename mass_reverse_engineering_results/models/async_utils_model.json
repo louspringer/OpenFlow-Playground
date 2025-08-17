@@ -1,0 +1,96 @@
+{
+  "system_name": "Async Utilities",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "AsyncExecutor": {
+      "responsibility": "Execute async operations with retry logic and timeout handling",
+      "methods": [
+        {
+          "name": "execute_with_retry",
+          "signature": "execute_with_retry(self, operation: Callable, max_retries: Optional[int], timeout: Optional[int]) -> Any",
+          "docstring": "Execute an async operation with retry logic",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "Callable",
+              "default": null
+            },
+            {
+              "name": "max_retries",
+              "type": "Optional[int]",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nAsync Utilities\n\nCommon async patterns and utilities for Ghostbusters components.\n",
+  "file_structure": {
+    "total_lines": 44,
+    "code_lines": 36,
+    "comment_lines": 0,
+    "blank_lines": 8,
+    "total_nodes": 175,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 6,
+    "assignment_nodes": 4,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 44
+  },
+  "used_names": [
+    "Callable",
+    "operation",
+    "Exception",
+    "default_timeout",
+    "attempt",
+    "kwargs",
+    "default_retries",
+    "self",
+    "timeout",
+    "asyncio",
+    "int",
+    "args",
+    "Optional",
+    "Any",
+    "range",
+    "max_retries"
+  ]
+}

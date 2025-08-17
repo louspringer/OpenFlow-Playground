@@ -1,0 +1,57 @@
+{
+  "module_name": "generalized_code_generator",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "scripts/generalized_code_generator.py",
+    "src/generate_code_generator.py"
+  ],
+  "file_count": 2,
+  "total_lines": 789,
+  "total_classes": 8,
+  "total_functions": 3,
+  "total_imports": 10,
+  "module_docstring": "\"\"\"\ngeneralized_code_generator\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 789\nClasses: 8\nFunctions: 3\nImports: 10\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "generalized_code_generator",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 789,
+      "total_classes": 8,
+      "total_functions": 3,
+      "total_imports": 10
+    },
+    "files": [
+      {
+        "path": "scripts/generalized_code_generator.py",
+        "name": "generalized_code_generator.py",
+        "stem": "generalized_code_generator"
+      },
+      {
+        "path": "src/generate_code_generator.py",
+        "name": "generate_code_generator.py",
+        "stem": "generate_code_generator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.638821",
+  "version": "1.0.0"
+}

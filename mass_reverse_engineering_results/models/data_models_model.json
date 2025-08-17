@@ -1,0 +1,81 @@
+{
+  "system_name": "Data Models",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BaseResult": {
+      "responsibility": "Base result model for all Ghostbusters operations",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 11
+    },
+    "BaseConfig": {
+      "responsibility": "Base configuration model for Ghostbusters components",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 21
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from typing import Any",
+    "from typing import Dict"
+  ],
+  "module_docstring": "\nData Models\n\nCommon Pydantic models for Ghostbusters components.\n",
+  "file_structure": {
+    "total_lines": 31,
+    "code_lines": 22,
+    "comment_lines": 0,
+    "blank_lines": 9,
+    "total_nodes": 106,
+    "class_nodes": 2,
+    "function_nodes": 0,
+    "import_nodes": 2,
+    "expression_nodes": 3,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 31
+  },
+  "used_names": [
+    "str",
+    "name",
+    "success",
+    "message",
+    "BaseModel",
+    "bool",
+    "metadata",
+    "Any",
+    "dict",
+    "Dict",
+    "Field",
+    "enabled"
+  ]
+}

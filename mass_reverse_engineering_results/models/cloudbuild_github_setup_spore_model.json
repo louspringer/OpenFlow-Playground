@@ -1,0 +1,106 @@
+{
+  "system_name": "GitHub Cloud Build Setup Script",
+  "description": "Sets up automatic triggers for GitHub repository using Google Cloud APIs",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "ensure_package",
+      "signature": "ensure_package(pkg_name: str, import_name: Optional[str]) -> None",
+      "docstring": "Ensure a package is installed, install if missing.",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "pkg_name",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "import_name",
+          "type": "Optional[str]",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import importlib",
+    "import subprocess",
+    "import sys",
+    "from typing import Optional",
+    "import google.cloud",
+    "import pkgutil",
+    "from google.cloud import cloudbuild_v1",
+    "from google.cloud import secretmanager_v1",
+    "from google.cloud.devtools import cloudbuild_v2"
+  ],
+  "module_docstring": "\nGitHub Cloud Build Setup Script\nSets up automatic triggers for GitHub repository using Google Cloud APIs\n",
+  "file_structure": {
+    "total_lines": 120,
+    "code_lines": 93,
+    "comment_lines": 9,
+    "blank_lines": 18,
+    "total_nodes": 457,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 8,
+    "expression_nodes": 22,
+    "assignment_nodes": 22,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 120
+  },
+  "used_names": [
+    "trigger",
+    "cloudbuild_v1",
+    "Exception",
+    "repo_op",
+    "ensure_package",
+    "cloudbuild_v2",
+    "PARENT",
+    "BRANCH_PATTERN",
+    "SECRET_VERSION",
+    "TRIGGER_NAME",
+    "importer",
+    "modname",
+    "PROJECT_ID",
+    "REPO_RESOURCE",
+    "cb2_client",
+    "conn_op",
+    "SECRET_VERSION_PATH",
+    "str",
+    "conn",
+    "subprocess",
+    "BUILD_CONFIG_FILE",
+    "ImportError",
+    "repo",
+    "importlib",
+    "sys",
+    "google",
+    "cb1_client",
+    "sm_client",
+    "import_name",
+    "print",
+    "pkg_name",
+    "secretmanager_v1",
+    "pkgutil",
+    "ispkg",
+    "CONNECTION_ID",
+    "REGION",
+    "SECRET_ID",
+    "e",
+    "Optional",
+    "REPO_URI",
+    "REPO_NAME",
+    "CONNECTION_RESOURCE"
+  ]
+}

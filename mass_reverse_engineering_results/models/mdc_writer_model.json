@@ -1,0 +1,96 @@
+{
+  "system_name": "MDC Writer - Simple writer for fixed MDC files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "write_mdc",
+      "signature": "write_mdc(file_path: str, yaml_data: dict[Tuple[str, Any]], markdown_content: str) -> Any",
+      "docstring": "Write MDC file with YAML frontmatter and markdown content\n\n    Args:\n        file_path: Path to MDC file\n        yaml_data: YAML frontmatter data\n        markdown_content: Markdown content",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "yaml_data",
+          "type": "dict[Tuple[str, Any]]",
+          "default": null
+        },
+        {
+          "name": "markdown_content",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Test the MDC writer",
+      "decorators": [],
+      "line_number": 40,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict"
+  ],
+  "module_docstring": "\nMDC Writer - Simple writer for fixed MDC files\n",
+  "file_structure": {
+    "total_lines": 55,
+    "code_lines": 36,
+    "comment_lines": 6,
+    "blank_lines": 13,
+    "total_nodes": 243,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 2,
+    "expression_nodes": 12,
+    "assignment_nodes": 6,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 55
+  },
+  "used_names": [
+    "key",
+    "test_content",
+    "__name__",
+    "items",
+    "test_yaml",
+    "yaml_data",
+    "Any",
+    "dict",
+    "value",
+    "chr",
+    "str",
+    "Path",
+    "test_file",
+    "item",
+    "list",
+    "file_path",
+    "print",
+    "main",
+    "yaml_lines",
+    "bool",
+    "mdc_content",
+    "markdown_content",
+    "isinstance",
+    "write_mdc"
+  ]
+}

@@ -7,7 +7,7 @@ Coordinates quality metrics calculation, gate evaluation, and enforcement action
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from .quality_gates import GateResult, QualityGateManager
 from .quality_metrics import QualityMetrics, QualityMetricsCalculator

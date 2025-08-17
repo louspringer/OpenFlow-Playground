@@ -1,0 +1,57 @@
+{
+  "module_name": "glacier_spore_sync",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "scripts/glacier_spore_sync.py",
+    "scripts/glacier_spore_system.py"
+  ],
+  "file_count": 2,
+  "total_lines": 1868,
+  "total_classes": 16,
+  "total_functions": 0,
+  "total_imports": 31,
+  "module_docstring": "\"\"\"\nglacier_spore_sync\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 1868\nClasses: 16\nFunctions: 0\nImports: 31\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "glacier_spore_sync",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 1868,
+      "total_classes": 16,
+      "total_functions": 0,
+      "total_imports": 31
+    },
+    "files": [
+      {
+        "path": "scripts/glacier_spore_sync.py",
+        "name": "glacier_spore_sync.py",
+        "stem": "glacier_spore_sync"
+      },
+      {
+        "path": "scripts/glacier_spore_system.py",
+        "name": "glacier_spore_system.py",
+        "stem": "glacier_spore_system"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.673871",
+  "version": "1.0.0"
+}

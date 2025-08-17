@@ -1,0 +1,120 @@
+{
+  "system_name": "Simple test for projected artifacts",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_projected_artifacts_syntax",
+      "signature": "test_projected_artifacts_syntax() -> None",
+      "docstring": "Test that projected artifacts have valid Python syntax.",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_structure",
+      "signature": "test_projected_artifacts_structure() -> None",
+      "docstring": "Test that projected artifacts have the expected structure.",
+      "decorators": [],
+      "line_number": 41,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_content",
+      "signature": "test_projected_artifacts_content() -> None",
+      "docstring": "Test that projected artifacts contain expected content.",
+      "decorators": [],
+      "line_number": 111,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_file_size",
+      "signature": "test_projected_artifacts_file_size() -> None",
+      "docstring": "Test that projected artifacts have reasonable file sizes.",
+      "decorators": [],
+      "line_number": 170,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Run all tests for projected artifacts.",
+      "decorators": [],
+      "line_number": 193,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nSimple test for projected artifacts\n\nThis test verifies basic functionality without requiring full imports.\n",
+  "file_structure": {
+    "total_lines": 230,
+    "code_lines": 158,
+    "comment_lines": 21,
+    "blank_lines": 51,
+    "total_nodes": 882,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 2,
+    "expression_nodes": 39,
+    "assignment_nodes": 26,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 230
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "f",
+    "Exception",
+    "imports",
+    "expected_functions",
+    "node",
+    "test_projected_artifacts_syntax",
+    "isinstance",
+    "content",
+    "open",
+    "Path",
+    "test_name",
+    "expected_classes",
+    "ast",
+    "SyntaxError",
+    "len",
+    "expected_imports",
+    "file_path",
+    "print",
+    "test_projected_artifacts_file_size",
+    "main",
+    "file_size",
+    "functions",
+    "passed",
+    "security_file",
+    "expected_import",
+    "expected_class",
+    "total",
+    "tree",
+    "tests",
+    "streamlit_file",
+    "test_func",
+    "e",
+    "test_projected_artifacts_structure",
+    "test_projected_artifacts_content",
+    "expected_func",
+    "test_files"
+  ]
+}
