@@ -1,0 +1,51 @@
+{
+  "module_name": "model_complex_model_simple_code_generator",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/complex_model_simple_code_generator.py"
+  ],
+  "file_count": 1,
+  "total_lines": 324,
+  "total_classes": 7,
+  "total_functions": 1,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\nmodel_complex_model_simple_code_generator\n\nPurpose: Data models and schemas\nGraph API Level: 2\nProjection System: model_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 324\nClasses: 7\nFunctions: 1\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "2",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_complex_model_simple_code_generator",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 324,
+      "total_classes": 7,
+      "total_functions": 1,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "src/complex_model_simple_code_generator.py",
+        "name": "complex_model_simple_code_generator.py",
+        "stem": "complex_model_simple_code_generator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.342849",
+  "version": "1.0.0"
+}

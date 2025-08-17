@@ -1,0 +1,306 @@
+{
+  "system_name": "Loki Chaos Enhancer - The Ultimate Free Lunch",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LokiForm": {
+      "responsibility": "Loki's various forms for chaos enhancement",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 22
+    },
+    "ChaosEvolution": {
+      "responsibility": "How chaos evolves through Loki's influence",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 32
+    },
+    "LokiChaosState": {
+      "responsibility": "Current state of Loki's chaos influence",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 43
+    },
+    "LokiChaosEnhancer": {
+      "responsibility": "Loki-enhanced chaos system that embodies transformation, deception, and intelligent chaos",
+      "methods": [
+        {
+          "name": "transform_form",
+          "signature": "transform_form(self, target_form: LokiForm) -> bool",
+          "docstring": "Loki transforms into a different form",
+          "decorators": [],
+          "line_number": 75,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "target_form",
+              "type": "LokiForm",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "apply_deception",
+          "signature": "apply_deception(self, target: Any, deception_type: str) -> Any",
+          "docstring": "Loki applies deception to make something appear different",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "target",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "deception_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "evolve_through_chaos",
+          "signature": "evolve_through_chaos(self, failure_type: str) -> ChaosEvolution",
+          "docstring": "Loki evolves through chaos and failures",
+          "decorators": [],
+          "line_number": 125,
+          "return_type": "ChaosEvolution",
+          "parameters": [
+            {
+              "name": "failure_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "apply_survival_instincts",
+          "signature": "apply_survival_instincts(self, target: Any) -> Any",
+          "docstring": "Loki applies survival instincts to adapt and survive",
+          "decorators": [],
+          "line_number": 151,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "target",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_chaos_field",
+          "signature": "create_chaos_field(self, radius: float) -> dict[Tuple[str, Any]]",
+          "docstring": "Loki creates a field of chaos that affects everything within",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "radius",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_chaos_status",
+          "signature": "get_chaos_status(self) -> LokiChaosState",
+          "docstring": "Get current status of Loki's chaos influence",
+          "decorators": [],
+          "line_number": 202,
+          "return_type": "LokiChaosState",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 55
+    },
+    "MockChaosSystem": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 266
+    }
+  },
+  "module_functions": [
+    {
+      "name": "enhance_chaos_with_loki",
+      "signature": "enhance_chaos_with_loki(chaos_system: Any, loki: LokiChaosEnhancer) -> Any",
+      "docstring": "Enhance any chaos system with Loki's powers",
+      "decorators": [],
+      "line_number": 215,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "chaos_system",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "loki",
+          "type": "LokiChaosEnhancer",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "demo_loki_chaos",
+      "signature": "demo_loki_chaos() -> Any",
+      "docstring": "Demo Loki's chaos enhancement capabilities",
+      "decorators": [],
+      "line_number": 250,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import random",
+    "import time",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Dict",
+    "from typing import List"
+  ],
+  "module_docstring": "\nLoki Chaos Enhancer - The Ultimate Free Lunch\n\nLoki brings:\n- \ud83d\udd04 Self-transforming code\n- \ud83c\udfad Illusionary file types\n- \ud83d\udd25 Chaos-driven evolution\n- \ud83e\udde0 Intelligent chaos\n- \u26a1 Survival through change\n\nBecause Loki is another free lunch! \ud83d\ude80\ud83d\udd25\n",
+  "file_structure": {
+    "total_lines": 308,
+    "code_lines": 229,
+    "comment_lines": 16,
+    "blank_lines": 63,
+    "total_nodes": 1379,
+    "class_nodes": 5,
+    "function_nodes": 10,
+    "import_nodes": 5,
+    "expression_nodes": 57,
+    "assignment_nodes": 62,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 308
+  },
+  "used_names": [
+    "SURVIVAL",
+    "chaos_system",
+    "TRANSFORMATION",
+    "__name__",
+    "fake_structure",
+    "CHAOS_BRINGER",
+    "forms",
+    "enhanced_system",
+    "INTELLIGENCE",
+    "chaos_level",
+    "strategies",
+    "radius",
+    "learned_patterns",
+    "final_status",
+    "DECEPTION",
+    "float",
+    "dict",
+    "value",
+    "Enum",
+    "fake_structures",
+    "evolution_stage",
+    "strategy",
+    "str",
+    "total_failures",
+    "sum",
+    "form",
+    "hasattr",
+    "fake_type",
+    "deception_success_rate",
+    "ADAPTATION",
+    "MockChaosSystem",
+    "fake_types",
+    "dataclass",
+    "list",
+    "enhance_chaos_with_loki",
+    "original_type",
+    "min",
+    "attr",
+    "len",
+    "TRICKSTER",
+    "deception_type",
+    "time",
+    "print",
+    "demo_loki_chaos",
+    "target_form",
+    "self",
+    "ChaosEvolution",
+    "random",
+    "bool",
+    "SHAPE_SHIFTER",
+    "field",
+    "LokiChaosState",
+    "target",
+    "SURVIVOR",
+    "transformation_count",
+    "chaos_field",
+    "LokiChaosEnhancer",
+    "int",
+    "loki",
+    "failure_type",
+    "success_chance",
+    "Any",
+    "survival_instincts",
+    "LokiForm",
+    "INTELLIGENT"
+  ]
+}

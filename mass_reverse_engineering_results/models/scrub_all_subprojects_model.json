@@ -1,0 +1,244 @@
+{
+  "system_name": "Subproject Scrubber - Automatically fix linting issues across all subprojects",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SubprojectScrubber": {
+      "responsibility": "Automatically scrub all subprojects for linting issues",
+      "methods": [
+        {
+          "name": "discover_subprojects",
+          "signature": "discover_subprojects(self) -> list[Path]",
+          "docstring": "Find all subprojects with their own .git directories",
+          "decorators": [],
+          "line_number": 24,
+          "return_type": "list[Path]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_deploy_ruff_config",
+          "signature": "_deploy_ruff_config(self, subproject_path: Path) -> None",
+          "docstring": "Deploy universal Ruff config to subproject",
+          "decorators": [],
+          "line_number": 39,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "scrub_subproject",
+          "signature": "scrub_subproject(self, subproject_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Scrub a single subproject for linting issues",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_ruff_check",
+          "signature": "_run_ruff_check(self, subproject_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Run ruff check on a subproject",
+          "decorators": [],
+          "line_number": 143,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_black",
+          "signature": "_run_black(self, subproject_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Run black formatting on a subproject",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_ruff_fix",
+          "signature": "_run_ruff_fix(self, subproject_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Run ruff with auto-fix on a subproject",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_git_status",
+          "signature": "_check_git_status(self, subproject_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Check git status of a subproject",
+          "decorators": [],
+          "line_number": 214,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "subproject_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "scrub_all",
+          "signature": "scrub_all(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Scrub all discovered subprojects",
+          "decorators": [],
+          "line_number": 235,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "print_summary",
+          "signature": "print_summary(self) -> None",
+          "docstring": "Print a summary of all scrubbing results",
+          "decorators": [],
+          "line_number": 250,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 306,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "import shutil"
+  ],
+  "module_docstring": "\nSubproject Scrubber - Automatically fix linting issues across all subprojects\n\nThis tool iterates through all subprojects in the OpenFlow-Playground workspace\nand applies consistent linting fixes to ensure all code meets quality standards.\n",
+  "file_structure": {
+    "total_lines": 333,
+    "code_lines": 258,
+    "comment_lines": 18,
+    "blank_lines": 57,
+    "total_nodes": 1567,
+    "class_nodes": 1,
+    "function_nodes": 11,
+    "import_nodes": 6,
+    "expression_nodes": 52,
+    "assignment_nodes": 46,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 333
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "subproject_paths",
+    "status_emoji",
+    "SubprojectScrubber",
+    "ruff_result",
+    "dict",
+    "result",
+    "target_path",
+    "subprojects",
+    "workspace_root",
+    "shutil",
+    "open",
+    "r",
+    "str",
+    "Path",
+    "changes",
+    "line",
+    "sum",
+    "status_counts",
+    "scrubber",
+    "status",
+    "count",
+    "subprocess",
+    "total_issues_after",
+    "subproject_path",
+    "pyproject_toml",
+    "list",
+    "final_ruff_result",
+    "json",
+    "git_dir",
+    "sys",
+    "len",
+    "p",
+    "print",
+    "black_result",
+    "main",
+    "self",
+    "lines",
+    "error",
+    "results",
+    "template_path",
+    "total_improvement",
+    "ruff_fix_result",
+    "output_file",
+    "git_result",
+    "name",
+    "error_count",
+    "e",
+    "total_issues_before",
+    "Any",
+    "issue_count"
+  ]
+}

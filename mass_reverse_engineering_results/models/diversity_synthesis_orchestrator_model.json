@@ -1,0 +1,223 @@
+{
+  "system_name": "Diversity synthesis orchestrator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Stakeholder": {
+      "responsibility": "Represents a stakeholder in the diversity system",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 17,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 9
+    },
+    "FixSynthesis": {
+      "responsibility": "Represents a synthesized fix for a diversity issue",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 41,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 28
+    },
+    "DiversitySynthesisOrchestrator": {
+      "responsibility": "Orchestrator for diversity synthesis",
+      "methods": [
+        {
+          "name": "analyze_diversity_issues",
+          "signature": "analyze_diversity_issues(self, test_results: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Analyze test results to identify diversity issues",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "test_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "synthesize_fixes",
+          "signature": "synthesize_fixes(self, issues: list[str]) -> list[FixSynthesis]",
+          "docstring": "Synthesize fixes for identified diversity issues",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "list[FixSynthesis]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_stakeholder_impact_matrix",
+          "signature": "calculate_stakeholder_impact_matrix(self, fixes: list[FixSynthesis]) -> dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "docstring": "Calculate impact matrix for stakeholders across fixes",
+          "decorators": [],
+          "line_number": 151,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "parameters": [
+            {
+              "name": "fixes",
+              "type": "list[FixSynthesis]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, issues: list[str], fixes: list[FixSynthesis]) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate a comprehensive diversity analysis report",
+          "decorators": [],
+          "line_number": 191,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "fixes",
+              "type": "list[FixSynthesis]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_analysis",
+          "signature": "run_analysis(self, test_results: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Run complete diversity analysis and synthesis",
+          "decorators": [],
+          "line_number": 217,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "test_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 56
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from typing import Any"
+  ],
+  "module_docstring": "Diversity synthesis orchestrator",
+  "file_structure": {
+    "total_lines": 233,
+    "code_lines": 190,
+    "comment_lines": 10,
+    "blank_lines": 33,
+    "total_nodes": 942,
+    "class_nodes": 3,
+    "function_nodes": 8,
+    "import_nodes": 2,
+    "expression_nodes": 16,
+    "assignment_nodes": 14,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 233
+  },
+  "used_names": [
+    "f",
+    "test_results",
+    "description",
+    "stakeholder",
+    "fix",
+    "FixSynthesis",
+    "dict",
+    "float",
+    "str",
+    "categories_addressed",
+    "priority",
+    "fixes",
+    "impact_matrix",
+    "timeline",
+    "list",
+    "dataclass",
+    "failure",
+    "len",
+    "Stakeholder",
+    "stakeholder_impacts",
+    "dependencies",
+    "fix_title",
+    "self",
+    "report",
+    "issue",
+    "priority_score",
+    "impact_level",
+    "role",
+    "implementation_effort",
+    "stakeholder_name",
+    "name",
+    "int",
+    "Any",
+    "estimated_roi",
+    "issues"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module_name": "test_test_python_quality_enforcement",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "tests/test_python_quality_enforcement.py",
+    "tests/test_python_quality_enhanced.py"
+  ],
+  "file_count": 2,
+  "total_lines": 793,
+  "total_classes": 1,
+  "total_functions": 9,
+  "total_imports": 13,
+  "module_docstring": "\"\"\"\ntest_test_python_quality_enforcement\n\nPurpose: Testing and validation\nGraph API Level: 2\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 793\nClasses: 1\nFunctions: 9\nImports: 13\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "2",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_python_quality_enforcement",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 793,
+      "total_classes": 1,
+      "total_functions": 9,
+      "total_imports": 13
+    },
+    "files": [
+      {
+        "path": "tests/test_python_quality_enforcement.py",
+        "name": "test_python_quality_enforcement.py",
+        "stem": "test_python_quality_enforcement"
+      },
+      {
+        "path": "tests/test_python_quality_enhanced.py",
+        "name": "test_python_quality_enhanced.py",
+        "stem": "test_python_quality_enhanced"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:19.249742",
+  "version": "1.0.0"
+}

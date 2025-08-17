@@ -1,0 +1,83 @@
+{
+  "system_name": "Complete Linting-Aware Code Generator",
+  "description": "Generates a complete perfect code generator with all classes",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "create_complete_linting_aware_generator",
+      "signature": "create_complete_linting_aware_generator() -> LintingAwareCodeFile",
+      "docstring": "Create a complete perfect code generator using linting-aware model",
+      "decorators": [],
+      "line_number": 19,
+      "return_type": "LintingAwareCodeFile",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Generate the complete perfect linting-aware code generator",
+      "decorators": [],
+      "line_number": 443,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from linting_aware_model import LintingAwareClassDefinition",
+    "from linting_aware_model import LintingAwareCodeFile",
+    "from linting_aware_model import LintingAwareCodeGenerator",
+    "from linting_aware_model import LintingAwareFunctionDefinition",
+    "from linting_aware_model import LintingAwareImportStatement"
+  ],
+  "module_docstring": "\nComplete Linting-Aware Code Generator\nGenerates a complete perfect code generator with all classes\n",
+  "file_structure": {
+    "total_lines": 472,
+    "code_lines": 439,
+    "comment_lines": 11,
+    "blank_lines": 22,
+    "total_nodes": 759,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 13,
+    "assignment_nodes": 11,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 472
+  },
+  "used_names": [
+    "__name__",
+    "LintingAwareCodeFile",
+    "imports",
+    "logging",
+    "generator",
+    "set",
+    "output_path",
+    "LintingAwareImportStatement",
+    "Path",
+    "LintingAwareFunctionDefinition",
+    "perfect_generator_file",
+    "code_generator_class",
+    "create_complete_linting_aware_generator",
+    "print",
+    "main",
+    "success",
+    "import_statement_class",
+    "LintingAwareClassDefinition",
+    "LintingAwareCodeGenerator",
+    "main_function",
+    "class_definition_class",
+    "function_definition_class",
+    "code_file_class"
+  ]
+}

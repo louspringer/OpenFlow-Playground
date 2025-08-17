@@ -1,0 +1,227 @@
+{
+  "system_name": "OpenFlow Playground - Comprehensive Visualization Dashboard",
+  "description": "Interactive dashboard showcasing all SVG visualizations",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ComprehensiveDashboard": {
+      "responsibility": "Comprehensive dashboard for OpenFlow Playground visualizations",
+      "methods": [
+        {
+          "name": "load_data",
+          "signature": "load_data(self) -> Any",
+          "docstring": "Load all project data sources",
+          "decorators": [],
+          "line_number": 28,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "display_svg",
+          "signature": "display_svg(self, svg_path: str, title: str) -> Any",
+          "docstring": "Display SVG file in Streamlit",
+          "decorators": [],
+          "line_number": 33,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "svg_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "title",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_project_overview",
+          "signature": "create_project_overview(self) -> Any",
+          "docstring": "Create comprehensive project overview section",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_svg_gallery",
+          "signature": "create_svg_gallery(self) -> Any",
+          "docstring": "Create SVG visualization gallery",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_interactive_analytics",
+          "signature": "create_interactive_analytics(self) -> Any",
+          "docstring": "Create interactive analytics section",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_real_time_features",
+          "signature": "create_real_time_features(self) -> Any",
+          "docstring": "Create real-time features section",
+          "decorators": [],
+          "line_number": 203,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_technical_details",
+          "signature": "create_technical_details(self) -> Any",
+          "docstring": "Create technical details section",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_quality_metrics",
+          "signature": "create_quality_metrics(self) -> Any",
+          "docstring": "Create quality metrics section",
+          "decorators": [],
+          "line_number": 277,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_security_overview",
+          "signature": "create_security_overview(self) -> Any",
+          "docstring": "Create security overview section",
+          "decorators": [],
+          "line_number": 334,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_dashboard",
+          "signature": "run_dashboard(self) -> Any",
+          "docstring": "Run the comprehensive dashboard",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 20
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to run the comprehensive dashboard",
+      "decorators": [],
+      "line_number": 438,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "import plotly.graph_objects as go",
+    "import streamlit as st",
+    "from svg_engine import SVGVisualizationEngine"
+  ],
+  "module_docstring": "\nOpenFlow Playground - Comprehensive Visualization Dashboard\nInteractive dashboard showcasing all SVG visualizations\n",
+  "file_structure": {
+    "total_lines": 448,
+    "code_lines": 328,
+    "comment_lines": 29,
+    "blank_lines": 91,
+    "total_nodes": 1515,
+    "class_nodes": 1,
+    "function_nodes": 12,
+    "import_nodes": 5,
+    "expression_nodes": 81,
+    "assignment_nodes": 35,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 448
+  },
+  "used_names": [
+    "__name__",
+    "svg_files",
+    "items",
+    "f",
+    "logging",
+    "avg_security",
+    "svg_file",
+    "category",
+    "values",
+    "open",
+    "r",
+    "logger",
+    "str",
+    "domain_data",
+    "Path",
+    "sum",
+    "artifacts",
+    "ComprehensiveDashboard",
+    "dashboard",
+    "st",
+    "col3",
+    "item",
+    "list",
+    "svg_content",
+    "categories",
+    "t",
+    "col4",
+    "len",
+    "main",
+    "security_metrics",
+    "SVGVisualizationEngine",
+    "self",
+    "domain_config",
+    "test_data",
+    "go",
+    "title",
+    "results",
+    "max",
+    "requirements",
+    "architecture_info",
+    "col1",
+    "success_count",
+    "col2",
+    "page",
+    "failure_count",
+    "svg_dir",
+    "domains",
+    "fig",
+    "quality_metrics",
+    "domain_name",
+    "d",
+    "svg_path"
+  ]
+}

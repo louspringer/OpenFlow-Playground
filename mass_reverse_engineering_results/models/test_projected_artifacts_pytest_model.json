@@ -1,0 +1,138 @@
+{
+  "system_name": "Pytest tests for projected artifacts",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_projected_artifacts_syntax",
+      "signature": "test_projected_artifacts_syntax() -> None",
+      "docstring": "Test that projected artifacts have valid Python syntax.",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_structure",
+      "signature": "test_projected_artifacts_structure() -> None",
+      "docstring": "Test that projected artifacts have the expected structure.",
+      "decorators": [],
+      "line_number": 43,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_content",
+      "signature": "test_projected_artifacts_content() -> None",
+      "docstring": "Test that projected artifacts contain expected content.",
+      "decorators": [],
+      "line_number": 113,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_file_size",
+      "signature": "test_projected_artifacts_file_size() -> None",
+      "docstring": "Test that projected artifacts have reasonable file sizes.",
+      "decorators": [],
+      "line_number": 172,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_import_structure",
+      "signature": "test_projected_artifacts_import_structure() -> None",
+      "docstring": "Test that projected artifacts have proper import structure.",
+      "decorators": [],
+      "line_number": 195,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_class_structure",
+      "signature": "test_projected_artifacts_class_structure() -> None",
+      "docstring": "Test that projected artifacts have proper class structure.",
+      "decorators": [],
+      "line_number": 221,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_projected_artifacts_function_structure",
+      "signature": "test_projected_artifacts_function_structure() -> None",
+      "docstring": "Test that projected artifacts have proper function structure.",
+      "decorators": [],
+      "line_number": 247,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nPytest tests for projected artifacts\n\nThese are proper pytest test functions that use assertions.\n",
+  "file_structure": {
+    "total_lines": 280,
+    "code_lines": 193,
+    "comment_lines": 23,
+    "blank_lines": 64,
+    "total_nodes": 1242,
+    "class_nodes": 0,
+    "function_nodes": 7,
+    "import_nodes": 2,
+    "expression_nodes": 41,
+    "assignment_nodes": 41,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 280
+  },
+  "used_names": [
+    "classes",
+    "f",
+    "Exception",
+    "imports",
+    "expected_functions",
+    "node",
+    "enumerate",
+    "AssertionError",
+    "isinstance",
+    "content",
+    "open",
+    "Path",
+    "line",
+    "init_functions",
+    "msg",
+    "expected_classes",
+    "ast",
+    "SyntaxError",
+    "file_path_obj",
+    "len",
+    "expected_imports",
+    "file_path",
+    "print",
+    "file_size",
+    "lines",
+    "functions",
+    "security_file",
+    "line_num",
+    "expected_import",
+    "expected_class",
+    "import_lines",
+    "tree",
+    "i",
+    "streamlit_file",
+    "e",
+    "import_line",
+    "expected_func",
+    "test_files"
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "system_name": "Real gRPC client for Secure Shell Service",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MockSecureShellServiceStub": {
+      "responsibility": "Mock gRPC stub that simulates the real service",
+      "methods": [
+        {
+          "name": "__init__",
+          "signature": "__init__(self, channel: Any) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "channel",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "ExecuteCommand",
+          "signature": "ExecuteCommand(self, request: Any, timeout: Any) -> Any",
+          "docstring": "Mock command execution that simulates real gRPC call",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "request",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "HealthCheck",
+          "signature": "HealthCheck(self, request: Any, timeout: Any) -> Any",
+          "docstring": "Mock health check",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "request",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    },
+    "RealSecureShellClient": {
+      "responsibility": "Real secure shell client using gRPC",
+      "methods": [
+        {
+          "name": "__init__",
+          "signature": "__init__(self, host: str, port: int) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 76,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "host",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "port",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "connect",
+          "signature": "connect(self) -> bool",
+          "docstring": "Connect to the secure shell service",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "bool",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_command",
+          "signature": "execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[tuple[str, Any]]",
+          "docstring": "Execute command securely via gRPC",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "dict[tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "command",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "timeout",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "validate_input",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "health_check",
+          "signature": "health_check(self) -> dict[tuple[str, Any]]",
+          "docstring": "Check service health",
+          "decorators": [],
+          "line_number": 151,
+          "return_type": "dict[tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "close",
+          "signature": "close(self) -> None",
+          "docstring": "Close the connection",
+          "decorators": [],
+          "line_number": 170,
+          "return_type": null,
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 73
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "from typing import Optional",
+    "import grpc",
+    "from secure_shell_pb2 import CommandRequest",
+    "from secure_shell_pb2 import HealthRequest",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "Real gRPC client for Secure Shell Service",
+  "file_structure": {
+    "total_lines": 217,
+    "code_lines": 165,
+    "comment_lines": 13,
+    "blank_lines": 39,
+    "total_nodes": 830,
+    "class_nodes": 2,
+    "function_nodes": 2,
+    "import_nodes": 6,
+    "expression_nodes": 30,
+    "assignment_nodes": 30,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 217
+  },
+  "used_names": [
+    "commands",
+    "client",
+    "port",
+    "asyncio",
+    "self",
+    "result",
+    "Any",
+    "e",
+    "CommandRequest",
+    "RealSecureShellClient",
+    "logging",
+    "host",
+    "getattr",
+    "health",
+    "success",
+    "response",
+    "object",
+    "str",
+    "channel",
+    "output",
+    "print",
+    "command",
+    "MockSecureShellServiceStub",
+    "main",
+    "request",
+    "timeout",
+    "bool",
+    "HealthRequest",
+    "validate_input",
+    "dict",
+    "type",
+    "cmd",
+    "int",
+    "__name__",
+    "exit_code",
+    "Optional",
+    "Exception",
+    "grpc"
+  ],
+  "module_assignments": {}
+}

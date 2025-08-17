@@ -1,0 +1,164 @@
+{
+  "system_name": "Tool Discovery System for Ghostbusters with Web Search",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ToolDiscovery": {
+      "responsibility": "Discover available tools and built tools with web search",
+      "methods": [
+        {
+          "name": "_discover_built_tools",
+          "signature": "_discover_built_tools(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Discover tools we've built in this project",
+          "decorators": [],
+          "line_number": 29,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_discover_available_tools",
+          "signature": "_discover_available_tools(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Discover tools available in the environment",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_discover_used_tools",
+          "signature": "_discover_used_tools(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Discover what tools we've already used",
+          "decorators": [],
+          "line_number": 95,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_infer_script_purpose",
+          "signature": "_infer_script_purpose(self, script_name: str) -> str",
+          "docstring": "Infer the purpose of a script from its name",
+          "decorators": [],
+          "line_number": 124,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "script_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_smart_recommendations",
+          "signature": "get_smart_recommendations(self, analysis_results: dict[Tuple[str, Any]]) -> list[str]",
+          "docstring": "Get smart recommendations based on available tools, usage history, and web search",
+          "decorators": [],
+          "line_number": 134,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_tool_summary",
+          "signature": "get_tool_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of available and used tools",
+          "decorators": [],
+          "line_number": 187,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.secure_shell_service.secure_executor import secure_execute",
+    "from web_tool_discovery import WebToolDiscovery"
+  ],
+  "module_docstring": "\nTool Discovery System for Ghostbusters with Web Search\n",
+  "file_structure": {
+    "total_lines": 227,
+    "code_lines": 175,
+    "comment_lines": 13,
+    "blank_lines": 39,
+    "total_nodes": 869,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 5,
+    "expression_nodes": 28,
+    "assignment_nodes": 26,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 227
+  },
+  "used_names": [
+    "script",
+    "sample_results",
+    "__name__",
+    "analysis_results",
+    "__file__",
+    "mypy_errors",
+    "web_recommendations",
+    "dict",
+    "result",
+    "str",
+    "Path",
+    "tool_type",
+    "script_name",
+    "tool",
+    "secure_execute",
+    "WebToolDiscovery",
+    "list",
+    "discovery",
+    "fix_scripts",
+    "sys",
+    "len",
+    "tools_to_check",
+    "used_tools",
+    "FileNotFoundError",
+    "summary",
+    "print",
+    "self",
+    "tool_name",
+    "ast_errors",
+    "flake8_errors",
+    "ToolDiscovery",
+    "rec",
+    "info",
+    "recommendations",
+    "project_path",
+    "Any",
+    "available_tools",
+    "built_tools"
+  ]
+}

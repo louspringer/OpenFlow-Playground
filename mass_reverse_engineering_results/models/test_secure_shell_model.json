@@ -1,0 +1,99 @@
+{
+  "system_name": "Test script for Secure Shell Service",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_go_service",
+      "signature": "test_go_service() -> Any",
+      "docstring": "Test the Go service directly",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_python_client",
+      "signature": "test_python_client() -> Any",
+      "docstring": "Test the Python client",
+      "decorators": [],
+      "line_number": 56,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_security_improvements",
+      "signature": "test_security_improvements() -> Any",
+      "docstring": "Test security improvements over subprocess",
+      "decorators": [],
+      "line_number": 83,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Run all tests",
+      "decorators": [],
+      "line_number": 99,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import asyncio",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute",
+    "from src.secure_shell_service.client import secure_execute"
+  ],
+  "module_docstring": "\nTest script for Secure Shell Service\n",
+  "file_structure": {
+    "total_lines": 138,
+    "code_lines": 98,
+    "comment_lines": 9,
+    "blank_lines": 31,
+    "total_nodes": 477,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 4,
+    "expression_nodes": 35,
+    "assignment_nodes": 10,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 138
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "result",
+    "Path",
+    "sum",
+    "test_name",
+    "status",
+    "test_go_service",
+    "secure_execute",
+    "service_path",
+    "len",
+    "print",
+    "main",
+    "asyncio",
+    "results",
+    "_",
+    "passed",
+    "test_python_client",
+    "test_security_improvements",
+    "total",
+    "tests",
+    "test",
+    "test_func",
+    "e"
+  ]
+}

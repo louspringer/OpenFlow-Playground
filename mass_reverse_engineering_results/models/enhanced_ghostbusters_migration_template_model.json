@@ -1,0 +1,43 @@
+{
+  "system_name": "",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "from src.secure_shell_service.client import secure_execute",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "",
+  "file_structure": {
+    "total_lines": 33,
+    "code_lines": 9,
+    "comment_lines": 15,
+    "blank_lines": 9,
+    "total_nodes": 58,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 3,
+    "expression_nodes": 3,
+    "assignment_nodes": 1,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 33
+  },
+  "used_names": [
+    "__name__",
+    "print",
+    "main",
+    "secure_execute",
+    "asyncio",
+    "result"
+  ]
+}

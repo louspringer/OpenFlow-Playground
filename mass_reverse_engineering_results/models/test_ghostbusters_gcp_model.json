@@ -1,0 +1,161 @@
+{
+  "system_name": "Test Ghostbusters GCP Cloud Functions",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MockRequest": {
+      "responsibility": "Mock request object for testing Cloud Functions",
+      "methods": [
+        {
+          "name": "get_json",
+          "signature": "get_json(self) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 19
+    }
+  },
+  "module_functions": [
+    {
+      "name": "mock_firestore",
+      "signature": "mock_firestore() -> Any",
+      "docstring": "Mock Firestore client",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_status_not_found",
+      "signature": "test_ghostbusters_status_not_found(mock_firestore: Any) -> Any",
+      "docstring": "Test status check for non-existent analysis",
+      "decorators": [],
+      "line_number": 36,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "mock_firestore",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_ghostbusters_status_missing_id",
+      "signature": "test_ghostbusters_status_missing_id() -> Any",
+      "docstring": "Test status check with missing analysis_id",
+      "decorators": [],
+      "line_number": 55,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_ghostbusters_status_success",
+      "signature": "test_ghostbusters_status_success(mock_firestore: Any) -> Any",
+      "docstring": "Test status check",
+      "decorators": [],
+      "line_number": 65,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "mock_firestore",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_ghostbusters_analyze_success",
+      "signature": "test_ghostbusters_analyze_success(mock_firestore: Any) -> Any",
+      "docstring": "Test successful analysis",
+      "decorators": [],
+      "line_number": 94,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "mock_firestore",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_ghostbusters_history_success",
+      "signature": "test_ghostbusters_history_success(mock_firestore: Any) -> Any",
+      "docstring": "Test history retrieval",
+      "decorators": [],
+      "line_number": 112,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "mock_firestore",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "from unittest.mock import Mock",
+    "from unittest.mock import patch",
+    "import pytest",
+    "from src.ghostbusters_gcp.main import ghostbusters_analyze",
+    "from src.ghostbusters_gcp.main import ghostbusters_history",
+    "from src.ghostbusters_gcp.main import ghostbusters_status"
+  ],
+  "module_docstring": "\nTest Ghostbusters GCP Cloud Functions\n\nTests are designed to be ahead of implementation as per model requirements.\n",
+  "file_structure": {
+    "total_lines": 125,
+    "code_lines": 89,
+    "comment_lines": 4,
+    "blank_lines": 32,
+    "total_nodes": 476,
+    "class_nodes": 1,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 9,
+    "assignment_nodes": 21,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 125
+  },
+  "used_names": [
+    "ghostbusters_status",
+    "data",
+    "MockRequest",
+    "ghostbusters_history",
+    "self",
+    "mock_db",
+    "mock_doc",
+    "Mock",
+    "patch",
+    "mock_run",
+    "status_code",
+    "mock_firestore",
+    "dict",
+    "result",
+    "pytest",
+    "request",
+    "ghostbusters_analyze"
+  ]
+}

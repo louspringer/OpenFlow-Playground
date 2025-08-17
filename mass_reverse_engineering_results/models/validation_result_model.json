@@ -1,0 +1,281 @@
+{
+  "system_name": "Validation Result: Standardized validation result representation.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ValidationSeverity": {
+      "responsibility": "Validation result severity levels.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 13
+    },
+    "ValidationIssue": {
+      "responsibility": "Individual validation issue.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 23
+    },
+    "ValidationResult": {
+      "responsibility": "Result of a validation operation.",
+      "methods": [
+        {
+          "name": "add_issue",
+          "signature": "add_issue(self, issue: ValidationIssue) -> None",
+          "docstring": "Add a validation issue.",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "issue",
+              "type": "ValidationIssue",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_issues",
+          "signature": "add_issues(self, issues: List[ValidationIssue]) -> None",
+          "docstring": "Add multiple validation issues.",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "List[ValidationIssue]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_issues_by_severity",
+          "signature": "get_issues_by_severity(self, severity: ValidationSeverity) -> List[ValidationIssue]",
+          "docstring": "Get issues filtered by severity.",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "List[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "severity",
+              "type": "ValidationSeverity",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_critical_issues",
+          "signature": "get_critical_issues(self) -> List[ValidationIssue]",
+          "docstring": "Get critical validation issues.",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "List[ValidationIssue]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_errors",
+          "signature": "get_errors(self) -> List[ValidationIssue]",
+          "docstring": "Get error validation issues.",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "List[ValidationIssue]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_warnings",
+          "signature": "get_warnings(self) -> List[ValidationIssue]",
+          "docstring": "Get warning validation issues.",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "List[ValidationIssue]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_info_issues",
+          "signature": "get_info_issues(self) -> List[ValidationIssue]",
+          "docstring": "Get info validation issues.",
+          "decorators": [],
+          "line_number": 76,
+          "return_type": "List[ValidationIssue]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "has_critical_issues",
+          "signature": "has_critical_issues(self) -> bool",
+          "docstring": "Check if there are critical issues.",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "has_errors",
+          "signature": "has_errors(self) -> bool",
+          "docstring": "Check if there are error issues.",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "has_warnings",
+          "signature": "has_warnings(self) -> bool",
+          "docstring": "Check if there are warning issues.",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_summary",
+          "signature": "get_summary(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get a summary of validation results.",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Convert validation result to dictionary.",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "merge",
+          "signature": "merge(self, other: ValidationResult) -> ValidationResult",
+          "docstring": "Merge another validation result into this one.",
+          "decorators": [],
+          "line_number": 128,
+          "return_type": "ValidationResult",
+          "parameters": [
+            {
+              "name": "other",
+              "type": "ValidationResult",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 36
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "from typing import Optional",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from enum import Enum"
+  ],
+  "module_docstring": "\nValidation Result: Standardized validation result representation.\n\nProvides consistent result structure for all validation operations.\n",
+  "file_structure": {
+    "total_lines": 148,
+    "code_lines": 119,
+    "comment_lines": 1,
+    "blank_lines": 28,
+    "total_nodes": 734,
+    "class_nodes": 3,
+    "function_nodes": 13,
+    "import_nodes": 4,
+    "expression_nodes": 21,
+    "assignment_nodes": 7,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 148
+  },
+  "used_names": [
+    "validator_name",
+    "ERROR",
+    "message",
+    "severity",
+    "Any",
+    "value",
+    "float",
+    "dict",
+    "Dict",
+    "Enum",
+    "str",
+    "INFO",
+    "List",
+    "expected",
+    "execution_time",
+    "ValidationResult",
+    "is_valid",
+    "dataclass",
+    "list",
+    "WARNING",
+    "len",
+    "self",
+    "metadata",
+    "bool",
+    "ValidationSeverity",
+    "code",
+    "issue",
+    "merged",
+    "max",
+    "field",
+    "datetime",
+    "context",
+    "timestamp",
+    "ValidationIssue",
+    "other",
+    "Optional",
+    "CRITICAL",
+    "issues"
+  ]
+}

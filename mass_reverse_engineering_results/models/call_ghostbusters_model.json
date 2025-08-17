@@ -1,0 +1,60 @@
+{
+  "system_name": "Call Ghostbusters for Round-Trip Model System Analysis",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from src.ghostbusters import run_ghostbusters"
+  ],
+  "module_docstring": "\nCall Ghostbusters for Round-Trip Model System Analysis\n",
+  "file_structure": {
+    "total_lines": 126,
+    "code_lines": 94,
+    "comment_lines": 9,
+    "blank_lines": 23,
+    "total_nodes": 646,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 3,
+    "expression_nodes": 45,
+    "assignment_nodes": 4,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 126
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "logging",
+    "enumerate",
+    "recovery",
+    "result",
+    "round_trip_issues",
+    "action",
+    "logger",
+    "warning",
+    "delusion",
+    "len",
+    "round_trip_recoveries",
+    "print",
+    "asyncio",
+    "error",
+    "issue",
+    "keyword",
+    "call_ghostbusters",
+    "run_ghostbusters",
+    "i",
+    "e",
+    "any"
+  ]
+}

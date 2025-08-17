@@ -1,0 +1,271 @@
+{
+  "system_name": "Enhanced Linting-Aware Code Generation Model",
+  "description": "Fixes F841 (unused variables) and F811 (redefined imports)",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "EnhancedLintingAwareImportStatement": {
+      "responsibility": "Import statement that knows about F401 and F811 (unused/redefined imports)",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate import code, only including used items and avoiding redefinitions",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 13
+    },
+    "EnhancedLintingAwareFunctionDefinition": {
+      "responsibility": "Function definition that knows about E302, F821, and F841",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate function code with proper spacing, logger references, and used variables",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 39
+    },
+    "EnhancedLintingAwareClassDefinition": {
+      "responsibility": "Class definition that knows about E302 (blank lines)",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate class code with proper spacing",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 113
+    },
+    "EnhancedLintingAwareCodeFile": {
+      "responsibility": "Code file that knows about all linting rules including F841 and F811",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate complete file code with enhanced linting rules built-in",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 158
+    },
+    "EnhancedLintingAwareCodeGenerator": {
+      "responsibility": "Enhanced code generator that encodes ALL linting rules in the model itself\n    No post-generation fixes needed!",
+      "methods": [
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, model: EnhancedLintingAwareCodeFile) -> str",
+          "docstring": "Generate code that is perfect by design\n        No linting fixes needed - the model encodes ALL the rules!",
+          "decorators": [],
+          "line_number": 216,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "EnhancedLintingAwareCodeFile",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "write_perfect_file",
+          "signature": "write_perfect_file(self, model: EnhancedLintingAwareCodeFile, filepath: str) -> bool",
+          "docstring": "Write perfect code file to disk",
+          "decorators": [],
+          "line_number": 223,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "EnhancedLintingAwareCodeFile",
+              "default": null
+            },
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 207
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_enhanced_linting_aware_billing_analyzer",
+      "signature": "create_enhanced_linting_aware_billing_analyzer() -> EnhancedLintingAwareCodeFile",
+      "docstring": "Create a billing analyzer model that knows about ALL linting rules",
+      "decorators": [],
+      "line_number": 246,
+      "return_type": "EnhancedLintingAwareCodeFile",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nEnhanced Linting-Aware Code Generation Model\nFixes F841 (unused variables) and F811 (redefined imports)\n",
+  "file_structure": {
+    "total_lines": 344,
+    "code_lines": 258,
+    "comment_lines": 27,
+    "blank_lines": 59,
+    "total_nodes": 1372,
+    "class_nodes": 5,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 44,
+    "assignment_nodes": 22,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 344
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "bases_str",
+    "method_code",
+    "imports",
+    "EnhancedLintingAwareImportStatement",
+    "filepath",
+    "Exception",
+    "f",
+    "generator",
+    "imp",
+    "set",
+    "EnhancedLintingAwareCodeFile",
+    "is_from",
+    "module_docstring",
+    "open",
+    "requires_blank_line_before",
+    "str",
+    "Path",
+    "line",
+    "logger_references",
+    "return_type",
+    "is_redefined",
+    "attributes",
+    "module",
+    "signature",
+    "decorator",
+    "var",
+    "item",
+    "dataclass",
+    "list",
+    "EnhancedLintingAwareClassDefinition",
+    "methods",
+    "docstring",
+    "attr",
+    "decorators",
+    "len",
+    "filename",
+    "print",
+    "used_variables",
+    "create_enhanced_linting_aware_billing_analyzer",
+    "bases",
+    "self",
+    "lines",
+    "bool",
+    "analyzer_class",
+    "functions",
+    "body",
+    "code",
+    "field",
+    "main_function",
+    "params",
+    "EnhancedLintingAwareCodeGenerator",
+    "perfect_code",
+    "parameters",
+    "method",
+    "used_items",
+    "EnhancedLintingAwareFunctionDefinition",
+    "name",
+    "model",
+    "cls",
+    "func",
+    "Optional",
+    "e",
+    "import_code",
+    "any"
+  ]
+}

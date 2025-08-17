@@ -1,0 +1,127 @@
+{
+  "system_name": "Enhanced Round-trip test using the enhanced reverse engineered model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_json_file",
+      "signature": "load_json_file(file_path: str) -> dict",
+      "docstring": "Load JSON file",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "create_design_spec_from_enhanced_model",
+      "signature": "create_design_spec_from_enhanced_model(model: dict) -> dict",
+      "docstring": "Convert enhanced reverse engineered model to design spec format",
+      "decorators": [],
+      "line_number": 16,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "run_enhanced_round_trip_test",
+      "signature": "run_enhanced_round_trip_test() -> None",
+      "docstring": "Run the enhanced round-trip test",
+      "decorators": [],
+      "line_number": 61,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from round_trip_model_system import RoundTripModelSystem"
+  ],
+  "module_docstring": "\nEnhanced Round-trip test using the enhanced reverse engineered model\n",
+  "file_structure": {
+    "total_lines": 214,
+    "code_lines": 145,
+    "comment_lines": 24,
+    "blank_lines": 45,
+    "total_nodes": 1047,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 2,
+    "expression_nodes": 54,
+    "assignment_nodes": 30,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 214
+  },
+  "used_names": [
+    "structure_match",
+    "__name__",
+    "f",
+    "Exception",
+    "generated_methods",
+    "load_json_file",
+    "RoundTripModelSystem",
+    "abs",
+    "dict",
+    "original_methods",
+    "content",
+    "original_returns",
+    "system",
+    "generated_docstring",
+    "module_elements_match",
+    "open",
+    "str",
+    "create_design_spec_from_enhanced_model",
+    "functionality_match",
+    "calc_methods",
+    "design_spec",
+    "generated_has_calc",
+    "json",
+    "comp_data",
+    "original_classes",
+    "generated_files",
+    "len",
+    "original_docstring",
+    "model_obj",
+    "file_path",
+    "filename",
+    "comp_name",
+    "print",
+    "original_has_calc",
+    "original_types",
+    "generated_lines",
+    "original_lines",
+    "generated_classes",
+    "generated_returns",
+    "run_enhanced_round_trip_test",
+    "generated_types",
+    "method",
+    "model",
+    "original_main",
+    "generated_main",
+    "original_content",
+    "generated_content",
+    "all",
+    "func",
+    "e",
+    "component"
+  ]
+}

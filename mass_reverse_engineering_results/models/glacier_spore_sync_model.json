@@ -1,0 +1,691 @@
+{
+  "system_name": "Glacier Spore Model Synchronization & Reduction System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SyncStrategy": {
+      "responsibility": "Synchronization strategies",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 31
+    },
+    "ConflictResolution": {
+      "responsibility": "Conflict resolution methods",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 41
+    },
+    "ModelVersion": {
+      "responsibility": "Model version metadata",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary",
+          "decorators": [],
+          "line_number": 70,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 52
+    },
+    "ChangeLog": {
+      "responsibility": "Log of changes for model synchronization",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary",
+          "decorators": [],
+          "line_number": 102,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 81
+    },
+    "SyncOperation": {
+      "responsibility": "Synchronization operation",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary",
+          "decorators": [],
+          "line_number": 133,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 110
+    },
+    "GlacierSporeSyncDatabase": {
+      "responsibility": "Database for model synchronization and reduction",
+      "methods": [
+        {
+          "name": "_init_database",
+          "signature": "_init_database(self) -> Any",
+          "docstring": "Initialize database tables",
+          "decorators": [],
+          "line_number": 152,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_connection",
+          "signature": "_get_connection(self) -> Any",
+          "docstring": "Get database connection",
+          "decorators": [
+            "contextmanager"
+          ],
+          "line_number": 255,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "store_model_version",
+          "signature": "store_model_version(self, version: ModelVersion) -> bool",
+          "docstring": "Store a model version",
+          "decorators": [],
+          "line_number": 264,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "version",
+              "type": "ModelVersion",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_change_log",
+          "signature": "store_change_log(self, change: ChangeLog) -> bool",
+          "docstring": "Store a change log entry",
+          "decorators": [],
+          "line_number": 304,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "change",
+              "type": "ChangeLog",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_sync_operation",
+          "signature": "store_sync_operation(self, operation: SyncOperation) -> bool",
+          "docstring": "Store a synchronization operation",
+          "decorators": [],
+          "line_number": 341,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 144
+    },
+    "ModelSynchronizer": {
+      "responsibility": "Handles model synchronization and conflict resolution",
+      "methods": [
+        {
+          "name": "start_sync_workers",
+          "signature": "start_sync_workers(self, num_workers: int) -> Any",
+          "docstring": "Start synchronization worker threads",
+          "decorators": [],
+          "line_number": 398,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "num_workers",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "stop_sync_workers",
+          "signature": "stop_sync_workers(self) -> Any",
+          "docstring": "Stop synchronization workers",
+          "decorators": [],
+          "line_number": 414,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_sync_worker_loop",
+          "signature": "_sync_worker_loop(self, worker_id: int) -> Any",
+          "docstring": "Main sync worker loop",
+          "decorators": [],
+          "line_number": 423,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "worker_id",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_process_sync_operation",
+          "signature": "_process_sync_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Process a synchronization operation",
+          "decorators": [],
+          "line_number": 446,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_handle_push_operation",
+          "signature": "_handle_push_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Handle push operation (local to remote)",
+          "decorators": [],
+          "line_number": 472,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_handle_pull_operation",
+          "signature": "_handle_pull_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Handle pull operation (remote to local)",
+          "decorators": [],
+          "line_number": 478,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_handle_merge_operation",
+          "signature": "_handle_merge_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Handle merge operation",
+          "decorators": [],
+          "line_number": 484,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_handle_reduce_operation",
+          "signature": "_handle_reduce_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Handle model reduction operation",
+          "decorators": [],
+          "line_number": 490,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "queue_sync_operation",
+          "signature": "queue_sync_operation(self, operation: SyncOperation) -> Any",
+          "docstring": "Queue a synchronization operation",
+          "decorators": [],
+          "line_number": 496,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "SyncOperation",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 386
+    },
+    "ModelReducer": {
+      "responsibility": "Handles model reduction and compaction",
+      "methods": [
+        {
+          "name": "reduce_model_versions",
+          "signature": "reduce_model_versions(self, max_versions: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Reduce model versions to prevent exponential growth",
+          "decorators": [],
+          "line_number": 508,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "max_versions",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "compact_change_log",
+          "signature": "compact_change_log(self, days_to_keep: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Compact change log by removing old entries",
+          "decorators": [],
+          "line_number": 571,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "days_to_keep",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 502
+    },
+    "GlacierSporeSyncSystem": {
+      "responsibility": "Main system for glacier spore synchronization and reduction",
+      "methods": [
+        {
+          "name": "_initialize_current_version",
+          "signature": "_initialize_current_version(self) -> Any",
+          "docstring": "Initialize current model version",
+          "decorators": [],
+          "line_number": 623,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_model_version",
+          "signature": "create_model_version(self, changes: list[dict[Tuple[str, Any]]]) -> ModelVersion",
+          "docstring": "Create a new model version from changes",
+          "decorators": [],
+          "line_number": 646,
+          "return_type": "ModelVersion",
+          "parameters": [
+            {
+              "name": "changes",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_current_version_id",
+          "signature": "_get_current_version_id(self) -> Optional[str]",
+          "docstring": "Get current model version ID",
+          "decorators": [],
+          "line_number": 689,
+          "return_type": "Optional[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "sync_models",
+          "signature": "sync_models(self, target_version_id: str, strategy: SyncStrategy) -> str",
+          "docstring": "Synchronize models",
+          "decorators": [],
+          "line_number": 707,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "target_version_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "strategy",
+              "type": "SyncStrategy",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "reduce_model",
+          "signature": "reduce_model(self, max_versions: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Reduce model versions",
+          "decorators": [],
+          "line_number": 725,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "max_versions",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "compact_changes",
+          "signature": "compact_changes(self, days_to_keep: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Compact change log",
+          "decorators": [],
+          "line_number": 729,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "days_to_keep",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_sync_status",
+          "signature": "get_sync_status(self, sync_id: str) -> Optional[SyncOperation]",
+          "docstring": "Get synchronization operation status",
+          "decorators": [],
+          "line_number": 733,
+          "return_type": "Optional[SyncOperation]",
+          "parameters": [
+            {
+              "name": "sync_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "shutdown",
+          "signature": "shutdown(self) -> Any",
+          "docstring": "Shutdown the sync system",
+          "decorators": [],
+          "line_number": 771,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 612
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import hashlib",
+    "import json",
+    "import logging",
+    "import pickle",
+    "import sqlite3",
+    "import threading",
+    "import time",
+    "import uuid",
+    "from contextlib import contextmanager",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from enum import Enum",
+    "from queue import Queue",
+    "from typing import Any",
+    "from typing import Optional",
+    "from typing import Union"
+  ],
+  "module_docstring": "\nGlacier Spore Model Synchronization & Reduction System\n\nImplements:\n1. Model version metadata tracking\n2. Change logging and squashing\n3. Last update wins conflict resolution\n4. Optimistic concurrency control\n5. Asynchronous queues for synchronization\n6. Model reduction and compaction\n",
+  "file_structure": {
+    "total_lines": 834,
+    "code_lines": 655,
+    "comment_lines": 43,
+    "blank_lines": 136,
+    "total_nodes": 3038,
+    "class_nodes": 9,
+    "function_nodes": 31,
+    "import_nodes": 15,
+    "expression_nodes": 119,
+    "assignment_nodes": 74,
+    "return_nodes": 25
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 834
+  },
+  "used_names": [
+    "conflicts",
+    "GlacierSporeSyncSystem",
+    "change_id",
+    "change_type",
+    "Exception",
+    "version_id",
+    "change_timestamp",
+    "dict",
+    "MANUAL_RESOLUTION",
+    "max_versions",
+    "created_by",
+    "MERGE_CONFLICTS",
+    "changes",
+    "created_at",
+    "SyncStrategy",
+    "current_version",
+    "list",
+    "completed_at",
+    "database",
+    "print",
+    "version",
+    "ModelReducer",
+    "hashlib",
+    "bool",
+    "operation",
+    "MANUAL",
+    "change_hash",
+    "Queue",
+    "contextmanager",
+    "threading",
+    "asdict",
+    "GlacierSporeSyncDatabase",
+    "parent_version_id",
+    "timezone",
+    "worker_id",
+    "__name__",
+    "worker",
+    "logging",
+    "versions_to_reduce",
+    "row",
+    "v",
+    "strategy",
+    "oldest_kept",
+    "uuid",
+    "spore_id",
+    "old_value",
+    "changes_applied",
+    "new_value",
+    "ACCEPT_REMOTE",
+    "ACCEPT_LOCAL",
+    "REJECT",
+    "num_workers",
+    "field",
+    "conflict_resolution",
+    "old_changes",
+    "model_content",
+    "compaction_result",
+    "versions",
+    "VERSION_BASED",
+    "f",
+    "conflicts_found",
+    "reduction_result",
+    "model_hash",
+    "Enum",
+    "open",
+    "sum",
+    "ChangeLog",
+    "status",
+    "errors",
+    "sync_system",
+    "sync_status",
+    "main",
+    "new_version",
+    "ModelVersion",
+    "BaseException",
+    "ModelSynchronizer",
+    "datetime",
+    "days_to_keep",
+    "change_types",
+    "i",
+    "field_name",
+    "Optional",
+    "Any",
+    "operation_type",
+    "range",
+    "change",
+    "LAST_UPDATE_WINS",
+    "conflicts_resolved",
+    "set",
+    "change_count",
+    "started_at",
+    "resolution_method",
+    "target_version_id",
+    "ConflictResolution",
+    "str",
+    "SyncOperation",
+    "conn",
+    "dataclass",
+    "json",
+    "conflict_resolved",
+    "sync_id",
+    "MERGE",
+    "len",
+    "versions_to_keep",
+    "db_path",
+    "last_sync",
+    "self",
+    "asyncio",
+    "sqlite3",
+    "total_changes",
+    "TIMESTAMP_BASED",
+    "data",
+    "cursor",
+    "int",
+    "change_log",
+    "e",
+    "source_version_id"
+  ]
+}

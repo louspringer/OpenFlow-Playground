@@ -1,0 +1,216 @@
+{
+  "system_name": "\ud83d\udd04 Deployment State Updater",
+  "description": "Updates the deployment state in the project model registry based on current GKE cluster status",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "get_gke_cluster_status",
+      "signature": "get_gke_cluster_status(project_id: str) -> Dict[Tuple[str, Any]]",
+      "docstring": "Get current GKE cluster status",
+      "decorators": [],
+      "line_number": 31,
+      "return_type": "Dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "project_id",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "get_k8s_resources",
+      "signature": "get_k8s_resources() -> Dict[Tuple[str, Any]]",
+      "docstring": "Get current Kubernetes resources status",
+      "decorators": [],
+      "line_number": 59,
+      "return_type": "Dict[Tuple[str, Any]]",
+      "parameters": []
+    },
+    {
+      "name": "parse_deployed_services",
+      "signature": "parse_deployed_services(resources: Dict[Tuple[str, Any]]) -> List[Dict[Tuple[str, Any]]]",
+      "docstring": "Parse deployed services from kubectl output",
+      "decorators": [],
+      "line_number": 76,
+      "return_type": "List[Dict[Tuple[str, Any]]]",
+      "parameters": [
+        {
+          "name": "resources",
+          "type": "Dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "parse_system_services",
+      "signature": "parse_system_services(resources: Dict[Tuple[str, Any]]) -> List[Dict[Tuple[str, Any]]]",
+      "docstring": "Parse system services from kubectl output",
+      "decorators": [],
+      "line_number": 121,
+      "return_type": "List[Dict[Tuple[str, Any]]]",
+      "parameters": [
+        {
+          "name": "resources",
+          "type": "Dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "update_deployment_state",
+      "signature": "update_deployment_state(model: Dict[Tuple[str, Any]], cluster_status: Dict[Tuple[str, Any]], deployed_services: List[Dict[Tuple[str, Any]]], system_services: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, Any]]",
+      "docstring": "Update the deployment state in the model",
+      "decorators": [],
+      "line_number": 160,
+      "return_type": "Dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Dict[Tuple[str, Any]]",
+          "default": null
+        },
+        {
+          "name": "cluster_status",
+          "type": "Dict[Tuple[str, Any]]",
+          "default": null
+        },
+        {
+          "name": "deployed_services",
+          "type": "List[Dict[Tuple[str, Any]]]",
+          "default": null
+        },
+        {
+          "name": "system_services",
+          "type": "List[Dict[Tuple[str, Any]]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "save_project_model",
+      "signature": "save_project_model(model: Dict[Tuple[str, Any]]) -> Any",
+      "docstring": "Save the updated project model registry",
+      "decorators": [],
+      "line_number": 217,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Dict[Tuple[str, Any]]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 232,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from pathlib import Path",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Any"
+  ],
+  "module_docstring": "\n\ud83d\udd04 Deployment State Updater\nUpdates the deployment state in the project model registry based on current GKE cluster status\n",
+  "file_structure": {
+    "total_lines": 311,
+    "code_lines": 229,
+    "comment_lines": 20,
+    "blank_lines": 62,
+    "total_nodes": 1527,
+    "class_nodes": 0,
+    "function_nodes": 8,
+    "import_nodes": 6,
+    "expression_nodes": 56,
+    "assignment_nodes": 42,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 311
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "pending_services",
+    "f",
+    "__file__",
+    "parse_system_services",
+    "cluster",
+    "status_emoji",
+    "system_services",
+    "result",
+    "Dict",
+    "services",
+    "open",
+    "gcp_setup",
+    "str",
+    "model_path",
+    "Path",
+    "ghostbusters_services",
+    "List",
+    "status",
+    "new_deployment_state",
+    "subprocess",
+    "service",
+    "item",
+    "json",
+    "health",
+    "cluster_status",
+    "running_services",
+    "sys",
+    "parse_deployed_services",
+    "len",
+    "clusters",
+    "update_deployment_state",
+    "load_project_model",
+    "print",
+    "main",
+    "k8s_resources",
+    "resources",
+    "project_id",
+    "hackathon_config",
+    "metadata",
+    "get_gke_cluster_status",
+    "service_info",
+    "s",
+    "updated_model",
+    "save_project_model",
+    "current_time",
+    "deployed_services",
+    "datetime",
+    "model",
+    "all",
+    "e",
+    "Any",
+    "get_k8s_resources",
+    "timezone"
+  ]
+}

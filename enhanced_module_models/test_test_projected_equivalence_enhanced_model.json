@@ -1,0 +1,51 @@
+{
+  "module_name": "test_test_projected_equivalence",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/model_driven_projection/test_projected_equivalence.py"
+  ],
+  "file_count": 1,
+  "total_lines": 259,
+  "total_classes": 0,
+  "total_functions": 5,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\ntest_test_projected_equivalence\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 259\nClasses: 0\nFunctions: 5\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_projected_equivalence",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 259,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "src/model_driven_projection/test_projected_equivalence.py",
+        "name": "test_projected_equivalence.py",
+        "stem": "test_projected_equivalence"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.560971",
+  "version": "1.0.0"
+}

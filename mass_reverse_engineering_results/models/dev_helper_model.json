@@ -1,0 +1,134 @@
+{
+  "system_name": "Development Helper: Development and debugging utilities.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "DevHelper": {
+      "responsibility": "Development helper utilities.",
+      "methods": [
+        {
+          "name": "_find_project_root",
+          "signature": "_find_project_root(self) -> str",
+          "docstring": "Find the project root directory.",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_tests",
+          "signature": "run_tests(self, test_path: str) -> bool",
+          "docstring": "Run tests using pytest.\n\n        Args:\n            test_path: Path to test directory\n\n        Returns:\n            True if tests pass, False otherwise",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "run_linting",
+          "signature": "run_linting(self) -> bool",
+          "docstring": "Run code linting using flake8.\n\n        Returns:\n            True if linting passes, False otherwise",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_formatting",
+          "signature": "run_formatting(self) -> bool",
+          "docstring": "Run code formatting using black.\n\n        Returns:\n            True if formatting succeeds, False otherwise",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_dependencies",
+          "signature": "check_dependencies(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Check project dependencies.\n\n        Returns:\n            Dependency information",
+          "decorators": [],
+          "line_number": 107,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_project_info",
+          "signature": "get_project_info(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get project information.\n\n        Returns:\n            Project information",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 13
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "import os",
+    "import subprocess",
+    "import sys"
+  ],
+  "module_docstring": "\nDevelopment Helper: Development and debugging utilities.\n\nProvides tools for development workflow, debugging, and testing.\n",
+  "file_structure": {
+    "total_lines": 141,
+    "code_lines": 110,
+    "comment_lines": 0,
+    "blank_lines": 31,
+    "total_nodes": 464,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 4,
+    "expression_nodes": 17,
+    "assignment_nodes": 7,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 141
+  },
+  "used_names": [
+    "sys",
+    "str",
+    "Exception",
+    "print",
+    "self",
+    "subprocess",
+    "test_path",
+    "e",
+    "bool",
+    "current",
+    "Any",
+    "result",
+    "Dict",
+    "os"
+  ]
+}

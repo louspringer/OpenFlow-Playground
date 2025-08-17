@@ -1,0 +1,181 @@
+{
+  "system_name": "Project Model Registry Validation Script for Pre-commit Hooks",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ProjectModelValidator": {
+      "responsibility": "Validates project model registry consistency",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> bool",
+          "docstring": "Load and parse the project model registry",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_structure",
+          "signature": "validate_structure(self) -> bool",
+          "docstring": "Validate basic model structure",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_domains",
+          "signature": "validate_domains(self) -> bool",
+          "docstring": "Validate domain definitions",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_requirements_traceability",
+          "signature": "validate_requirements_traceability(self) -> bool",
+          "docstring": "Validate requirements traceability",
+          "decorators": [],
+          "line_number": 78,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_staged_files",
+          "signature": "validate_staged_files(self) -> bool",
+          "docstring": "Validate that staged files align with model domains",
+          "decorators": [],
+          "line_number": 98,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_validation",
+          "signature": "run_validation(self) -> bool",
+          "docstring": "Run complete validation",
+          "decorators": [],
+          "line_number": 141,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "print_results",
+          "signature": "print_results(self) -> None",
+          "docstring": "Print validation results",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_exit_code",
+          "signature": "get_exit_code(self) -> int",
+          "docstring": "Get exit code for pre-commit hook",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "int",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 9
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main validation function",
+      "decorators": [],
+      "line_number": 190,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import sys",
+    "from pathlib import Path",
+    "import subprocess"
+  ],
+  "module_docstring": "Project Model Registry Validation Script for Pre-commit Hooks",
+  "file_structure": {
+    "total_lines": 204,
+    "code_lines": 148,
+    "comment_lines": 12,
+    "blank_lines": 44,
+    "total_nodes": 875,
+    "class_nodes": 1,
+    "function_nodes": 10,
+    "import_nodes": 4,
+    "expression_nodes": 35,
+    "assignment_nodes": 20,
+    "return_nodes": 21
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 204
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "f",
+    "req",
+    "staged_files",
+    "result",
+    "domain_found",
+    "open",
+    "model_file",
+    "str",
+    "Path",
+    "required_props",
+    "test_path",
+    "warning",
+    "subprocess",
+    "pattern",
+    "json",
+    "sys",
+    "len",
+    "file_path",
+    "prop",
+    "print",
+    "main",
+    "domain_path",
+    "self",
+    "domain_config",
+    "error",
+    "bool",
+    "requirements",
+    "required_keys",
+    "int",
+    "validator",
+    "e",
+    "ProjectModelValidator",
+    "domains",
+    "domain_name",
+    "patterns"
+  ]
+}

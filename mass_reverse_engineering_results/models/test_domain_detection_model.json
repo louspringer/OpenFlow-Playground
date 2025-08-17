@@ -1,0 +1,111 @@
+{
+  "system_name": "Test domain detection for specific files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_domain_detection",
+      "signature": "test_domain_detection() -> Any",
+      "docstring": "Test domain detection for specific files",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "calculate_pattern_score",
+      "signature": "calculate_pattern_score(pattern: str) -> int",
+      "docstring": "Calculate pattern specificity score",
+      "decorators": [],
+      "line_number": 67,
+      "return_type": "int",
+      "parameters": [
+        {
+          "name": "pattern",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "matches_pattern",
+      "signature": "matches_pattern(file_path: str, pattern: str) -> bool",
+      "docstring": "Simple pattern matching",
+      "decorators": [],
+      "line_number": 79,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "pattern",
+          "type": "str",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nTest domain detection for specific files\n",
+  "file_structure": {
+    "total_lines": 99,
+    "code_lines": 68,
+    "comment_lines": 10,
+    "blank_lines": 21,
+    "total_nodes": 410,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 2,
+    "expression_nodes": 13,
+    "assignment_nodes": 15,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 99
+  },
+  "used_names": [
+    "best_pattern",
+    "__name__",
+    "f",
+    "file_parts",
+    "open",
+    "best_score",
+    "str",
+    "Path",
+    "parts",
+    "matches_pattern",
+    "part",
+    "pattern",
+    "json",
+    "len",
+    "pattern_parts",
+    "p",
+    "file_path",
+    "print",
+    "calculate_pattern_score",
+    "pattern_idx",
+    "domain_config",
+    "bool",
+    "test_domain_detection",
+    "int",
+    "best_match",
+    "model_data",
+    "score",
+    "domain_name",
+    "patterns",
+    "test_files"
+  ]
+}

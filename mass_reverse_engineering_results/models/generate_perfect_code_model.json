@@ -1,0 +1,65 @@
+{
+  "system_name": "Generate Perfect Code",
+  "description": "Use our complex model to generate perfect code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "generate_perfect_code",
+      "signature": "generate_perfect_code() -> None",
+      "docstring": "Generate perfect code using our complex model",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from src.complex_model_generator import create_complex_model",
+    "import ast"
+  ],
+  "module_docstring": "\nGenerate Perfect Code\nUse our complex model to generate perfect code\n",
+  "file_structure": {
+    "total_lines": 80,
+    "code_lines": 48,
+    "comment_lines": 9,
+    "blank_lines": 23,
+    "total_nodes": 275,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 29,
+    "assignment_nodes": 5,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 80
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "enumerate",
+    "open",
+    "test_file",
+    "line",
+    "generate_perfect_code",
+    "ast",
+    "len",
+    "create_complex_model",
+    "print",
+    "lines",
+    "compile",
+    "perfect_code",
+    "perfect_file",
+    "i",
+    "model",
+    "e"
+  ]
+}

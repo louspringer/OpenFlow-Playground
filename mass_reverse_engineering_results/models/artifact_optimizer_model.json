@@ -1,0 +1,294 @@
+{
+  "system_name": "ArtifactOptimizer Agent",
+  "description": "Identifies optimization opportunities and fixes issues",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "OptimizationOpportunity": {
+      "responsibility": "An optimization opportunity found in an artifact",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 20
+    },
+    "ArtifactOptimizer": {
+      "responsibility": "Identifies optimization opportunities in artifacts",
+      "methods": [
+        {
+          "name": "optimize_artifacts",
+          "signature": "optimize_artifacts(self, artifacts: list[dict[Tuple[str, Any]]]) -> list[OptimizationOpportunity]",
+          "docstring": "Find optimization opportunities in artifacts",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifacts",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_artifact",
+          "signature": "_analyze_artifact(self, artifact: dict[Tuple[str, Any]]) -> list[OptimizationOpportunity]",
+          "docstring": "Analyze a single artifact for optimization opportunities",
+          "decorators": [],
+          "line_number": 69,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_syntax_errors",
+          "signature": "_find_syntax_errors(self, artifact: dict[Tuple[str, Any]]) -> list[OptimizationOpportunity]",
+          "docstring": "Find syntax errors in artifacts",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_performance_issues",
+          "signature": "_find_performance_issues(self, artifact: dict[Tuple[str, Any]]) -> list[OptimizationOpportunity]",
+          "docstring": "Find performance issues in artifacts",
+          "decorators": [],
+          "line_number": 148,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_quality_issues",
+          "signature": "_find_quality_issues(self, artifact: dict[Tuple[str, Any]]) -> list[OptimizationOpportunity]",
+          "docstring": "Find code quality issues",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_security_issues",
+          "signature": "_find_security_issues(self, artifact: dict[Tuple[str, Any]]) -> list[OptimizationOpportunity]",
+          "docstring": "Find security issues in artifacts",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "list[OptimizationOpportunity]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_suggest_syntax_fix",
+          "signature": "_suggest_syntax_fix(self, content: str, error_msg: str) -> str",
+          "docstring": "Suggest a fix for a syntax error",
+          "decorators": [],
+          "line_number": 305,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "error_msg",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_indentation",
+          "signature": "_check_indentation(self, content: str) -> list[str]",
+          "docstring": "Check for indentation issues",
+          "decorators": [],
+          "line_number": 317,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_severity_score",
+          "signature": "_severity_score(self, severity: str) -> int",
+          "docstring": "Convert severity to numeric score for sorting",
+          "decorators": [],
+          "line_number": 334,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "severity",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test ArtifactOptimizer",
+      "decorators": [],
+      "line_number": 340,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "import re",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nArtifactOptimizer Agent\nIdentifies optimization opportunities and fixes issues\n",
+  "file_structure": {
+    "total_lines": 373,
+    "code_lines": 302,
+    "comment_lines": 15,
+    "blank_lines": 56,
+    "total_nodes": 1542,
+    "class_nodes": 2,
+    "function_nodes": 11,
+    "import_nodes": 6,
+    "expression_nodes": 42,
+    "assignment_nodes": 40,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 373
+  },
+  "used_names": [
+    "parsed_data",
+    "__name__",
+    "OptimizationOpportunity",
+    "Exception",
+    "f",
+    "imports",
+    "logging",
+    "description",
+    "opp",
+    "artifact_type",
+    "scores",
+    "enumerate",
+    "finder_func",
+    "imp",
+    "x",
+    "suggested_fix",
+    "severity",
+    "float",
+    "opt_type",
+    "content",
+    "dict",
+    "open",
+    "matches",
+    "logger",
+    "str",
+    "opts",
+    "line",
+    "complexity",
+    "created_at",
+    "artifacts",
+    "sample_artifacts",
+    "pattern",
+    "dataclass",
+    "list",
+    "opportunities",
+    "ast",
+    "SyntaxError",
+    "len",
+    "indentation_issues",
+    "error_msg",
+    "artifact_path",
+    "print",
+    "main",
+    "self",
+    "lines",
+    "issue",
+    "functions",
+    "artifact",
+    "long_lines",
+    "dangerous_imports",
+    "datetime",
+    "optimizer",
+    "dangerous",
+    "opportunity_type",
+    "re",
+    "credential_patterns",
+    "i",
+    "int",
+    "func",
+    "e",
+    "Any",
+    "ArtifactOptimizer",
+    "issues",
+    "artifact_opportunities",
+    "confidence"
+  ]
+}

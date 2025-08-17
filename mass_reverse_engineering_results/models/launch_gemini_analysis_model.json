@@ -1,0 +1,69 @@
+{
+  "system_name": "\ud83d\ude80 Launch Gemini GCP Billing Analysis Notebook",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "launch_gemini_analysis",
+      "signature": "launch_gemini_analysis() -> bool",
+      "docstring": "Launch the Gemini analysis notebook with proper environment",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "bool",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to launch Gemini analysis",
+      "decorators": [],
+      "line_number": 54,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83d\ude80 Launch Gemini GCP Billing Analysis Notebook\n\nSimple launcher for the Gemini analysis notebook with proper environment setup.\n",
+  "file_structure": {
+    "total_lines": 75,
+    "code_lines": 56,
+    "comment_lines": 3,
+    "blank_lines": 16,
+    "total_nodes": 244,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 27,
+    "assignment_nodes": 4,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 75
+  },
+  "used_names": [
+    "sys",
+    "__name__",
+    "Exception",
+    "launch_gemini_analysis",
+    "Path",
+    "notebook_path",
+    "print",
+    "main",
+    "success",
+    "subprocess",
+    "e",
+    "bool",
+    "result"
+  ]
+}

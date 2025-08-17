@@ -1,0 +1,55 @@
+{
+  "system_name": "Regenerate test_projected_code.py using Model-Driven Projection",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "regenerate_test_projected",
+      "signature": "regenerate_test_projected() -> Any",
+      "docstring": "Regenerate test_projected_code.py using model-driven projection",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from src.model_driven_projection import FinalProjectionSystem"
+  ],
+  "module_docstring": "\nRegenerate test_projected_code.py using Model-Driven Projection\n",
+  "file_structure": {
+    "total_lines": 43,
+    "code_lines": 27,
+    "comment_lines": 4,
+    "blank_lines": 12,
+    "total_nodes": 128,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 1,
+    "expression_nodes": 15,
+    "assignment_nodes": 3,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 43
+  },
+  "used_names": [
+    "open",
+    "system",
+    "len",
+    "__name__",
+    "FinalProjectionSystem",
+    "f",
+    "output_file",
+    "print",
+    "projected_content",
+    "regenerate_test_projected"
+  ]
+}

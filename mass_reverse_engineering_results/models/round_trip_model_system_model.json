@@ -1,0 +1,364 @@
+{
+  "system_name": "Round-Trip Model System",
+  "description": "Can create models from design AND generate code from models",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ModelComponent": {
+      "responsibility": "A component in our design model",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 18
+    },
+    "DesignModel": {
+      "responsibility": "A complete design model that can be converted to/from code",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 30
+    },
+    "RoundTripModelSystem": {
+      "responsibility": "System that can create models from design AND generate code from models",
+      "methods": [
+        {
+          "name": "create_model_from_design",
+          "signature": "create_model_from_design(self, design_spec: dict[Tuple[str, Any]]) -> DesignModel",
+          "docstring": "Create a model directly from design specification (NO reverse engineering)",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "DesignModel",
+          "parameters": [
+            {
+              "name": "design_spec",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_dependency_graph",
+          "signature": "_build_dependency_graph(self, model: DesignModel) -> None",
+          "docstring": "Build dependency graph for proper import resolution",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_code_from_model",
+          "signature": "generate_code_from_model(self, model_name: str) -> dict[Tuple[str, str]]",
+          "docstring": "Generate code from a design model (NO reverse engineering)",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_function_code",
+          "signature": "_generate_function_code(self, component: ModelComponent, model: DesignModel) -> str",
+          "docstring": "Generate function code from component design",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "component",
+              "type": "ModelComponent",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_class_code",
+          "signature": "_generate_class_code(self, component: ModelComponent, model: DesignModel) -> str",
+          "docstring": "Generate class code from component design with proper dependency resolution",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "component",
+              "type": "ModelComponent",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_resolve_imports",
+          "signature": "_resolve_imports(self, component: ModelComponent, model: DesignModel) -> list[str]",
+          "docstring": "Resolve all imports needed for a component",
+          "decorators": [],
+          "line_number": 215,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "component",
+              "type": "ModelComponent",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_resolve_type_reference",
+          "signature": "_resolve_type_reference(self, type_ref: str, model: DesignModel) -> str",
+          "docstring": "Resolve type references to internal components",
+          "decorators": [],
+          "line_number": 259,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "type_ref",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_module_code",
+          "signature": "_generate_module_code(self, component: ModelComponent, model: DesignModel) -> str",
+          "docstring": "Generate module code from component design",
+          "decorators": [],
+          "line_number": 271,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "component",
+              "type": "ModelComponent",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_domain_code",
+          "signature": "_generate_domain_code(self, component: ModelComponent, model: DesignModel) -> str",
+          "docstring": "Generate domain code from component design",
+          "decorators": [],
+          "line_number": 291,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "component",
+              "type": "ModelComponent",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "DesignModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_model",
+          "signature": "save_model(self, model_name: str, file_path: str) -> None",
+          "docstring": "Save a design model to JSON file",
+          "decorators": [],
+          "line_number": 311,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_model",
+          "signature": "load_model(self, file_path: str) -> DesignModel",
+          "docstring": "Load a design model from JSON file",
+          "decorators": [],
+          "line_number": 343,
+          "return_type": "DesignModel",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 40
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Demonstrate round-trip model system",
+      "decorators": [],
+      "line_number": 377,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nRound-Trip Model System\nCan create models from design AND generate code from models\n",
+  "file_structure": {
+    "total_lines": 500,
+    "code_lines": 393,
+    "comment_lines": 25,
+    "blank_lines": 82,
+    "total_nodes": 2136,
+    "class_nodes": 3,
+    "function_nodes": 13,
+    "import_nodes": 4,
+    "expression_nodes": 47,
+    "assignment_nodes": 55,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 500
+  },
+  "used_names": [
+    "standard_imports",
+    "__name__",
+    "f",
+    "imports",
+    "logging",
+    "req",
+    "description",
+    "sorted",
+    "set",
+    "comp",
+    "inner_type",
+    "RoundTripModelSystem",
+    "dict",
+    "open",
+    "system",
+    "chr",
+    "logger",
+    "str",
+    "type_ref",
+    "return_type",
+    "msg",
+    "design_spec",
+    "param_str",
+    "ModelComponent",
+    "dataclass",
+    "list",
+    "comp_data",
+    "json",
+    "methods",
+    "dep",
+    "generated_files",
+    "len",
+    "DesignModel",
+    "file_path",
+    "filename",
+    "print",
+    "main",
+    "dependencies",
+    "self",
+    "metadata",
+    "code",
+    "requirements",
+    "type",
+    "ValueError",
+    "param",
+    "field",
+    "model_name",
+    "params",
+    "loaded_model",
+    "components",
+    "comp_spec",
+    "method",
+    "name",
+    "model",
+    "model_data",
+    "relationships",
+    "Any",
+    "design_model",
+    "component"
+  ]
+}

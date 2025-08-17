@@ -1,0 +1,151 @@
+{
+  "system_name": "Report Generator: Generate various types of reports.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ReportGenerator": {
+      "responsibility": "Generate various types of reports.",
+      "methods": [
+        {
+          "name": "generate_json_report",
+          "signature": "generate_json_report(self, data: Dict[Tuple[str, Any]], output_path: str) -> str",
+          "docstring": "Generate JSON report.\n\n        Args:\n            data: Data to include in report\n            output_path: Output file path\n\n        Returns:\n            Generated file path",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_yaml_report",
+          "signature": "generate_yaml_report(self, data: Dict[Tuple[str, Any]], output_path: str) -> str",
+          "docstring": "Generate YAML report.\n\n        Args:\n            data: Data to include in report\n            output_path: Output file path\n\n        Returns:\n            Generated file path",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_markdown_report",
+          "signature": "generate_markdown_report(self, data: Dict[Tuple[str, Any]], output_path: str) -> str",
+          "docstring": "Generate Markdown report.\n\n        Args:\n            data: Data to include in report\n            output_path: Output file path\n\n        Returns:\n            Generated file path",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_data_to_markdown",
+          "signature": "_data_to_markdown(self, data: Dict[Tuple[str, Any]]) -> str",
+          "docstring": "Convert data to Markdown format.",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 13
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from datetime import datetime",
+    "from clewcrew_common.file_ops import FileOperations"
+  ],
+  "module_docstring": "\nReport Generator: Generate various types of reports.\n\nProvides report generation for analysis results, metrics, and summaries.\n",
+  "file_structure": {
+    "total_lines": 102,
+    "code_lines": 76,
+    "comment_lines": 0,
+    "blank_lines": 26,
+    "total_nodes": 459,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 23,
+    "assignment_nodes": 7,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 102
+  },
+  "used_names": [
+    "key",
+    "f",
+    "output_path",
+    "value",
+    "Dict",
+    "open",
+    "str",
+    "metrics",
+    "file_data",
+    "summary",
+    "self",
+    "lines",
+    "report_data",
+    "datetime",
+    "data",
+    "FileOperations",
+    "markdown_content",
+    "metric",
+    "Any"
+  ]
+}

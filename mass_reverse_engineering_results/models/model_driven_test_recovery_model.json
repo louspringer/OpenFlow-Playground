@@ -1,0 +1,152 @@
+{
+  "system_name": "Model-Driven Test Recovery",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_model_registry",
+      "signature": "load_model_registry() -> dict[Tuple[str, Any]]",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": []
+    },
+    {
+      "name": "get_test_patterns",
+      "signature": "get_test_patterns() -> dict[Tuple[str, str]]",
+      "docstring": "Get test patterns from projected artifacts",
+      "decorators": [],
+      "line_number": 21,
+      "return_type": "dict[Tuple[str, str]]",
+      "parameters": []
+    },
+    {
+      "name": "create_basic_validation_test",
+      "signature": "create_basic_validation_test() -> str",
+      "docstring": "Create a basic validation test using projected artifact patterns",
+      "decorators": [],
+      "line_number": 37,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "create_code_quality_test",
+      "signature": "create_code_quality_test() -> str",
+      "docstring": "Create a code quality test using projected artifact patterns",
+      "decorators": [],
+      "line_number": 145,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "create_security_test",
+      "signature": "create_security_test() -> str",
+      "docstring": "Create a security test using projected artifact patterns",
+      "decorators": [],
+      "line_number": 262,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "create_healthcare_test",
+      "signature": "create_healthcare_test() -> str",
+      "docstring": "Create a healthcare CDC test using projected artifact patterns",
+      "decorators": [],
+      "line_number": 372,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "create_uv_package_test",
+      "signature": "create_uv_package_test() -> str",
+      "docstring": "Create a UV package management test using projected artifact patterns",
+      "decorators": [],
+      "line_number": 494,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "recover_test_file",
+      "signature": "recover_test_file(file_path: str, test_type: str) -> None",
+      "docstring": "Recover a test file using model-driven patterns",
+      "decorators": [],
+      "line_number": 615,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "test_type",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to recover all broken test files",
+      "decorators": [],
+      "line_number": 641,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nModel-Driven Test Recovery\n\nThis script uses our projected artifacts and model registry to recover broken test files.\nIt follows the model-driven approach by using the project_model_registry.json to understand\ntest patterns and projected artifacts to restore functionality.\n",
+  "file_structure": {
+    "total_lines": 683,
+    "code_lines": 469,
+    "comment_lines": 47,
+    "blank_lines": 167,
+    "total_nodes": 371,
+    "class_nodes": 0,
+    "function_nodes": 9,
+    "import_nodes": 3,
+    "expression_nodes": 20,
+    "assignment_nodes": 7,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 683
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "broken_tests",
+    "get_test_patterns",
+    "create_security_test",
+    "dict",
+    "content",
+    "recover_test_file",
+    "os",
+    "open",
+    "create_healthcare_test",
+    "str",
+    "create_basic_validation_test",
+    "create_code_quality_test",
+    "json",
+    "file_path",
+    "print",
+    "main",
+    "load_model_registry",
+    "test_type",
+    "create_uv_package_test",
+    "Any"
+  ]
+}

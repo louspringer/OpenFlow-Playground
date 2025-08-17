@@ -1,0 +1,51 @@
+{
+  "module_name": "service_linter_api_integration",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/linter_api_integration.py"
+  ],
+  "file_count": 1,
+  "total_lines": 538,
+  "total_classes": 3,
+  "total_functions": 1,
+  "total_imports": 8,
+  "module_docstring": "\"\"\"\nservice_linter_api_integration\n\nPurpose: Service layer and API endpoints\nGraph API Level: 2\nProjection System: service_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 538\nClasses: 3\nFunctions: 1\nImports: 8\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Service layer and API endpoints",
+  "graph_api_level": "2",
+  "projection_system": "service_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "service_linter_api_integration",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 538,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 8
+    },
+    "files": [
+      {
+        "path": "src/linter_api_integration.py",
+        "name": "linter_api_integration.py",
+        "stem": "linter_api_integration"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.372354",
+  "version": "1.0.0"
+}

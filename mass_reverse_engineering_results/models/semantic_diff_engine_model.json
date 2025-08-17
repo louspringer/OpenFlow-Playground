@@ -1,0 +1,420 @@
+{
+  "system_name": "Semantic Diff Engine - Model-Driven Change Detection",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SemanticDiffEngine": {
+      "responsibility": "Engine for detecting semantic differences between glacier spores\n\n    This engine understands:\n    1. Semantic meaning of changes, not just text differences\n    2. Impact assessment of changes\n    3. Relationship changes between spores\n    4. Schema evolution and breaking changes",
+      "methods": [
+        {
+          "name": "diff_spores",
+          "signature": "diff_spores(self, old_spore: GlacierSpore, new_spore: GlacierSpore) -> list[SemanticDiff]",
+          "docstring": "Create semantic diffs between two spores\n\n        This analyzes semantic meaning, not just artifact differences",
+          "decorators": [],
+          "line_number": 86,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "new_spore",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_are_compatible_spores",
+          "signature": "_are_compatible_spores(self, spore1: GlacierSpore, spore2: GlacierSpore) -> bool",
+          "docstring": "Check if spores are semantically compatible for comparison",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "spore1",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "spore2",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_diff_content_semantically",
+          "signature": "_diff_content_semantically(self, old_content: dict[Tuple[str, Any]], new_content: dict[Tuple[str, Any]]) -> list[SemanticDiff]",
+          "docstring": "Detect semantic changes in content",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_content",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "new_content",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_diff_schemas_semantically",
+          "signature": "_diff_schemas_semantically(self, old_schema: dict[Tuple[str, Any]], new_schema: dict[Tuple[str, Any]]) -> list[SemanticDiff]",
+          "docstring": "Detect semantic changes in schemas",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "new_schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_diff_dimensions_semantically",
+          "signature": "_diff_dimensions_semantically(self, old_dims: dict[Tuple[str, Any]], new_dims: dict[Tuple[str, Any]]) -> list[SemanticDiff]",
+          "docstring": "Detect semantic changes in dimensions",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_dims",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "new_dims",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_diff_relationships_semantically",
+          "signature": "_diff_relationships_semantically(self, old_spore: GlacierSpore, new_spore: GlacierSpore) -> list[SemanticDiff]",
+          "docstring": "Detect semantic changes in relationships",
+          "decorators": [],
+          "line_number": 298,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "new_spore",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_diff_processing_semantically",
+          "signature": "_diff_processing_semantically(self, old_spore: GlacierSpore, new_spore: GlacierSpore) -> list[SemanticDiff]",
+          "docstring": "Detect semantic changes in processing instructions",
+          "decorators": [],
+          "line_number": 342,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "old_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "new_spore",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_field_impact",
+          "signature": "_assess_field_impact(self, field_name: str, value: Any, change_type: str) -> float",
+          "docstring": "Assess the semantic impact of a field change",
+          "decorators": [],
+          "line_number": 374,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "field_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "change_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_categorize_field",
+          "signature": "_categorize_field(self, field_name: str) -> str",
+          "docstring": "Categorize a field semantically",
+          "decorators": [],
+          "line_number": 390,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "field_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_change_magnitude",
+          "signature": "_assess_change_magnitude(self, old_value: Any, new_value: Any) -> str",
+          "docstring": "Assess the magnitude of a value change",
+          "decorators": [],
+          "line_number": 404,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "old_value",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "new_value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_breaking_schema_change",
+          "signature": "_is_breaking_schema_change(self, old_schema: dict[Tuple[str, Any]], new_schema: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Check if a schema change is breaking",
+          "decorators": [],
+          "line_number": 417,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "old_schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "new_schema",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_semantic_context",
+          "signature": "_build_semantic_context(self, old_spore: GlacierSpore, new_spore: GlacierSpore, diff: SemanticDiff) -> dict[Tuple[str, Any]]",
+          "docstring": "Build semantic context for a diff",
+          "decorators": [],
+          "line_number": 447,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "old_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "new_spore",
+              "type": "GlacierSpore",
+              "default": null
+            },
+            {
+              "name": "diff",
+              "type": "SemanticDiff",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantic_impact",
+          "signature": "analyze_semantic_impact(self, diffs: list[SemanticDiff]) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze the overall semantic impact of changes",
+          "decorators": [],
+          "line_number": 472,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "diffs",
+              "type": "list[SemanticDiff]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 31
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import json",
+    "import logging",
+    "import sys",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Set",
+    "from typing import Tuple",
+    "from glacier_spore_models import Dimension",
+    "from glacier_spore_models import DimensionType",
+    "from glacier_spore_models import GlacierSpore",
+    "from glacier_spore_models import ModelVersion",
+    "from glacier_spore_models import SemanticDiff",
+    "from glacier_spore_models import SporeType"
+  ],
+  "module_docstring": "\nSemantic Diff Engine - Model-Driven Change Detection\n\nThis engine detects semantic changes between glacier spores,\nnot just artifact-level differences. It understands the meaning\nand impact of changes at a semantic level.\n",
+  "file_structure": {
+    "total_lines": 631,
+    "code_lines": 511,
+    "comment_lines": 39,
+    "blank_lines": 81,
+    "total_nodes": 2514,
+    "class_nodes": 1,
+    "function_nodes": 14,
+    "import_nodes": 8,
+    "expression_nodes": 64,
+    "assignment_nodes": 52,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 631
+  },
+  "used_names": [
+    "spore1",
+    "change_type",
+    "dict",
+    "breaking_changes",
+    "GlacierSpore",
+    "impact_analysis",
+    "Path",
+    "new_spore",
+    "old_props",
+    "list",
+    "new_content",
+    "new_schema",
+    "print",
+    "new_type",
+    "bool",
+    "old_spore",
+    "rec",
+    "SemanticDiff",
+    "diff",
+    "recommendations",
+    "high_impact",
+    "timezone",
+    "key",
+    "__name__",
+    "__file__",
+    "total_impact",
+    "logging",
+    "enumerate",
+    "spore2",
+    "SporeType",
+    "abs",
+    "base_impact",
+    "old_value",
+    "removed_required",
+    "new_value",
+    "old_content",
+    "change_ratio",
+    "old_dims",
+    "diffs",
+    "old_type",
+    "d",
+    "new_dims",
+    "schema_diffs",
+    "float",
+    "value",
+    "sum",
+    "content_diffs",
+    "count",
+    "new_props",
+    "main",
+    "processing_diffs",
+    "datetime",
+    "i",
+    "field_name",
+    "SemanticDiffEngine",
+    "isinstance",
+    "Any",
+    "relationship_diffs",
+    "set",
+    "category",
+    "dimension_diffs",
+    "str",
+    "msg",
+    "low_impact",
+    "change_categories",
+    "min",
+    "sys",
+    "len",
+    "medium_impact",
+    "self",
+    "asyncio",
+    "max",
+    "ValueError",
+    "old_schema",
+    "engine",
+    "context",
+    "old_required",
+    "new_required",
+    "int"
+  ]
+}

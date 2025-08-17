@@ -1,0 +1,257 @@
+{
+  "system_name": "ArtifactDetector Agent",
+  "description": "Discovers and classifies artifacts in the codebase",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactInfo": {
+      "responsibility": "Information about a discovered artifact",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 14
+    },
+    "ArtifactDetector": {
+      "responsibility": "Detects and classifies artifacts in the codebase",
+      "methods": [
+        {
+          "name": "detect_artifacts",
+          "signature": "detect_artifacts(self, root_path: str) -> list[ArtifactInfo]",
+          "docstring": "Detect all artifacts in the codebase",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "list[ArtifactInfo]",
+          "parameters": [
+            {
+              "name": "root_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_should_include_file",
+          "signature": "_should_include_file(self, file_path: Path) -> bool",
+          "docstring": "Check if file should be included in analysis",
+          "decorators": [],
+          "line_number": 73,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_artifact_info",
+          "signature": "_create_artifact_info(self, file_path: Path, artifact_type: str) -> ArtifactInfo",
+          "docstring": "Create ArtifactInfo for a file",
+          "decorators": [],
+          "line_number": 83,
+          "return_type": "ArtifactInfo",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "artifact_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_count_lines",
+          "signature": "_count_lines(self, file_path: Path) -> int",
+          "docstring": "Count lines in a file",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "classify_artifact",
+          "signature": "classify_artifact(self, artifact_info: ArtifactInfo) -> dict[Tuple[str, Any]]",
+          "docstring": "Classify artifact based on content and structure",
+          "decorators": [],
+          "line_number": 111,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "artifact_info",
+              "type": "ArtifactInfo",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_complexity",
+          "signature": "_assess_complexity(self, artifact_info: ArtifactInfo) -> str",
+          "docstring": "Assess complexity of artifact",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "artifact_info",
+              "type": "ArtifactInfo",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_categorize_artifact",
+          "signature": "_categorize_artifact(self, artifact_info: ArtifactInfo) -> str",
+          "docstring": "Categorize artifact based on type and location",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "artifact_info",
+              "type": "ArtifactInfo",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_priority",
+          "signature": "_assess_priority(self, artifact_info: ArtifactInfo) -> str",
+          "docstring": "Assess priority for processing",
+          "decorators": [],
+          "line_number": 145,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "artifact_info",
+              "type": "ArtifactInfo",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 25
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test ArtifactDetector",
+      "decorators": [],
+      "line_number": 154,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nArtifactDetector Agent\nDiscovers and classifies artifacts in the codebase\n",
+  "file_structure": {
+    "total_lines": 182,
+    "code_lines": 147,
+    "comment_lines": 4,
+    "blank_lines": 31,
+    "total_nodes": 824,
+    "class_nodes": 2,
+    "function_nodes": 10,
+    "import_nodes": 4,
+    "expression_nodes": 21,
+    "assignment_nodes": 14,
+    "return_nodes": 18
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 182
+  },
+  "used_names": [
+    "__name__",
+    "a",
+    "Exception",
+    "f",
+    "patterns",
+    "artifact_info",
+    "artifact_type",
+    "float",
+    "dict",
+    "complexity_score",
+    "open",
+    "str",
+    "Path",
+    "path",
+    "sum",
+    "artifacts",
+    "path_parts",
+    "last_modified",
+    "pattern",
+    "root_path",
+    "dataclass",
+    "list",
+    "root",
+    "by_type",
+    "len",
+    "file_path",
+    "print",
+    "main",
+    "self",
+    "lines",
+    "metadata",
+    "bool",
+    "_",
+    "artifact",
+    "ArtifactInfo",
+    "datetime",
+    "stat",
+    "high_priority",
+    "artifacts_list",
+    "int",
+    "detector",
+    "Any",
+    "ArtifactDetector",
+    "size",
+    "Optional"
+  ]
+}

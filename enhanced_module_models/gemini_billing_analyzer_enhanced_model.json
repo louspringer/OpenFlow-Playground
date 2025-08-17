@@ -1,0 +1,81 @@
+{
+  "module_name": "gemini_billing_analyzer",
+  "module_type": "package",
+  "confidence_score": 0.7,
+  "files": [
+    "elmo-fuzzy-giggle/src/gemini_billing_analyzer.py",
+    "scripts/gemini_gcp_billing_analyzer.py",
+    "scripts/actual_billing_analyzer.py",
+    "elmo-fuzzy-giggle/src/generate_billing_analyzer.py",
+    "scripts/gcp_billing_analyzer.py",
+    "elmo-fuzzy-giggle/src/gemini_billing_analyzer_enhanced.py"
+  ],
+  "file_count": 6,
+  "total_lines": 2371,
+  "total_classes": 4,
+  "total_functions": 4,
+  "total_imports": 41,
+  "module_docstring": "\"\"\"\ngemini_billing_analyzer\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: package\nFiles: 6\nTotal Lines: 2371\nClasses: 4\nFunctions: 4\nImports: 41\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "gemini_billing_analyzer",
+      "type": "package",
+      "confidence": 0.7,
+      "file_count": 6
+    },
+    "metrics": {
+      "total_lines": 2371,
+      "total_classes": 4,
+      "total_functions": 4,
+      "total_imports": 41
+    },
+    "files": [
+      {
+        "path": "elmo-fuzzy-giggle/src/gemini_billing_analyzer.py",
+        "name": "gemini_billing_analyzer.py",
+        "stem": "gemini_billing_analyzer"
+      },
+      {
+        "path": "scripts/gemini_gcp_billing_analyzer.py",
+        "name": "gemini_gcp_billing_analyzer.py",
+        "stem": "gemini_gcp_billing_analyzer"
+      },
+      {
+        "path": "scripts/actual_billing_analyzer.py",
+        "name": "actual_billing_analyzer.py",
+        "stem": "actual_billing_analyzer"
+      },
+      {
+        "path": "elmo-fuzzy-giggle/src/generate_billing_analyzer.py",
+        "name": "generate_billing_analyzer.py",
+        "stem": "generate_billing_analyzer"
+      },
+      {
+        "path": "scripts/gcp_billing_analyzer.py",
+        "name": "gcp_billing_analyzer.py",
+        "stem": "gcp_billing_analyzer"
+      },
+      {
+        "path": "elmo-fuzzy-giggle/src/gemini_billing_analyzer_enhanced.py",
+        "name": "gemini_billing_analyzer_enhanced.py",
+        "stem": "gemini_billing_analyzer_enhanced"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.441164",
+  "version": "1.0.0"
+}

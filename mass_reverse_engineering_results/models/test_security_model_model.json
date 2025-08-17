@@ -1,0 +1,91 @@
+{
+  "system_name": "Security Model Tests - Prevention over Detection",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_no_hardcoded_credentials",
+      "signature": "test_no_hardcoded_credentials() -> None",
+      "docstring": "Test that no real credentials exist in code",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_config_uses_placeholders",
+      "signature": "test_config_uses_placeholders() -> None",
+      "docstring": "Test that config files use placeholders",
+      "decorators": [],
+      "line_number": 43,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_environment_validation",
+      "signature": "test_environment_validation() -> None",
+      "docstring": "Test that required environment variables are documented",
+      "decorators": [],
+      "line_number": 56,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_deployment_parameterized",
+      "signature": "test_deployment_parameterized() -> None",
+      "docstring": "Test that deployment uses parameters",
+      "decorators": [],
+      "line_number": 73,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nSecurity Model Tests - Prevention over Detection\n",
+  "file_structure": {
+    "total_lines": 88,
+    "code_lines": 63,
+    "comment_lines": 7,
+    "blank_lines": 18,
+    "total_nodes": 284,
+    "class_nodes": 0,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 12,
+    "assignment_nodes": 9,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 88
+  },
+  "used_names": [
+    "config_file",
+    "__name__",
+    "content",
+    "Path",
+    "file_path",
+    "required_vars",
+    "print",
+    "test_environment_validation",
+    "test_deployment_parameterized",
+    "re",
+    "test_config_uses_placeholders",
+    "test_no_hardcoded_credentials",
+    "excludes",
+    "var",
+    "config_files",
+    "patterns",
+    "pattern",
+    "violations"
+  ]
+}

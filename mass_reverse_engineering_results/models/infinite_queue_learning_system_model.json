@@ -1,0 +1,588 @@
+{
+  "system_name": "Infinite Queue Learning System",
+  "description": "Learns from every failure and continuously improves the model",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TelemetryData": {
+      "responsibility": "Telemetry data for learning from failures",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 23
+    },
+    "ErrorContext": {
+      "responsibility": "Context for error analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 38
+    },
+    "LintingContext": {
+      "responsibility": "Context for linting failures",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 49
+    },
+    "StackTrace": {
+      "responsibility": "Stack trace information",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 59
+    },
+    "ModelMetrics": {
+      "responsibility": "Metrics for model performance",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 68
+    },
+    "TelemetryModel": {
+      "responsibility": "Model that learns from every failure",
+      "methods": [
+        {
+          "name": "emit_telemetry",
+          "signature": "emit_telemetry(self, error: ErrorContext) -> Any",
+          "docstring": "Emit telemetry for every failure",
+          "decorators": [],
+          "line_number": 88,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "error",
+              "type": "ErrorContext",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_send_to_learning_queue",
+          "signature": "_send_to_learning_queue(self, error: ErrorContext) -> Any",
+          "docstring": "Send to infinite queue for continuous learning",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "error",
+              "type": "ErrorContext",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_serialize_model_state",
+          "signature": "_serialize_model_state(self, model_state: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Serialize model state for telemetry",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model_state",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_store_telemetry",
+          "signature": "_store_telemetry(self, queue_data: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Store telemetry data for analysis",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "queue_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_current_state",
+          "signature": "get_current_state(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get current model state",
+          "decorators": [],
+          "line_number": 137,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 78
+    },
+    "InfiniteQueue": {
+      "responsibility": "Infinite queue for telemetry data",
+      "methods": [
+        {
+          "name": "send",
+          "signature": "send(self, data: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Send data to infinite queue",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "receive",
+          "signature": "receive(self) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Receive all data from queue",
+          "decorators": [],
+          "line_number": 160,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 147
+    },
+    "ContinuousLearningModel": {
+      "responsibility": "Model that learns from every failure",
+      "methods": [
+        {
+          "name": "generate_and_learn",
+          "signature": "generate_and_learn(self, model: Any) -> str",
+          "docstring": "Generate code and learn from any failures",
+          "decorators": [],
+          "line_number": 179,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_intelligent_perfect_code",
+          "signature": "_generate_intelligent_perfect_code(self, model: Any) -> str",
+          "docstring": "Generate intelligent perfect code",
+          "decorators": [],
+          "line_number": 243,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_linting_check",
+          "signature": "_run_linting_check(self, code: str) -> list[str]",
+          "docstring": "Run linting check on generated code",
+          "decorators": [],
+          "line_number": 250,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_context",
+          "signature": "_get_context(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get current context",
+          "decorators": [],
+          "line_number": 275,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_learn_from_failure",
+          "signature": "_learn_from_failure(self, errors: list[str], model: Any) -> Any",
+          "docstring": "Learn from every failure",
+          "decorators": [],
+          "line_number": 284,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "errors",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improved_model",
+          "signature": "_improved_model(self, original_model: Any, errors: list[str]) -> Any",
+          "docstring": "Create improved model based on errors",
+          "decorators": [],
+          "line_number": 295,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "original_model",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "errors",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 171
+    },
+    "GhostbustersOrchestrator": {
+      "responsibility": "Ghostbusters orchestrator for validation",
+      "methods": [
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, code: str) -> Any",
+          "docstring": "Detect delusions in code",
+          "decorators": [],
+          "line_number": 311,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 305
+    },
+    "InfiniteQueueLearningSystem": {
+      "responsibility": "System that learns from every failure",
+      "methods": [
+        {
+          "name": "generate_with_learning",
+          "signature": "generate_with_learning(self, model: Any) -> str",
+          "docstring": "Generate code and learn from any failures",
+          "decorators": [],
+          "line_number": 357,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_serialize_model",
+          "signature": "_serialize_model(self, model: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Serialize model for telemetry",
+          "decorators": [],
+          "line_number": 415,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_context",
+          "signature": "_get_context(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get current context",
+          "decorators": [],
+          "line_number": 424,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_improved_model",
+          "signature": "_improved_model(self, model: Any, delusions: Any) -> Any",
+          "docstring": "Create improved model based on delusions",
+          "decorators": [],
+          "line_number": 432,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "delusions",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 348
+    },
+    "TestModel": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 449,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 445
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_infinite_queue_learning_system",
+      "signature": "test_infinite_queue_learning_system() -> Any",
+      "docstring": "Test the infinite queue learning system",
+      "decorators": [],
+      "line_number": 439,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "import os",
+    "import subprocess",
+    "import tempfile",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nInfinite Queue Learning System\nLearns from every failure and continuously improves the model\n",
+  "file_structure": {
+    "total_lines": 478,
+    "code_lines": 354,
+    "comment_lines": 32,
+    "blank_lines": 92,
+    "total_nodes": 2075,
+    "class_nodes": 11,
+    "function_nodes": 24,
+    "import_nodes": 9,
+    "expression_nodes": 70,
+    "assignment_nodes": 25,
+    "return_nodes": 23
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 478
+  },
+  "used_names": [
+    "Exception",
+    "TelemetryModel",
+    "dict",
+    "Path",
+    "context_data",
+    "model_performance",
+    "list",
+    "runtime_errors",
+    "print",
+    "version",
+    "TestModel",
+    "LintingContext",
+    "type",
+    "GhostbustersOrchestrator",
+    "model",
+    "ContinuousLearningModel",
+    "__name__",
+    "logging",
+    "stack_trace",
+    "v",
+    "InfiniteQueue",
+    "stack_traces",
+    "line",
+    "queue_data",
+    "improvement_count",
+    "subprocess",
+    "tempfile",
+    "exception_message",
+    "ErrorContext",
+    "field",
+    "temp_file",
+    "ModelMetrics",
+    "error_count",
+    "start_time",
+    "name",
+    "d",
+    "f",
+    "learning_entry",
+    "float",
+    "result",
+    "os",
+    "open",
+    "system",
+    "exception_type",
+    "errors",
+    "StackTrace",
+    "error_codes",
+    "InfiniteQueueLearningSystem",
+    "error_type",
+    "linting_errors",
+    "error",
+    "code",
+    "delusions",
+    "datetime",
+    "telemetry_file",
+    "Optional",
+    "Any",
+    "original_model",
+    "linting_failures",
+    "model_state",
+    "logger",
+    "str",
+    "k",
+    "linting_context",
+    "hasattr",
+    "dataclass",
+    "json",
+    "test_infinite_queue_learning_system",
+    "len",
+    "file_path",
+    "generation_time",
+    "self",
+    "line_numbers",
+    "success_rate",
+    "context",
+    "data",
+    "timestamp",
+    "frames",
+    "int",
+    "e"
+  ]
+}

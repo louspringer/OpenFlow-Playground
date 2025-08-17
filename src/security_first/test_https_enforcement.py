@@ -1,11 +1,10 @@
-import os
-
 #!/usr/bin/env python3
 """
 Tests for HTTPS Enforcement Module
 Validates critical security blind spot fixes identified by multi-agent analysis.
 """
 
+import os
 import ssl
 import unittest.mock as mock
 from unittest.mock import MagicMock

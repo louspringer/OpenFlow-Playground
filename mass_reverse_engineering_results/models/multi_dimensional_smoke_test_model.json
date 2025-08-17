@@ -1,0 +1,275 @@
+{
+  "system_name": "\ud83d\udd25 MULTI-DIMENSIONAL SMOKE TEST",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MultiDimensionalSmokeTest": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "call_llm",
+          "signature": "call_llm(self, model_name: str, prompt: str, temperature: float) -> dict[Tuple[str, Any]]",
+          "docstring": "Call LLM with enhanced error handling and retry logic",
+          "decorators": [],
+          "line_number": 136,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "prompt",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "temperature",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_test",
+          "signature": "run_test(self, config: dict[Tuple[str, Any]], scenario: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run a single test with enhanced analysis",
+          "decorators": [],
+          "line_number": 196,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "scenario",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "extract_questions",
+          "signature": "extract_questions(self, content: str) -> list[str]",
+          "docstring": "Enhanced question extraction",
+          "decorators": [],
+          "line_number": 286,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_confidence",
+          "signature": "calculate_confidence(self, questions: list[str]) -> float",
+          "docstring": "Enhanced confidence calculation",
+          "decorators": [],
+          "line_number": 316,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "questions",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_agreement",
+          "signature": "calculate_agreement(self, confidence: float, expected: float) -> bool",
+          "docstring": "Enhanced agreement calculation",
+          "decorators": [],
+          "line_number": 348,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "confidence",
+              "type": "float",
+              "default": null
+            },
+            {
+              "name": "expected",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_insights",
+          "signature": "generate_insights(self, questions: list[str], confidence: float) -> list[str]",
+          "docstring": "Enhanced insight generation",
+          "decorators": [],
+          "line_number": 352,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "questions",
+              "type": "list[str]",
+              "default": null
+            },
+            {
+              "name": "confidence",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_comprehensive_test",
+          "signature": "run_comprehensive_test(self, scenario: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run comprehensive test with all configurations",
+          "decorators": [],
+          "line_number": 372,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "scenario",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to run the enhanced smoke test",
+      "decorators": [],
+      "line_number": 661,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from datetime import datetime",
+    "from typing import Any",
+    "import requests"
+  ],
+  "module_docstring": "\n\ud83d\udd25 MULTI-DIMENSIONAL SMOKE TEST\n\nUpdated with proven diversity hypothesis models and enhanced test scenarios.\n",
+  "file_structure": {
+    "total_lines": 684,
+    "code_lines": 577,
+    "comment_lines": 32,
+    "blank_lines": 75,
+    "total_nodes": 2304,
+    "class_nodes": 1,
+    "function_nodes": 9,
+    "import_nodes": 5,
+    "expression_nodes": 66,
+    "assignment_nodes": 52,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 684
+  },
+  "used_names": [
+    "diversity_score",
+    "unique_insights",
+    "__name__",
+    "Exception",
+    "response",
+    "f",
+    "confidence_indicators",
+    "temp",
+    "sorted",
+    "set",
+    "any",
+    "api_key",
+    "abs",
+    "dict",
+    "float",
+    "headers",
+    "result",
+    "os",
+    "content",
+    "enhanced_prompt",
+    "json_start",
+    "open",
+    "agreement_rate",
+    "str",
+    "scenario",
+    "test_configs",
+    "payload",
+    "line",
+    "rate",
+    "temp_results",
+    "msg",
+    "status",
+    "expected",
+    "word",
+    "total_indicators",
+    "isinstance",
+    "list",
+    "agreement_count",
+    "json",
+    "min",
+    "len",
+    "json_content",
+    "prompt",
+    "print",
+    "question",
+    "main",
+    "self",
+    "lines",
+    "agreement",
+    "model_config",
+    "bool",
+    "results",
+    "temperature",
+    "MultiDimensionalSmokeTest",
+    "max",
+    "ValueError",
+    "json_end",
+    "q",
+    "model_name",
+    "role",
+    "datetime",
+    "data",
+    "config",
+    "i",
+    "role_results",
+    "requests",
+    "test",
+    "insights",
+    "e",
+    "Any",
+    "questions",
+    "range",
+    "total_tests",
+    "confidence"
+  ]
+}

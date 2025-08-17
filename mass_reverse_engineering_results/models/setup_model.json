@@ -1,0 +1,39 @@
+{
+  "system_name": "Setup script for openflow-mdc-generator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "from setuptools import find_packages",
+    "from setuptools import setup"
+  ],
+  "module_docstring": "\nSetup script for openflow-mdc-generator\n",
+  "file_structure": {
+    "total_lines": 14,
+    "code_lines": 10,
+    "comment_lines": 1,
+    "blank_lines": 3,
+    "total_nodes": 28,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 1,
+    "expression_nodes": 2,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 14
+  },
+  "used_names": [
+    "find_packages",
+    "__name__",
+    "setup"
+  ]
+}

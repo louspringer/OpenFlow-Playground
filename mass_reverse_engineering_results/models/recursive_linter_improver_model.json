@@ -1,0 +1,500 @@
+{
+  "system_name": "Recursive Linter Improver - The Other Free Lunch",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ImprovementIteration": {
+      "responsibility": "Represents one iteration of recursive improvement",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 31
+    },
+    "RecursiveImprovementSession": {
+      "responsibility": "Tracks a complete recursive improvement session",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 45
+    },
+    "RecursiveLinterImprover": {
+      "responsibility": "Recursive Self-Improving Linter System\n\n    This system demonstrates recursion as the other free lunch by:\n    1. Analyzing its own code quality\n    2. Generating improvements to itself\n    3. Applying those improvements recursively\n    4. Measuring improvement over iterations\n    5. Converging to optimal quality",
+      "methods": [
+        {
+          "name": "start_recursive_improvement",
+          "signature": "start_recursive_improvement(self, target_file: str, max_iterations: int, convergence_threshold: float) -> RecursiveImprovementSession",
+          "docstring": "Start a recursive improvement session on a target file\n\n        This is where recursion becomes the other free lunch:\n        - Each iteration improves the linter's ability to improve itself\n        - The system gets better at getting better\n        - Exponential improvement through recursive self-reference",
+          "decorators": [],
+          "line_number": 86,
+          "return_type": "RecursiveImprovementSession",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "max_iterations",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "convergence_threshold",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_session_id",
+          "signature": "_generate_session_id(self) -> str",
+          "docstring": "Generate a unique session ID",
+          "decorators": [],
+          "line_number": 214,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_assess_file_quality",
+          "signature": "_assess_file_quality(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Assess the quality of a file using the linter",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_improvement_iteration",
+          "signature": "_apply_improvement_iteration(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Apply one iteration of improvements",
+          "decorators": [],
+          "line_number": 267,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improve_code_quality",
+          "signature": "_improve_code_quality(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve code quality aspects",
+          "decorators": [],
+          "line_number": 294,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improve_performance",
+          "signature": "_improve_performance(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve performance aspects",
+          "decorators": [],
+          "line_number": 350,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improve_error_handling",
+          "signature": "_improve_error_handling(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve error handling",
+          "decorators": [],
+          "line_number": 378,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improve_documentation",
+          "signature": "_improve_documentation(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve documentation",
+          "decorators": [],
+          "line_number": 406,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_improve_testing",
+          "signature": "_improve_testing(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve testing coverage",
+          "decorators": [],
+          "line_number": 430,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "_improve_architecture",
+          "signature": "_improve_architecture(self, target_file: str, current_issues: dict[Tuple[str, Any]], iteration: int) -> list[str]",
+          "docstring": "Improve architectural patterns",
+          "decorators": [],
+          "line_number": 443,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "target_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "current_issues",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "iteration",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_improvement_score",
+          "signature": "_calculate_improvement_score(self, before: dict[Tuple[str, Any]], after: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate how much improvement was achieved",
+          "decorators": [],
+          "line_number": 471,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "before",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "after",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_convergence_metric",
+          "signature": "_calculate_convergence_metric(self, before: dict[Tuple[str, Any]], after: dict[Tuple[str, Any]]) -> float",
+          "docstring": "Calculate convergence metric (lower = more converged)",
+          "decorators": [],
+          "line_number": 481,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "before",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "after",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_improvement_report",
+          "signature": "generate_improvement_report(self, session: RecursiveImprovementSession, output_file: str) -> str",
+          "docstring": "Generate a comprehensive report of the improvement session",
+          "decorators": [],
+          "line_number": 492,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "session",
+              "type": "RecursiveImprovementSession",
+              "default": null
+            },
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_self_improvement_demo",
+          "signature": "run_self_improvement_demo(self) -> Any",
+          "docstring": "Run a demonstration of recursive self-improvement on the linter itself",
+          "decorators": [],
+          "line_number": 583,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 59
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main entry point for the recursive linter improver",
+      "decorators": [],
+      "line_number": 607,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import argparse",
+    "import hashlib",
+    "import json",
+    "import os",
+    "import re",
+    "import subprocess",
+    "import sys",
+    "import time",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "import traceback",
+    "import re"
+  ],
+  "module_docstring": "\nRecursive Linter Improver - The Other Free Lunch\n\nThis system demonstrates recursion as the other free lunch by implementing\na self-improving linter that can:\n1. Analyze its own code quality\n2. Generate improvements to itself\n3. Apply those improvements recursively\n4. Measure improvement over iterations\n5. Converge to optimal quality\n\nThe system embodies the principle: \"Recursion is the other free lunch\"\n",
+  "file_structure": {
+    "total_lines": 696,
+    "code_lines": 549,
+    "comment_lines": 40,
+    "blank_lines": 107,
+    "total_nodes": 2916,
+    "class_nodes": 3,
+    "function_nodes": 16,
+    "import_nodes": 14,
+    "expression_nodes": 111,
+    "assignment_nodes": 63,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 696
+  },
+  "used_names": [
+    "Exception",
+    "dict",
+    "prev_line",
+    "improver",
+    "Path",
+    "before",
+    "list",
+    "print",
+    "hashlib",
+    "report",
+    "bool",
+    "re",
+    "parser",
+    "modified",
+    "initial_issues",
+    "__name__",
+    "enumerate",
+    "ImprovementIteration",
+    "abs",
+    "strategy",
+    "line",
+    "iterations",
+    "subprocess",
+    "current_issues",
+    "iteration",
+    "RecursiveImprovementSession",
+    "improvements_made",
+    "improvements",
+    "iteration_record",
+    "random_suffix",
+    "start_time",
+    "any",
+    "new_issues",
+    "convergence_reached",
+    "f",
+    "total_issues",
+    "quality",
+    "prev_prev_line",
+    "float",
+    "issues_after",
+    "result",
+    "content",
+    "os",
+    "open",
+    "final_quality_score",
+    "KeyboardInterrupt",
+    "convergence_threshold",
+    "files_modified",
+    "session",
+    "main",
+    "improvement",
+    "total_improvement",
+    "datetime",
+    "RecursiveLinterImprover",
+    "i",
+    "args",
+    "Any",
+    "range",
+    "improvement_score",
+    "change",
+    "max_iterations",
+    "after",
+    "str",
+    "convergence_metric",
+    "parts",
+    "dataclass",
+    "sys",
+    "len",
+    "target_file",
+    "file_path",
+    "workspace_path",
+    "traceback",
+    "session_id",
+    "self",
+    "lines",
+    "issues_before",
+    "report_file",
+    "report_lines",
+    "output_file",
+    "timestamp",
+    "match",
+    "output_lines",
+    "changes_made",
+    "int",
+    "argparse",
+    "e"
+  ]
+}

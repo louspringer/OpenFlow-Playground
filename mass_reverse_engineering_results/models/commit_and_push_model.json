@@ -1,0 +1,143 @@
+{
+  "system_name": "Git operations script for visualization system",
+  "description": "Proper Python implementation instead of shell one-liners",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "run_command",
+      "signature": "run_command(cmd: list[str]) -> Any",
+      "docstring": "Run a command with proper error handling",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "cmd",
+          "type": "list[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_status",
+      "signature": "git_status() -> str",
+      "docstring": "Get git status",
+      "decorators": [],
+      "line_number": 22,
+      "return_type": "str",
+      "parameters": []
+    },
+    {
+      "name": "git_add",
+      "signature": "git_add(files: list[str]) -> None",
+      "docstring": "Add files to git",
+      "decorators": [],
+      "line_number": 28,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "files",
+          "type": "list[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_commit",
+      "signature": "git_commit(message: str) -> None",
+      "docstring": "Commit with message",
+      "decorators": [],
+      "line_number": 38,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "message",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "git_push",
+      "signature": "git_push() -> None",
+      "docstring": "Push to remote",
+      "decorators": [],
+      "line_number": 44,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "run_tests",
+      "signature": "run_tests() -> bool",
+      "docstring": "Run all tests",
+      "decorators": [],
+      "line_number": 50,
+      "return_type": "bool",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution",
+      "decorators": [],
+      "line_number": 61,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import subprocess",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nGit operations script for visualization system\nProper Python implementation instead of shell one-liners\n",
+  "file_structure": {
+    "total_lines": 103,
+    "code_lines": 73,
+    "comment_lines": 5,
+    "blank_lines": 25,
+    "total_nodes": 321,
+    "class_nodes": 0,
+    "function_nodes": 7,
+    "import_nodes": 3,
+    "expression_nodes": 30,
+    "assignment_nodes": 4,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 103
+  },
+  "used_names": [
+    "__name__",
+    "check",
+    "message",
+    "cmd",
+    "run_command",
+    "run_tests",
+    "result",
+    "git_push",
+    "commit_message",
+    "files",
+    "str",
+    "Path",
+    "git_status",
+    "subprocess",
+    "list",
+    "sys",
+    "print",
+    "files_to_add",
+    "main",
+    "file",
+    "git_commit",
+    "bool",
+    "git_add",
+    "e"
+  ]
+}

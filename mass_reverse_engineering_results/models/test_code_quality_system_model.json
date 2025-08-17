@@ -1,0 +1,316 @@
+{
+  "system_name": "Tests for the Code Quality System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestCodeQualityModel": {
+      "responsibility": "Test the code quality model",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Set up test fixtures",
+          "decorators": [],
+          "line_number": 17,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "teardown_method",
+          "signature": "teardown_method(self) -> None",
+          "docstring": "Clean up test fixtures",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_model_initialization",
+          "signature": "test_model_initialization(self) -> None",
+          "docstring": "Test that the model initializes correctly",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_rules_definition",
+          "signature": "test_rules_definition(self) -> None",
+          "docstring": "Test that all rules are properly defined",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fixers_definition",
+          "signature": "test_fixers_definition(self) -> None",
+          "docstring": "Test that all fixers are properly defined",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "create_test_file",
+          "signature": "create_test_file(self, content: str, filename: str) -> Path",
+          "docstring": "Create a test file with given content",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_unused_imports",
+          "signature": "test_fix_unused_imports(self) -> None",
+          "docstring": "Test fixing unused imports",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_f_strings",
+          "signature": "test_fix_f_strings(self) -> None",
+          "docstring": "Test fixing f-strings without placeholders",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_trailing_whitespace",
+          "signature": "test_fix_trailing_whitespace(self) -> None",
+          "docstring": "Test fixing trailing whitespace",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_bare_except",
+          "signature": "test_fix_bare_except(self) -> None",
+          "docstring": "Test fixing bare except clauses",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_analyze_file",
+          "signature": "test_analyze_file(self) -> None",
+          "docstring": "Test file analysis",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_file",
+          "signature": "test_fix_file(self) -> None",
+          "docstring": "Test fixing a single file",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_fix_all_files",
+          "signature": "test_fix_all_files(self) -> None",
+          "docstring": "Test fixing all files in a directory",
+          "decorators": [],
+          "line_number": 191,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 14
+    },
+    "TestLintingRule": {
+      "responsibility": "Test the LintingRule dataclass",
+      "methods": [
+        {
+          "name": "test_linting_rule_creation",
+          "signature": "test_linting_rule_creation(self) -> None",
+          "docstring": "Test creating a linting rule",
+          "decorators": [],
+          "line_number": 220,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_linting_rule_application",
+          "signature": "test_linting_rule_application(self) -> None",
+          "docstring": "Test applying a linting rule",
+          "decorators": [],
+          "line_number": 237,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 217
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_code_quality_integration",
+      "signature": "test_code_quality_integration() -> None",
+      "docstring": "Test integration of code quality system",
+      "decorators": [],
+      "line_number": 274,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_code_quality_performance",
+      "signature": "test_code_quality_performance() -> None",
+      "docstring": "Test performance of code quality system",
+      "decorators": [],
+      "line_number": 307,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "dummy_fix",
+      "signature": "dummy_fix(file_path: str) -> None",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 223,
+      "return_type": null,
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_fix",
+      "signature": "test_fix(file_path: str) -> bool",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 246,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import shutil",
+    "import tempfile",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.code_quality_system.quality_model import CodeQualityModel",
+    "from src.code_quality_system.quality_model import LintingRule"
+  ],
+  "module_docstring": "\nTests for the Code Quality System\n",
+  "file_structure": {
+    "total_lines": 333,
+    "code_lines": 241,
+    "comment_lines": 27,
+    "blank_lines": 65,
+    "total_nodes": 1323,
+    "class_nodes": 2,
+    "function_nodes": 19,
+    "import_nodes": 5,
+    "expression_nodes": 31,
+    "assignment_nodes": 17,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 333
+  },
+  "used_names": [
+    "content1",
+    "rule_code",
+    "f",
+    "LintingRule",
+    "callable",
+    "content2",
+    "isinstance",
+    "result",
+    "content",
+    "shutil",
+    "test_fix",
+    "analysis",
+    "rule",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "CodeQualityModel",
+    "test_file",
+    "dummy_fix",
+    "hasattr",
+    "fixer_name",
+    "expected_fixers",
+    "list",
+    "tempfile",
+    "len",
+    "file_path",
+    "filename",
+    "test_dir",
+    "self",
+    "bool",
+    "i",
+    "model",
+    "int",
+    "expected_rules",
+    "Any",
+    "range"
+  ]
+}

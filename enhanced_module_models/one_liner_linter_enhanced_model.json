@@ -1,0 +1,51 @@
+{
+  "module_name": "one_liner_linter",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/one_liner_linter.py"
+  ],
+  "file_count": 1,
+  "total_lines": 935,
+  "total_classes": 3,
+  "total_functions": 1,
+  "total_imports": 11,
+  "module_docstring": "\"\"\"\none_liner_linter\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 935\nClasses: 3\nFunctions: 1\nImports: 11\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "one_liner_linter",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 935,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 11
+    },
+    "files": [
+      {
+        "path": "scripts/one_liner_linter.py",
+        "name": "one_liner_linter.py",
+        "stem": "one_liner_linter"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.011371",
+  "version": "1.0.0"
+}

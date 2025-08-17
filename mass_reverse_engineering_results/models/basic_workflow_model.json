@@ -1,0 +1,213 @@
+{
+  "system_name": "ArtifactForge Basic Workflow",
+  "description": "LangGraph workflow for artifact processing",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactForgeState": {
+      "responsibility": "State for ArtifactForge workflow",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 21
+    },
+    "ArtifactForgeWorkflow": {
+      "responsibility": "Basic ArtifactForge workflow",
+      "methods": [
+        {
+          "name": "run_workflow",
+          "signature": "run_workflow(self, root_path: str) -> ArtifactForgeState",
+          "docstring": "Run the complete ArtifactForge workflow",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "ArtifactForgeState",
+          "parameters": [
+            {
+              "name": "root_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_artifact_to_dict",
+          "signature": "_artifact_to_dict(self, artifact: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert ArtifactInfo to dictionary",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "artifact",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parsed_artifact_to_dict",
+          "signature": "_parsed_artifact_to_dict(self, parsed_artifact: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert ParsedArtifact to dictionary",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "parsed_artifact",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_relationship_to_dict",
+          "signature": "_relationship_to_dict(self, relationship: Any) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert ArtifactRelationship to dictionary",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "relationship",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_confidence",
+          "signature": "_calculate_confidence(self, state: ArtifactForgeState) -> float",
+          "docstring": "Calculate overall confidence score",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ArtifactForgeState",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test ArtifactForge workflow",
+      "decorators": [],
+      "line_number": 148,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from typing import Any",
+    "from src.artifact_forge.agents.artifact_correlator import ArtifactCorrelator",
+    "from src.artifact_forge.agents.artifact_detector import ArtifactDetector",
+    "from src.artifact_forge.agents.artifact_parser import ArtifactParser"
+  ],
+  "module_docstring": "\nArtifactForge Basic Workflow\nLangGraph workflow for artifact processing\n",
+  "file_structure": {
+    "total_lines": 175,
+    "code_lines": 131,
+    "comment_lines": 9,
+    "blank_lines": 35,
+    "total_nodes": 889,
+    "class_nodes": 2,
+    "function_nodes": 7,
+    "import_nodes": 8,
+    "expression_nodes": 35,
+    "assignment_nodes": 24,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 175
+  },
+  "used_names": [
+    "relationships_found",
+    "__name__",
+    "Exception",
+    "a",
+    "__file__",
+    "workflow",
+    "parsed_artifact",
+    "ArtifactForgeState",
+    "dict",
+    "float",
+    "os",
+    "r",
+    "str",
+    "ArtifactParser",
+    "artifacts",
+    "errors",
+    "processing_time",
+    "state",
+    "total_artifacts",
+    "root_path",
+    "list",
+    "dataclass",
+    "min",
+    "sys",
+    "len",
+    "parsed",
+    "parsed_dict",
+    "print",
+    "main",
+    "self",
+    "artifacts_discovered",
+    "error",
+    "artifacts_parsed",
+    "confidence_score",
+    "max",
+    "artifact",
+    "success_rate",
+    "ArtifactCorrelator",
+    "end_time",
+    "relationship",
+    "datetime",
+    "parsed_artifacts",
+    "error_penalty",
+    "start_time",
+    "error_count",
+    "ArtifactForgeWorkflow",
+    "e",
+    "relationships",
+    "Any",
+    "ArtifactDetector",
+    "confidence"
+  ]
+}

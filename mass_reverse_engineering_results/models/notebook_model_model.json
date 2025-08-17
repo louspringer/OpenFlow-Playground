@@ -1,0 +1,266 @@
+{
+  "system_name": "\ud83d\udcca Structured Notebook Model Generator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ImportStatement": {
+      "responsibility": "Structured import statement",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 15
+    },
+    "CodeCell": {
+      "responsibility": "Structured code cell",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 25
+    },
+    "MarkdownCell": {
+      "responsibility": "Structured markdown cell",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 44
+    },
+    "NotebookModel": {
+      "responsibility": "Structured notebook model",
+      "methods": [
+        {
+          "name": "to_json",
+          "signature": "to_json(self) -> str",
+          "docstring": "Convert to JSON string",
+          "decorators": [],
+          "line_number": 67,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 59
+    },
+    "NotebookBuilder": {
+      "responsibility": "Structured notebook builder using JSON modeling",
+      "methods": [
+        {
+          "name": "add_imports_cell",
+          "signature": "add_imports_cell(self, imports: list[ImportStatement]) -> None",
+          "docstring": "Add imports cell using structured data",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "imports",
+              "type": "list[ImportStatement]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_markdown_cell",
+          "signature": "add_markdown_cell(self, title: str, content: list[str]) -> None",
+          "docstring": "Add markdown cell using structured data",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "title",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_code_cell",
+          "signature": "add_code_cell(self, code_lines: list[str]) -> None",
+          "docstring": "Add code cell using structured data",
+          "decorators": [],
+          "line_number": 124,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "code_lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "build_notebook",
+          "signature": "build_notebook(self) -> NotebookModel",
+          "docstring": "Build the complete notebook model",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "NotebookModel",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 72
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_gemini_notebook",
+      "signature": "create_gemini_notebook() -> str",
+      "docstring": "Create Gemini notebook using structured JSON modeling",
+      "decorators": [],
+      "line_number": 134,
+      "return_type": "str",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\n\ud83d\udcca Structured Notebook Model Generator\n\nUses JSON modeling instead of string manipulation for notebook generation.\n",
+  "file_structure": {
+    "total_lines": 226,
+    "code_lines": 175,
+    "comment_lines": 10,
+    "blank_lines": 41,
+    "total_nodes": 891,
+    "class_nodes": 5,
+    "function_nodes": 9,
+    "import_nodes": 4,
+    "expression_nodes": 28,
+    "assignment_nodes": 18,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 226
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "imports",
+    "CodeCell",
+    "imp",
+    "output_path",
+    "dict",
+    "source_lines",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "code_lines",
+    "MarkdownCell",
+    "module",
+    "outputs",
+    "create_gemini_notebook",
+    "dataclass",
+    "list",
+    "json",
+    "modules_str",
+    "notebook_json",
+    "cells",
+    "NotebookBuilder",
+    "print",
+    "notebook",
+    "self",
+    "alias",
+    "cell_type",
+    "metadata",
+    "asdict",
+    "title",
+    "nbformat",
+    "statement_type",
+    "builder",
+    "execution_count",
+    "cell",
+    "source",
+    "NotebookModel",
+    "int",
+    "nbformat_minor",
+    "Optional",
+    "Any",
+    "ImportStatement",
+    "submodules"
+  ]
+}

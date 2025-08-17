@@ -1,0 +1,288 @@
+{
+  "system_name": "Rule Validator: Rule-based validation system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RuleValidator": {
+      "responsibility": "Validator for rule-based validation.",
+      "methods": [
+        {
+          "name": "validate",
+          "signature": "validate(self, data: Any) -> ValidationResult",
+          "docstring": "Validate data against defined rules.\n\n        Args:\n            data: The data to validate\n            **kwargs: Additional parameters including 'rules' or 'rule_names'\n\n        Returns:\n            ValidationResult: The validation result",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "ValidationResult",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_rule",
+          "signature": "_apply_rule(self, data: Any, rule: Dict[Tuple[str, Any]]) -> Optional[ValidationIssue]",
+          "docstring": "Apply a single rule to data.",
+          "decorators": [],
+          "line_number": 73,
+          "return_type": "Optional[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_regex_rule",
+          "signature": "_apply_regex_rule(self, data: Any, rule: Dict[Tuple[str, Any]]) -> Optional[ValidationIssue]",
+          "docstring": "Apply regex rule.",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "Optional[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_range_rule",
+          "signature": "_apply_range_rule(self, data: Any, rule: Dict[Tuple[str, Any]]) -> Optional[ValidationIssue]",
+          "docstring": "Apply range rule.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "Optional[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_length_rule",
+          "signature": "_apply_length_rule(self, data: Any, rule: Dict[Tuple[str, Any]]) -> Optional[ValidationIssue]",
+          "docstring": "Apply length rule.",
+          "decorators": [],
+          "line_number": 143,
+          "return_type": "Optional[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_custom_rule",
+          "signature": "_apply_custom_rule(self, data: Any, rule: Dict[Tuple[str, Any]]) -> Optional[ValidationIssue]",
+          "docstring": "Apply custom rule.",
+          "decorators": [],
+          "line_number": 174,
+          "return_type": "Optional[ValidationIssue]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_rule",
+          "signature": "add_rule(self, name: str, rule: Dict[Tuple[str, Any]]) -> None",
+          "docstring": "Add a validation rule.\n\n        Args:\n            name: Rule name\n            rule: Rule definition",
+          "decorators": [],
+          "line_number": 198,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "rule",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_rule_function",
+          "signature": "add_rule_function(self, name: str, func: Callable) -> None",
+          "docstring": "Add a custom rule function.\n\n        Args:\n            name: Rule name\n            func: Rule function",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "func",
+              "type": "Callable",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_rule",
+          "signature": "remove_rule(self, name: str) -> bool",
+          "docstring": "Remove a rule.\n\n        Args:\n            name: Rule name to remove\n\n        Returns:\n            True if rule was removed, False if not found",
+          "decorators": [],
+          "line_number": 218,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_rules",
+          "signature": "list_rules(self) -> list",
+          "docstring": "List all available rule names.\n\n        Returns:\n            List of rule names",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "list",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 14
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Optional",
+    "from typing import Callable",
+    "import re",
+    "from base_validator import BaseValidator",
+    "from validation_result import ValidationResult",
+    "from validation_result import ValidationIssue",
+    "from validation_result import ValidationSeverity"
+  ],
+  "module_docstring": "\nRule Validator: Rule-based validation system.\n\nProvides flexible rule-based validation with custom rule definitions.\n",
+  "file_structure": {
+    "total_lines": 240,
+    "code_lines": 199,
+    "comment_lines": 0,
+    "blank_lines": 41,
+    "total_nodes": 1091,
+    "class_nodes": 1,
+    "function_nodes": 10,
+    "import_nodes": 4,
+    "expression_nodes": 18,
+    "assignment_nodes": 16,
+    "return_nodes": 26
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 240
+  },
+  "used_names": [
+    "Exception",
+    "min_len",
+    "BaseValidator",
+    "max_len",
+    "isinstance",
+    "float",
+    "result",
+    "Dict",
+    "rule",
+    "Callable",
+    "str",
+    "min_val",
+    "max_val",
+    "hasattr",
+    "pattern",
+    "ValidationResult",
+    "list",
+    "len",
+    "rules",
+    "rule_type",
+    "kwargs",
+    "self",
+    "bool",
+    "ValidationSeverity",
+    "length",
+    "data",
+    "rule_result",
+    "re",
+    "ValidationIssue",
+    "name",
+    "int",
+    "rule_name",
+    "func",
+    "Optional",
+    "super",
+    "Any",
+    "e",
+    "issues"
+  ]
+}

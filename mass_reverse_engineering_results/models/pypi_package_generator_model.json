@@ -1,0 +1,316 @@
+{
+  "system_name": "PyPI Package Generator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PackageConfig": {
+      "responsibility": "Configuration for a PyPI package",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 16
+    },
+    "PyPIPackageGenerator": {
+      "responsibility": "Generates PyPI packages from project model domains",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> None",
+          "docstring": "Load the project model",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_high_scoring_domains",
+          "signature": "get_high_scoring_domains(self, min_score: int) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get domains with high package potential scores",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "min_score",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_package_structure",
+          "signature": "generate_package_structure(self, package_info: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Generate the complete package structure",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_info",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_pyproject_toml",
+          "signature": "_create_pyproject_toml(self, package_dir: Path, package_info: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Create pyproject.toml for the package",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "package_info",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_readme",
+          "signature": "_create_readme(self, package_dir: Path, package_info: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Create README.md for the package",
+          "decorators": [],
+          "line_number": 148,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "package_info",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_init_files",
+          "signature": "_create_init_files(self, package_dir: Path, package_info: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Create __init__.py files for the package",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "package_info",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_setup_py",
+          "signature": "_create_setup_py(self, package_dir: Path, package_info: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Create setup.py for the package",
+          "decorators": [],
+          "line_number": 263,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            },
+            {
+              "name": "package_info",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_license",
+          "signature": "_create_license(self, package_dir: Path) -> None",
+          "docstring": "Create LICENSE file",
+          "decorators": [],
+          "line_number": 285,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_manifest",
+          "signature": "_create_manifest(self, package_dir: Path) -> None",
+          "docstring": "Create MANIFEST.in file",
+          "decorators": [],
+          "line_number": 313,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "package_dir",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_all_packages",
+          "signature": "generate_all_packages(self) -> None",
+          "docstring": "Generate all high-scoring packages",
+          "decorators": [],
+          "line_number": 326,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_create_package_summary",
+          "signature": "_create_package_summary(self, packages: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Create a summary of all generated packages",
+          "decorators": [],
+          "line_number": 344,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "packages",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 382,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List"
+  ],
+  "module_docstring": "\nPyPI Package Generator\n\nGenerates PyPI packages from high-scoring domains in the project model.\n",
+  "file_structure": {
+    "total_lines": 399,
+    "code_lines": 285,
+    "comment_lines": 17,
+    "blank_lines": 97,
+    "total_nodes": 1223,
+    "class_nodes": 2,
+    "function_nodes": 13,
+    "import_nodes": 5,
+    "expression_nodes": 47,
+    "assignment_nodes": 29,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 399
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "PyPIPackageGenerator",
+    "description",
+    "generator",
+    "author_email",
+    "package_info",
+    "sorted",
+    "project_urls",
+    "x",
+    "Any",
+    "dict",
+    "isinstance",
+    "content",
+    "author",
+    "open",
+    "model_file",
+    "str",
+    "domain_data",
+    "Path",
+    "package",
+    "classifiers",
+    "license_content",
+    "list",
+    "dataclass",
+    "json",
+    "len",
+    "main_content",
+    "FileNotFoundError",
+    "keywords",
+    "print",
+    "python_requires",
+    "main",
+    "version",
+    "self",
+    "package_name",
+    "high_scoring",
+    "summary_content",
+    "packages",
+    "init_content",
+    "install_requires",
+    "manifest_content",
+    "package_dir",
+    "min_score",
+    "name",
+    "int",
+    "e",
+    "score",
+    "domain_name",
+    "src_dir"
+  ]
+}

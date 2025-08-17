@@ -1,0 +1,78 @@
+{
+  "system_name": "Test pattern matching for specific files",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "matches_pattern",
+      "signature": "matches_pattern(file_path: str, pattern: str) -> bool",
+      "docstring": "Check if file path matches pattern",
+      "decorators": [],
+      "line_number": 7,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        },
+        {
+          "name": "pattern",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_specific_patterns",
+      "signature": "test_specific_patterns() -> Any",
+      "docstring": "Test specific pattern matching",
+      "decorators": [],
+      "line_number": 25,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [],
+  "module_docstring": "\nTest pattern matching for specific files\n",
+  "file_structure": {
+    "total_lines": 52,
+    "code_lines": 38,
+    "comment_lines": 3,
+    "blank_lines": 11,
+    "total_nodes": 214,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 0,
+    "expression_nodes": 10,
+    "assignment_nodes": 5,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 52
+  },
+  "used_names": [
+    "len",
+    "__name__",
+    "str",
+    "bool",
+    "pattern_parts",
+    "file_path",
+    "print",
+    "test_cases",
+    "pattern_idx",
+    "file_parts",
+    "matches_pattern",
+    "test_specific_patterns",
+    "part",
+    "pattern",
+    "result"
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "system_name": "Multi-Agent Integration for Quality System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityMultiAgentAdapter": {
+      "responsibility": "Adapter class that bridges the quality system with the multi-agent testing framework.\n\n    This adapter:\n    1. Coordinates quality analysis across multiple expert agents\n    2. Converts expert agent outputs to quality metrics\n    3. Aggregates results for comprehensive quality assessment\n    4. Integrates with the quality enforcement system",
+      "methods": [
+        {
+          "name": "run_multi_agent_quality_analysis",
+          "signature": "run_multi_agent_quality_analysis(self, agent_results: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Run quality analysis using results from multiple expert agents.\n\n        Args:\n            agent_results: Dictionary of results from expert agents\n\n        Returns:\n            Comprehensive quality analysis results",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "agent_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_agent_results_to_metrics",
+          "signature": "_convert_agent_results_to_metrics(self, agent_results: dict[Tuple[str, Any]]) -> dict[Tuple[str, QualityScore]]",
+          "docstring": "Convert expert agent results to quality metrics.\n\n        Args:\n            agent_results: Raw results from expert agents\n\n        Returns:\n            Dictionary of quality scores by metric name",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "dict[Tuple[str, QualityScore]]",
+          "parameters": [
+            {
+              "name": "agent_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_agent_result_to_score",
+          "signature": "_convert_agent_result_to_score(self, agent_name: str, agent_result: Any, metric_name: str, weight: float) -> Optional[QualityScore]",
+          "docstring": "Convert a single agent result to a quality score.\n\n        Args:\n            agent_name: Name of the expert agent\n            agent_result: Result from the agent\n            metric_name: Name of the quality metric\n            weight: Weight for the quality score\n\n        Returns:\n            QualityScore object or None if conversion fails",
+          "decorators": [],
+          "line_number": 134,
+          "return_type": "Optional[QualityScore]",
+          "parameters": [
+            {
+              "name": "agent_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "agent_result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "metric_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_security_result",
+          "signature": "_convert_security_result(self, result: Any, weight: float) -> QualityScore",
+          "docstring": "Convert SecurityExpert result to security quality score.",
+          "decorators": [],
+          "line_number": 168,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_code_quality_result",
+          "signature": "_convert_code_quality_result(self, result: Any, weight: float) -> QualityScore",
+          "docstring": "Convert CodeQualityExpert result to code quality score.",
+          "decorators": [],
+          "line_number": 206,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_devops_result",
+          "signature": "_convert_devops_result(self, result: Any, weight: float) -> QualityScore",
+          "docstring": "Convert DevOpsExpert result to operational quality score.",
+          "decorators": [],
+          "line_number": 242,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_convert_test_result",
+          "signature": "_convert_test_result(self, result: Any, weight: float) -> QualityScore",
+          "docstring": "Convert TestExpert result to test coverage score.",
+          "decorators": [],
+          "line_number": 283,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "_convert_architecture_result",
+          "signature": "_convert_architecture_result(self, result: Any, weight: float) -> QualityScore",
+          "docstring": "Convert ArchitectureExpert result to architecture quality score.",
+          "decorators": [],
+          "line_number": 315,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "result",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "weight",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_aggregate_quality_metrics",
+          "signature": "_aggregate_quality_metrics(self, quality_scores: dict[Tuple[str, QualityScore]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Aggregate quality metrics into analysis results format.\n\n        Args:\n            quality_scores: Dictionary of quality scores by metric\n\n        Returns:\n            Aggregated analysis results for quality enforcement",
+          "decorators": [],
+          "line_number": 356,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "quality_scores",
+              "type": "dict[Tuple[str, QualityScore]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_comprehensive_report",
+          "signature": "_generate_comprehensive_report(self, agent_results: dict[Tuple[str, Any]], quality_scores: dict[Tuple[str, QualityScore]], aggregated_metrics: dict[Tuple[str, Any]], enforcement_results: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive quality analysis report.\n\n        Args:\n            agent_results: Raw results from expert agents\n            quality_scores: Converted quality scores\n            aggregated_metrics: Aggregated metrics for enforcement\n            enforcement_results: Results from quality enforcement\n\n        Returns:\n            Comprehensive quality analysis report",
+          "decorators": [],
+          "line_number": 402,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "agent_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "quality_scores",
+              "type": "dict[Tuple[str, QualityScore]]",
+              "default": null
+            },
+            {
+              "name": "aggregated_metrics",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "enforcement_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_agent_quality_mapping",
+          "signature": "get_agent_quality_mapping(self) -> dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "docstring": "Get the current agent quality mapping configuration.",
+          "decorators": [],
+          "line_number": 485,
+          "return_type": "dict[Tuple[str, dict[Tuple[str, Any]]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "update_agent_quality_mapping",
+          "signature": "update_agent_quality_mapping(self, agent_name: str, mapping: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Update the quality mapping for a specific agent.\n\n        Args:\n            agent_name: Name of the agent to update\n            mapping: New mapping configuration\n\n        Returns:\n            True if update was successful, False otherwise",
+          "decorators": [],
+          "line_number": 489,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "agent_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "mapping",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_agent_quality_mapping",
+          "signature": "add_agent_quality_mapping(self, agent_name: str, mapping: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Add a new agent quality mapping.\n\n        Args:\n            agent_name: Name of the new agent\n            mapping: Mapping configuration\n\n        Returns:\n            True if addition was successful, False otherwise",
+          "decorators": [],
+          "line_number": 518,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "agent_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "mapping",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_agent_quality_mapping",
+          "signature": "remove_agent_quality_mapping(self, agent_name: str) -> bool",
+          "docstring": "Remove an agent quality mapping.\n\n        Args:\n            agent_name: Name of the agent to remove\n\n        Returns:\n            True if removal was successful, False otherwise",
+          "decorators": [],
+          "line_number": 537,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "agent_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "from quality_enforcer import QualityEnforcer",
+    "from quality_metrics import QualityScore"
+  ],
+  "module_docstring": "\nMulti-Agent Integration for Quality System\n\nThis module provides integration between the quality system and the multi-agent testing framework,\nenabling expert agents to contribute to quality analysis and enforcement.\n",
+  "file_structure": {
+    "total_lines": 554,
+    "code_lines": 427,
+    "comment_lines": 36,
+    "blank_lines": 91,
+    "total_nodes": 2068,
+    "class_nodes": 1,
+    "function_nodes": 13,
+    "import_nodes": 5,
+    "expression_nodes": 28,
+    "assignment_nodes": 71,
+    "return_nodes": 25
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 554
+  },
+  "used_names": [
+    "key",
+    "removed_mapping",
+    "__name__",
+    "Exception",
+    "a",
+    "quality_scores",
+    "logging",
+    "QualityEnforcer",
+    "metric_name",
+    "security_score",
+    "comprehensive_report",
+    "Any",
+    "dict",
+    "float",
+    "isinstance",
+    "agent_name",
+    "result",
+    "pattern_violations",
+    "QualityScore",
+    "coupling_issues",
+    "score",
+    "str",
+    "Path",
+    "agent_result",
+    "agent_results",
+    "aggregated_metrics",
+    "test_count",
+    "flake8_issues",
+    "min",
+    "len",
+    "quality_score",
+    "design_issues",
+    "complexity_issues",
+    "operational_score",
+    "self",
+    "overall_score",
+    "bool",
+    "critical_issues",
+    "max",
+    "ci_cd_issues",
+    "enforcement_results",
+    "agent_summary",
+    "details",
+    "code_style_issues",
+    "test_coverage_score",
+    "required_keys",
+    "mapping",
+    "infrastructure_issues",
+    "test_failures",
+    "name",
+    "aggregated_results",
+    "coverage_percentage",
+    "security_issues",
+    "deployment_issues",
+    "all",
+    "weight",
+    "e",
+    "Optional",
+    "project_path",
+    "quality_metrics",
+    "high_issues",
+    "total_weight",
+    "code_quality_score"
+  ]
+}

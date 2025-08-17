@@ -1,0 +1,180 @@
+{
+  "system_name": "Integration Tool: Integration and deployment utilities.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "IntegrationTool": {
+      "responsibility": "Integration and deployment utilities.",
+      "methods": [
+        {
+          "name": "register_integration",
+          "signature": "register_integration(self, name: str, config: Dict[Tuple[str, Any]]) -> None",
+          "docstring": "Register an integration configuration.\n\n        Args:\n            name: Integration name\n            config: Integration configuration",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_integration",
+          "signature": "get_integration(self, name: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get integration configuration.\n\n        Args:\n            name: Integration name\n\n        Returns:\n            Integration configuration",
+          "decorators": [],
+          "line_number": 27,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_integrations",
+          "signature": "list_integrations(self) -> List[str]",
+          "docstring": "List all registered integrations.\n\n        Returns:\n            List of integration names",
+          "decorators": [],
+          "line_number": 38,
+          "return_type": "List[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_integration",
+          "signature": "validate_integration(self, name: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Validate an integration configuration.\n\n        Args:\n            name: Integration name\n\n        Returns:\n            Validation result",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "export_integration_config",
+          "signature": "export_integration_config(self, name: str, format: str) -> str",
+          "docstring": "Export integration configuration.\n\n        Args:\n            name: Integration name\n            format: Export format (json or yaml)\n\n        Returns:\n            Configuration as string",
+          "decorators": [],
+          "line_number": 74,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "format",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "import_integration_config",
+          "signature": "import_integration_config(self, name: str, config_str: str, format: str) -> None",
+          "docstring": "Import integration configuration.\n\n        Args:\n            name: Integration name\n            config_str: Configuration string\n            format: Import format (json or yaml)",
+          "decorators": [],
+          "line_number": 96,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config_str",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "format",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "import json",
+    "import yaml"
+  ],
+  "module_docstring": "\nIntegration Tool: Integration and deployment utilities.\n\nProvides tools for integrating with external systems and deployment.\n",
+  "file_structure": {
+    "total_lines": 114,
+    "code_lines": 86,
+    "comment_lines": 0,
+    "blank_lines": 28,
+    "total_nodes": 369,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 3,
+    "expression_nodes": 10,
+    "assignment_nodes": 8,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 114
+  },
+  "used_names": [
+    "json",
+    "yaml",
+    "missing_fields",
+    "str",
+    "required_fields",
+    "field",
+    "List",
+    "config",
+    "name",
+    "self",
+    "config_str",
+    "ValueError",
+    "Any",
+    "list",
+    "Dict",
+    "format"
+  ]
+}

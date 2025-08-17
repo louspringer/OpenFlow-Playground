@@ -1,0 +1,119 @@
+{
+  "system_name": "UV Package Management Tests",
+  "description": "Tests UV package management functionality using projected artifact patterns",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_pyproject_toml_exists",
+      "signature": "test_pyproject_toml_exists() -> Any",
+      "docstring": "Test that pyproject.toml exists",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_uv_lock_exists",
+      "signature": "test_uv_lock_exists() -> Any",
+      "docstring": "Test that uv.lock exists",
+      "decorators": [],
+      "line_number": 22,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_pyproject_toml_structure",
+      "signature": "test_pyproject_toml_structure() -> Any",
+      "docstring": "Test pyproject.toml structure",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_dependencies_defined",
+      "signature": "test_dependencies_defined() -> Any",
+      "docstring": "Test that dependencies are properly defined",
+      "decorators": [],
+      "line_number": 46,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_dev_dependencies_defined",
+      "signature": "test_dev_dependencies_defined() -> Any",
+      "docstring": "Test that dev dependencies are properly defined",
+      "decorators": [],
+      "line_number": 66,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "run_uv_package_tests",
+      "signature": "run_uv_package_tests() -> Any",
+      "docstring": "Run all UV package management tests",
+      "decorators": [],
+      "line_number": 84,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nUV Package Management Tests\nTests UV package management functionality using projected artifact patterns\n",
+  "file_structure": {
+    "total_lines": 115,
+    "code_lines": 78,
+    "comment_lines": 7,
+    "blank_lines": 30,
+    "total_nodes": 331,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 2,
+    "expression_nodes": 19,
+    "assignment_nodes": 9,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 115
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "__file__",
+    "test_uv_lock_exists",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "test_pyproject_toml_structure",
+    "pyproject_file",
+    "test_dependencies_defined",
+    "dev_dependencies",
+    "test_dev_dependencies_defined",
+    "dep",
+    "sys",
+    "len",
+    "uv_lock_file",
+    "run_uv_package_tests",
+    "test_pyproject_toml_exists",
+    "print",
+    "version",
+    "dependencies",
+    "passed",
+    "total",
+    "tests",
+    "test",
+    "e"
+  ]
+}

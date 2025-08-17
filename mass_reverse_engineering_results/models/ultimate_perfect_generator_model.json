@@ -1,0 +1,302 @@
+{
+  "system_name": "Ultimate Perfect Code Generator",
+  "description": "Fixes ALL linting issues including F401, E302, and F811",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "UltimateCodeModel": {
+      "responsibility": "Ultimate code model that knows about ALL linting rules",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "UltimatePerfectGenerator": {
+      "responsibility": "The ULTIMATE code generator that can't emit ANY linting errors",
+      "methods": [
+        {
+          "name": "generate_ultimate_perfect_code",
+          "signature": "generate_ultimate_perfect_code(self, model: UltimateCodeModel) -> str",
+          "docstring": "Generate ultimate perfect code that passes ALL linting checks",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "UltimateCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_initial_code",
+          "signature": "_generate_initial_code(self, model: UltimateCodeModel) -> str",
+          "docstring": "Generate initial code from the model",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "UltimateCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_perfect_code_from_analysis",
+          "signature": "_generate_perfect_code_from_analysis(self, initial_code: str, analysis: UsageAnalysis) -> str",
+          "docstring": "Generate perfect code by removing unused elements",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "initial_code",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_remaining_issues",
+          "signature": "_fix_remaining_issues(self, code: str) -> str",
+          "docstring": "Fix remaining linting issues",
+          "decorators": [],
+          "line_number": 110,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_used",
+          "signature": "_is_import_used(self, import_line: str, analysis: UsageAnalysis) -> bool",
+          "docstring": "Check if an import is actually used",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "import_line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_syntax",
+          "signature": "_validate_syntax(self, code: str) -> None",
+          "docstring": "Validate that the generated code has correct syntax",
+          "decorators": [],
+          "line_number": 140,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 22
+    },
+    "ASTUsageTracker": {
+      "responsibility": "AST-based usage tracker",
+      "methods": [
+        {
+          "name": "analyze_code",
+          "signature": "analyze_code(self, code: str) -> UsageAnalysis",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 155,
+          "return_type": "UsageAnalysis",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_visit_node",
+          "signature": "_visit_node(self, node: Any) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 165,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 149
+    },
+    "UsageAnalysis": {
+      "responsibility": "Results of AST usage analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 197
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_ultimate_perfect_generator",
+      "signature": "test_ultimate_perfect_generator() -> None",
+      "docstring": "Test the ultimate perfect generator",
+      "decorators": [],
+      "line_number": 210,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "import subprocess"
+  ],
+  "module_docstring": "\nUltimate Perfect Code Generator\nFixes ALL linting issues including F401, E302, and F811\n",
+  "file_structure": {
+    "total_lines": 272,
+    "code_lines": 197,
+    "comment_lines": 19,
+    "blank_lines": 56,
+    "total_nodes": 1313,
+    "class_nodes": 4,
+    "function_nodes": 11,
+    "import_nodes": 3,
+    "expression_nodes": 51,
+    "assignment_nodes": 21,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 272
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "f",
+    "imports",
+    "UsageAnalysis",
+    "enumerate",
+    "generator",
+    "node",
+    "imp",
+    "test_ultimate_perfect_generator",
+    "set",
+    "used_modules",
+    "isinstance",
+    "module_docstring",
+    "result",
+    "child",
+    "analysis",
+    "open",
+    "ultimate_code",
+    "initial_code",
+    "str",
+    "UltimateCodeModel",
+    "line",
+    "used_attributes",
+    "imported_name",
+    "subprocess",
+    "fixed_lines",
+    "dataclass",
+    "list",
+    "ast",
+    "used_names",
+    "SyntaxError",
+    "UltimatePerfectGenerator",
+    "filename",
+    "used_functions",
+    "print",
+    "self",
+    "lines",
+    "unused_variables",
+    "alias",
+    "bool",
+    "unused_imports",
+    "functions",
+    "perfect_lines",
+    "code",
+    "field",
+    "perfect_code",
+    "i",
+    "model",
+    "used_classes",
+    "tree",
+    "cls",
+    "var_name",
+    "func",
+    "ASTUsageTracker",
+    "e",
+    "import_line"
+  ]
+}

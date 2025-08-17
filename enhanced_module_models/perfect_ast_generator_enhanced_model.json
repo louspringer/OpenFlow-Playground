@@ -1,0 +1,51 @@
+{
+  "module_name": "perfect_ast_generator",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/perfect_ast_generator.py"
+  ],
+  "file_count": 1,
+  "total_lines": 252,
+  "total_classes": 4,
+  "total_functions": 1,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\nperfect_ast_generator\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 252\nClasses: 4\nFunctions: 1\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "perfect_ast_generator",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 252,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "src/perfect_ast_generator.py",
+        "name": "perfect_ast_generator.py",
+        "stem": "perfect_ast_generator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.773598",
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "module_name": "launch_billing_analysis",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/launch_billing_analysis.py"
+  ],
+  "file_count": 1,
+  "total_lines": 81,
+  "total_classes": 0,
+  "total_functions": 2,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\nlaunch_billing_analysis\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 81\nClasses: 0\nFunctions: 2\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "launch_billing_analysis",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 81,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "scripts/launch_billing_analysis.py",
+        "name": "launch_billing_analysis.py",
+        "stem": "launch_billing_analysis"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.683084",
+  "version": "1.0.0"
+}

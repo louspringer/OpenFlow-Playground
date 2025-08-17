@@ -1,0 +1,365 @@
+{
+  "system_name": "Plugin Manager: Dynamic plugin loading and management system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PluginInterface": {
+      "responsibility": "Base interface for all plugins.",
+      "methods": [
+        {
+          "name": "initialize",
+          "signature": "initialize(self, config: Dict[Tuple[str, Any]]) -> None",
+          "docstring": "Initialize the plugin with configuration.",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 22,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "config",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "start",
+          "signature": "start(self) -> None",
+          "docstring": "Start the plugin.",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 27,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "stop",
+          "signature": "stop(self) -> None",
+          "docstring": "Stop the plugin.",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 32,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_info",
+          "signature": "get_info(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Get plugin information.",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 37,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "ABC"
+      ],
+      "line_number": 18
+    },
+    "PluginInfo": {
+      "responsibility": "Plugin metadata and information.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 43
+    },
+    "PluginManager": {
+      "responsibility": "Manages plugin discovery, loading, and lifecycle.",
+      "methods": [
+        {
+          "name": "discover_plugins",
+          "signature": "discover_plugins(self) -> List[str]",
+          "docstring": "Discover available plugins in plugin directories.",
+          "decorators": [],
+          "line_number": 70,
+          "return_type": "List[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "load_plugin",
+          "signature": "load_plugin(self, plugin_path: str) -> Optional[PluginInfo]",
+          "docstring": "Load a plugin from a path.",
+          "decorators": [],
+          "line_number": 87,
+          "return_type": "Optional[PluginInfo]",
+          "parameters": [
+            {
+              "name": "plugin_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_file_plugin",
+          "signature": "_load_file_plugin(self, file_path: Path) -> Optional[PluginInfo]",
+          "docstring": "Load a plugin from a single Python file.",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "Optional[PluginInfo]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_directory_plugin",
+          "signature": "_load_directory_plugin(self, dir_path: Path) -> Optional[PluginInfo]",
+          "docstring": "Load a plugin from a directory.",
+          "decorators": [],
+          "line_number": 141,
+          "return_type": "Optional[PluginInfo]",
+          "parameters": [
+            {
+              "name": "dir_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_plugin_class",
+          "signature": "_find_plugin_class(self, module: Any) -> Optional[Type[PluginInterface]]",
+          "docstring": "Find a plugin class in a module.",
+          "decorators": [],
+          "line_number": 176,
+          "return_type": "Optional[Type[PluginInterface]]",
+          "parameters": [
+            {
+              "name": "module",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "activate_plugin",
+          "signature": "activate_plugin(self, plugin_name: str, config: Optional[Dict[Tuple[str, Any]]]) -> bool",
+          "docstring": "Activate a loaded plugin.",
+          "decorators": [],
+          "line_number": 188,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "plugin_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "config",
+              "type": "Optional[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "deactivate_plugin",
+          "signature": "deactivate_plugin(self, plugin_name: str) -> bool",
+          "docstring": "Deactivate an active plugin.",
+          "decorators": [],
+          "line_number": 218,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "plugin_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_plugin_info",
+          "signature": "get_plugin_info(self, plugin_name: str) -> Optional[PluginInfo]",
+          "docstring": "Get information about a plugin.",
+          "decorators": [],
+          "line_number": 236,
+          "return_type": "Optional[PluginInfo]",
+          "parameters": [
+            {
+              "name": "plugin_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_all_plugins",
+          "signature": "get_all_plugins(self) -> Dict[Tuple[str, PluginInfo]]",
+          "docstring": "Get all loaded plugins.",
+          "decorators": [],
+          "line_number": 240,
+          "return_type": "Dict[Tuple[str, PluginInfo]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_active_plugins",
+          "signature": "get_active_plugins(self) -> Dict[Tuple[str, PluginInterface]]",
+          "docstring": "Get all active plugins.",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "Dict[Tuple[str, PluginInterface]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "reload_plugin",
+          "signature": "reload_plugin(self, plugin_name: str) -> bool",
+          "docstring": "Reload a plugin.",
+          "decorators": [],
+          "line_number": 248,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "plugin_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 56
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Type",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "import importlib",
+    "import importlib.util",
+    "import logging",
+    "from abc import ABC",
+    "from abc import abstractmethod",
+    "from clewcrew_common.file_ops import FileOperations"
+  ],
+  "module_docstring": "\nPlugin Manager: Dynamic plugin loading and management system.\n\nProvides plugin discovery, loading, and lifecycle management.\n",
+  "file_structure": {
+    "total_lines": 265,
+    "code_lines": 199,
+    "comment_lines": 13,
+    "blank_lines": 53,
+    "total_nodes": 1347,
+    "class_nodes": 3,
+    "function_nodes": 16,
+    "import_nodes": 8,
+    "expression_nodes": 43,
+    "assignment_nodes": 21,
+    "return_nodes": 24
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 265
+  },
+  "used_names": [
+    "attr_name",
+    "plugin_path_obj",
+    "__name__",
+    "Exception",
+    "abstractmethod",
+    "logging",
+    "description",
+    "discovered",
+    "PluginInfo",
+    "plugin_paths",
+    "plugin_class",
+    "isinstance",
+    "plugin_dir",
+    "Dict",
+    "author",
+    "plugin_info",
+    "str",
+    "spec",
+    "Path",
+    "path",
+    "List",
+    "module",
+    "ABC",
+    "item",
+    "dir",
+    "dataclass",
+    "list",
+    "importlib",
+    "dir_path",
+    "attr",
+    "issubclass",
+    "len",
+    "file_path",
+    "Type",
+    "version",
+    "dependencies",
+    "self",
+    "getattr",
+    "plugin_path",
+    "bool",
+    "type",
+    "field",
+    "plugin_name",
+    "PluginInterface",
+    "config",
+    "name",
+    "config_schema",
+    "FileOperations",
+    "plugin_dirs",
+    "e",
+    "Optional",
+    "tags",
+    "Any",
+    "plugin_instance"
+  ]
+}

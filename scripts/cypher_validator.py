@@ -228,8 +228,7 @@ def main():
                 print(f"  Valid queries: {validation_result['valid_queries']}")
                 print(f"  Invalid queries: {validation_result['invalid_queries']}")
                 print(
-                    f"  Overall valid: {
-                        '✅' if validation_result['overall_valid'] else '❌'}"
+                    f"  Overall valid: {'✅' if validation_result['overall_valid'] else '❌'}"
                 )
 
                 if not validation_result["overall_valid"]:

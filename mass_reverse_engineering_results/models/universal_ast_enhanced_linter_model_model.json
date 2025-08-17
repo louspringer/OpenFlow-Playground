@@ -1,0 +1,1149 @@
+{
+  "system_name": "Universal AST-Enhanced Linter Model - All File Types Support",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "FileType": {
+      "responsibility": "Supported file types for universal analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 34
+    },
+    "AnalysisStrategy": {
+      "responsibility": "Different strategies for universal code analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 50
+    },
+    "IssueSeverity": {
+      "responsibility": "Severity levels for detected issues",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 62
+    },
+    "IssueType": {
+      "responsibility": "Universal issue types across all file types",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 71
+    },
+    "AutoFixCapability": {
+      "responsibility": "Capabilities for automatic issue fixing",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 109
+    },
+    "UniversalAnalysisRule": {
+      "responsibility": "Defines a rule for universal code analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 119
+    },
+    "FileTypeParser": {
+      "responsibility": "Abstract base class for file type parsers",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "Check if this parser can handle the given file",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 143,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Parse the file and return structured data",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 147,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "Validate syntax and return (is_valid, errors)",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 151,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "Analyze the structure of parsed data",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 155,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "Analyze semantics of parsed data",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 159,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "Calculate quality metrics",
+          "decorators": [
+            "abstractmethod"
+          ],
+          "line_number": 163,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [
+        "ABC"
+      ],
+      "line_number": 136
+    },
+    "PythonParser": {
+      "responsibility": "Python file parser using AST",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 177,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 180,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 200,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 207,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 228,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 258,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "FileTypeParser"
+      ],
+      "line_number": 169
+    },
+    "JSONParser": {
+      "responsibility": "JSON file parser with schema validation",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 304,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 307,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 327,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 334,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 355,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 376,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_nesting_depth",
+          "signature": "_calculate_nesting_depth(self, obj: Any, current_depth: Any) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 396,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "current_depth",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "FileTypeParser"
+      ],
+      "line_number": 296
+    },
+    "YAMLParser": {
+      "responsibility": "YAML file parser with structure analysis",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 421,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 424,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 451,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 461,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 489,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 510,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "FileTypeParser"
+      ],
+      "line_number": 413
+    },
+    "INIParser": {
+      "responsibility": "INI file parser with configuration analysis",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 538,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 541,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 566,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 574,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 594,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 615,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "FileTypeParser"
+      ],
+      "line_number": 530
+    },
+    "TOMLParser": {
+      "responsibility": "TOML file parser with semantic analysis",
+      "methods": [
+        {
+          "name": "can_parse",
+          "signature": "can_parse(self, file_path: Path) -> bool",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 643,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "parse",
+          "signature": "parse(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 646,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, content: str) -> tuple[Tuple[bool, list[Any]]]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 699,
+          "return_type": "tuple[Tuple[bool, list[Any]]]",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_structure",
+          "signature": "analyze_structure(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 716,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_semantics",
+          "signature": "analyze_semantics(self, parsed_data: dict[Tuple[str, Any]]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 736,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_metrics",
+          "signature": "calculate_metrics(self, parsed_data: dict[Tuple[str, Any]], lines: list[str]) -> list[Any]",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 757,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "parsed_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "lines",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_nesting_depth",
+          "signature": "_calculate_nesting_depth(self, obj: Any, current_depth: Any) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 777,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "current_depth",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "FileTypeParser"
+      ],
+      "line_number": 637
+    },
+    "UniversalASTEnhancedLinterModel": {
+      "responsibility": "Universal AST-Enhanced Linter Model\n\n    This model provides semantic analysis capabilities for ALL file types,\n    not just Python. Each file type gets its own specialized parser that\n    provides AST-equivalent semantic understanding.",
+      "methods": [
+        {
+          "name": "_initialize_parsers",
+          "signature": "_initialize_parsers(self) -> Any",
+          "docstring": "Initialize parsers for all supported file types",
+          "decorators": [],
+          "line_number": 810,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_initialize_analysis_rules",
+          "signature": "_initialize_analysis_rules(self) -> Any",
+          "docstring": "Initialize universal analysis rules",
+          "decorators": [],
+          "line_number": 820,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_parser_for_file",
+          "signature": "get_parser_for_file(self, file_path: Path) -> Optional[FileTypeParser]",
+          "docstring": "Get the appropriate parser for a file",
+          "decorators": [],
+          "line_number": 865,
+          "return_type": "Optional[FileTypeParser]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rules_for_file_type",
+          "signature": "get_rules_for_file_type(self, file_type: FileType) -> list[UniversalAnalysisRule]",
+          "docstring": "Get analysis rules for a specific file type",
+          "decorators": [],
+          "line_number": 872,
+          "return_type": "list[UniversalAnalysisRule]",
+          "parameters": [
+            {
+              "name": "file_type",
+              "type": "FileType",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rules_for_strategy",
+          "signature": "get_rules_for_strategy(self, strategy: AnalysisStrategy) -> list[UniversalAnalysisRule]",
+          "docstring": "Get analysis rules for a specific strategy",
+          "decorators": [],
+          "line_number": 878,
+          "return_type": "list[UniversalAnalysisRule]",
+          "parameters": [
+            {
+              "name": "strategy",
+              "type": "AnalysisStrategy",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 794
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_universal_ast_enhanced_linter_model",
+      "signature": "create_universal_ast_enhanced_linter_model() -> UniversalASTEnhancedLinterModel",
+      "docstring": "Create and return a configured universal AST-enhanced linter model",
+      "decorators": [],
+      "line_number": 886,
+      "return_type": "UniversalASTEnhancedLinterModel",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import configparser",
+    "import io",
+    "import json",
+    "import xml.etree.ElementTree as ET",
+    "from abc import ABC",
+    "from abc import abstractmethod",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Union",
+    "import ruamel.yaml",
+    "import ruamel.yaml",
+    "import tomllib",
+    "import tomllib",
+    "import tomli",
+    "import tomli"
+  ],
+  "module_docstring": "\nUniversal AST-Enhanced Linter Model - All File Types Support\n\nThis module extends the AST-enhanced linter to support ALL file types with\ndomain-specific parsers that provide semantic understanding equivalent to\nPython AST parsing.\n\nSupported File Types:\n- Python: ast module\n- JSON: json module with schema validation\n- YAML: ruamel.yaml with structure analysis\n- TOML: tomllib/tomli with semantic parsing\n- INI: configparser with configuration analysis\n- XML: xml.etree with DOM analysis\n- Markdown: markdown parsing with structure analysis\n- Shell: bash/sh/zsh with command analysis\n- Dockerfile: Docker syntax analysis\n- Makefile: Make syntax and dependency analysis\n",
+  "file_structure": {
+    "total_lines": 920,
+    "code_lines": 710,
+    "comment_lines": 33,
+    "blank_lines": 177,
+    "total_nodes": 4000,
+    "class_nodes": 13,
+    "function_nodes": 50,
+    "import_nodes": 16,
+    "expression_nodes": 75,
+    "assignment_nodes": 122,
+    "return_nodes": 74
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 920
+  },
+  "used_names": [
+    "tomli",
+    "Exception",
+    "obj",
+    "description",
+    "keys",
+    "IssueSeverity",
+    "severity",
+    "PYTHON_SPECIFIC",
+    "dict",
+    "tomllib",
+    "TRAILING_WHITESPACE",
+    "Callable",
+    "Path",
+    "test_file",
+    "key_count",
+    "ImportError",
+    "item",
+    "list",
+    "supported_extensions",
+    "ast",
+    "WARNING",
+    "print",
+    "MISSING_BLANK_LINES",
+    "MAKEFILE",
+    "CAN_FIX",
+    "getattr",
+    "TOML",
+    "YAMLParser",
+    "bool",
+    "IssueType",
+    "UNEXPECTED_FIELD",
+    "TOMLParser",
+    "AnalysisStrategy",
+    "model",
+    "fix_strategy",
+    "parser",
+    "configparser",
+    "file_types",
+    "key",
+    "__name__",
+    "LINE_TOO_LONG",
+    "import_count",
+    "JSON_SPECIFIC",
+    "v",
+    "YAML_SPECIFIC",
+    "AutoFixCapability",
+    "yaml",
+    "rule",
+    "create_universal_ast_enhanced_linter_model",
+    "strategy",
+    "INIParser",
+    "line",
+    "INI_SPECIFIC",
+    "SyntaxError",
+    "MISSING_REQUIRED_FIELD",
+    "FileType",
+    "SYNTAX_VALIDATION",
+    "rules",
+    "auto_fix",
+    "io",
+    "GENERIC",
+    "super",
+    "field",
+    "PYTHON",
+    "config",
+    "name",
+    "REQUIRES_MANUAL_REVIEW",
+    "file_type",
+    "indent_sizes",
+    "CRITICAL",
+    "f",
+    "abstractmethod",
+    "DOCKER_SPECIFIC",
+    "section_count",
+    "DUPLICATE_KEY",
+    "node",
+    "UniversalASTEnhancedLinterModel",
+    "MARKDOWN",
+    "float",
+    "value",
+    "content",
+    "Enum",
+    "open",
+    "INFO",
+    "metrics",
+    "threshold",
+    "sum",
+    "HARDCODED_VALUES",
+    "SEMANTIC_ANALYSIS",
+    "current_depth",
+    "UniversalAnalysisRule",
+    "JSONParser",
+    "indent",
+    "INCONSISTENT_INDENTATION",
+    "issue_type",
+    "FileTypeParser",
+    "SUGGESTION",
+    "CANNOT_FIX",
+    "structure_issues",
+    "INVALID_VALUES",
+    "PythonParser",
+    "QUALITY_ANALYSIS",
+    "tree",
+    "INI",
+    "ruamel",
+    "CAN_PARTIALLY_FIX",
+    "TOML_SPECIFIC",
+    "SYNTAX_ERROR",
+    "SHELL",
+    "Optional",
+    "suggestion",
+    "YAML",
+    "PARSE_ERROR",
+    "Any",
+    "max_depth",
+    "isinstance",
+    "parsed_data",
+    "MAKE_SPECIFIC",
+    "MISSING_DEFAULTS",
+    "section",
+    "set",
+    "SECURITY_ISSUES",
+    "class_count",
+    "str",
+    "PATTERN_ANALYSIS",
+    "SHELL_SPECIFIC",
+    "ABC",
+    "INVALID_STRUCTURE",
+    "XML_SPECIFIC",
+    "MARKDOWN_SPECIFIC",
+    "dataclass",
+    "json",
+    "DOCKERFILE",
+    "semantic_issues",
+    "SECURITY_ANALYSIS",
+    "JSON",
+    "len",
+    "file_path",
+    "CONFIGURATION_ANALYSIS",
+    "STRUCTURE_ANALYSIS",
+    "lines",
+    "self",
+    "tuple",
+    "max",
+    "function_count",
+    "conditions",
+    "XML",
+    "data",
+    "total_keys",
+    "e",
+    "test_files"
+  ]
+}

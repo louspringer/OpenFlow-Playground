@@ -1,0 +1,294 @@
+{
+  "system_name": "Comprehensive Test Suite for Meta-Cognitive Orchestrator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestMetaCognitiveOrchestrator": {
+      "responsibility": "Test suite for meta-cognitive orchestrator",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> Any",
+          "docstring": "Set up test fixtures",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_assumption_detection",
+          "signature": "test_assumption_detection(self) -> Any",
+          "docstring": "Test assumption detection capabilities",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_jeopardy_question_generation",
+          "signature": "test_jeopardy_question_generation(self) -> Any",
+          "docstring": "Test Jeopardy-style question generation",
+          "decorators": [],
+          "line_number": 35,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_partner_investigation_simulation",
+          "signature": "test_partner_investigation_simulation(self) -> Any",
+          "docstring": "Test partner LLM investigation simulation",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_blind_spot_identification",
+          "signature": "test_blind_spot_identification(self) -> Any",
+          "docstring": "Test blind spot identification from partner questions",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_confidence_calculation",
+          "signature": "test_confidence_calculation(self) -> Any",
+          "docstring": "Test confidence calculation based on issues",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_decision_making",
+          "signature": "test_decision_making(self) -> Any",
+          "docstring": "Test decision making based on confidence and blind spots",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_full_orchestration",
+          "signature": "test_full_orchestration(self) -> Any",
+          "docstring": "Test complete orchestration workflow",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 18
+    },
+    "TestMetaTestingCapabilities": {
+      "responsibility": "Test meta-testing capabilities - the missing test meta-cases",
+      "methods": [
+        {
+          "name": "setUp",
+          "signature": "setUp(self) -> Any",
+          "docstring": "Set up test fixtures",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_recursive_testing_meta_case",
+          "signature": "test_recursive_testing_meta_case(self) -> Any",
+          "docstring": "Test recursive testing meta-case: orchestrator testing itself",
+          "decorators": [],
+          "line_number": 158,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_multi_dimensional_orchestration_validation",
+          "signature": "test_multi_dimensional_orchestration_validation(self) -> Any",
+          "docstring": "Test multi-dimensional test orchestration validation",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_blind_spot_detection_meta_testing",
+          "signature": "test_blind_spot_detection_meta_testing(self) -> Any",
+          "docstring": "Test blind spot detection meta-testing capabilities",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_quality_system_meta_validation",
+          "signature": "test_quality_system_meta_validation(self) -> Any",
+          "docstring": "Test quality system meta-validation capabilities",
+          "decorators": [],
+          "line_number": 215,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_self_referential_testing_capabilities",
+          "signature": "test_self_referential_testing_capabilities(self) -> Any",
+          "docstring": "Test self-referential testing capabilities",
+          "decorators": [],
+          "line_number": 232,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 151
+    },
+    "TestMetaCognitiveOrchestratorIntegration": {
+      "responsibility": "Test integration with other systems",
+      "methods": [
+        {
+          "name": "test_confidence_threshold_configuration",
+          "signature": "test_confidence_threshold_configuration(self) -> Any",
+          "docstring": "Test confidence threshold configuration",
+          "decorators": [],
+          "line_number": 254,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_error_handling",
+          "signature": "test_error_handling(self) -> Any",
+          "docstring": "Test error handling capabilities",
+          "decorators": [],
+          "line_number": 270,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 251
+    }
+  },
+  "module_functions": [
+    {
+      "name": "run_meta_testing_suite",
+      "signature": "run_meta_testing_suite() -> Any",
+      "docstring": "Run the complete meta-testing suite",
+      "decorators": [],
+      "line_number": 290,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import unittest",
+    "from meta_cognitive_orchestrator import MetaCognitiveOrchestrator"
+  ],
+  "module_docstring": "\nComprehensive Test Suite for Meta-Cognitive Orchestrator\n\nThis test suite implements the missing test meta-cases identified in Phase 3 analysis:\n1. Recursive testing meta-cases\n2. Multi-dimensional test orchestration validation\n3. Blind spot detection meta-testing\n4. Quality system meta-validation\n5. Self-referential testing capabilities\n",
+  "file_structure": {
+    "total_lines": 333,
+    "code_lines": 207,
+    "comment_lines": 48,
+    "blank_lines": 78,
+    "total_nodes": 1334,
+    "class_nodes": 3,
+    "function_nodes": 17,
+    "import_nodes": 2,
+    "expression_nodes": 81,
+    "assignment_nodes": 51,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 333
+  },
+  "used_names": [
+    "key",
+    "quality_context",
+    "__name__",
+    "complex_context",
+    "result_high",
+    "TestMetaCognitiveOrchestrator",
+    "runner",
+    "orchestrator",
+    "unknown_context",
+    "suite",
+    "dict",
+    "result",
+    "high_threshold_orchestrator",
+    "exit",
+    "test_context",
+    "str",
+    "pr_context",
+    "result_low",
+    "contexts",
+    "run_meta_testing_suite",
+    "len",
+    "special_context",
+    "print",
+    "traceback",
+    "question",
+    "long_context",
+    "self",
+    "git_context",
+    "success",
+    "meta_test_context",
+    "results",
+    "blind_spots",
+    "MetaCognitiveOrchestrator",
+    "unittest",
+    "required_keys",
+    "TestMetaTestingCapabilities",
+    "decision",
+    "context",
+    "loader",
+    "TestMetaCognitiveOrchestratorIntegration",
+    "test",
+    "questions",
+    "assumptions",
+    "low_threshold_orchestrator",
+    "confidence"
+  ]
+}

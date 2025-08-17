@@ -1,0 +1,282 @@
+{
+  "system_name": "Perfect AST-Based Code Generator",
+  "description": "Combines AST usage tracking with linting-aware models for truly perfect code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "PerfectCodeModel": {
+      "responsibility": "Perfect code model that knows about AST usage and linting rules",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 12
+    },
+    "PerfectASTGenerator": {
+      "responsibility": "The ultimate code generator that can't emit imperfect code\n    Uses AST analysis to ensure only used imports and variables are included",
+      "methods": [
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, model: PerfectCodeModel) -> str",
+          "docstring": "Generate perfect code that passes all linting checks",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "PerfectCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_initial_code",
+          "signature": "_generate_initial_code(self, model: PerfectCodeModel) -> str",
+          "docstring": "Generate initial code from the model",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "PerfectCodeModel",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_perfect_code_from_analysis",
+          "signature": "_generate_perfect_code_from_analysis(self, initial_code: str, analysis: UsageAnalysis) -> str",
+          "docstring": "Generate perfect code by removing unused elements",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "initial_code",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_used",
+          "signature": "_is_import_used(self, import_line: str, analysis: UsageAnalysis) -> bool",
+          "docstring": "Check if an import is actually used",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "import_line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "analysis",
+              "type": "UsageAnalysis",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_syntax",
+          "signature": "_validate_syntax(self, code: str) -> None",
+          "docstring": "Validate that the generated code has correct syntax",
+          "decorators": [],
+          "line_number": 120,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 22
+    },
+    "ASTUsageTracker": {
+      "responsibility": "AST-based usage tracker (copied from ast_usage_tracker.py)",
+      "methods": [
+        {
+          "name": "analyze_code",
+          "signature": "analyze_code(self, code: str) -> UsageAnalysis",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 134,
+          "return_type": "UsageAnalysis",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_visit_node",
+          "signature": "_visit_node(self, node: Any) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 144,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 128
+    },
+    "UsageAnalysis": {
+      "responsibility": "Results of AST usage analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 176
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_perfect_ast_generator",
+      "signature": "test_perfect_ast_generator() -> None",
+      "docstring": "Test the perfect AST generator",
+      "decorators": [],
+      "line_number": 189,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "import subprocess"
+  ],
+  "module_docstring": "\nPerfect AST-Based Code Generator\nCombines AST usage tracking with linting-aware models for truly perfect code\n",
+  "file_structure": {
+    "total_lines": 252,
+    "code_lines": 185,
+    "comment_lines": 16,
+    "blank_lines": 51,
+    "total_nodes": 1201,
+    "class_nodes": 4,
+    "function_nodes": 10,
+    "import_nodes": 3,
+    "expression_nodes": 49,
+    "assignment_nodes": 18,
+    "return_nodes": 7
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 252
+  },
+  "used_names": [
+    "classes",
+    "test_perfect_ast_generator",
+    "__name__",
+    "f",
+    "imports",
+    "UsageAnalysis",
+    "node",
+    "generator",
+    "imp",
+    "set",
+    "used_modules",
+    "isinstance",
+    "module_docstring",
+    "result",
+    "PerfectASTGenerator",
+    "child",
+    "analysis",
+    "open",
+    "initial_code",
+    "str",
+    "line",
+    "used_attributes",
+    "imported_name",
+    "subprocess",
+    "dataclass",
+    "list",
+    "ast",
+    "used_names",
+    "SyntaxError",
+    "filename",
+    "used_functions",
+    "print",
+    "self",
+    "lines",
+    "unused_variables",
+    "alias",
+    "bool",
+    "unused_imports",
+    "functions",
+    "perfect_lines",
+    "code",
+    "field",
+    "perfect_code",
+    "tree",
+    "model",
+    "used_classes",
+    "PerfectCodeModel",
+    "cls",
+    "var_name",
+    "func",
+    "ASTUsageTracker",
+    "e",
+    "import_line"
+  ]
+}

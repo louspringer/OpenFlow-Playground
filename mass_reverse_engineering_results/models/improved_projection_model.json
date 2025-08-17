@@ -1,0 +1,90 @@
+{
+  "system_name": "Generated from improved model-driven projection",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SnowflakeConfig": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "validate_account_url",
+          "signature": "validate_account_url(self, v: str) -> str",
+          "docstring": "Validate Snowflake account URL format",
+          "decorators": [],
+          "line_number": 33,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 24
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import os",
+    "from cryptography.fernet import Fernet",
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from pydantic import field_validator"
+  ],
+  "module_docstring": "Generated from improved model-driven projection",
+  "file_structure": {
+    "total_lines": 39,
+    "code_lines": 31,
+    "comment_lines": 1,
+    "blank_lines": 7,
+    "total_nodes": 214,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 2,
+    "assignment_nodes": 3,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 39
+  },
+  "used_names": [
+    "account_url",
+    "str",
+    "oauth_client_id",
+    "SECURITY_CONFIG",
+    "oauth_integration_name",
+    "account",
+    "organization",
+    "Fernet",
+    "msg",
+    "field_validator",
+    "int",
+    "oauth_client_secret",
+    "v",
+    "BaseModel",
+    "ValueError",
+    "Field",
+    "os",
+    "AWS_CONFIG"
+  ]
+}

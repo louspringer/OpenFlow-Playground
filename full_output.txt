@@ -1,0 +1,56 @@
+INFO:round_trip_model_system:🎯 Generating code from extracted model
+INFO:round_trip_model_system:✅ Generated complete module code
+INFO:round_trip_model_system:🎯 Creating model from design: simple_calculator
+INFO:round_trip_model_system:✅ Created model with 3 components
+INFO:round_trip_model_system:🎯 Generating code from model: simple_calculator
+INFO:round_trip_model_system:✅ Generated 3 files from model
+🔄 Enhanced Round-Trip Test with Enhanced AST Parser
+============================================================
+
+📥 Step 1: Loading enhanced reverse engineered model
+   ✅ Loaded model: simple_calculator
+   📦 Components: 2
+   ⚙️  Module Functions: 1
+   📏 Total Lines: 90
+
+🔄 Step 2: Converting to design spec format
+   ✅ Created enhanced design spec
+   📋 Total components: 3
+
+🚀 Step 3: Generating code from enhanced design spec
+   ✅ Complete module generation successful
+   💾 enhanced_round_trip_complete_module.py
+   ✅ Design-based code generation successful
+   📁 Generated 3 files
+      💾 Calculator.py
+      💾 CalculatorUI.py
+      💾 main.py
+
+🔍 Step 4: Enhanced comparison analysis
+
+📊 Enhanced Heuristic Analysis:
+   📏 Original lines: 90
+   📏 Generated lines: 95
+   🏗️  Original classes: 2
+   🏗️  Generated classes: 2
+   ⚙️  Original methods: 10
+   ⚙️  Generated methods: 10
+   🧮 Original has calculator methods: True
+   🧮 Generated has calculator methods: True
+   🏷️  Original type annotations: 24
+   🏷️  Generated type annotations: 17
+   ↩️  Original return statements: 7
+   ↩️  Generated return statements: 9
+   🚀 Original has main function: True
+   🚀 Generated has main function: True
+   📝 Original has module docstring: False
+   📝 Generated has module docstring: False
+
+🎯 Enhanced Functional Equivalence Assessment:
+   ❌ NOT FULLY FUNCTIONALLY EQUIVALENT - Enhanced round-trip failed!
+   ⚠️  Functionality mismatch detected
+
+🔍 Missing Elements Analysis:
+
+============================================================
+🔄 Enhanced Round-Trip Test Complete

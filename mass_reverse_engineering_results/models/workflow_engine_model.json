@@ -1,0 +1,236 @@
+{
+  "system_name": "Workflow Engine: Core orchestration for clewcrew workflows.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "WorkflowStatus": {
+      "responsibility": "Workflow execution status.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 16
+    },
+    "WorkflowStep": {
+      "responsibility": "Individual step within a workflow.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 27
+    },
+    "WorkflowContext": {
+      "responsibility": "Context data for workflow execution.",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 39
+    },
+    "WorkflowEngine": {
+      "responsibility": "Core workflow orchestration engine.",
+      "methods": [
+        {
+          "name": "register_workflow",
+          "signature": "register_workflow(self, name: str, steps: List[WorkflowStep]) -> None",
+          "docstring": "Register a new workflow.",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "steps",
+              "type": "List[WorkflowStep]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "execute_workflow",
+          "signature": "execute_workflow(self, name: str, context: WorkflowContext) -> Dict[Tuple[str, Any]]",
+          "docstring": "Execute a registered workflow.",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "WorkflowContext",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_execute_step",
+          "signature": "_execute_step(self, step: WorkflowStep, context: WorkflowContext, results: Dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Execute a single workflow step.",
+          "decorators": [],
+          "line_number": 87,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "step",
+              "type": "WorkflowStep",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "WorkflowContext",
+              "default": null
+            },
+            {
+              "name": "results",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_workflow_status",
+          "signature": "get_workflow_status(self, name: str) -> Optional[List[WorkflowStatus]]",
+          "docstring": "Get status of all steps in a workflow.",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "Optional[List[WorkflowStatus]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 47
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Dict",
+    "from typing import Any",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Callable",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "import asyncio",
+    "import logging",
+    "from clewcrew_common.async_utils import AsyncExecutor"
+  ],
+  "module_docstring": "\nWorkflow Engine: Core orchestration for clewcrew workflows.\n\nProvides workflow definition, execution, and management capabilities.\n",
+  "file_structure": {
+    "total_lines": 111,
+    "code_lines": 83,
+    "comment_lines": 2,
+    "blank_lines": 26,
+    "total_nodes": 546,
+    "class_nodes": 4,
+    "function_nodes": 3,
+    "import_nodes": 6,
+    "expression_nodes": 13,
+    "assignment_nodes": 15,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 111
+  },
+  "used_names": [
+    "FAILED",
+    "__name__",
+    "Exception",
+    "logging",
+    "timeout",
+    "float",
+    "dict",
+    "result",
+    "Dict",
+    "Enum",
+    "Callable",
+    "WorkflowContext",
+    "steps",
+    "step",
+    "str",
+    "List",
+    "status",
+    "RUNNING",
+    "dataclass",
+    "list",
+    "function",
+    "dep",
+    "len",
+    "workflow_id",
+    "PENDING",
+    "dependencies",
+    "self",
+    "asyncio",
+    "CANCELLED",
+    "metadata",
+    "results",
+    "ValueError",
+    "WorkflowStatus",
+    "field",
+    "COMPLETED",
+    "AsyncExecutor",
+    "data",
+    "context",
+    "name",
+    "retries",
+    "int",
+    "WorkflowStep",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

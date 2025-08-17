@@ -1,0 +1,184 @@
+{
+  "system_name": "Migration script to replace subprocess calls with secure shell service",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SubprocessMigrator": {
+      "responsibility": "Migrate subprocess calls to secure shell service",
+      "methods": [
+        {
+          "name": "find_subprocess_files",
+          "signature": "find_subprocess_files(self) -> list[Path]",
+          "docstring": "Find all Python files with subprocess usage",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "list[Path]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_subprocess_usage",
+          "signature": "analyze_subprocess_usage(self, file_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze subprocess usage in a file",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_args",
+          "signature": "_extract_args(self, node: Any) -> list[str]",
+          "docstring": "Extract arguments from subprocess call",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_migration_plan",
+          "signature": "generate_migration_plan(self, analysis_results: list[dict[Tuple[str, Any]]]) -> str",
+          "docstring": "Generate migration plan",
+          "decorators": [],
+          "line_number": 80,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_migration_template",
+          "signature": "create_migration_template(self, file_path: Path) -> str",
+          "docstring": "Create migration template for a file",
+          "decorators": [],
+          "line_number": 115,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_migration_analysis",
+          "signature": "run_migration_analysis(self) -> None",
+          "docstring": "Run full migration analysis",
+          "decorators": [],
+          "line_number": 147,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main migration script",
+      "decorators": [],
+      "line_number": 192,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nMigration script to replace subprocess calls with secure shell service\n",
+  "file_structure": {
+    "total_lines": 207,
+    "code_lines": 148,
+    "comment_lines": 19,
+    "blank_lines": 40,
+    "total_nodes": 942,
+    "class_nodes": 1,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 53,
+    "assignment_nodes": 21,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 207
+  },
+  "used_names": [
+    "plan_file",
+    "__name__",
+    "Exception",
+    "analysis_results",
+    "py_file",
+    "subprocess_calls",
+    "subprocess_files",
+    "node",
+    "total_calls",
+    "template_file",
+    "isinstance",
+    "dict",
+    "result",
+    "content",
+    "r",
+    "str",
+    "Path",
+    "templates_dir",
+    "call",
+    "sum",
+    "plan",
+    "list",
+    "ast",
+    "len",
+    "file_path",
+    "print",
+    "main",
+    "self",
+    "type",
+    "migrator",
+    "total_files",
+    "template",
+    "tree",
+    "SubprocessMigrator",
+    "args",
+    "arg",
+    "e",
+    "Any"
+  ]
+}

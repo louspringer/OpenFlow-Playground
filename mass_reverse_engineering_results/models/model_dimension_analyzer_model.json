@@ -1,0 +1,166 @@
+{
+  "system_name": "Model Dimension Analyzer",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Load_Model": {
+      "responsibility": "Analyzes project model dimensions and creates meta-model queries using Graph() API at third meta level",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> None",
+          "docstring": "Load the project model",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_dimensions",
+          "signature": "analyze_dimensions(self) -> dict[Tuple[str, set[str]]]",
+          "docstring": "Analyze all dimensions in the model",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "dict[Tuple[str, set[str]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_domain_structures",
+          "signature": "_analyze_domain_structures(self) -> None",
+          "docstring": "Analyze the structure of individual domains",
+          "decorators": [],
+          "line_number": 78,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_neo4j_meta_query",
+          "signature": "generate_neo4j_meta_query(self) -> str",
+          "docstring": "Generate Cypher query to discover model dimensions in Neo4j",
+          "decorators": [],
+          "line_number": 108,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_json_meta_query",
+          "signature": "generate_json_meta_query(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate JSON query structure to discover model dimensions",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "print_dimension_summary",
+          "signature": "print_dimension_summary(self) -> None",
+          "docstring": "Print a summary of all discovered dimensions",
+          "decorators": [],
+          "line_number": 183,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 14
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 215,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from collections import defaultdict",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Set"
+  ],
+  "module_docstring": "\nModel Dimension Analyzer\n\nAnalyzes project model dimensions and creates meta-model queries using Graph() API at third meta level\n",
+  "file_structure": {
+    "total_lines": 245,
+    "code_lines": 188,
+    "comment_lines": 12,
+    "blank_lines": 45,
+    "total_nodes": 1159,
+    "class_nodes": 1,
+    "function_nodes": 8,
+    "import_nodes": 4,
+    "expression_nodes": 39,
+    "assignment_nodes": 26,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 245
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "sorted",
+    "set",
+    "package_keys",
+    "isinstance",
+    "dict",
+    "query",
+    "analyzer",
+    "category",
+    "defaultdict",
+    "open",
+    "model_file",
+    "str",
+    "domain_data",
+    "Path",
+    "domain_keys",
+    "sum",
+    "cursor_rules",
+    "Load_Model",
+    "json",
+    "list",
+    "len",
+    "FileNotFoundError",
+    "print",
+    "neo4j",
+    "main",
+    "dim",
+    "neo4j_query",
+    "self",
+    "ValueError",
+    "dims",
+    "total_dimensions",
+    "json_query",
+    "name",
+    "i",
+    "e",
+    "Any",
+    "domain_name",
+    "range"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "system_name": "simple_calculator",
+  "description": "A simple calculator system for demonstrating the model-driven workflow",
+  "purpose": "Demonstrate JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code workflow",
+  "graph_api_level": 1,
+  "projection_system": "test_system",
+  "components": {
+    "Calculator": {
+      "responsibility": "Perform basic mathematical operations",
+      "methods": [
+        "add(self, a: float, b: float) -> float",
+        "subtract(self, a: float, b: float) -> float",
+        "multiply(self, a: float, b: float) -> float",
+        "divide(self, a: float, b: float) -> float"
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {}
+    },
+    "CalculatorUI": {
+      "responsibility": "Provide user interface for calculator operations",
+      "methods": [
+        "display_result(self, result: float) -> None",
+        "get_user_input(self) -> str",
+        "run_calculator(self) -> None"
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {}
+    }
+  },
+  "module_functions": [
+    "main(self) -> None"
+  ]
+}

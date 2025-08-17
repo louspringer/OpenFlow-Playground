@@ -1,0 +1,57 @@
+{
+  "module_name": "call_ghostbusters",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "call_ghostbusters.py",
+    "tests/test_ghostbusters.py"
+  ],
+  "file_count": 2,
+  "total_lines": 244,
+  "total_classes": 2,
+  "total_functions": 0,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\ncall_ghostbusters\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 244\nClasses: 2\nFunctions: 0\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "call_ghostbusters",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 244,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "call_ghostbusters.py",
+        "name": "call_ghostbusters.py",
+        "stem": "call_ghostbusters"
+      },
+      {
+        "path": "tests/test_ghostbusters.py",
+        "name": "test_ghostbusters.py",
+        "stem": "test_ghostbusters"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.084031",
+  "version": "1.0.0"
+}

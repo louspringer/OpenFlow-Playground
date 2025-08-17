@@ -1,0 +1,367 @@
+{
+  "system_name": "Quality Metrics System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityScore": {
+      "responsibility": "Individual quality score for a specific metric",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> Any",
+          "docstring": "Validate score range",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 16
+    },
+    "QualityMetrics": {
+      "responsibility": "Comprehensive quality metrics for a project or file",
+      "methods": [
+        {
+          "name": "overall_score",
+          "signature": "overall_score(self) -> float",
+          "docstring": "Calculate weighted overall quality score",
+          "decorators": [
+            "property"
+          ],
+          "line_number": 46,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "score_breakdown",
+          "signature": "score_breakdown(self) -> dict[Tuple[str, float]]",
+          "docstring": "Get breakdown of individual metric scores",
+          "decorators": [
+            "property"
+          ],
+          "line_number": 59,
+          "return_type": "dict[Tuple[str, float]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "add_score",
+          "signature": "add_score(self, score: QualityScore) -> None",
+          "docstring": "Add a quality score",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "score",
+              "type": "QualityScore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_score",
+          "signature": "get_score(self, metric_name: str) -> Optional[QualityScore]",
+          "docstring": "Get score for a specific metric",
+          "decorators": [],
+          "line_number": 67,
+          "return_type": "Optional[QualityScore]",
+          "parameters": [
+            {
+              "name": "metric_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "update_score",
+          "signature": "update_score(self, metric_name: str, new_score: float) -> None",
+          "docstring": "Update score for a specific metric",
+          "decorators": [],
+          "line_number": 74,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "metric_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "new_score",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_to_file",
+          "signature": "save_to_file(self, file_path: Path) -> None",
+          "docstring": "Save metrics to a JSON file",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "load_from_file",
+          "signature": "load_from_file(self, cls: Any, file_path: Path) -> QualityMetrics",
+          "docstring": "Load metrics from a JSON file",
+          "decorators": [
+            "classmethod"
+          ],
+          "line_number": 110,
+          "return_type": "QualityMetrics",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 37
+    },
+    "QualityMetricsCalculator": {
+      "responsibility": "Calculates quality metrics from various sources",
+      "methods": [
+        {
+          "name": "calculate_code_quality_score",
+          "signature": "calculate_code_quality_score(self, flake8_issues: list[dict[Tuple[str, Any]]]) -> QualityScore",
+          "docstring": "Calculate code quality score from flake8 issues",
+          "decorators": [],
+          "line_number": 145,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "flake8_issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_security_score",
+          "signature": "calculate_security_score(self, security_issues: list[dict[Tuple[str, Any]]]) -> QualityScore",
+          "docstring": "Calculate security score from security analysis",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "security_issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_test_coverage_score",
+          "signature": "calculate_test_coverage_score(self, coverage_percentage: float) -> QualityScore",
+          "docstring": "Calculate test coverage score",
+          "decorators": [],
+          "line_number": 215,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "coverage_percentage",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "calculate_performance_score",
+          "signature": "calculate_performance_score(self, performance_metrics: dict[Tuple[str, Any]]) -> QualityScore",
+          "docstring": "Calculate performance score from various metrics",
+          "decorators": [],
+          "line_number": 227,
+          "return_type": "QualityScore",
+          "parameters": [
+            {
+              "name": "performance_metrics",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_all_metrics",
+          "signature": "calculate_all_metrics(self, analysis_results: dict[Tuple[str, Any]]) -> QualityMetrics",
+          "docstring": "Calculate all quality metrics from analysis results",
+          "decorators": [],
+          "line_number": 245,
+          "return_type": "QualityMetrics",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 139
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import json",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nQuality Metrics System\n\nCalculates and tracks code quality scores based on various metrics.\n",
+  "file_structure": {
+    "total_lines": 275,
+    "code_lines": 213,
+    "comment_lines": 12,
+    "blank_lines": 50,
+    "total_nodes": 1264,
+    "class_nodes": 3,
+    "function_nodes": 15,
+    "import_nodes": 5,
+    "expression_nodes": 27,
+    "assignment_nodes": 32,
+    "return_nodes": 15
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 275
+  },
+  "used_names": [
+    "security",
+    "classmethod",
+    "key",
+    "total_issues",
+    "f",
+    "slow_ops",
+    "analysis_results",
+    "scores",
+    "coverage",
+    "metric_name",
+    "Any",
+    "dict",
+    "float",
+    "new_score",
+    "value",
+    "open",
+    "QualityScore",
+    "str",
+    "existing_score",
+    "Path",
+    "metrics",
+    "performance",
+    "sum",
+    "msg",
+    "flake8_issues",
+    "weighted_sum",
+    "dataclass",
+    "list",
+    "property",
+    "json",
+    "min",
+    "len",
+    "file_path",
+    "performance_metrics",
+    "QualityMetrics",
+    "self",
+    "kwargs",
+    "metadata",
+    "critical_issues",
+    "max",
+    "code_quality",
+    "ValueError",
+    "field",
+    "details",
+    "datetime",
+    "setattr",
+    "data",
+    "timestamp",
+    "i",
+    "coverage_percentage",
+    "security_issues",
+    "score_data",
+    "weight",
+    "cls",
+    "Optional",
+    "project_path",
+    "score",
+    "high_issues",
+    "total_weight",
+    "timezone"
+  ]
+}

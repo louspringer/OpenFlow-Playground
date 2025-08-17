@@ -1,0 +1,398 @@
+{
+  "system_name": "Final Projection System: Address all remaining linting issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "FinalProjectionSystem": {
+      "responsibility": "Final projection system with all issues fixed.",
+      "methods": [
+        {
+          "name": "extract_and_project_file",
+          "signature": "extract_and_project_file(self, file_path: str) -> str",
+          "docstring": "Extract and project with all issues fixed.",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_with_all_fixes",
+          "signature": "_extract_with_all_fixes(self, tree: Any, file_path: str) -> list[CodeNode]",
+          "docstring": "Extract with all fixes applied.",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_imports_fixed",
+          "signature": "_extract_imports_fixed(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract imports with all fixes applied.",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_constants_fixed",
+          "signature": "_extract_constants_fixed(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract constants with fixes applied.",
+          "decorators": [],
+          "line_number": 152,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_classes_with_methods_fixed",
+          "signature": "_extract_classes_with_methods_fixed(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract class definitions with their methods (fixed).",
+          "decorators": [],
+          "line_number": 201,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_standalone_functions_fixed",
+          "signature": "_extract_standalone_functions_fixed(self, tree: Any, file_path: str, context: str) -> list[CodeNode]",
+          "docstring": "Extract standalone functions (not class methods) with fixes.",
+          "decorators": [],
+          "line_number": 253,
+          "return_type": "list[CodeNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_assert_statements",
+          "signature": "_fix_assert_statements(self, code: str) -> str",
+          "docstring": "Replace assert statements with proper error handling.",
+          "decorators": [],
+          "line_number": 322,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_parameter_spacing",
+          "signature": "_fix_parameter_spacing(self, code: str) -> str",
+          "docstring": "Fix parameter spacing issues.",
+          "decorators": [],
+          "line_number": 344,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_parent_node",
+          "signature": "_get_parent_node(self, tree: Any, target_node: Any) -> Any",
+          "docstring": "Get the parent node of a target node.",
+          "decorators": [],
+          "line_number": 355,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "target_node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_project_with_all_fixes",
+          "signature": "_project_with_all_fixes(self, nodes: list[CodeNode], file_path: str) -> str",
+          "docstring": "Project nodes with all fixes applied.",
+          "decorators": [],
+          "line_number": 363,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "nodes",
+              "type": "list[CodeNode]",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_header_fixed",
+          "signature": "_generate_file_header_fixed(self, file_path: str) -> str",
+          "docstring": "Generate fixed file header.",
+          "decorators": [],
+          "line_number": 413,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_file_footer_fixed",
+          "signature": "_generate_file_footer_fixed(self, file_path: str) -> str",
+          "docstring": "Generate fixed file footer.",
+          "decorators": [],
+          "line_number": 419,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_determine_context",
+          "signature": "_determine_context(self, file_path: str) -> str",
+          "docstring": "Determine the context from file path.",
+          "decorators": [],
+          "line_number": 425,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 24
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test final projection system.",
+      "decorators": [],
+      "line_number": 451,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "from pathlib import Path",
+    "from level1_granular_nodes import CodeNode"
+  ],
+  "module_docstring": "\nFinal Projection System: Address all remaining linting issues\n\nThis system fixes the remaining issues:\n1. Remove unused imports\n2. Fix duplicate imports\n3. Fix spacing issues\n4. Fix parameter spacing\n5. Remove assert statements\n",
+  "file_structure": {
+    "total_lines": 487,
+    "code_lines": 364,
+    "comment_lines": 36,
+    "blank_lines": 87,
+    "total_nodes": 1959,
+    "class_nodes": 1,
+    "function_nodes": 15,
+    "import_nodes": 4,
+    "expression_nodes": 58,
+    "assignment_nodes": 63,
+    "return_nodes": 28
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 487
+  },
+  "used_names": [
+    "classes",
+    "node_id",
+    "__name__",
+    "path_str",
+    "f",
+    "parent",
+    "CodeNode",
+    "imports",
+    "logging",
+    "line_number",
+    "node",
+    "enumerate",
+    "import_nodes",
+    "sorted",
+    "set",
+    "isinstance",
+    "dict",
+    "content",
+    "child",
+    "open",
+    "system",
+    "seen_constants",
+    "hash",
+    "logger",
+    "str",
+    "nodes",
+    "Path",
+    "test_file",
+    "line",
+    "path",
+    "func_name",
+    "unique_id",
+    "constant_nodes",
+    "fixed_lines",
+    "list",
+    "ast",
+    "SyntaxError",
+    "ordered_nodes",
+    "len",
+    "n",
+    "FileNotFoundError",
+    "class_nodes",
+    "file_path",
+    "print",
+    "main",
+    "constants",
+    "self",
+    "lines",
+    "required_imports",
+    "projected_content",
+    "getattr",
+    "tuple",
+    "code",
+    "code_node",
+    "functions",
+    "target_node",
+    "seen_imports",
+    "FinalProjectionSystem",
+    "context",
+    "tree",
+    "i",
+    "constant_line",
+    "function_nodes",
+    "class_name",
+    "int",
+    "e",
+    "UnicodeDecodeError",
+    "definition_code",
+    "import_line",
+    "required_constants",
+    "class_code",
+    "content_parts"
+  ]
+}

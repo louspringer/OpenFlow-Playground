@@ -1,0 +1,368 @@
+{
+  "system_name": "Bandit Security Integration - Direct Python API Usage",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SecurityIssue": {
+      "responsibility": "Represents a security issue found by Bandit",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 37
+    },
+    "SecurityScanResult": {
+      "responsibility": "Results from a Bandit security scan",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 52
+    },
+    "BanditSecurityScanner": {
+      "responsibility": "Direct integration with Bandit's Python API for security scanning",
+      "methods": [
+        {
+          "name": "_initialize_bandit",
+          "signature": "_initialize_bandit(self) -> Any",
+          "docstring": "Initialize Bandit configuration and manager",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "scan_file",
+          "signature": "scan_file(self, file_path: str) -> SecurityScanResult",
+          "docstring": "Scan a single file for security issues\n\n        Args:\n            file_path: Path to the file to scan\n\n        Returns:\n            SecurityScanResult with scan results",
+          "decorators": [],
+          "line_number": 102,
+          "return_type": "SecurityScanResult",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "scan_directory",
+          "signature": "scan_directory(self, directory_path: str, file_patterns: Optional[list[str]]) -> SecurityScanResult",
+          "docstring": "Scan a directory for security issues\n\n        Args:\n            directory_path: Path to directory to scan\n            file_patterns: Optional list of file patterns to include\n\n        Returns:\n            SecurityScanResult with scan results",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "SecurityScanResult",
+          "parameters": [
+            {
+              "name": "directory_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_patterns",
+              "type": "Optional[list[str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_collect_issues",
+          "signature": "_collect_issues(self) -> list[SecurityIssue]",
+          "docstring": "Collect security issues from Bandit manager",
+          "decorators": [],
+          "line_number": 242,
+          "return_type": "list[SecurityIssue]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_collect_metrics",
+          "signature": "_collect_metrics(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Collect metrics from Bandit manager",
+          "decorators": [],
+          "line_number": 277,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_security_profile",
+          "signature": "get_security_profile(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get current security profile configuration",
+          "decorators": [],
+          "line_number": 296,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "update_security_profile",
+          "signature": "update_security_profile(self, profile_updates: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Update security profile configuration\n\n        Args:\n            profile_updates: Dictionary of profile updates",
+          "decorators": [],
+          "line_number": 302,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "profile_updates",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 64
+    },
+    "ModelDrivenSecurityScanner": {
+      "responsibility": "Integrates Bandit with our project model registry for intelligent security scanning",
+      "methods": [
+        {
+          "name": "_load_project_model",
+          "signature": "_load_project_model(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load the project model registry",
+          "decorators": [],
+          "line_number": 328,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "scan_project",
+          "signature": "scan_project(self, target_paths: Optional[list[str]]) -> SecurityScanResult",
+          "docstring": "Scan the project based on model-driven configuration\n\n        Args:\n            target_paths: Optional list of specific paths to scan\n\n        Returns:\n            SecurityScanResult with comprehensive scan results",
+          "decorators": [],
+          "line_number": 337,
+          "return_type": "SecurityScanResult",
+          "parameters": [
+            {
+              "name": "target_paths",
+              "type": "Optional[list[str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_default_scan_paths",
+          "signature": "_get_default_scan_paths(self) -> list[str]",
+          "docstring": "Get default scan paths based on project model",
+          "decorators": [],
+          "line_number": 382,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_security_report",
+          "signature": "generate_security_report(self, scan_result: SecurityScanResult) -> str",
+          "docstring": "Generate a human-readable security report\n\n        Args:\n            scan_result: Results from security scan\n\n        Returns:\n            Formatted security report string",
+          "decorators": [],
+          "line_number": 398,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "scan_result",
+              "type": "SecurityScanResult",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "export_results_json",
+          "signature": "export_results_json(self, scan_result: SecurityScanResult, output_path: str) -> Any",
+          "docstring": "Export scan results to JSON file\n\n        Args:\n            scan_result: Results from security scan\n            output_path: Path to output JSON file",
+          "decorators": [],
+          "line_number": 447,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "scan_result",
+              "type": "SecurityScanResult",
+              "default": null
+            },
+            {
+              "name": "output_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 315
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function for command-line usage",
+      "decorators": [],
+      "line_number": 467,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from bandit.core import config as bandit_config",
+    "from bandit.core import manager as bandit_manager",
+    "import argparse",
+    "import time",
+    "import time"
+  ],
+  "module_docstring": "\nBandit Security Integration - Direct Python API Usage\n\nThis module integrates Bandit's security scanning capabilities directly into our\nmodel-driven security system without requiring subprocess calls.\n\nFeatures:\n- Direct Python API integration with Bandit\n- AST-based security analysis\n- Integration with project model registry\n- Customizable security profiles\n- Rich reporting and issue management\n",
+  "file_structure": {
+    "total_lines": 528,
+    "code_lines": 403,
+    "comment_lines": 22,
+    "blank_lines": 103,
+    "total_nodes": 1971,
+    "class_nodes": 4,
+    "function_nodes": 15,
+    "import_nodes": 10,
+    "expression_nodes": 62,
+    "assignment_nodes": 55,
+    "return_nodes": 19
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 528
+  },
+  "used_names": [
+    "Exception",
+    "py_file",
+    "common_dirs",
+    "target_paths",
+    "profile_updates",
+    "severity",
+    "dict",
+    "file_patterns",
+    "exit",
+    "security_issue",
+    "Path",
+    "path",
+    "ImportError",
+    "all_issues",
+    "list",
+    "scan_duration",
+    "path_obj",
+    "ModelDrivenSecurityScanner",
+    "print",
+    "getattr",
+    "bool",
+    "error_message",
+    "directory_path",
+    "parser",
+    "severity_groups",
+    "asdict",
+    "scanner",
+    "__name__",
+    "logging",
+    "SecurityScanResult",
+    "config_file",
+    "project_model_path",
+    "dir_name",
+    "bandit_scanner",
+    "files_to_scan",
+    "time",
+    "filename",
+    "cwe_id",
+    "success",
+    "more_info",
+    "files_scanned",
+    "start_time",
+    "bandit_manager",
+    "BANDIT_AVAILABLE",
+    "issues",
+    "total_duration",
+    "line_number",
+    "f",
+    "result_dict",
+    "message",
+    "SecurityIssue",
+    "float",
+    "result",
+    "open",
+    "metrics",
+    "default_paths",
+    "pattern",
+    "main",
+    "issue_type",
+    "issue",
+    "code",
+    "BanditSecurityScanner",
+    "total_files",
+    "args",
+    "Optional",
+    "Any",
+    "scan_result",
+    "confidence",
+    "output_path",
+    "bandit_config",
+    "logger",
+    "str",
+    "hasattr",
+    "dataclass",
+    "json",
+    "len",
+    "file_path",
+    "self",
+    "temp_scanner",
+    "report_lines",
+    "issues_found",
+    "issue_list",
+    "int",
+    "argparse",
+    "e"
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "system_name": "Core TiDB Agent Orchestrator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "AgentConfig": {
+      "responsibility": "Configuration for individual AI agents",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 16
+    },
+    "WorkflowConfig": {
+      "responsibility": "Configuration for AI agent workflows",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 27
+    },
+    "TiDBAgentOrchestrator": {
+      "responsibility": "Main orchestrator for TiDB AI agents",
+      "methods": [
+        {
+          "name": "register_agent",
+          "signature": "register_agent(self, agent_config: AgentConfig) -> bool",
+          "docstring": "Register a new AI agent",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "agent_config",
+              "type": "AgentConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "create_workflow",
+          "signature": "create_workflow(self, workflow_config: WorkflowConfig) -> bool",
+          "docstring": "Create a new AI agent workflow",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow_config",
+              "type": "WorkflowConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_workflow",
+          "signature": "execute_workflow(self, workflow_id: str) -> bool",
+          "docstring": "Execute an AI agent workflow",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_run_workflow",
+          "signature": "_run_workflow(self, workflow: WorkflowConfig) -> Any",
+          "docstring": "Internal method to run a workflow",
+          "decorators": [],
+          "line_number": 91,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "workflow",
+              "type": "WorkflowConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_execute_step",
+          "signature": "_execute_step(self, step: dict[Tuple[str, Any]]) -> Any",
+          "docstring": "Execute a single workflow step",
+          "decorators": [],
+          "line_number": 108,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "step",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_agent_status",
+          "signature": "get_agent_status(self, agent_id: str) -> Optional[AgentConfig]",
+          "docstring": "Get status of a specific agent",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "Optional[AgentConfig]",
+          "parameters": [
+            {
+              "name": "agent_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_workflow_status",
+          "signature": "get_workflow_status(self, workflow_id: str) -> Optional[WorkflowConfig]",
+          "docstring": "Get status of a specific workflow",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "Optional[WorkflowConfig]",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_agents",
+          "signature": "list_agents(self) -> list[AgentConfig]",
+          "docstring": "List all registered agents",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "list[AgentConfig]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "list_workflows",
+          "signature": "list_workflows(self) -> list[WorkflowConfig]",
+          "docstring": "List all available workflows",
+          "decorators": [],
+          "line_number": 130,
+          "return_type": "list[WorkflowConfig]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "is_workflow_active",
+          "signature": "is_workflow_active(self, workflow_id: str) -> bool",
+          "docstring": "Check if a workflow is currently running",
+          "decorators": [],
+          "line_number": 134,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 36
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "from typing import Optional",
+    "from pydantic import BaseModel",
+    "from pydantic import Field"
+  ],
+  "module_docstring": "\nCore TiDB Agent Orchestrator\n\nMain orchestration service for AI agents in TiDB AgentX hackathon\n",
+  "file_structure": {
+    "total_lines": 139,
+    "code_lines": 102,
+    "comment_lines": 4,
+    "blank_lines": 33,
+    "total_nodes": 735,
+    "class_nodes": 3,
+    "function_nodes": 6,
+    "import_nodes": 4,
+    "expression_nodes": 29,
+    "assignment_nodes": 7,
+    "return_nodes": 13
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 139
+  },
+  "used_names": [
+    "agents",
+    "task",
+    "__name__",
+    "Exception",
+    "logging",
+    "workflow",
+    "BaseModel",
+    "dict",
+    "Field",
+    "steps",
+    "logger",
+    "str",
+    "step",
+    "status",
+    "AgentConfig",
+    "WorkflowConfig",
+    "workflow_config",
+    "list",
+    "capabilities",
+    "agent_type",
+    "workflow_id",
+    "agent_config",
+    "self",
+    "asyncio",
+    "bool",
+    "ValueError",
+    "step_type",
+    "agent_id",
+    "name",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

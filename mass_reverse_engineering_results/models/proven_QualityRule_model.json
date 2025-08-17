@@ -1,0 +1,88 @@
+{
+  "system_name": "Represents a code quality rule with detection and fix strategies",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityRule": {
+      "responsibility": "Represents a code quality rule with detection and fix strategies",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "Validate rule configuration",
+          "decorators": [],
+          "line_number": 20,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "detect_violations",
+          "signature": "detect_violations(self) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Detect rule violations in code",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_fix",
+          "signature": "generate_fix(self) -> str",
+          "docstring": "Generate fix for violations",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nRepresents a code quality rule with detection and fix strategies\n",
+  "file_structure": {
+    "total_lines": 37,
+    "code_lines": 24,
+    "comment_lines": 5,
+    "blank_lines": 8,
+    "total_nodes": 48,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 5,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 37
+  },
+  "used_names": [
+    "dict",
+    "str",
+    "list",
+    "Any",
+    "dataclass"
+  ]
+}

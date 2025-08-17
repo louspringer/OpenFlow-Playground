@@ -1,0 +1,55 @@
+{
+  "system_name": "Test the regenerated test_projected_code.py",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_regenerated_code",
+      "signature": "test_regenerated_code() -> Any",
+      "docstring": "Test that the regenerated code is valid Python",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast"
+  ],
+  "module_docstring": "\nTest the regenerated test_projected_code.py\n",
+  "file_structure": {
+    "total_lines": 40,
+    "code_lines": 27,
+    "comment_lines": 2,
+    "blank_lines": 11,
+    "total_nodes": 122,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 1,
+    "expression_nodes": 16,
+    "assignment_nodes": 1,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 40
+  },
+  "used_names": [
+    "open",
+    "len",
+    "__name__",
+    "f",
+    "Exception",
+    "print",
+    "test_regenerated_code",
+    "e",
+    "ast",
+    "content"
+  ]
+}

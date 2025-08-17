@@ -1,0 +1,317 @@
+{
+  "system_name": "Complex Model Generator",
+  "description": "Combines Enhanced AST Models + Flake8 Model + MyPy Model",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Flake8Rule": {
+      "responsibility": "Flake8 rule definition",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 15
+    },
+    "MyPyRule": {
+      "responsibility": "MyPy rule definition",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 27
+    },
+    "ComplexModel": {
+      "responsibility": "Complex model combining Enhanced AST + Flake8 + MyPy",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "Initialize the complex model",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_flake8_model",
+          "signature": "_build_flake8_model(self) -> None",
+          "docstring": "Build Flake8 model with all rules and patterns",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_mypy_model",
+          "signature": "_build_mypy_model(self) -> None",
+          "docstring": "Build MyPy model with all rules and patterns",
+          "decorators": [],
+          "line_number": 132,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_build_combined_understanding",
+          "signature": "_build_combined_understanding(self) -> None",
+          "docstring": "Build combined understanding of code patterns and fix strategies",
+          "decorators": [],
+          "line_number": 177,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_file",
+          "signature": "analyze_file(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze a file using the complex model",
+          "decorators": [],
+          "line_number": 217,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_simulate_flake8_analysis",
+          "signature": "_simulate_flake8_analysis(self, file_path: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Simulate Flake8 analysis based on our model",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_simulate_mypy_analysis",
+          "signature": "_simulate_mypy_analysis(self, file_path: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Simulate MyPy analysis based on our model",
+          "decorators": [],
+          "line_number": 296,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_fix_strategies",
+          "signature": "_generate_fix_strategies(self, flake8_issues: list[dict], mypy_issues: list[dict]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Generate fix strategies based on detected issues",
+          "decorators": [],
+          "line_number": 355,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "flake8_issues",
+              "type": "list[dict]",
+              "default": null
+            },
+            {
+              "name": "mypy_issues",
+              "type": "list[dict]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, file_path: str) -> str",
+          "docstring": "Generate perfect code based on the complex model",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_flake8_fix",
+          "signature": "_apply_flake8_fix(self, content: str, issue: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Apply Flake8 fix to content",
+          "decorators": [],
+          "line_number": 400,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "issue",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_apply_mypy_fix",
+          "signature": "_apply_mypy_fix(self, content: str, issue: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Apply MyPy fix to content",
+          "decorators": [],
+          "line_number": 423,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "issue",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 39
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_complex_model",
+      "signature": "create_complex_model() -> ComplexModel",
+      "docstring": "Create and return a complex model",
+      "decorators": [],
+      "line_number": 439,
+      "return_type": "ComplexModel",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from typing import Any",
+    "from src.artifact_forge.agents.artifact_parser_enhanced import EnhancedArtifactParser"
+  ],
+  "module_docstring": "\nComplex Model Generator\nCombines Enhanced AST Models + Flake8 Model + MyPy Model\n",
+  "file_structure": {
+    "total_lines": 454,
+    "code_lines": 366,
+    "comment_lines": 27,
+    "blank_lines": 61,
+    "total_nodes": 1769,
+    "class_nodes": 3,
+    "function_nodes": 12,
+    "import_nodes": 4,
+    "expression_nodes": 38,
+    "assignment_nodes": 28,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 454
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "examples",
+    "description",
+    "enumerate",
+    "node",
+    "strategies",
+    "severity",
+    "ast_result",
+    "dict",
+    "isinstance",
+    "content",
+    "analysis",
+    "open",
+    "fixed_content",
+    "str",
+    "strategy",
+    "line_idx",
+    "line",
+    "func_name",
+    "MyPyRule",
+    "enhanced_ast_parser",
+    "mypy_rules",
+    "code_patterns",
+    "flake8_issues",
+    "list",
+    "dataclass",
+    "ast",
+    "SyntaxError",
+    "mypy_issues",
+    "Flake8Rule",
+    "len",
+    "create_complex_model",
+    "file_path",
+    "print",
+    "EnhancedArtifactParser",
+    "self",
+    "lines",
+    "issue",
+    "code",
+    "field",
+    "ComplexModel",
+    "flake8_rules",
+    "issues",
+    "i",
+    "model",
+    "tree",
+    "fix_strategy",
+    "arg",
+    "fix_strategies",
+    "e",
+    "Any",
+    "patterns"
+  ]
+}

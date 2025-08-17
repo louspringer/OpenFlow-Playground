@@ -1,0 +1,376 @@
+{
+  "system_name": "clewcrew Core Orchestrator - Multi-Agent Hallucination Detection & Recovery System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ClewcrewState": {
+      "responsibility": "State for clewcrew workflow",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 48
+    },
+    "ClewcrewOrchestrator": {
+      "responsibility": "Multi-agent orchestrator for hallucination detection and recovery",
+      "methods": [
+        {
+          "name": "_create_workflow",
+          "signature": "_create_workflow(self) -> StateGraph",
+          "docstring": "Create LangGraph workflow for clewcrew",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": "StateGraph",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_hallucinations_node",
+          "signature": "_detect_hallucinations_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Detect hallucinations using all expert agents",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_findings_node",
+          "signature": "_validate_findings_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Validate findings using all validators",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_plan_recovery_node",
+          "signature": "_plan_recovery_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Plan recovery actions based on validated findings",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_execute_recovery_node",
+          "signature": "_execute_recovery_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Execute recovery actions using appropriate engines",
+          "decorators": [],
+          "line_number": 213,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_recovery_node",
+          "signature": "_validate_recovery_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Validate that recovery actions were successful",
+          "decorators": [],
+          "line_number": 239,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_report_node",
+          "signature": "_generate_report_node(self, state: ClewcrewState) -> ClewcrewState",
+          "docstring": "Generate comprehensive report of the workflow execution",
+          "decorators": [],
+          "line_number": 262,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "ClewcrewState",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "run_workflow",
+          "signature": "run_workflow(self, project_path: str) -> ClewcrewState",
+          "docstring": "Run the complete clewcrew workflow",
+          "decorators": [],
+          "line_number": 292,
+          "return_type": "ClewcrewState",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "detect_hallucinations",
+          "signature": "detect_hallucinations(self, project_path: str) -> List[Dict[Tuple[str, Any]]]",
+          "docstring": "Quick method to just detect hallucinations",
+          "decorators": [],
+          "line_number": 307,
+          "return_type": "List[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "recover_from_issues",
+          "signature": "recover_from_issues(self, issues: List[Dict[Tuple[str, Any]]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Recover from specific issues",
+          "decorators": [],
+          "line_number": 318,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "run_quality_analysis",
+          "signature": "run_quality_analysis(self, project_path: str) -> Dict[Tuple[str, Any]]",
+          "docstring": "Run comprehensive quality analysis using all expert agents.\n        \n        This method integrates with the quality system to provide\n        comprehensive quality metrics and recommendations.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            Dictionary containing comprehensive quality analysis results",
+          "decorators": [],
+          "line_number": 329,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_quality_summary",
+          "signature": "_generate_quality_summary(self, agent_quality_results: Dict[Tuple[str, Any]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Generate overall quality summary from agent results.\n        \n        Args:\n            agent_quality_results: Quality results from all agents\n            \n        Returns:\n            Dictionary containing overall quality summary",
+          "decorators": [],
+          "line_number": 406,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "agent_quality_results",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 65
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "import logging",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from pydantic import ConfigDict",
+    "from langgraph.graph import END",
+    "from langgraph.graph import StateGraph",
+    "from clewcrew_agents import ArchitectureExpert",
+    "from clewcrew_agents import BuildExpert",
+    "from clewcrew_agents import CodeQualityExpert",
+    "from clewcrew_agents import MCPExpert",
+    "from clewcrew_agents import ModelExpert",
+    "from clewcrew_agents import SecurityExpert",
+    "from clewcrew_agents import TestExpert",
+    "from recovery import ImportResolver",
+    "from recovery import IndentationFixer",
+    "from recovery import SyntaxRecoveryEngine",
+    "from recovery import TypeAnnotationFixer",
+    "from validators import ArchitectureValidator",
+    "from validators import BuildValidator",
+    "from validators import CodeQualityValidator",
+    "from validators import ModelValidator",
+    "from validators import SecurityValidator",
+    "from validators import TestValidator"
+  ],
+  "module_docstring": "\nclewcrew Core Orchestrator - Multi-Agent Hallucination Detection & Recovery System\n",
+  "file_structure": {
+    "total_lines": 458,
+    "code_lines": 360,
+    "comment_lines": 26,
+    "blank_lines": 72,
+    "total_nodes": 2079,
+    "class_nodes": 2,
+    "function_nodes": 3,
+    "import_nodes": 10,
+    "expression_nodes": 64,
+    "assignment_nodes": 63,
+    "return_nodes": 14
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 458
+  },
+  "used_names": [
+    "SecurityValidator",
+    "Exception",
+    "ArchitectureExpert",
+    "workflow",
+    "BaseModel",
+    "dict",
+    "ArchitectureValidator",
+    "all_recommendations",
+    "r",
+    "resolved_issues",
+    "agent",
+    "CodeQualityExpert",
+    "Path",
+    "END",
+    "total_score",
+    "list",
+    "hallucinations_detected",
+    "validator_result",
+    "rec",
+    "initial_state",
+    "recommendations",
+    "recovery_actions",
+    "timezone",
+    "BuildExpert",
+    "__name__",
+    "__file__",
+    "quality_status",
+    "logging",
+    "IndentationFixer",
+    "Dict",
+    "Field",
+    "CodeQualityValidator",
+    "TestExpert",
+    "SecurityExpert",
+    "StateGraph",
+    "ConfigDict",
+    "confidence_score",
+    "validation_results",
+    "MCPExpert",
+    "final_state",
+    "name",
+    "validator",
+    "quality_metrics",
+    "issues",
+    "total_issues",
+    "float",
+    "result",
+    "action",
+    "List",
+    "errors",
+    "BuildValidator",
+    "hallucination",
+    "agent_quality_results",
+    "ImportResolver",
+    "model_config",
+    "results",
+    "post_recovery_validation",
+    "ModelExpert",
+    "datetime",
+    "Any",
+    "TestValidator",
+    "SyntaxRecoveryEngine",
+    "warnings",
+    "ClewcrewState",
+    "agent_name",
+    "TypeAnnotationFixer",
+    "overall_quality_score",
+    "str",
+    "engine_name",
+    "agent_result",
+    "state",
+    "quality_report",
+    "sys",
+    "len",
+    "quality_score",
+    "hallucinations",
+    "self",
+    "metadata",
+    "current_phase",
+    "agent_count",
+    "engine",
+    "issues_found",
+    "recovery_results",
+    "e",
+    "project_path",
+    "ModelValidator"
+  ]
+}

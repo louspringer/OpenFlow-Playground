@@ -1,0 +1,229 @@
+{
+  "system_name": "Real-world workflow engine module",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "WorkflowStep": {
+      "responsibility": "Individual step in a real-world workflow",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 12
+    },
+    "RealWorldWorkflow": {
+      "responsibility": "Real-world workflow definition",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 27
+    },
+    "RealWorldWorkflowEngine": {
+      "responsibility": "Engine for executing real-world workflows",
+      "methods": [
+        {
+          "name": "create_workflow",
+          "signature": "create_workflow(self, workflow: RealWorldWorkflow) -> bool",
+          "docstring": "Create a new real-world workflow",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow",
+              "type": "RealWorldWorkflow",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "execute_workflow",
+          "signature": "execute_workflow(self, workflow_id: str) -> bool",
+          "docstring": "Execute a real-world workflow",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_run_workflow",
+          "signature": "_run_workflow(self, workflow: RealWorldWorkflow) -> Any",
+          "docstring": "Internal method to run a workflow",
+          "decorators": [],
+          "line_number": 74,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "workflow",
+              "type": "RealWorldWorkflow",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_execute_workflow_step",
+          "signature": "_execute_workflow_step(self, step: WorkflowStep) -> Any",
+          "docstring": "Execute a single workflow step",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "step",
+              "type": "WorkflowStep",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_workflow",
+          "signature": "get_workflow(self, workflow_id: str) -> Optional[RealWorldWorkflow]",
+          "docstring": "Get a specific workflow",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "Optional[RealWorldWorkflow]",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_workflows",
+          "signature": "list_workflows(self) -> list[RealWorldWorkflow]",
+          "docstring": "List all workflows",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "list[RealWorldWorkflow]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "is_workflow_active",
+          "signature": "is_workflow_active(self, workflow_id: str) -> bool",
+          "docstring": "Check if a workflow is currently running",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "workflow_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 37
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "from typing import Optional",
+    "from pydantic import BaseModel",
+    "from pydantic import Field"
+  ],
+  "module_docstring": "Real-world workflow engine module",
+  "file_structure": {
+    "total_lines": 131,
+    "code_lines": 94,
+    "comment_lines": 5,
+    "blank_lines": 32,
+    "total_nodes": 692,
+    "class_nodes": 3,
+    "function_nodes": 4,
+    "import_nodes": 4,
+    "expression_nodes": 27,
+    "assignment_nodes": 6,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 131
+  },
+  "used_names": [
+    "step_id",
+    "task",
+    "__name__",
+    "Exception",
+    "logging",
+    "description",
+    "workflow",
+    "executed_steps",
+    "set",
+    "BaseModel",
+    "dict",
+    "Field",
+    "steps",
+    "logger",
+    "str",
+    "step",
+    "status",
+    "list",
+    "dep",
+    "len",
+    "workflow_id",
+    "dependencies",
+    "self",
+    "asyncio",
+    "bool",
+    "agent_id",
+    "parameters",
+    "name",
+    "WorkflowStep",
+    "all",
+    "e",
+    "Optional",
+    "Any",
+    "RealWorldWorkflow"
+  ]
+}

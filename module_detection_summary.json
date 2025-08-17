@@ -1,0 +1,4959 @@
+{
+  "workspace_path": ".",
+  "total_files": 445,
+  "total_modules": 243,
+  "modules": {
+    "Calculator": {
+      "name": "Calculator",
+      "files": [
+        "Calculator.py",
+        "CalculatorUI.py"
+      ],
+      "dependencies": [],
+      "total_lines": 83,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "analyze_artifact_findings": {
+      "name": "analyze_artifact_findings",
+      "files": [
+        "analyze_artifact_findings.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 197,
+      "total_classes": 0,
+      "total_functions": 9,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "analyze_codebase": {
+      "name": "analyze_codebase",
+      "files": [
+        "analyze_codebase.py"
+      ],
+      "dependencies": [
+        "os",
+        "sys",
+        "artifact_forge"
+      ],
+      "total_lines": 109,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "ast_guided_code_generator": {
+      "name": "ast_guided_code_generator",
+      "files": [
+        "ast_guided_code_generator.py",
+        "clewcrew-common/src/clewcrew_common/logging.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "dataclasses",
+        "logging",
+        "typing",
+        "ast",
+        "src"
+      ],
+      "total_lines": 419,
+      "total_classes": 5,
+      "total_functions": 2,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "ghostbusters___init__": {
+      "name": "ghostbusters___init__",
+      "files": [
+        "backup/ghostbusters/ghostbusters/__init__.py",
+        "clewcrew-tools/src/clewcrew_tools/config_utility.py",
+        "src/code_quality_system/integrations/pre_commit_integration.py",
+        "clewcrew-agents/src/clewcrew_agents/devops_expert.py",
+        "clewcrew-validators/src/clewcrew_validators/data_validator.py",
+        "src/code_quality_system/quality_metrics.py",
+        "clewcrew-common/src/clewcrew_common/confidence.py",
+        "backup/ghostbusters/ghostbusters/recovery_engines/syntax_recovery_engine.py",
+        "backup/ghostbusters/ghostbusters/recovery_engines/type_annotation_fixer.py",
+        "generated_packages/openflow-code-quality/src/openflow_code_quality/main.py",
+        "backup/ghostbusters/ghostbusters/agents/model_expert.py",
+        "backup/ghostbusters/ghostbusters/recovery_engines/base_recovery_engine.py",
+        "backup/ghostbusters/ghostbusters/agents/base_expert.py",
+        "backup/ghostbusters/ghostbusters/agents/architecture_expert.py",
+        "clewcrew-framework/src/clewcrew_framework/workflow_engine.py",
+        "clewcrew-validators/src/clewcrew_validators/validation_result.py",
+        "src/ghostbusters/agents/quality_analyzer.py",
+        "src/security_first/https_enforcement.py",
+        "healthcare-cdc/healthcare_cdc_domain_model.py",
+        "backup/ghostbusters/ghostbusters/agents.py",
+        "backup/ghostbusters/ghostbusters/__init__.py",
+        "clewcrew-framework/src/clewcrew_framework/plugin_manager.py",
+        "clewcrew-tools/src/clewcrew_tools/integration_tool.py",
+        "src/mdc_generator/mdc_model.py",
+        "clewcrew-tools/src/clewcrew_tools/code_analyzer.py",
+        "clewcrew-common/src/clewcrew_common/data_models.py",
+        "backup/ghostbusters/ghostbusters/validators.py",
+        "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/workflows.py",
+        "backup/ghostbusters/ghostbusters/ghostbusters_orchestrator.py",
+        "src/ghostbusters/agents/recommendation_engine.py",
+        "clewcrew-tools/src/clewcrew_tools/dev_helper.py",
+        "clewcrew-framework/src/clewcrew_framework/state_manager.py",
+        "clewcrew-validators/src/clewcrew_validators/rule_validator.py",
+        "src/ghostbusters/agents/issue_detector.py",
+        "backup/ghostbusters/ghostbusters/recovery.py",
+        "backup/ghostbusters/ghostbusters/validators/base_validator.py",
+        "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/core.py",
+        "backup/ghostbusters/ghostbusters/recovery_engines/indentation_fixer.py",
+        "src/code_quality_system/quality_gates.py",
+        "clewcrew-core/src/clewcrew_core/orchestrator.py",
+        "clewcrew-common/src/clewcrew_common/async_utils.py",
+        "backup/ghostbusters/ghostbusters/recovery_engines/import_resolver.py",
+        "backup/ghostbusters/ghostbusters/agents/test_expert.py",
+        "clewcrew-framework/src/clewcrew_framework/event_bus.py",
+        "clewcrew-validators/src/clewcrew_validators/schema_validator.py",
+        "proven_QualityRule.py",
+        "src/code_quality_system/quality_enforcer.py",
+        "clewcrew-common/src/clewcrew_common/file_ops.py",
+        "src/code_quality_system/multi_agent_integration.py",
+        "backup/ghostbusters/ghostbusters/agents/security_expert.py",
+        "clewcrew-common/src/clewcrew_common/validation.py",
+        "backup/ghostbusters/ghostbusters/agents/code_quality_expert.py",
+        "src/model_driven_projection/level1_granular_nodes.py",
+        "clewcrew-tools/src/clewcrew_tools/report_generator.py",
+        "backup/ghostbusters/ghostbusters/agents/mcp_expert.py",
+        "src/code_quality_system/integrations/ci_cd_integration.py",
+        "src/model_driven_projection/final_projection_system.py",
+        "proven_ASTAnalyzer.py",
+        "src/visualization/svg_engine.py",
+        "clewcrew-common/src/clewcrew_common/configuration.py",
+        "proven_QualityOrchestrator.py",
+        "subprojects/tidb-agentx-hackathon/src/tidb_agentx_hackathon/tidb_integration.py",
+        "clewcrew-framework/src/clewcrew_framework/config_manager.py"
+      ],
+      "dependencies": [
+        "urllib",
+        "hashlib",
+        "quality_metrics",
+        "abc",
+        "clewcrew_core",
+        "asyncio",
+        "requests",
+        "certifi",
+        "base_recovery_engine",
+        "jsonschema",
+        "base_expert",
+        "validation_result",
+        "subprocess",
+        "tomllib",
+        "agents",
+        "clewcrew_common",
+        "json",
+        "dataclasses",
+        "validators",
+        "time",
+        "langgraph",
+        "matplotlib",
+        "ghostbusters_orchestrator",
+        "yaml",
+        "ast",
+        "re",
+        "pathlib",
+        "argparse",
+        "recovery",
+        "base_validator",
+        "importlib",
+        "quality_gates",
+        "socket",
+        "logging",
+        "os",
+        "pydantic",
+        "quality_enforcer",
+        "typing",
+        "plotly",
+        "enum",
+        "level1_granular_nodes",
+        "sys",
+        "datetime",
+        "xml",
+        "ssl",
+        "clewcrew_agents",
+        "src"
+      ],
+      "total_lines": 13221,
+      "total_classes": 129,
+      "total_functions": 11,
+      "total_imports": 238,
+      "module_type": "package",
+      "confidence_score": 0.7,
+      "file_count": 63
+    },
+    "core_artifact_requirement_mapper": {
+      "name": "core_artifact_requirement_mapper",
+      "files": [
+        "backup/ghostbusters/ghostbusters/artifact_requirement_mapper.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "json",
+        "dataclasses",
+        "datetime"
+      ],
+      "total_lines": 324,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "ghostbusters_enhanced_ghostbusters": {
+      "name": "ghostbusters_enhanced_ghostbusters",
+      "files": [
+        "backup/ghostbusters/ghostbusters/enhanced_ghostbusters.py",
+        "backup/ghostbusters/ghostbusters/tool_discovery.py"
+      ],
+      "dependencies": [
+        "web_tool_discovery",
+        "tool_discovery",
+        "pathlib",
+        "asyncio",
+        "sys",
+        "dataclasses",
+        "logging",
+        "typing",
+        "src"
+      ],
+      "total_lines": 482,
+      "total_classes": 3,
+      "total_functions": 0,
+      "total_imports": 13,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "ghostbusters_enhanced_learning_timeout_agent": {
+      "name": "ghostbusters_enhanced_learning_timeout_agent",
+      "files": [
+        "backup/ghostbusters/ghostbusters/enhanced_learning_timeout_agent.py"
+      ],
+      "dependencies": [
+        "time",
+        "pathlib",
+        "logging",
+        "typing",
+        "asyncio",
+        "dataclasses"
+      ],
+      "total_lines": 658,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_web_tool_discovery": {
+      "name": "script_web_tool_discovery",
+      "files": [
+        "backup/ghostbusters/ghostbusters/web_tool_discovery.py"
+      ],
+      "dependencies": [
+        "typing",
+        "requests"
+      ],
+      "total_lines": 237,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "call_ghostbusters": {
+      "name": "call_ghostbusters",
+      "files": [
+        "call_ghostbusters.py",
+        "tests/test_ghostbusters.py"
+      ],
+      "dependencies": [
+        "logging",
+        "pytest",
+        "src",
+        "unittest",
+        "asyncio"
+      ],
+      "total_lines": 244,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_security_expert": {
+      "name": "test_test_security_expert",
+      "files": [
+        "clewcrew-agents/tests/test_security_expert.py"
+      ],
+      "dependencies": [
+        "pytest",
+        "clewcrew_agents",
+        "subprocess",
+        "json",
+        "os"
+      ],
+      "total_lines": 141,
+      "total_classes": 1,
+      "total_functions": 3,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_confidence": {
+      "name": "test_test_confidence",
+      "files": [
+        "clewcrew-common/tests/test_confidence.py",
+        "clewcrew-common/tests/test_confidence.py"
+      ],
+      "dependencies": [
+        "clewcrew_common",
+        "pytest"
+      ],
+      "total_lines": 290,
+      "total_classes": 4,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_orchestrator": {
+      "name": "test_test_orchestrator",
+      "files": [
+        "clewcrew-core/tests/test_orchestrator.py"
+      ],
+      "dependencies": [
+        "unittest",
+        "pathlib",
+        "pytest",
+        "clewcrew_core"
+      ],
+      "total_lines": 125,
+      "total_classes": 3,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_cli": {
+      "name": "script_cli",
+      "files": [
+        "clewcrew-framework/src/clewcrew_framework/cli.py",
+        "clewcrew-framework/src/clewcrew_framework/cli.py"
+      ],
+      "dependencies": [
+        "config_manager",
+        "argparse",
+        "plugin_manager",
+        "clewcrew_core",
+        "asyncio",
+        "sys",
+        "logging",
+        "workflow_engine"
+      ],
+      "total_lines": 470,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 8,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_workflow_engine": {
+      "name": "test_test_workflow_engine",
+      "files": [
+        "clewcrew-framework/tests/test_workflow_engine.py"
+      ],
+      "dependencies": [
+        "clewcrew_framework",
+        "pytest"
+      ],
+      "total_lines": 229,
+      "total_classes": 3,
+      "total_functions": 3,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_syntax_recovery": {
+      "name": "test_test_syntax_recovery",
+      "files": [
+        "clewcrew-recovery/tests/test_syntax_recovery.py"
+      ],
+      "dependencies": [
+        "pytest",
+        "clewcrew_recovery"
+      ],
+      "total_lines": 134,
+      "total_classes": 1,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "comprehensive_artifact_analysis": {
+      "name": "comprehensive_artifact_analysis",
+      "files": [
+        "comprehensive_artifact_analysis.py"
+      ],
+      "dependencies": [
+        "ast",
+        "pathlib",
+        "typing",
+        "os",
+        "json",
+        "dataclasses",
+        "collections"
+      ],
+      "total_lines": 693,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "create_notebook": {
+      "name": "create_notebook",
+      "files": [
+        "create_notebook.py",
+        "scripts/create_proper_notebook.py"
+      ],
+      "dependencies": [
+        "seaborn",
+        "pathlib",
+        "pandas",
+        "os",
+        "subprocess",
+        "src",
+        "plotly",
+        "sys",
+        "json",
+        "dataclasses",
+        "langchain_google_genai",
+        "nbformat",
+        "datetime",
+        "langchain_core",
+        "langgraph",
+        "matplotlib",
+        "numpy",
+        "typing"
+      ],
+      "total_lines": 587,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 26,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "data_cost_analysis": {
+      "name": "data_cost_analysis",
+      "files": [
+        "data/cost_analysis.py",
+        "data/cost_analysis.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "os",
+        "json"
+      ],
+      "total_lines": 614,
+      "total_classes": 0,
+      "total_functions": 10,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "core_debug_domain_detection": {
+      "name": "core_debug_domain_detection",
+      "files": [
+        "debug_domain_detection.py",
+        "test_domain_detection.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 211,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 4,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "debug_parsing": {
+      "name": "debug_parsing",
+      "files": [
+        "debug_parsing.py"
+      ],
+      "dependencies": [
+        "typing"
+      ],
+      "total_lines": 103,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "code_generator": {
+      "name": "code_generator",
+      "files": [
+        "elmo-fuzzy-giggle/src/code_generator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "ast",
+        "dataclasses"
+      ],
+      "total_lines": 363,
+      "total_classes": 5,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "gemini_billing_analyzer": {
+      "name": "gemini_billing_analyzer",
+      "files": [
+        "elmo-fuzzy-giggle/src/gemini_billing_analyzer.py",
+        "scripts/gemini_gcp_billing_analyzer.py",
+        "scripts/actual_billing_analyzer.py",
+        "elmo-fuzzy-giggle/src/generate_billing_analyzer.py",
+        "scripts/gcp_billing_analyzer.py",
+        "elmo-fuzzy-giggle/src/gemini_billing_analyzer_enhanced.py"
+      ],
+      "dependencies": [
+        "code_generator",
+        "pathlib",
+        "asyncio",
+        "uuid",
+        "logging",
+        "os",
+        "subprocess",
+        "pandas",
+        "src",
+        "sys",
+        "json",
+        "langchain_google_genai",
+        "datetime",
+        "langchain_core",
+        "langgraph",
+        "typing"
+      ],
+      "total_lines": 2371,
+      "total_classes": 4,
+      "total_functions": 4,
+      "total_imports": 41,
+      "module_type": "package",
+      "confidence_score": 0.7,
+      "file_count": 6
+    },
+    "generate_billing_analyzer_with_recursion": {
+      "name": "generate_billing_analyzer_with_recursion",
+      "files": [
+        "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+        "elmo-fuzzy-giggle/src/generate_billing_analyzer_with_recursion.py",
+        "elmo-fuzzy-giggle/src/recursive_code_generator.py"
+      ],
+      "dependencies": [
+        "code_generator",
+        "pathlib",
+        "recursive_code_generator",
+        "dataclasses",
+        "logging",
+        "generate_billing_analyzer",
+        "typing",
+        "ast",
+        "re"
+      ],
+      "total_lines": 543,
+      "total_classes": 3,
+      "total_functions": 3,
+      "total_imports": 14,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "test_test_billing_api": {
+      "name": "test_test_billing_api",
+      "files": [
+        "elmo-fuzzy-giggle/test_billing_api.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 51,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_ghostbusters_simple": {
+      "name": "test_test_ghostbusters_simple",
+      "files": [
+        "elmo-fuzzy-giggle/test_ghostbusters_simple.py",
+        "tests/test_ghostbusters_gcp.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "pytest",
+        "shutil",
+        "src",
+        "unittest",
+        "asyncio"
+      ],
+      "total_lines": 176,
+      "total_classes": 1,
+      "total_functions": 6,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "core_enhanced_ast_wrapper": {
+      "name": "core_enhanced_ast_wrapper",
+      "files": [
+        "enhanced_ast_wrapper.py",
+        "scripts/ast_enhanced_linter.py"
+      ],
+      "dependencies": [
+        "scripts",
+        "pathlib",
+        "argparse",
+        "sys",
+        "json",
+        "dataclasses",
+        "ast_enhanced_linter",
+        "time",
+        "ast_enhanced_linter_model",
+        "typing",
+        "ast",
+        "astor",
+        "re"
+      ],
+      "total_lines": 1206,
+      "total_classes": 3,
+      "total_functions": 3,
+      "total_imports": 7,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "enhanced_code_generator": {
+      "name": "enhanced_code_generator",
+      "files": [
+        "enhanced_code_generator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "json"
+      ],
+      "total_lines": 250,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "enhanced_generated_complete_module": {
+      "name": "enhanced_generated_complete_module",
+      "files": [
+        "enhanced_generated_complete_module.py"
+      ],
+      "dependencies": [],
+      "total_lines": 99,
+      "total_classes": 2,
+      "total_functions": 2,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "enhanced_reverse_engineer": {
+      "name": "enhanced_reverse_engineer",
+      "files": [
+        "enhanced_reverse_engineer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "ast",
+        "json",
+        "enhanced_ast_wrapper"
+      ],
+      "total_lines": 575,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "enhanced_round_trip_Calculator": {
+      "name": "enhanced_round_trip_Calculator",
+      "files": [
+        "enhanced_round_trip_Calculator.py",
+        "enhanced_round_trip_CalculatorUI.py"
+      ],
+      "dependencies": [],
+      "total_lines": 83,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "core_enhanced_round_trip_main": {
+      "name": "core_enhanced_round_trip_main",
+      "files": [
+        "enhanced_round_trip_main.py",
+        "enhanced_round_trip_test.py"
+      ],
+      "dependencies": [
+        "typing",
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 230,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 3,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "final_cleanup": {
+      "name": "final_cleanup",
+      "files": [
+        "final_cleanup.py"
+      ],
+      "dependencies": [
+        "os",
+        "shutil"
+      ],
+      "total_lines": 85,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "final_enhanced_comparison": {
+      "name": "final_enhanced_comparison",
+      "files": [
+        "final_enhanced_comparison.py"
+      ],
+      "dependencies": [
+        "ast"
+      ],
+      "total_lines": 164,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "final_projection": {
+      "name": "final_projection",
+      "files": [
+        "final_projection.py",
+        "final_projection.py"
+      ],
+      "dependencies": [
+        "jwt",
+        "os",
+        "pydantic",
+        "redis",
+        "cryptography",
+        "dataclasses",
+        "datetime",
+        "html",
+        "typing",
+        "streamlit"
+      ],
+      "total_lines": 230,
+      "total_classes": 8,
+      "total_functions": 2,
+      "total_imports": 18,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "fix_flake8_imports": {
+      "name": "fix_flake8_imports",
+      "files": [
+        "fix_flake8_imports.py",
+        "fix_flake8_issues.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "src",
+        "ast",
+        "re"
+      ],
+      "total_lines": 346,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 5,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "core_fix_remaining_smoke_tests": {
+      "name": "core_fix_remaining_smoke_tests",
+      "files": [
+        "fix_remaining_smoke_tests.py"
+      ],
+      "dependencies": [
+        "langchain_openai",
+        "langchain_anthropic",
+        "typing",
+        "os",
+        "json",
+        "src",
+        "langchain_core"
+      ],
+      "total_lines": 317,
+      "total_classes": 5,
+      "total_functions": 12,
+      "total_imports": 13,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "core_fix_remaining_type_issues": {
+      "name": "core_fix_remaining_type_issues",
+      "files": [
+        "fix_remaining_type_issues.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 191,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_return_value_issues": {
+      "name": "fix_return_value_issues",
+      "files": [
+        "fix_return_value_issues.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "ast",
+        "src",
+        "re"
+      ],
+      "total_lines": 187,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_simple_type_issues": {
+      "name": "fix_simple_type_issues",
+      "files": [
+        "fix_simple_type_issues.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 127,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_smoke_tests": {
+      "name": "fix_smoke_tests",
+      "files": [
+        "fix_smoke_tests.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib"
+      ],
+      "total_lines": 156,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_syntax_errors": {
+      "name": "fix_syntax_errors",
+      "files": [
+        "fix_syntax_errors.py"
+      ],
+      "dependencies": [
+        "os",
+        "pathlib"
+      ],
+      "total_lines": 101,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_fix_test_return_values": {
+      "name": "test_fix_test_return_values",
+      "files": [
+        "fix_test_return_values.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 146,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_type_annotations": {
+      "name": "fix_type_annotations",
+      "files": [
+        "fix_type_annotations.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 164,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "generate_perfect_billing_analyzer": {
+      "name": "generate_perfect_billing_analyzer",
+      "files": [
+        "generate_perfect_billing_analyzer.py",
+        "src/perfect_code_generator.py"
+      ],
+      "dependencies": [
+        "code_generator",
+        "pathlib",
+        "perfect_code_generator",
+        "logging",
+        "generate_billing_analyzer",
+        "subprocess",
+        "ast"
+      ],
+      "total_lines": 477,
+      "total_classes": 1,
+      "total_functions": 3,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "generate_perfect_code": {
+      "name": "generate_perfect_code",
+      "files": [
+        "generate_perfect_code.py"
+      ],
+      "dependencies": [
+        "src",
+        "ast"
+      ],
+      "total_lines": 80,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "generated_ASTGuidedCodeGenerator": {
+      "name": "generated_ASTGuidedCodeGenerator",
+      "files": [
+        "generated_ASTGuidedCodeGenerator.py"
+      ],
+      "dependencies": [
+        "logging",
+        "typing",
+        "ast",
+        "dataclasses",
+        "src"
+      ],
+      "total_lines": 38,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "generated_ASTNode": {
+      "name": "generated_ASTNode",
+      "files": [
+        "generated_ASTNode.py"
+      ],
+      "dependencies": [
+        "typing",
+        "dataclasses"
+      ],
+      "total_lines": 28,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "generated_LintingRule": {
+      "name": "generated_LintingRule",
+      "files": [
+        "generated_LintingRule.py"
+      ],
+      "dependencies": [
+        "typing",
+        "dataclasses"
+      ],
+      "total_lines": 28,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "openflow-code-quality_setup": {
+      "name": "openflow-code-quality_setup",
+      "files": [
+        "generated_packages/openflow-code-quality/setup.py",
+        "generated_packages/openflow-code-quality/setup.py"
+      ],
+      "dependencies": [
+        "setuptools"
+      ],
+      "total_lines": 28,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "ghostbusters_diversity_analysis": {
+      "name": "ghostbusters_diversity_analysis",
+      "files": [
+        "ghostbusters_diversity_analysis.py",
+        "src/multi_agent_testing/multi_dimensional_smoke_test.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "json",
+        "requests",
+        "datetime",
+        "multiple",
+        "multi_dimensional_smoke_test",
+        "typing",
+        "os"
+      ],
+      "total_lines": 877,
+      "total_classes": 1,
+      "total_functions": 3,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "ghostbusters_pr_review": {
+      "name": "ghostbusters_pr_review",
+      "files": [
+        "ghostbusters_pr_review.py"
+      ],
+      "dependencies": [
+        "typing",
+        "asyncio",
+        "src"
+      ],
+      "total_lines": 265,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "gke-ai-microservices-hackathon_gke_cost_monitor": {
+      "name": "gke-ai-microservices-hackathon_gke_cost_monitor",
+      "files": [
+        "gke-ai-microservices-hackathon/gke_cost_monitor.py"
+      ],
+      "dependencies": [
+        "time",
+        "pathlib",
+        "typing",
+        "subprocess",
+        "json",
+        "datetime"
+      ],
+      "total_lines": 615,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_generate-deploy-script": {
+      "name": "script_generate-deploy-script",
+      "files": [
+        "gke-ai-microservices-hackathon/scripts/generate-deploy-script.py",
+        "gke-ai-microservices-hackathon/scripts/generate-setup-script.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "hashlib",
+        "sys",
+        "json",
+        "os"
+      ],
+      "total_lines": 419,
+      "total_classes": 0,
+      "total_functions": 12,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "script_generate-teardown-script": {
+      "name": "script_generate-teardown-script",
+      "files": [
+        "gke-ai-microservices-hackathon/scripts/generate-teardown-script.py"
+      ],
+      "dependencies": [
+        "os",
+        "sys",
+        "json",
+        "pathlib"
+      ],
+      "total_lines": 176,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "setup-gke-notifications": {
+      "name": "setup-gke-notifications",
+      "files": [
+        "gke-ai-microservices-hackathon/scripts/setup-gke-notifications.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "shutil",
+        "sys",
+        "json",
+        "requests",
+        "typing",
+        "subprocess",
+        "functions_framework"
+      ],
+      "total_lines": 487,
+      "total_classes": 0,
+      "total_functions": 11,
+      "total_imports": 8,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "update-deployment-state": {
+      "name": "update-deployment-state",
+      "files": [
+        "gke-ai-microservices-hackathon/scripts/update-deployment-state.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "sys",
+        "json",
+        "datetime"
+      ],
+      "total_lines": 311,
+      "total_classes": 0,
+      "total_functions": 8,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_verify-script-version": {
+      "name": "script_verify-script-version",
+      "files": [
+        "gke-ai-microservices-hackathon/scripts/verify-script-version.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "hashlib",
+        "sys",
+        "json",
+        "re"
+      ],
+      "total_lines": 113,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_basic": {
+      "name": "test_test_basic",
+      "files": [
+        "gke-ai-microservices-hackathon/tests/test_basic.py",
+        "gke-ai-microservices-hackathon/tests/test_basic.py"
+      ],
+      "dependencies": [
+        "clewcrew_framework",
+        "clewcrew_common",
+        "pytest",
+        "kubernetes",
+        "clewcrew_agents"
+      ],
+      "total_lines": 82,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 2,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_healthcare_cdc_domain_model": {
+      "name": "test_test_healthcare_cdc_domain_model",
+      "files": [
+        "healthcare-cdc/test_healthcare_cdc_domain_model.py"
+      ],
+      "dependencies": [
+        "json",
+        "healthcare_cdc_domain_model",
+        "datetime"
+      ],
+      "total_lines": 370,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "infinite_queue_learning_system": {
+      "name": "infinite_queue_learning_system",
+      "files": [
+        "infinite_queue_learning_system.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "pathlib",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "tempfile",
+        "logging",
+        "typing",
+        "os"
+      ],
+      "total_lines": 478,
+      "total_classes": 10,
+      "total_functions": 2,
+      "total_imports": 11,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mass_reverse_engineering_system": {
+      "name": "mass_reverse_engineering_system",
+      "files": [
+        "mass_reverse_engineering_system.py"
+      ],
+      "dependencies": [
+        "concurrent",
+        "time",
+        "pathlib",
+        "typing",
+        "enhanced_reverse_engineer",
+        "json"
+      ],
+      "total_lines": 313,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "perfect_analyze_codebase": {
+      "name": "perfect_analyze_codebase",
+      "files": [
+        "perfect_analyze_codebase.py"
+      ],
+      "dependencies": [
+        "os",
+        "sys",
+        "artifact_forge"
+      ],
+      "total_lines": 109,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_project_model": {
+      "name": "model_project_model",
+      "files": [
+        "project_model.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "os",
+        "json",
+        "dataclasses",
+        "src"
+      ],
+      "total_lines": 291,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_projected_complex_model_generator": {
+      "name": "model_projected_complex_model_generator",
+      "files": [
+        "projected_complex_model_generator.py",
+        "src/scaled_complex_model_generator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "pathlib",
+        "os",
+        "cryptography",
+        "dataclasses"
+      ],
+      "total_lines": 999,
+      "total_classes": 6,
+      "total_functions": 2,
+      "total_imports": 5,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "projected_dynamic_rule_updater": {
+      "name": "projected_dynamic_rule_updater",
+      "files": [
+        "projected_dynamic_rule_updater.py"
+      ],
+      "dependencies": [
+        "typing",
+        "os",
+        "cryptography",
+        "dataclasses"
+      ],
+      "total_lines": 61,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "projected_verify_ide_linting_hypothesis": {
+      "name": "projected_verify_ide_linting_hypothesis",
+      "files": [
+        "projected_verify_ide_linting_hypothesis.py",
+        "src/verify_ide_linting_hypothesis.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "subprocess",
+        "cryptography",
+        "dataclasses",
+        "time",
+        "typing",
+        "os"
+      ],
+      "total_lines": 637,
+      "total_classes": 4,
+      "total_functions": 2,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "prove_round_trip": {
+      "name": "prove_round_trip",
+      "files": [
+        "prove_round_trip.py",
+        "round_trip_model_system.py",
+        "prove_round_trip.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "logging",
+        "typing",
+        "dataclasses",
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 1101,
+      "total_classes": 3,
+      "total_functions": 5,
+      "total_imports": 12,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "regenerate_from_ast": {
+      "name": "regenerate_from_ast",
+      "files": [
+        "regenerate_from_ast.py"
+      ],
+      "dependencies": [
+        "src",
+        "os",
+        "shutil"
+      ],
+      "total_lines": 80,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "regenerate_simple_calculator": {
+      "name": "regenerate_simple_calculator",
+      "files": [
+        "regenerate_simple_calculator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 142,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_regenerate_test_projected": {
+      "name": "test_regenerate_test_projected",
+      "files": [
+        "regenerate_test_projected.py"
+      ],
+      "dependencies": [
+        "src"
+      ],
+      "total_lines": 43,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_regenerated_test_projected_code": {
+      "name": "test_regenerated_test_projected_code",
+      "files": [
+        "regenerated_test_projected_code.py"
+      ],
+      "dependencies": [
+        "os",
+        "ast"
+      ],
+      "total_lines": 114,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_reverse_engineer_model": {
+      "name": "model_reverse_engineer_model",
+      "files": [
+        "reverse_engineer_model.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "enhanced_ast_wrapper",
+        "typing",
+        "ast",
+        "json"
+      ],
+      "total_lines": 395,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "round_trip_Calculator": {
+      "name": "round_trip_Calculator",
+      "files": [
+        "round_trip_Calculator.py",
+        "round_trip_CalculatorUI.py"
+      ],
+      "dependencies": [],
+      "total_lines": 83,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "round_trip_test": {
+      "name": "round_trip_test",
+      "files": [
+        "round_trip_test.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 246,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "run_visualization_dashboard": {
+      "name": "run_visualization_dashboard",
+      "files": [
+        "run_visualization_dashboard.py",
+        "simple_visualization_dashboard.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "subprocess",
+        "sys",
+        "streamlit"
+      ],
+      "total_lines": 169,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 5,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "advanced_neo4j_integration": {
+      "name": "advanced_neo4j_integration",
+      "files": [
+        "scripts/advanced_neo4j_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "json",
+        "os"
+      ],
+      "total_lines": 408,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_ast_enhanced_linter_model": {
+      "name": "model_ast_enhanced_linter_model",
+      "files": [
+        "scripts/ast_enhanced_linter_model.py",
+        "tests/test_ast_enhanced_linter_model.py",
+        "scripts/universal_ast_enhanced_linter_model.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "abc",
+        "tomli",
+        "os",
+        "tomllib",
+        "enum",
+        "pytest",
+        "unittest",
+        "sys",
+        "json",
+        "dataclasses",
+        "io",
+        "ruamel",
+        "xml",
+        "configparser",
+        "ast_enhanced_linter_model",
+        "typing",
+        "ast"
+      ],
+      "total_lines": 1989,
+      "total_classes": 28,
+      "total_functions": 3,
+      "total_imports": 22,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "auto_format_all": {
+      "name": "auto_format_all",
+      "files": [
+        "scripts/auto_format_all.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "argparse",
+        "typing",
+        "sys",
+        "json"
+      ],
+      "total_lines": 295,
+      "total_classes": 15,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "bandit_integration": {
+      "name": "bandit_integration",
+      "files": [
+        "scripts/bandit_integration.py",
+        "scripts/test_bandit_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "argparse",
+        "hashlib",
+        "sys",
+        "json",
+        "dataclasses",
+        "os",
+        "time",
+        "logging",
+        "typing",
+        "bandit",
+        "bandit_integration"
+      ],
+      "total_lines": 692,
+      "total_classes": 4,
+      "total_functions": 7,
+      "total_imports": 10,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "brutal_encoding_fixer": {
+      "name": "brutal_encoding_fixer",
+      "files": [
+        "scripts/brutal_encoding_fixer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "logging"
+      ],
+      "total_lines": 121,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "call_ghostbusters_encoding_issue": {
+      "name": "call_ghostbusters_encoding_issue",
+      "files": [
+        "scripts/call_ghostbusters_encoding_issue.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "asyncio"
+      ],
+      "total_lines": 63,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "call_ghostbusters_properly": {
+      "name": "call_ghostbusters_properly",
+      "files": [
+        "scripts/call_ghostbusters_properly.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "asyncio"
+      ],
+      "total_lines": 67,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "chaos_semantic_diff_demo": {
+      "name": "chaos_semantic_diff_demo",
+      "files": [
+        "scripts/chaos_semantic_diff_demo.py",
+        "scripts/semantic_diff_engine.py",
+        "scripts/glacier_spore_models.py",
+        "scripts/ghostbusters_file_type_processor.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "hashlib",
+        "semantic_diff_engine",
+        "asyncio",
+        "uuid",
+        "tempfile",
+        "glacier_spore_models",
+        "logging",
+        "os",
+        "pydantic",
+        "tomllib",
+        "ghostbusters_file_type_processor",
+        "typing",
+        "enum",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "xml",
+        "configparser",
+        "yaml",
+        "ast",
+        "re"
+      ],
+      "total_lines": 2448,
+      "total_classes": 19,
+      "total_functions": 8,
+      "total_imports": 36,
+      "module_type": "package",
+      "confidence_score": 0.7,
+      "file_count": 4
+    },
+    "commit_and_push": {
+      "name": "commit_and_push",
+      "files": [
+        "scripts/commit_and_push.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "sys",
+        "pathlib"
+      ],
+      "total_lines": 103,
+      "total_classes": 0,
+      "total_functions": 7,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "comprehensive_github_discovery": {
+      "name": "comprehensive_github_discovery",
+      "files": [
+        "scripts/comprehensive_github_discovery.py"
+      ],
+      "dependencies": [
+        "urllib",
+        "pathlib",
+        "argparse",
+        "asyncio",
+        "tempfile",
+        "logging",
+        "subprocess",
+        "shutil",
+        "mcp_integration",
+        "sys",
+        "json",
+        "dataclasses",
+        "artifact_forge",
+        "time",
+        "typing",
+        "re"
+      ],
+      "total_lines": 840,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 14,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "cypher_validator": {
+      "name": "cypher_validator",
+      "files": [
+        "scripts/cypher_validator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "neo4j"
+      ],
+      "total_lines": 252,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "delete_all_cloud_functions": {
+      "name": "delete_all_cloud_functions",
+      "files": [
+        "scripts/delete_all_cloud_functions.py"
+      ],
+      "dependencies": [
+        "typing",
+        "subprocess",
+        "json"
+      ],
+      "total_lines": 203,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "demo_github_discovery": {
+      "name": "demo_github_discovery",
+      "files": [
+        "scripts/demo_github_discovery.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "traceback",
+        "asyncio",
+        "comprehensive_github_discovery",
+        "sys"
+      ],
+      "total_lines": 107,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "duet_ai_billing_checker": {
+      "name": "duet_ai_billing_checker",
+      "files": [
+        "scripts/duet_ai_billing_checker.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "sys",
+        "json",
+        "datetime"
+      ],
+      "total_lines": 487,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_fast_model_updater": {
+      "name": "model_fast_model_updater",
+      "files": [
+        "scripts/fast_model_updater.py",
+        "scripts/fast_model_updater_jq.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 112,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "fix_code_quality": {
+      "name": "fix_code_quality",
+      "files": [
+        "scripts/fix_code_quality.py",
+        "tests/test_code_quality.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "argparse",
+        "sys",
+        "json",
+        "code_quality_system",
+        "typing",
+        "ast"
+      ],
+      "total_lines": 302,
+      "total_classes": 0,
+      "total_functions": 8,
+      "total_imports": 8,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "fix_mypy_issues": {
+      "name": "fix_mypy_issues",
+      "files": [
+        "scripts/fix_mypy_issues.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 231,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "fix_subprocess_vulnerabilities": {
+      "name": "fix_subprocess_vulnerabilities",
+      "files": [
+        "scripts/fix_subprocess_vulnerabilities.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "sys",
+        "re"
+      ],
+      "total_lines": 225,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_fix_test_indentation": {
+      "name": "test_fix_test_indentation",
+      "files": [
+        "scripts/fix_test_indentation.py"
+      ],
+      "dependencies": [
+        "os",
+        "re"
+      ],
+      "total_lines": 99,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "gcp_billing_daily_reporter": {
+      "name": "gcp_billing_daily_reporter",
+      "files": [
+        "scripts/gcp_billing_daily_reporter.py"
+      ],
+      "dependencies": [
+        "pandas",
+        "seaborn",
+        "pathlib",
+        "plotly",
+        "json",
+        "datetime",
+        "matplotlib",
+        "typing",
+        "subprocess"
+      ],
+      "total_lines": 787,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 10,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "generalized_code_generator": {
+      "name": "generalized_code_generator",
+      "files": [
+        "scripts/generalized_code_generator.py",
+        "src/generate_code_generator.py"
+      ],
+      "dependencies": [
+        "code_generator",
+        "argparse",
+        "pathlib",
+        "sys",
+        "json",
+        "dataclasses",
+        "logging",
+        "typing",
+        "subprocess",
+        "ast"
+      ],
+      "total_lines": 789,
+      "total_classes": 8,
+      "total_functions": 3,
+      "total_imports": 10,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "model_generate_from_model": {
+      "name": "model_generate_from_model",
+      "files": [
+        "scripts/generate_from_model.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json",
+        "collections"
+      ],
+      "total_lines": 434,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "ghostbusters_check": {
+      "name": "ghostbusters_check",
+      "files": [
+        "scripts/ghostbusters_check.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "asyncio",
+        "sys"
+      ],
+      "total_lines": 64,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "github_integration_copilot_review_automation": {
+      "name": "github_integration_copilot_review_automation",
+      "files": [
+        "scripts/github_integration/copilot_review_automation.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "os",
+        "asyncio",
+        "json",
+        "src",
+        "sys"
+      ],
+      "total_lines": 235,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_glacier_schema_discovery": {
+      "name": "model_glacier_schema_discovery",
+      "files": [
+        "scripts/glacier_schema_discovery.py"
+      ],
+      "dependencies": [
+        "hashlib",
+        "sqlite3",
+        "pathlib",
+        "enum",
+        "queue",
+        "pickle",
+        "asyncio",
+        "json",
+        "dataclasses",
+        "datetime",
+        "threading",
+        "time",
+        "logging",
+        "typing",
+        "contextlib"
+      ],
+      "total_lines": 1095,
+      "total_classes": 7,
+      "total_functions": 0,
+      "total_imports": 15,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "glacier_spore_sync": {
+      "name": "glacier_spore_sync",
+      "files": [
+        "scripts/glacier_spore_sync.py",
+        "scripts/glacier_spore_system.py"
+      ],
+      "dependencies": [
+        "hashlib",
+        "sqlite3",
+        "queue",
+        "pathlib",
+        "asyncio",
+        "uuid",
+        "logging",
+        "contextlib",
+        "enum",
+        "pickle",
+        "json",
+        "dataclasses",
+        "datetime",
+        "threading",
+        "time",
+        "typing"
+      ],
+      "total_lines": 1868,
+      "total_classes": 16,
+      "total_functions": 0,
+      "total_imports": 31,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "graph_ml_integration": {
+      "name": "graph_ml_integration",
+      "files": [
+        "scripts/graph_ml_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "json",
+        "os"
+      ],
+      "total_lines": 226,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "heuristic_file_type_processor": {
+      "name": "heuristic_file_type_processor",
+      "files": [
+        "scripts/heuristic_file_type_processor.py"
+      ],
+      "dependencies": [
+        "hashlib",
+        "pathlib",
+        "enum",
+        "abc",
+        "json",
+        "dataclasses",
+        "xml",
+        "configparser",
+        "yaml",
+        "typing",
+        "os",
+        "tomllib",
+        "ast",
+        "re"
+      ],
+      "total_lines": 639,
+      "total_classes": 6,
+      "total_functions": 1,
+      "total_imports": 14,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "launch_billing_analysis": {
+      "name": "launch_billing_analysis",
+      "files": [
+        "scripts/launch_billing_analysis.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "sys",
+        "pathlib"
+      ],
+      "total_lines": 81,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "launch_gemini_analysis": {
+      "name": "launch_gemini_analysis",
+      "files": [
+        "scripts/launch_gemini_analysis.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "sys",
+        "pathlib"
+      ],
+      "total_lines": 75,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "loki_chaos_enhancer": {
+      "name": "loki_chaos_enhancer",
+      "files": [
+        "scripts/loki_chaos_enhancer.py"
+      ],
+      "dependencies": [
+        "time",
+        "enum",
+        "random",
+        "typing",
+        "dataclasses"
+      ],
+      "total_lines": 308,
+      "total_classes": 4,
+      "total_functions": 2,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "make_first_check": {
+      "name": "make_first_check",
+      "files": [
+        "scripts/make_first_check.py"
+      ],
+      "dependencies": [
+        "sys"
+      ],
+      "total_lines": 101,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mdc-linter": {
+      "name": "mdc-linter",
+      "files": [
+        "scripts/mdc-linter.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "argparse",
+        "yaml",
+        "sys",
+        "re"
+      ],
+      "total_lines": 316,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mdc_editor": {
+      "name": "mdc_editor",
+      "files": [
+        "scripts/mdc_editor.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "markdown_it",
+        "typing",
+        "io",
+        "ruamel",
+        "re"
+      ],
+      "total_lines": 319,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mdc_parser": {
+      "name": "mdc_parser",
+      "files": [
+        "scripts/mdc_parser.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 256,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mdc_projector": {
+      "name": "mdc_projector",
+      "files": [
+        "scripts/mdc_projector.py"
+      ],
+      "dependencies": [
+        "typing",
+        "scripts",
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 209,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mdc_writer": {
+      "name": "mdc_writer",
+      "files": [
+        "scripts/mdc_writer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib"
+      ],
+      "total_lines": 55,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "migrate_subprocess_to_secure_shell": {
+      "name": "migrate_subprocess_to_secure_shell",
+      "files": [
+        "scripts/migrate_subprocess_to_secure_shell.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "asyncio",
+        "ast",
+        "src"
+      ],
+      "total_lines": 207,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "migration_templates_enhanced_ghostbusters_migration_template": {
+      "name": "migration_templates_enhanced_ghostbusters_migration_template",
+      "files": [
+        "scripts/migration_templates/enhanced_ghostbusters_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "migration_templates_intelligent_linter_system_migration_template": {
+      "name": "migration_templates_intelligent_linter_system_migration_template",
+      "files": [
+        "scripts/migration_templates/intelligent_linter_system_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "service_linter_api_integration_migration_template": {
+      "name": "service_linter_api_integration_migration_template",
+      "files": [
+        "scripts/migration_templates/linter_api_integration_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_quality_model_migration_template": {
+      "name": "model_quality_model_migration_template",
+      "files": [
+        "scripts/migration_templates/quality_model_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_model_traceability_migration_template": {
+      "name": "test_test_model_traceability_migration_template",
+      "files": [
+        "scripts/migration_templates/test_model_traceability_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_projected_equivalence_migration_template": {
+      "name": "test_test_projected_equivalence_migration_template",
+      "files": [
+        "scripts/migration_templates/test_projected_equivalence_migration_template.py",
+        "scripts/migration_templates/test_simple_equivalence_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 66,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "script_tool_discovery_migration_template": {
+      "name": "script_tool_discovery_migration_template",
+      "files": [
+        "scripts/migration_templates/tool_discovery_migration_template.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 33,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_model_dimension_analyzer": {
+      "name": "model_model_dimension_analyzer",
+      "files": [
+        "scripts/model_dimension_analyzer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json",
+        "collections"
+      ],
+      "total_lines": 245,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_model_driven_test_recovery": {
+      "name": "test_model_driven_test_recovery",
+      "files": [
+        "scripts/model_driven_test_recovery.py"
+      ],
+      "dependencies": [
+        "ast",
+        "pathlib",
+        "typing",
+        "unittest",
+        "sys",
+        "json",
+        "os"
+      ],
+      "total_lines": 683,
+      "total_classes": 0,
+      "total_functions": 34,
+      "total_imports": 20,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "module_detection_system": {
+      "name": "module_detection_system",
+      "files": [
+        "scripts/module_detection_system.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "json",
+        "dataclasses",
+        "collections",
+        "re"
+      ],
+      "total_lines": 367,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "monitor_jupyter_logs": {
+      "name": "monitor_jupyter_logs",
+      "files": [
+        "scripts/monitor_jupyter_logs.py"
+      ],
+      "dependencies": [
+        "time",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "json",
+        "datetime"
+      ],
+      "total_lines": 121,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "neo4j_poc": {
+      "name": "neo4j_poc",
+      "files": [
+        "scripts/neo4j_poc.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json",
+        "src"
+      ],
+      "total_lines": 225,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "neo4j_pypi_generator": {
+      "name": "neo4j_pypi_generator",
+      "files": [
+        "scripts/neo4j_pypi_generator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 40,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "neo4j_round_trip_tests": {
+      "name": "neo4j_round_trip_tests",
+      "files": [
+        "scripts/neo4j_round_trip_tests.py"
+      ],
+      "dependencies": [
+        "scripts",
+        "time",
+        "typing",
+        "json",
+        "neo4j"
+      ],
+      "total_lines": 532,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "neo4j_visualizer": {
+      "name": "neo4j_visualizer",
+      "files": [
+        "scripts/neo4j_visualizer.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "json",
+        "os"
+      ],
+      "total_lines": 80,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_notebook_model": {
+      "name": "model_notebook_model",
+      "files": [
+        "scripts/notebook_model.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json",
+        "dataclasses"
+      ],
+      "total_lines": 226,
+      "total_classes": 5,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "one_liner_linter": {
+      "name": "one_liner_linter",
+      "files": [
+        "scripts/one_liner_linter.py"
+      ],
+      "dependencies": [
+        "argparse",
+        "subprocess",
+        "pathlib",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "traceback",
+        "typing",
+        "os",
+        "ast",
+        "re"
+      ],
+      "total_lines": 935,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 11,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_pre_test_model_check": {
+      "name": "test_pre_test_model_check",
+      "files": [
+        "scripts/pre_test_model_check.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "sys",
+        "json",
+        "src"
+      ],
+      "total_lines": 135,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "production_deployment": {
+      "name": "production_deployment",
+      "files": [
+        "scripts/production_deployment.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "universal_ast_enhanced_linter_model",
+        "bandit",
+        "ruff",
+        "sys",
+        "json",
+        "black",
+        "ast_enhanced_linter",
+        "time",
+        "typing",
+        "subprocess",
+        "tomllib"
+      ],
+      "total_lines": 691,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "pypi_package_generator": {
+      "name": "pypi_package_generator",
+      "files": [
+        "scripts/pypi_package_generator.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "os",
+        "setuptools",
+        "json",
+        "dataclasses"
+      ],
+      "total_lines": 399,
+      "total_classes": 2,
+      "total_functions": 3,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_pytest_wrapper": {
+      "name": "test_pytest_wrapper",
+      "files": [
+        "scripts/pytest_wrapper.py"
+      ],
+      "dependencies": [
+        "os",
+        "sys",
+        "psutil"
+      ],
+      "total_lines": 67,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "quick_rule_validation": {
+      "name": "quick_rule_validation",
+      "files": [
+        "scripts/quick_rule_validation.py"
+      ],
+      "dependencies": [
+        "scripts",
+        "time",
+        "pathlib"
+      ],
+      "total_lines": 112,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "recursive_linter_improver": {
+      "name": "recursive_linter_improver",
+      "files": [
+        "scripts/recursive_linter_improver.py"
+      ],
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "subprocess",
+        "pathlib",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "time",
+        "traceback",
+        "typing",
+        "os",
+        "re"
+      ],
+      "total_lines": 696,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 12,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "regenerate_mdc_files": {
+      "name": "regenerate_mdc_files",
+      "files": [
+        "scripts/regenerate_mdc_files.py"
+      ],
+      "dependencies": [
+        "mdc_generator",
+        "pathlib",
+        "sys"
+      ],
+      "total_lines": 49,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "robust_file_reader": {
+      "name": "robust_file_reader",
+      "files": [
+        "scripts/robust_file_reader.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "logging"
+      ],
+      "total_lines": 104,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "rule_firing_identifier": {
+      "name": "rule_firing_identifier",
+      "files": [
+        "scripts/rule_firing_identifier.py"
+      ],
+      "dependencies": [
+        "typing",
+        "argparse",
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 241,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_safe_model_update": {
+      "name": "model_safe_model_update",
+      "files": [
+        "scripts/safe_model_update.py",
+        "src/model_manager.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "model_manager",
+        "hashlib",
+        "shutil",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "tempfile",
+        "logging",
+        "typing"
+      ],
+      "total_lines": 387,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 10,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "safe_shell_runner": {
+      "name": "safe_shell_runner",
+      "files": [
+        "scripts/safe_shell_runner.py"
+      ],
+      "dependencies": [
+        "typing",
+        "subprocess",
+        "sys"
+      ],
+      "total_lines": 275,
+      "total_classes": 0,
+      "total_functions": 8,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "scrub_all_subprojects": {
+      "name": "scrub_all_subprojects",
+      "files": [
+        "scripts/scrub_all_subprojects.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "shutil",
+        "typing",
+        "subprocess",
+        "sys",
+        "json"
+      ],
+      "total_lines": 333,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "simple_calculator": {
+      "name": "simple_calculator",
+      "files": [
+        "scripts/simple_calculator.py"
+      ],
+      "dependencies": [],
+      "total_lines": 90,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_gemini_auth": {
+      "name": "test_test_gemini_auth",
+      "files": [
+        "scripts/test_gemini_auth.py"
+      ],
+      "dependencies": [
+        "os",
+        "subprocess"
+      ],
+      "total_lines": 76,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "type_assertion_enforcer": {
+      "name": "type_assertion_enforcer",
+      "files": [
+        "scripts/type_assertion_enforcer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "ast",
+        "re"
+      ],
+      "total_lines": 145,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_validate_project_model": {
+      "name": "model_validate_project_model",
+      "files": [
+        "scripts/validate_project_model.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "pathlib",
+        "sys",
+        "json"
+      ],
+      "total_lines": 204,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "simple_round_trip_test": {
+      "name": "simple_round_trip_test",
+      "files": [
+        "simple_round_trip_test.py"
+      ],
+      "dependencies": [
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 180,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_correlator": {
+      "name": "agents_artifact_correlator",
+      "files": [
+        "src/artifact_forge/agents/artifact_correlator.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "logging",
+        "typing",
+        "dataclasses",
+        "datetime"
+      ],
+      "total_lines": 330,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_detector": {
+      "name": "agents_artifact_detector",
+      "files": [
+        "src/artifact_forge/agents/artifact_detector.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "dataclasses",
+        "datetime"
+      ],
+      "total_lines": 182,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_optimizer": {
+      "name": "agents_artifact_optimizer",
+      "files": [
+        "src/artifact_forge/agents/artifact_optimizer.py"
+      ],
+      "dependencies": [
+        "re",
+        "logging",
+        "typing",
+        "ast",
+        "dataclasses",
+        "datetime"
+      ],
+      "total_lines": 373,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_parser": {
+      "name": "agents_artifact_parser",
+      "files": [
+        "src/artifact_forge/agents/artifact_parser.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "json",
+        "dataclasses",
+        "datetime",
+        "logging",
+        "yaml",
+        "typing",
+        "ast",
+        "re"
+      ],
+      "total_lines": 653,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_parser_enhanced": {
+      "name": "agents_artifact_parser_enhanced",
+      "files": [
+        "src/artifact_forge/agents/artifact_parser_enhanced.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "json",
+        "dataclasses",
+        "datetime",
+        "logging",
+        "yaml",
+        "typing",
+        "ast",
+        "re"
+      ],
+      "total_lines": 650,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "agents_artifact_synthesizer": {
+      "name": "agents_artifact_synthesizer",
+      "files": [
+        "src/artifact_forge/agents/artifact_synthesizer.py"
+      ],
+      "dependencies": [
+        "typing",
+        "dataclasses",
+        "logging",
+        "datetime"
+      ],
+      "total_lines": 440,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "workflows_basic_workflow": {
+      "name": "workflows_basic_workflow",
+      "files": [
+        "src/artifact_forge/workflows/basic_workflow.py"
+      ],
+      "dependencies": [
+        "typing",
+        "os",
+        "sys",
+        "dataclasses",
+        "src",
+        "datetime"
+      ],
+      "total_lines": 175,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 8,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "workflows_enhanced_workflow": {
+      "name": "workflows_enhanced_workflow",
+      "files": [
+        "src/artifact_forge/workflows/enhanced_workflow.py"
+      ],
+      "dependencies": [
+        "sys",
+        "dataclasses",
+        "datetime",
+        "langgraph",
+        "logging",
+        "typing",
+        "os",
+        "ast",
+        "src"
+      ],
+      "total_lines": 455,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 12,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "ast_usage_tracker": {
+      "name": "ast_usage_tracker",
+      "files": [
+        "src/ast_usage_tracker.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "asyncio",
+        "json",
+        "dataclasses",
+        "langchain_google_genai",
+        "logging",
+        "typing",
+        "os",
+        "ast"
+      ],
+      "total_lines": 323,
+      "total_classes": 3,
+      "total_functions": 2,
+      "total_imports": 9,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_quality_model": {
+      "name": "model_quality_model",
+      "files": [
+        "src/code_quality_system/quality_model.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "dataclasses",
+        "re"
+      ],
+      "total_lines": 274,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "code_quality_system_round_trip_validation": {
+      "name": "code_quality_system_round_trip_validation",
+      "files": [
+        "src/code_quality_system/round_trip_validation.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "quality_metrics",
+        "sys",
+        "json",
+        "asyncio",
+        "logging",
+        "typing",
+        "integrations",
+        "quality_enforcer",
+        "multi_agent_integration"
+      ],
+      "total_lines": 622,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "complete_linting_aware_generator": {
+      "name": "complete_linting_aware_generator",
+      "files": [
+        "src/complete_linting_aware_generator.py",
+        "src/linting_aware_model.py",
+        "src/generate_linting_aware_generator.py"
+      ],
+      "dependencies": [
+        "linting_aware_model",
+        "pathlib",
+        "logging",
+        "typing",
+        "dataclasses"
+      ],
+      "total_lines": 1101,
+      "total_classes": 5,
+      "total_functions": 5,
+      "total_imports": 9,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "model_complete_model_generator": {
+      "name": "model_complete_model_generator",
+      "files": [
+        "src/complete_model_generator.py",
+        "src/complex_model_generator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "subprocess",
+        "ast",
+        "dataclasses",
+        "src"
+      ],
+      "total_lines": 750,
+      "total_classes": 7,
+      "total_functions": 2,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "model_complex_model_simple_code_generator": {
+      "name": "model_complex_model_simple_code_generator",
+      "files": [
+        "src/complex_model_simple_code_generator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "subprocess",
+        "dataclasses"
+      ],
+      "total_lines": 324,
+      "total_classes": 7,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "dynamic_rule_updater": {
+      "name": "dynamic_rule_updater",
+      "files": [
+        "src/dynamic_rule_updater.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "dataclasses",
+        "logging"
+      ],
+      "total_lines": 49,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_enhanced_linting_aware_model": {
+      "name": "model_enhanced_linting_aware_model",
+      "files": [
+        "src/enhanced_linting_aware_model.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "dataclasses"
+      ],
+      "total_lines": 344,
+      "total_classes": 5,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "intelligent_linter_system": {
+      "name": "intelligent_linter_system",
+      "files": [
+        "src/intelligent_linter_system.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "logging",
+        "typing",
+        "src",
+        "datetime"
+      ],
+      "total_lines": 576,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_intelligent_model_generator": {
+      "name": "model_intelligent_model_generator",
+      "files": [
+        "src/intelligent_model_generator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "ast",
+        "dataclasses"
+      ],
+      "total_lines": 232,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "service_linter_api_integration": {
+      "name": "service_linter_api_integration",
+      "files": [
+        "src/linter_api_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "logging",
+        "typing",
+        "subprocess",
+        "json",
+        "dataclasses",
+        "src"
+      ],
+      "total_lines": 538,
+      "total_classes": 3,
+      "total_functions": 1,
+      "total_imports": 8,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_github_mcp_client": {
+      "name": "script_github_mcp_client",
+      "files": [
+        "src/mcp_integration/github_mcp_client.py"
+      ],
+      "dependencies": [
+        "logging",
+        "typing",
+        "asyncio",
+        "json",
+        "src"
+      ],
+      "total_lines": 286,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "model_driven_projection_improved_projection": {
+      "name": "model_driven_projection_improved_projection",
+      "files": [
+        "src/model_driven_projection/improved_projection.py",
+        "src/model_driven_projection/improved_projection_system.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "pydantic",
+        "logging",
+        "level1_granular_nodes",
+        "os",
+        "cryptography",
+        "ast"
+      ],
+      "total_lines": 572,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "security_first_input_validator": {
+      "name": "security_first_input_validator",
+      "files": [
+        "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+        "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py"
+      ],
+      "dependencies": [
+        "urllib",
+        "jsonschema",
+        "typing",
+        "re"
+      ],
+      "total_lines": 404,
+      "total_classes": 2,
+      "total_functions": 24,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "core_openflow_quickstart_app": {
+      "name": "core_openflow_quickstart_app",
+      "files": [
+        "src/model_driven_projection/projected_artifacts/src/streamlit/openflow_quickstart_app.py",
+        "src/model_driven_projection/projected_artifacts/src/streamlit/openflow_quickstart_app.py"
+      ],
+      "dependencies": [
+        "jwt",
+        "datetime",
+        "html",
+        "os",
+        "re"
+      ],
+      "total_lines": 158,
+      "total_classes": 4,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_projected_artifacts": {
+      "name": "test_test_projected_artifacts",
+      "files": [
+        "src/model_driven_projection/projected_artifacts/test_projected_artifacts.py",
+        "src/model_driven_projection/projected_artifacts/test_projected_artifacts_pytest.py",
+        "src/model_driven_projection/projected_artifacts/test_projected_artifacts_simple.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "security_first",
+        "sys",
+        "ast",
+        "streamlit"
+      ],
+      "total_lines": 710,
+      "total_classes": 0,
+      "total_functions": 17,
+      "total_imports": 7,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "test_test_projected_equivalence": {
+      "name": "test_test_projected_equivalence",
+      "files": [
+        "src/model_driven_projection/test_projected_equivalence.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "shutil",
+        "src",
+        "sys",
+        "ast"
+      ],
+      "total_lines": 259,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_simple_equivalence": {
+      "name": "test_test_simple_equivalence",
+      "files": [
+        "src/model_driven_projection/test_simple_equivalence.py"
+      ],
+      "dependencies": [
+        "src",
+        "ast"
+      ],
+      "total_lines": 295,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_automate_quality_secure": {
+      "name": "multi_agent_testing_automate_quality_secure",
+      "files": [
+        "src/multi_agent_testing/automate_quality_secure.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "sys",
+        "pathlib"
+      ],
+      "total_lines": 90,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_code_quality_automation_orchestrator": {
+      "name": "multi_agent_testing_code_quality_automation_orchestrator",
+      "files": [
+        "src/multi_agent_testing/code_quality_automation_orchestrator.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "enum",
+        "sys",
+        "json",
+        "dataclasses",
+        "datetime",
+        "multi_dimensional_smoke_test",
+        "typing",
+        "subprocess"
+      ],
+      "total_lines": 717,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "service_debug_anthropic_api": {
+      "name": "service_debug_anthropic_api",
+      "files": [
+        "src/multi_agent_testing/debug_anthropic_api.py"
+      ],
+      "dependencies": [],
+      "total_lines": 7,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_diversity_hypothesis_demo": {
+      "name": "multi_agent_testing_diversity_hypothesis_demo",
+      "files": [
+        "src/multi_agent_testing/diversity_hypothesis_demo.py"
+      ],
+      "dependencies": [],
+      "total_lines": 7,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_diversity_synthesis_orchestrator": {
+      "name": "multi_agent_testing_diversity_synthesis_orchestrator",
+      "files": [
+        "src/multi_agent_testing/diversity_synthesis_orchestrator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "dataclasses"
+      ],
+      "total_lines": 233,
+      "total_classes": 3,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_langgraph_diversity_orchestrator": {
+      "name": "multi_agent_testing_langgraph_diversity_orchestrator",
+      "files": [
+        "src/multi_agent_testing/langgraph_diversity_orchestrator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "os",
+        "dataclasses",
+        "enum"
+      ],
+      "total_lines": 309,
+      "total_classes": 5,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_live_smoke_test": {
+      "name": "multi_agent_testing_live_smoke_test",
+      "files": [
+        "src/multi_agent_testing/live_smoke_test.py",
+        "src/multi_agent_testing/test_live_smoke_test.py"
+      ],
+      "dependencies": [
+        "os",
+        "live_smoke_test_langchain",
+        "pytest"
+      ],
+      "total_lines": 106,
+      "total_classes": 1,
+      "total_functions": 5,
+      "total_imports": 3,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_live_smoke_test_langchain": {
+      "name": "test_live_smoke_test_langchain",
+      "files": [
+        "src/multi_agent_testing/live_smoke_test_langchain.py"
+      ],
+      "dependencies": [
+        "langchain_openai",
+        "langchain_anthropic",
+        "typing",
+        "os",
+        "json",
+        "langchain_core"
+      ],
+      "total_lines": 125,
+      "total_classes": 1,
+      "total_functions": 2,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "multi_agent_testing_meta_cognitive_orchestrator": {
+      "name": "multi_agent_testing_meta_cognitive_orchestrator",
+      "files": [
+        "src/multi_agent_testing/meta_cognitive_orchestrator.py",
+        "src/multi_agent_testing/test_meta_cognitive_orchestrator.py"
+      ],
+      "dependencies": [
+        "typing",
+        "unittest",
+        "json",
+        "meta_cognitive_orchestrator"
+      ],
+      "total_lines": 510,
+      "total_classes": 4,
+      "total_functions": 2,
+      "total_imports": 4,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_anthropic_simple": {
+      "name": "test_test_anthropic_simple",
+      "files": [
+        "src/multi_agent_testing/test_anthropic_simple.py"
+      ],
+      "dependencies": [
+        "os",
+        "json",
+        "requests"
+      ],
+      "total_lines": 98,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_diversity_hypothesis": {
+      "name": "test_test_diversity_hypothesis",
+      "files": [
+        "src/multi_agent_testing/test_diversity_hypothesis.py"
+      ],
+      "dependencies": [
+        "langgraph_diversity_orchestrator",
+        "shutil",
+        "unittest",
+        "sys",
+        "json",
+        "cost_analysis",
+        "tempfile",
+        "diversity_synthesis_orchestrator",
+        "multi_dimensional_smoke_test",
+        "os"
+      ],
+      "total_lines": 542,
+      "total_classes": 5,
+      "total_functions": 1,
+      "total_imports": 10,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_model_traceability": {
+      "name": "test_test_model_traceability",
+      "files": [
+        "src/multi_agent_testing/test_model_traceability.py"
+      ],
+      "dependencies": [
+        "src",
+        "subprocess",
+        "project_model"
+      ],
+      "total_lines": 197,
+      "total_classes": 0,
+      "total_functions": 8,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_multi_agent_blind_spot_detection": {
+      "name": "test_test_multi_agent_blind_spot_detection",
+      "files": [
+        "src/multi_agent_testing/test_multi_agent_blind_spot_detection.py"
+      ],
+      "dependencies": [
+        "streamlit_app",
+        "the",
+        "pytest",
+        "sys",
+        "asyncio",
+        "diversity_hypothesis",
+        "dataclasses"
+      ],
+      "total_lines": 564,
+      "total_classes": 5,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "mypy_enhanced_ast_parser": {
+      "name": "mypy_enhanced_ast_parser",
+      "files": [
+        "src/mypy_enhanced_ast_parser.py"
+      ],
+      "dependencies": [
+        "ast",
+        "dataclasses"
+      ],
+      "total_lines": 245,
+      "total_classes": 5,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "perfect_ast_generator": {
+      "name": "perfect_ast_generator",
+      "files": [
+        "src/perfect_ast_generator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "ast",
+        "dataclasses"
+      ],
+      "total_lines": 252,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "quick_state_explorer": {
+      "name": "quick_state_explorer",
+      "files": [
+        "src/quick_state_explorer.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio"
+      ],
+      "total_lines": 97,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_client": {
+      "name": "script_client",
+      "files": [
+        "src/secure_shell_service/client.py"
+      ],
+      "dependencies": [
+        "grpc",
+        "logging",
+        "typing",
+        "asyncio",
+        "src"
+      ],
+      "total_lines": 170,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_elegant_client": {
+      "name": "script_elegant_client",
+      "files": [
+        "src/secure_shell_service/elegant_client.py"
+      ],
+      "dependencies": [
+        "grpc",
+        "logging",
+        "typing",
+        "asyncio",
+        "src"
+      ],
+      "total_lines": 239,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 5,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "secure_shell_service_migration_example": {
+      "name": "secure_shell_service_migration_example",
+      "files": [
+        "src/secure_shell_service/migration_example.py"
+      ],
+      "dependencies": [
+        "src",
+        "elegant_client",
+        "asyncio"
+      ],
+      "total_lines": 166,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "script_real_client": {
+      "name": "script_real_client",
+      "files": [
+        "src/secure_shell_service/real_client.py"
+      ],
+      "dependencies": [
+        "secure_shell_pb2",
+        "grpc",
+        "logging",
+        "typing",
+        "asyncio",
+        "src"
+      ],
+      "total_lines": 218,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "secure_shell_service_secure_executor": {
+      "name": "secure_shell_service_secure_executor",
+      "files": [
+        "src/secure_shell_service/secure_executor.py"
+      ],
+      "dependencies": [
+        "tempfile",
+        "pathlib",
+        "logging",
+        "typing",
+        "os",
+        "asyncio",
+        "dataclasses"
+      ],
+      "total_lines": 369,
+      "total_classes": 2,
+      "total_functions": 1,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "security_first_rate_limiting": {
+      "name": "security_first_rate_limiting",
+      "files": [
+        "src/security_first/rate_limiting.py"
+      ],
+      "dependencies": [
+        "typing",
+        "time",
+        "redis",
+        "logging"
+      ],
+      "total_lines": 100,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "security_first_security_manager": {
+      "name": "security_first_security_manager",
+      "files": [
+        "src/security_first/security_manager.py"
+      ],
+      "dependencies": [
+        "hashlib",
+        "jwt",
+        "redis",
+        "cryptography",
+        "datetime",
+        "time",
+        "logging",
+        "typing",
+        "os"
+      ],
+      "total_lines": 219,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 9,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_https_enforcement": {
+      "name": "test_test_https_enforcement",
+      "files": [
+        "src/security_first/test_https_enforcement.py"
+      ],
+      "dependencies": [
+        "ssl",
+        "pytest",
+        "https_enforcement",
+        "unittest",
+        "os"
+      ],
+      "total_lines": 293,
+      "total_classes": 5,
+      "total_functions": 0,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_security_model": {
+      "name": "test_test_security_model",
+      "files": [
+        "src/security_first/test_security_model.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "re"
+      ],
+      "total_lines": 88,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_streamlit_security_first": {
+      "name": "test_test_streamlit_security_first",
+      "files": [
+        "src/security_first/test_streamlit_security_first.py"
+      ],
+      "dependencies": [
+        "streamlit_app",
+        "pytest",
+        "pydantic",
+        "jwt",
+        "unittest",
+        "sys",
+        "datetime"
+      ],
+      "total_lines": 562,
+      "total_classes": 9,
+      "total_functions": 0,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "core_openflow_quickstart_app_projected": {
+      "name": "core_openflow_quickstart_app_projected",
+      "files": [
+        "src/streamlit/openflow_quickstart_app_projected.py"
+      ],
+      "dependencies": [
+        "os",
+        "cryptography",
+        "pydantic"
+      ],
+      "total_lines": 39,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "ultimate_perfect_generator": {
+      "name": "ultimate_perfect_generator",
+      "files": [
+        "src/ultimate_perfect_generator.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "ast",
+        "dataclasses"
+      ],
+      "total_lines": 272,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "visualization_comprehensive_dashboard": {
+      "name": "visualization_comprehensive_dashboard",
+      "files": [
+        "src/visualization/comprehensive_dashboard.py"
+      ],
+      "dependencies": [
+        "svg_engine",
+        "pathlib",
+        "plotly",
+        "logging",
+        "streamlit"
+      ],
+      "total_lines": 448,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "visualization_dashboard": {
+      "name": "visualization_dashboard",
+      "files": [
+        "src/visualization/dashboard.py"
+      ],
+      "dependencies": [
+        "svg_engine",
+        "streamlit",
+        "plotly",
+        "logging"
+      ],
+      "total_lines": 444,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_core": {
+      "name": "test_test_core",
+      "files": [
+        "subprojects/tidb-agentx-hackathon/tests/test_core.py"
+      ],
+      "dependencies": [
+        "asyncio",
+        "pytest",
+        "tidb_agentx_hackathon"
+      ],
+      "total_lines": 156,
+      "total_classes": 3,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_cicd_integration": {
+      "name": "test_test_cicd_integration",
+      "files": [
+        "test_cicd_integration.py"
+      ],
+      "dependencies": [
+        "os",
+        "sys",
+        "code_quality_system",
+        "pathlib"
+      ],
+      "total_lines": 218,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_complex_model": {
+      "name": "test_test_complex_model",
+      "files": [
+        "test_complex_model.py"
+      ],
+      "dependencies": [
+        "src"
+      ],
+      "total_lines": 63,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_enhanced_round_trip": {
+      "name": "test_test_enhanced_round_trip",
+      "files": [
+        "test_enhanced_round_trip.py"
+      ],
+      "dependencies": [
+        "src",
+        "asyncio",
+        "ast"
+      ],
+      "total_lines": 224,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_expert_quality_integration": {
+      "name": "test_test_expert_quality_integration",
+      "files": [
+        "test_expert_quality_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "clewcrew_agents",
+        "src",
+        "asyncio",
+        "sys"
+      ],
+      "total_lines": 245,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_flake8": {
+      "name": "test_test_flake8",
+      "files": [
+        "test_flake8.py"
+      ],
+      "dependencies": [
+        "code_generator",
+        "logging"
+      ],
+      "total_lines": 28,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_model_driven_generation": {
+      "name": "test_test_model_driven_generation",
+      "files": [
+        "test_model_driven_generation.py"
+      ],
+      "dependencies": [
+        "src",
+        "os"
+      ],
+      "total_lines": 56,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_multi_agent_integration": {
+      "name": "test_test_multi_agent_integration",
+      "files": [
+        "test_multi_agent_integration.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "asyncio"
+      ],
+      "total_lines": 254,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_mypy_compliant_code": {
+      "name": "test_test_mypy_compliant_code",
+      "files": [
+        "test_mypy_compliant_code.py"
+      ],
+      "dependencies": [
+        "typing",
+        "logging"
+      ],
+      "total_lines": 33,
+      "total_classes": 2,
+      "total_functions": 0,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_orchestrator_quality_integration": {
+      "name": "test_test_orchestrator_quality_integration",
+      "files": [
+        "test_orchestrator_quality_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "asyncio",
+        "sys",
+        "clewcrew_core"
+      ],
+      "total_lines": 212,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_parser_determinism": {
+      "name": "test_test_parser_determinism",
+      "files": [
+        "test_parser_determinism.py"
+      ],
+      "dependencies": [
+        "hashlib",
+        "json",
+        "enhanced_reverse_engineer"
+      ],
+      "total_lines": 169,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_pattern_matching": {
+      "name": "test_test_pattern_matching",
+      "files": [
+        "test_pattern_matching.py"
+      ],
+      "dependencies": [],
+      "total_lines": 52,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_projected_code": {
+      "name": "test_test_projected_code",
+      "files": [
+        "test_projected_code.py"
+      ],
+      "dependencies": [
+        "os",
+        "ast"
+      ],
+      "total_lines": 109,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_quality_system": {
+      "name": "test_test_quality_system",
+      "files": [
+        "test_quality_system.py",
+        "tests/test_code_quality_system.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "shutil",
+        "sys",
+        "json",
+        "tempfile",
+        "code_quality_system",
+        "typing",
+        "os",
+        "src"
+      ],
+      "total_lines": 555,
+      "total_classes": 2,
+      "total_functions": 19,
+      "total_imports": 18,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_regenerated": {
+      "name": "test_test_regenerated",
+      "files": [
+        "test_regenerated.py"
+      ],
+      "dependencies": [
+        "ast"
+      ],
+      "total_lines": 40,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 1,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_secure_shell": {
+      "name": "test_test_secure_shell",
+      "files": [
+        "test_secure_shell.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "asyncio"
+      ],
+      "total_lines": 138,
+      "total_classes": 0,
+      "total_functions": 4,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_simple_calculator_generation": {
+      "name": "test_test_simple_calculator_generation",
+      "files": [
+        "test_simple_calculator_generation.py"
+      ],
+      "dependencies": [
+        "subprocess",
+        "json",
+        "round_trip_model_system"
+      ],
+      "total_lines": 76,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_visualization_system": {
+      "name": "test_test_visualization_system",
+      "files": [
+        "test_visualization_system.py"
+      ],
+      "dependencies": [
+        "src",
+        "pathlib",
+        "sys"
+      ],
+      "total_lines": 85,
+      "total_classes": 0,
+      "total_functions": 1,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_basic_validation": {
+      "name": "test_test_basic_validation",
+      "files": [
+        "tests/test_basic_validation.py",
+        "tests/test_basic_validation_simple.py",
+        "tests/test_basic_validation_pytest.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "unittest",
+        "sys"
+      ],
+      "total_lines": 240,
+      "total_classes": 7,
+      "total_functions": 6,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 3
+    },
+    "test_test_cline_fresh_plan_blind_spots": {
+      "name": "test_test_cline_fresh_plan_blind_spots",
+      "files": [
+        "tests/test_cline_fresh_plan_blind_spots.py",
+        "tests/test_cline_plan_blind_spots.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "unittest",
+        "sys"
+      ],
+      "total_lines": 204,
+      "total_classes": 0,
+      "total_functions": 12,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_code_quality_comprehensive": {
+      "name": "test_test_code_quality_comprehensive",
+      "files": [
+        "tests/test_code_quality_comprehensive.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "ast"
+      ],
+      "total_lines": 116,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_core_concepts": {
+      "name": "test_test_core_concepts",
+      "files": [
+        "tests/test_core_concepts.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_data_fresh_cline_plan": {
+      "name": "test_test_data_fresh_cline_plan",
+      "files": [
+        "tests/test_data_fresh_cline_plan.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_file_existence": {
+      "name": "test_test_file_existence",
+      "files": [
+        "tests/test_file_existence.py"
+      ],
+      "dependencies": [],
+      "total_lines": 6,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 0,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_file_organization": {
+      "name": "test_test_file_organization",
+      "files": [
+        "tests/test_file_organization.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_gemini_2_5_flash_lite_pr_review": {
+      "name": "test_test_gemini_2_5_flash_lite_pr_review",
+      "files": [
+        "tests/test_gemini_2_5_flash_lite_pr_review.py",
+        "tests/test_gemini_2_5_preview_pr_review.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "unittest",
+        "sys"
+      ],
+      "total_lines": 204,
+      "total_classes": 0,
+      "total_functions": 12,
+      "total_imports": 6,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_ghostbusters_comprehensive": {
+      "name": "test_test_ghostbusters_comprehensive",
+      "files": [
+        "tests/test_ghostbusters_comprehensive.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "src",
+        "pytest"
+      ],
+      "total_lines": 456,
+      "total_classes": 5,
+      "total_functions": 0,
+      "total_imports": 7,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_ghostbusters_integration": {
+      "name": "test_test_ghostbusters_integration",
+      "files": [
+        "tests/test_ghostbusters_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 214,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_healthcare_cdc_requirements": {
+      "name": "test_test_healthcare_cdc_requirements",
+      "files": [
+        "tests/test_healthcare_cdc_requirements.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 116,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_makefile_integration": {
+      "name": "test_test_makefile_integration",
+      "files": [
+        "tests/test_makefile_integration.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_mdc_generator": {
+      "name": "test_test_mdc_generator",
+      "files": [
+        "tests/test_mdc_generator.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_python_quality_enforcement": {
+      "name": "test_test_python_quality_enforcement",
+      "files": [
+        "tests/test_python_quality_enforcement.py",
+        "tests/test_python_quality_enhanced.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "sys",
+        "json",
+        "logging",
+        "src",
+        "subprocess",
+        "ast"
+      ],
+      "total_lines": 793,
+      "total_classes": 1,
+      "total_functions": 9,
+      "total_imports": 13,
+      "module_type": "multi_file",
+      "confidence_score": 0.8,
+      "file_count": 2
+    },
+    "test_test_rule_compliance": {
+      "name": "test_test_rule_compliance",
+      "files": [
+        "tests/test_rule_compliance.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_rule_compliance_enforcement": {
+      "name": "test_test_rule_compliance_enforcement",
+      "files": [
+        "tests/test_rule_compliance_enforcement.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 102,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_security_enhancements": {
+      "name": "test_test_security_enhancements",
+      "files": [
+        "tests/test_security_enhancements.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "total_lines": 103,
+      "total_classes": 0,
+      "total_functions": 5,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_type_safety": {
+      "name": "test_test_type_safety",
+      "files": [
+        "tests/test_type_safety.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing",
+        "subprocess",
+        "sys",
+        "ast",
+        "src"
+      ],
+      "total_lines": 256,
+      "total_classes": 1,
+      "total_functions": 4,
+      "total_imports": 6,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "test_test_uv_package_management": {
+      "name": "test_test_uv_package_management",
+      "files": [
+        "tests/test_uv_package_management.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "sys"
+      ],
+      "total_lines": 115,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 2,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "validate_healthcare_cdc_simple": {
+      "name": "validate_healthcare_cdc_simple",
+      "files": [
+        "tests/validate_healthcare_cdc_simple.py"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib",
+        "json"
+      ],
+      "total_lines": 96,
+      "total_classes": 0,
+      "total_functions": 9,
+      "total_imports": 3,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    },
+    "core_validate_ghostbusters_approach": {
+      "name": "core_validate_ghostbusters_approach",
+      "files": [
+        "validate_ghostbusters_approach.py"
+      ],
+      "dependencies": [
+        "pathlib",
+        "clewcrew_common",
+        "logging",
+        "typing",
+        "asyncio",
+        "src",
+        "sys"
+      ],
+      "total_lines": 240,
+      "total_classes": 1,
+      "total_functions": 0,
+      "total_imports": 4,
+      "module_type": "single_file",
+      "confidence_score": 0.9,
+      "file_count": 1
+    }
+  },
+  "statistics": {
+    "total_lines": 87784,
+    "total_classes": 551,
+    "total_functions": 643,
+    "total_imports": 1511
+  }
+}

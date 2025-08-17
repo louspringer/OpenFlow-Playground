@@ -1,0 +1,55 @@
+{
+  "system_name": "Quick State Explorer",
+  "description": "Explore the actual content of Ghostbusters state object",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "from src.ghostbusters.ghostbusters_orchestrator import run_ghostbusters"
+  ],
+  "module_docstring": "\nQuick State Explorer\nExplore the actual content of Ghostbusters state object\n",
+  "file_structure": {
+    "total_lines": 97,
+    "code_lines": 70,
+    "comment_lines": 8,
+    "blank_lines": 19,
+    "total_nodes": 627,
+    "class_nodes": 0,
+    "function_nodes": 0,
+    "import_nodes": 2,
+    "expression_nodes": 33,
+    "assignment_nodes": 2,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 97
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "Exception",
+    "dict",
+    "value",
+    "hasattr",
+    "state",
+    "explore_state",
+    "dir",
+    "list",
+    "attr",
+    "len",
+    "print",
+    "getattr",
+    "asyncio",
+    "type",
+    "run_ghostbusters",
+    "e",
+    "isinstance"
+  ]
+}

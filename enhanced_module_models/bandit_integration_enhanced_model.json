@@ -1,0 +1,57 @@
+{
+  "module_name": "bandit_integration",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "scripts/bandit_integration.py",
+    "scripts/test_bandit_integration.py"
+  ],
+  "file_count": 2,
+  "total_lines": 692,
+  "total_classes": 4,
+  "total_functions": 7,
+  "total_imports": 10,
+  "module_docstring": "\"\"\"\nbandit_integration\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 692\nClasses: 4\nFunctions: 7\nImports: 10\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "bandit_integration",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 692,
+      "total_classes": 4,
+      "total_functions": 7,
+      "total_imports": 10
+    },
+    "files": [
+      {
+        "path": "scripts/bandit_integration.py",
+        "name": "bandit_integration.py",
+        "stem": "bandit_integration"
+      },
+      {
+        "path": "scripts/test_bandit_integration.py",
+        "name": "test_bandit_integration.py",
+        "stem": "test_bandit_integration"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.434150",
+  "version": "1.0.0"
+}

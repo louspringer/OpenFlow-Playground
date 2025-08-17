@@ -1,0 +1,268 @@
+{
+  "system_name": "Linting-Aware Code Generation Model",
+  "description": "Encodes Flake8 rules directly into the data structures",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "LintingAwareImportStatement": {
+      "responsibility": "Import statement that knows about F401 (unused imports)",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate import code, only including used items",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 13
+    },
+    "LintingAwareFunctionDefinition": {
+      "responsibility": "Function definition that knows about E302 (blank lines) and F821 (undefined names)",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate function code with proper spacing and logger references",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 35
+    },
+    "LintingAwareClassDefinition": {
+      "responsibility": "Class definition that knows about E302 (blank lines)",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate class code with proper spacing",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 95
+    },
+    "LintingAwareCodeFile": {
+      "responsibility": "Code file that knows about all linting rules",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate complete file code with linting rules built-in",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 140
+    },
+    "LintingAwareCodeGenerator": {
+      "responsibility": "Code generator that encodes linting rules in the model itself\n    No post-generation fixes needed!",
+      "methods": [
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, model: LintingAwareCodeFile) -> str",
+          "docstring": "Generate code that is perfect by design\n        No linting fixes needed - the model encodes the rules!",
+          "decorators": [],
+          "line_number": 196,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "LintingAwareCodeFile",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "write_perfect_file",
+          "signature": "write_perfect_file(self, model: LintingAwareCodeFile, filepath: str) -> bool",
+          "docstring": "Write perfect code file to disk",
+          "decorators": [],
+          "line_number": 203,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "LintingAwareCodeFile",
+              "default": null
+            },
+            {
+              "name": "filepath",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 187
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_linting_aware_billing_analyzer",
+      "signature": "create_linting_aware_billing_analyzer() -> LintingAwareCodeFile",
+      "docstring": "Create a billing analyzer model that knows about linting rules",
+      "decorators": [],
+      "line_number": 222,
+      "return_type": "LintingAwareCodeFile",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nLinting-Aware Code Generation Model\nEncodes Flake8 rules directly into the data structures\n",
+  "file_structure": {
+    "total_lines": 315,
+    "code_lines": 233,
+    "comment_lines": 26,
+    "blank_lines": 56,
+    "total_nodes": 1309,
+    "class_nodes": 5,
+    "function_nodes": 8,
+    "import_nodes": 3,
+    "expression_nodes": 44,
+    "assignment_nodes": 22,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 315
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "LintingAwareCodeFile",
+    "bases_str",
+    "imports",
+    "method_code",
+    "Exception",
+    "filepath",
+    "f",
+    "generator",
+    "filepath_obj",
+    "imp",
+    "set",
+    "is_from",
+    "module_docstring",
+    "LintingAwareImportStatement",
+    "open",
+    "requires_blank_line_before",
+    "str",
+    "Path",
+    "line",
+    "logger_references",
+    "LintingAwareFunctionDefinition",
+    "return_type",
+    "attributes",
+    "signature",
+    "module",
+    "decorator",
+    "item",
+    "dataclass",
+    "list",
+    "methods",
+    "docstring",
+    "attr",
+    "decorators",
+    "len",
+    "filename",
+    "print",
+    "create_linting_aware_billing_analyzer",
+    "bases",
+    "self",
+    "lines",
+    "bool",
+    "analyzer_class",
+    "functions",
+    "body",
+    "code",
+    "LintingAwareClassDefinition",
+    "field",
+    "LintingAwareCodeGenerator",
+    "main_function",
+    "params",
+    "perfect_code",
+    "parameters",
+    "method",
+    "used_items",
+    "name",
+    "model",
+    "cls",
+    "func",
+    "Optional",
+    "e",
+    "import_code"
+  ]
+}

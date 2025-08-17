@@ -1,0 +1,263 @@
+{
+  "system_name": "",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SecurityValidator": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "validate_snowflake_url",
+          "signature": "validate_snowflake_url(self, url: str) -> bool",
+          "docstring": "Validate Snowflake account URL format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 14,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_uuid",
+          "signature": "validate_uuid(self, uuid_str: str) -> bool",
+          "docstring": "Validate UUID format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 19,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "uuid_str",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "sanitize_input",
+          "signature": "sanitize_input(self, input_str: str) -> str",
+          "docstring": "Sanitize user input to prevent injection attacks",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 27,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "input_str",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_oauth_credentials",
+          "signature": "validate_oauth_credentials(self, credentials: dict[Tuple[str, str]]) -> bool",
+          "docstring": "Validate OAuth credentials format from a dictionary",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 34,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "credentials",
+              "type": "dict[Tuple[str, str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 12
+    },
+    "CredentialManager": {
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "encrypt_credential",
+          "signature": "encrypt_credential(self, credential: str) -> str",
+          "docstring": "Encrypt sensitive credentials",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "credential",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "decrypt_credential",
+          "signature": "decrypt_credential(self, encrypted_credential: str) -> str",
+          "docstring": "Decrypt sensitive credentials",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "encrypted_credential",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "store_credential",
+          "signature": "store_credential(self, key: str, value: str) -> None",
+          "docstring": "Store credential securely in Redis with encryption (     alias for store_credential_secure)",
+          "decorators": [],
+          "line_number": 55,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_session_token",
+          "signature": "validate_session_token(self, session_token: str) -> bool",
+          "docstring": "Validate JWT session token (alias for validate_session)",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "session_token",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_session_token",
+          "signature": "create_session_token(self, user_id: str, role: str) -> str",
+          "docstring": "Create JWT session token",
+          "decorators": [],
+          "line_number": 64,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "role",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 46
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import os",
+    "from datetime import datetime",
+    "from datetime import timedelta",
+    "from datetime import timezone",
+    "import jwt",
+    "import re",
+    "import html"
+  ],
+  "module_docstring": "",
+  "file_structure": {
+    "total_lines": 79,
+    "code_lines": 63,
+    "comment_lines": 0,
+    "blank_lines": 16,
+    "total_nodes": 367,
+    "class_nodes": 2,
+    "function_nodes": 9,
+    "import_nodes": 5,
+    "expression_nodes": 10,
+    "assignment_nodes": 6,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 79
+  },
+  "used_names": [
+    "key",
+    "credentials",
+    "user_id",
+    "timedelta",
+    "value",
+    "dict",
+    "os",
+    "html",
+    "str",
+    "client_secret",
+    "payload",
+    "jwt",
+    "session_token",
+    "input_str",
+    "uuid_str",
+    "url",
+    "len",
+    "self",
+    "client_id",
+    "bool",
+    "role",
+    "timeout_minutes",
+    "datetime",
+    "credential",
+    "SECURITY_CONFIG",
+    "uuid_pattern",
+    "re",
+    "encrypted_credential",
+    "int",
+    "timezone",
+    "staticmethod"
+  ]
+}

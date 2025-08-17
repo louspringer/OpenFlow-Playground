@@ -1,0 +1,62 @@
+{
+  "name": "simple_calculator",
+  "description": "A simple calculator system for demonstrating the model-driven workflow",
+  "components": [
+    {
+      "name": "Calculator",
+      "type": "class",
+      "description": "Perform basic mathematical operations",
+      "requirements": [
+        "Perform basic mathematical operations"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "methods": [
+          "__init__(self) -> None",
+          "add(self, a: float, b: float) -> float",
+          "subtract(self, a: float, b: float) -> float",
+          "multiply(self, a: float, b: float) -> float",
+          "divide(self, a: float, b: float) -> float"
+        ],
+        "line_number": 12,
+        "bases": [],
+        "decorators": []
+      }
+    },
+    {
+      "name": "CalculatorUI",
+      "type": "class",
+      "description": "Provide user interface for calculator operations",
+      "requirements": [
+        "Provide user interface for calculator operations"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "methods": [
+          "__init__(self) -> None",
+          "display_result(self, result: float) -> None",
+          "get_user_input(self) -> str",
+          "run_calculator(self) -> None"
+        ],
+        "line_number": 50,
+        "bases": [],
+        "decorators": []
+      }
+    },
+    {
+      "name": "main",
+      "type": "function",
+      "description": "Main entry point for simple_calculator",
+      "requirements": [
+        "Main entry point for simple_calculator"
+      ],
+      "dependencies": [],
+      "metadata": {
+        "signature": "main() -> None",
+        "line_number": 81,
+        "return_type": null,
+        "parameters": []
+      }
+    }
+  ]
+}

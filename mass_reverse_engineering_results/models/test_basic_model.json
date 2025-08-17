@@ -1,0 +1,75 @@
+{
+  "system_name": "Basic tests for GKE AI Microservices Hackathon",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_hackathon_setup",
+      "signature": "test_hackathon_setup() -> Any",
+      "docstring": "Test that the hackathon repository is properly set up",
+      "decorators": [],
+      "line_number": 8,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_ai_agents_available",
+      "signature": "test_ai_agents_available() -> Any",
+      "docstring": "Test that AI agent dependencies are available",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_kubernetes_integration",
+      "signature": "test_kubernetes_integration() -> Any",
+      "docstring": "Test that Kubernetes integration is ready",
+      "decorators": [],
+      "line_number": 28,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import pytest",
+    "import clewcrew_common",
+    "import clewcrew_framework",
+    "import clewcrew_agents",
+    "import kubernetes"
+  ],
+  "module_docstring": "\nBasic tests for GKE AI Microservices Hackathon\n",
+  "file_structure": {
+    "total_lines": 41,
+    "code_lines": 29,
+    "comment_lines": 2,
+    "blank_lines": 10,
+    "total_nodes": 104,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 5,
+    "expression_nodes": 7,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 41
+  },
+  "used_names": [
+    "__name__",
+    "kubernetes",
+    "__file__",
+    "clewcrew_framework",
+    "ImportError",
+    "clewcrew_agents",
+    "clewcrew_common",
+    "pytest"
+  ]
+}

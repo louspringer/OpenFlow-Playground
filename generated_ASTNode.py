@@ -4,22 +4,21 @@ Represents an AST node with metadata
 """
 
 from dataclasses import *
-from dataclasses import dataclass
 from typing import *
 
 
-@dataclass
 class ASTNode:
     """
     Represents an AST node with metadata
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # TODO: Initialize based on requirements: ['dataclass', 'metadata support', 'parent-child relationships']
-        pass
+        return None
 
     def __post_init__(self) -> None:
         """
-        Initialize default values
+        __post_init__(self, ) -> None
         """
-        # TODO: Implement based on requirements: []
+        # TODO: Implement __post_init__(self, ) -> None
+        return

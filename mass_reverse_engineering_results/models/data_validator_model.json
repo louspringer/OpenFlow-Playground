@@ -1,0 +1,303 @@
+{
+  "system_name": "Data Validator: Comprehensive data validation system.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "DataValidator": {
+      "responsibility": "Validator for data type, format, and content validation.",
+      "methods": [
+        {
+          "name": "_setup_default_validators",
+          "signature": "_setup_default_validators(self) -> None",
+          "docstring": "Setup default validation functions.",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate",
+          "signature": "validate(self, data: Any) -> ValidationResult",
+          "docstring": "Validate data using specified validators.\n\n        Args:\n            data: The data to validate\n            **kwargs: Additional parameters including 'validators' or 'validator_names'\n\n        Returns:\n            ValidationResult: The validation result",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "ValidationResult",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_email",
+          "signature": "_validate_email(self, data: Any) -> bool",
+          "docstring": "Validate email format.",
+          "decorators": [],
+          "line_number": 104,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_url",
+          "signature": "_validate_url(self, data: Any) -> bool",
+          "docstring": "Validate URL format.",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_phone",
+          "signature": "_validate_phone(self, data: Any) -> bool",
+          "docstring": "Validate phone number format.",
+          "decorators": [],
+          "line_number": 121,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_date",
+          "signature": "_validate_date(self, data: Any) -> bool",
+          "docstring": "Validate date format.",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_ip_address",
+          "signature": "_validate_ip_address(self, data: Any) -> bool",
+          "docstring": "Validate IP address format.",
+          "decorators": [],
+          "line_number": 157,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_credit_card",
+          "signature": "_validate_credit_card(self, data: Any) -> bool",
+          "docstring": "Validate credit card number using Luhn algorithm.",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_uuid",
+          "signature": "_validate_uuid(self, data: Any) -> bool",
+          "docstring": "Validate UUID format.",
+          "decorators": [],
+          "line_number": 200,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_validator",
+          "signature": "add_validator(self, name: str, validator_func: callable) -> None",
+          "docstring": "Add a custom validator function.\n\n        Args:\n            name: Validator name\n            validator_func: Validation function",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "validator_func",
+              "type": "callable",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "remove_validator",
+          "signature": "remove_validator(self, name: str) -> bool",
+          "docstring": "Remove a validator.\n\n        Args:\n            name: Validator name to remove\n\n        Returns:\n            True if validator was removed, False if not found",
+          "decorators": [],
+          "line_number": 218,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_validators",
+          "signature": "list_validators(self) -> list",
+          "docstring": "List all available validator names.\n\n        Returns:\n            List of validator names",
+          "decorators": [],
+          "line_number": 241,
+          "return_type": "list",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_validator_info",
+          "signature": "get_validator_info(self, name: str) -> Optional[Dict[Tuple[str, Any]]]",
+          "docstring": "Get information about a validator.\n\n        Args:\n            name: Validator name\n\n        Returns:\n            Validator information or None if not found",
+          "decorators": [],
+          "line_number": 249,
+          "return_type": "Optional[Dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseValidator"
+      ],
+      "line_number": 15
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import Optional",
+    "import re",
+    "from datetime import datetime",
+    "from base_validator import BaseValidator",
+    "from validation_result import ValidationResult",
+    "from validation_result import ValidationSeverity"
+  ],
+  "module_docstring": "\nData Validator: Comprehensive data validation system.\n\nProvides data type, format, and content validation capabilities.\n",
+  "file_structure": {
+    "total_lines": 273,
+    "code_lines": 218,
+    "comment_lines": 6,
+    "blank_lines": 49,
+    "total_nodes": 972,
+    "class_nodes": 1,
+    "function_nodes": 13,
+    "import_nodes": 5,
+    "expression_nodes": 24,
+    "assignment_nodes": 18,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 273
+  },
+  "used_names": [
+    "Exception",
+    "BaseValidator",
+    "cleaned",
+    "enumerate",
+    "validator_name",
+    "callable",
+    "digit",
+    "ipv4_pattern",
+    "isinstance",
+    "Dict",
+    "fmt",
+    "str",
+    "ipv6_pattern",
+    "parts",
+    "part",
+    "pattern",
+    "ValidationResult",
+    "validators",
+    "list",
+    "formats",
+    "len",
+    "kwargs",
+    "self",
+    "validator_func",
+    "bool",
+    "ValidationSeverity",
+    "ValueError",
+    "datetime",
+    "data",
+    "reverse_digits",
+    "re",
+    "total",
+    "name",
+    "i",
+    "int",
+    "all",
+    "super",
+    "Optional",
+    "e",
+    "Any",
+    "issues",
+    "d"
+  ]
+}

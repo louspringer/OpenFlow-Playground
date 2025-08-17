@@ -1,0 +1,76 @@
+{
+  "system_name": "Enhanced AST Parser Wrapper - Fixes import path issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "setup_enhanced_ast_paths",
+      "signature": "setup_enhanced_ast_paths() -> Any",
+      "docstring": "Setup proper import paths for enhanced AST parser",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "get_enhanced_ast_linter",
+      "signature": "get_enhanced_ast_linter() -> Any",
+      "docstring": "Get the enhanced AST linter with proper imports",
+      "decorators": [],
+      "line_number": 25,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from scripts.ast_enhanced_linter import ASTEnhancedLinter",
+    "from ast_enhanced_linter import ASTEnhancedLinter"
+  ],
+  "module_docstring": "\nEnhanced AST Parser Wrapper - Fixes import path issues\n",
+  "file_structure": {
+    "total_lines": 72,
+    "code_lines": 49,
+    "comment_lines": 7,
+    "blank_lines": 16,
+    "total_nodes": 284,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 23,
+    "assignment_nodes": 4,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 72
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "__file__",
+    "scripts_dir",
+    "current_dir",
+    "setup_enhanced_ast_paths",
+    "get_enhanced_ast_linter",
+    "str",
+    "Path",
+    "ASTEnhancedLinter",
+    "ImportError",
+    "list",
+    "sys",
+    "print",
+    "linter",
+    "type",
+    "linter_class",
+    "e2",
+    "e"
+  ]
+}

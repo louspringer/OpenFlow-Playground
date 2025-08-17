@@ -1,0 +1,146 @@
+{
+  "system_name": "\ud83e\uddf9 Teardown Script Generator for GCP Project",
+  "description": "Generates teardown-gcp-project.sh from the project model registry template",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "load_project_model",
+      "signature": "load_project_model() -> Any",
+      "docstring": "Load the project model registry",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "extract_teardown_template",
+      "signature": "extract_teardown_template(model: Any) -> Any",
+      "docstring": "Extract the teardown script template from the GKE hackathon configuration",
+      "decorators": [],
+      "line_number": 27,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "model",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_script",
+      "signature": "generate_script(template_data: Any) -> Any",
+      "docstring": "Generate the script from the template and variables",
+      "decorators": [],
+      "line_number": 40,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "template_data",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "write_script",
+      "signature": "write_script(script_content: Any, output_path: Any) -> Any",
+      "docstring": "Write the generated script to the output file",
+      "decorators": [],
+      "line_number": 117,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "script_content",
+          "type": "Any",
+          "default": null
+        },
+        {
+          "name": "output_path",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 133,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import sys",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\n\ud83e\uddf9 Teardown Script Generator for GCP Project\nGenerates teardown-gcp-project.sh from the project model registry template\n",
+  "file_structure": {
+    "total_lines": 176,
+    "code_lines": 128,
+    "comment_lines": 16,
+    "blank_lines": 32,
+    "total_nodes": 761,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 4,
+    "expression_nodes": 47,
+    "assignment_nodes": 29,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 176
+  },
+  "used_names": [
+    "__name__",
+    "script_content",
+    "Exception",
+    "f",
+    "__file__",
+    "comment",
+    "write_script",
+    "placeholder",
+    "output_path",
+    "os",
+    "open",
+    "api",
+    "model_path",
+    "Path",
+    "api_comments",
+    "str",
+    "var_value",
+    "variables",
+    "json",
+    "list",
+    "sys",
+    "bash_array",
+    "load_project_model",
+    "extract_teardown_template",
+    "print",
+    "main",
+    "hackathon_config",
+    "available_keys",
+    "generate_script",
+    "KeyError",
+    "template",
+    "model",
+    "api_list",
+    "var_name",
+    "bash_array_lines",
+    "template_data",
+    "e",
+    "teardown_template",
+    "isinstance"
+  ]
+}

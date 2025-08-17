@@ -1,0 +1,375 @@
+{
+  "system_name": "Code Quality Automation Orchestrator using LangGraph",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "QualityStage": {
+      "responsibility": "Stages of the quality automation workflow",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 13
+    },
+    "QualityIssue": {
+      "responsibility": "Represents a quality issue found during analysis",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 26
+    },
+    "QualityReport": {
+      "responsibility": "Comprehensive quality analysis report",
+      "methods": [
+        {
+          "name": "to_dict",
+          "signature": "to_dict(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Convert to dictionary for serialization",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 51
+    },
+    "CodeQualityAutomationOrchestrator": {
+      "responsibility": "Orchestrates the complete code quality automation workflow",
+      "methods": [
+        {
+          "name": "run_black_formatting",
+          "signature": "run_black_formatting(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run Black formatting on target directory",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_ruff_linting",
+          "signature": "run_ruff_linting(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run Ruff linting with auto-fixes",
+          "decorators": [],
+          "line_number": 132,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_subproject_scrubbing",
+          "signature": "run_subproject_scrubbing(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run subproject scrubbing across all subprojects",
+          "decorators": [],
+          "line_number": 176,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_pre_commit_check",
+          "signature": "run_pre_commit_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run pre-commit hooks on staged files only",
+          "decorators": [],
+          "line_number": 230,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_multi_agent_analysis",
+          "signature": "run_multi_agent_analysis(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run multi-agent analysis of current code quality state",
+          "decorators": [],
+          "line_number": 298,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_fallback_quality_analysis",
+          "signature": "_fallback_quality_analysis(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Fallback analysis when multi-agent system fails",
+          "decorators": [],
+          "line_number": 374,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_ruff_output",
+          "signature": "_parse_ruff_output(self, output: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Parse Ruff output to extract remaining issues",
+          "decorators": [],
+          "line_number": 390,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "output",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_parse_pre_commit_output",
+          "signature": "_parse_pre_commit_output(self, stdout: str, stderr: str) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Parse pre-commit output to extract issues",
+          "decorators": [],
+          "line_number": 430,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "stdout",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "stderr",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_quality_report",
+          "signature": "generate_quality_report(self) -> QualityReport",
+          "docstring": "Generate comprehensive quality report",
+          "decorators": [],
+          "line_number": 460,
+          "return_type": "QualityReport",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_pdca_iteration",
+          "signature": "run_pdca_iteration(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run one PDCA (Plan-Do-Check-Act) iteration",
+          "decorators": [],
+          "line_number": 531,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_complete_automation",
+          "signature": "run_complete_automation(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run the complete automation workflow until clean",
+          "decorators": [],
+          "line_number": 574,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_report",
+          "signature": "save_report(self, filename: str) -> str",
+          "docstring": "Save automation report to file",
+          "decorators": [],
+          "line_number": 616,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 83
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to run the automation",
+      "decorators": [],
+      "line_number": 638,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "from dataclasses import dataclass",
+    "from datetime import datetime",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "import sys",
+    "from multi_dimensional_smoke_test import MultiDimensionalSmokeTest"
+  ],
+  "module_docstring": "Code Quality Automation Orchestrator using LangGraph",
+  "file_structure": {
+    "total_lines": 717,
+    "code_lines": 565,
+    "comment_lines": 39,
+    "blank_lines": 113,
+    "total_nodes": 2724,
+    "class_nodes": 4,
+    "function_nodes": 16,
+    "import_nodes": 9,
+    "expression_nodes": 87,
+    "assignment_nodes": 79,
+    "return_nodes": 28
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 717
+  },
+  "used_names": [
+    "Exception",
+    "analysis_results",
+    "description",
+    "severity",
+    "dict",
+    "r",
+    "Path",
+    "list",
+    "devops_analysis",
+    "BLACK_FORMATTING",
+    "print",
+    "report",
+    "bool",
+    "remaining_ruff_issues",
+    "QualityStage",
+    "issues_by_type",
+    "manual_fixes_required",
+    "current_report",
+    "recommendations",
+    "stderr",
+    "__name__",
+    "__file__",
+    "python_files",
+    "check_result",
+    "line",
+    "subprocess",
+    "PDCA_ITERATION",
+    "PRE_COMMIT_CHECK",
+    "filename",
+    "black_result",
+    "iteration",
+    "automated_fixes_applied",
+    "MultiDimensionalSmokeTest",
+    "subproject_result",
+    "quality_analysis",
+    "files_with_issues",
+    "ruff_check",
+    "test_mode",
+    "SUBPROJECT_SCRUBBING",
+    "analysis_scenario",
+    "issues",
+    "CodeQualityAutomationOrchestrator",
+    "any",
+    "line_number",
+    "automated_fix_available",
+    "total_issues",
+    "f",
+    "orchestrator",
+    "total_files_analyzed",
+    "should_continue",
+    "ruff_result",
+    "staged_files",
+    "result",
+    "Enum",
+    "open",
+    "main",
+    "issue_type",
+    "stdout",
+    "issues_by_severity",
+    "issue",
+    "results",
+    "code",
+    "remaining_issues",
+    "datetime",
+    "total_files",
+    "args",
+    "pre_commit_result",
+    "iteration_result",
+    "fix_suggestion",
+    "final_report",
+    "Any",
+    "target_dir",
+    "QualityReport",
+    "str",
+    "security_analysis",
+    "multi_agent_result",
+    "next_actions",
+    "parts",
+    "test_system",
+    "dataclass",
+    "json",
+    "RUFF_LINTING",
+    "sys",
+    "len",
+    "file_path",
+    "self",
+    "lines",
+    "report_file",
+    "output",
+    "current_hook",
+    "timestamp",
+    "scrubber_script",
+    "COMPLETE",
+    "MULTI_AGENT_ANALYSIS",
+    "int",
+    "target_directory",
+    "e"
+  ]
+}

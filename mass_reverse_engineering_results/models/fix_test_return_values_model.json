@@ -1,0 +1,101 @@
+{
+  "system_name": "Fix Test Function Return Values - Remove returns from test functions",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_test_return_values",
+      "signature": "fix_test_return_values(filepath: str) -> bool",
+      "docstring": "Fix test functions that return values when they shouldn't",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "filepath",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to fix test return value issues",
+      "decorators": [],
+      "line_number": 103,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from src.secure_shell_service.secure_executor import secure_execute"
+  ],
+  "module_docstring": "\nFix Test Function Return Values - Remove returns from test functions\n",
+  "file_structure": {
+    "total_lines": 146,
+    "code_lines": 107,
+    "comment_lines": 9,
+    "blank_lines": 30,
+    "total_nodes": 652,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 25,
+    "assignment_nodes": 25,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 146
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "py_file",
+    "filepath",
+    "python_files",
+    "modified_body",
+    "next_line",
+    "result",
+    "content",
+    "indent_level",
+    "open",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "func_name",
+    "return_value_errors",
+    "secure_execute",
+    "total_fixed",
+    "next_indent",
+    "fixed_lines",
+    "list",
+    "src_path",
+    "len",
+    "func_body",
+    "indent",
+    "print",
+    "main",
+    "lines",
+    "fix_test_return_values",
+    "bool",
+    "re",
+    "j",
+    "body_line",
+    "i",
+    "changes_made",
+    "has_return_value",
+    "e"
+  ]
+}

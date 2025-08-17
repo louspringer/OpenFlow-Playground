@@ -1,0 +1,417 @@
+{
+  "system_name": "\ud83e\uddea Multi-Agent Blind Spot Detection Test for Streamlit App",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BlindSpotTestResult": {
+      "responsibility": "Result of blind spot detection test",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 40
+    },
+    "MultiAgentBlindSpotDetector": {
+      "responsibility": "Multi-agent blind spot detection for Streamlit app validation",
+      "methods": [
+        {
+          "name": "analyze_security_blind_spots",
+          "signature": "analyze_security_blind_spots(self) -> BlindSpotTestResult",
+          "docstring": "Analyze security blind spots",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "BlindSpotTestResult",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_devops_blind_spots",
+          "signature": "analyze_devops_blind_spots(self) -> BlindSpotTestResult",
+          "docstring": "Analyze DevOps blind spots",
+          "decorators": [],
+          "line_number": 136,
+          "return_type": "BlindSpotTestResult",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_code_quality_blind_spots",
+          "signature": "analyze_code_quality_blind_spots(self) -> BlindSpotTestResult",
+          "docstring": "Analyze code quality blind spots",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "BlindSpotTestResult",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_ux_blind_spots",
+          "signature": "analyze_ux_blind_spots(self) -> BlindSpotTestResult",
+          "docstring": "Analyze UX blind spots",
+          "decorators": [],
+          "line_number": 202,
+          "return_type": "BlindSpotTestResult",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_performance_blind_spots",
+          "signature": "analyze_performance_blind_spots(self) -> BlindSpotTestResult",
+          "docstring": "Analyze performance blind spots",
+          "decorators": [],
+          "line_number": 235,
+          "return_type": "BlindSpotTestResult",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_complete_analysis",
+          "signature": "run_complete_analysis(self) -> dict[Tuple[str, BlindSpotTestResult]]",
+          "docstring": "Run complete multi-agent blind spot analysis",
+          "decorators": [],
+          "line_number": 268,
+          "return_type": "dict[Tuple[str, BlindSpotTestResult]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 51
+    },
+    "TestMultiAgentBlindSpotDetection": {
+      "responsibility": "Test multi-agent blind spot detection for Streamlit app",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 282,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_blind_spot_detection",
+          "signature": "test_security_blind_spot_detection(self) -> None",
+          "docstring": "Test security blind spot detection",
+          "decorators": [],
+          "line_number": 287,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_devops_blind_spot_detection",
+          "signature": "test_devops_blind_spot_detection(self) -> None",
+          "docstring": "Test DevOps blind spot detection",
+          "decorators": [],
+          "line_number": 301,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_quality_blind_spot_detection",
+          "signature": "test_code_quality_blind_spot_detection(self) -> None",
+          "docstring": "Test code quality blind spot detection",
+          "decorators": [],
+          "line_number": 315,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_ux_blind_spot_detection",
+          "signature": "test_ux_blind_spot_detection(self) -> None",
+          "docstring": "Test UX blind spot detection",
+          "decorators": [],
+          "line_number": 329,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_performance_blind_spot_detection",
+          "signature": "test_performance_blind_spot_detection(self) -> None",
+          "docstring": "Test performance blind spot detection",
+          "decorators": [],
+          "line_number": 343,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_complete_multi_agent_analysis",
+          "signature": "test_complete_multi_agent_analysis(self) -> None",
+          "docstring": "Test complete multi-agent analysis",
+          "decorators": [],
+          "line_number": 357,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_blind_spot_coverage",
+          "signature": "test_blind_spot_coverage(self) -> None",
+          "docstring": "Test that blind spots are comprehensively covered",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_confidence_score_distribution",
+          "signature": "test_confidence_score_distribution(self) -> None",
+          "docstring": "Test that confidence scores are well distributed",
+          "decorators": [],
+          "line_number": 395,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_recommendation_quality",
+          "signature": "test_recommendation_quality(self) -> None",
+          "docstring": "Test that recommendations are actionable",
+          "decorators": [],
+          "line_number": 407,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 279
+    },
+    "TestStreamlitAppBlindSpotCompliance": {
+      "responsibility": "Test that Streamlit app complies with blind spot detection findings",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 427,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_compliance",
+          "signature": "test_security_compliance(self) -> None",
+          "docstring": "Test security compliance with blind spot findings",
+          "decorators": [],
+          "line_number": 432,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_devops_compliance",
+          "signature": "test_devops_compliance(self) -> None",
+          "docstring": "Test DevOps compliance with blind spot findings",
+          "decorators": [],
+          "line_number": 447,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_quality_compliance",
+          "signature": "test_code_quality_compliance(self) -> None",
+          "docstring": "Test code quality compliance with blind spot findings",
+          "decorators": [],
+          "line_number": 458,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_ux_compliance",
+          "signature": "test_ux_compliance(self) -> None",
+          "docstring": "Test UX compliance with blind spot findings",
+          "decorators": [],
+          "line_number": 469,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_performance_compliance",
+          "signature": "test_performance_compliance(self) -> None",
+          "docstring": "Test performance compliance with blind spot findings",
+          "decorators": [],
+          "line_number": 479,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 424
+    },
+    "TestBlindSpotDetectionIntegration": {
+      "responsibility": "Test integration between blind spot detection and Streamlit app",
+      "methods": [
+        {
+          "name": "test_blind_spot_to_implementation_mapping",
+          "signature": "test_blind_spot_to_implementation_mapping(self) -> None",
+          "docstring": "Test that blind spots map to actual implementations",
+          "decorators": [],
+          "line_number": 493,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_implementation_coverage_analysis",
+          "signature": "test_implementation_coverage_analysis(self) -> None",
+          "docstring": "Test that implementations cover identified blind spots",
+          "decorators": [],
+          "line_number": 518,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_remaining_blind_spots_prioritization",
+          "signature": "test_remaining_blind_spots_prioritization(self) -> None",
+          "docstring": "Test prioritization of remaining blind spots",
+          "decorators": [],
+          "line_number": 541,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 490
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import sys",
+    "from dataclasses import dataclass",
+    "import pytest",
+    "from diversity_hypothesis.langgraph_diversity_orchestrator import DiversityAgent",
+    "from streamlit_app import DeploymentManager",
+    "from streamlit_app import InputValidator",
+    "from streamlit_app import MonitoringDashboard",
+    "from streamlit_app import OpenFlowQuickstartApp",
+    "from streamlit_app import SecurityManager",
+    "import asyncio"
+  ],
+  "module_docstring": "\n\ud83e\uddea Multi-Agent Blind Spot Detection Test for Streamlit App\n\nThis test applies the diversity hypothesis framework to validate that\nthe Streamlit app implementation addresses all identified blind spots\nfrom the multi-agent analysis.\n\nTests cover:\n- Security Expert blind spots\n- DevOps Engineer blind spots\n- Code Quality Expert blind spots\n- User Experience Advocate blind spots\n- Performance Engineer blind spots\n",
+  "file_structure": {
+    "total_lines": 564,
+    "code_lines": 410,
+    "comment_lines": 48,
+    "blank_lines": 106,
+    "total_nodes": 1729,
+    "class_nodes": 5,
+    "function_nodes": 26,
+    "import_nodes": 6,
+    "expression_nodes": 37,
+    "assignment_nodes": 48,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 564
+  },
+  "used_names": [
+    "__name__",
+    "__file__",
+    "blind_spots_addressed",
+    "has_actionable_keyword",
+    "spot",
+    "any",
+    "dict",
+    "result",
+    "float",
+    "agent_name",
+    "BlindSpotTestResult",
+    "blind_spots_missing",
+    "session_management_addressed",
+    "str",
+    "score",
+    "hasattr",
+    "recommendation",
+    "total_blind_spots_addressed",
+    "list",
+    "dataclass",
+    "pytest",
+    "credential_exposure_addressed",
+    "min",
+    "sys",
+    "len",
+    "total_blind_spots",
+    "addressed_blind_spots",
+    "blind_spots_found",
+    "MultiAgentBlindSpotDetector",
+    "OpenFlowQuickstartApp",
+    "DeploymentManager",
+    "self",
+    "asyncio",
+    "InputValidator",
+    "DiversityAgent",
+    "confidence_score",
+    "results",
+    "remaining_blind_spots",
+    "max",
+    "coverage_rate",
+    "total_blind_spots_missing",
+    "MonitoringDashboard",
+    "actionable_keywords",
+    "keyword",
+    "confidence_scores",
+    "SecurityManager",
+    "all",
+    "detector",
+    "total_blind_spots_found",
+    "isinstance",
+    "security_result"
+  ]
+}

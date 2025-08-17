@@ -98,15 +98,9 @@ if __name__ == "__main__":
         return code
 
     def _generate_imports(self, model: dict[str, Any]) -> str:
-        """Generate import statements"""
-        imports = [
-            "import argparse",
-            "import json",
-            "import sys",
-            "from pathlib import Path",
-            "from typing import Dict, Any, List, Optional",
-        ]
-        return "\n".join(imports)
+        """Generate minimal imports - let the model handle complexity"""
+        # Simple, clean imports - no complex logic
+        return ""
 
     def _generate_classes(self, model: dict[str, Any]) -> str:
         """Generate class definitions"""
@@ -141,11 +135,16 @@ if __name__ == "__main__":
         return class_def
 
     def _generate_method(self, method_def: str) -> str:
-        """Generate a method definition"""
-        # Simple method generation
-        method_name = method_def.split("(")[0] if "(" in method_def else method_def
-
-        return f"""    def {method_name}(self):
+        """Generate clean, simple method definitions"""
+        # Simple parsing - extract method name and signature
+        if "(" in method_def and ")" in method_def:
+            # Keep the full signature as-is for simplicity
+            return f"""    def {method_def}:
+        \"\"\"{method_def}\"\"\"
+        # TODO: Implement {method_def}
+        pass"""
+        else:
+            return f"""    def {method_def}(self):
         \"\"\"{method_def}\"\"\"
         # TODO: Implement {method_def}
         pass"""
@@ -304,9 +303,9 @@ class CodeValidator:
         quality = {
             "syntax_valid": CodeValidator.validate_syntax(file_path),
             "file_exists": Path(file_path).exists(),
-            "file_size": Path(file_path).stat().st_size
-            if Path(file_path).exists()
-            else 0,
+            "file_size": (
+                Path(file_path).stat().st_size if Path(file_path).exists() else 0
+            ),
         }
 
         return quality

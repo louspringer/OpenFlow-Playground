@@ -1,0 +1,57 @@
+{
+  "system_name": "Simple test to verify Cloud Build dependencies.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_imports",
+      "signature": "test_imports() -> bool",
+      "docstring": "Test that all required dependencies can be imported.",
+      "decorators": [],
+      "line_number": 6,
+      "return_type": "bool",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "import langchain",
+    "import langgraph",
+    "import pydantic",
+    "import aiofiles"
+  ],
+  "module_docstring": "Simple test to verify Cloud Build dependencies.",
+  "file_structure": {
+    "total_lines": 47,
+    "code_lines": 33,
+    "comment_lines": 0,
+    "blank_lines": 14,
+    "total_nodes": 129,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 5,
+    "expression_nodes": 12,
+    "assignment_nodes": 1,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 47
+  },
+  "used_names": [
+    "sys",
+    "__name__",
+    "print",
+    "success",
+    "ImportError",
+    "e",
+    "bool",
+    "test_imports"
+  ]
+}

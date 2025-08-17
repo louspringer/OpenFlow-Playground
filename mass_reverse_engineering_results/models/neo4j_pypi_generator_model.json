@@ -1,0 +1,60 @@
+{
+  "system_name": "Neo4j PyPI Generator - Generated from model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 11,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nNeo4j PyPI Generator - Generated from model\n",
+  "file_structure": {
+    "total_lines": 40,
+    "code_lines": 27,
+    "comment_lines": 3,
+    "blank_lines": 10,
+    "total_nodes": 134,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 11,
+    "assignment_nodes": 2,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 40
+  },
+  "used_names": [
+    "open",
+    "key",
+    "len",
+    "__name__",
+    "Exception",
+    "f",
+    "print",
+    "main",
+    "model",
+    "e",
+    "op_pointer",
+    "json",
+    "credential_mappings"
+  ]
+}

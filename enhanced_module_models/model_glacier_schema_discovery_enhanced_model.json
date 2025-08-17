@@ -1,0 +1,51 @@
+{
+  "module_name": "model_glacier_schema_discovery",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/glacier_schema_discovery.py"
+  ],
+  "file_count": 1,
+  "total_lines": 1095,
+  "total_classes": 7,
+  "total_functions": 0,
+  "total_imports": 15,
+  "module_docstring": "\"\"\"\nmodel_glacier_schema_discovery\n\nPurpose: Data models and schemas\nGraph API Level: 3\nProjection System: model_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 1095\nClasses: 7\nFunctions: 0\nImports: 15\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Data models and schemas",
+  "graph_api_level": "3",
+  "projection_system": "model_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "model_glacier_schema_discovery",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 1095,
+      "total_classes": 7,
+      "total_functions": 0,
+      "total_imports": 15
+    },
+    "files": [
+      {
+        "path": "scripts/glacier_schema_discovery.py",
+        "name": "glacier_schema_discovery.py",
+        "stem": "glacier_schema_discovery"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.656523",
+  "version": "1.0.0"
+}

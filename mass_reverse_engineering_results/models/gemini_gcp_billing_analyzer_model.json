@@ -1,0 +1,316 @@
+{
+  "system_name": "\ud83e\udd16 Gemini GCP Billing Analyzer with LangGraph/LangChain",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GeminiGCPBillingAnalyzer": {
+      "responsibility": "Gemini-powered GCP billing analyzer using LangGraph/LangChain",
+      "methods": [
+        {
+          "name": "get_1password_credential",
+          "signature": "get_1password_credential(self, item_name: str, field_name: str) -> Optional[str]",
+          "docstring": "Get credential from 1Password using established patterns",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "item_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "field_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "setup_credentials",
+          "signature": "setup_credentials(self) -> bool",
+          "docstring": "Setup Gemini API credentials from 1Password",
+          "decorators": [],
+          "line_number": 54,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_project_info",
+          "signature": "get_project_info(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get GCP project information",
+          "decorators": [],
+          "line_number": 79,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "load_billing_data",
+          "signature": "load_billing_data(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load the billing data from our generated files",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_langgraph_workflow",
+          "signature": "create_langgraph_workflow(self) -> StateGraph",
+          "docstring": "Create LangGraph workflow for billing analysis",
+          "decorators": [],
+          "line_number": 140,
+          "return_type": "StateGraph",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_analysis_notebook",
+          "signature": "create_analysis_notebook(self, analysis_results: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Create a comprehensive Jupyter notebook with the analysis",
+          "decorators": [],
+          "line_number": 269,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis_results",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_analysis",
+          "signature": "run_analysis(self) -> bool",
+          "docstring": "Run the complete Gemini analysis workflow",
+          "decorators": [],
+          "line_number": 612,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "launch_notebook",
+          "signature": "launch_notebook(self) -> bool",
+          "docstring": "Launch Jupyter notebook with the analysis",
+          "decorators": [],
+          "line_number": 685,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 27
+    },
+    "AnalysisState": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 144
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to run Gemini analysis",
+      "decorators": [],
+      "line_number": 713,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "analyze_cost_trends",
+      "signature": "analyze_cost_trends(billing_data: dict) -> dict",
+      "docstring": "Analyze cost trends and patterns in billing data",
+      "decorators": [
+        "tool"
+      ],
+      "line_number": 163,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "billing_data",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "identify_cost_optimization_opportunities",
+      "signature": "identify_cost_optimization_opportunities(billing_data: dict) -> dict",
+      "docstring": "Identify specific cost optimization opportunities",
+      "decorators": [
+        "tool"
+      ],
+      "line_number": 186,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "billing_data",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "analyze_service_usage_patterns",
+      "signature": "analyze_service_usage_patterns(billing_data: dict) -> dict",
+      "docstring": "Analyze usage patterns for different GCP services",
+      "decorators": [
+        "tool"
+      ],
+      "line_number": 207,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "billing_data",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "generate_cost_forecast",
+      "signature": "generate_cost_forecast(billing_data: dict) -> dict",
+      "docstring": "Generate cost forecast based on historical data",
+      "decorators": [
+        "tool"
+      ],
+      "line_number": 228,
+      "return_type": "dict",
+      "parameters": [
+        {
+          "name": "billing_data",
+          "type": "dict",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import subprocess",
+    "import sys",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "import pandas as pd",
+    "from langchain_core.output_parsers import JsonOutputParser",
+    "from langchain_core.prompts import ChatPromptTemplate",
+    "from langchain_core.tools import tool",
+    "from langchain_google_genai import ChatGoogleGenerativeAI",
+    "from langgraph.graph import END",
+    "from langgraph.graph import StateGraph"
+  ],
+  "module_docstring": "\n\ud83e\udd16 Gemini GCP Billing Analyzer with LangGraph/LangChain\n\nUses Gemini LLM to analyze GCP billing data with 1Password credential management.\nCreates a comprehensive Jupyter notebook with the analysis.\n",
+  "file_structure": {
+    "total_lines": 738,
+    "code_lines": 629,
+    "comment_lines": 28,
+    "blank_lines": 81,
+    "total_nodes": 1851,
+    "class_nodes": 2,
+    "function_nodes": 15,
+    "import_nodes": 13,
+    "expression_nodes": 62,
+    "assignment_nodes": 57,
+    "return_nodes": 22
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 738
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "response",
+    "analysis_results",
+    "f",
+    "results_path",
+    "json_file",
+    "ChatPromptTemplate",
+    "llm",
+    "node_result",
+    "workflow",
+    "AnalysisState",
+    "input",
+    "api_key",
+    "chain",
+    "dict",
+    "analyzer",
+    "result",
+    "billing_data",
+    "os",
+    "possible_items",
+    "open",
+    "isinstance",
+    "str",
+    "summary_file",
+    "Path",
+    "notebook_path",
+    "tool",
+    "subprocess",
+    "END",
+    "generate_cost_forecast",
+    "JsonOutputParser",
+    "billing_account",
+    "json",
+    "notebook_dict",
+    "notebook_content",
+    "sys",
+    "identify_cost_optimization_opportunities",
+    "len",
+    "prompt",
+    "pd",
+    "print",
+    "ChatGoogleGenerativeAI",
+    "main",
+    "generated_time",
+    "self",
+    "StateGraph",
+    "item_name",
+    "project_id",
+    "data_dir",
+    "bool",
+    "GeminiGCPBillingAnalyzer",
+    "analyze_service_usage_patterns",
+    "csv_file",
+    "analyze_cost_trends",
+    "datetime",
+    "data",
+    "initial_state",
+    "node_name",
+    "field_name",
+    "project_info",
+    "e",
+    "Optional",
+    "Any"
+  ]
+}

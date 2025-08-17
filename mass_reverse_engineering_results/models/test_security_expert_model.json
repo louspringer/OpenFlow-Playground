@@ -1,0 +1,191 @@
+{
+  "system_name": "Tests for the SecurityExpert agent.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestSecurityExpert": {
+      "responsibility": "Test the SecurityExpert class.",
+      "methods": [
+        {
+          "name": "security_expert",
+          "signature": "security_expert(self) -> Any",
+          "docstring": "Create a test security expert.",
+          "decorators": [],
+          "line_number": 14,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_expert_initialization",
+          "signature": "test_security_expert_initialization(self, security_expert: Any) -> Any",
+          "docstring": "Test security expert initialization.",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_detect_hallucinations_no_issues",
+          "signature": "test_detect_hallucinations_no_issues(self, security_expert: Any, tmp_path: Any) -> Any",
+          "docstring": "Test hallucination detection with no security issues.",
+          "decorators": [],
+          "line_number": 24,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "tmp_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_detect_hallucinations_with_credentials",
+          "signature": "test_detect_hallucinations_with_credentials(self, security_expert: Any, tmp_path: Any) -> Any",
+          "docstring": "Test hallucination detection with hardcoded credentials.",
+          "decorators": [],
+          "line_number": 46,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "tmp_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_detect_hallucinations_with_subprocess",
+          "signature": "test_detect_hallucinations_with_subprocess(self, security_expert: Any, tmp_path: Any) -> Any",
+          "docstring": "Test hallucination detection with subprocess usage.",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "tmp_path",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_calculate_risk_score",
+          "signature": "test_calculate_risk_score(self, security_expert: Any) -> Any",
+          "docstring": "Test risk score calculation.",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_suggest_fixes",
+          "signature": "test_suggest_fixes(self, security_expert: Any) -> Any",
+          "docstring": "Test fix suggestions.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "security_expert",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 10
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import pytest",
+    "from clewcrew_agents.security_expert import SecurityExpert"
+  ],
+  "module_docstring": "\nTests for the SecurityExpert agent.\n",
+  "file_structure": {
+    "total_lines": 141,
+    "code_lines": 106,
+    "comment_lines": 7,
+    "blank_lines": 28,
+    "total_nodes": 495,
+    "class_nodes": 1,
+    "function_nodes": 3,
+    "import_nodes": 2,
+    "expression_nodes": 13,
+    "assignment_nodes": 12,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 141
+  },
+  "used_names": [
+    "len",
+    "__name__",
+    "no_issues",
+    "test_file",
+    "SecurityExpert",
+    "__file__",
+    "security_expert",
+    "tmp_path",
+    "fixes",
+    "critical_issues",
+    "low_issues",
+    "high_issues",
+    "result",
+    "issues",
+    "pytest"
+  ]
+}

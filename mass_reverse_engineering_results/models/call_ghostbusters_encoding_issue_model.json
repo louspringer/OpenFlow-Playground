@@ -1,0 +1,61 @@
+{
+  "system_name": "Call Ghostbusters about encoding issues and code smell",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 47,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import asyncio",
+    "from pathlib import Path",
+    "from src.ghostbusters.ghostbusters_orchestrator import GhostbustersOrchestrator"
+  ],
+  "module_docstring": "\nCall Ghostbusters about encoding issues and code smell\n",
+  "file_structure": {
+    "total_lines": 63,
+    "code_lines": 40,
+    "comment_lines": 5,
+    "blank_lines": 18,
+    "total_nodes": 223,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 22,
+    "assignment_nodes": 2,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 63
+  },
+  "used_names": [
+    "GhostbustersOrchestrator",
+    "len",
+    "__name__",
+    "Exception",
+    "Path",
+    "call_ghostbusters_about_encoding",
+    "print",
+    "main",
+    "orchestrator",
+    "asyncio",
+    "state",
+    "error",
+    "warning",
+    "e"
+  ]
+}

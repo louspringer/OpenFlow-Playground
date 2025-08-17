@@ -1,0 +1,267 @@
+{
+  "system_name": "SVG Visualization Engine for OpenFlow Playground",
+  "description": "Core infrastructure for generating vector-based visualizations",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SVGVisualizationConfig": {
+      "responsibility": "Configuration for SVG visualization generation",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 22
+    },
+    "SVGVisualizationEngine": {
+      "responsibility": "Core SVG visualization engine for OpenFlow Playground",
+      "methods": [
+        {
+          "name": "load_project_data",
+          "signature": "load_project_data(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load all project data sources for visualization",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_plotly_svg",
+          "signature": "create_plotly_svg(self, data: list[dict], layout: dict, filename: str) -> str",
+          "docstring": "Generate Plotly chart as SVG",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "list[dict]",
+              "default": null
+            },
+            {
+              "name": "layout",
+              "type": "dict",
+              "default": null
+            },
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_matplotlib_svg",
+          "signature": "create_matplotlib_svg(self, plot_func: Any, filename: str) -> str",
+          "docstring": "Generate Matplotlib plot as SVG",
+          "decorators": [],
+          "line_number": 117,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "plot_func",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "filename",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_system_architecture_svg",
+          "signature": "create_system_architecture_svg(self) -> str",
+          "docstring": "Generate system architecture diagram as SVG",
+          "decorators": [],
+          "line_number": 144,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_test_results_svg",
+          "signature": "create_test_results_svg(self) -> str",
+          "docstring": "Generate test results visualization as SVG",
+          "decorators": [],
+          "line_number": 190,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "create_domain_coverage_svg",
+          "signature": "create_domain_coverage_svg(self) -> str",
+          "docstring": "Generate domain coverage visualization as SVG",
+          "decorators": [],
+          "line_number": 229,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_quality_metrics_svg",
+          "signature": "create_quality_metrics_svg(self) -> str",
+          "docstring": "Generate quality metrics visualization as SVG",
+          "decorators": [],
+          "line_number": 271,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_security_posture_svg",
+          "signature": "create_security_posture_svg(self) -> str",
+          "docstring": "Generate security posture visualization as SVG",
+          "decorators": [],
+          "line_number": 306,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_all_visualizations",
+          "signature": "generate_all_visualizations(self) -> dict[Tuple[str, str]]",
+          "docstring": "Generate all SVG visualizations",
+          "decorators": [],
+          "line_number": 341,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 38
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to generate all SVG visualizations",
+      "decorators": [],
+      "line_number": 387,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import logging",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional",
+    "import matplotlib.pyplot as plt",
+    "import plotly.graph_objects as go"
+  ],
+  "module_docstring": "\nSVG Visualization Engine for OpenFlow Playground\nCore infrastructure for generating vector-based visualizations\n",
+  "file_structure": {
+    "total_lines": 406,
+    "code_lines": 302,
+    "comment_lines": 27,
+    "blank_lines": 77,
+    "total_nodes": 1724,
+    "class_nodes": 2,
+    "function_nodes": 11,
+    "import_nodes": 7,
+    "expression_nodes": 63,
+    "assignment_nodes": 58,
+    "return_nodes": 10
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 406
+  },
+  "used_names": [
+    "plt",
+    "__name__",
+    "f",
+    "Exception",
+    "logging",
+    "comp",
+    "width",
+    "dict",
+    "output_path",
+    "Any",
+    "ax",
+    "values",
+    "open",
+    "r",
+    "requirement_counts",
+    "logger",
+    "str",
+    "metrics",
+    "Path",
+    "visualizations",
+    "sum",
+    "dataclass",
+    "height",
+    "svg_content",
+    "list",
+    "primary_color",
+    "categories",
+    "SVGVisualizationConfig",
+    "json",
+    "len",
+    "secondary_color",
+    "FileNotFoundError",
+    "filename",
+    "main",
+    "security_metrics",
+    "SVGVisualizationEngine",
+    "self",
+    "domain_config",
+    "test_data",
+    "go",
+    "kwargs",
+    "font_family",
+    "domain_names",
+    "results",
+    "max",
+    "text_color",
+    "layout",
+    "components",
+    "engine",
+    "success_count",
+    "data",
+    "data_sources",
+    "plot_func",
+    "config",
+    "artifact_counts",
+    "export_format",
+    "failure_count",
+    "int",
+    "warning_color",
+    "dpi",
+    "fig",
+    "background_color",
+    "domains",
+    "e",
+    "domain_name",
+    "success_color",
+    "total_tests",
+    "Optional"
+  ]
+}

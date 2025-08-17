@@ -1,0 +1,62 @@
+{
+  "system_name": "Simple SVG Visualization Dashboard",
+  "description": "Displays the generated SVG visualizations",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path",
+    "import streamlit as st"
+  ],
+  "module_docstring": "\nSimple SVG Visualization Dashboard\nDisplays the generated SVG visualizations\n",
+  "file_structure": {
+    "total_lines": 95,
+    "code_lines": 66,
+    "comment_lines": 8,
+    "blank_lines": 21,
+    "total_nodes": 307,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 20,
+    "assignment_nodes": 4,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 95
+  },
+  "used_names": [
+    "open",
+    "len",
+    "__name__",
+    "svg_files",
+    "Exception",
+    "Path",
+    "f",
+    "sum",
+    "main",
+    "file_size",
+    "svg_content",
+    "svg_dir",
+    "e",
+    "st",
+    "list",
+    "svg_file"
+  ]
+}

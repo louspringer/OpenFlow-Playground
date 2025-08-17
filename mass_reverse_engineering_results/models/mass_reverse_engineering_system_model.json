@@ -1,0 +1,234 @@
+{
+  "system_name": "Mass Reverse Engineering System - Process all Python artifacts in parallel",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "MassReverseEngineeringSystem": {
+      "responsibility": "System for mass reverse engineering of Python artifacts",
+      "methods": [
+        {
+          "name": "discover_python_files",
+          "signature": "discover_python_files(self, exclude_patterns: Optional[List[str]]) -> List[Path]",
+          "docstring": "Discover all Python files in the workspace",
+          "decorators": [],
+          "line_number": 29,
+          "return_type": "List[Path]",
+          "parameters": [
+            {
+              "name": "exclude_patterns",
+              "type": "Optional[List[str]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "reverse_engineer_single_file",
+          "signature": "reverse_engineer_single_file(self, file_path: Path) -> Dict[Tuple[str, Any]]",
+          "docstring": "Reverse engineer a single Python file",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "process_all_files",
+          "signature": "process_all_files(self, max_workers: int) -> None",
+          "docstring": "Process all Python files in parallel",
+          "decorators": [],
+          "line_number": 96,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "max_workers",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_summary",
+          "signature": "_generate_summary(self) -> None",
+          "docstring": "Generate comprehensive summary of results",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "save_results",
+          "signature": "save_results(self, output_dir: str) -> None",
+          "docstring": "Save all results to files",
+          "decorators": [],
+          "line_number": 181,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "output_dir",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_clean_models",
+          "signature": "generate_clean_models(self) -> Dict[Tuple[str, Any]]",
+          "docstring": "Generate clean, error-free models for all successful files",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_clean_model",
+          "signature": "_clean_model(self, model: Dict[Tuple[str, Any]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Clean a model to ensure it's error-free",
+          "decorators": [],
+          "line_number": 238,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function to run mass reverse engineering",
+      "decorators": [],
+      "line_number": 290,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import time",
+    "from pathlib import Path",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Any",
+    "from typing import Optional",
+    "from concurrent.futures import ThreadPoolExecutor",
+    "from concurrent.futures import as_completed",
+    "from enhanced_reverse_engineer import EnhancedReverseEngineer"
+  ],
+  "module_docstring": "\nMass Reverse Engineering System - Process all Python artifacts in parallel\n",
+  "file_structure": {
+    "total_lines": 313,
+    "code_lines": 223,
+    "comment_lines": 27,
+    "blank_lines": 63,
+    "total_nodes": 1703,
+    "class_nodes": 1,
+    "function_nodes": 9,
+    "import_nodes": 6,
+    "expression_nodes": 57,
+    "assignment_nodes": 41,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 313
+  },
+  "used_names": [
+    "clean_method",
+    "__name__",
+    "exclude_patterns",
+    "Exception",
+    "f",
+    "reverse_engineer",
+    "python_files",
+    "avg_lines",
+    "avg_time",
+    "EnhancedReverseEngineer",
+    "max_workers",
+    "output_path",
+    "isinstance",
+    "result",
+    "dict",
+    "Dict",
+    "clean_model",
+    "system",
+    "should_exclude",
+    "model_file",
+    "ThreadPoolExecutor",
+    "str",
+    "output_dir",
+    "Path",
+    "open",
+    "List",
+    "sum",
+    "processing_time",
+    "pattern",
+    "list",
+    "comp_data",
+    "json",
+    "MassReverseEngineeringSystem",
+    "total_size",
+    "models_dir",
+    "len",
+    "future_to_file",
+    "file_path",
+    "time",
+    "summary",
+    "print",
+    "main",
+    "workspace_path",
+    "future",
+    "self",
+    "comp_name",
+    "error",
+    "clean_comp",
+    "clean_models",
+    "success_rate",
+    "as_completed",
+    "clean_func",
+    "avg_size",
+    "total_time",
+    "method",
+    "safe_name",
+    "start_time",
+    "model",
+    "int",
+    "total_lines",
+    "func",
+    "Optional",
+    "e",
+    "Any",
+    "executor"
+  ]
+}

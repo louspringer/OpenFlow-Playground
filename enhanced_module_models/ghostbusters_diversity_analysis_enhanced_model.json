@@ -1,0 +1,57 @@
+{
+  "module_name": "ghostbusters_diversity_analysis",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "ghostbusters_diversity_analysis.py",
+    "src/multi_agent_testing/multi_dimensional_smoke_test.py"
+  ],
+  "file_count": 2,
+  "total_lines": 877,
+  "total_classes": 1,
+  "total_functions": 3,
+  "total_imports": 9,
+  "module_docstring": "\"\"\"\nghostbusters_diversity_analysis\n\nPurpose: General functionality\nGraph API Level: 2\nProjection System: general_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 877\nClasses: 1\nFunctions: 3\nImports: 9\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "2",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "ghostbusters_diversity_analysis",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 877,
+      "total_classes": 1,
+      "total_functions": 3,
+      "total_imports": 9
+    },
+    "files": [
+      {
+        "path": "ghostbusters_diversity_analysis.py",
+        "name": "ghostbusters_diversity_analysis.py",
+        "stem": "ghostbusters_diversity_analysis"
+      },
+      {
+        "path": "src/multi_agent_testing/multi_dimensional_smoke_test.py",
+        "name": "multi_dimensional_smoke_test.py",
+        "stem": "multi_dimensional_smoke_test"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.033071",
+  "version": "1.0.0"
+}

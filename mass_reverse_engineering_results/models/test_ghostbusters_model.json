@@ -1,0 +1,151 @@
+{
+  "system_name": "Test Ghostbusters Module",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestGhostbustersOrchestrator": {
+      "responsibility": "Test the Ghostbusters Orchestrator class",
+      "methods": [
+        {
+          "name": "test_init",
+          "signature": "test_init(self) -> Any",
+          "docstring": "Test orchestrator initialization",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_add_agent",
+          "signature": "test_add_agent(self) -> Any",
+          "docstring": "Test adding an agent",
+          "decorators": [],
+          "line_number": 26,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_investigate_quality_issues_file",
+          "signature": "test_investigate_quality_issues_file(self) -> Any",
+          "docstring": "Test investigating quality issues for a file",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_investigate_quality_issues_directory",
+          "signature": "test_investigate_quality_issues_directory(self) -> Any",
+          "docstring": "Test investigating quality issues for a directory",
+          "decorators": [],
+          "line_number": 51,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_investigation_summary",
+          "signature": "test_get_investigation_summary(self) -> Any",
+          "docstring": "Test getting investigation summary",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 15
+    },
+    "TestRunGhostbusters": {
+      "responsibility": "Test the run_ghostbusters function",
+      "methods": [
+        {
+          "name": "test_run_ghostbusters_default",
+          "signature": "test_run_ghostbusters_default(self) -> Any",
+          "docstring": "Test running ghostbusters with default path",
+          "decorators": [],
+          "line_number": 84,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_run_ghostbusters_custom_path",
+          "signature": "test_run_ghostbusters_custom_path(self) -> Any",
+          "docstring": "Test running ghostbusters with custom path",
+          "decorators": [],
+          "line_number": 100,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 81
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from unittest.mock import Mock",
+    "from unittest.mock import patch",
+    "import pytest",
+    "from src.ghostbusters import GhostbustersOrchestrator",
+    "from src.ghostbusters import run_ghostbusters"
+  ],
+  "module_docstring": "\nTest Ghostbusters Module\n\nThis module tests the Ghostbusters orchestrator functionality.\n",
+  "file_structure": {
+    "total_lines": 118,
+    "code_lines": 85,
+    "comment_lines": 3,
+    "blank_lines": 30,
+    "total_nodes": 512,
+    "class_nodes": 2,
+    "function_nodes": 7,
+    "import_nodes": 3,
+    "expression_nodes": 13,
+    "assignment_nodes": 23,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 118
+  },
+  "used_names": [
+    "GhostbustersOrchestrator",
+    "__name__",
+    "mock_instance",
+    "__file__",
+    "summary",
+    "run_ghostbusters",
+    "Mock",
+    "orchestrator",
+    "patch",
+    "mock_orchestrator",
+    "mock_path",
+    "result",
+    "pytest"
+  ]
+}

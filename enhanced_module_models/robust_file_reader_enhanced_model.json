@@ -1,0 +1,51 @@
+{
+  "module_name": "robust_file_reader",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/robust_file_reader.py"
+  ],
+  "file_count": 1,
+  "total_lines": 104,
+  "total_classes": 1,
+  "total_functions": 1,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\nrobust_file_reader\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 104\nClasses: 1\nFunctions: 1\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "robust_file_reader",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 104,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "scripts/robust_file_reader.py",
+        "name": "robust_file_reader.py",
+        "stem": "robust_file_reader"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.082790",
+  "version": "1.0.0"
+}

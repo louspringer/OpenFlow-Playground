@@ -1,0 +1,784 @@
+{
+  "system_name": "comprehensive_auto_formatter",
+  "description": "Comprehensive auto-formatting system using abstract factory pattern for artifact-specific formatters",
+  "purpose": "Ensure all code changes are properly formatted using deterministic tools before they reach the repository",
+  "graph_api_level": 3,
+  "projection_system": "final_projection_system",
+  "components": {
+    "Formatterfactory": {
+      "responsibility": "Abstract factory for creating artifact-specific formatters",
+      "methods": [
+        {
+          "name": "create_formatter",
+          "signature": "create_formatter(self) -> Any",
+          "docstring": "create_formatter",
+          "decorators": [],
+          "line_number": 21,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_types",
+          "signature": "get_supported_types(self) -> Any",
+          "docstring": "get_supported_types",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "register_formatter",
+          "signature": "register_formatter(self) -> Any",
+          "docstring": "register_formatter",
+          "decorators": [],
+          "line_number": 29,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_for_file",
+          "signature": "get_formatter_for_file(self) -> Any",
+          "docstring": "get_formatter_for_file",
+          "decorators": [],
+          "line_number": 33,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 18
+    },
+    "Baseformatter": {
+      "responsibility": "Abstract base class for all formatters",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 41,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 45,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 49,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 53,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 38
+    },
+    "Pythonformatter": {
+      "responsibility": "Handles Python files with Black + autopep8 + ruff",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 65,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 69,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 73,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 58
+    },
+    "Typescriptformatter": {
+      "responsibility": "Handles TypeScript files with Prettier + ESLint",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 81,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 93,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 78
+    },
+    "Javascriptformatter": {
+      "responsibility": "Handles JavaScript files with Prettier + ESLint",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 109,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 98
+    },
+    "Shellformatter": {
+      "responsibility": "Handles shell scripts with shfmt",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 121,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 125,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 133,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 118
+    },
+    "Markdownformatter": {
+      "responsibility": "Handles markdown files with Prettier",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 141,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 145,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 149,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 138
+    },
+    "Yamlformatter": {
+      "responsibility": "Handles YAML files with yamllint + Prettier",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 161,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 165,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 173,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 158
+    },
+    "Jsonformatter": {
+      "responsibility": "Handles JSON files with Prettier",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 181,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 185,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 189,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 193,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 178
+    },
+    "Goformatter": {
+      "responsibility": "Handles Go files with go fmt",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 201,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 205,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 209,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 213,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 198
+    },
+    "Rustformatter": {
+      "responsibility": "Handles Rust files with rustfmt",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 225,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 229,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 218
+    },
+    "Javaformatter": {
+      "responsibility": "Handles Java files with google-java-format",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self) -> Any",
+          "docstring": "format_file(file_path: Path) -> FormatResult",
+          "decorators": [],
+          "line_number": 241,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_formatting",
+          "signature": "check_formatting(self) -> Any",
+          "docstring": "check_formatting(file_path: Path) -> bool",
+          "decorators": [],
+          "line_number": 245,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_name",
+          "signature": "get_formatter_name(self) -> Any",
+          "docstring": "get_formatter_name() -> str",
+          "decorators": [],
+          "line_number": 249,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_supported_extensions",
+          "signature": "get_supported_extensions(self) -> Any",
+          "docstring": "get_supported_extensions() -> List[str]",
+          "decorators": [],
+          "line_number": 253,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 238
+    },
+    "Autoformatter": {
+      "responsibility": "Main orchestrator using factory pattern",
+      "methods": [
+        {
+          "name": "format_all_files",
+          "signature": "format_all_files(self) -> Any",
+          "docstring": "format_all_files",
+          "decorators": [],
+          "line_number": 261,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_formatter_for_file",
+          "signature": "get_formatter_for_file(self) -> Any",
+          "docstring": "get_formatter_for_file",
+          "decorators": [],
+          "line_number": 265,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_formatting_pipeline",
+          "signature": "run_formatting_pipeline(self) -> Any",
+          "docstring": "run_formatting_pipeline",
+          "decorators": [],
+          "line_number": 269,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_summary_report",
+          "signature": "generate_summary_report(self) -> Any",
+          "docstring": "generate_summary_report",
+          "decorators": [],
+          "line_number": 273,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 258
+    },
+    "Filediscovery": {
+      "responsibility": "Find files to format with proper exclusions",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 278
+    },
+    "Resulttracking": {
+      "responsibility": "Track formatting results and errors",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 282
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main entry point for comprehensive_auto_formatter",
+      "decorators": [],
+      "line_number": 286,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import argparse",
+    "import json",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\ncomprehensive_auto_formatter\nComprehensive auto-formatting system using abstract factory pattern for artifact-specific formatters\n\nPurpose: Ensure all code changes are properly formatted using deterministic tools before they reach the repository\nGraph API Level: 3\nProjection System: final_projection_system\n",
+  "file_structure": {
+    "total_lines": 295,
+    "code_lines": 153,
+    "comment_lines": 53,
+    "blank_lines": 89,
+    "total_nodes": 350,
+    "class_nodes": 15,
+    "function_nodes": 53,
+    "import_nodes": 5,
+    "expression_nodes": 73,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 295
+  },
+  "used_names": [
+    "print",
+    "__name__",
+    "main"
+  ]
+}

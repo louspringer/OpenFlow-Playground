@@ -1,0 +1,254 @@
+{
+  "system_name": "Build Expert Agent for clewcrew",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BuildExpert": {
+      "responsibility": "Build expert that analyzes existing build configuration and logs",
+      "methods": [
+        {
+          "name": "detect_hallucinations",
+          "signature": "detect_hallucinations(self, project_path: Path) -> HallucinationResult",
+          "docstring": "Analyze existing build data and provide recommendations",
+          "decorators": [],
+          "line_number": 18,
+          "return_type": "HallucinationResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "generate_quality_metrics",
+          "signature": "generate_quality_metrics(self, project_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate build quality metrics for integration with quality system.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            Dictionary containing build quality metrics",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "provide_quality_recommendations",
+          "signature": "provide_quality_recommendations(self, project_path: Path) -> list[str]",
+          "docstring": "Provide build quality improvement recommendations.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            List of quality improvement recommendations",
+          "decorators": [],
+          "line_number": 112,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "assess_quality_impact",
+          "signature": "assess_quality_impact(self, changes: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Assess the impact of proposed changes on build quality.\n        \n        Args:\n            changes: List of proposed changes\n            \n        Returns:\n            Dictionary containing quality impact assessment",
+          "decorators": [],
+          "line_number": 125,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "changes",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_name",
+          "signature": "get_quality_metric_name(self) -> str",
+          "docstring": "Get the name of the build quality metric.",
+          "decorators": [],
+          "line_number": 162,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_weight",
+          "signature": "get_quality_metric_weight(self) -> float",
+          "docstring": "Get the weight of the build quality metric.",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_existing_build_data",
+          "signature": "_find_existing_build_data(self, project_path: Path) -> list[Path]",
+          "docstring": "Find existing build configuration and log files",
+          "decorators": [],
+          "line_number": 170,
+          "return_type": "list[Path]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_build_config",
+          "signature": "_analyze_build_config(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing build configuration files",
+          "decorators": [],
+          "line_number": 194,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_build_logs",
+          "signature": "_analyze_build_logs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing build logs",
+          "decorators": [],
+          "line_number": 218,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "suggest_fixes",
+          "signature": "suggest_fixes(self, issues: list[dict[Tuple[str, Any]]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Suggest fixes based on existing build data",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 15
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_expert import BaseExpert",
+    "from base_expert import HallucinationResult"
+  ],
+  "module_docstring": "\nBuild Expert Agent for clewcrew\n\nCRITICAL: This agent analyzes existing build configuration and logs.\nIt does NOT run expensive build tools.\n",
+  "file_structure": {
+    "total_lines": 267,
+    "code_lines": 205,
+    "comment_lines": 17,
+    "blank_lines": 45,
+    "total_nodes": 921,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 3,
+    "expression_nodes": 24,
+    "assignment_nodes": 35,
+    "return_nodes": 11
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 267
+  },
+  "used_names": [
+    "Exception",
+    "change_type",
+    "f",
+    "log_path",
+    "change",
+    "dict",
+    "float",
+    "result",
+    "content",
+    "config_file",
+    "open",
+    "str",
+    "BaseExpert",
+    "build_quality_risks",
+    "changes",
+    "output_dir",
+    "Path",
+    "log_file",
+    "pyproject_file",
+    "log_issues",
+    "output_dirs",
+    "fixes",
+    "config_files",
+    "log_files",
+    "list",
+    "config_issues",
+    "dir_path",
+    "len",
+    "quality_score",
+    "build_data",
+    "file_path",
+    "hallucinations",
+    "self",
+    "issue",
+    "risk_level",
+    "HallucinationResult",
+    "recommendations",
+    "e",
+    "project_path",
+    "Any",
+    "issues",
+    "build_files",
+    "confidence"
+  ]
+}

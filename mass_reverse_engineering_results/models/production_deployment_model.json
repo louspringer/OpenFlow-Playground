@@ -1,0 +1,352 @@
+{
+  "system_name": "Production Deployment Script with Quality Gates Enforcement",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ProjectModelConfig": {
+      "responsibility": "Project model configuration projection for tool settings",
+      "methods": [
+        {
+          "name": "_load_black_config",
+          "signature": "_load_black_config(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load Black configuration from project model",
+          "decorators": [],
+          "line_number": 66,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_quality_gates",
+          "signature": "_load_quality_gates(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load quality gates configuration from project model",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 59
+    },
+    "ProductionDeployment": {
+      "responsibility": "Production deployment with quality gates enforcement using AST-based tools",
+      "methods": [
+        {
+          "name": "run_quality_gate",
+          "signature": "run_quality_gate(self, gate_name: str, gate_config: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Run a specific quality gate",
+          "decorators": [],
+          "line_number": 165,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "gate_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "gate_config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_meta_testing_gate",
+          "signature": "_run_meta_testing_gate(self) -> bool",
+          "docstring": "Run meta-testing quality gate",
+          "decorators": [],
+          "line_number": 182,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "_run_ast_based_code_quality_analysis",
+          "signature": "_run_ast_based_code_quality_analysis(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run comprehensive code quality analysis using our AST-based tools",
+          "decorators": [],
+          "line_number": 207,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_code_quality_gate",
+          "signature": "_run_code_quality_gate(self) -> bool",
+          "docstring": "Run code quality gate using our AST-based tools",
+          "decorators": [],
+          "line_number": 317,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_performance_gate",
+          "signature": "_run_performance_gate(self) -> bool",
+          "docstring": "Run performance gate",
+          "decorators": [],
+          "line_number": 379,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_bandit_scan_api",
+          "signature": "_run_bandit_scan_api(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run Bandit security scan using API",
+          "decorators": [],
+          "line_number": 408,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_bandit_scan_subprocess",
+          "signature": "_run_bandit_scan_subprocess(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Run Bandit security scan using subprocess (fallback)",
+          "decorators": [],
+          "line_number": 433,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_security_gate",
+          "signature": "_run_security_gate(self) -> bool",
+          "docstring": "Run security gate using API-based tools when possible",
+          "decorators": [],
+          "line_number": 449,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_integration_gate",
+          "signature": "_run_integration_gate(self) -> bool",
+          "docstring": "Run integration gate",
+          "decorators": [],
+          "line_number": 499,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_all_quality_gates",
+          "signature": "run_all_quality_gates(self) -> bool",
+          "docstring": "Run all quality gates",
+          "decorators": [],
+          "line_number": 521,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "check_deployment_readiness",
+          "signature": "check_deployment_readiness(self) -> bool",
+          "docstring": "Check if system is ready for production deployment",
+          "decorators": [],
+          "line_number": 560,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "deploy_to_production",
+          "signature": "deploy_to_production(self) -> bool",
+          "docstring": "Deploy to production (simulated)",
+          "decorators": [],
+          "line_number": 592,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_post_deployment_checks",
+          "signature": "run_post_deployment_checks(self) -> bool",
+          "docstring": "Run post-deployment validation",
+          "decorators": [],
+          "line_number": 615,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "execute_deployment",
+          "signature": "execute_deployment(self) -> bool",
+          "docstring": "Execute the complete production deployment process",
+          "decorators": [],
+          "line_number": 638,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 143
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main deployment execution",
+      "decorators": [],
+      "line_number": 666,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "import sys",
+    "import time",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from ast_enhanced_linter import ASTEnhancedLinter",
+    "from universal_ast_enhanced_linter_model import create_universal_ast_enhanced_linter_model",
+    "from black import FileMode",
+    "from black import format_file_contents",
+    "from ruff import check",
+    "from ruff.settings import Settings",
+    "from bandit.core import manager",
+    "from bandit.core.config_manager import BanditConfig",
+    "import tomllib"
+  ],
+  "module_docstring": "\nProduction Deployment Script with Quality Gates Enforcement\n\nThis script implements the production deployment process based on meta-testing analysis\nfindings. It enforces all quality gates and ensures proper workflow compliance.\nUses our AST-based tools for comprehensive code quality analysis and auto-fixing.\nProjects all tool configurations from our project model registry.\n",
+  "file_structure": {
+    "total_lines": 691,
+    "code_lines": 526,
+    "comment_lines": 40,
+    "blank_lines": 125,
+    "total_nodes": 2714,
+    "class_nodes": 2,
+    "function_nodes": 19,
+    "import_nodes": 14,
+    "expression_nodes": 133,
+    "assignment_nodes": 66,
+    "return_nodes": 44
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 691
+  },
+  "used_names": [
+    "Exception",
+    "BLACK_API_AVAILABLE",
+    "analysis_results",
+    "fixes_applied",
+    "settings",
+    "dict",
+    "tomllib",
+    "normalized_formatted",
+    "r",
+    "Path",
+    "ImportError",
+    "list",
+    "print",
+    "bool",
+    "diagnostics",
+    "deployer",
+    "model",
+    "AST_LINTER_AVAILABLE",
+    "domain_name",
+    "gate_passed",
+    "__name__",
+    "BanditConfig",
+    "python_files",
+    "check",
+    "formatted_content",
+    "target_path",
+    "analysis",
+    "create_universal_ast_enhanced_linter_model",
+    "normalized_original",
+    "git_status",
+    "execution_time",
+    "ASTEnhancedLinter",
+    "subprocess",
+    "time",
+    "success",
+    "ProductionDeployment",
+    "config",
+    "start_time",
+    "BANDIT_AVAILABLE",
+    "quality_gates",
+    "issues",
+    "d",
+    "format_file_contents",
+    "total_issues",
+    "f",
+    "git_branch",
+    "manager",
+    "Settings",
+    "result",
+    "content",
+    "open",
+    "sum",
+    "black_config",
+    "KeyboardInterrupt",
+    "project_config",
+    "UNIVERSAL_AST_AVAILABLE",
+    "main",
+    "domain_config",
+    "high_severity",
+    "issue",
+    "results",
+    "all_passed",
+    "RUFF_AVAILABLE",
+    "FileMode",
+    "Any",
+    "QUALITY_GATES",
+    "set",
+    "black_mode",
+    "str",
+    "gate_name",
+    "current_branch",
+    "json",
+    "manager_obj",
+    "sys",
+    "len",
+    "file_path",
+    "gate_config",
+    "self",
+    "e",
+    "ProjectModelConfig",
+    "high_issues"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "system_name": "Regenerate all .mdc files using the Python model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Regenerate all .mdc files",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from mdc_generator import MDCGenerator"
+  ],
+  "module_docstring": "\nRegenerate all .mdc files using the Python model\n",
+  "file_structure": {
+    "total_lines": 49,
+    "code_lines": 32,
+    "comment_lines": 4,
+    "blank_lines": 13,
+    "total_nodes": 180,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 14,
+    "assignment_nodes": 3,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 49
+  },
+  "used_names": [
+    "sys",
+    "MDCGenerator",
+    "len",
+    "__name__",
+    "str",
+    "Exception",
+    "Path",
+    "mdc_files",
+    "__file__",
+    "print",
+    "main",
+    "generator",
+    "file",
+    "mdc_file",
+    "e",
+    "list",
+    "invalid_files"
+  ]
+}

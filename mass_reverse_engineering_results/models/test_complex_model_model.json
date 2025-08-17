@@ -1,0 +1,56 @@
+{
+  "system_name": "Test Complex Model",
+  "description": "Battle test our complex model on real files",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_complex_model",
+      "signature": "test_complex_model() -> None",
+      "docstring": "Test the complex model on real files",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from src.complex_model_generator import create_complex_model"
+  ],
+  "module_docstring": "\nTest Complex Model\nBattle test our complex model on real files\n",
+  "file_structure": {
+    "total_lines": 63,
+    "code_lines": 45,
+    "comment_lines": 3,
+    "blank_lines": 15,
+    "total_nodes": 336,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 1,
+    "expression_nodes": 28,
+    "assignment_nodes": 3,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 63
+  },
+  "used_names": [
+    "analysis",
+    "len",
+    "__name__",
+    "strategy",
+    "create_complex_model",
+    "Exception",
+    "test_file",
+    "print",
+    "model",
+    "test_complex_model",
+    "e"
+  ]
+}

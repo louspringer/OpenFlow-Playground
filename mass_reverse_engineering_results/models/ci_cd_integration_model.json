@@ -1,0 +1,353 @@
+{
+  "system_name": "CI/CD Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CICDIntegration": {
+      "responsibility": "Integrates quality enforcement with CI/CD pipelines using multi-agent analysis",
+      "methods": [
+        {
+          "name": "_detect_ci_environment",
+          "signature": "_detect_ci_environment(self) -> str",
+          "docstring": "Detect which CI/CD environment we're running in",
+          "decorators": [],
+          "line_number": 36,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_ci_config",
+          "signature": "_load_ci_config(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load CI/CD specific configuration",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_environment_rules",
+          "signature": "_load_environment_rules(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Load environment-specific quality rules",
+          "decorators": [],
+          "line_number": 71,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "run_ci_quality_check",
+          "signature": "run_ci_quality_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run quality check for CI/CD pipeline",
+          "decorators": [],
+          "line_number": 106,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_configure_ci_enforcement",
+          "signature": "_configure_ci_enforcement(self) -> None",
+          "docstring": "Configure quality enforcement for CI environment",
+          "decorators": [],
+          "line_number": 137,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_run_quality_check",
+          "signature": "_run_quality_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run the actual quality check using multi-agent analysis",
+          "decorators": [],
+          "line_number": 163,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_run_multi_agent_analysis",
+          "signature": "_run_multi_agent_analysis(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run quality analysis using the multi-agent framework",
+          "decorators": [],
+          "line_number": 196,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_run_fallback_quality_check",
+          "signature": "_run_fallback_quality_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Run fallback quality check when multi-agent analysis fails",
+          "decorators": [],
+          "line_number": 216,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_ci_analysis_results",
+          "signature": "_get_ci_analysis_results(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get analysis results for CI environment",
+          "decorators": [],
+          "line_number": 226,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_ci_report",
+          "signature": "_generate_ci_report(self, quality_result: dict[Tuple[str, Any]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate CI-specific quality report",
+          "decorators": [],
+          "line_number": 279,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "quality_result",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_build_info",
+          "signature": "_get_build_info(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get build information from CI environment",
+          "decorators": [],
+          "line_number": 304,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_save_ci_report",
+          "signature": "_save_ci_report(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Save CI report for artifacts and review",
+          "decorators": [],
+          "line_number": 338,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_take_ci_actions",
+          "signature": "_take_ci_actions(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Take CI-specific actions based on quality results",
+          "decorators": [],
+          "line_number": 365,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_log_ci_failure",
+          "signature": "_log_ci_failure(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Log detailed failure information for CI",
+          "decorators": [],
+          "line_number": 389,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_set_ci_status",
+          "signature": "_set_ci_status(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Set CI status based on quality results",
+          "decorators": [],
+          "line_number": 414,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_set_github_status",
+          "signature": "_set_github_status(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Set GitHub Actions status",
+          "decorators": [],
+          "line_number": 422,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_set_gitlab_status",
+          "signature": "_set_gitlab_status(self, ci_report: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Set GitLab CI status",
+          "decorators": [],
+          "line_number": 429,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "ci_report",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_ci_summary",
+          "signature": "get_ci_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of CI quality check results",
+          "decorators": [],
+          "line_number": 436,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "cleanup_ci_artifacts",
+          "signature": "cleanup_ci_artifacts(self) -> None",
+          "docstring": "Clean up CI artifacts after build",
+          "decorators": [],
+          "line_number": 450,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 20
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "import os",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.code_quality_system.multi_agent_integration import QualityMultiAgentAdapter",
+    "from src.code_quality_system.quality_enforcer import QualityEnforcementError",
+    "from src.code_quality_system.quality_enforcer import QualityEnforcer",
+    "import json",
+    "import sys",
+    "from clewcrew_core.orchestrator import ClewcrewOrchestrator",
+    "import json",
+    "import json",
+    "import xml.etree.ElementTree as ET",
+    "import json"
+  ],
+  "module_docstring": "\nCI/CD Integration\n\nIntegrates quality enforcement with CI/CD pipelines using multi-agent analysis.\n",
+  "file_structure": {
+    "total_lines": 464,
+    "code_lines": 330,
+    "comment_lines": 50,
+    "blank_lines": 84,
+    "total_nodes": 2118,
+    "class_nodes": 1,
+    "function_nodes": 17,
+    "import_nodes": 13,
+    "expression_nodes": 71,
+    "assignment_nodes": 49,
+    "return_nodes": 22
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 464
+  },
+  "used_names": [
+    "QualityMultiAgentAdapter",
+    "__name__",
+    "analysis_results",
+    "ci_report",
+    "Exception",
+    "f",
+    "logging",
+    "QualityEnforcementError",
+    "QualityEnforcer",
+    "flake8_output",
+    "orchestrator",
+    "dict",
+    "result",
+    "environment",
+    "float",
+    "os",
+    "ClewcrewOrchestrator",
+    "open",
+    "str",
+    "metrics_dir",
+    "Path",
+    "ET",
+    "threshold",
+    "coverage_file",
+    "block_on_failure",
+    "status",
+    "multi_agent_results",
+    "metrics_file",
+    "env_rules",
+    "json",
+    "root",
+    "sys",
+    "len",
+    "flake8_data",
+    "rules",
+    "self",
+    "line_rate",
+    "quality_metrics",
+    "enforcement_result",
+    "build_info",
+    "coverage_elem",
+    "gate_summary",
+    "report_path",
+    "rec",
+    "error_message",
+    "project_path",
+    "enforcement_level",
+    "auto_fix_enabled",
+    "config",
+    "tree",
+    "quality_result",
+    "e",
+    "security_output",
+    "Any",
+    "security_data"
+  ]
+}

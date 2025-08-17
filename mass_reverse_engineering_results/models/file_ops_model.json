@@ -1,0 +1,148 @@
+{
+  "system_name": "File Operations",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "FileOperations": {
+      "responsibility": "Safe file and path operations for Ghostbusters components",
+      "methods": [
+        {
+          "name": "read_file_safe",
+          "signature": "read_file_safe(self, file_path: str) -> str",
+          "docstring": "Safely read a file with error handling",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 15,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "write_file_safe",
+          "signature": "write_file_safe(self, file_path: str, content: str) -> bool",
+          "docstring": "Safely write content to a file",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 26,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "content",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "ensure_directory",
+          "signature": "ensure_directory(self, directory_path: str) -> bool",
+          "docstring": "Ensure a directory exists, creating it if necessary",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 37,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "directory_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "list_files",
+          "signature": "list_files(self, directory_path: str, pattern: str) -> List[Path]",
+          "docstring": "List files in a directory matching a pattern",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 47,
+          "return_type": "List[Path]",
+          "parameters": [
+            {
+              "name": "directory_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "pattern",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import List"
+  ],
+  "module_docstring": "\nFile Operations\n\nCommon file and path operations for Ghostbusters components.\n",
+  "file_structure": {
+    "total_lines": 56,
+    "code_lines": 47,
+    "comment_lines": 0,
+    "blank_lines": 9,
+    "total_nodes": 238,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 9,
+    "assignment_nodes": 4,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 56
+  },
+  "used_names": [
+    "str",
+    "Exception",
+    "Path",
+    "file_path",
+    "path",
+    "List",
+    "FileNotFoundError",
+    "IOError",
+    "directory_path",
+    "pattern",
+    "e",
+    "bool",
+    "list",
+    "content",
+    "staticmethod"
+  ]
+}

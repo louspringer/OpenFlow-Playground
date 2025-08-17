@@ -1,0 +1,285 @@
+{
+  "system_name": "Test Expert Agent for clewcrew",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestExpert": {
+      "responsibility": "Test expert that analyzes existing test outputs and configuration",
+      "methods": [
+        {
+          "name": "detect_hallucinations",
+          "signature": "detect_hallucinations(self, project_path: Path) -> HallucinationResult",
+          "docstring": "Analyze existing test data and provide recommendations",
+          "decorators": [],
+          "line_number": 19,
+          "return_type": "HallucinationResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "generate_quality_metrics",
+          "signature": "generate_quality_metrics(self, project_path: Path) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate test quality metrics for integration with quality system.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            Dictionary containing test quality metrics",
+          "decorators": [],
+          "line_number": 78,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "provide_quality_recommendations",
+          "signature": "provide_quality_recommendations(self, project_path: Path) -> list[str]",
+          "docstring": "Provide test quality improvement recommendations.\n        \n        Args:\n            project_path: Path to the project to analyze\n            \n        Returns:\n            List of quality improvement recommendations",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "assess_quality_impact",
+          "signature": "assess_quality_impact(self, changes: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, Any]]",
+          "docstring": "Assess the impact of proposed changes on test quality.\n        \n        Args:\n            changes: List of proposed changes\n            \n        Returns:\n            Dictionary containing quality impact assessment",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "changes",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_name",
+          "signature": "get_quality_metric_name(self) -> str",
+          "docstring": "Get the name of the test quality metric.",
+          "decorators": [],
+          "line_number": 168,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_quality_metric_weight",
+          "signature": "get_quality_metric_weight(self) -> float",
+          "docstring": "Get the weight of the test quality metric.",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_find_existing_test_data",
+          "signature": "_find_existing_test_data(self, project_path: Path) -> list[Path]",
+          "docstring": "Find existing test configuration and output files",
+          "decorators": [],
+          "line_number": 176,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_analyze_test_config",
+          "signature": "_analyze_test_config(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing test configuration files",
+          "decorators": [],
+          "line_number": 211,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_analyze_test_outputs",
+          "signature": "_analyze_test_outputs(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing test output files",
+          "decorators": [],
+          "line_number": 253,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_analyze_coverage_reports",
+          "signature": "_analyze_coverage_reports(self, project_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze existing coverage reports",
+          "decorators": [],
+          "line_number": 299,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "suggest_fixes",
+          "signature": "suggest_fixes(self, issues: list[dict[Tuple[str, Any]]]) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Suggest fixes based on existing test data",
+          "decorators": [],
+          "line_number": 349,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 16
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "import xml.etree.ElementTree as ET",
+    "from base_expert import BaseExpert",
+    "from base_expert import HallucinationResult"
+  ],
+  "module_docstring": "\nTest Expert Agent for clewcrew\n\nCRITICAL: This agent analyzes existing test outputs and configuration.\nIt does NOT run expensive testing tools.\n",
+  "file_structure": {
+    "total_lines": 380,
+    "code_lines": 294,
+    "comment_lines": 26,
+    "blank_lines": 60,
+    "total_nodes": 1387,
+    "class_nodes": 1,
+    "function_nodes": 2,
+    "import_nodes": 4,
+    "expression_nodes": 34,
+    "assignment_nodes": 49,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 380
+  },
+  "used_names": [
+    "coverage_xml",
+    "Exception",
+    "change_type",
+    "f",
+    "index_file",
+    "output_files",
+    "change",
+    "coverage_issues",
+    "dict",
+    "result",
+    "float",
+    "content",
+    "test_dirs",
+    "config_file",
+    "open",
+    "str",
+    "BaseExpert",
+    "Path",
+    "changes",
+    "ET",
+    "skipped",
+    "fixes",
+    "config_files",
+    "list",
+    "root",
+    "config_issues",
+    "dir_path",
+    "len",
+    "quality_score",
+    "file_path",
+    "result_file",
+    "hallucinations",
+    "test_dir",
+    "self",
+    "test_data",
+    "line_rate",
+    "test_quality_risks",
+    "htmlcov_dir",
+    "issue",
+    "risk_level",
+    "coverage_elem",
+    "result_files",
+    "output_file",
+    "failures",
+    "HallucinationResult",
+    "pytest_file",
+    "tree",
+    "pytest_files",
+    "recommendations",
+    "e",
+    "project_path",
+    "Any",
+    "issues",
+    "test_files",
+    "output_issues",
+    "confidence"
+  ]
+}

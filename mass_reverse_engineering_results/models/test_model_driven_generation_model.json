@@ -1,0 +1,65 @@
+{
+  "system_name": "Test Model-Driven Code Generation",
+  "description": "Demonstrates our existing model-driven projection system",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_model_driven_generation",
+      "signature": "test_model_driven_generation() -> Any",
+      "docstring": "Test our model-driven code generation system",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "from src.model_driven_projection import FinalProjectionSystem"
+  ],
+  "module_docstring": "\nTest Model-Driven Code Generation\nDemonstrates our existing model-driven projection system\n",
+  "file_structure": {
+    "total_lines": 56,
+    "code_lines": 39,
+    "comment_lines": 5,
+    "blank_lines": 12,
+    "total_nodes": 241,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 18,
+    "assignment_nodes": 5,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 56
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "python_files",
+    "os",
+    "open",
+    "system",
+    "files",
+    "projected",
+    "projected_file",
+    "test_model_driven_generation",
+    "root",
+    "len",
+    "print",
+    "dirs",
+    "file",
+    "FinalProjectionSystem",
+    "e",
+    "test_files"
+  ]
+}

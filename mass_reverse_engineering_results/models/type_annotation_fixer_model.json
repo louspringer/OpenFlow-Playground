@@ -1,0 +1,116 @@
+{
+  "system_name": "Type annotation fixer recovery engine.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TypeAnnotationFixer": {
+      "responsibility": "Recovery engine for fixing type annotation issues.",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: dict[Tuple[str, Any]]) -> RecoveryResult",
+          "docstring": "Execute type annotation recovery action.",
+          "decorators": [],
+          "line_number": 17,
+          "return_type": "RecoveryResult",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_type_annotations",
+          "signature": "_fix_type_annotations(self, file_path: Path) -> list[str]",
+          "docstring": "Fix type annotation issues in a file.",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 10
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import ast",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_recovery_engine import BaseRecoveryEngine",
+    "from base_recovery_engine import RecoveryResult"
+  ],
+  "module_docstring": "Type annotation fixer recovery engine.",
+  "file_structure": {
+    "total_lines": 105,
+    "code_lines": 80,
+    "comment_lines": 7,
+    "blank_lines": 18,
+    "total_nodes": 396,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 4,
+    "expression_nodes": 8,
+    "assignment_nodes": 11,
+    "return_nodes": 5
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 105
+  },
+  "used_names": [
+    "Exception",
+    "node",
+    "isinstance",
+    "dict",
+    "content",
+    "RecoveryResult",
+    "action",
+    "fixed_content",
+    "str",
+    "Path",
+    "line",
+    "ast",
+    "list",
+    "SyntaxError",
+    "len",
+    "BaseRecoveryEngine",
+    "file_path",
+    "lines",
+    "self",
+    "fixed_line",
+    "line_num",
+    "tree",
+    "changes_made",
+    "super",
+    "e",
+    "Any"
+  ]
+}

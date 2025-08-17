@@ -1,0 +1,63 @@
+{
+  "system_name": "Simple test to replicate the smoke test Anthropic API call",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_anthropic_smoke_test",
+      "signature": "test_anthropic_smoke_test() -> None",
+      "docstring": "Test the exact same request as the smoke test",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import requests"
+  ],
+  "module_docstring": "\nSimple test to replicate the smoke test Anthropic API call\n",
+  "file_structure": {
+    "total_lines": 98,
+    "code_lines": 70,
+    "comment_lines": 7,
+    "blank_lines": 21,
+    "total_nodes": 292,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 20,
+    "assignment_nodes": 6,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 98
+  },
+  "used_names": [
+    "len",
+    "dict",
+    "__name__",
+    "prompt",
+    "response",
+    "Exception",
+    "test_anthropic_smoke_test",
+    "parsed",
+    "print",
+    "requests",
+    "api_key",
+    "e",
+    "json",
+    "result",
+    "content",
+    "os"
+  ]
+}

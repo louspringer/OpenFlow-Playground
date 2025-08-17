@@ -1,0 +1,561 @@
+{
+  "system_name": "Generalized Code Generator",
+  "description": "Model-driven workflow: JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GenerationResult": {
+      "responsibility": "Result of a code generation iteration",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 19
+    },
+    "ModelLoader": {
+      "responsibility": "Load and validate JSON models",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self, model_file: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Load a JSON model file",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 36,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "model_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_model",
+          "signature": "validate_model(self, model: dict[Tuple[str, Any]]) -> bool",
+          "docstring": "Validate model structure and completeness",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 47,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    },
+    "CodeGenerator": {
+      "responsibility": "Generate Python code from validated models",
+      "methods": [
+        {
+          "name": "generate_code",
+          "signature": "generate_code(self, model: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate Python code from the model",
+          "decorators": [],
+          "line_number": 63,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_imports",
+          "signature": "_generate_imports(self, model: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate minimal imports - let the model handle complexity",
+          "decorators": [],
+          "line_number": 100,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_classes",
+          "signature": "_generate_classes(self, model: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate class definitions",
+          "decorators": [],
+          "line_number": 105,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_class",
+          "signature": "_generate_class(self, class_name: str, class_data: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate a single class",
+          "decorators": [],
+          "line_number": 117,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "class_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "class_data",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_method",
+          "signature": "_generate_method(self, method_def: str) -> str",
+          "docstring": "Generate clean, simple method definitions",
+          "decorators": [],
+          "line_number": 137,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "method_def",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_main_function",
+          "signature": "_generate_main_function(self, model: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate main function",
+          "decorators": [],
+          "line_number": 152,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "model",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 60
+    },
+    "CodeWriter": {
+      "responsibility": "Write generated code to files",
+      "methods": [
+        {
+          "name": "write_code",
+          "signature": "write_code(self, output_file: str, code: str) -> bool",
+          "docstring": "Write generated code to file",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 167,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "code",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "backup_existing_file",
+          "signature": "backup_existing_file(self, file_path: str) -> bool",
+          "docstring": "Create backup of existing file",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 186,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 163
+    },
+    "AutoFormatter": {
+      "responsibility": "Format generated code using deterministic tools",
+      "methods": [
+        {
+          "name": "format_file",
+          "signature": "format_file(self, file_path: str) -> bool",
+          "docstring": "Format a Python file using all available formatters",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 202,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_black",
+          "signature": "run_black(self, file_path: str) -> bool",
+          "docstring": "Run Black formatter",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 230,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_autopep8",
+          "signature": "run_autopep8(self, file_path: str) -> bool",
+          "docstring": "Run autopep8 formatter",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 243,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_ruff",
+          "signature": "run_ruff(self, file_path: str) -> bool",
+          "docstring": "Run ruff auto-fixes",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 264,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 198
+    },
+    "CodeValidator": {
+      "responsibility": "Validate generated code for syntax and quality",
+      "methods": [
+        {
+          "name": "validate_syntax",
+          "signature": "validate_syntax(self, file_path: str) -> bool",
+          "docstring": "Validate Python syntax",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 281,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "check_quality",
+          "signature": "check_quality(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Check overall code quality",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 301,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 277
+    },
+    "TestRunner": {
+      "responsibility": "Run tests on generated code",
+      "methods": [
+        {
+          "name": "run_smoke_tests",
+          "signature": "run_smoke_tests(self, file_path: str) -> bool",
+          "docstring": "Run basic smoke tests",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 318,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 314
+    },
+    "WorkflowOrchestrator": {
+      "responsibility": "Orchestrate the complete model-driven workflow",
+      "methods": [
+        {
+          "name": "run_full_workflow",
+          "signature": "run_full_workflow(self, model_file: str, output_file: str) -> GenerationResult",
+          "docstring": "Run the complete workflow once",
+          "decorators": [],
+          "line_number": 353,
+          "return_type": "GenerationResult",
+          "parameters": [
+            {
+              "name": "model_file",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "output_file",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 342
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main entry point",
+      "decorators": [],
+      "line_number": 411,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import argparse",
+    "import json",
+    "import subprocess",
+    "import sys",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "import ast"
+  ],
+  "module_docstring": "\nGeneralized Code Generator\nModel-driven workflow: JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code\n\nCore Principle: NEVER patch generated code - always fix the model and regenerate\n",
+  "file_structure": {
+    "total_lines": 441,
+    "code_lines": 321,
+    "comment_lines": 29,
+    "blank_lines": 91,
+    "total_nodes": 1629,
+    "class_nodes": 8,
+    "function_nodes": 20,
+    "import_nodes": 8,
+    "expression_nodes": 67,
+    "assignment_nodes": 36,
+    "return_nodes": 30
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 441
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "Exception",
+    "required_fields",
+    "f",
+    "imports",
+    "test_results",
+    "quality",
+    "class_def",
+    "TestRunner",
+    "CodeWriter",
+    "method_code",
+    "orchestrator",
+    "warnings",
+    "isinstance",
+    "dict",
+    "result",
+    "content",
+    "ModelLoader",
+    "system_name",
+    "open",
+    "model_file",
+    "str",
+    "GenerationResult",
+    "Path",
+    "errors",
+    "subprocess",
+    "word",
+    "dataclass",
+    "list",
+    "ast",
+    "json",
+    "SyntaxError",
+    "CodeValidator",
+    "method_def",
+    "sys",
+    "component_data",
+    "AutoFormatter",
+    "class_data",
+    "file_path",
+    "print",
+    "main",
+    "iteration",
+    "self",
+    "success",
+    "bool",
+    "code",
+    "ValueError",
+    "field",
+    "main_function",
+    "WorkflowOrchestrator",
+    "output_file",
+    "method",
+    "CodeGenerator",
+    "model",
+    "component_name",
+    "parser",
+    "args",
+    "int",
+    "class_name_pascal",
+    "argparse",
+    "backup_path",
+    "class_name",
+    "validation_results",
+    "Any",
+    "e",
+    "class_code",
+    "staticmethod"
+  ]
+}

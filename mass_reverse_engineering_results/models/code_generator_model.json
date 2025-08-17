@@ -1,0 +1,340 @@
+{
+  "system_name": "Deterministic Code Generation Tools",
+  "description": "Structured Python models for generating linting-compliant code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ImportStatement": {
+      "responsibility": "Structured import statement model",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate import code",
+          "decorators": [],
+          "line_number": 22,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 14
+    },
+    "FunctionDefinition": {
+      "responsibility": "Structured function definition model",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate function code",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 34
+    },
+    "ClassDefinition": {
+      "responsibility": "Structured class definition model",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> None",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate class code",
+          "decorators": [],
+          "line_number": 97,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 85
+    },
+    "CodeFile": {
+      "responsibility": "Structured code file model",
+      "methods": [
+        {
+          "name": "to_code",
+          "signature": "to_code(self) -> str",
+          "docstring": "Generate complete file code",
+          "decorators": [],
+          "line_number": 142,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 133
+    },
+    "CodeGenerator": {
+      "responsibility": "Deterministic code generator using structured models",
+      "methods": [
+        {
+          "name": "validate_import",
+          "signature": "validate_import(self, import_stmt: ImportStatement) -> bool",
+          "docstring": "Validate import statement",
+          "decorators": [],
+          "line_number": 189,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "import_stmt",
+              "type": "ImportStatement",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_function",
+          "signature": "validate_function(self, func: FunctionDefinition) -> bool",
+          "docstring": "Validate function definition",
+          "decorators": [],
+          "line_number": 199,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "func",
+              "type": "FunctionDefinition",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_class",
+          "signature": "validate_class(self, cls: ClassDefinition) -> bool",
+          "docstring": "Validate class definition",
+          "decorators": [],
+          "line_number": 209,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "ClassDefinition",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_file",
+          "signature": "validate_file(self, code_file: CodeFile) -> bool",
+          "docstring": "Validate complete file",
+          "decorators": [],
+          "line_number": 219,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code_file",
+              "type": "CodeFile",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_test_file",
+          "signature": "generate_test_file(self, test_name: str, test_functions: list[dict[Tuple[str, Any]]]) -> CodeFile",
+          "docstring": "Generate a test file from structured data",
+          "decorators": [],
+          "line_number": 230,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "test_functions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "write_file",
+          "signature": "write_file(self, code_file: CodeFile, filepath: Path) -> bool",
+          "docstring": "Write validated code to file",
+          "decorators": [],
+          "line_number": 293,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "code_file",
+              "type": "CodeFile",
+              "default": null
+            },
+            {
+              "name": "filepath",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 178
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nDeterministic Code Generation Tools\nStructured Python models for generating linting-compliant code\n",
+  "file_structure": {
+    "total_lines": 363,
+    "code_lines": 279,
+    "comment_lines": 28,
+    "blank_lines": 56,
+    "total_nodes": 1430,
+    "class_nodes": 5,
+    "function_nodes": 12,
+    "import_nodes": 4,
+    "expression_nodes": 53,
+    "assignment_nodes": 25,
+    "return_nodes": 19
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 363
+  },
+  "used_names": [
+    "classes",
+    "__name__",
+    "items",
+    "bases_str",
+    "method_code",
+    "imports",
+    "Exception",
+    "filepath",
+    "generator",
+    "imp",
+    "indented_lines",
+    "is_from",
+    "module_docstring",
+    "output_path",
+    "dict",
+    "str",
+    "ClassDefinition",
+    "Path",
+    "test_file",
+    "line",
+    "main_func",
+    "return_type",
+    "test_name",
+    "attributes",
+    "signature",
+    "module",
+    "test_code",
+    "decorator",
+    "dataclass",
+    "list",
+    "ast",
+    "methods",
+    "SyntaxError",
+    "docstring",
+    "attr",
+    "decorators",
+    "filename",
+    "print",
+    "import_stmt",
+    "bases",
+    "self",
+    "lines",
+    "success",
+    "alias",
+    "bool",
+    "functions",
+    "body",
+    "CodeFile",
+    "field",
+    "params",
+    "method_lines",
+    "parameters",
+    "method",
+    "test_functions",
+    "CodeGenerator",
+    "name",
+    "cls",
+    "test_func",
+    "func",
+    "Optional",
+    "e",
+    "Any",
+    "ImportStatement",
+    "FunctionDefinition",
+    "code_file"
+  ]
+}

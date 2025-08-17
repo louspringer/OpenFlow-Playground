@@ -3,11 +3,7 @@
 Main orchestrator for code quality operations
 """
 
-from dataclasses import *
 from dataclasses import dataclass
-from logging import *
-from pathlib import *
-from typing import *
 from typing import Any
 
 
@@ -21,7 +17,7 @@ class QualityOrchestrator:
         # TODO: Initialize based on requirements: ['rule management', 'file processing', 'fix application', 'reporting', 'configuration management']
         pass
 
-    def load_rules(self) -> list[QualityRule]:
+    def load_rules(self) -> list[Any]:
         """
         Load quality rules from configuration
         """

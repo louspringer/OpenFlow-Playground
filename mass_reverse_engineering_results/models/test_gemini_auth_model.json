@@ -1,0 +1,57 @@
+{
+  "system_name": "Test Google Cloud authentication for Gemini API",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_gemini_auth",
+      "signature": "test_gemini_auth() -> Any",
+      "docstring": "Test Gemini API authentication using Google Cloud",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import subprocess"
+  ],
+  "module_docstring": "\nTest Google Cloud authentication for Gemini API\n",
+  "file_structure": {
+    "total_lines": 76,
+    "code_lines": 58,
+    "comment_lines": 5,
+    "blank_lines": 13,
+    "total_nodes": 249,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 2,
+    "expression_nodes": 17,
+    "assignment_nodes": 6,
+    "return_nodes": 8
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 76
+  },
+  "used_names": [
+    "len",
+    "__name__",
+    "Exception",
+    "test_gemini_auth",
+    "print",
+    "success",
+    "subprocess",
+    "access_token",
+    "e",
+    "result",
+    "os"
+  ]
+}

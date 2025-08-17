@@ -1,0 +1,230 @@
+{
+  "system_name": "Tests for the clewcrew-core orchestrator.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestClewcrewState": {
+      "responsibility": "Test the ClewcrewState model.",
+      "methods": [
+        {
+          "name": "test_state_creation",
+          "signature": "test_state_creation(self) -> None",
+          "docstring": "Test creating a clewcrew state.",
+          "decorators": [],
+          "line_number": 15,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_state_defaults",
+          "signature": "test_state_defaults(self) -> None",
+          "docstring": "Test state default values.",
+          "decorators": [],
+          "line_number": 23,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 10
+    },
+    "TestClewcrewOrchestrator": {
+      "responsibility": "Test the ClewcrewOrchestrator class.",
+      "methods": [
+        {
+          "name": "orchestrator",
+          "signature": "orchestrator(self) -> Any",
+          "docstring": "Create a test orchestrator.",
+          "decorators": [],
+          "line_number": 37,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_orchestrator_initialization",
+          "signature": "test_orchestrator_initialization(self, orchestrator: Any) -> None",
+          "docstring": "Test orchestrator initialization.",
+          "decorators": [],
+          "line_number": 44,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_orchestrator_validators",
+          "signature": "test_orchestrator_validators(self, orchestrator: Any) -> None",
+          "docstring": "Test that validators are properly initialized.",
+          "decorators": [],
+          "line_number": 52,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_orchestrator_recovery_engines",
+          "signature": "test_orchestrator_recovery_engines(self, orchestrator: Any) -> None",
+          "docstring": "Test that recovery engines are properly initialized.",
+          "decorators": [],
+          "line_number": 60,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_workflow_creation",
+          "signature": "test_workflow_creation(self, orchestrator: Any) -> None",
+          "docstring": "Test that the workflow is properly created.",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 32
+    },
+    "TestClewcrewOrchestratorAsync": {
+      "responsibility": "Test async functionality of the ClewcrewOrchestrator.",
+      "methods": [
+        {
+          "name": "mock_orchestrator",
+          "signature": "mock_orchestrator(self) -> Any",
+          "docstring": "Create a mock orchestrator for testing.",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_detect_hallucinations",
+          "signature": "test_detect_hallucinations(self, mock_orchestrator: Any) -> None",
+          "docstring": "Test hallucination detection.",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_recover_from_issues",
+          "signature": "test_recover_from_issues(self, mock_orchestrator: Any) -> None",
+          "docstring": "Test recovery from issues.",
+          "decorators": [],
+          "line_number": 97,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_orchestrator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 77
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main entry point for Tests for the clewcrew-core orchestrator.",
+      "decorators": [],
+      "line_number": 106,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from typing import Any"
+  ],
+  "module_docstring": "\nTests for the clewcrew-core orchestrator.\n\n\n",
+  "file_structure": {
+    "total_lines": 115,
+    "code_lines": 81,
+    "comment_lines": 10,
+    "blank_lines": 24,
+    "total_nodes": 160,
+    "class_nodes": 3,
+    "function_nodes": 9,
+    "import_nodes": 1,
+    "expression_nodes": 19,
+    "assignment_nodes": 0,
+    "return_nodes": 10
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 115
+  },
+  "used_names": [
+    "__name__",
+    "print",
+    "Any",
+    "main"
+  ]
+}

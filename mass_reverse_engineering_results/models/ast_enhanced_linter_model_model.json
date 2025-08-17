@@ -1,0 +1,760 @@
+{
+  "system_name": "AST-Enhanced Linter Model - Model-Driven Architecture",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "AnalysisStrategy": {
+      "responsibility": "Different strategies for AST-based code analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 23
+    },
+    "IssueSeverity": {
+      "responsibility": "Severity levels for detected issues",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 35
+    },
+    "IssueType": {
+      "responsibility": "Types of issues that can be detected",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 44
+    },
+    "AutoFixCapability": {
+      "responsibility": "Capabilities for automatic issue fixing",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "Enum"
+      ],
+      "line_number": 85
+    },
+    "ASTAnalysisRule": {
+      "responsibility": "Defines a rule for AST-based code analysis",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 95
+    },
+    "CodeQualityMetric": {
+      "responsibility": "Represents a code quality metric",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 112
+    },
+    "ASTAnalysisResult": {
+      "responsibility": "Result of AST analysis for a file",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 124
+    },
+    "TransformationRule": {
+      "responsibility": "Defines how to transform code to fix issues",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 137
+    },
+    "ASTEnhancedLinterModel": {
+      "responsibility": "Domain model for AST-enhanced linting system\n\n    This model defines:\n    1. Analysis strategies and rules\n    2. Quality metrics and thresholds\n    3. Transformation rules for auto-fixing\n    4. Validation and rollback mechanisms",
+      "methods": [
+        {
+          "name": "_initialize_analysis_rules",
+          "signature": "_initialize_analysis_rules(self) -> Any",
+          "docstring": "Initialize the analysis rules based on best practices",
+          "decorators": [],
+          "line_number": 168,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_initialize_transformation_rules",
+          "signature": "_initialize_transformation_rules(self) -> Any",
+          "docstring": "Initialize transformation rules for auto-fixing",
+          "decorators": [],
+          "line_number": 323,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_initialize_quality_thresholds",
+          "signature": "_initialize_quality_thresholds(self) -> Any",
+          "docstring": "Initialize quality thresholds based on best practices",
+          "decorators": [],
+          "line_number": 359,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_has_multiple_imports",
+          "signature": "_has_multiple_imports(self, node: Any) -> bool",
+          "docstring": "Check if import statement has multiple imports",
+          "decorators": [],
+          "line_number": 373,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_import_unused",
+          "signature": "_is_import_unused(self, node: Any) -> bool",
+          "docstring": "Check if import is unused (simplified implementation)",
+          "decorators": [],
+          "line_number": 377,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_wildcard_import",
+          "signature": "_is_wildcard_import(self, node: Any) -> bool",
+          "docstring": "Check if import from uses wildcard",
+          "decorators": [],
+          "line_number": 382,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_has_no_docstring",
+          "signature": "_has_no_docstring(self, node: Any) -> bool",
+          "docstring": "Check if function has no docstring",
+          "decorators": [],
+          "line_number": 386,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_function_too_long",
+          "signature": "_is_function_too_long(self, node: Any) -> bool",
+          "docstring": "Check if function exceeds length threshold",
+          "decorators": [],
+          "line_number": 390,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_deeply_nested",
+          "signature": "_is_deeply_nested(self, node: Any) -> bool",
+          "docstring": "Check if function call is deeply nested",
+          "decorators": [],
+          "line_number": 395,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_complex_boolean",
+          "signature": "_is_complex_boolean(self, node: Any) -> bool",
+          "docstring": "Check if boolean expression is complex",
+          "decorators": [],
+          "line_number": 400,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_magic_number",
+          "signature": "_is_magic_number(self, node: Any) -> bool",
+          "docstring": "Check if number is a magic number",
+          "decorators": [],
+          "line_number": 405,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_hardcoded_string",
+          "signature": "_is_hardcoded_string(self, node: Any) -> bool",
+          "docstring": "Check if string should be configurable",
+          "decorators": [],
+          "line_number": 410,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_multiple_imports",
+          "signature": "_fix_multiple_imports(self, node: Any) -> list[Any]",
+          "docstring": "Split multiple imports into separate statements",
+          "decorators": [],
+          "line_number": 416,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_unused_imports",
+          "signature": "_fix_unused_imports(self, node: Any) -> None",
+          "docstring": "Remove unused import (implementation would be more complex)",
+          "decorators": [],
+          "line_number": 420,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_wildcard_imports",
+          "signature": "_fix_wildcard_imports(self, node: Any) -> list[Any]",
+          "docstring": "Convert wildcard import to specific imports (partial fix)",
+          "decorators": [],
+          "line_number": 423,
+          "return_type": "list[Any]",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_deeply_nested_calls",
+          "signature": "_fix_deeply_nested_calls(self, node: Any) -> Any",
+          "docstring": "Simplify deeply nested calls (partial fix)",
+          "decorators": [],
+          "line_number": 428,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fix_complex_boolean",
+          "signature": "_fix_complex_boolean(self, node: Any) -> Any",
+          "docstring": "Simplify complex boolean expressions (partial fix)",
+          "decorators": [],
+          "line_number": 433,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_transform_multiple_imports",
+          "signature": "_transform_multiple_imports(self, tree: Any) -> Any",
+          "docstring": "Transform multiple imports into separate statements",
+          "decorators": [],
+          "line_number": 439,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_transform_remove_unused_imports",
+          "signature": "_transform_remove_unused_imports(self, tree: Any) -> Any",
+          "docstring": "Transform AST to remove unused imports",
+          "decorators": [],
+          "line_number": 444,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_transform_nested_calls",
+          "signature": "_transform_nested_calls(self, tree: Any) -> Any",
+          "docstring": "Transform AST to simplify nested calls",
+          "decorators": [],
+          "line_number": 449,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_import_split",
+          "signature": "_validate_import_split(self, original: Any, transformed: Any) -> bool",
+          "docstring": "Validate that import split was successful",
+          "decorators": [],
+          "line_number": 455,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "original",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "transformed",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_import_removal",
+          "signature": "_validate_import_removal(self, original: Any, transformed: Any) -> bool",
+          "docstring": "Validate that import removal was successful",
+          "decorators": [],
+          "line_number": 459,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "original",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "transformed",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_nested_call_simplification",
+          "signature": "_validate_nested_call_simplification(self, original: Any, transformed: Any) -> bool",
+          "docstring": "Validate that nested call simplification was successful",
+          "decorators": [],
+          "line_number": 463,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "original",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "transformed",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_rollback_import_split",
+          "signature": "_rollback_import_split(self, tree: Any) -> Any",
+          "docstring": "Rollback import split transformation",
+          "decorators": [],
+          "line_number": 470,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_rollback_import_removal",
+          "signature": "_rollback_import_removal(self, tree: Any) -> Any",
+          "docstring": "Rollback import removal transformation",
+          "decorators": [],
+          "line_number": 474,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_rollback_nested_call_simplification",
+          "signature": "_rollback_nested_call_simplification(self, tree: Any) -> Any",
+          "docstring": "Rollback nested call simplification transformation",
+          "decorators": [],
+          "line_number": 478,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_nesting_depth",
+          "signature": "_get_nesting_depth(self, node: Any) -> int",
+          "docstring": "Calculate nesting depth of an AST node",
+          "decorators": [],
+          "line_number": 483,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rules_for_strategy",
+          "signature": "get_rules_for_strategy(self, strategy: AnalysisStrategy) -> list[ASTAnalysisRule]",
+          "docstring": "Get all rules for a specific analysis strategy",
+          "decorators": [],
+          "line_number": 492,
+          "return_type": "list[ASTAnalysisRule]",
+          "parameters": [
+            {
+              "name": "strategy",
+              "type": "AnalysisStrategy",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_rules_for_issue_type",
+          "signature": "get_rules_for_issue_type(self, issue_type: IssueType) -> list[ASTAnalysisRule]",
+          "docstring": "Get all rules for a specific issue type",
+          "decorators": [],
+          "line_number": 498,
+          "return_type": "list[ASTAnalysisRule]",
+          "parameters": [
+            {
+              "name": "issue_type",
+              "type": "IssueType",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "get_auto_fixable_rules",
+          "signature": "get_auto_fixable_rules(self) -> list[ASTAnalysisRule]",
+          "docstring": "Get all rules that can be auto-fixed",
+          "decorators": [],
+          "line_number": 502,
+          "return_type": "list[ASTAnalysisRule]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 148
+    }
+  },
+  "module_functions": [
+    {
+      "name": "create_ast_enhanced_linter_model",
+      "signature": "create_ast_enhanced_linter_model() -> ASTEnhancedLinterModel",
+      "docstring": "Create and return a configured AST-enhanced linter model",
+      "decorators": [],
+      "line_number": 513,
+      "return_type": "ASTEnhancedLinterModel",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "from dataclasses import dataclass",
+    "from dataclasses import field",
+    "from enum import Enum",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Callable",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nAST-Enhanced Linter Model - Model-Driven Architecture\n\nThis module defines the domain model for AST-enhanced code analysis and linting.\nIt follows the principle: \"Model the system to prevent problems, don't parse to detect them.\"\n\nDomain Model:\n- AST Analysis Strategies\n- Code Quality Patterns\n- Transformation Rules\n- Quality Metrics\n- Auto-Fix Capabilities\n",
+  "file_structure": {
+    "total_lines": 538,
+    "code_lines": 417,
+    "comment_lines": 31,
+    "blank_lines": 90,
+    "total_nodes": 2032,
+    "class_nodes": 9,
+    "function_nodes": 32,
+    "import_nodes": 5,
+    "expression_nodes": 67,
+    "assignment_nodes": 46,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 538
+  },
+  "used_names": [
+    "description",
+    "IssueSeverity",
+    "severity",
+    "current",
+    "ABSOLUTE_VS_RELATIVE_IMPORT",
+    "dict",
+    "CLASS_ANALYSIS",
+    "Callable",
+    "INHERITANCE_DEPTH",
+    "Path",
+    "TransformationRule",
+    "validation",
+    "ast",
+    "list",
+    "WARNING",
+    "TOO_MANY_METHODS",
+    "print",
+    "MISSING_BLANK_LINES",
+    "CAN_FIX",
+    "DUPLICATED_CODE",
+    "bool",
+    "type",
+    "IssueType",
+    "HIGH_CYCLOMATIC_COMPLEXITY",
+    "rollback",
+    "AnalysisStrategy",
+    "model",
+    "is_good",
+    "fix_strategy",
+    "COMPLEXITY_ANALYSIS",
+    "__name__",
+    "LINE_TOO_LONG",
+    "syntax_valid",
+    "LONG_EXPRESSION",
+    "depth",
+    "ASTAnalysisRule",
+    "AutoFixCapability",
+    "rule",
+    "strategy",
+    "CodeQualityMetric",
+    "CLASS_TOO_LONG",
+    "create_ast_enhanced_linter_model",
+    "SYNTAX_VALIDATION",
+    "COMPLEX_CONDITIONAL",
+    "HARDCODED_STRINGS",
+    "auto_fix",
+    "ONE_LINER_DETECTED",
+    "field",
+    "name",
+    "REQUIRES_MANUAL_REVIEW",
+    "ast_tree",
+    "CRITICAL",
+    "metric",
+    "issues",
+    "any",
+    "node",
+    "value",
+    "float",
+    "Enum",
+    "INFO",
+    "metrics",
+    "threshold",
+    "CODE_SMELL_DETECTION",
+    "IMPORT_ANALYSIS",
+    "MULTIPLE_IMPORTS",
+    "COMPLEX_FUNCTION",
+    "issue_type",
+    "alias",
+    "TOO_MANY_PARAMETERS",
+    "unit",
+    "SUGGESTION",
+    "syntax_errors",
+    "CANNOT_FIX",
+    "DEEPLY_NESTED_CALL",
+    "analysis_time",
+    "tree",
+    "ast_transformer",
+    "CAN_PARTIALLY_FIX",
+    "Optional",
+    "SYNTAX_ERROR",
+    "Any",
+    "suggestion",
+    "FUNCTION_ANALYSIS",
+    "MAGIC_NUMBERS",
+    "COMPLEX_BOOLEAN",
+    "FUNCTION_TOO_LONG",
+    "str",
+    "PATTERN_ANALYSIS",
+    "UNUSED_IMPORT",
+    "hasattr",
+    "ast_node_types",
+    "dataclass",
+    "ASTEnhancedLinterModel",
+    "len",
+    "file_path",
+    "MISSING_DOCSTRING",
+    "self",
+    "conditions",
+    "int",
+    "WILDCARD_IMPORT"
+  ]
+}

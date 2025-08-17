@@ -1,0 +1,26 @@
+[
+  {
+    "status": "failed",
+    "file_path": "enhanced_round_trip_main.py",
+    "error": "No model generated",
+    "processing_time": 0.00020599365234375
+  },
+  {
+    "status": "failed",
+    "file_path": "round_trip_test.py",
+    "error": "No model generated",
+    "processing_time": 0.06681609153747559
+  },
+  {
+    "status": "failed",
+    "file_path": "data/cost_analysis.py",
+    "error": "No model generated",
+    "processing_time": 0.1517934799194336
+  },
+  {
+    "status": "failed",
+    "file_path": "clewcrew-agents/src/clewcrew_agents/security_expert.py",
+    "error": "No model generated",
+    "processing_time": 0.004975557327270508
+  }
+]

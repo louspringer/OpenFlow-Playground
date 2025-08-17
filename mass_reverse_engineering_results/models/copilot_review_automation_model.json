@@ -1,0 +1,167 @@
+{
+  "system_name": "GitHub Copilot Review Automation",
+  "description": "Integrates with our MCP system and security-first approach",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CopilotReviewAutomation": {
+      "responsibility": "Automate GitHub Copilot code reviews with our security-first approach",
+      "methods": [
+        {
+          "name": "request_copilot_review",
+          "signature": "request_copilot_review(self, pr_number: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Request Copilot review for a pull request",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "pr_number",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "check_review_status",
+          "signature": "check_review_status(self, pr_number: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Check the status of Copilot review",
+          "decorators": [],
+          "line_number": 62,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "pr_number",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_security_issues",
+          "signature": "analyze_security_issues(self, pr_number: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze PR for security issues using our guidelines",
+          "decorators": [],
+          "line_number": 92,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "pr_number",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "validate_model_compliance",
+          "signature": "validate_model_compliance(self, pr_number: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate that PR changes comply with our model-driven architecture",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "pr_number",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 34
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import json",
+    "import os",
+    "import sys",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from src.secure_shell_service.elegant_client import secure_execute",
+    "from src.secure_shell_service.client import secure_execute"
+  ],
+  "module_docstring": "\nGitHub Copilot Review Automation\nIntegrates with our MCP system and security-first approach\n",
+  "file_structure": {
+    "total_lines": 235,
+    "code_lines": 171,
+    "comment_lines": 22,
+    "blank_lines": 42,
+    "total_nodes": 901,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 8,
+    "expression_nodes": 26,
+    "assignment_nodes": 23,
+    "return_nodes": 14
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 235
+  },
+  "used_names": [
+    "pr_number",
+    "__name__",
+    "Exception",
+    "__file__",
+    "any",
+    "dict",
+    "result",
+    "os",
+    "compliance_issues",
+    "file_info",
+    "str",
+    "files_data",
+    "Path",
+    "automation",
+    "copilot_review",
+    "secure_execute",
+    "review_result",
+    "review",
+    "ImportError",
+    "json",
+    "reviews_data",
+    "command",
+    "sys",
+    "len",
+    "compliance_result",
+    "file_path",
+    "print",
+    "content_data",
+    "main",
+    "changes_data",
+    "self",
+    "asyncio",
+    "project_root",
+    "instruction",
+    "CopilotReviewAutomation",
+    "security_issues",
+    "domain",
+    "int",
+    "content_result",
+    "e",
+    "Any",
+    "security_result"
+  ]
+}

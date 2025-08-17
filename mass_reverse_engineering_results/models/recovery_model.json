@@ -1,0 +1,133 @@
+{
+  "system_name": "Recovery Engines for clewcrew Core",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "BaseRecoveryEngine": {
+      "responsibility": "Base recovery engine class",
+      "methods": [
+        {
+          "name": "execute_recovery",
+          "signature": "execute_recovery(self, action: Dict[Tuple[str, Any]]) -> Dict[Tuple[str, Any]]",
+          "docstring": "Execute recovery action",
+          "decorators": [],
+          "line_number": 14,
+          "return_type": "Dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    },
+    "SyntaxRecoveryEngine": {
+      "responsibility": "Syntax recovery engine placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 19
+    },
+    "IndentationFixer": {
+      "responsibility": "Indentation fixer placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 24
+    },
+    "ImportResolver": {
+      "responsibility": "Import resolver placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 29
+    },
+    "TypeAnnotationFixer": {
+      "responsibility": "Type annotation fixer placeholder",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseRecoveryEngine"
+      ],
+      "line_number": 34
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import Any",
+    "from typing import Dict"
+  ],
+  "module_docstring": "\nRecovery Engines for clewcrew Core\n\nThese are placeholder recovery engines that will be implemented later.\n",
+  "file_structure": {
+    "total_lines": 37,
+    "code_lines": 22,
+    "comment_lines": 1,
+    "blank_lines": 14,
+    "total_nodes": 71,
+    "class_nodes": 5,
+    "function_nodes": 0,
+    "import_nodes": 1,
+    "expression_nodes": 7,
+    "assignment_nodes": 0,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 37
+  },
+  "used_names": [
+    "str",
+    "BaseRecoveryEngine",
+    "Any",
+    "Dict",
+    "action"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "module_name": "advanced_neo4j_integration",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/advanced_neo4j_integration.py"
+  ],
+  "file_count": 1,
+  "total_lines": 408,
+  "total_classes": 1,
+  "total_functions": 1,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\nadvanced_neo4j_integration\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 408\nClasses: 1\nFunctions: 1\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "advanced_neo4j_integration",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 408,
+      "total_classes": 1,
+      "total_functions": 1,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "scripts/advanced_neo4j_integration.py",
+        "name": "advanced_neo4j_integration.py",
+        "stem": "advanced_neo4j_integration"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.366385",
+  "version": "1.0.0"
+}

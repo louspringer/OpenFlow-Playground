@@ -1,0 +1,327 @@
+{
+  "system_name": "AST-Guided Code Generator",
+  "description": "Builds on existing AST foundation for actionable model-driven code generation",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ASTNode": {
+      "responsibility": "Represents an AST node with metadata",
+      "methods": [
+        {
+          "name": "__post_init__",
+          "signature": "__post_init__(self) -> Any",
+          "docstring": "",
+          "decorators": [],
+          "line_number": 30,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 20
+    },
+    "LintingRule": {
+      "responsibility": "Represents a linting rule with AST-aware patterns",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 38
+    },
+    "ASTGuidedCodeGenerator": {
+      "responsibility": "AST-guided code generator that respects syntactic boundaries",
+      "methods": [
+        {
+          "name": "_build_linting_rules",
+          "signature": "_build_linting_rules(self) -> dict[Tuple[str, LintingRule]]",
+          "docstring": "Build AST-aware linting rules",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "dict[Tuple[str, LintingRule]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_file_ast",
+          "signature": "analyze_file_ast(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Analyze file using AST with linting rule integration",
+          "decorators": [],
+          "line_number": 85,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_extract_ast_nodes",
+          "signature": "_extract_ast_nodes(self, tree: Any) -> list[ASTNode]",
+          "docstring": "Extract AST nodes with metadata",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": "list[ASTNode]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_ast_aware_issues",
+          "signature": "_detect_ast_aware_issues(self, tree: Any) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Detect issues using AST-aware patterns",
+          "decorators": [],
+          "line_number": 147,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_check_rule_against_node",
+          "signature": "_check_rule_against_node(self, rule: LintingRule, node: Any) -> Optional[dict[Tuple[str, Any]]]",
+          "docstring": "Check if a rule applies to a specific AST node",
+          "decorators": [],
+          "line_number": 163,
+          "return_type": "Optional[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "rule",
+              "type": "LintingRule",
+              "default": null
+            },
+            {
+              "name": "node",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_ast_aware_fixes",
+          "signature": "_generate_ast_aware_fixes(self, tree: Any) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Generate AST-aware fixes based on detected issues",
+          "decorators": [],
+          "line_number": 200,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_identify_syntactic_boundaries",
+          "signature": "_identify_syntactic_boundaries(self, tree: Any) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Identify syntactic boundaries for guided generation",
+          "decorators": [],
+          "line_number": 217,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "tree",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_fallback_analysis",
+          "signature": "_fallback_analysis(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Fallback analysis when AST parsing fails",
+          "decorators": [],
+          "line_number": 240,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_perfect_code",
+          "signature": "generate_perfect_code(self, file_path: str) -> str",
+          "docstring": "Generate perfect code using AST-guided approach",
+          "decorators": [],
+          "line_number": 251,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_ast_guided_code",
+          "signature": "_generate_ast_guided_code(self, analysis: dict[Tuple[str, Any]]) -> str",
+          "docstring": "Generate code using AST-guided approach",
+          "decorators": [],
+          "line_number": 268,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "analysis",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 49
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to demonstrate AST-guided code generation",
+      "decorators": [],
+      "line_number": 286,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import logging",
+    "from dataclasses import dataclass",
+    "from typing import Any",
+    "from typing import Optional",
+    "from src.artifact_forge.agents.artifact_parser_enhanced import EnhancedArtifactParser"
+  ],
+  "module_docstring": "\nAST-Guided Code Generator\nBuilds on existing AST foundation for actionable model-driven code generation\n",
+  "file_structure": {
+    "total_lines": 315,
+    "code_lines": 235,
+    "comment_lines": 24,
+    "blank_lines": 56,
+    "total_nodes": 1470,
+    "class_nodes": 3,
+    "function_nodes": 13,
+    "import_nodes": 5,
+    "expression_nodes": 37,
+    "assignment_nodes": 26,
+    "return_nodes": 16
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 315
+  },
+  "used_names": [
+    "merged_analysis",
+    "__name__",
+    "line_number",
+    "Exception",
+    "parent",
+    "f",
+    "rule_code",
+    "logging",
+    "LintingRule",
+    "description",
+    "node",
+    "generator",
+    "fix",
+    "parsed_artifact",
+    "ast_analysis",
+    "severity",
+    "isinstance",
+    "dict",
+    "content",
+    "analysis",
+    "rule",
+    "open",
+    "logger",
+    "str",
+    "nodes",
+    "ASTGuidedCodeGenerator",
+    "test_file",
+    "children",
+    "hasattr",
+    "priority",
+    "fixes",
+    "dataclass",
+    "list",
+    "ast",
+    "len",
+    "file_path",
+    "print",
+    "EnhancedArtifactParser",
+    "boundaries",
+    "main",
+    "self",
+    "ASTNode",
+    "getattr",
+    "metadata",
+    "code",
+    "issue",
+    "generated_code",
+    "type",
+    "boundary",
+    "perfect_code",
+    "issues",
+    "ast_node",
+    "tree",
+    "fix_strategy",
+    "int",
+    "ast_patterns",
+    "Optional",
+    "e",
+    "Any",
+    "arg",
+    "node_type",
+    "any"
+  ]
+}

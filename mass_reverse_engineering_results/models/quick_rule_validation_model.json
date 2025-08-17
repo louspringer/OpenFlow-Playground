@@ -1,0 +1,133 @@
+{
+  "system_name": "Quick Rule Firing Validation Tool",
+  "description": "Built in 1 hour for immediate testing!",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "quick_validation",
+      "signature": "quick_validation() -> Any",
+      "docstring": "Quick validation of rule firing system",
+      "decorators": [],
+      "line_number": 14,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_basic_functionality",
+      "signature": "test_basic_functionality(rfi: Any) -> Any",
+      "docstring": "Test basic rule firing functionality",
+      "decorators": [],
+      "line_number": 42,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "rfi",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_performance",
+      "signature": "test_performance(rfi: Any) -> Any",
+      "docstring": "Test performance with all MDC files",
+      "decorators": [],
+      "line_number": 56,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "rfi",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_edge_cases",
+      "signature": "test_edge_cases(rfi: Any) -> Any",
+      "docstring": "Test edge cases and error handling",
+      "decorators": [],
+      "line_number": 75,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "rfi",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "test_mdc_parsing",
+      "signature": "test_mdc_parsing(parser: Any) -> Any",
+      "docstring": "Test MDC parsing functionality",
+      "decorators": [],
+      "line_number": 94,
+      "return_type": "Any",
+      "parameters": [
+        {
+          "name": "parser",
+          "type": "Any",
+          "default": null
+        }
+      ]
+    }
+  ],
+  "imports": [
+    "import time",
+    "from pathlib import Path",
+    "from scripts.mdc_parser import MDCParser",
+    "from scripts.rule_firing_identifier import RuleFiringIdentifier"
+  ],
+  "module_docstring": "\nQuick Rule Firing Validation Tool\nBuilt in 1 hour for immediate testing!\n",
+  "file_structure": {
+    "total_lines": 112,
+    "code_lines": 72,
+    "comment_lines": 9,
+    "blank_lines": 31,
+    "total_nodes": 411,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 4,
+    "expression_nodes": 36,
+    "assignment_nodes": 8,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 112
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "test_basic_functionality",
+    "quick_validation",
+    "result",
+    "str",
+    "rfi",
+    "Path",
+    "operations",
+    "RuleFiringIdentifier",
+    "op",
+    "list",
+    "test_edge_cases",
+    "test_performance",
+    "len",
+    "file_path",
+    "time",
+    "print",
+    "end_time",
+    "mdc_files",
+    "start_time",
+    "MDCParser",
+    "test_mdc_parsing",
+    "parser",
+    "e"
+  ]
+}

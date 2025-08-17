@@ -1,0 +1,457 @@
+{
+  "system_name": "\ud83d\udd0d Comprehensive Artifact Analysis and Requirements Tracing",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ArtifactInfo": {
+      "responsibility": "Information about a project artifact",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 22
+    },
+    "ModelAnalysis": {
+      "responsibility": "Analysis of the project model",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [
+        "dataclass"
+      ],
+      "bases": [],
+      "line_number": 36
+    },
+    "EnhancedASTParser": {
+      "responsibility": "Enhanced AST parser for reverse engineering Python artifacts",
+      "methods": [
+        {
+          "name": "parse_file",
+          "signature": "parse_file(self, file_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Parse a Python file and extract comprehensive information",
+          "decorators": [],
+          "line_number": 62,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_decorator_name",
+          "signature": "_get_decorator_name(self, decorator: Any) -> str",
+          "docstring": "Extract decorator name",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "decorator",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_base_name",
+          "signature": "_get_base_name(self, base: Any) -> str",
+          "docstring": "Extract base class name",
+          "decorators": [],
+          "line_number": 181,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "base",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 51
+    },
+    "ArtifactAnalyzer": {
+      "responsibility": "Comprehensive artifact analyzer",
+      "methods": [
+        {
+          "name": "_load_model",
+          "signature": "_load_model(self) -> Any",
+          "docstring": "Load the project model registry",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "Any",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_get_file_type",
+          "signature": "_get_file_type(self, file_path: str) -> str",
+          "docstring": "Determine file type based on extension and content",
+          "decorators": [],
+          "line_number": 230,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_domain",
+          "signature": "_detect_domain(self, file_path: str, file_type: str) -> Optional[str]",
+          "docstring": "Detect domain based on file path and project model patterns",
+          "decorators": [],
+          "line_number": 252,
+          "return_type": "Optional[str]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "file_type",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_calculate_pattern_score",
+          "signature": "_calculate_pattern_score(self, pattern: str) -> int",
+          "docstring": "Calculate pattern specificity score",
+          "decorators": [],
+          "line_number": 295,
+          "return_type": "int",
+          "parameters": [
+            {
+              "name": "pattern",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_matches_pattern",
+          "signature": "_matches_pattern(self, file_path: str, pattern: str) -> bool",
+          "docstring": "Check if file path matches pattern",
+          "decorators": [],
+          "line_number": 319,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "pattern",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_trace_requirements",
+          "signature": "_trace_requirements(self, domain: Optional[str], file_path: str) -> list[str]",
+          "docstring": "Trace artifact to requirements in the project model",
+          "decorators": [],
+          "line_number": 340,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "domain",
+              "type": "Optional[str]",
+              "default": null
+            },
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "discover_artifacts",
+          "signature": "discover_artifacts(self) -> list[ArtifactInfo]",
+          "docstring": "Discover all artifacts in the project",
+          "decorators": [],
+          "line_number": 354,
+          "return_type": "list[ArtifactInfo]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_load_gitignore_patterns",
+          "signature": "_load_gitignore_patterns(self) -> list[str]",
+          "docstring": "Load gitignore patterns",
+          "decorators": [],
+          "line_number": 419,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_is_ignored",
+          "signature": "_is_ignored(self, file_path: str, patterns: list[str]) -> bool",
+          "docstring": "Check if file should be ignored based on gitignore patterns",
+          "decorators": [],
+          "line_number": 436,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "patterns",
+              "type": "list[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "analyze_model_coverage",
+          "signature": "analyze_model_coverage(self) -> ModelAnalysis",
+          "docstring": "Analyze model coverage and completeness",
+          "decorators": [],
+          "line_number": 443,
+          "return_type": "ModelAnalysis",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Generate comprehensive analysis report",
+          "decorators": [],
+          "line_number": 510,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self) -> list[str]",
+          "docstring": "Generate recommendations based on analysis",
+          "decorators": [],
+          "line_number": 578,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 188
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main analysis function",
+      "decorators": [],
+      "line_number": 617,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import ast",
+    "import json",
+    "import os",
+    "from collections import defaultdict",
+    "from dataclasses import asdict",
+    "from dataclasses import dataclass",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\n\ud83d\udd0d Comprehensive Artifact Analysis and Requirements Tracing\n\nThis script performs a complete analysis of all artifacts in the project:\n1. Identifies all artifacts not in .gitignore\n2. Traces artifacts to requirements in the project model\n3. Uses enhanced AST parser to reverse engineer Python artifacts\n4. Validates model completeness and coverage\n",
+  "file_structure": {
+    "total_lines": 693,
+    "code_lines": 541,
+    "comment_lines": 48,
+    "blank_lines": 104,
+    "total_nodes": 3422,
+    "class_nodes": 4,
+    "function_nodes": 18,
+    "import_nodes": 7,
+    "expression_nodes": 77,
+    "assignment_nodes": 89,
+    "return_nodes": 29
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 693
+  },
+  "used_names": [
+    "ModelAnalysis",
+    "file_path_str",
+    "Exception",
+    "a",
+    "gitignore_file",
+    "traced_artifacts",
+    "dict",
+    "ast_success",
+    "files",
+    "ast_parsing_success",
+    "best_score",
+    "python_artifacts",
+    "Path",
+    "path",
+    "artifacts",
+    "part",
+    "list",
+    "ast",
+    "print",
+    "pattern_idx",
+    "report",
+    "bool",
+    "requirements",
+    "type",
+    "rec",
+    "artifacts_untraced",
+    "model_domains",
+    "recommendations",
+    "asdict",
+    "EnhancedASTParser",
+    "domain_name",
+    "__name__",
+    "enumerate",
+    "file_parts",
+    "ast_analysis",
+    "req_name",
+    "line",
+    "decorator",
+    "total_artifacts",
+    "root",
+    "content_indicators",
+    "missing_requirements",
+    "stripped",
+    "project_root",
+    "ast_parsing_failures",
+    "untraced_artifacts",
+    "name",
+    "file_type",
+    "arg",
+    "ast_failures",
+    "score",
+    "issues",
+    "model_coverage",
+    "d",
+    "any",
+    "requirements_coverage",
+    "f",
+    "node",
+    "python_issues",
+    "content",
+    "os",
+    "defaultdict",
+    "open",
+    "sum",
+    "traced_requirements",
+    "count",
+    "domain_coverage",
+    "pattern",
+    "ext",
+    "indicator",
+    "pattern_parts",
+    "n",
+    "artifacts_by_domain",
+    "main",
+    "domain_config",
+    "dirs",
+    "file",
+    "alias",
+    "relative_path",
+    "artifact",
+    "artifacts_traced",
+    "gitignore_patterns",
+    "large_files",
+    "ArtifactInfo",
+    "stat",
+    "size_bytes",
+    "artifact_domains",
+    "tree",
+    "i",
+    "best_match",
+    "Optional",
+    "Any",
+    "isinstance",
+    "patterns",
+    "python_artifacts_analyzed",
+    "req",
+    "set",
+    "ast_result",
+    "analyzer",
+    "domain_counts",
+    "str",
+    "ArtifactAnalyzer",
+    "parts",
+    "specificity",
+    "dataclass",
+    "json",
+    "all_requirements",
+    "len",
+    "p",
+    "requirements_traced",
+    "file_path",
+    "self",
+    "lines",
+    "report_file",
+    "first_line",
+    "target",
+    "missing_domains",
+    "domain",
+    "int",
+    "e",
+    "base"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module_name": "test_test_basic",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "gke-ai-microservices-hackathon/tests/test_basic.py",
+    "gke-ai-microservices-hackathon/tests/test_basic.py"
+  ],
+  "file_count": 2,
+  "total_lines": 82,
+  "total_classes": 0,
+  "total_functions": 6,
+  "total_imports": 2,
+  "module_docstring": "\"\"\"\ntest_test_basic\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 82\nClasses: 0\nFunctions: 6\nImports: 2\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_basic",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 82,
+      "total_classes": 0,
+      "total_functions": 6,
+      "total_imports": 2
+    },
+    "files": [
+      {
+        "path": "gke-ai-microservices-hackathon/tests/test_basic.py",
+        "name": "test_basic.py",
+        "stem": "test_basic"
+      },
+      {
+        "path": "gke-ai-microservices-hackathon/tests/test_basic.py",
+        "name": "test_basic.py",
+        "stem": "test_basic"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.202818",
+  "version": "1.0.0"
+}

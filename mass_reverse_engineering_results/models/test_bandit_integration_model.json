@@ -1,0 +1,131 @@
+{
+  "system_name": "Test script for Bandit integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_bandit_import",
+      "signature": "test_bandit_import() -> Any",
+      "docstring": "Test that Bandit can be imported",
+      "decorators": [],
+      "line_number": 17,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_bandit_availability",
+      "signature": "test_bandit_availability() -> Any",
+      "docstring": "Test that Bandit is available in the environment",
+      "decorators": [],
+      "line_number": 30,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_scanner_creation",
+      "signature": "test_scanner_creation() -> Any",
+      "docstring": "Test that security scanner can be created",
+      "decorators": [],
+      "line_number": 42,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_model_scanner_creation",
+      "signature": "test_model_scanner_creation() -> Any",
+      "docstring": "Test that model-driven scanner can be created",
+      "decorators": [],
+      "line_number": 55,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_file_scan",
+      "signature": "test_file_scan() -> Any",
+      "docstring": "Test scanning a simple Python file",
+      "decorators": [],
+      "line_number": 68,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Run all tests",
+      "decorators": [],
+      "line_number": 123,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "from pathlib import Path",
+    "from bandit_integration import BanditSecurityScanner",
+    "from bandit_integration import ModelDrivenSecurityScanner",
+    "import bandit",
+    "from bandit_integration import BanditSecurityScanner",
+    "from bandit_integration import ModelDrivenSecurityScanner",
+    "from bandit_integration import BanditSecurityScanner"
+  ],
+  "module_docstring": "\nTest script for Bandit integration\n\nThis script tests the Bandit security integration to ensure it works correctly\nwith our model-driven security system.\n",
+  "file_structure": {
+    "total_lines": 164,
+    "code_lines": 114,
+    "comment_lines": 11,
+    "blank_lines": 39,
+    "total_nodes": 524,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 8,
+    "expression_nodes": 39,
+    "assignment_nodes": 8,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 164
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "__file__",
+    "test_file_scan",
+    "bandit",
+    "result",
+    "os",
+    "exit",
+    "open",
+    "test_scanner_creation",
+    "str",
+    "Path",
+    "test_file",
+    "test_name",
+    "test_bandit_import",
+    "ImportError",
+    "sys",
+    "len",
+    "ModelDrivenSecurityScanner",
+    "print",
+    "main",
+    "test_model_scanner_creation",
+    "issue",
+    "_",
+    "BanditSecurityScanner",
+    "passed",
+    "total",
+    "tests",
+    "test_func",
+    "test_bandit_availability",
+    "e",
+    "scanner"
+  ]
+}

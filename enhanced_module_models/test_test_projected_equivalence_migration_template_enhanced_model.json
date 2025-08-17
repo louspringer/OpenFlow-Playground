@@ -1,0 +1,57 @@
+{
+  "module_name": "test_test_projected_equivalence_migration_template",
+  "module_type": "multi_file",
+  "confidence_score": 0.8,
+  "files": [
+    "scripts/migration_templates/test_projected_equivalence_migration_template.py",
+    "scripts/migration_templates/test_simple_equivalence_migration_template.py"
+  ],
+  "file_count": 2,
+  "total_lines": 66,
+  "total_classes": 0,
+  "total_functions": 0,
+  "total_imports": 6,
+  "module_docstring": "\"\"\"\ntest_test_projected_equivalence_migration_template\n\nPurpose: Testing and validation\nGraph API Level: 1\nProjection System: test_system\n\nModule Type: multi_file\nFiles: 2\nTotal Lines: 66\nClasses: 0\nFunctions: 0\nImports: 6\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "1",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "test_test_projected_equivalence_migration_template",
+      "type": "multi_file",
+      "confidence": 0.8,
+      "file_count": 2
+    },
+    "metrics": {
+      "total_lines": 66,
+      "total_classes": 0,
+      "total_functions": 0,
+      "total_imports": 6
+    },
+    "files": [
+      {
+        "path": "scripts/migration_templates/test_projected_equivalence_migration_template.py",
+        "name": "test_projected_equivalence_migration_template.py",
+        "stem": "test_projected_equivalence_migration_template"
+      },
+      {
+        "path": "scripts/migration_templates/test_simple_equivalence_migration_template.py",
+        "name": "test_simple_equivalence_migration_template.py",
+        "stem": "test_simple_equivalence_migration_template"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.852353",
+  "version": "1.0.0"
+}

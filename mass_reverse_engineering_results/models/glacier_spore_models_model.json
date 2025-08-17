@@ -1,0 +1,782 @@
+{
+  "system_name": "Glacier Spore Models - Pydantic-Driven Architecture",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "SporeType": {
+      "responsibility": "Types of glacier spores - semantic classification",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "str",
+        "Enum"
+      ],
+      "line_number": 20
+    },
+    "DimensionType": {
+      "responsibility": "Types of dimensions - semantic classification",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "str",
+        "Enum"
+      ],
+      "line_number": 35
+    },
+    "SyncStrategy": {
+      "responsibility": "Synchronization strategies - semantic behavior",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "str",
+        "Enum"
+      ],
+      "line_number": 50
+    },
+    "ConflictResolution": {
+      "responsibility": "Conflict resolution methods - semantic behavior",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "str",
+        "Enum"
+      ],
+      "line_number": 60
+    },
+    "ModelVersion": {
+      "responsibility": "Model version metadata - semantic versioning",
+      "methods": [
+        {
+          "name": "is_current",
+          "signature": "is_current(self) -> bool",
+          "docstring": "Is this the current version?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 97,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "has_conflicts",
+          "signature": "has_conflicts(self) -> bool",
+          "docstring": "Are there unresolved conflicts?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 103,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "change_summary",
+          "signature": "change_summary(self) -> str",
+          "docstring": "Human-readable change summary",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 109,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_model_hash",
+          "signature": "validate_model_hash(self, v: Any) -> Any",
+          "docstring": "Validate model hash format",
+          "decorators": [],
+          "line_number": 118,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_change_types",
+          "signature": "validate_change_types(self, v: Any) -> Any",
+          "docstring": "Validate change types are semantic",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 70
+    },
+    "Dimension": {
+      "responsibility": "A dimension in the glacier spore system - semantic definition",
+      "methods": [
+        {
+          "name": "is_leaf",
+          "signature": "is_leaf(self) -> bool",
+          "docstring": "Is this a leaf dimension (no children)?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 190,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "is_root",
+          "signature": "is_root(self) -> bool",
+          "docstring": "Is this a root dimension (no parent)?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 196,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "semantic_complexity",
+          "signature": "semantic_complexity(self) -> float",
+          "docstring": "Semantic complexity score based on properties",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 202,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_name",
+          "signature": "validate_name(self, v: Any) -> Any",
+          "docstring": "Validate dimension name is semantic",
+          "decorators": [],
+          "line_number": 225,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_range",
+          "signature": "validate_range(self, v: Any, values: Any) -> Any",
+          "docstring": "Validate range constraints are semantically valid",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "values",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 150
+    },
+    "SemanticDiff": {
+      "responsibility": "Semantic difference between two states - not artifact diffs",
+      "methods": [
+        {
+          "name": "is_breaking_change",
+          "signature": "is_breaking_change(self) -> bool",
+          "docstring": "Is this a breaking semantic change?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 282,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "semantic_summary",
+          "signature": "semantic_summary(self) -> str",
+          "docstring": "Human-readable semantic change summary",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 288,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 252
+    },
+    "GlacierSpore": {
+      "responsibility": "A glacier spore - self-describing message with embedded semantic schemata",
+      "methods": [
+        {
+          "name": "semantic_complexity",
+          "signature": "semantic_complexity(self) -> float",
+          "docstring": "Semantic complexity based on content and relationships",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 371,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "semantic_health_score",
+          "signature": "semantic_health_score(self) -> float",
+          "docstring": "Semantic health score based on various factors",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 390,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "semantic_summary",
+          "signature": "semantic_summary(self) -> str",
+          "docstring": "Human-readable semantic summary",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 412,
+          "return_type": "str",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_dimension_value",
+          "signature": "get_dimension_value(self, dimension_name: str) -> Optional[Any]",
+          "docstring": "Get semantic value for a specific dimension",
+          "decorators": [],
+          "line_number": 420,
+          "return_type": "Optional[Any]",
+          "parameters": [
+            {
+              "name": "dimension_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "set_dimension_value",
+          "signature": "set_dimension_value(self, dimension_name: str, value: Any) -> Any",
+          "docstring": "Set semantic value for a specific dimension",
+          "decorators": [],
+          "line_number": 424,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "dimension_name",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "add_processing_trigger",
+          "signature": "add_processing_trigger(self, trigger_id: str) -> Any",
+          "docstring": "Add a semantic processing trigger",
+          "decorators": [],
+          "line_number": 428,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "trigger_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_semantic_integrity",
+          "signature": "validate_semantic_integrity(self) -> bool",
+          "docstring": "Validate semantic integrity of the spore",
+          "decorators": [],
+          "line_number": 433,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "create_semantic_diff",
+          "signature": "create_semantic_diff(self, other: GlacierSpore) -> list[SemanticDiff]",
+          "docstring": "Create semantic diffs between this spore and another",
+          "decorators": [],
+          "line_number": 449,
+          "return_type": "list[SemanticDiff]",
+          "parameters": [
+            {
+              "name": "other",
+              "type": "GlacierSpore",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_content_hash",
+          "signature": "validate_content_hash(self, v: Any) -> Any",
+          "docstring": "Validate content hash format",
+          "decorators": [],
+          "line_number": 488,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_embedded_schema",
+          "signature": "validate_embedded_schema(self, v: Any) -> Any",
+          "docstring": "Validate embedded schema has required semantic fields",
+          "decorators": [],
+          "line_number": 496,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "v",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_semantic_consistency",
+          "signature": "validate_semantic_consistency(self) -> GlacierSpore",
+          "docstring": "Validate semantic consistency across the spore",
+          "decorators": [],
+          "line_number": 511,
+          "return_type": "GlacierSpore",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 299
+    },
+    "ChangeLog": {
+      "responsibility": "Log of semantic changes for model synchronization",
+      "methods": [
+        {
+          "name": "is_semantic_change",
+          "signature": "is_semantic_change(self) -> bool",
+          "docstring": "Is this a semantic change (not just artifact change)?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 565,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 535
+    },
+    "SyncOperation": {
+      "responsibility": "Semantic synchronization operation",
+      "methods": [
+        {
+          "name": "is_complete",
+          "signature": "is_complete(self) -> bool",
+          "docstring": "Is the sync operation complete?",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 615,
+          "return_type": "bool",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "success_rate",
+          "signature": "success_rate(self) -> float",
+          "docstring": "Success rate of semantic conflict resolution",
+          "decorators": [
+            "computed_field",
+            "property"
+          ],
+          "line_number": 621,
+          "return_type": "float",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 581
+    },
+    "Config": {
+      "responsibility": "",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 627
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Example usage of the Pydantic-driven glacier spore models",
+      "decorators": [],
+      "line_number": 633,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import hashlib",
+    "import json",
+    "import uuid",
+    "from datetime import datetime",
+    "from datetime import timezone",
+    "from enum import Enum",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional",
+    "from typing import Set",
+    "from typing import Union",
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from pydantic import computed_field",
+    "from pydantic import model_validator",
+    "from pydantic import validator",
+    "from pydantic.json import pydantic_encoder"
+  ],
+  "module_docstring": "\nGlacier Spore Models - Pydantic-Driven Architecture\n\nThe models ARE the code. Everything is defined through Pydantic models\nwith semantic validation, automatic serialization, and model-driven behavior.\n",
+  "file_structure": {
+    "total_lines": 720,
+    "code_lines": 541,
+    "comment_lines": 53,
+    "blank_lines": 126,
+    "total_nodes": 3281,
+    "class_nodes": 16,
+    "function_nodes": 27,
+    "import_nodes": 8,
+    "expression_nodes": 61,
+    "assignment_nodes": 77,
+    "return_nodes": 27
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 720
+  },
+  "used_names": [
+    "conflicts",
+    "arbitrary_types_allowed",
+    "change_type",
+    "new_semantic_value",
+    "change_id",
+    "version_id",
+    "parent_dimension_id",
+    "change_timestamp",
+    "description",
+    "json_encoders",
+    "required_fields",
+    "content_str",
+    "range_max",
+    "sorted",
+    "BaseModel",
+    "dict",
+    "GlacierSpore",
+    "cardinality",
+    "MANUAL_RESOLUTION",
+    "last_processed",
+    "created_by",
+    "embedded_schema",
+    "MERGE_CONFLICTS",
+    "created_at",
+    "SyncStrategy",
+    "trigger_id",
+    "detected_at",
+    "processing_triggers",
+    "spore_type",
+    "list",
+    "semantic_types",
+    "completed_at",
+    "print",
+    "model_validator",
+    "hashlib",
+    "types_str",
+    "TEMPORAL",
+    "bool",
+    "SEMANTIC",
+    "SemanticDiff",
+    "MANUAL",
+    "change_hash",
+    "diff",
+    "SPATIAL",
+    "invalid_types",
+    "parent_version_id",
+    "spore",
+    "timezone",
+    "key",
+    "__name__",
+    "QUALITY",
+    "dimension_id",
+    "SporeType",
+    "processing_errors",
+    "METRIC",
+    "diff_id",
+    "v",
+    "validation_checksum",
+    "abs",
+    "Field",
+    "processor_requirements",
+    "strategy",
+    "min_val",
+    "DimensionType",
+    "uuid",
+    "spore_id",
+    "property",
+    "model_version",
+    "changes_applied",
+    "field_path",
+    "PERFORMANCE",
+    "parent_spore_id",
+    "dimension_name",
+    "ACCEPT_REMOTE",
+    "ACCEPT_LOCAL",
+    "related_spore_ids",
+    "diffs",
+    "REJECT",
+    "processed",
+    "pydantic_encoder",
+    "field",
+    "conflict_resolution",
+    "DEPENDENCY",
+    "content_schema",
+    "usage_count",
+    "expires_at",
+    "name",
+    "validator",
+    "SCHEMA",
+    "TECHNOLOGY",
+    "TRIGGER",
+    "VERSION_BASED",
+    "dimension_type",
+    "child_spore_ids",
+    "old_semantic_value",
+    "DIMENSION",
+    "conflicts_found",
+    "float",
+    "dimension_refs",
+    "model_hash",
+    "content",
+    "value",
+    "Enum",
+    "processing_history",
+    "Dimension",
+    "source_version_id",
+    "status",
+    "signature",
+    "PATTERN",
+    "errors",
+    "range_size",
+    "STRUCTURAL",
+    "health",
+    "sync_status",
+    "Union",
+    "main",
+    "other_spore",
+    "unit",
+    "ModelVersion",
+    "datetime",
+    "child_dimension_ids",
+    "change_types",
+    "ARCHITECTURE",
+    "field_name",
+    "Optional",
+    "Any",
+    "isinstance",
+    "operation_type",
+    "PROCESSOR",
+    "confidence",
+    "ANALYSIS",
+    "RELATIONSHIP",
+    "impact_score",
+    "LAST_UPDATE_WINS",
+    "conflicts_resolved",
+    "set",
+    "change_count",
+    "started_at",
+    "last_used",
+    "resolution_method",
+    "target_version_id",
+    "values",
+    "ConflictResolution",
+    "str",
+    "complexity",
+    "max_val",
+    "validate_assignment",
+    "msg",
+    "range_min",
+    "last_updated",
+    "json",
+    "SECURITY",
+    "dimensions",
+    "conflict_resolved",
+    "sync_id",
+    "MERGE",
+    "EVENT",
+    "min",
+    "len",
+    "quality_dimension",
+    "content_hash",
+    "last_sync",
+    "self",
+    "calculated_hash",
+    "metadata",
+    "max",
+    "ValueError",
+    "DISCOVERY",
+    "TIMESTAMP_BASED",
+    "other",
+    "int",
+    "tags",
+    "computed_field",
+    "semantic_context"
+  ]
+}

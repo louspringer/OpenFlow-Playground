@@ -1,0 +1,46 @@
+{
+  "system_name": "Diversity hypothesis demo",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "DiversityHypothesisDemo": {
+      "responsibility": "Demo for diversity hypothesis testing",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 5
+    }
+  },
+  "module_functions": [],
+  "imports": [],
+  "module_docstring": "Diversity hypothesis demo",
+  "file_structure": {
+    "total_lines": 7,
+    "code_lines": 3,
+    "comment_lines": 1,
+    "blank_lines": 3,
+    "total_nodes": 6,
+    "class_nodes": 1,
+    "function_nodes": 0,
+    "import_nodes": 0,
+    "expression_nodes": 2,
+    "assignment_nodes": 0,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 7
+  },
+  "used_names": []
+}

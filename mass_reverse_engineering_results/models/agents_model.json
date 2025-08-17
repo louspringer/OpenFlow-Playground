@@ -1,0 +1,318 @@
+{
+  "system_name": "Multi-Agent Testing Service",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestResult": {
+      "responsibility": "Result of an AI agent test",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 16
+    },
+    "TestConfig": {
+      "responsibility": "Configuration for AI agent tests",
+      "methods": [],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 27
+    },
+    "MultiAgentTestingService": {
+      "responsibility": "Service for testing and validating AI agents",
+      "methods": [
+        {
+          "name": "register_test",
+          "signature": "register_test(self, test_config: TestConfig) -> bool",
+          "docstring": "Register a new test configuration",
+          "decorators": [],
+          "line_number": 48,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "run_test",
+          "signature": "run_test(self, test_id: str) -> bool",
+          "docstring": "Run a specific test",
+          "decorators": [],
+          "line_number": 58,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_execute_test",
+          "signature": "_execute_test(self, test_config: TestConfig) -> Any",
+          "docstring": "Internal method to execute a test",
+          "decorators": [],
+          "line_number": 78,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_capability",
+          "signature": "_test_capability(self, test_config: TestConfig) -> Any",
+          "docstring": "Test agent capabilities",
+          "decorators": [],
+          "line_number": 130,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_performance",
+          "signature": "_test_performance(self, test_config: TestConfig) -> Any",
+          "docstring": "Test agent performance",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_integration",
+          "signature": "_test_integration(self, test_config: TestConfig) -> Any",
+          "docstring": "Test agent integration",
+          "decorators": [],
+          "line_number": 140,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_generic",
+          "signature": "_test_generic(self, test_config: TestConfig) -> Any",
+          "docstring": "Generic test execution",
+          "decorators": [],
+          "line_number": 145,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_config",
+              "type": "TestConfig",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "get_test_result",
+          "signature": "get_test_result(self, test_id: str) -> Optional[TestResult]",
+          "docstring": "Get result of a specific test",
+          "decorators": [],
+          "line_number": 150,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "list_tests",
+          "signature": "list_tests(self) -> list[TestConfig]",
+          "docstring": "List all available tests",
+          "decorators": [],
+          "line_number": 154,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "list_results",
+          "signature": "list_results(self) -> list[TestResult]",
+          "docstring": "List all test results",
+          "decorators": [],
+          "line_number": 158,
+          "return_type": "list[TestResult]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "is_test_active",
+          "signature": "is_test_active(self, test_id: str) -> bool",
+          "docstring": "Check if a test is currently running",
+          "decorators": [],
+          "line_number": 162,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "test_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "get_agent_test_results",
+          "signature": "get_agent_test_results(self, agent_id: str) -> list[TestResult]",
+          "docstring": "Get all test results for a specific agent",
+          "decorators": [],
+          "line_number": 166,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "agent_id",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "get_test_summary",
+          "signature": "get_test_summary(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Get summary of all test results",
+          "decorators": [],
+          "line_number": 172,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 40
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import asyncio",
+    "import logging",
+    "from typing import Any",
+    "from typing import Optional",
+    "from pydantic import BaseModel",
+    "from pydantic import Field"
+  ],
+  "module_docstring": "\nMulti-Agent Testing Service\n\nAI agent testing and validation service for TiDB AgentX hackathon\n",
+  "file_structure": {
+    "total_lines": 189,
+    "code_lines": 145,
+    "comment_lines": 3,
+    "blank_lines": 41,
+    "total_nodes": 1056,
+    "class_nodes": 3,
+    "function_nodes": 7,
+    "import_nodes": 4,
+    "expression_nodes": 38,
+    "assignment_nodes": 15,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 189
+  },
+  "used_names": [
+    "task",
+    "__name__",
+    "passed_tests",
+    "Exception",
+    "logging",
+    "description",
+    "BaseModel",
+    "dict",
+    "float",
+    "result",
+    "Field",
+    "r",
+    "logger",
+    "str",
+    "test_config",
+    "status",
+    "execution_time",
+    "list",
+    "len",
+    "self",
+    "asyncio",
+    "TestConfig",
+    "bool",
+    "test_type",
+    "failed_tests",
+    "details",
+    "agent_id",
+    "parameters",
+    "name",
+    "start_time",
+    "test_id",
+    "Optional",
+    "e",
+    "Any",
+    "TestResult",
+    "total_tests"
+  ]
+}

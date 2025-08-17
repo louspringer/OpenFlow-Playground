@@ -1,0 +1,107 @@
+{
+  "system_name": "Healthcare CDC Requirements Tests",
+  "description": "Tests healthcare CDC functionality using projected artifact patterns",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_healthcare_cdc_domain_model",
+      "signature": "test_healthcare_cdc_domain_model() -> Any",
+      "docstring": "Test healthcare CDC domain model",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_patient_info_structure",
+      "signature": "test_patient_info_structure() -> Any",
+      "docstring": "Test patient info structure",
+      "decorators": [],
+      "line_number": 27,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_provider_info_structure",
+      "signature": "test_provider_info_structure() -> Any",
+      "docstring": "Test provider info structure",
+      "decorators": [],
+      "line_number": 46,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_healthcare_claim_structure",
+      "signature": "test_healthcare_claim_structure() -> Any",
+      "docstring": "Test healthcare claim structure",
+      "decorators": [],
+      "line_number": 65,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "run_healthcare_tests",
+      "signature": "run_healthcare_tests() -> Any",
+      "docstring": "Run all healthcare CDC tests",
+      "decorators": [],
+      "line_number": 86,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import sys",
+    "from pathlib import Path",
+    "from unittest.mock import Mock"
+  ],
+  "module_docstring": "\nHealthcare CDC Requirements Tests\nTests healthcare CDC functionality using projected artifact patterns\n",
+  "file_structure": {
+    "total_lines": 116,
+    "code_lines": 79,
+    "comment_lines": 10,
+    "blank_lines": 27,
+    "total_nodes": 310,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 17,
+    "assignment_nodes": 8,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 116
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "__file__",
+    "claim",
+    "Mock",
+    "test_patient_info_structure",
+    "str",
+    "HealthcareCDCDomainModel",
+    "Path",
+    "provider_info",
+    "test_healthcare_claim_structure",
+    "domain_model",
+    "run_healthcare_tests",
+    "sys",
+    "len",
+    "test_provider_info_structure",
+    "print",
+    "patient_info",
+    "passed",
+    "total",
+    "test_healthcare_cdc_domain_model",
+    "tests",
+    "test",
+    "e"
+  ]
+}

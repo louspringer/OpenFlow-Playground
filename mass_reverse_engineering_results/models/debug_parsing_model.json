@@ -1,0 +1,81 @@
+{
+  "system_name": "Debug script to test method signature parsing",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "_parse_method_signature",
+      "signature": "_parse_method_signature(method_signature: str) -> dict[Tuple[str, Any]]",
+      "docstring": "Parse method signature string into components",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "method_signature",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Test parsing with the actual method signatures",
+      "decorators": [],
+      "line_number": 80,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from typing import Any"
+  ],
+  "module_docstring": "\nDebug script to test method signature parsing\n",
+  "file_structure": {
+    "total_lines": 103,
+    "code_lines": 81,
+    "comment_lines": 8,
+    "blank_lines": 14,
+    "total_nodes": 442,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 1,
+    "expression_nodes": 23,
+    "assignment_nodes": 12,
+    "return_nodes": 3
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 103
+  },
+  "used_names": [
+    "params_part",
+    "__name__",
+    "Exception",
+    "params_str",
+    "_parse_method_signature",
+    "dict",
+    "result",
+    "param_name",
+    "str",
+    "return_type",
+    "method_name",
+    "sig",
+    "print",
+    "main",
+    "param_type",
+    "param",
+    "method_signature",
+    "params",
+    "test_signatures",
+    "e",
+    "Any"
+  ]
+}

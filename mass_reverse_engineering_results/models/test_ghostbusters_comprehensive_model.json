@@ -1,0 +1,544 @@
+{
+  "system_name": "Tests for Ghostbusters Component",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestGhostbustersAgents": {
+      "responsibility": "Test Ghostbusters expert agents",
+      "methods": [
+        {
+          "name": "project_path",
+          "signature": "project_path(self) -> Path",
+          "docstring": "Get project path for testing",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "Path",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_expert",
+          "signature": "test_security_expert(self, project_path: Path) -> None",
+          "docstring": "Test SecurityExpert agent",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_quality_expert",
+          "signature": "test_code_quality_expert(self, project_path: Path) -> None",
+          "docstring": "Test CodeQualityExpert agent",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_test_expert",
+          "signature": "test_test_expert(self, project_path: Path) -> None",
+          "docstring": "Test TestExpert agent",
+          "decorators": [],
+          "line_number": 75,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_build_expert",
+          "signature": "test_build_expert(self, project_path: Path) -> None",
+          "docstring": "Test BuildExpert agent",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_architecture_expert",
+          "signature": "test_architecture_expert(self, project_path: Path) -> None",
+          "docstring": "Test ArchitectureExpert agent",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_model_expert",
+          "signature": "test_model_expert(self, project_path: Path) -> None",
+          "docstring": "Test ModelExpert agent",
+          "decorators": [],
+          "line_number": 117,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 38
+    },
+    "TestGhostbustersValidators": {
+      "responsibility": "Test Ghostbusters validators",
+      "methods": [
+        {
+          "name": "sample_delusions",
+          "signature": "sample_delusions(self) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Sample delusions for testing",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_security_validator",
+          "signature": "test_security_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test SecurityValidator",
+          "decorators": [],
+          "line_number": 156,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_code_quality_validator",
+          "signature": "test_code_quality_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test CodeQualityValidator",
+          "decorators": [],
+          "line_number": 174,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_test_validator",
+          "signature": "test_test_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test TestValidator",
+          "decorators": [],
+          "line_number": 192,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_build_validator",
+          "signature": "test_build_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test BuildValidator",
+          "decorators": [],
+          "line_number": 208,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_architecture_validator",
+          "signature": "test_architecture_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test ArchitectureValidator",
+          "decorators": [],
+          "line_number": 226,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_model_validator",
+          "signature": "test_model_validator(self, sample_delusions: list[dict[Tuple[str, Any]]]) -> None",
+          "docstring": "Test ModelValidator",
+          "decorators": [],
+          "line_number": 244,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_delusions",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 131
+    },
+    "TestGhostbustersRecovery": {
+      "responsibility": "Test Ghostbusters recovery engines",
+      "methods": [
+        {
+          "name": "sample_action",
+          "signature": "sample_action(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Sample recovery action for testing",
+          "decorators": [],
+          "line_number": 266,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_syntax_recovery_engine",
+          "signature": "test_syntax_recovery_engine(self, sample_action: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Test SyntaxRecoveryEngine",
+          "decorators": [],
+          "line_number": 278,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_indentation_fixer",
+          "signature": "test_indentation_fixer(self, sample_action: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Test IndentationFixer",
+          "decorators": [],
+          "line_number": 295,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_import_resolver",
+          "signature": "test_import_resolver(self, sample_action: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Test ImportResolver",
+          "decorators": [],
+          "line_number": 312,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_type_annotation_fixer",
+          "signature": "test_type_annotation_fixer(self, sample_action: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Test TypeAnnotationFixer",
+          "decorators": [],
+          "line_number": 329,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "sample_action",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 262
+    },
+    "TestGhostbustersOrchestrator": {
+      "responsibility": "Test Ghostbusters orchestrator",
+      "methods": [
+        {
+          "name": "orchestrator",
+          "signature": "orchestrator(self) -> GhostbustersOrchestrator",
+          "docstring": "Create Ghostbusters orchestrator",
+          "decorators": [],
+          "line_number": 350,
+          "return_type": "GhostbustersOrchestrator",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_orchestrator_initialization",
+          "signature": "test_orchestrator_initialization(self, orchestrator: GhostbustersOrchestrator) -> None",
+          "docstring": "Test orchestrator initialization",
+          "decorators": [],
+          "line_number": 354,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "GhostbustersOrchestrator",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_orchestrator_workflow",
+          "signature": "test_orchestrator_workflow(self, orchestrator: GhostbustersOrchestrator) -> None",
+          "docstring": "Test orchestrator workflow",
+          "decorators": [],
+          "line_number": 393,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "orchestrator",
+              "type": "GhostbustersOrchestrator",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 346
+    },
+    "TestGhostbustersIntegration": {
+      "responsibility": "Integration tests for Ghostbusters",
+      "methods": [
+        {
+          "name": "test_ghostbusters_component_imports",
+          "signature": "test_ghostbusters_component_imports(self) -> None",
+          "docstring": "Test that all Ghostbusters components can be imported",
+          "decorators": [],
+          "line_number": 415,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "test_ghostbusters_rules_exist",
+          "signature": "test_ghostbusters_rules_exist(self) -> None",
+          "docstring": "Test that Ghostbusters rules file exists",
+          "decorators": [],
+          "line_number": 441,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 411
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "import pytest",
+    "from src.ghostbusters import GhostbustersOrchestrator",
+    "from src.ghostbusters.agents import ArchitectureExpert",
+    "from src.ghostbusters.agents import BuildExpert",
+    "from src.ghostbusters.agents import CodeQualityExpert",
+    "from src.ghostbusters.agents import ModelExpert",
+    "from src.ghostbusters.agents import SecurityExpert",
+    "from src.ghostbusters.agents import TestExpert",
+    "from src.ghostbusters.recovery import ImportResolver",
+    "from src.ghostbusters.recovery import IndentationFixer",
+    "from src.ghostbusters.recovery import SyntaxRecoveryEngine",
+    "from src.ghostbusters.recovery import TypeAnnotationFixer",
+    "from src.ghostbusters.validators import ArchitectureValidator",
+    "from src.ghostbusters.validators import BuildValidator",
+    "from src.ghostbusters.validators import CodeQualityValidator",
+    "from src.ghostbusters.validators import ModelValidator",
+    "from src.ghostbusters.validators import SecurityValidator",
+    "from src.ghostbusters.validators import TestValidator",
+    "from src.ghostbusters import GhostbustersOrchestrator",
+    "from src.ghostbusters import SecurityExpert",
+    "from src.ghostbusters import SecurityValidator",
+    "from src.ghostbusters import SyntaxRecoveryEngine"
+  ],
+  "module_docstring": "\nTests for Ghostbusters Component\n",
+  "file_structure": {
+    "total_lines": 456,
+    "code_lines": 377,
+    "comment_lines": 14,
+    "blank_lines": 65,
+    "total_nodes": 2257,
+    "class_nodes": 5,
+    "function_nodes": 6,
+    "import_nodes": 8,
+    "expression_nodes": 31,
+    "assignment_nodes": 41,
+    "return_nodes": 4
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 456
+  },
+  "used_names": [
+    "SecurityValidator",
+    "__name__",
+    "TestValidator",
+    "__file__",
+    "ArchitectureExpert",
+    "sample_delusions",
+    "IndentationFixer",
+    "security_validator",
+    "SyntaxRecoveryEngine",
+    "orchestrator",
+    "validator_name",
+    "expected_engines",
+    "dict",
+    "result",
+    "content",
+    "agent_name",
+    "float",
+    "ArchitectureValidator",
+    "Any",
+    "TypeAnnotationFixer",
+    "expected_validators",
+    "CodeQualityExpert",
+    "str",
+    "Path",
+    "engine_name",
+    "CodeQualityValidator",
+    "TestExpert",
+    "hasattr",
+    "expert",
+    "BuildValidator",
+    "list",
+    "SecurityExpert",
+    "rules_file",
+    "pytest",
+    "len",
+    "ImportResolver",
+    "bool",
+    "expected_agents",
+    "syntax_engine",
+    "ModelExpert",
+    "ModelValidator",
+    "GhostbustersOrchestrator",
+    "engine",
+    "sample_action",
+    "validator",
+    "project_path",
+    "isinstance",
+    "security_expert",
+    "BuildExpert"
+  ]
+}

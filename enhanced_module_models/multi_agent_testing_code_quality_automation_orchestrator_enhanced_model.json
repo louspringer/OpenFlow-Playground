@@ -1,0 +1,51 @@
+{
+  "module_name": "multi_agent_testing_code_quality_automation_orchestrator",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "src/multi_agent_testing/code_quality_automation_orchestrator.py"
+  ],
+  "file_count": 1,
+  "total_lines": 717,
+  "total_classes": 4,
+  "total_functions": 1,
+  "total_imports": 7,
+  "module_docstring": "\"\"\"\nmulti_agent_testing_code_quality_automation_orchestrator\n\nPurpose: Testing and validation\nGraph API Level: 2\nProjection System: test_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 717\nClasses: 4\nFunctions: 1\nImports: 7\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Testing and validation",
+  "graph_api_level": "2",
+  "projection_system": "test_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "multi_agent_testing_code_quality_automation_orchestrator",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 717,
+      "total_classes": 4,
+      "total_functions": 1,
+      "total_imports": 7
+    },
+    "files": [
+      {
+        "path": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
+        "name": "code_quality_automation_orchestrator.py",
+        "stem": "code_quality_automation_orchestrator"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:18.603949",
+  "version": "1.0.0"
+}

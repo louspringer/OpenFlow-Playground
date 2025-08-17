@@ -1,0 +1,75 @@
+{
+  "system_name": "Regenerate simple_calculator.py using the fixed generator",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Regenerate simple_calculator.py with fixed generator",
+      "decorators": [],
+      "line_number": 10,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from round_trip_model_system import RoundTripModelSystem",
+    "import subprocess"
+  ],
+  "module_docstring": "\nRegenerate simple_calculator.py using the fixed generator\n",
+  "file_structure": {
+    "total_lines": 142,
+    "code_lines": 98,
+    "comment_lines": 15,
+    "blank_lines": 29,
+    "total_nodes": 520,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 22,
+    "assignment_nodes": 15,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 142
+  },
+  "used_names": [
+    "__name__",
+    "f",
+    "Exception",
+    "RoundTripModelSystem",
+    "result",
+    "content",
+    "open",
+    "system",
+    "combined_content",
+    "design_spec",
+    "subprocess",
+    "calculator_class",
+    "calculator_content",
+    "comp_data",
+    "json",
+    "generated_files",
+    "calculatorui_class",
+    "len",
+    "test_model_data",
+    "class_start",
+    "filename",
+    "comp_name",
+    "print",
+    "main",
+    "model",
+    "calculatorui_content",
+    "e",
+    "component"
+  ]
+}

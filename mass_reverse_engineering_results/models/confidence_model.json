@@ -1,0 +1,281 @@
+{
+  "system_name": "Confidence Scoring Utilities",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ConfidenceScore": {
+      "responsibility": "Standardized confidence score with validation",
+      "methods": [
+        {
+          "name": "validate_confidence",
+          "signature": "validate_confidence(self, cls: Any, v: float) -> float",
+          "docstring": "Ensure confidence is between 0.0 and 1.0",
+          "decorators": [
+            "classmethod"
+          ],
+          "line_number": 28,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "cls",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "v",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseModel"
+      ],
+      "line_number": 12
+    },
+    "ConfidenceCalculator": {
+      "responsibility": "Standardized confidence calculation for Ghostbusters components",
+      "methods": [
+        {
+          "name": "calculate_agent_confidence",
+          "signature": "calculate_agent_confidence(self, delusions: List[Dict[Tuple[str, Any]]], base_confidence: float) -> ConfidenceScore",
+          "docstring": "Calculate confidence for expert agents based on delusions found.\n\n        Args:\n            delusions: List of delusions detected by the agent\n            base_confidence: Base confidence when no issues found\n\n        Returns:\n            ConfidenceScore with calculated value and factors",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 37,
+          "return_type": "ConfidenceScore",
+          "parameters": [
+            {
+              "name": "delusions",
+              "type": "List[Dict[Tuple[str, Any]]]",
+              "default": null
+            },
+            {
+              "name": "base_confidence",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_recovery_confidence",
+          "signature": "calculate_recovery_confidence(self, changes_made: List[str], base_confidence: float) -> ConfidenceScore",
+          "docstring": "Calculate confidence for recovery engines based on successful changes.\n\n        Args:\n            changes_made: List of successful changes made\n            base_confidence: Base confidence when no changes made\n\n        Returns:\n            ConfidenceScore with calculated value and factors",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 93,
+          "return_type": "ConfidenceScore",
+          "parameters": [
+            {
+              "name": "changes_made",
+              "type": "List[str]",
+              "default": null
+            },
+            {
+              "name": "base_confidence",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_validation_confidence",
+          "signature": "calculate_validation_confidence(self, issues: List[str], base_confidence: float) -> ConfidenceScore",
+          "docstring": "Calculate confidence for validators based on validation issues.\n\n        Args:\n            issues: List of validation issues found\n            base_confidence: Base confidence when no issues found\n\n        Returns:\n            ConfidenceScore with calculated value and factors",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 131,
+          "return_type": "ConfidenceScore",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "List[str]",
+              "default": null
+            },
+            {
+              "name": "base_confidence",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "calculate_workflow_confidence",
+          "signature": "calculate_workflow_confidence(self, steps_completed: int, total_steps: int, step_confidence_scores: List[float]) -> ConfidenceScore",
+          "docstring": "Calculate confidence for workflow execution based on completed steps.\n\n        Args:\n            steps_completed: Number of steps successfully completed\n            total_steps: Total number of steps in workflow\n            step_confidence_scores: Confidence scores for individual steps\n\n        Returns:\n            ConfidenceScore with calculated value and factors",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 169,
+          "return_type": "ConfidenceScore",
+          "parameters": [
+            {
+              "name": "steps_completed",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "total_steps",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "step_confidence_scores",
+              "type": "List[float]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "normalize_confidence",
+          "signature": "normalize_confidence(self, confidence: float) -> float",
+          "docstring": "Normalize confidence value to ensure it's between 0.0 and 1.0.\n\n        Args:\n            confidence: Raw confidence value\n\n        Returns:\n            Normalized confidence value between 0.0 and 1.0",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 230,
+          "return_type": "float",
+          "parameters": [
+            {
+              "name": "confidence",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "combine_confidence_scores",
+          "signature": "combine_confidence_scores(self, scores: List[ConfidenceScore], weights: List[float]) -> ConfidenceScore",
+          "docstring": "Combine multiple confidence scores using weighted average.\n\n        Args:\n            scores: List of confidence scores to combine\n            weights: Optional weights for each score (must sum to 1.0)\n\n        Returns:\n            Combined confidence score",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 243,
+          "return_type": "ConfidenceScore",
+          "parameters": [
+            {
+              "name": "scores",
+              "type": "List[ConfidenceScore]",
+              "default": null
+            },
+            {
+              "name": "weights",
+              "type": "List[float]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 33
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from typing import List",
+    "from typing import Dict",
+    "from typing import Any",
+    "from pydantic import BaseModel",
+    "from pydantic import Field",
+    "from pydantic import field_validator"
+  ],
+  "module_docstring": "\nConfidence Scoring Utilities\n\nStandardized confidence calculation and validation for Ghostbusters components.\nThis module eliminates duplication of confidence scoring logic across agents, recovery engines, and validators.\n",
+  "file_structure": {
+    "total_lines": 296,
+    "code_lines": 234,
+    "comment_lines": 12,
+    "blank_lines": 50,
+    "total_nodes": 870,
+    "class_nodes": 2,
+    "function_nodes": 7,
+    "import_nodes": 2,
+    "expression_nodes": 19,
+    "assignment_nodes": 20,
+    "return_nodes": 12
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 296
+  },
+  "used_names": [
+    "classmethod",
+    "all_factors",
+    "confidence_increase",
+    "scores",
+    "field_validator",
+    "v",
+    "BaseModel",
+    "factors",
+    "severity",
+    "Any",
+    "value",
+    "ConfidenceScore",
+    "float",
+    "Dict",
+    "final_confidence",
+    "Field",
+    "dict",
+    "avg_step_confidence",
+    "weights",
+    "str",
+    "score",
+    "List",
+    "total_confidence",
+    "sum",
+    "total_steps",
+    "delusion",
+    "list",
+    "step_confidence_scores",
+    "min",
+    "len",
+    "metadata",
+    "max",
+    "delusions",
+    "completion_ratio",
+    "steps_completed",
+    "ValueError",
+    "zip",
+    "combined_value",
+    "base_confidence",
+    "weight_sum",
+    "w",
+    "changes_made",
+    "int",
+    "weight",
+    "confidence_decrease",
+    "issues",
+    "staticmethod",
+    "combined_metadata",
+    "confidence"
+  ]
+}

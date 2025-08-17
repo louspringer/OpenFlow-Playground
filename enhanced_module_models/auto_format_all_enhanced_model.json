@@ -1,0 +1,51 @@
+{
+  "module_name": "auto_format_all",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/auto_format_all.py"
+  ],
+  "file_count": 1,
+  "total_lines": 295,
+  "total_classes": 15,
+  "total_functions": 1,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\nauto_format_all\n\nPurpose: General functionality\nGraph API Level: 3\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 295\nClasses: 15\nFunctions: 1\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "3",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "auto_format_all",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 295,
+      "total_classes": 15,
+      "total_functions": 1,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "scripts/auto_format_all.py",
+        "name": "auto_format_all.py",
+        "stem": "auto_format_all"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.412242",
+  "version": "1.0.0"
+}

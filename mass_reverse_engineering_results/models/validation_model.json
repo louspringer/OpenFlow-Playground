@@ -1,0 +1,177 @@
+{
+  "system_name": "Validation Utilities",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "ValidationUtils": {
+      "responsibility": "Common validation utilities for Ghostbusters components",
+      "methods": [
+        {
+          "name": "validate_email",
+          "signature": "validate_email(self, email: str) -> bool",
+          "docstring": "Validate email address format",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 15,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "email",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_required_fields",
+          "signature": "validate_required_fields(self, data: Dict[Tuple[str, Any]], required_fields: List[str]) -> List[str]",
+          "docstring": "Validate that required fields are present in data",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 21,
+          "return_type": "List[str]",
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "required_fields",
+              "type": "List[str]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_string_length",
+          "signature": "validate_string_length(self, value: str, min_length: int, max_length: Optional[int]) -> bool",
+          "docstring": "Validate string length constraints",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 32,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "min_length",
+              "type": "int",
+              "default": null
+            },
+            {
+              "name": "max_length",
+              "type": "Optional[int]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "validate_numeric_range",
+          "signature": "validate_numeric_range(self, value: Any, min_value: Optional[float], max_value: Optional[float]) -> bool",
+          "docstring": "Validate numeric value is within range",
+          "decorators": [
+            "staticmethod"
+          ],
+          "line_number": 48,
+          "return_type": "bool",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "min_value",
+              "type": "Optional[float]",
+              "default": null
+            },
+            {
+              "name": "max_value",
+              "type": "Optional[float]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 11
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import re",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nValidation Utilities\n\nCommon validation patterns for Ghostbusters components.\n",
+  "file_structure": {
+    "total_lines": 64,
+    "code_lines": 49,
+    "comment_lines": 0,
+    "blank_lines": 15,
+    "total_nodes": 260,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 2,
+    "expression_nodes": 7,
+    "assignment_nodes": 3,
+    "return_nodes": 10
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 64
+  },
+  "used_names": [
+    "required_fields",
+    "email",
+    "max_length",
+    "min_length",
+    "min_value",
+    "Any",
+    "value",
+    "float",
+    "Dict",
+    "num_value",
+    "str",
+    "List",
+    "errors",
+    "pattern",
+    "TypeError",
+    "len",
+    "bool",
+    "ValueError",
+    "field",
+    "data",
+    "re",
+    "int",
+    "max_value",
+    "Optional",
+    "isinstance",
+    "staticmethod"
+  ]
+}

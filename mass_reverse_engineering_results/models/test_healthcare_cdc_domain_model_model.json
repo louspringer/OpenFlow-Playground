@@ -1,0 +1,250 @@
+{
+  "system_name": "Tests for Healthcare CDC Domain Model",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestHealthcareCDCDomainModel": {
+      "responsibility": "Test the healthcare CDC domain model",
+      "methods": [
+        {
+          "name": "test_domain_model_initialization",
+          "signature": "test_domain_model_initialization(self) -> Any",
+          "docstring": "Test domain model initialization",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_pipeline_configuration",
+          "signature": "test_pipeline_configuration(self) -> Any",
+          "docstring": "Test pipeline configuration setup",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_merge_sql_generation",
+          "signature": "test_merge_sql_generation(self) -> Any",
+          "docstring": "Test SQL merge statement generation",
+          "decorators": [],
+          "line_number": 57,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_cloudformation_template_generation",
+          "signature": "test_cloudformation_template_generation(self) -> Any",
+          "docstring": "Test CloudFormation template generation",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_snowflake_schema_generation",
+          "signature": "test_snowflake_schema_generation(self) -> Any",
+          "docstring": "Test Snowflake schema generation",
+          "decorators": [],
+          "line_number": 96,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 22
+    },
+    "TestHealthcareClaim": {
+      "responsibility": "Test healthcare claim data structure",
+      "methods": [
+        {
+          "name": "test_claim_creation",
+          "signature": "test_claim_creation(self) -> Any",
+          "docstring": "Test creating a healthcare claim",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 110
+    },
+    "TestCDCEvent": {
+      "responsibility": "Test CDC event data structure",
+      "methods": [
+        {
+          "name": "test_cdc_event_creation",
+          "signature": "test_cdc_event_creation(self) -> Any",
+          "docstring": "Test creating a CDC event",
+          "decorators": [],
+          "line_number": 179,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_cdc_event_json_serialization",
+          "signature": "test_cdc_event_json_serialization(self) -> Any",
+          "docstring": "Test CDC event JSON serialization",
+          "decorators": [],
+          "line_number": 240,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 176
+    },
+    "TestEnums": {
+      "responsibility": "Test enum values",
+      "methods": [
+        {
+          "name": "test_event_types",
+          "signature": "test_event_types(self) -> Any",
+          "docstring": "Test event type enum values",
+          "decorators": [],
+          "line_number": 323,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_claim_status",
+          "signature": "test_claim_status(self) -> Any",
+          "docstring": "Test claim status enum values",
+          "decorators": [],
+          "line_number": 329,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_payment_status",
+          "signature": "test_payment_status(self) -> Any",
+          "docstring": "Test payment status enum values",
+          "decorators": [],
+          "line_number": 337,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 320
+    }
+  },
+  "module_functions": [
+    {
+      "name": "test_integration",
+      "signature": "test_integration() -> Any",
+      "docstring": "Integration test for the complete domain model",
+      "decorators": [],
+      "line_number": 345,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "from datetime import datetime",
+    "from healthcare_cdc_domain_model import CDCEvent",
+    "from healthcare_cdc_domain_model import ClaimStatus",
+    "from healthcare_cdc_domain_model import EventType",
+    "from healthcare_cdc_domain_model import HealthcareCDCDomainModel",
+    "from healthcare_cdc_domain_model import HealthcareClaim",
+    "from healthcare_cdc_domain_model import PatientInfo",
+    "from healthcare_cdc_domain_model import PayerInfo",
+    "from healthcare_cdc_domain_model import PaymentStatus",
+    "from healthcare_cdc_domain_model import ProviderInfo"
+  ],
+  "module_docstring": "\nTests for Healthcare CDC Domain Model\n",
+  "file_structure": {
+    "total_lines": 370,
+    "code_lines": 301,
+    "comment_lines": 15,
+    "blank_lines": 54,
+    "total_nodes": 1302,
+    "class_nodes": 4,
+    "function_nodes": 12,
+    "import_nodes": 3,
+    "expression_nodes": 17,
+    "assignment_nodes": 31,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": false,
+    "file_type": "test",
+    "line_count": 370
+  },
+  "used_names": [
+    "json_data",
+    "parsed_data",
+    "claim",
+    "merge_sql",
+    "processor_types",
+    "payer",
+    "EventType",
+    "PayerInfo",
+    "CDCEvent",
+    "HealthcareCDCDomainModel",
+    "PaymentStatus",
+    "outputs",
+    "json",
+    "HealthcareClaim",
+    "len",
+    "p",
+    "resources",
+    "ClaimStatus",
+    "schema_sql",
+    "cdc_event",
+    "datetime",
+    "template",
+    "provider",
+    "model",
+    "PatientInfo",
+    "int",
+    "ProviderInfo",
+    "patient"
+  ]
+}

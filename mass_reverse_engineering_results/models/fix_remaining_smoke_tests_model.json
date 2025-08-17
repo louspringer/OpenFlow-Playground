@@ -1,0 +1,107 @@
+{
+  "system_name": "Fix remaining smoke test files with syntax errors",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_live_smoke_test_langchain",
+      "signature": "fix_live_smoke_test_langchain() -> Any",
+      "docstring": "Fix the live_smoke_test_langchain.py file",
+      "decorators": [],
+      "line_number": 7,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "fix_diversity_hypothesis_demo",
+      "signature": "fix_diversity_hypothesis_demo() -> Any",
+      "docstring": "Fix the diversity_hypothesis_demo.py file",
+      "decorators": [],
+      "line_number": 121,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "fix_diversity_synthesis_orchestrator",
+      "signature": "fix_diversity_synthesis_orchestrator() -> Any",
+      "docstring": "Fix the diversity_synthesis_orchestrator.py file",
+      "decorators": [],
+      "line_number": 159,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "fix_langgraph_diversity_orchestrator",
+      "signature": "fix_langgraph_diversity_orchestrator() -> Any",
+      "docstring": "Fix the langgraph_diversity_orchestrator.py file",
+      "decorators": [],
+      "line_number": 197,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "fix_meta_cognitive_orchestrator",
+      "signature": "fix_meta_cognitive_orchestrator() -> Any",
+      "docstring": "Fix the meta_cognitive_orchestrator.py file",
+      "decorators": [],
+      "line_number": 235,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix all remaining smoke test files",
+      "decorators": [],
+      "line_number": 276,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from src.model_driven_projection.final_projection_system import FinalProjectionSystem"
+  ],
+  "module_docstring": "\nFix remaining smoke test files with syntax errors\n",
+  "file_structure": {
+    "total_lines": 317,
+    "code_lines": 238,
+    "comment_lines": 9,
+    "blank_lines": 70,
+    "total_nodes": 281,
+    "class_nodes": 0,
+    "function_nodes": 6,
+    "import_nodes": 1,
+    "expression_nodes": 30,
+    "assignment_nodes": 8,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 317
+  },
+  "used_names": [
+    "open",
+    "system",
+    "files_to_test",
+    "__name__",
+    "f",
+    "filepath",
+    "fix_live_smoke_test_langchain",
+    "FinalProjectionSystem",
+    "Exception",
+    "print",
+    "main",
+    "fix_meta_cognitive_orchestrator",
+    "fix_diversity_hypothesis_demo",
+    "fix_diversity_synthesis_orchestrator",
+    "e",
+    "content",
+    "fix_langgraph_diversity_orchestrator"
+  ]
+}

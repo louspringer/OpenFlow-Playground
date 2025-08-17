@@ -1,0 +1,88 @@
+{
+  "system_name": "Test CI/CD Integration",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_cicd_integration",
+      "signature": "test_cicd_integration() -> Any",
+      "docstring": "Test the CI/CD integration functionality",
+      "decorators": [],
+      "line_number": 18,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "test_environment_rules",
+      "signature": "test_environment_rules() -> Any",
+      "docstring": "Test environment-specific quality rules",
+      "decorators": [],
+      "line_number": 144,
+      "return_type": "Any",
+      "parameters": []
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Run all CI/CD integration tests",
+      "decorators": [],
+      "line_number": 182,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import sys",
+    "from pathlib import Path",
+    "from code_quality_system.integrations.ci_cd_integration import CICDIntegration"
+  ],
+  "module_docstring": "\nTest CI/CD Integration\n\nTests the CI/CD integration with quality gates and environment-specific rules.\n",
+  "file_structure": {
+    "total_lines": 218,
+    "code_lines": 159,
+    "comment_lines": 19,
+    "blank_lines": 40,
+    "total_nodes": 1017,
+    "class_nodes": 0,
+    "function_nodes": 3,
+    "import_nodes": 4,
+    "expression_nodes": 74,
+    "assignment_nodes": 24,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 218
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "__file__",
+    "test_environment_rules",
+    "cicd",
+    "os",
+    "exit",
+    "str",
+    "Path",
+    "mock_quality_result",
+    "test_cicd_integration",
+    "cicd_prod",
+    "sys",
+    "print",
+    "main",
+    "fallback_result",
+    "cicd_staging",
+    "CICDIntegration",
+    "exit_code",
+    "cicd_dev",
+    "e",
+    "ci_report"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "module_name": "monitor_jupyter_logs",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "scripts/monitor_jupyter_logs.py"
+  ],
+  "file_count": 1,
+  "total_lines": 121,
+  "total_classes": 0,
+  "total_functions": 2,
+  "total_imports": 5,
+  "module_docstring": "\"\"\"\nmonitor_jupyter_logs\n\nPurpose: General functionality\nGraph API Level: 1\nProjection System: general_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 121\nClasses: 0\nFunctions: 2\nImports: 5\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "General functionality",
+  "graph_api_level": "1",
+  "projection_system": "general_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "monitor_jupyter_logs",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 121,
+      "total_classes": 0,
+      "total_functions": 2,
+      "total_imports": 5
+    },
+    "files": [
+      {
+        "path": "scripts/monitor_jupyter_logs.py",
+        "name": "monitor_jupyter_logs.py",
+        "stem": "monitor_jupyter_logs"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:17.934175",
+  "version": "1.0.0"
+}

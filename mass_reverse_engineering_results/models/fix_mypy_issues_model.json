@@ -1,0 +1,156 @@
+{
+  "system_name": "Comprehensive Mypy Issue Fixer",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "add_missing_type_annotations",
+      "signature": "add_missing_type_annotations(file_path: Path) -> bool",
+      "docstring": "Add missing type annotations to a file",
+      "decorators": [],
+      "line_number": 13,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "Path",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "infer_parameter_type",
+      "signature": "infer_parameter_type(param_name: str) -> str",
+      "docstring": "Infer parameter type based on name",
+      "decorators": [],
+      "line_number": 120,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "param_name",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "infer_variable_type",
+      "signature": "infer_variable_type(value: str) -> str",
+      "docstring": "Infer variable type from assignment value",
+      "decorators": [],
+      "line_number": 152,
+      "return_type": "str",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "fix_mypy_issues",
+      "signature": "fix_mypy_issues(directories: list[str]) -> dict[Tuple[str, Any]]",
+      "docstring": "Fix mypy issues in all files",
+      "decorators": [],
+      "line_number": 191,
+      "return_type": "dict[Tuple[str, Any]]",
+      "parameters": [
+        {
+          "name": "directories",
+          "type": "list[str]",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> None",
+      "docstring": "Main function",
+      "decorators": [],
+      "line_number": 213,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import re",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nComprehensive Mypy Issue Fixer\n",
+  "file_structure": {
+    "total_lines": 231,
+    "code_lines": 163,
+    "comment_lines": 24,
+    "blank_lines": 44,
+    "total_nodes": 1111,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 20,
+    "assignment_nodes": 3,
+    "return_nodes": 20
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 231
+  },
+  "used_names": [
+    "param_lower",
+    "__name__",
+    "Exception",
+    "f",
+    "py_file",
+    "enumerate",
+    "fix_mypy_issues",
+    "directories",
+    "imp",
+    "dict",
+    "value",
+    "param_name",
+    "content",
+    "open",
+    "str",
+    "Path",
+    "line",
+    "reversed",
+    "new_param_str",
+    "var_value",
+    "word",
+    "infer_parameter_type",
+    "add_missing_type_annotations",
+    "list",
+    "len",
+    "type_name",
+    "file_path",
+    "print",
+    "main",
+    "lines",
+    "param_type",
+    "var_type",
+    "error",
+    "bool",
+    "results",
+    "param",
+    "typing_imports",
+    "params",
+    "infer_variable_type",
+    "re",
+    "new_params",
+    "match",
+    "i",
+    "modified",
+    "var_name",
+    "e",
+    "Any",
+    "directory",
+    "any"
+  ]
+}

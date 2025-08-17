@@ -1,0 +1,304 @@
+{
+  "system_name": "\ud83d\udcb0 GCP Daily Billing Reporter",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "GCPBillingDailyReporter": {
+      "responsibility": "Generate daily billing reports with visualizations",
+      "methods": [
+        {
+          "name": "get_project_info",
+          "signature": "get_project_info(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get current project information",
+          "decorators": [],
+          "line_number": 31,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_daily_usage_data",
+          "signature": "get_daily_usage_data(self, days: int) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Get daily usage data for the specified number of days",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_dataframe",
+          "signature": "create_dataframe(self, daily_data: list[dict[Tuple[str, Any]]]) -> Any",
+          "docstring": "Convert daily data to pandas DataFrame",
+          "decorators": [],
+          "line_number": 139,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "daily_data",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_daily_summary",
+          "signature": "generate_daily_summary(self, df: Any) -> Any",
+          "docstring": "Generate daily cost summary",
+          "decorators": [],
+          "line_number": 173,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "df",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_visualizations",
+          "signature": "create_visualizations(self, df: Any, daily_summary: Any) -> dict[Tuple[str, str]]",
+          "docstring": "Create various visualizations",
+          "decorators": [],
+          "line_number": 189,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [
+            {
+              "name": "df",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "daily_summary",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "save_data_for_analysis",
+          "signature": "save_data_for_analysis(self, df: Any, daily_summary: Any) -> dict[Tuple[str, str]]",
+          "docstring": "Save data in various formats for further analysis",
+          "decorators": [],
+          "line_number": 359,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [
+            {
+              "name": "df",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "daily_summary",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "create_jupyter_notebook_template",
+          "signature": "create_jupyter_notebook_template(self, df: Any, daily_summary: Any) -> str",
+          "docstring": "Create a Jupyter notebook template for further analysis",
+          "decorators": [],
+          "line_number": 417,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "df",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "daily_summary",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "generate_report",
+          "signature": "generate_report(self, df: Any, daily_summary: Any) -> str",
+          "docstring": "Generate a comprehensive daily billing report",
+          "decorators": [],
+          "line_number": 622,
+          "return_type": "str",
+          "parameters": [
+            {
+              "name": "df",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "daily_summary",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "run_daily_analysis",
+          "signature": "run_daily_analysis(self, days: int) -> dict[Tuple[str, Any]]",
+          "docstring": "Run complete daily billing analysis",
+          "decorators": [],
+          "line_number": 710,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "days",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 21
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main function to run the daily billing analysis",
+      "decorators": [],
+      "line_number": 779,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import subprocess",
+    "from datetime import datetime",
+    "from datetime import timedelta",
+    "from pathlib import Path",
+    "from typing import Any",
+    "import matplotlib.pyplot as plt",
+    "import pandas as pd",
+    "import plotly.graph_objects as go",
+    "import seaborn as sns",
+    "from plotly.subplots import make_subplots"
+  ],
+  "module_docstring": "\n\ud83d\udcb0 GCP Daily Billing Reporter\n\nGenerate daily billing reports with visualizations and data persistence.\n",
+  "file_structure": {
+    "total_lines": 787,
+    "code_lines": 660,
+    "comment_lines": 38,
+    "blank_lines": 89,
+    "total_nodes": 2846,
+    "class_nodes": 1,
+    "function_nodes": 11,
+    "import_nodes": 10,
+    "expression_nodes": 121,
+    "assignment_nodes": 72,
+    "return_nodes": 20
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 787
+  },
+  "used_names": [
+    "plt",
+    "__name__",
+    "Exception",
+    "GCPBillingDailyReporter",
+    "df",
+    "f",
+    "service_pivot",
+    "analysis_dir",
+    "trend_direction",
+    "service_breakdown_file",
+    "make_subplots",
+    "notebook_file",
+    "cloud_run_cost",
+    "timedelta",
+    "isinstance",
+    "dict",
+    "result",
+    "flattened_data",
+    "viz_dir",
+    "open",
+    "service_data",
+    "str",
+    "Path",
+    "day_data",
+    "daily_summary",
+    "service_totals",
+    "interactive_file",
+    "sum",
+    "viz_type",
+    "daily_data",
+    "subprocess",
+    "service",
+    "date_range",
+    "list",
+    "heatmap_file",
+    "json",
+    "data_type",
+    "notebook_content",
+    "len",
+    "days",
+    "heatmap_data",
+    "pd",
+    "file_path",
+    "reporter",
+    "print",
+    "main",
+    "avg_daily_cost",
+    "self",
+    "viz_files",
+    "report",
+    "cost",
+    "go",
+    "date",
+    "report_file",
+    "saved_files",
+    "daily_trend_file",
+    "cost_trend",
+    "cloud_functions_cost",
+    "datetime",
+    "end_date",
+    "billing_accounts",
+    "total_cost",
+    "i",
+    "min_daily_cost",
+    "sns",
+    "max_daily_cost",
+    "project_info",
+    "int",
+    "fig",
+    "e",
+    "start_date",
+    "Any",
+    "percentage",
+    "range",
+    "service_name",
+    "analysis_files"
+  ]
+}

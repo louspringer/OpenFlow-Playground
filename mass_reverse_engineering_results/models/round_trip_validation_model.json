@@ -1,0 +1,449 @@
+{
+  "system_name": "Round-Trip Quality Validation System",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "RoundTripQualityValidator": {
+      "responsibility": "Validates the complete round-trip quality workflow from development to deployment.\n\n    This validator ensures:\n    1. Quality metrics are correctly calculated and stored\n    2. Quality gates are properly enforced\n    3. Multi-agent analysis integrates correctly\n    4. CI/CD integration works end-to-end\n    5. Quality reports are accurate and actionable",
+      "methods": [
+        {
+          "name": "validate_complete_workflow",
+          "signature": "validate_complete_workflow(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate the complete quality workflow round-trip.\n\n        Returns:\n            Comprehensive validation results",
+          "decorators": [],
+          "line_number": 42,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_quality_metrics",
+          "signature": "_validate_quality_metrics(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate quality metrics calculation and storage",
+          "decorators": [],
+          "line_number": 98,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_quality_gates",
+          "signature": "_validate_quality_gates(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate quality gates enforcement",
+          "decorators": [],
+          "line_number": 135,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_multi_agent_integration",
+          "signature": "_validate_multi_agent_integration(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate multi-agent integration with quality system",
+          "decorators": [],
+          "line_number": 187,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_cicd_integration",
+          "signature": "_validate_cicd_integration(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate CI/CD integration",
+          "decorators": [],
+          "line_number": 233,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_validate_end_to_end_workflow",
+          "signature": "_validate_end_to_end_workflow(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Validate complete end-to-end quality workflow",
+          "decorators": [],
+          "line_number": 263,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_test_workflow_step",
+          "signature": "_test_workflow_step(self, step_name: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Test individual workflow step",
+          "decorators": [],
+          "line_number": 299,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "step_name",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_development_quality_check",
+          "signature": "_test_development_quality_check(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Test development quality check workflow step",
+          "decorators": [],
+          "line_number": 319,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_pre_commit_validation",
+          "signature": "_test_pre_commit_validation(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Test pre-commit validation workflow step",
+          "decorators": [],
+          "line_number": 352,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_cicd_quality_gates",
+          "signature": "_test_cicd_quality_gates(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Test CI/CD quality gates workflow step",
+          "decorators": [],
+          "line_number": 373,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_deployment_approval",
+          "signature": "_test_deployment_approval(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Test deployment approval workflow step",
+          "decorators": [],
+          "line_number": 405,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_test_post_deployment_validation",
+          "signature": "_test_post_deployment_validation(self) -> dict[Tuple[str, Any]]",
+          "docstring": "Test post-deployment validation workflow step",
+          "decorators": [],
+          "line_number": 438,
+          "return_type": "None",
+          "parameters": [],
+          "is_async": true,
+          "is_test_method": true
+        },
+        {
+          "name": "_generate_recommendations",
+          "signature": "_generate_recommendations(self) -> list[str]",
+          "docstring": "Generate recommendations based on validation results",
+          "decorators": [],
+          "line_number": 463,
+          "return_type": "list[str]",
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_json",
+          "signature": "_assert_valid_json(self, data: Any, context: str) -> None",
+          "docstring": "Assert that data can be serialized to JSON",
+          "decorators": [],
+          "line_number": 513,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "data",
+              "type": "Any",
+              "default": null
+            },
+            {
+              "name": "context",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_metrics_equal",
+          "signature": "_assert_metrics_equal(self, metrics1: QualityMetrics, metrics2: QualityMetrics) -> None",
+          "docstring": "Assert that two QualityMetrics objects are equal",
+          "decorators": [],
+          "line_number": 521,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "metrics1",
+              "type": "QualityMetrics",
+              "default": null
+            },
+            {
+              "name": "metrics2",
+              "type": "QualityMetrics",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_score",
+          "signature": "_assert_valid_score(self, score: float) -> None",
+          "docstring": "Assert that a quality score is valid",
+          "decorators": [],
+          "line_number": 529,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "score",
+              "type": "float",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_gate_result",
+          "signature": "_assert_gate_result(self, result: dict[Tuple[str, Any]], should_pass: bool) -> None",
+          "docstring": "Assert that a gate result matches expectations",
+          "decorators": [],
+          "line_number": 535,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "result",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            },
+            {
+              "name": "should_pass",
+              "type": "bool",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_analysis_result",
+          "signature": "_assert_valid_analysis_result(self, result: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Assert that multi-agent analysis result is valid",
+          "decorators": [],
+          "line_number": 541,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "result",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_environment",
+          "signature": "_assert_valid_environment(self, environment: str) -> None",
+          "docstring": "Assert that CI/CD environment is valid",
+          "decorators": [],
+          "line_number": 547,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "environment",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_config",
+          "signature": "_assert_valid_config(self, config: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Assert that CI/CD configuration is valid",
+          "decorators": [],
+          "line_number": 562,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "config",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_environment_rules",
+          "signature": "_assert_valid_environment_rules(self, rules: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Assert that environment rules are valid",
+          "decorators": [],
+          "line_number": 570,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "rules",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_assert_valid_hooks_config",
+          "signature": "_assert_valid_hooks_config(self, hooks: dict[Tuple[str, Any]]) -> None",
+          "docstring": "Assert that pre-commit hooks configuration is valid",
+          "decorators": [],
+          "line_number": 576,
+          "return_type": null,
+          "parameters": [
+            {
+              "name": "hooks",
+              "type": "dict[Tuple[str, Any]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 20
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import json",
+    "import logging",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from multi_agent_integration import QualityMultiAgentAdapter",
+    "from quality_enforcer import QualityEnforcer",
+    "from quality_metrics import QualityMetrics",
+    "import sys",
+    "import asyncio",
+    "from integrations.ci_cd_integration import CICDIntegration",
+    "from integrations.pre_commit_integration import PreCommitIntegration"
+  ],
+  "module_docstring": "\nRound-Trip Quality Validation System\n\nThis module provides comprehensive validation of the quality system's round-trip capabilities,\nensuring that quality metrics, enforcement, and reporting work correctly across the entire\ndevelopment lifecycle.\n",
+  "file_structure": {
+    "total_lines": 622,
+    "code_lines": 475,
+    "comment_lines": 36,
+    "blank_lines": 111,
+    "total_nodes": 2311,
+    "class_nodes": 1,
+    "function_nodes": 11,
+    "import_nodes": 11,
+    "expression_nodes": 72,
+    "assignment_nodes": 55,
+    "return_nodes": 30
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 622
+  },
+  "used_names": [
+    "cicd_thresholds",
+    "QualityMultiAgentAdapter",
+    "Exception",
+    "dict",
+    "hooks",
+    "metrics_validation",
+    "step",
+    "pre_commit",
+    "Path",
+    "list",
+    "print",
+    "bool",
+    "reconstructed_metrics",
+    "rec",
+    "deployment_metrics",
+    "recommendations",
+    "failing_result",
+    "key",
+    "__name__",
+    "post_deployment_metrics",
+    "RoundTripQualityValidator",
+    "logging",
+    "QualityEnforcer",
+    "AssertionError",
+    "mock_agent_results",
+    "environment",
+    "metrics1",
+    "failing_metrics",
+    "agent_validation",
+    "cicd_metrics",
+    "should_pass",
+    "deployment_thresholds",
+    "rules",
+    "QualityMetrics",
+    "all_steps_successful",
+    "required_keys",
+    "config",
+    "validator",
+    "cicd_validation",
+    "analysis_result",
+    "score",
+    "cicd",
+    "hooks_config",
+    "float",
+    "result",
+    "sum",
+    "metrics_dict",
+    "test_metrics",
+    "valid_environments",
+    "main",
+    "error",
+    "results",
+    "CICDIntegration",
+    "workflow_validation",
+    "validation_result",
+    "passing_result",
+    "isinstance",
+    "Any",
+    "calculated_score",
+    "str",
+    "workflow_results",
+    "msg",
+    "json",
+    "sys",
+    "len",
+    "gate_config",
+    "self",
+    "asyncio",
+    "dev_thresholds",
+    "step_name",
+    "gates_validation",
+    "workflow_steps",
+    "components",
+    "metrics2",
+    "dev_metrics",
+    "data",
+    "context",
+    "PreCommitIntegration",
+    "int",
+    "all",
+    "e",
+    "project_path"
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "system_name": "",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestHTTPSEnforcement": {
+      "responsibility": "Test HTTPS enforcement functionality.",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment.",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_validate_https_url_valid",
+          "signature": "test_validate_https_url_valid(self) -> None",
+          "docstring": "Test validation of valid HTTPS URLs.",
+          "decorators": [],
+          "line_number": 29,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_https_url_invalid",
+          "signature": "test_validate_https_url_invalid(self) -> None",
+          "docstring": "Test validation of invalid HTTP URLs.",
+          "decorators": [],
+          "line_number": 43,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_enforce_https_redirect",
+          "signature": "test_enforce_https_redirect(self) -> None",
+          "docstring": "Test HTTPS redirect enforcement.",
+          "decorators": [],
+          "line_number": 56,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_ssl_context_configuration",
+          "signature": "test_ssl_context_configuration(self) -> None",
+          "docstring": "Test SSL context configuration.",
+          "decorators": [],
+          "line_number": 68,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_ssl_certificate_success",
+          "signature": "test_validate_ssl_certificate_success(self, mock_socket: Any) -> None",
+          "docstring": "Test successful SSL certificate validation.",
+          "decorators": [],
+          "line_number": 82,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_socket",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_ssl_certificate_failure",
+          "signature": "test_validate_ssl_certificate_failure(self, mock_socket: Any) -> None",
+          "docstring": "Test SSL certificate validation failure.",
+          "decorators": [],
+          "line_number": 94,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_socket",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 22
+    },
+    "TestRateLimiting": {
+      "responsibility": "Test rate limiting functionality.",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment.",
+          "decorators": [],
+          "line_number": 108,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_check_rate_limit_first_request",
+          "signature": "test_check_rate_limit_first_request(self) -> None",
+          "docstring": "Test rate limit check for first request.",
+          "decorators": [],
+          "line_number": 113,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_check_rate_limit_under_limit",
+          "signature": "test_check_rate_limit_under_limit(self) -> None",
+          "docstring": "Test rate limit check when under limit.",
+          "decorators": [],
+          "line_number": 122,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_check_rate_limit_over_limit",
+          "signature": "test_check_rate_limit_over_limit(self) -> None",
+          "docstring": "Test rate limit check when over limit.",
+          "decorators": [],
+          "line_number": 131,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_remaining_requests",
+          "signature": "test_get_remaining_requests(self) -> None",
+          "docstring": "Test getting remaining requests.",
+          "decorators": [],
+          "line_number": 140,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 105
+    },
+    "TestCSRFProtection": {
+      "responsibility": "Test CSRF protection functionality.",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment.",
+          "decorators": [],
+          "line_number": 155,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_generate_csrf_token",
+          "signature": "test_generate_csrf_token(self) -> None",
+          "docstring": "Test CSRF token generation.",
+          "decorators": [],
+          "line_number": 160,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_csrf_token_valid",
+          "signature": "test_validate_csrf_token_valid(self) -> None",
+          "docstring": "Test valid CSRF token validation.",
+          "decorators": [],
+          "line_number": 169,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_csrf_token_invalid",
+          "signature": "test_validate_csrf_token_invalid(self) -> None",
+          "docstring": "Test invalid CSRF token validation.",
+          "decorators": [],
+          "line_number": 178,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 152
+    },
+    "TestSecurityManager": {
+      "responsibility": "Test comprehensive security manager.",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment.",
+          "decorators": [],
+          "line_number": 191,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_validate_request_all_valid",
+          "signature": "test_validate_request_all_valid(self) -> None",
+          "docstring": "Test request validation with all security checks passing.",
+          "decorators": [],
+          "line_number": 197,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_request_https_invalid",
+          "signature": "test_validate_request_https_invalid(self) -> None",
+          "docstring": "Test request validation with invalid HTTPS.",
+          "decorators": [],
+          "line_number": 212,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_request_rate_limit_exceeded",
+          "signature": "test_validate_request_rate_limit_exceeded(self) -> None",
+          "docstring": "Test request validation with rate limit exceeded.",
+          "decorators": [],
+          "line_number": 222,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_security_headers",
+          "signature": "test_get_security_headers(self) -> None",
+          "docstring": "Test security headers generation.",
+          "decorators": [],
+          "line_number": 235,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 188
+    },
+    "TestIntegration": {
+      "responsibility": "Integration tests for security components.",
+      "methods": [
+        {
+          "name": "test_security_manager_integration",
+          "signature": "test_security_manager_integration(self) -> None",
+          "docstring": "Test integration of all security components.",
+          "decorators": [],
+          "line_number": 257,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 254
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import os",
+    "import ssl",
+    "import unittest.mock as mock",
+    "from unittest.mock import MagicMock",
+    "import pytest",
+    "from https_enforcement import CSRFProtection",
+    "from https_enforcement import HTTPSEnforcement",
+    "from https_enforcement import RateLimiting",
+    "from https_enforcement import SecurityManager"
+  ],
+  "module_docstring": "",
+  "file_structure": {
+    "total_lines": 293,
+    "code_lines": 202,
+    "comment_lines": 14,
+    "blank_lines": 77,
+    "total_nodes": 1081,
+    "class_nodes": 5,
+    "function_nodes": 22,
+    "import_nodes": 6,
+    "expression_nodes": 33,
+    "assignment_nodes": 60,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 293
+  },
+  "used_names": [
+    "mock_socket",
+    "__name__",
+    "Exception",
+    "__file__",
+    "user_id",
+    "valid_urls",
+    "dict",
+    "headers",
+    "result",
+    "token",
+    "HTTPSEnforcement",
+    "expected_url",
+    "os",
+    "str",
+    "security_manager",
+    "test_cases",
+    "required_headers",
+    "remaining",
+    "csrf_token",
+    "RateLimiting",
+    "endpoint",
+    "pytest",
+    "input_url",
+    "ssl",
+    "url",
+    "len",
+    "self",
+    "session_id",
+    "mock",
+    "invalid_urls",
+    "invalid_token",
+    "CSRFProtection",
+    "MagicMock",
+    "context",
+    "header",
+    "secret_key",
+    "SecurityManager",
+    "mock_redis",
+    "isinstance"
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "system_name": "Issue Detector Agent",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "IssueDetector": {
+      "responsibility": "Agent for detecting code quality issues",
+      "methods": [
+        {
+          "name": "detect_issues",
+          "signature": "detect_issues(self, target_path: str) -> dict[Tuple[str, Any]]",
+          "docstring": "Detect issues in the target path",
+          "decorators": [],
+          "line_number": 32,
+          "return_type": "dict[Tuple[str, Any]]",
+          "parameters": [
+            {
+              "name": "target_path",
+              "type": "str",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_file_issues",
+          "signature": "_detect_file_issues(self, file_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Detect issues in a single file",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "file_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_detect_directory_issues",
+          "signature": "_detect_directory_issues(self, dir_path: Path) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Detect issues in a directory",
+          "decorators": [],
+          "line_number": 101,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "dir_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_line",
+          "signature": "_analyze_line(self, line: str, line_num: int) -> list[dict[Tuple[str, Any]]]",
+          "docstring": "Analyze a single line for issues",
+          "decorators": [],
+          "line_number": 126,
+          "return_type": "list[dict[Tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "line",
+              "type": "str",
+              "default": null
+            },
+            {
+              "name": "line_num",
+              "type": "int",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_severity_summary",
+          "signature": "_generate_severity_summary(self, issues: list[dict[Tuple[str, Any]]]) -> dict[Tuple[str, int]]",
+          "docstring": "Generate summary of issues by severity",
+          "decorators": [],
+          "line_number": 190,
+          "return_type": "dict[Tuple[str, int]]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_issue_recommendations",
+          "signature": "_generate_issue_recommendations(self, issues: list[dict[Tuple[str, Any]]]) -> list[str]",
+          "docstring": "Generate recommendations based on detected issues",
+          "decorators": [],
+          "line_number": 203,
+          "return_type": "list[str]",
+          "parameters": [
+            {
+              "name": "issues",
+              "type": "list[dict[Tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import logging",
+    "import re",
+    "from pathlib import Path",
+    "from typing import Any"
+  ],
+  "module_docstring": "\nIssue Detector Agent\n\nThis agent specializes in detecting code quality issues and potential problems.\n",
+  "file_structure": {
+    "total_lines": 251,
+    "code_lines": 192,
+    "comment_lines": 11,
+    "blank_lines": 48,
+    "total_nodes": 981,
+    "class_nodes": 1,
+    "function_nodes": 7,
+    "import_nodes": 4,
+    "expression_nodes": 31,
+    "assignment_nodes": 28,
+    "return_nodes": 9
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "executable",
+    "line_count": 251
+  },
+  "used_names": [
+    "__name__",
+    "total_issues",
+    "Exception",
+    "logging",
+    "python_files",
+    "enumerate",
+    "issue_types",
+    "severity",
+    "dict",
+    "target_path",
+    "content",
+    "stripped_line",
+    "logger",
+    "str",
+    "Path",
+    "line",
+    "path",
+    "all_issues",
+    "var",
+    "list",
+    "dir_path",
+    "len",
+    "file_path",
+    "summary",
+    "issue_type",
+    "self",
+    "lines",
+    "file_issues",
+    "issue",
+    "line_num",
+    "detection_results",
+    "re",
+    "config",
+    "recommendations",
+    "int",
+    "e",
+    "line_issues",
+    "Any",
+    "issues",
+    "any"
+  ]
+}

@@ -1,0 +1,658 @@
+{
+  "system_name": "\ud83e\uddea Streamlit App Security-First Test Suite",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "TestSecurityManager": {
+      "responsibility": "Test security-first credential and session management",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 40,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_credential_encryption_decryption",
+          "signature": "test_credential_encryption_decryption(self) -> None",
+          "docstring": "Test credential encryption and decryption",
+          "decorators": [],
+          "line_number": 47,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_secure_credential_storage",
+          "signature": "test_secure_credential_storage(self) -> None",
+          "docstring": "Test secure credential storage in Redis",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_session_token_creation",
+          "signature": "test_session_token_creation(self) -> None",
+          "docstring": "Test JWT session token creation",
+          "decorators": [],
+          "line_number": 72,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_session_validation_valid_token",
+          "signature": "test_session_validation_valid_token(self) -> None",
+          "docstring": "Test session validation with valid token",
+          "decorators": [],
+          "line_number": 89,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_session_validation_expired_token",
+          "signature": "test_session_validation_expired_token(self) -> None",
+          "docstring": "Test session validation with expired token",
+          "decorators": [],
+          "line_number": 103,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_session_validation_invalid_token",
+          "signature": "test_session_validation_invalid_token(self) -> None",
+          "docstring": "Test session validation with invalid token",
+          "decorators": [],
+          "line_number": 123,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 37
+    },
+    "TestInputValidator": {
+      "responsibility": "Test comprehensive input validation and sanitization",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 138,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_validate_snowflake_url_valid",
+          "signature": "test_validate_snowflake_url_valid(self) -> None",
+          "docstring": "Test valid Snowflake URL validation",
+          "decorators": [],
+          "line_number": 142,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_snowflake_url_invalid",
+          "signature": "test_validate_snowflake_url_invalid(self) -> None",
+          "docstring": "Test invalid Snowflake URL validation",
+          "decorators": [],
+          "line_number": 153,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_uuid_valid",
+          "signature": "test_validate_uuid_valid(self) -> None",
+          "docstring": "Test valid UUID validation",
+          "decorators": [],
+          "line_number": 167,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_uuid_invalid",
+          "signature": "test_validate_uuid_invalid(self) -> None",
+          "docstring": "Test invalid UUID validation",
+          "decorators": [],
+          "line_number": 178,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_sanitize_input",
+          "signature": "test_sanitize_input(self) -> None",
+          "docstring": "Test input sanitization",
+          "decorators": [],
+          "line_number": 191,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_oauth_credentials_valid",
+          "signature": "test_validate_oauth_credentials_valid(self) -> None",
+          "docstring": "Test valid OAuth credentials validation",
+          "decorators": [],
+          "line_number": 207,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_oauth_credentials_invalid",
+          "signature": "test_validate_oauth_credentials_invalid(self) -> None",
+          "docstring": "Test invalid OAuth credentials validation",
+          "decorators": [],
+          "line_number": 221,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 135
+    },
+    "TestDeploymentManager": {
+      "responsibility": "Test AWS CloudFormation deployment management",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 241,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_deploy_stack_success",
+          "signature": "test_deploy_stack_success(self, mock_boto3_client: Any) -> None",
+          "docstring": "Test successful stack deployment",
+          "decorators": [],
+          "line_number": 246,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_boto3_client",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_deploy_stack_failure",
+          "signature": "test_deploy_stack_failure(self, mock_boto3_client: Any) -> None",
+          "docstring": "Test failed stack deployment",
+          "decorators": [],
+          "line_number": 267,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_boto3_client",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_stack_status",
+          "signature": "test_get_stack_status(self, mock_boto3_client: Any) -> None",
+          "docstring": "Test getting stack status",
+          "decorators": [],
+          "line_number": 286,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_boto3_client",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        },
+        {
+          "name": "test_get_stack_events",
+          "signature": "test_get_stack_events(self, mock_boto3_client: Any) -> None",
+          "docstring": "Test getting stack events",
+          "decorators": [],
+          "line_number": 302,
+          "return_type": "None",
+          "parameters": [
+            {
+              "name": "mock_boto3_client",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 238
+    },
+    "TestMonitoringDashboard": {
+      "responsibility": "Test real-time monitoring and visualization dashboard",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 328,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_create_deployment_timeline",
+          "signature": "test_create_deployment_timeline(self) -> None",
+          "docstring": "Test deployment timeline visualization creation",
+          "decorators": [],
+          "line_number": 333,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_create_resource_status_matrix",
+          "signature": "test_create_resource_status_matrix(self) -> None",
+          "docstring": "Test resource status matrix visualization creation",
+          "decorators": [],
+          "line_number": 361,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 325
+    },
+    "TestOpenFlowQuickstartApp": {
+      "responsibility": "Test main Streamlit application",
+      "methods": [
+        {
+          "name": "setup_method",
+          "signature": "setup_method(self) -> None",
+          "docstring": "Setup test environment",
+          "decorators": [],
+          "line_number": 393,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "test_app_initialization",
+          "signature": "test_app_initialization(self) -> None",
+          "docstring": "Test app initialization",
+          "decorators": [],
+          "line_number": 397,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_credentials_valid",
+          "signature": "test_validate_credentials_valid(self) -> None",
+          "docstring": "Test valid credential validation",
+          "decorators": [],
+          "line_number": 405,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_validate_credentials_invalid",
+          "signature": "test_validate_credentials_invalid(self) -> None",
+          "docstring": "Test invalid credential validation",
+          "decorators": [],
+          "line_number": 413,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 390
+    },
+    "TestPydanticModels": {
+      "responsibility": "Test Pydantic validation models",
+      "methods": [
+        {
+          "name": "test_snowflake_config_valid",
+          "signature": "test_snowflake_config_valid(self) -> None",
+          "docstring": "Test valid Snowflake configuration",
+          "decorators": [],
+          "line_number": 431,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_snowflake_config_invalid_url",
+          "signature": "test_snowflake_config_invalid_url(self) -> None",
+          "docstring": "Test invalid Snowflake configuration URL",
+          "decorators": [],
+          "line_number": 446,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_openflow_config_valid",
+          "signature": "test_openflow_config_valid(self) -> None",
+          "docstring": "Test valid OpenFlow configuration",
+          "decorators": [],
+          "line_number": 460,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_openflow_config_invalid_uuid",
+          "signature": "test_openflow_config_invalid_uuid(self) -> None",
+          "docstring": "Test invalid OpenFlow configuration UUID",
+          "decorators": [],
+          "line_number": 474,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 428
+    },
+    "TestSecurityFirstArchitecture": {
+      "responsibility": "Test security-first architecture compliance",
+      "methods": [
+        {
+          "name": "test_no_hardcoded_credentials",
+          "signature": "test_no_hardcoded_credentials(self) -> None",
+          "docstring": "Test that no hardcoded credentials exist in the codebase",
+          "decorators": [],
+          "line_number": 491,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_secure_session_configuration",
+          "signature": "test_secure_session_configuration(self) -> None",
+          "docstring": "Test secure session configuration",
+          "decorators": [],
+          "line_number": 497,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_input_validation_coverage",
+          "signature": "test_input_validation_coverage(self) -> None",
+          "docstring": "Test that all inputs are validated",
+          "decorators": [],
+          "line_number": 508,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 488
+    },
+    "TestAccessibilityCompliance": {
+      "responsibility": "Test accessibility compliance",
+      "methods": [
+        {
+          "name": "test_color_contrast_compliance",
+          "signature": "test_color_contrast_compliance(self) -> None",
+          "docstring": "Test color contrast compliance",
+          "decorators": [],
+          "line_number": 518,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_keyboard_navigation",
+          "signature": "test_keyboard_navigation(self) -> None",
+          "docstring": "Test keyboard navigation support",
+          "decorators": [],
+          "line_number": 524,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_screen_reader_support",
+          "signature": "test_screen_reader_support(self) -> None",
+          "docstring": "Test screen reader support",
+          "decorators": [],
+          "line_number": 530,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 515
+    },
+    "TestPerformanceOptimization": {
+      "responsibility": "Test performance optimization features",
+      "methods": [
+        {
+          "name": "test_caching_implementation",
+          "signature": "test_caching_implementation(self) -> None",
+          "docstring": "Test caching implementation",
+          "decorators": [],
+          "line_number": 540,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_memory_management",
+          "signature": "test_memory_management(self) -> None",
+          "docstring": "Test memory management",
+          "decorators": [],
+          "line_number": 546,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        },
+        {
+          "name": "test_parallel_processing",
+          "signature": "test_parallel_processing(self) -> None",
+          "docstring": "Test parallel processing implementation",
+          "decorators": [],
+          "line_number": 552,
+          "return_type": "None",
+          "parameters": [],
+          "is_test_method": true
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 537
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "import sys",
+    "from datetime import datetime",
+    "from datetime import timedelta",
+    "from unittest.mock import Mock",
+    "from unittest.mock import patch",
+    "import jwt",
+    "import pytest",
+    "from pydantic import ValidationError",
+    "from streamlit_app import SECURITY_CONFIG",
+    "from streamlit_app import DeploymentManager",
+    "from streamlit_app import InputValidator",
+    "from streamlit_app import MonitoringDashboard",
+    "from streamlit_app import OpenFlowConfig",
+    "from streamlit_app import OpenFlowQuickstartApp",
+    "from streamlit_app import SecurityManager",
+    "from streamlit_app import SnowflakeConfig"
+  ],
+  "module_docstring": "\n\ud83e\uddea Streamlit App Security-First Test Suite\n\nComprehensive test suite for OpenFlow Streamlit app based on multi-agent\nblind spot detection analysis.\n\nTests cover:\n- Security: Credential management, session security, input validation\n- Production: Multi-user support, error handling, monitoring\n- UX: Accessibility, mobile responsiveness, progressive disclosure\n- Performance: Caching, parallel processing, memory management\n",
+  "file_structure": {
+    "total_lines": 562,
+    "code_lines": 391,
+    "comment_lines": 63,
+    "blank_lines": 108,
+    "total_nodes": 1619,
+    "class_nodes": 9,
+    "function_nodes": 40,
+    "import_nodes": 7,
+    "expression_nodes": 55,
+    "assignment_nodes": 60,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 562
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "__file__",
+    "expired_token",
+    "valid_uuids",
+    "password",
+    "Mock",
+    "test_inputs",
+    "decoded",
+    "valid_urls",
+    "username",
+    "timedelta",
+    "result",
+    "token",
+    "client_secret",
+    "payload",
+    "jwt",
+    "hasattr",
+    "expected",
+    "status",
+    "OpenFlowConfig",
+    "mock_cloudformation",
+    "is_valid",
+    "decrypted",
+    "uuid_str",
+    "invalid_uuids",
+    "invalid_config",
+    "pytest",
+    "input_str",
+    "sys",
+    "url",
+    "len",
+    "valid_config",
+    "events",
+    "DeploymentManager",
+    "OpenFlowQuickstartApp",
+    "self",
+    "client_id",
+    "patch",
+    "invalid_urls",
+    "InputValidator",
+    "SnowflakeConfig",
+    "MonitoringDashboard",
+    "invalid_token",
+    "encrypted",
+    "datetime",
+    "SECURITY_CONFIG",
+    "invalid_credentials",
+    "sanitized",
+    "mock_boto3_client",
+    "config",
+    "SecurityManager",
+    "retrieved",
+    "mock_events",
+    "ValidationError",
+    "valid_credentials",
+    "fig"
+  ]
+}

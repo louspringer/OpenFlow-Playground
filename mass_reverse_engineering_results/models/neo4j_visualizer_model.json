@@ -1,0 +1,112 @@
+{
+  "system_name": "Neo4j Visualizer",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "Neo4jVisualizer": {
+      "responsibility": "Creates interactive visualizations of Neo4j project model",
+      "methods": [
+        {
+          "name": "load_model",
+          "signature": "load_model(self) -> None",
+          "docstring": "Load the project model with credential mappings",
+          "decorators": [],
+          "line_number": 25,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "get_credentials",
+          "signature": "get_credentials(self) -> dict[Tuple[str, str]]",
+          "docstring": "Get Neo4j credentials using 1Password item pointers",
+          "decorators": [],
+          "line_number": 34,
+          "return_type": "dict[Tuple[str, str]]",
+          "parameters": [],
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [],
+      "line_number": 16
+    }
+  },
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Main execution function",
+      "decorators": [],
+      "line_number": 66,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import json",
+    "import os",
+    "import subprocess",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from typing import Dict",
+    "from typing import List",
+    "from typing import Optional"
+  ],
+  "module_docstring": "\nNeo4j Visualizer\n\nCreates interactive visualizations of the project model graph from Neo4j database.\nUses 1Password item pointers from project model for secure credential access.\n",
+  "file_structure": {
+    "total_lines": 80,
+    "code_lines": 58,
+    "comment_lines": 4,
+    "blank_lines": 18,
+    "total_nodes": 331,
+    "class_nodes": 1,
+    "function_nodes": 4,
+    "import_nodes": 5,
+    "expression_nodes": 13,
+    "assignment_nodes": 12,
+    "return_nodes": 1
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 80
+  },
+  "used_names": [
+    "key",
+    "env_key",
+    "__name__",
+    "Neo4jVisualizer",
+    "Exception",
+    "credentials",
+    "f",
+    "op_pointer",
+    "dict",
+    "result",
+    "os",
+    "open",
+    "model_file",
+    "str",
+    "Path",
+    "subprocess",
+    "json",
+    "credential_mappings",
+    "FileNotFoundError",
+    "print",
+    "main",
+    "self",
+    "ValueError",
+    "e",
+    "visualizer"
+  ]
+}

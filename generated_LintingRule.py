@@ -4,22 +4,21 @@ Represents a linting rule with AST-aware patterns
 """
 
 from dataclasses import *
-from dataclasses import dataclass
 from typing import *
 
 
-@dataclass
 class LintingRule:
     """
     Represents a linting rule with AST-aware patterns
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # TODO: Initialize based on requirements: ['rule code', 'description', 'severity', 'AST patterns', 'fix strategy']
-        pass
+        return None
 
     def __post_init__(self) -> None:
         """
-        Initialize default values
+        __post_init__(self, ) -> None
         """
-        # TODO: Implement based on requirements: []
+        # TODO: Implement __post_init__(self, ) -> None
+        return

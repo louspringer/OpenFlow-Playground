@@ -1,0 +1,59 @@
+{
+  "system_name": "Enhanced Billing Analyzer Generator with Recursive Decomposition",
+  "description": "Uses the recursive code generator to create more robust, validated code",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Generate billing analyzer with recursive decomposition",
+      "decorators": [],
+      "line_number": 15,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import logging",
+    "from pathlib import Path",
+    "from generate_billing_analyzer import generate_gemini_billing_analyzer",
+    "from recursive_code_generator import RecursiveCodeGenerator"
+  ],
+  "module_docstring": "\nEnhanced Billing Analyzer Generator with Recursive Decomposition\nUses the recursive code generator to create more robust, validated code\n",
+  "file_structure": {
+    "total_lines": 51,
+    "code_lines": 29,
+    "comment_lines": 6,
+    "blank_lines": 16,
+    "total_nodes": 128,
+    "class_nodes": 0,
+    "function_nodes": 1,
+    "import_nodes": 4,
+    "expression_nodes": 14,
+    "assignment_nodes": 4,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 51
+  },
+  "used_names": [
+    "analyzer_file",
+    "RecursiveCodeGenerator",
+    "__name__",
+    "Path",
+    "logging",
+    "print",
+    "main",
+    "generator",
+    "success",
+    "generate_gemini_billing_analyzer",
+    "output_path"
+  ]
+}

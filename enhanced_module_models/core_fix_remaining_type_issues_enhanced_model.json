@@ -1,0 +1,51 @@
+{
+  "module_name": "core_fix_remaining_type_issues",
+  "module_type": "single_file",
+  "confidence_score": 0.9,
+  "files": [
+    "fix_remaining_type_issues.py"
+  ],
+  "file_count": 1,
+  "total_lines": 191,
+  "total_classes": 0,
+  "total_functions": 3,
+  "total_imports": 3,
+  "module_docstring": "\"\"\"\ncore_fix_remaining_type_issues\n\nPurpose: Core functionality and business logic\nGraph API Level: 1\nProjection System: core_system\n\nModule Type: single_file\nFiles: 1\nTotal Lines: 191\nClasses: 0\nFunctions: 3\nImports: 3\n\nThis module was automatically detected and modeled by the Enhanced Module Modeling System.\n\"\"\"",
+  "module_purpose": "Core functionality and business logic",
+  "graph_api_level": "1",
+  "projection_system": "core_system",
+  "all_classes": [],
+  "all_functions": [],
+  "all_imports": [],
+  "dependencies": [],
+  "class_dependencies": {},
+  "function_dependencies": {},
+  "module_structure": {
+    "module_info": {
+      "name": "core_fix_remaining_type_issues",
+      "type": "single_file",
+      "confidence": 0.9,
+      "file_count": 1
+    },
+    "metrics": {
+      "total_lines": 191,
+      "total_classes": 0,
+      "total_functions": 3,
+      "total_imports": 3
+    },
+    "files": [
+      {
+        "path": "fix_remaining_type_issues.py",
+        "name": "fix_remaining_type_issues.py",
+        "stem": "fix_remaining_type_issues"
+      }
+    ],
+    "aggregated_content": {
+      "classes": [],
+      "functions": [],
+      "imports": []
+    }
+  },
+  "creation_timestamp": "2025-08-16T10:42:16.760666",
+  "version": "1.0.0"
+}

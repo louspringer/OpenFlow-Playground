@@ -301,7 +301,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                     questions = [
                         q.get("question", "") for q in data if isinstance(q, dict)
                     ]
-            except:
+            except Exception:
                 pass
 
         # Fallback: extract questions from text

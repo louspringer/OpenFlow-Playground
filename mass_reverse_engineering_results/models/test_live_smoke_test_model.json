@@ -1,0 +1,105 @@
+{
+  "system_name": "Pytest tests for live smoke test functionality",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "test_live_llm_orchestrator_initialization",
+      "signature": "test_live_llm_orchestrator_initialization() -> None",
+      "docstring": "Test that LiveLLMOrchestrator initializes correctly",
+      "decorators": [],
+      "line_number": 12,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_live_llm_call_without_credentials",
+      "signature": "test_live_llm_call_without_credentials() -> None",
+      "docstring": "Test that live LLM call handles missing credentials gracefully",
+      "decorators": [],
+      "line_number": 26,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_provider_validation",
+      "signature": "test_provider_validation() -> None",
+      "docstring": "Test that invalid providers raise appropriate errors",
+      "decorators": [],
+      "line_number": 37,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_api_endpoint_configuration",
+      "signature": "test_api_endpoint_configuration() -> None",
+      "docstring": "Test that API endpoints are configured correctly",
+      "decorators": [],
+      "line_number": 44,
+      "return_type": null,
+      "parameters": []
+    },
+    {
+      "name": "test_live_llm_call_with_credentials",
+      "signature": "test_live_llm_call_with_credentials() -> None",
+      "docstring": "Test that live LLM call works with credentials (if available)",
+      "decorators": [],
+      "line_number": 56,
+      "return_type": null,
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "import os",
+    "import pytest",
+    "from live_smoke_test_langchain import LiveLLMOrchestrator"
+  ],
+  "module_docstring": "\nPytest tests for live smoke test functionality\n",
+  "file_structure": {
+    "total_lines": 99,
+    "code_lines": 63,
+    "comment_lines": 9,
+    "blank_lines": 27,
+    "total_nodes": 390,
+    "class_nodes": 0,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 10,
+    "assignment_nodes": 16,
+    "return_nodes": 0
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "has_main_block": true,
+    "file_type": "test",
+    "line_count": 99
+  },
+  "used_names": [
+    "key",
+    "__name__",
+    "__file__",
+    "anthropic_orchestrator",
+    "orchestrator",
+    "result",
+    "os",
+    "questions_key",
+    "list",
+    "pytest",
+    "len",
+    "question",
+    "LiveLLMOrchestrator",
+    "ValueError",
+    "test_key",
+    "next",
+    "context",
+    "has_questions",
+    "openai_orchestrator",
+    "isinstance",
+    "questions",
+    "any"
+  ]
+}

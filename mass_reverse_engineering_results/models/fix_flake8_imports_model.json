@@ -1,0 +1,83 @@
+{
+  "system_name": "Fix flake8 import order issues",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {},
+  "module_functions": [
+    {
+      "name": "fix_import_order",
+      "signature": "fix_import_order(file_path: str) -> bool",
+      "docstring": "Fix import order in a file",
+      "decorators": [],
+      "line_number": 9,
+      "return_type": "bool",
+      "parameters": [
+        {
+          "name": "file_path",
+          "type": "str",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "signature": "main() -> Any",
+      "docstring": "Fix all Python files",
+      "decorators": [],
+      "line_number": 80,
+      "return_type": "Any",
+      "parameters": []
+    }
+  ],
+  "imports": [
+    "from pathlib import Path"
+  ],
+  "module_docstring": "\nFix flake8 import order issues\n",
+  "file_structure": {
+    "total_lines": 97,
+    "code_lines": 60,
+    "comment_lines": 12,
+    "blank_lines": 25,
+    "total_nodes": 402,
+    "class_nodes": 0,
+    "function_nodes": 2,
+    "import_nodes": 1,
+    "expression_nodes": 22,
+    "assignment_nodes": 10,
+    "return_nodes": 2
+  },
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": false,
+    "has_main_block": true,
+    "file_type": "script",
+    "line_count": 97
+  },
+  "used_names": [
+    "__name__",
+    "Exception",
+    "f",
+    "py_file",
+    "fix_import_order",
+    "content",
+    "open",
+    "in_docstring",
+    "str",
+    "Path",
+    "line",
+    "fixed_lines",
+    "file_path",
+    "print",
+    "stripped",
+    "main",
+    "lines",
+    "bool",
+    "fixed_count",
+    "import_lines",
+    "e",
+    "other_lines",
+    "src_dir"
+  ]
+}
