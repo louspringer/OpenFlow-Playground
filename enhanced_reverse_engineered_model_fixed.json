@@ -1,0 +1,175 @@
+{
+  "module_docstring": "Code quality expert agent for detecting code quality issues.",
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 307
+  },
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_expert import BaseExpert, DelusionResult"
+  ],
+  "module_assignments": {},
+  "components": {
+    "CodeQualityExpert": {
+      "name": "CodeQualityExpert",
+      "responsibility": "",
+      "methods": [
+        {
+          "name": "__init__",
+          "signature": "__init__(self) -> None",
+          "docstring": "Initialize the code quality expert.",
+          "decorators": [],
+          "line_number": 12,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false,
+          "body": [
+            "super().__init__('CodeQualityExpert')"
+          ],
+          "implementation_status": "implemented"
+        },
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, project_path: Path) -> DelusionResult",
+          "docstring": "Analyze existing code quality tool output and recommend systemic fixes.",
+          "decorators": [],
+          "line_number": 16,
+          "return_type": "DelusionResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false,
+          "body": [
+            "delusions = []",
+            "recommendations = []",
+            "linting_issues = await self._analyze_existing_lint_output(project_path)",
+            "if linting_issues:\n    systemic_issues = await self._identify_systemic_problems(linting_issues)\n    delusions.extend(systemic_issues)\n    recommendations.extend(await self._generate_systemic_recommendations(linting_issues))\nelse:\n    delusions.append(self._create_delusion('missing_quality_tools', str(project_path), 1, 'No code quality tools configured or no output available', 0.8, 'medium'))\n    recommendations.append(self._create_recommendation('Set up automated code quality pipeline with pre-commit hooks', 'high'))",
+            "confidence = self._calculate_confidence(delusions)",
+            "return DelusionResult(delusions=delusions, confidence=confidence, recommendations=recommendations, agent_name=self.name)"
+          ],
+          "implementation_status": "implemented"
+        },
+        {
+          "name": "_analyze_existing_lint_output",
+          "signature": "_analyze_existing_lint_output(self, project_path: Path) -> Any",
+          "docstring": "Analyze existing linting tool output without running tools.",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false,
+          "body": [
+            "linting_issues = []",
+            "flake8_output = project_path / '.flake8_output.txt'",
+            "if flake8_output.exists():\n    try:\n        content = flake8_output.read_text()\n        for line in content.strip().split('\\n'):\n            if line.strip() and ':' in line:\n                parts = line.split(':', 3)\n                if len(parts) >= 4:\n                    linting_issues.append({'file': parts[0], 'line': int(parts[1]), 'code': parts[2].strip(), 'message': parts[3].strip(), 'tool': 'flake8'})\n    except Exception:\n        pass",
+            "mypy_output = project_path / '.mypy_output.txt'",
+            "if mypy_output.exists():\n    try:\n        content = mypy_output.read_text()\n        for line in content.strip().split('\\n'):\n            if line.strip() and ':' in line:\n                parts = line.split(':', 3)\n                if len(parts) >= 4:\n                    linting_issues.append({'file': parts[0], 'line': int(parts[1]), 'code': parts[2].strip(), 'message': parts[3].strip(), 'tool': 'mypy'})\n    except Exception:\n        pass",
+            "black_output = project_path / '.black_output.txt'",
+            "if black_output.exists():\n    try:\n        content = black_output.read_text()\n        if 'would reformat' in content:\n            linting_issues.append({'file': 'multiple', 'line': 0, 'code': 'BLACK001', 'message': 'Code formatting issues detected by Black', 'tool': 'black'})\n    except Exception:\n        pass",
+            "return linting_issues"
+          ],
+          "implementation_status": "implemented"
+        },
+        {
+          "name": "_identify_systemic_problems",
+          "signature": "_identify_systemic_problems(self, linting_issues: Any) -> Any",
+          "docstring": "Identify systemic patterns in linting issues.",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "linting_issues",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false,
+          "body": [
+            "systemic_issues = []",
+            "if not linting_issues:\n    return systemic_issues",
+            "error_codes = [issue['code'] for issue in linting_issues if 'code' in issue]",
+            "files_affected = {issue['file'] for issue in linting_issues if 'file' in issue}",
+            "import_errors = [code for code in error_codes if code in ['E402', 'E302', 'E305']]",
+            "if len(import_errors) > len(linting_issues) * 0.3:\n    systemic_issues.append(self._create_delusion('systemic_import_issues', 'project-wide', 1, f'Widespread import organization issues: {len(import_errors)} import-related errors across {len(files_affected)} files', 0.9, 'high'))",
+            "formatting_errors = [code for code in error_codes if code in ['W291', 'W292', 'E501']]",
+            "if len(formatting_errors) > len(linting_issues) * 0.4:\n    systemic_issues.append(self._create_delusion('systemic_formatting_issues', 'project-wide', 1, f'Widespread code formatting issues: {len(formatting_errors)} formatting errors across {len(files_affected)} files', 0.85, 'medium'))",
+            "type_errors = [code for code in error_codes if code in ['F821', 'F822', 'F823']]",
+            "if len(type_errors) > len(linting_issues) * 0.2:\n    systemic_issues.append(self._create_delusion('systemic_type_issues', 'project-wide', 1, f'Widespread type annotation issues: {len(type_errors)} type-related errors across {len(files_affected)} files', 0.8, 'medium'))",
+            "if len(files_affected) > len(linting_issues) * 0.1:\n    systemic_issues.append(self._create_delusion('widespread_quality_issues', 'project-wide', 1, f'Quality issues spread across {len(files_affected)} files, indicating systemic process problems', 0.9, 'high'))",
+            "return systemic_issues"
+          ],
+          "implementation_status": "implemented"
+        },
+        {
+          "name": "_generate_systemic_recommendations",
+          "signature": "_generate_systemic_recommendations(self, linting_issues: Any) -> Any",
+          "docstring": "Generate smart recommendations based on systemic patterns.",
+          "decorators": [],
+          "line_number": 215,
+          "return_type": "Any",
+          "parameters": [
+            {
+              "name": "linting_issues",
+              "type": "Any",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false,
+          "body": [
+            "recommendations = []",
+            "if not linting_issues:\n    return recommendations",
+            "error_codes = [issue['code'] for issue in linting_issues if 'code' in issue]",
+            "files_affected = {issue['file'] for issue in linting_issues if 'file' in issue}",
+            "import_errors = [code for code in error_codes if code in ['E402', 'E302', 'E305']]",
+            "if import_errors:\n    recommendations.append(self._create_recommendation(f'Implement import sorting with isort: {len(import_errors)} import organization issues detected', 'high'))\n    recommendations.append(self._create_recommendation('Add pre-commit hook for import sorting to prevent future issues', 'medium'))",
+            "formatting_errors = [code for code in error_codes if code in ['W291', 'W292', 'E501']]",
+            "if formatting_errors:\n    recommendations.append(self._create_recommendation(f'Implement automated formatting with Black: {len(formatting_errors)} formatting issues detected', 'high'))\n    recommendations.append(self._create_recommendation('Add pre-commit hook for Black formatting to prevent future issues', 'medium'))",
+            "type_errors = [code for code in error_codes if code in ['F821', 'F822', 'F823']]",
+            "if type_errors:\n    recommendations.append(self._create_recommendation(f'Implement gradual type annotation strategy: {len(type_errors)} type-related issues detected', 'high'))\n    recommendations.append(self._create_recommendation('Add mypy to CI/CD pipeline for type checking', 'medium'))",
+            "if len(files_affected) > 10:\n    recommendations.append(self._create_recommendation('Implement comprehensive pre-commit hooks for all quality tools', 'high'))\n    recommendations.append(self._create_recommendation('Add quality gates to CI/CD pipeline to prevent regressions', 'high'))",
+            "if len(linting_issues) > 100:\n    recommendations.append(self._create_recommendation('Provide team training on code quality standards and tool usage', 'medium'))",
+            "return recommendations"
+          ],
+          "implementation_status": "implemented"
+        }
+      ],
+      "bases": [
+        "BaseExpert"
+      ],
+      "class_decorators": [],
+      "implementation_status": "implemented"
+    }
+  },
+  "module_functions": [],
+  "file_structure": {
+    "total_lines": 307,
+    "code_lines": 256,
+    "comment_lines": 17,
+    "blank_lines": 34,
+    "total_nodes": 1113,
+    "class_nodes": 1,
+    "function_nodes": 5,
+    "import_nodes": 3,
+    "expression_nodes": 28,
+    "assignment_nodes": 26
+  }
+}

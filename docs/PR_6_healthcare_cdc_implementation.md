@@ -7,11 +7,13 @@ This PR implements a complete **Healthcare Change Data Capture (CDC) pipeline** 
 ## 🎯 Key Features
 
 ### ✅ Real-time CDC Operations
+
 - **INSERT**: New claims automatically synchronized
-- **MODIFY**: Claim updates propagated instantly  
+- **MODIFY**: Claim updates propagated instantly
 - **REMOVE**: Claim deletions reflected immediately
 
 ### ✅ Healthcare-Specific Data Model
+
 - Patient information (demographics, contact details)
 - Provider details (NPI, location, credentials)
 - Payer information (insurance company data)
@@ -19,12 +21,14 @@ This PR implements a complete **Healthcare Change Data Capture (CDC) pipeline** 
 - Status tracking (claim status, payment status)
 
 ### ✅ Automated Infrastructure
+
 - CloudFormation template for complete AWS setup
 - Automated data ingestion and monitoring
 - Production-ready security practices
 - Comprehensive logging and observability
 
 ### ✅ Snowflake Integration
+
 - Optimized schema design with views
 - Real-time data synchronization
 - Audit trail and compliance features
@@ -33,12 +37,14 @@ This PR implements a complete **Healthcare Change Data Capture (CDC) pipeline** 
 ## 📁 Files Added
 
 ### Core Implementation
+
 - `healthcare_cdc_domain_model.py` - Comprehensive domain model with data structures
 - `models/healthcare-cdc-infrastructure.yaml` - CloudFormation template for AWS infrastructure
 - `sql/healthcare-cdc-schema.sql` - Snowflake schema with tables and views
 - `tests/test_healthcare_cdc_domain_model.py` - Comprehensive test suite
 
 ### Documentation
+
 - `docs/HEALTHCARE_CDC_README.md` - Complete implementation guide
 - Architecture diagrams and data flow documentation
 - Troubleshooting and monitoring guides
@@ -59,6 +65,7 @@ This PR implements a complete **Healthcare Change Data Capture (CDC) pipeline** 
 ## 🔧 Technical Implementation
 
 ### Domain Model (`healthcare_cdc_domain_model.py`)
+
 ```python
 # Key data structures
 @dataclass
@@ -82,12 +89,14 @@ class CDCEvent:
 ```
 
 ### Infrastructure Components
+
 - **DynamoDB Table**: `InsuranceClaims` with stream enabled
 - **Kinesis Stream**: `InsuranceClaimsStream` for event capture
 - **EC2 Instance**: Automated data ingestion and monitoring
 - **IAM Roles**: Secure permissions for all components
 
 ### Snowflake Schema
+
 - **Destination Table**: `openflow_insclaim_dest_tbl` (synchronized)
 - **CDC Table**: `openflow_insclaim_cdc_tbl` (staging)
 - **Event History**: `openflow_insclaim_event_hist_tbl` (audit)
@@ -96,6 +105,7 @@ class CDCEvent:
 ## 🚀 Quick Start
 
 ### 1. Deploy Infrastructure
+
 ```bash
 aws cloudformation create-stack \
   --stack-name healthcare-cdc-demo \
@@ -106,17 +116,20 @@ aws cloudformation create-stack \
 ```
 
 ### 2. Setup Snowflake Schema
+
 ```sql
 -- Run the schema creation script
 source sql/healthcare-cdc-schema.sql
 ```
 
 ### 3. Configure Openflow Pipeline
+
 1. Access Openflow Console
 2. Create New Pipeline: `HealthcareCDC`
 3. Add required processors (Kinesis Consumer, JSON Parser, etc.)
 
 ### 4. Monitor System
+
 ```bash
 # Connect to EC2 instance
 aws ssm start-session --target <instance-id>
@@ -128,10 +141,11 @@ aws ssm start-session --target <instance-id>
 ## 📊 Data Flow Example
 
 ### 1. Claim Creation
+
 ```python
 claim = {
     "claim_id": "CLM-ABC123",
-    "member_id": "M1001", 
+    "member_id": "M1001",
     "insurance_plan": "Premium PPO",
     "diagnosis_codes": ["E11.9", "I10"],
     "total_charge": 2500.00,
@@ -143,15 +157,17 @@ claim = {
 ```
 
 ### 2. Real-time Processing
+
 - DynamoDB stream captures changes
 - Kinesis processes events
 - Openflow transforms and routes data
 - Snowflake receives synchronized data
 
 ### 3. Analytics Query
+
 ```sql
 -- Query recent claims
-SELECT * FROM v_healthcare_claims_summary 
+SELECT * FROM v_healthcare_claims_summary
 WHERE claimStatus = 'Pending'
 ORDER BY eventCreationUTC DESC;
 ```
@@ -159,16 +175,19 @@ ORDER BY eventCreationUTC DESC;
 ## 🔒 Security Features
 
 ### ✅ Data Encryption
+
 - DynamoDB streams encrypted at rest
 - Kinesis streams with KMS encryption
 - Snowflake data encrypted in transit and at rest
 
 ### ✅ Access Control
+
 - IAM roles with least privilege
 - Snowflake role-based access control
 - Network security groups
 
 ### ✅ Audit Logging
+
 - Complete event history tracking
 - Change tracking and traceability
 - Compliance-ready audit trail
@@ -176,12 +195,14 @@ ORDER BY eventCreationUTC DESC;
 ## 🧪 Testing
 
 ### Unit Tests
+
 ```bash
 # Run domain model tests
 python -m pytest tests/test_healthcare_cdc_domain_model.py -v
 ```
 
 ### Integration Tests
+
 - CloudFormation template validation
 - Snowflake schema validation
 - End-to-end data flow testing
@@ -189,14 +210,16 @@ python -m pytest tests/test_healthcare_cdc_domain_model.py -v
 ## 📈 Monitoring & Observability
 
 ### AWS CloudWatch Metrics
+
 - DynamoDB table metrics
 - Kinesis stream metrics
 - EC2 instance metrics
 
 ### Snowflake Query History
+
 ```sql
 -- Monitor query performance
-SELECT 
+SELECT
     query_text,
     execution_time,
     bytes_scanned
@@ -206,6 +229,7 @@ ORDER BY start_time DESC;
 ```
 
 ### Openflow Pipeline Monitoring
+
 - Queue depths and throughput
 - Processor status and errors
 - Data transformation logs
@@ -213,12 +237,14 @@ ORDER BY start_time DESC;
 ## 🎯 Benefits
 
 ### For Healthcare Organizations
+
 - **Real-time Data Synchronization**: Immediate updates across systems
 - **Compliance Ready**: Complete audit trail and data lineage
 - **Scalable Architecture**: Handles variable workloads efficiently
 - **Cost Optimized**: Pay-per-use pricing with auto-scaling
 
 ### For Developers
+
 - **Model-Driven Design**: Clear domain model and data structures
 - **Automated Deployment**: Infrastructure as code with CloudFormation
 - **Comprehensive Testing**: Unit and integration test coverage
@@ -269,4 +295,4 @@ This implementation is based on the [Snowflake Healthcare CDC Quickstart](https:
 
 **Ready for Review** ✅
 
-This PR delivers a complete, enterprise-ready healthcare CDC implementation that can be immediately deployed and used for real healthcare claims processing. 
+This PR delivers a complete, enterprise-ready healthcare CDC implementation that can be immediately deployed and used for real healthcare claims processing.

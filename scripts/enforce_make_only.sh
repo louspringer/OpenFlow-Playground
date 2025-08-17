@@ -8,8 +8,8 @@ echo "🔐 Setting up Make-only permission model..."
 
 # Create backup of original pytest
 if [[ ! -f /home/lou/.local/bin/pytest.original ]]; then
-    echo "📦 Creating backup of original pytest..."
-    cp /home/lou/.local/bin/pytest /home/lou/.local/bin/pytest.original
+	echo "📦 Creating backup of original pytest..."
+	cp /home/lou/.local/bin/pytest /home/lou/.local/bin/pytest.original
 fi
 
 # Replace pytest with wrapper
@@ -19,12 +19,12 @@ chmod +x /home/lou/.local/bin/pytest
 
 # Create similar wrappers for other tools
 create_tool_wrapper() {
-    local tool=$1
-    local wrapper_file="scripts/${tool}_wrapper.sh"
-    
-    if [[ ! -f ""wrapper_fil"e" ]]; then
-        echo "📝 Creating wrapper for "tool"..."
-        cat > ""wrapper_fil"e" << EOF
+	local tool=$1
+	local wrapper_file="scripts/${tool}_wrapper.sh"
+
+	if [[ ! -f ""wrapper_fil"e" ]]; then
+		echo "📝 Creating wrapper for "tool"..."
+		cat >""wrapper_fil"e" <<EOF
 #!/bin/bash
 # $tool wrapper - only allows execution through make
 
@@ -55,8 +55,8 @@ check_parent_process() {
 check_parent_process
 exec /home/lou/.local/bin/${tool}.original "\$@"
 EOF
-        chmod +x ""wrapper_fil"e"
-    fi
+		chmod +x ""wrapper_fil"e"
+	fi
 }
 
 # Create wrappers for common tools
@@ -74,7 +74,7 @@ ln -sf /home/lou/Documents/OpenFlow-Playground/scripts/mypy_wrapper.sh
 /home/lou/.local/bin/mypy
 
 # Create a restore script
-cat > scripts/restore_tools.sh << 'EOF'
+cat >scripts/restore_tools.sh <<'EOF'
 #!/bin/bash
 # Restore original tools
 
@@ -109,4 +109,4 @@ echo "🔄 To restore original behavior: ./scripts/restore_tools.sh"
 echo ""
 echo "🧪 Test it:"
 echo "   ❌ pytest --version (should fail)"
-echo "   ✅ make test (should work)" 
+echo "   ✅ make test (should work)"

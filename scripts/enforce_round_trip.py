@@ -11,7 +11,7 @@ Usage:
     python scripts/enforce_round_trip.py <python_file>
 """
 
-import os
+
 import sys
 import tempfile
 from pathlib import Path
@@ -22,8 +22,7 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 try:
-    from enhanced_reverse_engineer_fixed_v2 import EnhancedReverseEngineer
-    from round_trip_model_system import RoundTripModelSystem
+    from src.round_trip_engineering import EnhancedReverseEngineer, RoundTripModelSystem
 
     ENHANCED_REVERSE_ENGINEER_AVAILABLE = True
 except ImportError:
@@ -96,13 +95,19 @@ class RoundTripEnforcer:
             f.write(generated_code)
             temp_file = f.name
 
+        # Also save to a permanent file for inspection
+        output_file = f"{Path(file_path).stem}_regenerated.py"
+        with open(output_file, "w") as f:
+            f.write(generated_code)
+        print(f"  💾 Generated code saved to: {output_file}")
+
         try:
             # Step 4: Test functional equivalence
             print("  🧪 Step 4: Testing functional equivalence...")
             equivalence_result = self.test_functional_equivalence(file_path, temp_file)
 
             # Step 5: Clean up
-            os.unlink(temp_file)
+            Path(temp_file).unlink()
 
             return {
                 "success": True,
@@ -115,8 +120,8 @@ class RoundTripEnforcer:
 
         except Exception as e:
             # Clean up on error
-            if os.path.exists(temp_file):
-                os.unlink(temp_file)
+            if Path(temp_file).exists():
+                Path(temp_file).unlink()
             raise e
 
     def test_functional_equivalence(
@@ -242,7 +247,7 @@ def main():
             all_success = True
 
             for file_path in python_files:
-                if os.path.exists(file_path):
+                if Path(file_path).exists():
                     print(f"🔍 Checking round-trip for: {file_path}")
                     result = enforcer.enforce_round_trip(file_path)
                     if result["success"]:
@@ -262,7 +267,7 @@ def main():
     else:
         file_path = sys.argv[1]
 
-        if not os.path.exists(file_path):
+        if not Path(file_path).exists():
             print(f"❌ File not found: {file_path}")
             sys.exit(1)
 

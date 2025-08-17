@@ -7,25 +7,27 @@ This PR addresses **critical security vulnerabilities** by removing all hardcode
 ## 🚨 Security Issues Fixed
 
 ### Before ❌
+
 ```yaml
 # models/Openflow-Playground.yaml
 SnowflakeOAuthClientID:
-  Default: "75/dT4ojSHwa1ped1iFhwQO3X0o0JWzTIZn2V3tijxU="  # HARDCODED!
+  Default: "75/dT4ojSHwa1ped1iFhwQO3X0o0JWzTIZn2V3tijxU=" # HARDCODED!
 DataPlaneUUID:
-  Default: "9a8f7433-020f-48ee-aedc-4f8cc2135b50"  # HARDCODED!
+  Default: "9a8f7433-020f-48ee-aedc-4f8cc2135b50" # HARDCODED!
 ```
 
 ### After ✅
+
 ```yaml
 # models/Openflow-Playground.yaml
 SnowflakeOAuthClientID:
   Description: "Snowflake OAuth2 Client ID"
   Type: String
-  MinLength: 1  # Required input
+  MinLength: 1 # Required input
 DataPlaneUUID:
   Description: "Data Plane UUID"
   Type: String
-  MinLength: 1  # Required input
+  MinLength: 1 # Required input
 ```
 
 ## 📊 Changes Summary
@@ -38,7 +40,7 @@ graph TD
     D --> E[📝 Update Documentation]
     E --> F[🔧 Add Setup Wizard]
     F --> G[🎯 Secure Configuration]
-    
+
     style A fill:#ff6b6b
     style B fill:#ff6b6b
     style C fill:#4ecdc4
@@ -51,11 +53,13 @@ graph TD
 ## 🛠️ Implementation Details
 
 ### 1. **CloudFormation Template Security** 🔒
+
 - **Removed:** All `Default` values for sensitive parameters
 - **Added:** `MinLength: 1` validation for required inputs
 - **Result:** No credentials in version control
 
 ### 2. **Interactive Setup Wizard** 🧙‍♂️
+
 ```python
 # setup.py - Interactive configuration
 def prompt_with_validation(prompt, validator):
@@ -67,6 +71,7 @@ def prompt_with_validation(prompt, validator):
 ```
 
 ### 3. **Secure Configuration Management** 📁
+
 - **Added:** `config.env.example` with placeholders
 - **Added:** `.gitignore` to prevent `config.env` commits
 - **Added:** Parameterized deployment in `deploy.sh`
@@ -74,6 +79,7 @@ def prompt_with_validation(prompt, validator):
 ## 🧪 Testing
 
 ### Manual Testing ✅
+
 ```bash
 # Test secure deployment
 ./deploy.sh setup
@@ -83,6 +89,7 @@ def prompt_with_validation(prompt, validator):
 ```
 
 ### Automated Testing ✅
+
 ```bash
 # Test configuration validation
 python -c "import setup; setup.validate_snowflake_url('https://test.snowflakecomputing.com')"
@@ -102,12 +109,14 @@ pie title Security Risk Reduction
 ## 🔄 Migration Guide
 
 ### For Existing Deployments:
+
 1. **Backup** current configuration
-2. **Run** `./deploy.sh setup` 
+2. **Run** `./deploy.sh setup`
 3. **Enter** your Snowflake credentials
 4. **Deploy** with new secure configuration
 
 ### For New Deployments:
+
 1. **Clone** repository
 2. **Run** `./deploy.sh setup`
 3. **Follow** interactive prompts
@@ -123,9 +132,9 @@ pie title Security Risk Reduction
 const configFlow = {
   step1: "🔍 Detect missing configuration",
   step2: "📝 Prompt for Snowflake account",
-  step3: "🔐 Prompt for OAuth credentials", 
+  step3: "🔐 Prompt for OAuth credentials",
   step4: "✅ Validate all inputs",
-  step5: "🚀 Deploy securely"
+  step5: "🚀 Deploy securely",
 };
 
 console.log("Configuration Flow:", configFlow);
@@ -159,4 +168,4 @@ console.log("Configuration Flow:", configFlow);
 
 ---
 
-**🎉 This PR transforms the project from a security risk to a secure, user-friendly deployment system!** 
+**🎉 This PR transforms the project from a security risk to a secure, user-friendly deployment system!**

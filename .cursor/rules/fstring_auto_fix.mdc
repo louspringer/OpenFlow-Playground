@@ -1,0 +1,39 @@
+# F-String Auto-Fix Rule
+
+## Trigger Conditions
+- User mentions "fstring", "f-string", "fstring issues", "broken f-string"
+- User encounters "f-string expression part cannot include a backslash" errors
+- User needs to fix f-string syntax errors
+
+## Automatic Actions
+1. **Immediately run the deterministic f-string fixer**:
+   ```bash
+   uv run python scripts/deterministic_fstring_fixer.py <affected_file>
+   ```
+
+2. **If the fixer doesn't work, use the round-trip system**:
+   - Reverse engineer the problematic file
+   - Regenerate clean code from the model
+   - Replace the original file
+
+3. **Validate the fix**:
+   - Test that the file can be imported
+   - Run any relevant tests
+   - Ensure no new syntax errors
+
+## F-String Common Issues
+- **Backslash in expressions**: `f"Value: {len(\n    data)}"` → `f"Value: {len(data)}"`
+- **Line continuation problems**: Broken multi-line f-strings
+- **Invalid expression syntax**: Malformed expressions inside `{}`
+
+## Prevention
+- Always use the deterministic f-string fixer first
+- Never manually edit f-strings - use the systematic approach
+- Round-trip any manually fixed files to ensure model consistency
+
+## Remember
+**"F-string issues are systematic - fix them systematically, not manually!"**
+description:
+globs:
+alwaysApply: false
+---

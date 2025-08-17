@@ -14,12 +14,12 @@ echo "🔗 Config: cloudbuild.yaml"
 # Trigger the build
 echo "🔧 Starting Cloud Build..."
 gcloud builds submit \
-  --config=cloudbuild.yaml \
-  --project="PROJECT_I"D \
-  .
+	--config=cloudbuild.yaml \
+	--project="PROJECT_I"D \
+	.
 
 echo "✅ Build triggered successfully!"
 echo ""
 echo "🔗 View build:
 https://console.cloud.google.com/cloud-build/builds?project="PROJECT_I"D"
-echo "🔗 View logs: gcloud builds log [BUILD_ID] --project="PROJECT_I"D" 
+echo "🔗 View logs: gcloud builds log [BUILD_ID] --project="PROJECT_I"D"

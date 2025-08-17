@@ -18,7 +18,7 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 try:
-    from enhanced_reverse_engineer_fixed_v2 import EnhancedReverseEngineer
+    from src.round_trip_engineering import EnhancedReverseEngineer
 
     ENHANCED_REVERSE_ENGINEER_AVAILABLE = True
 except ImportError:

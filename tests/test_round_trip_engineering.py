@@ -14,8 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from enhanced_reverse_engineer_fixed_v2 import EnhancedReverseEngineer
-from round_trip_model_system import RoundTripModelSystem
+from src.round_trip_engineering import EnhancedReverseEngineer, RoundTripModelSystem
 
 
 class TestRoundTripEngineeringSystem:

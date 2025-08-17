@@ -13,24 +13,24 @@ graph TB
         B --> C[Policy Model]
         C --> D[Automated Tests]
     end
-    
+
     subgraph "🔍 Detection Engine"
         E[Credential Scanner] --> F[Pattern Matching]
         F --> G[Context Analysis]
         G --> H[Risk Assessment]
     end
-    
+
     subgraph "🚫 Prevention System"
         I[Policy Enforcement] --> J[Block Commits]
         J --> K[Alert System]
         K --> L[Documentation]
     end
-    
+
     A --> E
     B --> I
     C --> F
     D --> G
-    
+
     style A fill:#ff6b6b
     style B fill:#4ecdc4
     style C fill:#45b7d1
@@ -48,19 +48,21 @@ graph TB
 ## 🚀 Key Features
 
 ### 1. **Intelligent Credential Detection** 🔍
+
 ```bash
 # scripts/security-check.sh
 check_hardcoded_credentials() {
     # Detect API keys, tokens, secrets
     patterns=(
         "sk-[0-9a-zA-Z]{48}"     # OpenAI keys
-        "AKIA[0-9A-Z]{16}"       # AWS keys  
+        "AKIA[0-9A-Z]{16}"       # AWS keys
         "ghp_[0-9a-zA-Z]{36}"    # GitHub tokens
     )
 }
 ```
 
 ### 2. **Context-Aware Analysis** 🧠
+
 ```python
 # test_security_model.py
 def test_no_hardcoded_credentials():
@@ -72,6 +74,7 @@ def test_no_hardcoded_credentials():
 ```
 
 ### 3. **Policy-Driven Enforcement** 📋
+
 ```json
 // security_policy_model.json
 {
@@ -95,6 +98,7 @@ pie title Security Check Coverage
 ## 🛠️ Implementation Details
 
 ### **Pre-commit Hooks** 🔗
+
 ```yaml
 # .pre-commit-config.yaml
 repos:
@@ -106,6 +110,7 @@ repos:
 ```
 
 ### **Security Scripts** 🛡️
+
 ```bash
 # setup-security-hooks.sh
 install_pre_commit() {
@@ -116,6 +121,7 @@ install_pre_commit() {
 ```
 
 ### **Policy Model** 📋
+
 ```python
 # security_policy_model.json
 {
@@ -130,6 +136,7 @@ install_pre_commit() {
 ## 🧪 Testing Framework
 
 ### **Automated Tests** ✅
+
 ```bash
 # Run security model tests
 python test_security_model.py
@@ -140,6 +147,7 @@ python test_security_model.py
 ```
 
 ### **Manual Testing** ✅
+
 ```bash
 # Test pre-commit hooks
 git add .
@@ -157,11 +165,11 @@ graph LR
     A --> A1[❌ Hardcoded Credentials]
     A --> A2[❌ No Detection]
     A --> A3[❌ Manual Review]
-    
+
     B --> B1[✅ Zero Credentials]
     B --> B2[✅ Automated Detection]
     B --> B3[✅ Policy Enforcement]
-    
+
     style A fill:#ff6b6b
     style B fill:#96ceb4
     style A1 fill:#ff6b6b
@@ -185,15 +193,15 @@ const securityDashboard = {
   vulnerabilities: 0,
   credentials: 0,
   policyViolations: 0,
-  
+
   scan() {
     console.log("🔍 Scanning for vulnerabilities...");
     return {
       status: "CLEAN",
       issues: [],
-      recommendations: []
+      recommendations: [],
     };
-  }
+  },
 };
 
 console.log("Security Dashboard:", securityDashboard);
@@ -204,6 +212,7 @@ console.log("Security Dashboard:", securityDashboard);
 ## 🔄 Setup Instructions
 
 ### **Quick Setup** ⚡
+
 ```bash
 # Install security hooks
 ./setup-security-hooks.sh
@@ -216,6 +225,7 @@ pre-commit run --all-files
 ```
 
 ### **Manual Setup** 📝
+
 ```bash
 # 1. Install pre-commit
 pip install pre-commit
@@ -257,4 +267,4 @@ detect-secrets scan --baseline .secrets.baseline
 
 ---
 
-**🛡️ This PR establishes a robust security foundation that prevents credential leaks and enforces best practices automatically!** 
+**🛡️ This PR establishes a robust security foundation that prevents credential leaks and enforces best practices automatically!**

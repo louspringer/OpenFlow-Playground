@@ -3,9 +3,11 @@
 ## 🚀 **Major Improvement: Clean LLM Integration**
 
 ### **Problem Solved**
-You were absolutely right to ask: *"Why aren't you using langchain/langgraph? We don't want to maintain that glue code."*
+
+You were absolutely right to ask: _"Why aren't you using langchain/langgraph? We don't want to maintain that glue code."_
 
 The original implementation had ~150 lines of manual API glue code with:
+
 - Manual HTTP requests
 - Manual JSON parsing
 - Manual error handling
@@ -15,6 +17,7 @@ The original implementation had ~150 lines of manual API glue code with:
 ### **Solution: LangChain Integration**
 
 #### **✅ What We Built**
+
 1. **`live_smoke_test_langchain.py`** - Clean LangChain-based LLM integration
 2. **Updated test suite** - All tests passing (23/24, 1 skipped without credentials)
 3. **1Password integration** - Seamless credential management
@@ -22,27 +25,30 @@ The original implementation had ~150 lines of manual API glue code with:
 
 #### **📊 Before vs After**
 
-| Aspect | Manual API Code | LangChain |
-|--------|-----------------|-----------|
-| **Lines of Code** | ~150 lines | ~50 lines |
-| **Error Handling** | Manual try/catch | Built-in |
-| **JSON Parsing** | Manual regex/parsing | Automatic |
-| **Model Management** | Manual versioning | Automatic |
-| **Maintainability** | High maintenance | Low maintenance |
-| **Test Coverage** | 23/24 passing | 23/24 passing |
+| Aspect               | Manual API Code      | LangChain       |
+| -------------------- | -------------------- | --------------- |
+| **Lines of Code**    | ~150 lines           | ~50 lines       |
+| **Error Handling**   | Manual try/catch     | Built-in        |
+| **JSON Parsing**     | Manual regex/parsing | Automatic       |
+| **Model Management** | Manual versioning    | Automatic       |
+| **Maintainability**  | High maintenance     | Low maintenance |
+| **Test Coverage**    | 23/24 passing        | 23/24 passing   |
 
 ### **🧪 Test Results**
 
 #### **✅ All Core Tests Passing**
+
 - **Meta-Cognitive Orchestrator**: 7/7 ✅
 - **Model Traceability**: 7/7 ✅
 - **Security Model**: 4/4 ✅
 - **Live LLM Integration**: 4/5 ✅ (1 skipped without credentials)
 
 #### **🚀 Real API Performance**
+
 When run with real credentials, the LangChain integration:
 
 **OpenAI Response:**
+
 ```json
 {
   "questions": [
@@ -56,6 +62,7 @@ When run with real credentials, the LangChain integration:
 ```
 
 **Anthropic Response:**
+
 ```json
 {
   "probing_questions": [
@@ -80,6 +87,7 @@ When run with real credentials, the LangChain integration:
 ### **🔧 Technical Implementation**
 
 #### **LangChain Architecture**
+
 ```python
 # Clean chain composition
 self.chain = self.prompt | self.llm | self.output_parser
@@ -96,6 +104,7 @@ except Exception as e:
 ```
 
 #### **1Password Integration**
+
 ```bash
 # Seamless credential management
 OPENAI_API_KEY=$(op item get "OPENAI_API_KEY" --fields "api key" --reveal)
@@ -122,4 +131,4 @@ ANTHROPIC_API_KEY=$(op item get "ANTHROPIC_API_KEY" --fields credential --reveal
 
 This is a perfect example of using the right tool for the job. LangChain provides exactly what we needed without the maintenance overhead of manual API integration.
 
-**Result: Clean, maintainable, production-ready LLM integration!** 🚀 
+**Result: Clean, maintainable, production-ready LLM integration!** 🚀

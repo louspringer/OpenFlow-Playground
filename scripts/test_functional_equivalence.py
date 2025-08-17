@@ -16,13 +16,13 @@ import tempfile
 from pathlib import Path
 from typing import Optional
 
-# Add project root to path
+# Add project root to path - works from any directory
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 try:
-    from enhanced_reverse_engineer_fixed_v2 import EnhancedReverseEngineer
-    from round_trip_model_system import RoundTripModelSystem
+    from src.round_trip_engineering import EnhancedReverseEngineer, RoundTripModelSystem
 
     ENHANCED_REVERSE_ENGINEER_AVAILABLE = True
 except ImportError:

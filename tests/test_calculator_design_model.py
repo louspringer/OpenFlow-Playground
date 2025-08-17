@@ -175,7 +175,7 @@ class TestCalculatorDesignModel:
 
         # Load the round-trip model system
         try:
-            from round_trip_model_system import RoundTripModelSystem
+            from src.round_trip_engineering import RoundTripModelSystem
 
             _ = RoundTripModelSystem()  # Test instantiation
         except ImportError:
