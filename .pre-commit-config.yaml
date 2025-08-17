@@ -1,5 +1,5 @@
 # .pre-commit-config.yaml
-# Practical pre-commit configuration for all Python files
+# Comprehensive pre-commit configuration for round-trip engineering enforcement
 
 repos:
   # Black (Code formatting)
@@ -24,13 +24,71 @@ repos:
       - id: ruff
         args: [--fix]
 
+  # Round-Trip Engineering Enforcement
+  - repo: local
+    hooks:
+      - id: round-trip-enforcement
+        name: Round-Trip Engineering Enforcement
+        entry: python scripts/enforce_round_trip.py
+        language: system
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+        description: "Enforce round-trip engineering: all Python files must survive reverse engineering and regeneration"
+        args: [--pre-commit]
+
+      - id: model-conformance-check
+        name: Model Conformance Check
+        entry: python scripts/check_model_conformance.py
+        language: system
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+        description: "Check that all Python files conform to their extracted models"
+        args: [--pre-commit]
+
+      - id: functional-equivalence-test
+        name: Functional Equivalence Test
+        entry: python scripts/test_functional_equivalence.py
+        language: system
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+        description: "Test that regenerated code is functionally equivalent to original"
+        args: [--pre-commit]
+
   # Project Model Validation
   - repo: local
     hooks:
       - id: project-model-validation
         name: Project Model Validation
-        entry: python3 scripts/validate_project_model.py
+        entry: python scripts/validate_project_model.py
         language: system
         pass_filenames: false
         always_run: true
         stages: [pre-commit]
+
+  # Security Scanning
+  - repo: local
+    hooks:
+      - id: security-scan
+        name: Security Scan
+        entry: python scripts/bandit_integration.py --project --report
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+        description: "Run security scanning with Bandit"
+
+  # Code Quality Enforcement
+  - repo: local
+    hooks:
+      - id: code-quality-check
+        name: Code Quality Check
+        entry: python scripts/check_code_quality.py
+        language: system
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+        description: "Enforce code quality standards and prevent direct editing violations"
+        args: [--pre-commit]
