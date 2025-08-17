@@ -5,7 +5,7 @@ Enhanced Reverse Engineering using Enhanced AST Parser
 
 import ast
 import json
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 # Import the enhanced AST parser using the wrapper
 try:

@@ -19,16 +19,16 @@ echo "  Service Name: "SERVICE_NAM"E"
 echo "  Image Name: "IMAGE_NAM"E"
 
 # Check if gcloud CLI is available
-if ! command -v gcloud &> /dev/null; then
-    echo "❌ gcloud CLI not found. Please install Google Cloud SDK first."
-    exit 1
+if ! command -v gcloud &>/dev/null; then
+	echo "❌ gcloud CLI not found. Please install Google Cloud SDK first."
+	exit 1
 fi
 
 # Check if user is authenticated
 if ! gcloud auth list --filter=status:ACTIVE --format="value(account)" | grep -q .; then
-    echo "❌ Not authenticated with gcloud"
-    echo "Please run: gcloud auth login"
-    exit 1
+	echo "❌ Not authenticated with gcloud"
+	echo "Please run: gcloud auth login"
+	exit 1
 fi
 
 echo "✅ gcloud CLI available and authenticated"
@@ -45,22 +45,22 @@ gcloud builds submit --tag ""IMAGE_NAM"E" --project=""PROJECT_I"D" .
 echo ""
 echo "🚀 Deploying to Cloud Run..."
 gcloud run deploy ""SERVICE_NAM"E" \
-    --image=""IMAGE_NAM"E" \
-    --platform=managed \
-    --region=""REGIO"N" \
-    --project=""PROJECT_I"D" \
-    --allow-unauthenticated \
-    --memory=2Gi \
-    --cpu=2 \
-    --concurrency=80 \
-    --max-instances=10 \
-    --timeout=900 \
-    --set-env-vars="PROJECT_ID="PROJECT_I"D" \
-    --service-account="1077539189076-compute@developer.gserviceaccount.com"
+	--image=""IMAGE_NAM"E" \
+	--platform=managed \
+	--region=""REGIO"N" \
+	--project=""PROJECT_I"D" \
+	--allow-unauthenticated \
+	--memory=2Gi \
+	--cpu=2 \
+	--concurrency=80 \
+	--max-instances=10 \
+	--timeout=900 \
+	--set-env-vars="PROJECT_ID="PROJECT_I"D" \
+	--service-account="1077539189076-compute@developer.gserviceaccount.com"
 
 # Get the service URL
 SERVICE_URL=$(gcloud run services describe ""SERVICE_NAM"E" --region=""REGIO"N" \
-    --project="$PROJECT_ID" --format="value(status.url)")
+	--project="$PROJECT_ID" --format="value(status.url)")
 
 echo ""
 echo "✅ Ghostbusters API Container deployed successfully!"
@@ -88,4 +88,4 @@ echo "  ✅ More memory: 2GB"
 echo "  ✅ More CPU: 2 vCPUs"
 echo "  ✅ Persistent state"
 echo "  ✅ API key caching"
-echo "  ✅ Background processing" 
+echo "  ✅ Background processing"

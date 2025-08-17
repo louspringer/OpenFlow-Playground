@@ -208,11 +208,11 @@
     "line_count": 90
   },
   "used_names": [
-    "print",
-    "main",
-    "float",
     "str",
-    "__name__"
+    "float",
+    "print",
+    "__name__",
+    "main"
   ],
   "module_assignments": {}
 }

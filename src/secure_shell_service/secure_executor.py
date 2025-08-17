@@ -17,6 +17,11 @@ class CommandResult:
     Result of a secure command execution
     """
 
+    returncode: int = 0
+    stdout: str = ""
+    stderr: str = ""
+    success: bool = True
+
 
 class SecureExecutor:
     """
@@ -87,6 +92,28 @@ class SecureExecutor:
         """
         # TODO: Implement run
         return CommandResult()
+
+
+def secure_execute(
+    command: list[Any],
+    capture_output: Optional[bool] = True,
+    text: Optional[bool] = True,
+    timeout: Optional[int] = 30,
+) -> CommandResult:
+    """
+    Convenience function for secure command execution
+
+    Args:
+        command: Command to execute as list
+        capture_output: Whether to capture output
+        text: Whether to return text output
+        timeout: Command timeout in seconds
+
+    Returns:
+        CommandResult with execution results
+    """
+    executor = SecureExecutor(timeout or 30, None)
+    return executor.execute_sync(command, capture_output, text, timeout)
 
 
 def main() -> None:

@@ -5,9 +5,9 @@ echo "🔄 Restoring original tools..."
 
 # Restore pytest
 if [[ -f /home/lou/.local/bin/pytest.original ]]; then
-    cp /home/lou/.local/bin/pytest.original /home/lou/.local/bin/pytest
-    chmod +x /home/lou/.local/bin/pytest
-    echo "✅ Restored pytest"
+	cp /home/lou/.local/bin/pytest.original /home/lou/.local/bin/pytest
+	chmod +x /home/lou/.local/bin/pytest
+	echo "✅ Restored pytest"
 fi
 
 # Remove symbolic links

@@ -9,21 +9,25 @@
 ### Top GitHub MCP Repositories Found:
 
 1. **mcp-git-ingest** (266 stars)
+
    - **Description**: "A Model Context Protocol (MCP) server that helps read GitHub repository structure and important files."
    - **Language**: Python
    - **Topics**: git, llm, mcp, model-context-protocol
    - **Status**: Active development, 36 forks, 9 open issues
 
 2. **langchainjs-mcp-adapters** (240 stars)
+
    - **Description**: Adapters for integrating Model Context Protocol (MCP) tools with LangChain.js applications
    - **Language**: TypeScript
    - **Status**: Moved to main LangChain.js repo
 
 3. **claude-talk-to-figma-mcp** (154 stars)
+
    - **Description**: MCP that allows Claude Desktop and other AI tools to interact directly with Figma
    - **Language**: TypeScript
 
 4. **solana-mcp** (115 stars)
+
    - **Description**: MCP server for interacting with the Solana blockchain
    - **Language**: Shell
 
@@ -64,12 +68,14 @@ Based on our Ghostbusters analysis (6 delusions detected, confidence 1.0), we ha
 ### Immediate Steps:
 
 1. **Install mcp-git-ingest**
+
    ```bash
    # Research installation and integration
    git clone https://github.com/adhikasp/mcp-git-ingest.git
    ```
 
 2. **Integrate with our project model**
+
    - Add MCP domain to `project_model_registry.json`
    - Create MCP-specific tools and validators
 
@@ -87,13 +93,13 @@ Based on our Ghostbusters analysis (6 delusions detected, confidence 1.0), we ha
 
 ## 📊 Comparison: Current vs. MCP-Enhanced
 
-| Aspect | Current Approach | MCP-Enhanced |
-|--------|------------------|--------------|
-| File Discovery | Manual search | Intelligent context |
-| Repository Structure | Unknown | Mapped and understood |
-| Important Files | Guessed | Identified by MCP |
-| Dependencies | Manual analysis | Automated mapping |
-| AI Context | Limited | Rich and structured |
+| Aspect               | Current Approach | MCP-Enhanced          |
+| -------------------- | ---------------- | --------------------- |
+| File Discovery       | Manual search    | Intelligent context   |
+| Repository Structure | Unknown          | Mapped and understood |
+| Important Files      | Guessed          | Identified by MCP     |
+| Dependencies         | Manual analysis  | Automated mapping     |
+| AI Context           | Limited          | Rich and structured   |
 
 ## 🎯 Next Steps
 
@@ -111,4 +117,4 @@ Based on our Ghostbusters analysis (6 delusions detected, confidence 1.0), we ha
 
 ---
 
-**Conclusion**: We should definitely be using GitHub MCP! It would significantly improve our codebase understanding and AI context. The fact that we're not using it is indeed a delusion that Ghostbusters has identified. 🎯 
+**Conclusion**: We should definitely be using GitHub MCP! It would significantly improve our codebase understanding and AI context. The fact that we're not using it is indeed a delusion that Ghostbusters has identified. 🎯

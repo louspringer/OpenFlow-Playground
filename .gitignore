@@ -83,3 +83,9 @@ clewcrew*/
 gke-ai-microservices-hackathon/
 kiro-ai-development-hackathon/
 tidb-agentx-hackathon/
+
+# Output files
+*.txt
+*.log
+*_output.txt
+*_regenerated.py

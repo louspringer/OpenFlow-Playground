@@ -8,8 +8,8 @@ echo "🔐 Setting up Make-only permission model for virtual environment..."
 # Get the virtual environment path
 VENV_PATH=".venv"
 if [ ! -d ""VENV_PAT"H" ]; then
-    echo "❌ Virtual environment not found at "VENV_PAT"H"
-    exit 1
+	echo "❌ Virtual environment not found at "VENV_PAT"H"
+	exit 1
 fi
 
 echo "📦 Creating backup of original tools..."
@@ -23,7 +23,7 @@ cp ""VENV_PATH"/bin/mypy" ""VENV_PATH"/bin/mypy.original"
 echo "🔄 Replacing tools with wrappers..."
 
 # Create pytest wrapper
-cat > ""VENV_PATH"/bin/pytest" << 'EOF'
+cat >""VENV_PATH"/bin/pytest" <<'EOF'
 #!/usr/bin/env python3
 """
 pytest wrapper - only allows execution through make
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 EOF
 
 # Create flake8 wrapper
-cat > ""VENV_PATH"/bin/flake8" << 'EOF'
+cat >""VENV_PATH"/bin/flake8" <<'EOF'
 #!/usr/bin/env python3
 """
 flake8 wrapper - only allows execution through make
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 EOF
 
 # Create black wrapper
-cat > ""VENV_PATH"/bin/black" << 'EOF'
+cat >""VENV_PATH"/bin/black" <<'EOF'
 #!/usr/bin/env python3
 """
 black wrapper - only allows execution through make
@@ -156,7 +156,7 @@ if __name__ == "__main__":
 EOF
 
 # Create mypy wrapper
-cat > ""VENV_PATH"/bin/mypy" << 'EOF'
+cat >""VENV_PATH"/bin/mypy" <<'EOF'
 #!/usr/bin/env python3
 """
 mypy wrapper - only allows execution through make
@@ -214,4 +214,4 @@ echo "🔄 To restore original behavior: ./scripts/restore_tools_venv.sh"
 echo ""
 echo "🧪 Test it:"
 echo "   ❌ pytest --version (should fail)"
-echo "   ✅ make test (should work)" 
+echo "   ✅ make test (should work)"

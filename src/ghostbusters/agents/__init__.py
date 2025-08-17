@@ -1,12 +1,21 @@
-#!/usr/bin/env python3
-"""
-Ghostbusters Agents Module
+"""Ghostbusters expert agents for delusion detection."""
 
-This module provides specialized investigation agents for different quality analysis domains.
-"""
+from .architecture_expert import ArchitectureExpert
+from .base_expert import BaseExpert
+from .build_expert import BuildExpert
+from .code_quality_expert import CodeQualityExpert
+from .mcp_expert import MCPExpert
+from .model_expert import ModelExpert
+from .security_expert import SecurityExpert
+from .test_expert import TestExpert
 
-from .issue_detector import IssueDetector
-from .quality_analyzer import QualityAnalyzer
-from .recommendation_engine import RecommendationEngine
-
-__all__ = ["QualityAnalyzer", "IssueDetector", "RecommendationEngine"]
+__all__ = [
+    "BaseExpert",
+    "SecurityExpert",
+    "CodeQualityExpert",
+    "TestExpert",
+    "BuildExpert",
+    "ArchitectureExpert",
+    "ModelExpert",
+    "MCPExpert",
+]

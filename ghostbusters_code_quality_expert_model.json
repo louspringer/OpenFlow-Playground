@@ -1,0 +1,165 @@
+{
+  "system_name": "Code quality expert agent for detecting code quality issues.",
+  "description": "",
+  "purpose": "",
+  "graph_api_level": 1,
+  "projection_system": "default",
+  "components": {
+    "CodeQualityExpert": {
+      "responsibility": "Expert agent for detecting code quality issues.",
+      "methods": [
+        {
+          "name": "__init__",
+          "signature": "__init__(self) -> None",
+          "docstring": "Initialize the code quality expert.",
+          "decorators": [],
+          "line_number": 12,
+          "return_type": null,
+          "parameters": [],
+          "is_test_method": false
+        },
+        {
+          "name": "detect_delusions",
+          "signature": "detect_delusions(self, project_path: Path) -> DelusionResult",
+          "docstring": "Analyze existing code quality tool output and recommend systemic fixes.",
+          "decorators": [],
+          "line_number": 16,
+          "return_type": "DelusionResult",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_analyze_existing_lint_output",
+          "signature": "_analyze_existing_lint_output(self, project_path: Path) -> list[dict[tuple[str, Any]]]",
+          "docstring": "Analyze existing linting tool output without running tools.",
+          "decorators": [],
+          "line_number": 61,
+          "return_type": "list[dict[tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "project_path",
+              "type": "Path",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_identify_systemic_problems",
+          "signature": "_identify_systemic_problems(self, linting_issues: list[dict[tuple[str, Any]]]) -> list[dict[tuple[str, Any]]]",
+          "docstring": "Identify systemic patterns in linting issues.",
+          "decorators": [],
+          "line_number": 129,
+          "return_type": "list[dict[tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "linting_issues",
+              "type": "list[dict[tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        },
+        {
+          "name": "_generate_systemic_recommendations",
+          "signature": "_generate_systemic_recommendations(self, linting_issues: list[dict[tuple[str, Any]]]) -> list[dict[tuple[str, Any]]]",
+          "docstring": "Generate smart recommendations based on systemic patterns.",
+          "decorators": [],
+          "line_number": 215,
+          "return_type": "list[dict[tuple[str, Any]]]",
+          "parameters": [
+            {
+              "name": "linting_issues",
+              "type": "list[dict[tuple[str, Any]]]",
+              "default": null
+            }
+          ],
+          "is_async": true,
+          "is_test_method": false
+        }
+      ],
+      "implementation_status": "implemented",
+      "notes": "",
+      "validation_rules": {},
+      "example_usage": {},
+      "user_experience": {},
+      "interaction_flow": {},
+      "class_decorators": [],
+      "bases": [
+        "BaseExpert"
+      ],
+      "line_number": 9
+    }
+  },
+  "module_functions": [],
+  "imports": [
+    "from pathlib import Path",
+    "from typing import Any",
+    "from base_expert import BaseExpert",
+    "from base_expert import DelusionResult"
+  ],
+  "module_docstring": "Code quality expert agent for detecting code quality issues.",
+  "file_structure": {
+    "total_lines": 307,
+    "code_lines": 256,
+    "comment_lines": 17,
+    "blank_lines": 34,
+    "total_nodes": 1113,
+    "class_nodes": 1,
+    "function_nodes": 1,
+    "import_nodes": 3,
+    "expression_nodes": 28,
+    "assignment_nodes": 26,
+    "return_nodes": 6
+  },
+  "file_metadata": {
+    "executable": false,
+    "is_test_file": false,
+    "has_main_block": false,
+    "file_type": "module",
+    "line_count": 307
+  },
+  "used_names": [
+    "recommendations",
+    "import_errors",
+    "self",
+    "linting_issues",
+    "Path",
+    "formatting_errors",
+    "type_errors",
+    "DelusionResult",
+    "BaseExpert",
+    "mypy_output",
+    "systemic_issues",
+    "len",
+    "code",
+    "files_affected",
+    "project_path",
+    "list",
+    "flake8_output",
+    "Exception",
+    "Any",
+    "str",
+    "confidence",
+    "delusions",
+    "content",
+    "issue",
+    "int",
+    "dict",
+    "error_codes",
+    "parts",
+    "line",
+    "super",
+    "black_output"
+  ],
+  "module_assignments": {}
+}

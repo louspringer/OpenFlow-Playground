@@ -44,6 +44,7 @@ dependencies = [
     "kaleido>=1.0.0",
     "neo4j>=5.28.2",
     "jq>=1.10.0",
+    "astor>=0.8.1",
 ]
 
 [project.optional-dependencies]

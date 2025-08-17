@@ -18,26 +18,27 @@
       ],
       "purpose": "Provide the actual demo functionality and user experience"
     },
-    "demo_tools": {
-      "description": "Tool domains that support demo creation, testing, and management",
-      "domains": [
-        "ghostbusters",
-        "intelligent_linter_system",
-        "code_quality_system",
-        "multi_agent_testing",
-        "visualization",
-        "artifact_forge",
-        "heuristic_file_type_processor",
-        "ghostbusters_file_type_processor",
-        "semantic_diff_engine",
-        "universal_ast_enhanced_linter",
-        "glacier_spore_system",
-        "heuristic_file_processing",
-        "github_discovery_automation",
-        "one_liner_linter"
-      ],
-      "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
-    },
+            "demo_tools": {
+          "description": "Tool domains that support demo creation, testing, and management",
+          "domains": [
+            "ghostbusters",
+            "intelligent_linter_system",
+            "code_quality_system",
+            "multi_agent_testing",
+            "visualization",
+            "artifact_forge",
+            "heuristic_file_type_processor",
+            "ghostbusters_file_type_processor",
+            "semantic_diff_engine",
+            "universal_ast_enhanced_linter",
+            "glacier_spore_system",
+            "heuristic_file_processing",
+            "github_discovery_automation",
+            "one_liner_linter",
+            "round_trip_engineering"
+          ],
+          "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
+        },
     "demo_infrastructure": {
       "description": "Infrastructure and supporting domains for the demo ecosystem",
       "domains": [
@@ -543,10 +544,19 @@
       "content_indicators": [
         "GhostbustersOrchestrator",
         "BaseExpert",
+        "SecurityExpert",
+        "ArchitectureExpert", 
+        "CodeQualityExpert",
+        "TestExpert",
+        "BuildExpert",
+        "ModelExpert",
         "detect_delusions",
         "execute_recovery",
         "multi-agent",
-        "delusion detection"
+        "delusion detection",
+        "recovery engines",
+        "LangGraph",
+        "LangChain"
       ],
       "linter": "flake8",
       "formatter": "black",
@@ -556,12 +566,19 @@
         "*.pyc"
       ],
       "requirements": [
-        "Provide multi-agent delusion detection and recovery system",
-        "Support automated error detection and fixing for demo development",
-        "Integrate with LangGraph/LangChain for orchestration",
-        "Maintain zero false positives in delusion detection",
-        "Support comprehensive testing and validation",
-        "Provide web-based security tool recommendations"
+        "Use Ghostbusters for delusion detection and recovery",
+        "Ghostbusters agent orchestration with SecurityExpert, CodeQualityExpert, TestExpert, BuildExpert",
+        "Ghostbusters recovery engines: SyntaxRecoveryEngine, IndentationFixer, ImportResolver, TypeAnnotationFixer",
+        "Ghostbusters functional equivalence with original code",
+        "Ghostbusters zero false positives in delusion detection",
+        "Ghostbusters deterministic recovery actions",
+        "Ghostbusters multi-agent testing of all agents and recovery engines",
+        "Run Ghostbusters before linting to fix syntax issues",
+        "Use Ghostbusters agents for domain-specific analysis",
+        "Apply Ghostbusters recovery engines for automated fixes",
+        "Integrate Ghostbusters with LangGraph/LangChain for multi-agent orchestration",
+        "Use Ghostbusters for multi-agent orchestration and comprehensive delusion detection",
+        "Apply Ghostbusters for confidence scoring and validation"
       ],
       "demo_role": "tool",
       "extraction_candidate": "HIGH",
@@ -584,7 +601,9 @@
           "Reusable across projects",
           "Multi-agent architecture",
           "Recovery engines",
-          "Delusion detection"
+          "Delusion detection",
+          "LangGraph integration",
+          "Automated fixes"
         ],
         "pypi_ready": true,
         "package_name": "openflow-ghostbusters"
@@ -2262,6 +2281,43 @@
         "hackathon": "Project coordination and execution",
         "all_domains": "Centralized management and oversight"
       }
+    },
+    "round_trip_engineering": {
+      "patterns": [
+        "**/*round_trip*.py",
+        "**/*enhanced_reverse_engineer*.py",
+        "**/*enhanced_round_trip*.py",
+        "round_trip_model_system.py",
+        "enhanced_reverse_engineer.py"
+      ],
+      "content_indicators": [
+        "round_trip",
+        "reverse_engineer",
+        "model_driven",
+        "code_generation",
+        "AST_parsing"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "pytest",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc",
+        "*.pyo",
+        "mass_reverse_engineering*",
+        "reverse_engineer_model*"
+      ],
+      "requirements": [
+        "Provide canonical round-trip engineering system",
+        "Support AST-based reverse engineering",
+        "Generate code from models",
+        "Maintain functional equivalence",
+        "Support model-driven development",
+        "Integrate with enhanced AST parser"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": true,
+      "reason": "Core round-trip engineering system for model-driven development"
     }
   },
   "tool_selection_logic": {
@@ -2490,6 +2546,43 @@
       "extraction_benefits": [
         "Could be useful for other projects with similar linting requirements"
       ]
+    },
+    "round_trip_engineering": {
+      "patterns": [
+        "**/*round_trip*.py",
+        "**/*enhanced_reverse_engineer*.py",
+        "**/*enhanced_round_trip*.py",
+        "round_trip_model_system.py",
+        "enhanced_reverse_engineer.py"
+      ],
+      "content_indicators": [
+        "round_trip",
+        "reverse_engineer",
+        "model_driven",
+        "code_generation",
+        "AST_parsing"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "pytest",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc",
+        "*.pyo",
+        "mass_reverse_engineering*",
+        "reverse_engineer_model*"
+      ],
+      "requirements": [
+        "Provide canonical round-trip engineering system",
+        "Support AST-based reverse engineering",
+        "Generate code from models",
+        "Maintain functional equivalence",
+        "Support model-driven development",
+        "Integrate with enhanced AST parser"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": true,
+      "reason": "Core round-trip engineering system for model-driven development"
     }
   },
   "requirements_traceability": [

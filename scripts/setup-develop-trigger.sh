@@ -21,13 +21,13 @@ echo "👤 Owner: "REPO_OWNE"R"
 echo "🔧 Creating Cloud Build trigger..."
 
 gcloud builds triggers create github \
-  --name=""TRIGGER_NAM"E" \
-  --repo-name=""REPO_NAM"E" \
-  --repo-owner=""REPO_OWNE"R" \
-  --branch-pattern=""BRANCH_PATTER"N" \
-  --build-config="cloudbuild.yaml" \
-  --project=""PROJECT_I"D" \
-  --description="Automatic build and deploy Ghostbusters API on push to develop branch"
+	--name=""TRIGGER_NAM"E" \
+	--repo-name=""REPO_NAM"E" \
+	--repo-owner=""REPO_OWNE"R" \
+	--branch-pattern=""BRANCH_PATTER"N" \
+	--build-config="cloudbuild.yaml" \
+	--project=""PROJECT_I"D" \
+	--description="Automatic build and deploy Ghostbusters API on push to develop branch"
 
 echo "✅ Cloud Build trigger created successfully!"
 echo ""
@@ -51,4 +51,4 @@ echo "   git add . \
    
 git commit -m 'test: trigger cloud build' \
    
-git push" 
+git push"
