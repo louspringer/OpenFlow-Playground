@@ -7,9 +7,20 @@ Can create models from design AND generate code from models
 import json
 import logging
 import uuid
-from datetime import datetime
 from dataclasses import dataclass, field
+from datetime import datetime
 from typing import Any
+
+# Try to import Black for code formatting
+try:
+    from black import FileMode, TargetVersion, format_str
+
+    BLACK_AVAILABLE = True
+except ImportError:
+    BLACK_AVAILABLE = False
+    logging.warning(
+        "Black not available - generated code may not be properly formatted"
+    )
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -522,7 +533,63 @@ if __name__ == "__main__":
         if not cleaned_code.endswith("\n"):
             cleaned_code += "\n"
 
-        return cleaned_code
+        # Format with Black if available
+        if BLACK_AVAILABLE:
+            try:
+                # Configure Black mode (88 character line length, Python 3.9+)
+                mode = FileMode(
+                    target_versions={
+                        TargetVersion.PY39,
+                        TargetVersion.PY310,
+                        TargetVersion.PY311,
+                        TargetVersion.PY312,
+                    },
+                    line_length=88,
+                    string_normalization=True,
+                    is_pyi=False,
+                    is_ipynb=False,
+                    skip_source_first_line=False,
+                    magic_trailing_comma=True,
+                    preview=False,
+                )
+
+                # Format the code
+                formatted_code = format_str(cleaned_code, mode=mode)
+
+                # Log what Black changed so we can learn to generate cleaner code
+                if formatted_code != cleaned_code:
+                    logger.warning(
+                        "🔍 Black made formatting changes - this means the model generated messy code:"
+                    )
+                    logger.warning(f"  Original length: {len(cleaned_code)} chars")
+                    logger.warning(f"  Formatted length: {len(formatted_code)} chars")
+
+                    # Log specific changes for learning
+                    original_lines = cleaned_code.split("\n")
+                    formatted_lines = formatted_code.split("\n")
+
+                    if len(original_lines) != len(formatted_lines):
+                        logger.warning(
+                            f"  Line count changed: {len(original_lines)} → {len(formatted_lines)}"
+                        )
+
+                    # Log first few differences for pattern recognition
+                    for i, (orig, fmt) in enumerate(
+                        zip(original_lines, formatted_lines)
+                    ):
+                        if orig != fmt and i < 10:  # Only log first 10 differences
+                            logger.warning(f"  Line {i+1}: '{orig}' → '{fmt}'")
+
+                logger.info("✅ Generated code formatted with Black")
+                return formatted_code
+            except Exception as e:
+                logger.warning(
+                    f"Black formatting failed: {e}, returning unformatted code"
+                )
+                return cleaned_code
+        else:
+            logger.warning("Black not available - returning unformatted code")
+            return cleaned_code
 
     def _generate_class_from_extracted_model(
         self,
