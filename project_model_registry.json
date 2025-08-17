@@ -2315,6 +2315,40 @@
         "Support model-driven development",
         "Integrate with enhanced AST parser"
       ],
+      "todos": [
+        {
+          "id": "pattern_analysis_followup",
+          "description": "Follow up on Black formatting pattern analysis to improve model generation",
+          "priority": "medium",
+          "status": "pending",
+          "details": {
+            "current_state": "Pattern recording system implemented and working",
+            "patterns_found": [
+              "SPACING: Docstring formatting issues (most common)",
+              "QUOTE_CHANGES: Mixed quote usage", 
+              "LINE_LENGTH: Lines over 88 characters",
+              "IMPORT_REORDERING: Import organization"
+            ],
+            "data_collected": "formatting_patterns/formatting_patterns_2025-08-17.jsonl",
+            "next_steps": [
+              "Analyze pattern data across multiple files",
+              "Identify most common formatting issues",
+              "Update model generation to handle docstring spacing correctly",
+              "Track improvement over time using pattern data",
+              "Build learning dataset for model improvement"
+            ],
+            "metrics": {
+              "files_processed": 1,
+              "total_changes_needed": 183,
+              "spacing_issues": 3,
+              "line_count_increase": "201 → 229 (+28 lines)",
+              "char_count_increase": "7777 → 8239 (+462 chars)"
+            }
+          },
+          "created": "2025-08-17T15:05:49",
+          "assigned_to": "AI Assistant"
+        }
+      ],
       "demo_role": "tool",
       "extraction_candidate": true,
       "reason": "Core round-trip engineering system for model-driven development"
