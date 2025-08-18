@@ -73,7 +73,7 @@ repos:
     hooks:
       - id: security-scan
         name: Security Scan
-        entry: python scripts/bandit_integration.py --project --report
+        entry: uv run python scripts/bandit_integration.py --project --report
         language: system
         pass_filenames: false
         always_run: true
