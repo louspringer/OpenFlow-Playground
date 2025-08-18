@@ -98,6 +98,7 @@
         "cloudformation_linting",
         "dont_break_the_fixer",
         "intelligent_linter_prevention",
+        "backlog_discovery",
         "dynamic_prevention_rules",
         "yaml_type_specific",
         "json_type_specific"
@@ -143,6 +144,7 @@
         "cloudformation_linting": "☁️",
         "dont_break_the_fixer": "🔧",
         "intelligent_linter_prevention": "🧹",
+        "backlog_discovery": "📋",
         "dynamic_prevention_rules": "⚡",
         "yaml_type_specific": "📄",
         "json_type_specific": "📋"
@@ -3042,6 +3044,18 @@
       "test": "test_requirement_19_data_validation"
     },
     {
+      "requirement": "Systematic backlog discovery methodology",
+      "domain": "backlog_discovery",
+      "implementation": "Comprehensive search patterns for all backlog indicators with standardized format",
+      "test": "test_requirement_backlog_discovery_methodology"
+    },
+    {
+      "requirement": "Prevent missed backlog items through systematic discovery",
+      "domain": "backlog_discovery", 
+      "implementation": "Multi-method search approach with validation against multiple sources",
+      "test": "test_requirement_backlog_discovery_prevention"
+    },
+    {
       "requirement": "Healthcare CDC domain validation",
       "domain": "healthcare_cdc",
       "implementation": "flake8 + black + pytest for healthcare CDC",
@@ -4767,5 +4781,125 @@
     "demo_role": "development",
     "extraction_candidate": false,
     "reason": "Node.js development environment - essential for modern tooling"
+  },
+  "backlog_discovery": {
+    "description": "Systematic methods for discovering and accessing backlog items across the project",
+    "patterns": [
+      "*.json",
+      "*.md",
+      "*.py",
+      "*.yaml",
+      "*.yml"
+    ],
+    "content_indicators": [
+      "backlog",
+      "TODO",
+      "FIXME", 
+      "HACK",
+      "XXX",
+      "BUG",
+      "pending",
+      "incomplete",
+      "not implemented",
+      "next_steps",
+      "future work",
+      "planned work"
+    ],
+    "linter": "backlog_discovery_validator",
+    "validator": "backlog_completeness_checker",
+    "formatter": "backlog_format_standardizer",
+    "requirements": [
+      "Systematic backlog discovery methodology",
+      "Comprehensive search patterns for all backlog indicators",
+      "Integration with project model registry",
+      "Standardized backlog item format",
+      "Prevention of missed backlog items"
+    ],
+    "backlog_discovery_methods": {
+      "project_model_registry": {
+        "description": "Primary source for formal backlog items",
+        "search_patterns": [
+          "backlogged array",
+          "next_steps arrays", 
+          "status: backlogged",
+          "over_engineering_prevention domain"
+        ],
+        "file_path": "project_model_registry.json"
+      },
+      "documentation_files": {
+        "description": "Documentation containing backlog items and future work",
+        "search_patterns": [
+          "docs/*.md",
+          "project_management/*.md",
+          "*.md with future work sections"
+        ],
+        "file_paths": [
+          "docs/OVER_ENGINEERING_AUDIT_COMPREHENSIVE.md",
+          "project_management/README.md"
+        ]
+      },
+      "code_level_indicators": {
+        "description": "Code-level backlog indicators in source files",
+        "search_patterns": [
+          "TODO comments",
+          "FIXME comments", 
+          "HACK comments",
+          "XXX comments",
+          "BUG comments",
+          "skeleton classes with TODO",
+          "unimplemented methods"
+        ],
+        "file_patterns": [
+          "*.py",
+          "*.js", 
+          "*.ts",
+          "*.go"
+        ]
+      },
+      "status_based_indicators": {
+        "description": "Status fields indicating backlog items",
+        "search_patterns": [
+          "status: backlogged",
+          "status: pending",
+          "status: incomplete", 
+          "status: not implemented",
+          "priority: high/medium/low",
+          "estimated_effort: X weeks",
+          "dependencies arrays"
+        ]
+      }
+    },
+    "search_commands": {
+      "comprehensive_backlog_search": "grep -r 'backlogged\\|pending\\|incomplete' project_model_registry.json",
+      "todo_pattern_search": "grep -r 'TODO\\|FIXME\\|HACK\\|XXX\\|BUG' . --include='*.py' --include='*.md'",
+      "documentation_search": "grep -r 'backlog\\|next_steps\\|future.*work' docs/",
+      "domain_specific_search": "grep -r 'over_engineering_prevention' project_model_registry.json",
+      "status_field_search": "grep -r 'status.*backlogged\\|status.*pending' ."
+    },
+    "backlog_item_format": {
+      "required_fields": [
+        "requirement",
+        "status", 
+        "domain",
+        "priority",
+        "estimated_effort",
+        "description",
+        "date_added"
+      ],
+      "optional_fields": [
+        "dependencies",
+        "acceptance_criteria",
+        "implementation_files",
+        "test_results",
+        "completion_date"
+      ]
+    },
+    "prevention_patterns": [
+      "Always search systematically using all discovery methods",
+      "Never assume a single search method is sufficient",
+      "Always check project model registry first",
+      "Always search for code-level indicators",
+      "Always validate findings against multiple sources"
+    ]
   }
 }
