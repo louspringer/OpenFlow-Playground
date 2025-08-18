@@ -1,21 +1,12 @@
 {
   "ci_environment": "unknown",
-  "timestamp": "2025-08-14T16:24:23.041911+00:00",
+  "timestamp": "2025-08-18T22:35:14.229057+00:00",
   "project_path": "/home/lou/Documents/OpenFlow-Playground",
   "overall_score": 0.0,
   "quality_threshold": 50.0,
   "threshold_met": false,
-  "gate_summary": {
-    "total_gates": 5,
-    "passed_gates": 0,
-    "failed_gates": 5,
-    "warning_gates": 0,
-    "error_gates": 0,
-    "blocking_gates": 2,
-    "overall_status": "failed",
-    "can_proceed": false
-  },
-  "can_proceed": false,
+  "gate_summary": {},
+  "can_proceed": true,
   "ci_config": {
     "ci_environment": "unknown",
     "quality_threshold": 50.0,
@@ -34,10 +25,7 @@
     "triggered_by": "unknown"
   },
   "recommendations": [
-    "Overall quality score is below 70. Focus on high-impact improvements first.",
-    "CRITICAL: Address security vulnerabilities immediately before proceeding.",
-    "Fix code quality issues to meet minimum standards.",
-    "Increase test coverage to meet quality standards."
+    "Overall quality score is below 70. Focus on high-impact improvements first."
   ],
-  "status": "failed"
+  "status": "success"
 }
