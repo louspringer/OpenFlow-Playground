@@ -1,7 +1,7 @@
 ---
 description: Rule for model-first-enforcement
 globs: *.py,*.js,*.ts,*.yaml,*.yml,*.md,*.json,*.toml
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Model-First Enforcement Rule
