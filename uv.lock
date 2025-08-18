@@ -2055,6 +2055,7 @@ source = { editable = "." }
 dependencies = [
     { name = "astor" },
     { name = "autoflake8" },
+    { name = "bandit" },
     { name = "bcrypt" },
     { name = "boto3" },
     { name = "botocore" },
@@ -2123,6 +2124,7 @@ dev = [
 requires-dist = [
     { name = "astor", specifier = ">=0.8.1" },
     { name = "autoflake8", specifier = ">=0.4.1" },
+    { name = "bandit", specifier = ">=1.8.6" },
     { name = "bandit", marker = "extra == 'dev'", specifier = ">=1.7.0" },
     { name = "bandit", marker = "extra == 'security'", specifier = ">=1.7.0" },
     { name = "bcrypt", specifier = ">=4.0.0" },

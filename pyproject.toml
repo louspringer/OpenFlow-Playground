@@ -45,6 +45,7 @@ dependencies = [
     "neo4j>=5.28.2",
     "jq>=1.10.0",
     "astor>=0.8.1",
+    "bandit>=1.8.6",
 ]
 
 [project.optional-dependencies]
