@@ -1,7 +1,13 @@
+---
+description: Rule for round-trip engineering enforcement
+globs: *.py,*.js,*.ts,*.yaml,*.yml,*.md,*.json,*.toml
+alwaysApply: true
+---
+
 # Round-Trip Engineering Rule
 
 ## 🎯 **Rule Definition**
-**"When round-trip engineering is mentioned, use the correct generation method and follow the established workflow"**
+**"ALWAYS use round-trip engineering for Python file modifications - NEVER hand-edit Python files"**
 
 ## 🚨 **Trigger Conditions**
 - User says: "round-trip", "round trip", "reverse engineer", "regenerate code"

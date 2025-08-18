@@ -65,9 +65,11 @@ def fix_code_quality_issues(file_path: str):
 - **NEVER use heuristic editors** - JSON structure must be preserved exactly
 
 ### Python Files
-- Use `ast` for structural edits
-- Use `libcst` for code transformations
-- Use `black` for formatting
+- **NEVER use heuristic editing tools** - This project has round-trip engineering
+- **Use `scripts/enforce_round_trip.py`** for all Python file modifications
+- **Use `ast` for analysis only** - Not for direct editing
+- **Use `black` for formatting** - Applied by the round-trip system
+- **Use the round-trip engineering system** - Extract model, fix model, regenerate code
 
 ### JSON Files
 - **Use `jq` Python API for bulk updates** - Fast, deterministic field manipulation
