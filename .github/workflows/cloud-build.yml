@@ -2,9 +2,9 @@ name: Cloud Build CI/CD
 
 on:
   push:
-    branches: [ ghostbusters-gcp-implementation ]
+    branches: [ main, develop, staging ]
   pull_request:
-    branches: [ ghostbusters-gcp-implementation ]
+    branches: [ main, develop, staging ]
 
 jobs:
   build-and-deploy:

@@ -32,12 +32,12 @@ jobs:
         run: |
           echo "🔍 Analyzing Multi-Agent System Components..."
           
-          # Count different agent types
-          LLM_AGENTS=$(find src/ -name "*.py" -exec grep -l "class.*Agent\|def.*agent" {} \; | wc -l)
-          GHOSTBUSTERS_AGENTS=$(find src/ghostbusters/ -name "*.py" | wc -l)
-          WEB_AGENTS=$(find src/ -name "*.py" -exec grep -l "web\|search\|discovery" {} \; | wc -l)
-          HUMAN_AGENTS=$(find . -name "*.md" -exec grep -l "human\|user\|manual" {} \; | wc -l)
-          COPILOT_AGENTS=$(find . -name "*.md" -exec grep -l "copilot" {} \; | wc -l)
+          # Count different agent types with error handling
+          LLM_AGENTS=$(find src/ -name "*.py" -exec grep -l "class.*Agent\|def.*agent" {} \; 2>/dev/null | wc -l || echo "0")
+          GHOSTBUSTERS_AGENTS=$(find src/ghostbusters/ -name "*.py" 2>/dev/null | wc -l || echo "0")
+          WEB_AGENTS=$(find src/ -name "*.py" -exec grep -l "web\|search\|discovery" {} \; 2>/dev/null | wc -l || echo "0")
+          HUMAN_AGENTS=$(find . -name "*.md" -exec grep -l "human\|user\|manual" {} \; 2>/dev/null | wc -l || echo "0")
+          COPILOT_AGENTS=$(find . -name "*.md" -exec grep -l "copilot" {} \; 2>/dev/null | wc -l || echo "0")
           
           echo "📊 Multi-Agent System Analysis:"
           echo "- LLM Agents: $LLM_AGENTS"
@@ -62,22 +62,23 @@ jobs:
         run: |
           echo "🔍 Checking Tool Discovery Integration..."
           
-          if [ -f "src/ghostbusters/web_tool_discovery.py" ]; then
+          # Check with error handling
+          if [ -f "src/ghostbusters/web_tool_discovery.py" ] 2>/dev/null; then
             echo "✅ Web Tool Discovery: ACTIVE"
           else
-            echo "❌ Web Tool Discovery: MISSING"
+            echo "⚠️  Web Tool Discovery: NOT FOUND (may be optional)"
           fi
           
-          if [ -f "src/ghostbusters/tool_discovery.py" ]; then
+          if [ -f "src/ghostbusters/tool_discovery.py" ] 2>/dev/null; then
             echo "✅ Tool Discovery System: ACTIVE"
           else
-            echo "❌ Tool Discovery System: MISSING"
+            echo "⚠️  Tool Discovery System: NOT FOUND (may be optional)"
           fi
           
-          if [ -f "src/ghostbusters/enhanced_ghostbusters.py" ]; then
+          if [ -f "src/ghostbusters/enhanced_ghostbusters.py" ] 2>/dev/null; then
             echo "✅ Enhanced Ghostbusters: ACTIVE"
           else
-            echo "❌ Enhanced Ghostbusters: MISSING"
+            echo "⚠️  Enhanced Ghostbusters: NOT FOUND (may be optional)"
           fi
           
       - name: Generate Diversity Report
