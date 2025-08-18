@@ -25,7 +25,7 @@ def setup_logging(*, verbose: bool = False) -> None:
 
 def run_quality_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run a quality check on the project"""
-    setup_logging(verbose)
+    setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
 
     try:
@@ -82,7 +82,7 @@ def run_quality_check(project_path: Path, *, verbose: bool = False) -> int:
 
 def run_pre_commit_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run pre-commit quality check"""
-    setup_logging(verbose)
+    setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
 
     try:
@@ -106,7 +106,7 @@ def run_pre_commit_check(project_path: Path, *, verbose: bool = False) -> int:
 
 async def run_ci_check(project_path: Path, *, verbose: bool = False) -> int:
     """Run CI/CD quality check"""
-    setup_logging(verbose)
+    setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
 
     try:
@@ -132,7 +132,7 @@ async def run_ci_check(project_path: Path, *, verbose: bool = False) -> int:
 
 def install_pre_commit_hook(project_path: Path, *, verbose: bool = False) -> int:
     """Install pre-commit hook"""
-    setup_logging(verbose)
+    setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
 
     try:
@@ -158,7 +158,7 @@ def show_quality_trends(
     project_path: Path, *, days: int = 30, verbose: bool = False
 ) -> int:
     """Show quality trends over time"""
-    setup_logging(verbose)
+    setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
 
     try:
