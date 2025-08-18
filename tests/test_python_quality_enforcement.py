@@ -34,7 +34,7 @@ def _test_black_formatting(file_path: str) -> bool:
             text=True,
             timeout=30,
         )
-        success = result.return_code == 0
+        success = result.returncode == 0
         logger.info(
             f"Black formatting for {file_path}: {'PASS' if success else 'FAIL'}",
         )
@@ -57,7 +57,7 @@ def _test_flake8_linting(file_path: str) -> bool:
             text=True,
             timeout=30,
         )
-        success = result.return_code == 0
+        success = result.returncode == 0
         logger.info(f"Flake8 linting for {file_path}: {'PASS' if success else 'FAIL'}")
         return success
     except subprocess.TimeoutExpired:
@@ -208,7 +208,7 @@ def test_zero_linter_errors() -> None:
                 timeout=30,
             )
 
-            if result.return_code != 0:
+            if result.returncode != 0:
                 error_count = len(result.stdout.splitlines())
                 total_errors += error_count
                 logger.error(f"❌ {file_path}: {error_count} linter errors")

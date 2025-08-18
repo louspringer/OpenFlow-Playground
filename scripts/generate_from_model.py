@@ -351,27 +351,19 @@ def print_validation_report(
         f"  {'✅' if validation_results['syntax_valid'] else '❌'} Syntax Valid: {validation_results['syntax_valid']}"
     )
     print(
-        f"  {
-            '✅' if validation_results['string_literals_valid'] else '❌'} String Literals: {
-            validation_results['string_literals_valid']}"
+        f"  {'✅' if validation_results['string_literals_valid'] else '❌'} String Literals: {validation_results['string_literals_valid']}"
     )
     print(
-        f"  {
-            '✅' if validation_results['class_structure_valid'] else '❌'} Class Structure: {
-            validation_results['class_structure_valid']}"
+        f"  {'✅' if validation_results['class_structure_valid'] else '❌'} Class Structure: {validation_results['class_structure_valid']}"
     )
 
     # Important checks
     print("\n🟡 IMPORTANT CHECKS:")
     print(
-        f"  {
-            '✅' if validation_results['imports_valid'] else '⚠️'} Imports Valid: {
-            validation_results['imports_valid']}"
+        f"  {'✅' if validation_results['imports_valid'] else '⚠️'} Imports Valid: {validation_results['imports_valid']}"
     )
     print(
-        f"  {
-            '✅' if validation_results['method_signatures_valid'] else '⚠️'} Method Signatures: {
-            validation_results['method_signatures_valid']}"
+        f"  {'✅' if validation_results['method_signatures_valid'] else '⚠️'} Method Signatures: {validation_results['method_signatures_valid']}"
     )
 
     # Issues found

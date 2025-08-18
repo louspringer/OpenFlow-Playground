@@ -360,7 +360,7 @@ class SecurityScanManager:
 def main():
     """Main function for command-line usage"""
     import argparse
-    
+
     parser = argparse.ArgumentParser(
         description="Security Scanner for OpenFlow-Playground"
     )
@@ -369,14 +369,15 @@ def main():
         "--days-back", type=int, default=30, help="Number of days to look back"
     )
     parser.add_argument("--output", help="Output file for results")
-    
+
     args = parser.parse_args()
-    
+
     # Get API token from 1Password if not provided
     api_token = args.api_token
     if not api_token:
         try:
             from .op_integration import CredentialManager
+
             credential_manager = CredentialManager()
             api_token = credential_manager.get_gitguardian_api_token()
             if not api_token:
@@ -387,7 +388,7 @@ def main():
             print("❌ 1Password integration not available")
             print("Please provide --api-token")
             return
-    
+
     # Initialize scanner
     manager = SecurityScanManager(api_token)
 

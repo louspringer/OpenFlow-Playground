@@ -573,12 +573,76 @@ if __name__ == "__main__":
                             f"  Line count changed: {len(original_lines)} → {len(formatted_lines)}"
                         )
 
-                    # Log first few differences for pattern recognition
+                    # Enhanced pattern analysis for learning
+                    pattern_counts = {
+                        "quote_changes": 0,
+                        "line_length_fixes": 0,
+                        "spacing_fixes": 0,
+                        "import_reordering": 0,
+                        "other": 0,
+                    }
+
+                    # Analyze first 20 differences for pattern recognition
                     for i, (orig, fmt) in enumerate(
                         zip(original_lines, formatted_lines)
                     ):
-                        if orig != fmt and i < 10:  # Only log first 10 differences
-                            logger.warning(f"  Line {i+1}: '{orig}' → '{fmt}'")
+                        if (
+                            orig != fmt and i < 20
+                        ):  # Increased to 20 for better pattern detection
+                            # Categorize the type of change
+                            if "'" in orig and '"' in fmt or '"' in orig and "'" in fmt:
+                                pattern_counts["quote_changes"] += 1
+                                logger.warning(
+                                    f"  Line {i+1} QUOTE: '{orig}' → '{fmt}'"
+                                )
+                            elif len(orig) > 88 and len(fmt) <= 88:
+                                pattern_counts["line_length_fixes"] += 1
+                                logger.warning(
+                                    f"  Line {i+1} LENGTH: '{orig}' → '{fmt}'"
+                                )
+                            elif (
+                                "  " in orig
+                                and "    " in fmt
+                                or "    " in orig
+                                and "  " in fmt
+                            ):
+                                pattern_counts["spacing_fixes"] += 1
+                                logger.warning(
+                                    f"  Line {i+1} SPACING: '{orig}' → '{fmt}'"
+                                )
+                            elif "import" in orig.lower() and "import" in fmt.lower():
+                                pattern_counts["import_reordering"] += 1
+                                logger.warning(
+                                    f"  Line {i+1} IMPORT: '{orig}' → '{fmt}'"
+                                )
+                            else:
+                                pattern_counts["other"] += 1
+                                logger.warning(
+                                    f"  Line {i+1} OTHER: '{orig}' → '{fmt}'"
+                                )
+
+                    # Log pattern summary for learning
+                    logger.warning("🔍 Pattern Analysis Summary:")
+                    for pattern, count in pattern_counts.items():
+                        if count > 0:
+                            logger.warning(f"    {pattern}: {count} changes")
+
+                    # Record patterns for persistent analysis and learning
+                    self._record_formatting_patterns(
+                        file_path="unknown",  # We don't have the original file path here
+                        pattern_counts=pattern_counts,
+                        total_changes=len(
+                            [
+                                1
+                                for orig, fmt in zip(original_lines, formatted_lines)
+                                if orig != fmt
+                            ]
+                        ),
+                        original_length=len(cleaned_code),
+                        formatted_length=len(formatted_code),
+                        original_lines=len(original_lines),
+                        formatted_lines=len(formatted_lines),
+                    )
 
                 logger.info("✅ Generated code formatted with Black")
                 return formatted_code
@@ -590,6 +654,50 @@ if __name__ == "__main__":
         else:
             logger.warning("Black not available - returning unformatted code")
             return cleaned_code
+
+    def _record_formatting_patterns(
+        self,
+        file_path: str,
+        pattern_counts: dict[str, int],
+        total_changes: int,
+        original_length: int,
+        formatted_length: int,
+        original_lines: int,
+        formatted_lines: int,
+    ) -> None:
+        """Record formatting patterns for analysis and learning"""
+        import json
+        from datetime import datetime
+        from pathlib import Path
+
+        # Create patterns directory if it doesn't exist
+        patterns_dir = Path("formatting_patterns")
+        patterns_dir.mkdir(exist_ok=True)
+
+        # Record the pattern data
+        pattern_record = {
+            "timestamp": datetime.now().isoformat(),
+            "file_path": file_path,
+            "total_changes": total_changes,
+            "original_length": original_length,
+            "formatted_length": formatted_length,
+            "original_lines": original_lines,
+            "formatted_lines": formatted_lines,
+            "pattern_counts": pattern_counts,
+            "model_id": getattr(self, "current_model_id", "unknown"),
+            "generation_id": getattr(self, "current_generation_id", "unknown"),
+        }
+
+        # Save to daily pattern file
+        today = datetime.now().strftime("%Y-%m-%d")
+        pattern_file = patterns_dir / f"formatting_patterns_{today}.jsonl"
+
+        try:
+            with open(pattern_file, "a") as f:
+                f.write(json.dumps(pattern_record) + "\n")
+            logger.info(f"📊 Recorded formatting patterns to {pattern_file}")
+        except Exception as e:
+            logger.warning(f"Failed to record formatting patterns: {e}")
 
     def _generate_class_from_extracted_model(
         self,

@@ -90,9 +90,9 @@ class ModelConformanceChecker:
             component_analysis[class_name] = {
                 "total_methods": len(methods),
                 "implemented_methods": len(implemented_methods),
-                "implementation_ratio": len(implemented_methods) / len(methods)
-                if methods
-                else 0,
+                "implementation_ratio": (
+                    len(implemented_methods) / len(methods) if methods else 0
+                ),
                 "has_body_content": all(
                     m.get("body") and len(m.get("body", [])) > 0
                     for m in implemented_methods
@@ -111,12 +111,14 @@ class ModelConformanceChecker:
             "has_components": len(components) > 0,
             "has_imports": len(imports) > 0,
             "has_used_names": len(used_names) > 0,
-            "components_complete": all(
-                analysis["implementation_ratio"] > 0.8
-                for analysis in component_analysis.values()
-            )
-            if component_analysis
-            else False,
+            "components_complete": (
+                all(
+                    analysis["implementation_ratio"] > 0.8
+                    for analysis in component_analysis.values()
+                )
+                if component_analysis
+                else False
+            ),
         }
 
         return {

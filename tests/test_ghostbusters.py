@@ -5,11 +5,38 @@ Test Ghostbusters Module
 This module tests the Ghostbusters orchestrator functionality.
 """
 
+import asyncio
+from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
 
-from src.ghostbusters import GhostbustersOrchestrator, run_ghostbusters
+from src.ghostbusters.agents import (
+    ArchitectureExpert,
+    BuildExpert,
+    CodeQualityExpert,
+    ModelExpert,
+    SecurityExpert,
+    TestExpert,
+)
+from src.ghostbusters.ghostbusters_orchestrator import (
+    GhostbustersOrchestrator,
+    run_ghostbusters,
+)
+from src.ghostbusters.recovery import (
+    ImportResolver,
+    IndentationFixer,
+    SyntaxRecoveryEngine,
+    TypeAnnotationFixer,
+)
+from src.ghostbusters.validators import (
+    ArchitectureValidator,
+    BuildValidator,
+    CodeQualityValidator,
+    ModelValidator,
+    SecurityValidator,
+    TestValidator,
+)
 
 
 class TestGhostbustersOrchestrator:
@@ -18,99 +45,123 @@ class TestGhostbustersOrchestrator:
     def test_init(self):
         """Test orchestrator initialization"""
         orchestrator = GhostbustersOrchestrator()
-        assert orchestrator.config == {}
-        assert orchestrator.agents == {}
-        assert orchestrator.investigation_results == {}
-        assert orchestrator.quality_metrics == {}
+        assert orchestrator.project_path == Path()
+        assert "security" in orchestrator.agents
+        assert "code_quality" in orchestrator.agents
+        assert "test" in orchestrator.agents
+        assert "build" in orchestrator.agents
+        assert "architecture" in orchestrator.agents
+        assert "model" in orchestrator.agents
 
-    def test_add_agent(self):
-        """Test adding an agent"""
-        orchestrator = GhostbustersOrchestrator()
-        result = orchestrator.add_agent("test_agent", {"type": "test"})
-        assert result is True
-        assert "test_agent" in orchestrator.agents
-        assert orchestrator.agents["test_agent"]["type"] == "test"
-
-    def test_investigate_quality_issues_file(self):
-        """Test investigating quality issues for a file"""
+    def test_agents_initialization(self):
+        """Test that agents are properly initialized"""
         orchestrator = GhostbustersOrchestrator()
 
-        # Mock file path
-        with patch("pathlib.Path") as mock_path:
-            mock_path.return_value.is_file.return_value = True
-            mock_path.return_value.suffix = ".py"
-            mock_path.return_value.read_text.return_value = "print('Hello World')"
+        # Check that agents are instances of the correct classes
+        assert isinstance(orchestrator.agents["security"], SecurityExpert)
+        assert isinstance(orchestrator.agents["code_quality"], CodeQualityExpert)
+        assert isinstance(orchestrator.agents["test"], TestExpert)
+        assert isinstance(orchestrator.agents["build"], BuildExpert)
+        assert isinstance(orchestrator.agents["architecture"], ArchitectureExpert)
+        assert isinstance(orchestrator.agents["model"], ModelExpert)
 
-            result = orchestrator.investigate_quality_issues("test_file.py")
-
-            assert result["target_path"] == "test_file.py"
-            assert "timestamp" in result
-            assert result["issues_found"] == []
-            assert result["quality_score"] == 100.0
-
-    def test_investigate_quality_issues_directory(self):
-        """Test investigating quality issues for a directory"""
+    def test_validators_initialization(self):
+        """Test that validators are properly initialized"""
         orchestrator = GhostbustersOrchestrator()
 
-        # Mock directory path
-        with patch("pathlib.Path") as mock_path:
-            mock_path.return_value.is_file.return_value = False
-            mock_path.return_value.is_dir.return_value = True
-            mock_path.return_value.rglob.return_value = []
+        # Check that validators are instances of the correct classes
+        assert isinstance(orchestrator.validators["security"], SecurityValidator)
+        assert isinstance(orchestrator.validators["code_quality"], CodeQualityValidator)
+        assert isinstance(orchestrator.validators["test"], TestValidator)
+        assert isinstance(orchestrator.validators["build"], BuildValidator)
+        assert isinstance(
+            orchestrator.validators["architecture"], ArchitectureValidator
+        )
+        assert isinstance(orchestrator.validators["model"], ModelValidator)
 
-            result = orchestrator.investigate_quality_issues("test_dir")
-
-            assert result["target_path"] == "test_dir"
-            assert "timestamp" in result
-            assert result["issues_found"] == []
-            assert result["quality_score"] == 100.0
-
-    def test_get_investigation_summary(self):
-        """Test getting investigation summary"""
+    def test_recovery_engines_initialization(self):
+        """Test that recovery engines are properly initialized"""
         orchestrator = GhostbustersOrchestrator()
-        orchestrator.add_agent("test_agent", {"type": "test"})
 
-        summary = orchestrator.get_investigation_summary()
+        # Check that recovery engines are instances of the correct classes
+        assert isinstance(orchestrator.recovery_engines["syntax"], SyntaxRecoveryEngine)
+        assert isinstance(
+            orchestrator.recovery_engines["indentation"], IndentationFixer
+        )
+        assert isinstance(orchestrator.recovery_engines["imports"], ImportResolver)
+        assert isinstance(orchestrator.recovery_engines["types"], TypeAnnotationFixer)
 
-        assert summary["total_investigations"] == 0
-        assert summary["recent_investigations"] == []
-        assert summary["overall_quality_trend"] == "no_data"
-        assert summary["agent_status"]["test_agent"] == "active"
+    def test_workflow_creation(self):
+        """Test that the workflow is properly created"""
+        orchestrator = GhostbustersOrchestrator()
+
+        # Check that workflow has the expected nodes
+        workflow_nodes = list(orchestrator.workflow.nodes.keys())
+        expected_nodes = [
+            "detect_delusions",
+            "validate_findings",
+            "plan_recovery",
+            "execute_recovery",
+            "validate_recovery",
+            "generate_report",
+        ]
+
+        for node in expected_nodes:
+            assert node in workflow_nodes, f"Expected node {node} not found in workflow"
 
 
 class TestRunGhostbusters:
     """Test the run_ghostbusters function"""
 
-    def test_run_ghostbusters_default(self):
+    @pytest.mark.asyncio
+    async def test_run_ghostbusters_default(self):
         """Test running ghostbusters with default path"""
-        with patch("src.ghostbusters.GhostbustersOrchestrator") as mock_orchestrator:
+        with patch(
+            "src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator"
+        ) as mock_orchestrator:
             mock_instance = Mock()
-            mock_instance.investigate_quality_issues.return_value = {
-                "target_path": ".",
-                "quality_score": 95.0,
-            }
+            # Create a mock state object
+            mock_state = Mock(
+                project_path=".",
+                confidence_score=0.95,
+                delusions_detected=[],
+                current_phase="analysis_complete",
+            )
+            # Make run_ghostbusters return an awaitable that returns the mock state
+            mock_instance.run_ghostbusters.return_value = asyncio.Future()
+            mock_instance.run_ghostbusters.return_value.set_result(mock_state)
             mock_orchestrator.return_value = mock_instance
 
-            result = run_ghostbusters()
+            result = await run_ghostbusters()
 
-            assert result["target_path"] == "."
-            assert result["quality_score"] == 95.0
-            mock_instance.add_agent.assert_called()
+            assert result.project_path == "."
+            assert result.confidence_score == 0.95
+            assert result.current_phase == "analysis_complete"
 
-    def test_run_ghostbusters_custom_path(self):
+    @pytest.mark.asyncio
+    async def test_run_ghostbusters_custom_path(self):
         """Test running ghostbusters with custom path"""
-        with patch("src.ghostbusters.GhostbustersOrchestrator") as mock_orchestrator:
+        with patch(
+            "src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator"
+        ) as mock_orchestrator:
             mock_instance = Mock()
-            mock_instance.investigate_quality_issues.return_value = {
-                "target_path": "custom_path",
-                "quality_score": 88.0,
-            }
+            # Create a mock state object
+            mock_state = Mock(
+                project_path="custom_path",
+                confidence_score=0.88,
+                delusions_detected=[],
+                current_phase="analysis_complete",
+            )
+            # Make run_ghostbusters return an awaitable that returns the mock state
+            mock_instance.run_ghostbusters.return_value = asyncio.Future()
+            mock_instance.run_ghostbusters.return_value.set_result(mock_state)
             mock_orchestrator.return_value = mock_instance
 
-            result = run_ghostbusters("custom_path")
+            result = await run_ghostbusters("custom_path")
 
-            assert result["target_path"] == "custom_path"
-            assert result["quality_score"] == 88.0
+            assert result.project_path == "custom_path"
+            assert result.confidence_score == 0.88
+            assert result.current_phase == "analysis_complete"
 
 
 if __name__ == "__main__":

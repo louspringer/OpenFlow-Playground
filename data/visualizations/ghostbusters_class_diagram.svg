@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #34495e; }
+      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .class-name { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #2c3e50; }
+      .attribute { font-family: Arial, sans-serif; font-size: 11px; fill: #34495e; }
+      .method { font-family: Arial, sans-serif; font-size: 11px; fill: #34495e; }
+      .class-box { fill: #ecf0f1; stroke: #2c3e50; stroke-width: 2; }
+      .abstract-class { fill: #d5dbdb; stroke: #2c3e50; stroke-width: 2; }
+      .concrete-class { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .state-class { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .arrow { stroke: #34495e; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .inheritance { stroke: #e74c3c; stroke-width: 3; fill: none; marker-end: url(#inheritance); }
+      .composition { stroke: #27ae60; stroke-width: 3; fill: none; marker-end: url(#composition); }
+      .association { stroke: #f39c12; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+    <marker id="inheritance" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+    </marker>
+    <marker id="composition" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="1000" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" class="title">Ghostbusters Class Architecture</text>
+  
+  <!-- GhostbustersOrchestrator Class -->
+  <rect x="50" y="80" width="300" height="200" rx="8" class="concrete-class"/>
+  <text x="200" y="105" text-anchor="middle" class="class-name">GhostbustersOrchestrator</text>
+  <line x1="50" y1="115" x2="350" y2="115" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- Attributes -->
+  <text x="60" y="135" class="attribute">+ project_path: Path</text>
+  <text x="60" y="150" class="attribute">+ logger: Logger</text>
+  <text x="60" y="165" class="attribute">+ agents: Dict[str, BaseExpert]</text>
+  <text x="60" y="180" class="attribute">+ validators: Dict[str, BaseValidator]</text>
+  <text x="60" y="195" class="attribute">+ recovery_engines: Dict[str, BaseRecoveryEngine]</text>
+  <text x="60" y="210" class="attribute">+ workflow: StateGraph</text>
+  <text x="60" y="225" class="attribute">+ compiled_workflow: CompiledStateGraph</text>
+  
+  <!-- Methods -->
+  <line x1="50" y1="240" x2="350" y2="240" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="260" class="method">+ __init__(project_path: str)</text>
+  <text x="60" y="275" class="method">+ _create_workflow() → StateGraph</text>
+  <text x="60" y="290" class="method">+ _detect_delusions_node(state) → GhostbustersState</text>
+  <text x="60" y="305" class="method">+ _validate_findings_node(state) → GhostbustersState</text>
+  <text x="60" y="320" class="method">+ _plan_recovery_node(state) → GhostbustersState</text>
+  <text x="60" y="335" class="method">+ _execute_recovery_node(state) → GhostbustersState</text>
+  <text x="60" y="350" class="method">+ _validate_recovery_node(state) → GhostbustersState</text>
+  <text x="60" y="365" class="method">+ _generate_report_node(state) → GhostbustersState</text>
+  <text x="60" y="380" class="method">+ _calculate_confidence(results) → float</text>
+  <text x="60" y="395" class="method">+ run_ghostbusters() → GhostbustersState</text>
+  
+  <!-- GhostbustersState Class -->
+  <rect x="450" y="80" width="300" height="160" rx="8" class="state-class"/>
+  <text x="600" y="105" text-anchor="middle" class="class-name">GhostbustersState</text>
+  <line x1="450" y1="115" x2="750" y2="115" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- State Attributes -->
+  <text x="460" y="135" class="attribute">+ project_path: str</text>
+  <text x="460" y="150" class="attribute">+ delusions_detected: List[Dict]</text>
+  <text x="460" y="165" class="attribute">+ recovery_actions: List[Dict]</text>
+  <text x="460" y="180" class="attribute">+ confidence_score: float</text>
+  <text x="460" y="195" class="attribute">+ validation_results: Dict</text>
+  <text x="460" y="210" class="attribute">+ recovery_results: Dict</text>
+  <text x="460" y="225" class="attribute">+ current_phase: str</text>
+  <text x="460" y="240" class="attribute">+ errors: List[str]</text>
+  <text x="460" y="255" class="attribute">+ warnings: List[str]</text>
+  <text x="460" y="270" class="attribute">+ metadata: Dict</text>
+  
+  <!-- BaseExpert Abstract Class -->
+  <rect x="850" y="80" width="250" height="120" rx="8" class="abstract-class"/>
+  <text x="975" y="105" text-anchor="middle" class="class-name">BaseExpert</text>
+  <text x="975" y="125" text-anchor="middle" class="label"><<abstract>></text>
+  <line x1="850" y1="135" x2="1100" y2="135" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- BaseExpert Attributes -->
+  <text x="860" y="155" class="attribute">+ name: str</text>
+  <text x="860" y="170" class="attribute">+ description: str</text>
+  <text x="860" y="185" class="attribute">+ expertise: List[str]</text>
+  
+  <!-- BaseExpert Methods -->
+  <line x1="850" y1="200" x2="1100" y2="200" stroke="#2c3e50" stroke-width="1"/>
+  <text x="860" y="220" class="method">+ analyze(project_path, context) → Dict</text>
+  <text x="860" y="235" class="method">+ generate_recommendations(findings) → List[str]</text>
+  
+  <!-- Concrete Expert Classes -->
+  <rect x="50" y="320" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="150" y="345" text-anchor="middle" class="class-name">SecurityExpert</text>
+  <text x="150" y="365" class="attribute">+ expertise: ["security", "vulnerabilities"]</text>
+  <text x="150" y="380" class="method">+ analyze(project_path, context) → Dict</text>
+  
+  <rect x="300" y="320" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="400" y="345" text-anchor="middle" class="class-name">CodeQualityExpert</text>
+  <text x="400" y="365" class="attribute">+ expertise: ["code_quality", "linting"]</text>
+  <text x="400" y="380" class="method">+ analyze(project_path, context) → Dict</text>
+  
+  <rect x="550" y="320" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="650" y="345" text-anchor="middle" class="class-name">TestExpert</text>
+  <text x="650" y="365" class="attribute">+ expertise: ["testing", "coverage"]</text>
+  <text x="650" y="380" class="method">+ analyze(project_path, context) → Dict</text>
+  
+  <rect x="800" y="320" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="900" y="345" text-anchor="middle" class="class-name">ArchitectureExpert</text>
+  <text x="900" y="365" class="attribute">+ expertise: ["architecture", "design_patterns"]</text>
+  <text x="900" y="380" class="method">+ analyze(project_path, context) → Dict</text>
+  
+  <rect x="1050" y="320" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="1150" y="345" text-anchor="middle" class="class-name">BuildExpert</text>
+  <text x="1150" y="365" class="attribute">+ expertise: ["build_systems", "dependencies"]</text>
+  <text x="1150" y="380" class="method">+ analyze(project_path, context) → Dict</text>
+  
+  <!-- BaseValidator Abstract Class -->
+  <rect x="50" y="440" width="250" height="100" rx="8" class="abstract-class"/>
+  <text x="175" y="465" text-anchor="middle" class="class-name">BaseValidator</text>
+  <text x="175" y="485" text-anchor="middle" class="label"><<abstract>></text>
+  <line x1="50" y1="495" x2="300" y2="495" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- BaseValidator Attributes -->
+  <text x="60" y="515" class="attribute">+ name: str</text>
+  <text x="60" y="530" class="attribute">+ description: str</text>
+  
+  <!-- BaseValidator Methods -->
+  <line x1="50" y1="545" x2="300" y2="545" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="565" class="method">+ validate(data, context) → ValidationResult</text>
+  <text x="60" y="580" class="method">+ get_validation_rules() → List[str]</text>
+  
+  <!-- Concrete Validator Classes -->
+  <rect x="350" y="440" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="450" y="465" text-anchor="middle" class="class-name">SecurityValidator</text>
+  <text x="450" y="485" class="method">+ validate(data, context) → ValidationResult</text>
+  <text x="450" y="500" class="method">+ get_validation_rules() → List[str]</text>
+  
+  <rect x="600" y="440" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="700" y="465" text-anchor="middle" class="class-name">CodeQualityValidator</text>
+  <text x="700" y="485" class="method">+ validate(data, context) → ValidationResult</text>
+  <text x="700" y="500" class="method">+ get_validation_rules() → List[str]</text>
+  
+  <rect x="850" y="440" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="950" y="465" text-anchor="middle" class="class-name">TestValidator</text>
+  <text x="950" y="485" class="method">+ validate(data, context) → ValidationResult</text>
+  <text x="950" y="500" class="method">+ get_validation_rules() → List[str]</text>
+  
+  <!-- BaseRecoveryEngine Abstract Class -->
+  <rect x="50" y="580" width="250" height="100" rx="8" class="abstract-class"/>
+  <text x="175" y="605" text-anchor="middle" class="class-name">BaseRecoveryEngine</text>
+  <text x="175" y="625" text-anchor="middle" class="label"><<abstract>></text>
+  <line x1="50" y1="635" x2="300" y2="635" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- BaseRecoveryEngine Attributes -->
+  <text x="60" y="655" class="attribute">+ name: str</text>
+  <text x="60" y="670" class="attribute">+ description: str</text>
+  
+  <!-- BaseRecoveryEngine Methods -->
+  <line x1="50" y1="685" x2="300" y2="685" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="705" class="method">+ can_recover(issue_type) → bool</text>
+  <text x="60" y="720" class="method">+ recover(issue_data, context) → RecoveryResult</text>
+  
+  <!-- Concrete Recovery Engine Classes -->
+  <rect x="350" y="580" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="450" y="605" text-anchor="middle" class="class-name">SyntaxRecoveryEngine</text>
+  <text x="450" y="625" class="method">+ can_recover(issue_type) → bool</text>
+  <text x="450" y="640" class="method">+ recover(issue_data, context) → RecoveryResult</text>
+  
+  <rect x="600" y="580" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="700" y="605" text-anchor="middle" class="class-name">IndentationFixer</text>
+  <text x="700" y="625" class="method">+ can_recover(issue_type) → bool</text>
+  <text x="700" y="640" class="method">+ recover(issue_data, context) → RecoveryResult</text>
+  
+  <rect x="850" y="580" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="950" y="605" text-anchor="middle" class="class-name">ImportResolver</text>
+  <text x="950" y="625" class="method">+ can_recover(issue_type) → bool</text>
+  <text x="950" y="640" class="method">+ recover(issue_data, context) → RecoveryResult</text>
+  
+  <rect x="1100" y="580" width="200" height="80" rx="8" class="concrete-class"/>
+  <text x="1200" y="605" text-anchor="middle" class="class-name">TypeAnnotationFixer</text>
+  <text x="1200" y="625" class="method">+ can_recover(issue_type) → bool</text>
+  <text x="1200" y="640" class="method">+ recover(issue_data, context) → RecoveryResult</text>
+  
+  <!-- Inheritance Relationships -->
+  <line x1="150" y1="400" x2="975" y2="200" class="inheritance"/>
+  <line x1="400" y1="400" x2="975" y2="200" class="inheritance"/>
+  <line x1="650" y1="400" x2="975" y2="200" class="inheritance"/>
+  <line x1="900" y1="400" x2="975" y2="200" class="inheritance"/>
+  <line x1="1150" y1="400" x2="975" y2="200" class="inheritance"/>
+  
+  <line x1="450" y1="520" x2="175" y2="580" class="inheritance"/>
+  <line x1="700" y1="520" x2="175" y2="580" class="inheritance"/>
+  <line x1="950" y1="520" x2="175" y2="580" class="inheritance"/>
+  
+  <line x1="450" y1="660" x2="175" y2="720" class="inheritance"/>
+  <line x1="700" y1="660" x2="175" y2="720" class="inheritance"/>
+  <line x1="950" y1="660" x2="175" y2="720" class="inheritance"/>
+  <line x1="1200" y1="660" x2="175" y2="720" class="inheritance"/>
+  
+  <!-- Composition Relationships -->
+  <line x1="350" y1="180" x2="975" y2="200" class="composition"/>
+  <line x1="350" y1="200" x2="175" y2="540" class="composition"/>
+  <line x1="350" y1="220" x2="175" y2="660" class="composition"/>
+  
+  <!-- Association Relationships -->
+  <line x1="350" y1="160" x2="600" y2="160" class="association"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="720" width="1300" height="250" rx="8" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="70" y="745" class="subtitle">Class Relationships & Architecture</text>
+  
+  <line x1="70" y="760" x2="90" y2="760" class="inheritance"/>
+  <text x="100" y="765" class="label">Inheritance (extends)</text>
+  
+  <line x1="200" y="760" x2="220" y2="760" class="composition"/>
+  <text x="230" y="765" class="label">Composition (contains)</text>
+  
+  <line x1="350" y="760" x2="370" y2="760" class="association"/>
+  <text x="380" y="765" class="label">Association (uses)</text>
+  
+  <rect x="70" y="780" width="20" height="20" class="concrete-class"/>
+  <text x="100" y="795" class="label">Concrete Class</text>
+  
+  <rect x="200" y="780" width="20" height="20" class="abstract-class"/>
+  <text x="230" y="795" class="label">Abstract Class</text>
+  
+  <rect x="350" y="780" width="20" height="20" class="state-class"/>
+  <text x="380" y="795" class="label">State/Data Class</text>
+  
+  <text x="70" y="820" class="label">Design Patterns Used:</text>
+  <text x="70" y="840" class="label">• Abstract Factory - Creates agents, validators, and recovery engines</text>
+  <text x="70" y="855" class="label">• Strategy - Different recovery strategies for different issues</text>
+  <text x="70" y="870" class="label">• Observer - Event-driven architecture with comprehensive logging</text>
+  <text x="70" y="885" class="label">• State Machine - LangGraph workflow orchestration</text>
+  <text x="70" y="900" class="label">• Template Method - Standardized workflow execution pattern</text>
+  <text x="70" y="915" class="label">• Command - Recovery actions as executable commands</text>
+  <text x="70" y="930" class="label">• Chain of Responsibility - Validation and recovery pipeline</text>
+  <text x="70" y="945" class="label">• Factory Method - Dynamic creation of specialized components</text>
+</svg>

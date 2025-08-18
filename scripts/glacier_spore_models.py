@@ -411,10 +411,7 @@ class GlacierSpore(BaseModel):
     @property
     def semantic_summary(self) -> str:
         """Human-readable semantic summary"""
-        return f"{
-            self.spore_type.value} spore: {
-            self.semantic_complexity:.2f} complexity, {
-            self.semantic_health_score:.2f} health"
+        return f"{self.spore_type.value} spore: {self.semantic_complexity:.2f} complexity, {self.semantic_health_score:.2f} health"
 
     # Methods - semantic behavior
     def get_dimension_value(self, dimension_name: str) -> Optional[Any]:

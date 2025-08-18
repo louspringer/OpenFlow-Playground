@@ -176,7 +176,7 @@ def test_mypy_configuration() -> None:
             text=True,
             timeout=10,
         )
-        assert result.return_code == 0, "mypy should be available"
+        assert result.returncode == 0, "mypy should be available"
         print("✅ mypy is available")
 
         # Only test on a simple file

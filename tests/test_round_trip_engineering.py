@@ -75,7 +75,9 @@ if __name__ == "__main__":
 
     def test_round_trip_model_system_import(self):
         """Test that RoundTripModelSystem can be imported"""
-        from round_trip_model_system import RoundTripModelSystem
+        from src.round_trip_engineering.round_trip_model_system import (
+            RoundTripModelSystem,
+        )
 
         assert RoundTripModelSystem is not None
 
@@ -219,9 +221,9 @@ if __name__ == "__main__":
     def test_canonical_system_files_exist(self):
         """Test that all canonical round-trip system files exist"""
         required_files = [
-            "enhanced_reverse_engineer.py",
-            "round_trip_model_system.py",
-            "enhanced_round_trip_test.py",
+            "src/round_trip_engineering/enhanced_reverse_engineer.py",
+            "src/round_trip_engineering/round_trip_model_system.py",
+            "src/round_trip_engineering/__init__.py",
         ]
 
         for file_path in required_files:
@@ -263,8 +265,8 @@ if __name__ == "__main__":
 
         # Check that canonical files are included in patterns
         patterns = domain["patterns"]
-        assert "enhanced_reverse_engineer.py" in patterns
-        assert "round_trip_model_system.py" in patterns
+        assert "src/round_trip_engineering/enhanced_reverse_engineer.py" in patterns
+        assert "src/round_trip_engineering/round_trip_model_system.py" in patterns
 
         # Check that conflicting files are excluded
         exclusions = domain["exclusions"]

@@ -147,12 +147,12 @@ class FunctionalEquivalenceTester:
                 "original_parses": original_ast is not None,
                 "generated_parses": generated_ast is not None,
                 "both_parse": original_ast is not None and generated_ast is not None,
-                "ast_nodes_original": self.count_ast_nodes(original_ast)
-                if original_ast
-                else 0,
-                "ast_nodes_generated": self.count_ast_nodes(generated_ast)
-                if generated_ast
-                else 0,
+                "ast_nodes_original": (
+                    self.count_ast_nodes(original_ast) if original_ast else 0
+                ),
+                "ast_nodes_generated": (
+                    self.count_ast_nodes(generated_ast) if generated_ast else 0
+                ),
             }
         except Exception as e:
             return {
@@ -250,9 +250,11 @@ class FunctionalEquivalenceTester:
             return {
                 "original_length": len(original_content),
                 "generated_length": len(generated_content),
-                "length_ratio": len(generated_content) / len(original_content)
-                if original_content
-                else 0,
+                "length_ratio": (
+                    len(generated_content) / len(original_content)
+                    if original_content
+                    else 0
+                ),
                 "content_similarity": self.calculate_content_similarity(
                     original_content, generated_content
                 ),

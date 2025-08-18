@@ -24,7 +24,7 @@ class TestGhostbustersBasic:
         """Test that GhostbustersOrchestrator can be imported and instantiated"""
         orchestrator = GhostbustersOrchestrator()
         assert orchestrator is not None
-        assert hasattr(orchestrator, "config")
+        assert hasattr(orchestrator, "project_path")
 
     def test_ghostbusters_orchestrator_basic_functionality(
         self, project_path: Path
@@ -33,12 +33,15 @@ class TestGhostbustersBasic:
         orchestrator = GhostbustersOrchestrator()
 
         # Test that the orchestrator has the expected attributes
-        assert hasattr(orchestrator, "config")
+        assert hasattr(orchestrator, "project_path")
         assert hasattr(orchestrator, "agents")
-        assert hasattr(orchestrator, "investigation_results")
+        assert hasattr(orchestrator, "validators")
+        assert hasattr(orchestrator, "recovery_engines")
+        assert hasattr(orchestrator, "workflow")
+        assert hasattr(orchestrator, "compiled_workflow")
 
-        # Test that config is initialized
-        assert orchestrator.config == {}
+        # Test that project_path is initialized
+        assert orchestrator.project_path == Path()
 
     def test_ghostbusters_rules_exist(self) -> None:
         """Test that Ghostbusters rules file exists"""

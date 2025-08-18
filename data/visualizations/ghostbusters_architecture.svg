@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #34495e; }
+      .label { font-family: Arial, sans-serif; font-size: 14px; fill: #2c3e50; }
+      .component { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .agent { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .validator { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .recovery { fill: #27ae60; stroke: #229954; stroke-width: 2; }
+      .workflow { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      .arrow { stroke: #34495e; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .box { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 1; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" class="title">Ghostbusters System Architecture</text>
+  
+  <!-- Ghostbusters Orchestrator -->
+  <rect x="450" y="80" width="300" height="80" rx="10" class="component"/>
+  <text x="600" y="110" text-anchor="middle" class="subtitle">Ghostbusters Orchestrator</text>
+  <text x="600" y="130" text-anchor="middle" class="label">Core Orchestration Engine</text>
+  <text x="600" y="150" text-anchor="middle" class="label">State Management & Workflow Control</text>
+  
+  <!-- Multi-Agent System -->
+  <rect x="50" y="200" width="200" height="60" rx="8" class="agent"/>
+  <text x="150" y="225" text-anchor="middle" class="label">Security Expert</text>
+  <text x="150" y="245" text-anchor="middle" class="label">Vulnerability Detection</text>
+  
+  <rect x="300" y="200" width="200" height="60" rx="8" class="agent"/>
+  <text x="400" y="225" text-anchor="middle" class="label">Code Quality Expert</text>
+  <text x="400" y="245" text-anchor="middle" class="label">Linting & Formatting</text>
+  
+  <rect x="550" y="200" width="200" height="60" rx="8" class="agent"/>
+  <text x="650" y="225" text-anchor="middle" class="label">Test Expert</text>
+  <text x="650" y="245" text-anchor="middle" class="label">Test Coverage & Quality</text>
+  
+  <rect x="800" y="200" width="200" height="60" rx="8" class="agent"/>
+  <text x="900" y="225" text-anchor="middle" class="label">Architecture Expert</text>
+  <text x="900" y="245" text-anchor="middle" class="label">Design Patterns & Structure</text>
+  
+  <rect x="1050" y="200" width="200" height="60" rx="8" class="agent"/>
+  <text x="1150" y="225" text-anchor="middle" class="label">Build Expert</text>
+  <text x="1150" y="245" text-anchor="middle" class="label">Dependencies & Deployment</text>
+  
+  <!-- Validation Layer -->
+  <rect x="50" y="320" width="200" height="60" rx="8" class="validator"/>
+  <text x="150" y="345" text-anchor="middle" class="label">Security Validator</text>
+  <text x="150" y="365" text-anchor="middle" class="label">Credential & Access Control</text>
+  
+  <rect x="300" y="320" width="200" height="60" rx="8" class="validator"/>
+  <text x="400" y="345" text-anchor="middle" class="label">Code Quality Validator</text>
+  <text x="400" y="365" text-anchor="middle" class="label">Standards & Best Practices</text>
+  
+  <rect x="550" y="320" width="200" height="60" rx="8" class="validator"/>
+  <text x="650" y="345" text-anchor="middle" class="label">Test Validator</text>
+  <text x="650" y="365" text-anchor="middle" class="label">Test Quality & Coverage</text>
+  
+  <rect x="800" y="320" width="200" height="60" rx="8" class="validator"/>
+  <text x="900" y="345" text-anchor="middle" class="label">Architecture Validator</text>
+  <text x="900" y="365" text-anchor="middle" class="label">Design & Structure</text>
+  
+  <rect x="1050" y="320" width="200" height="60" rx="8" class="validator"/>
+  <text x="1150" y="345" text-anchor="middle" class="label">Build Validator</text>
+  <text x="1150" y="365" text-anchor="middle" class="label">Dependencies & Build</text>
+  
+  <!-- Recovery Engines -->
+  <rect x="50" y="440" width="200" height="60" rx="8" class="recovery"/>
+  <text x="150" y="465" text-anchor="middle" class="label">Syntax Recovery Engine</text>
+  <text x="150" y="485" text-anchor="middle" class="label">Code Syntax Fixes</text>
+  
+  <rect x="300" y="440" width="200" height="60" rx="8" class="recovery"/>
+  <text x="400" y="465" text-anchor="middle" class="label">Indentation Fixer</text>
+  <text x="400" y="485" text-anchor="middle" class="label">Formatting Corrections</text>
+  
+  <rect x="550" y="440" width="200" height="60" rx="8" class="recovery"/>
+  <text x="650" y="465" text-anchor="middle" class="label">Import Resolver</text>
+  <text x="650" y="485" text-anchor="middle" class="label">Dependency Resolution</text>
+  
+  <rect x="800" y="440" width="200" height="60" rx="8" class="recovery"/>
+  <text x="900" y="465" text-anchor="middle" class="label">Type Annotation Fixer</text>
+  <text x="900" y="485" text-anchor="middle" class="label">Type Safety Improvements</text>
+  
+  <!-- Workflow Phases -->
+  <rect x="50" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="125" y="585" text-anchor="middle" class="label">Detect Delusions</text>
+  
+  <rect x="220" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="295" y="585" text-anchor="middle" class="label">Validate Findings</text>
+  
+  <rect x="390" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="465" y="585" text-anchor="middle" class="label">Plan Recovery</text>
+  
+  <rect x="560" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="635" y="585" text-anchor="middle" class="label">Execute Recovery</text>
+  
+  <rect x="730" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="805" y="585" text-anchor="middle" class="label">Validate Recovery</text>
+  
+  <rect x="900" y="560" width="150" height="50" rx="8" class="workflow"/>
+  <text x="975" y="585" text-anchor="middle" class="label">Generate Report</text>
+  
+  <!-- Arrows from Orchestrator to Agents -->
+  <line x1="500" y1="120" x2="150" y2="200" class="arrow"/>
+  <line x1="520" y1="120" x2="400" y2="200" class="arrow"/>
+  <line x1="540" y1="120" x2="650" y2="200" class="arrow"/>
+  <line x1="560" y1="120" x2="900" y2="200" class="arrow"/>
+  <line x1="580" y1="120" x2="1150" y2="200" class="arrow"/>
+  
+  <!-- Arrows from Orchestrator to Validators -->
+  <line x1="500" y1="140" x2="150" y2="320" class="arrow"/>
+  <line x1="520" y1="140" x2="400" y2="320" class="arrow"/>
+  <line x1="540" y1="140" x2="650" y2="320" class="arrow"/>
+  <line x1="560" y1="140" x2="900" y2="320" class="arrow"/>
+  <line x1="580" y1="140" x2="1150" y2="320" class="arrow"/>
+  
+  <!-- Arrows from Orchestrator to Recovery Engines -->
+  <line x1="500" y1="160" x2="150" y2="440" class="arrow"/>
+  <line x1="520" y1="160" x2="400" y2="440" class="arrow"/>
+  <line x1="540" y1="160" x2="650" y2="440" class="arrow"/>
+  <line x1="560" y1="160" x2="900" y2="440" class="arrow"/>
+  
+  <!-- Workflow Flow Arrows -->
+  <line x1="125" y1="610" x2="220" y2="610" class="arrow"/>
+  <line x1="295" y1="610" x2="390" y2="610" class="arrow"/>
+  <line x1="465" y1="610" x2="560" y2="610" class="arrow"/>
+  <line x1="635" y1="610" x2="730" y2="610" class="arrow"/>
+  <line x1="805" y1="610" x2="900" y2="610" class="arrow"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="680" width="1100" height="100" rx="8" class="box"/>
+  <text x="70" y="705" class="subtitle">System Components</text>
+  
+  <rect x="70" y="720" width="20" height="20" class="component"/>
+  <text x="100" y="735" class="label">Core Orchestrator</text>
+  
+  <rect x="250" y="720" width="20" height="20" class="agent"/>
+  <text x="280" y="735" class="label">Expert Agents</text>
+  
+  <rect x="400" y="720" width="20" height="20" class="validator"/>
+  <text x="430" y="735" class="label">Validators</text>
+  
+  <rect x="550" y="720" width="20" height="20" class="recovery"/>
+  <text x="580" y="735" class="label">Recovery Engines</text>
+  
+  <rect x="700" y="720" width="20" height="20" class="workflow"/>
+  <text x="730" y="735" class="label">Workflow Phases</text>
+  
+  <text x="70" y="760" class="label">Multi-Agent Delusion Detection & Recovery System</text>
+  <text x="70" y="780" class="label">LangGraph-powered workflow orchestration with comprehensive validation and recovery capabilities</text>
+</svg>
