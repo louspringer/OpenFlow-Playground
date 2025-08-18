@@ -62,13 +62,24 @@ Based on the logs, categorize the issue:
 - `cli.py: error: unrecognized arguments`
 - `Process completed with exit code 2`
 
-#### **C. Missing Dependencies**
+#### **C. CLI Function Signature Errors**
+**Symptoms:**
+- `TypeError: setup_logging() takes 0 positional arguments but 1 was given`
+- `TypeError: function() takes X positional arguments but Y was given`
+- `Process completed with exit code 1`
+
+**Common Causes:**
+- Keyword-only argument functions called with positional arguments
+- Function signature mismatches between definition and usage
+- Async/await issues in function calls
+
+#### **D. Missing Dependencies**
 **Symptoms:**
 - `command not found`
 - `ModuleNotFoundError`
 - `ImportError`
 
-#### **D. Configuration Issues**
+#### **E. Configuration Issues**
 **Symptoms:**
 - `Invalid configuration`
 - `Missing required field`
@@ -100,6 +111,27 @@ Based on the logs, categorize the issue:
     python -m src.module.cli
 ```
 
+#### **Fix CLI Function Signature Errors**
+```python
+# Before (incorrect - positional arguments)
+def setup_logging(*, verbose: bool = False):
+    pass
+
+setup_logging(verbose)  # Error: positional argument
+
+# After (correct - keyword arguments)
+def setup_logging(*, verbose: bool = False):
+    pass
+
+setup_logging(verbose=verbose)  # Correct: keyword argument
+```
+
+**Common Fixes:**
+- Use keyword arguments for keyword-only functions
+- Check function signatures in the source code
+- Ensure async/await is used correctly
+- Test CLI commands locally before pushing
+
 #### **Fix Missing Dependencies**
 ```yaml
 # Add missing setup steps
@@ -117,6 +149,16 @@ python -m src.code_quality_system.cli ci
 
 # Check for any local errors or missing dependencies
 # Verify the command works as expected
+
+# For CLI function signature errors, test the specific function:
+python -c "
+from src.code_quality_system.cli import setup_logging
+setup_logging(verbose=True)
+print('✅ Function call works correctly')
+"
+
+# For workflow syntax, validate YAML:
+yamllint .github/workflows/workflow-name.yml
 ```
 
 ### **Step 6: Commit and Push the Fix**
@@ -265,16 +307,35 @@ env:
 
 ## 📊 Example: Quality Gates Workflow Fix
 
-### **Problem Identified**
+### **Problem 1: Deprecated Actions**
+- Workflow failing with deprecated action version errors
+- Error: `This request has been automatically failed because it uses a deprecated version`
+
+### **Root Cause 1**
+- Using `actions/upload-artifact@v3` (deprecated)
+- Using `actions/setup-python@v4` (deprecated)
+
+### **Fix 1 Applied**
+```yaml
+# Before (deprecated)
+- uses: actions/upload-artifact@v3
+- uses: actions/setup-python@v4
+
+# After (current)
+- uses: actions/upload-artifact@v4
+- uses: actions/setup-python@v5
+```
+
+### **Problem 2: CLI Arguments**
 - Workflow failing with `Process completed with exit code 2`
 - CLI error: `unrecognized arguments: --project-path`
 
-### **Root Cause**
+### **Root Cause 2**
 - Workflow calling CLI with incorrect arguments
 - CLI expected: `python -m src.code_quality_system.cli ci`
 - Workflow was calling: `python -m src.code_quality_system.cli ci --project-path . --verbose`
 
-### **Fix Applied**
+### **Fix 2 Applied**
 ```yaml
 # Before
 - name: Run quality analysis
@@ -287,8 +348,32 @@ env:
     python -m src.code_quality_system.cli ci
 ```
 
-### **Result**
-- Workflow now executes without CLI argument errors
+### **Problem 3: CLI Function Signature**
+- Workflow failing with `TypeError: setup_logging() takes 0 positional arguments but 1 was given`
+- Process completed with exit code 1
+
+### **Root Cause 3**
+- Function defined with keyword-only arguments (`*, verbose: bool = False`)
+- Function calls using positional arguments (`setup_logging(verbose)`)
+
+### **Fix 3 Applied**
+```python
+# Before (incorrect)
+def setup_logging(*, verbose: bool = False):
+    pass
+
+setup_logging(verbose)  # Error: positional argument
+
+# After (correct)
+def setup_logging(*, verbose: bool = False):
+    pass
+
+setup_logging(verbose=verbose)  # Correct: keyword argument
+```
+
+### **Final Result**
+- All three issues resolved
+- Workflow now executes without errors
 - Quality analysis step completes successfully
 - CI pipeline can proceed to next steps
 
