@@ -11,8 +11,9 @@ import json
 import sys
 from pathlib import Path
 
-from enhanced_reverse_engineer import EnhancedReverseEngineer
 from round_trip_model_system import RoundTripModelSystem
+
+from enhanced_reverse_engineer import EnhancedReverseEngineer
 
 
 def main() -> None:

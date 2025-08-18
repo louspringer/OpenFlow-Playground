@@ -10,6 +10,7 @@
 .PHONY: deploy deploy-streamlit deploy-security deploy-healthcare deploy-secure-shell
 .PHONY: security security-scan security-check security-audit
 .PHONY: docs docs-build docs-serve docs-index
+.PHONY: dev-install node-check mermaid-check mcp-install
 
 # Project configuration
 PROJECT_NAME := openflow-playground
@@ -84,13 +85,16 @@ help: ## Show this help message
 	@echo "  format-{domain}     - Format code for specific domain"
 	@echo ""
 	@echo "$(PURPLE)Available domains:$(NC)"
-	@echo "  python, bash, cloudformation, docs, security, streamlit, healthcare, go, secure-shell"
+	@echo "  python, bash, cloudformation, docs, security, streamlit, healthcare, go, secure-shell, node_development"
 	@echo ""
 	@echo "$(PURPLE)Examples:$(NC)"
 	@echo "  make install-python     - Install Python dependencies with UV"
 	@echo "  make test-security      - Run security tests and scans"
 	@echo "  make lint-all           - Lint all domains"
 	@echo "  make validate-model     - Validate project model registry"
+	@echo "  make dev-install        - Install Node.js development environment"
+	@echo "  make mermaid-check      - Validate Mermaid diagrams"
+	@echo "  make mcp-install        - Install MCP servers"
 
 # =============================================================================
 # INSTALLATION TARGETS
@@ -98,7 +102,7 @@ help: ## Show this help message
 
 install: install-all ## Install all dependencies (default: install-all)
 
-install-all: install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell ## Install dependencies for all domains
+install-all: install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-node ## Install dependencies for all domains
 	@echo "$(GREEN)✅ All dependencies installed$(NC)"
 
 install-python: ## Install Python dependencies with UV
@@ -187,6 +191,15 @@ install-secure-shell: ## Install secure shell service dependencies
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	@$(UV) add grpcio grpcio-tools
 	@echo "$(GREEN)✅ Secure shell service dependencies installed$(NC)"
+
+install-node: ## Install Node.js development dependencies
+	@echo "$(BLUE)🟢 Installing Node.js development dependencies...$(NC)"
+	@node --version || (echo "$(RED)❌ Node.js not found. Please install Node.js 20+ first$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Node.js found$(NC)"
+	@echo "$(YELLOW)📋 Installing global Mermaid CLI...$(NC)"
+	@npm install -g @mermaid-js/mermaid-cli || (echo "$(RED)❌ Failed to install Mermaid CLI$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Mermaid CLI installed$(NC)"
+	@echo "$(GREEN)✅ Node.js development dependencies installed$(NC)"
 
 # =============================================================================
 # TESTING TARGETS
@@ -282,7 +295,10 @@ lint-cloudformation: ## Lint CloudFormation templates
 
 lint-docs: ## Lint documentation
 	@echo "$(BLUE)📚 Linting documentation...$(NC)"
-	@find docs/ -name "*.md" -exec markdownlint {} \;
+	@echo "🔍 Using official Mermaid tools for validation..."
+	@mmdc --version > /dev/null 2>&1 || (echo "$(RED)❌ Mermaid CLI not found. Run: make dev-install$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Mermaid CLI found$(NC)"
+	for file in docs/*.md; do mmdc -i "$$file" -o "/tmp/validation_$$(basename "$$file" .md).md" > /dev/null 2>&1 || exit 1; done && echo "$(GREEN)✅ All Mermaid diagrams are valid!$(NC)" || echo "$(RED)❌ Mermaid validation failed$(NC)"
 	@echo "$(GREEN)✅ Documentation linting completed$(NC)"
 
 lint-security: ## Lint security code
@@ -531,3 +547,46 @@ status: ## Show project status
 		@echo "$(BLUE)🔧 Available make targets:$(NC)"
 	@make help | grep -E "^[a-zA-Z_-]+:" | head -10
 	@echo "$(YELLOW)... and more (run 'make help' for full list)$(NC)"
+
+# =============================================================================
+# NODE.JS DEVELOPMENT TARGETS
+# =============================================================================
+
+dev-install: ## Install Node.js development environment and tools
+	@echo "$(BLUE)🔧 Installing Node.js development environment...$(NC)"
+	@echo "$(YELLOW)📋 Checking Node.js version...$(NC)"
+	@node --version || (echo "$(RED)❌ Node.js not found. Please install Node.js 20+ first$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Node.js found$(NC)"
+	@echo "$(YELLOW)📋 Installing global Mermaid CLI...$(NC)"
+	@npm install -g @mermaid-js/mermaid-cli || (echo "$(RED)❌ Failed to install Mermaid CLI$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Mermaid CLI installed$(NC)"
+	@echo "$(YELLOW)📋 Installing MCP servers...$(NC)"
+	@npm install -g mermaider-mcp || echo "$(YELLOW)⚠️  Mermaider MCP not available$(NC)"
+	@echo "$(GREEN)✅ Node.js development environment ready!$(NC)"
+
+node-check: ## Check Node.js development environment
+	@echo "$(BLUE)🔍 Checking Node.js development environment...$(NC)"
+	@echo "$(YELLOW)📋 Node.js version:$(NC)"
+	@node --version || echo "$(RED)❌ Node.js not found$(NC)"
+	@echo "$(YELLOW)📋 npm version:$(NC)"
+	@npm --version || echo "$(RED)❌ npm not found$(NC)"
+	@echo "$(YELLOW)📋 Mermaid CLI:$(NC)"
+	@mmdc --version > /dev/null 2>&1 && echo "$(GREEN)✅ Available$(NC)" || echo "$(RED)❌ Not found$(NC)"
+	@echo "$(GREEN)✅ Node.js environment check completed$(NC)"
+
+mermaid-check: ## Validate Mermaid diagrams using official CLI
+	@echo "$(BLUE)🔍 Validating Mermaid diagrams...$(NC)"
+	@mmdc --version > /dev/null 2>&1 || (echo "$(RED)❌ Mermaid CLI not found. Run: make dev-install$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Mermaid CLI found$(NC)"
+	@echo "$(YELLOW)📋 Validating all documentation...$(NC)"
+	for file in docs/*.md; do mmdc -i "$$file" -o "/tmp/validation_$$(basename "$$file" .md).md" > /dev/null 2>&1 || exit 1; done && echo "$(GREEN)✅ All Mermaid diagrams are valid!$(NC)" || echo "$(RED)❌ Mermaid validation failed$(NC)"
+
+mcp-install: ## Install MCP servers for development
+	@echo "$(BLUE)🔧 Installing MCP servers...$(NC)"
+	@echo "$(YELLOW)📋 Installing Mermaider MCP...$(NC)"
+	@npm install -g mermaider-mcp || echo "$(YELLOW)⚠️  Mermaider MCP not available$(NC)"
+	@echo "$(YELLOW)📋 Installing Tavily MCP...$(NC)"
+	@npm install -g tavily-mcp || echo "$(YELLOW)⚠️  Tavily MCP not available$(NC)"
+	@echo "$(YELLOW)📋 Installing Doc Ops MCP...$(NC)"
+	@npm install -g doc-ops-mcp || echo "$(YELLOW)⚠️  Doc Ops MCP not available$(NC)"
+	@echo "$(GREEN)✅ MCP servers installation completed$(NC)"

@@ -10,7 +10,9 @@ import json
 import os
 import uuid
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, List, Optional
+
+from .pattern_detector import PatternDetector
 
 
 class EnhancedReverseEngineer:
@@ -19,6 +21,7 @@ class EnhancedReverseEngineer:
     def __init__(self):
         self.model_data = {}
         self.cached_nodes = None
+        self.pattern_detector = PatternDetector()
 
     def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:
         """Reverse engineer a Python file into a comprehensive model"""
@@ -33,6 +36,7 @@ class EnhancedReverseEngineer:
             # Read file content
             with open(file_path, encoding="utf-8") as f:
                 content = f.read()
+                source_lines = content.split("\n")
 
             # Parse AST
             tree = ast.parse(content)
@@ -42,6 +46,7 @@ class EnhancedReverseEngineer:
             self.model_data["model_id"] = model_id
             self.model_data["model_timestamp"] = timestamp
             self.model_data["source_file"] = file_path
+            self.model_data["source_lines"] = source_lines
 
             # Extract comprehensive model
             self._extract_module_docstring(tree, content)
@@ -49,8 +54,8 @@ class EnhancedReverseEngineer:
             self._extract_imports(tree)
             self._extract_used_names(tree)
             self._extract_module_assignments(tree)
-            self._extract_classes(tree)
-            self._extract_module_functions(tree)
+            self._extract_classes(tree, source_lines)
+            self._extract_module_functions(tree, source_lines)
             self._extract_file_structure(tree, content)
 
             print(
@@ -63,7 +68,7 @@ class EnhancedReverseEngineer:
             return {}
 
     def _extract_method_info_enhanced(
-        self, func_node: ast.FunctionDef
+        self, func_node: ast.FunctionDef, source_lines: list[str]
     ) -> Optional[dict[str, Any]]:
         """Extract comprehensive method information including body content with line structure"""
         try:
@@ -145,7 +150,7 @@ class EnhancedReverseEngineer:
             return None
 
     def _extract_async_method_info_enhanced(
-        self, func_node: ast.AsyncFunctionDef
+        self, func_node: ast.AsyncFunctionDef, source_lines: list[str]
     ) -> Optional[dict[str, Any]]:
         """Extract comprehensive async method information including body content with line structure"""
         try:
@@ -386,8 +391,8 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_module_assignments: {e}")
 
-    def _extract_classes(self, tree: ast.AST) -> None:
-        """Extract class information"""
+    def _extract_classes(self, tree: ast.AST, source_lines: list[str]) -> None:
+        """Extract class information with pattern detection"""
         try:
             components = {}
             for node in self.cached_nodes:
@@ -406,11 +411,15 @@ class EnhancedReverseEngineer:
                     # Extract methods
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
-                            method_info = self._extract_method_info_enhanced(item)
+                            method_info = self._extract_method_info_enhanced(
+                                item, source_lines
+                            )
                             if method_info:
                                 class_info["methods"].append(method_info)
                         elif isinstance(item, ast.AsyncFunctionDef):
-                            method_info = self._extract_async_method_info_enhanced(item)
+                            method_info = self._extract_async_method_info_enhanced(
+                                item, source_lines
+                            )
                             if method_info:
                                 class_info["methods"].append(method_info)
 
@@ -420,10 +429,23 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_classes: {e}")
 
-    def _extract_module_functions(self, tree: ast.AST) -> None:
-        """Extract module functions"""
+    def _extract_module_functions(self, tree: ast.AST, source_lines: list[str]) -> None:
+        """Extract module functions with pattern detection"""
         try:
-            self.model_data["module_functions"] = []
+            module_functions = []
+            for node in tree.body:
+                if isinstance(node, ast.FunctionDef):
+                    method_info = self._extract_method_info_enhanced(node, source_lines)
+                    if method_info:
+                        module_functions.append(method_info)
+                elif isinstance(node, ast.AsyncFunctionDef):
+                    method_info = self._extract_async_method_info_enhanced(
+                        node, source_lines
+                    )
+                    if method_info:
+                        module_functions.append(method_info)
+
+            self.model_data["module_functions"] = module_functions
         except Exception as e:
             print(f"🚨 ERROR in _extract_module_functions: {e}")
 

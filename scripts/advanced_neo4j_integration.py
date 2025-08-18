@@ -9,7 +9,7 @@ import json
 import os
 import subprocess
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 
 class AdvancedNeo4jIntegration:
@@ -253,9 +253,7 @@ class AdvancedNeo4jIntegration:
 
         if "node_distribution" in analysis_data:
             for node in analysis_data["node_distribution"]:
-                structure_summary += f"- {node.get('col_0',
-                                                   'Unknown')}: {node.get('col_1',
-                                                                          'Unknown')} nodes\n"
+                structure_summary += f"- {node.get('col_0', 'Unknown')}: {node.get('col_1', 'Unknown')} nodes\n"
 
         structure_summary += """
 
@@ -264,9 +262,7 @@ class AdvancedNeo4jIntegration:
 
         if "relationship_distribution" in analysis_data:
             for rel in analysis_data["relationship_distribution"]:
-                structure_summary += f"- {rel.get('col_0',
-                                                  'Unknown')}: {rel.get('col_1',
-                                                                        'Unknown')} relationships\n"
+                structure_summary += f"- {rel.get('col_0', 'Unknown')}: {rel.get('col_1', 'Unknown')} relationships\n"
 
         structure_summary += """
 
@@ -290,16 +286,8 @@ class AdvancedNeo4jIntegration:
             patterns_summary += "## Rule Sharing Patterns\n\n"
 
             for pattern in analysis_data["rule_sharing"]:
-                patterns_summary += f"- **{
-                    pattern.get(
-                        'col_0',
-                        'Unknown')} ↔ {
-                    pattern.get(
-                        'col_1',
-                        'Unknown')}**: "
-                patterns_summary += f"{pattern.get('col_3',
-                                                   'Unknown')} shared {pattern.get('col_2',
-                                                                                   'Unknown')} rules\n"
+                patterns_summary += f"- **{pattern.get('col_0', 'Unknown')} ↔ {pattern.get('col_1', 'Unknown')}**: "
+                patterns_summary += f"{pattern.get('col_3', 'Unknown')} shared {pattern.get('col_2', 'Unknown')} rules\n"
 
             with open(viz_dir / "CROSS_DOMAIN_PATTERNS.md", "w") as f:
                 f.write(patterns_summary)
@@ -317,9 +305,7 @@ class AdvancedNeo4jIntegration:
 
             # 1. Graph structure analysis
             graph_analysis = self.analyze_graph_structure(credentials)
-            print(
-                f"✅ Graph structure analysis complete: {len(graph_analysis)} metrics"
-            )
+            print(f"✅ Graph structure analysis complete: {len(graph_analysis)} metrics")
 
             # 2. Cross-domain pattern discovery
             cross_domain_patterns = self.discover_cross_domain_patterns(credentials)
@@ -330,8 +316,7 @@ class AdvancedNeo4jIntegration:
             # 3. Performance optimization analysis
             performance_analysis = self.optimize_neo4j_performance(credentials)
             print(
-                f"✅ Performance analysis complete: {
-                    len(performance_analysis)} optimization areas"
+                f"✅ Performance analysis complete: {len(performance_analysis)} optimization areas"
             )
 
             # 4. Create advanced visualizations

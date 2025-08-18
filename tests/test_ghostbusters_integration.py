@@ -51,16 +51,11 @@ def test_ghostbusters_domain_in_model() -> None:
     # Check content indicators
     content_indicators = ghostbusters_domain["content_indicators"]
     expected_indicators = [
-        "delusion",
-        "recovery",
-        "agent",
-        "validator",
-        "orchestrator",
-        "ghostbusters",
-        "syntax_error",
-        "indentation_error",
-        "import_error",
-        "type_error",
+        "delusion detection",
+        "recovery engines",
+        "multi-agent",
+        "LangGraph",
+        "LangChain",
     ]
     for indicator in expected_indicators:
         assert (

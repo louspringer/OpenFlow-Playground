@@ -5,9 +5,9 @@ Unknown System
 
 
 
-Generated from Model: d1aa159c-632c-45c0-a2a4-584928b78365
-Generation ID: b16abcca-29f8-432f-8b43-ffcc19f1d353
-Generated at: 2025-08-17T12:40:46.197353
+Generated from Model: ff99b7b7-3e57-4544-8d75-e75dc24b6d46
+Generation ID: 1db29268-99b7-418c-bef1-0baf03cb353c
+Generated at: 2025-08-18T13:26:06.084521
 """
 
 from typing import Any
@@ -132,14 +132,7 @@ class RoundTripModelSystem:
         is_executable = metadata.get("executable", False)
         code = "#!/usr/bin/env python3\n\n" if is_executable else ""
         purpose_line = f"\n{purpose}" if purpose else ""
-        code += f"""""\"
-        {system_name}
-        {description}{purpose_line}
-        Generated from Model: {model_id}
-        Generation ID: {generation_id}
-        Generated at: {timestamp}
-        ""\"
-        """
+        code += f'"""\n{system_name}\n\n{description}{purpose_line}\n\nGenerated from Model: {model_id}\nGeneration ID: {generation_id}\nGenerated at: {timestamp}\n"""\n\n'
         needs_typing = False
         components = extracted_model.get("components", {})
         for class_name, class_info in components.items():
@@ -161,20 +154,20 @@ class RoundTripModelSystem:
                 needs_dataclass = True
             bases = class_info.get("bases", [])
             for base in bases:
-                if "BaseModel" in base and not needs_pydantic:
+                if "BaseModel" in base and (not needs_pydantic):
                     needs_pydantic = True
-                if "Enum" in base and not needs_enum:
+                if "Enum" in base and (not needs_enum):
                     needs_enum = True
             for method in class_info.get("methods", []):
                 return_type = method.get("return_type", "")
-                if return_type and "BaseModel" in return_type and not needs_pydantic:
+                if return_type and "BaseModel" in return_type and (not needs_pydantic):
                     needs_pydantic = True
-                if return_type and "Enum" in return_type and not needs_enum:
+                if return_type and "Enum" in return_type and (not needs_enum):
                     needs_enum = True
                 if (
                     return_type
                     and "Optional" in return_type
-                    and "Optional" not in typing_imports
+                    and ("Optional" not in typing_imports)
                 ):
                     typing_imports.append("Optional")
                 for param in method.get("parameters", []):
@@ -189,9 +182,9 @@ class RoundTripModelSystem:
                             typing_imports.append("List")
                         if "Dict" in param_type and "Dict" not in typing_imports:
                             typing_imports.append("Dict")
-                        if "BaseModel" in param_type and not needs_pydantic:
+                        if "BaseModel" in param_type and (not needs_pydantic):
                             needs_pydantic = True
-                        if "Enum" in param_type and not needs_enum:
+                        if "Enum" in param_type and (not needs_enum):
                             needs_enum = True
         all_typing_imports = []
         all_typing_imports.append("Any")
@@ -229,7 +222,7 @@ class RoundTripModelSystem:
                         name.strip() for name in imported_names_str.split(", ")
                     ]
                     print(f"🔍 DEBUG: Split names: {imported_names}")
-                    if any(name in used_names for name in imported_names):
+                    if any((name in used_names for name in imported_names)):
                         essential_imports.append(imp)
                         print(f"✅ DEBUG: Added from import: {imp}")
                     else:
@@ -263,17 +256,25 @@ class RoundTripModelSystem:
                     continue
                 elif "pytest" in imp:
                     has_pytest_decorators = any(
-                        "pytest" in method.get("decorators", [])
-                        for class_info in extracted_model.get("components", {}).values()
-                        for method in class_info.get("methods", [])
+                        (
+                            "pytest" in method.get("decorators", [])
+                            for class_info in extracted_model.get(
+                                "components", {}
+                            ).values()
+                            for method in class_info.get("methods", [])
+                        )
                     )
                     if has_pytest_decorators:
                         essential_imports.append(imp)
                 elif "Mock" in imp or "AsyncMock" in imp:
                     if any(
-                        "Mock" in str(method) or "AsyncMock" in str(method)
-                        for class_info in extracted_model.get("components", {}).values()
-                        for method in class_info.get("methods", [])
+                        (
+                            "Mock" in str(method) or "AsyncMock" in str(method)
+                            for class_info in extracted_model.get(
+                                "components", {}
+                            ).values()
+                            for method in class_info.get("methods", [])
+                        )
                     ):
                         essential_imports.append(imp)
                 else:
@@ -353,14 +354,7 @@ class RoundTripModelSystem:
         if not is_package_init:
             if components or functions:
                 code += "\n\n"
-            code += f"""def main() -> None:
-            ""\"Main entry point for {system_name}""\"
-            print("🚀 {system_name}")
-            print("📝 Generated from extracted model")
-            print("✅ Ready to use!")
-        if __name__ == "__main__":
-            main()
-        """
+            code += f'def main() -> None:\n    """Main entry point for {system_name}"""\n    print("🚀 {system_name}")\n    print("📝 Generated from extracted model")\n    print("✅ Ready to use!")\n\n\nif __name__ == "__main__":\n    main()\n'
         logger.info("✅ Generated complete module code")
         return self._clean_generated_code(code)
 
@@ -376,7 +370,149 @@ class RoundTripModelSystem:
         cleaned_code = "\n".join(cleaned_lines)
         if not cleaned_code.endswith("\n"):
             cleaned_code += "\n"
-        return cleaned_code
+        if BLACK_AVAILABLE:
+            try:
+                mode = FileMode(
+                    target_versions={
+                        TargetVersion.PY39,
+                        TargetVersion.PY310,
+                        TargetVersion.PY311,
+                        TargetVersion.PY312,
+                    },
+                    line_length=88,
+                    string_normalization=True,
+                    is_pyi=False,
+                    is_ipynb=False,
+                    skip_source_first_line=False,
+                    magic_trailing_comma=True,
+                    preview=False,
+                )
+                formatted_code = format_str(cleaned_code, mode=mode)
+                if formatted_code != cleaned_code:
+                    logger.warning(
+                        "🔍 Black made formatting changes - this means the model generated messy code:"
+                    )
+                    logger.warning(f"  Original length: {len(cleaned_code)} chars")
+                    logger.warning(f"  Formatted length: {len(formatted_code)} chars")
+                    original_lines = cleaned_code.split("\n")
+                    formatted_lines = formatted_code.split("\n")
+                    if len(original_lines) != len(formatted_lines):
+                        logger.warning(
+                            f"  Line count changed: {len(original_lines)} → {len(formatted_lines)}"
+                        )
+                    pattern_counts = {
+                        "quote_changes": 0,
+                        "line_length_fixes": 0,
+                        "spacing_fixes": 0,
+                        "import_reordering": 0,
+                        "other": 0,
+                    }
+                    for i, (orig, fmt) in enumerate(
+                        zip(original_lines, formatted_lines)
+                    ):
+                        if orig != fmt and i < 20:
+                            if (
+                                "'" in orig
+                                and '"' in fmt
+                                or ('"' in orig and "'" in fmt)
+                            ):
+                                pattern_counts["quote_changes"] += 1
+                                logger.warning(
+                                    f"  Line {i + 1} QUOTE: '{orig}' → '{fmt}'"
+                                )
+                            elif len(orig) > 88 and len(fmt) <= 88:
+                                pattern_counts["line_length_fixes"] += 1
+                                logger.warning(
+                                    f"  Line {i + 1} LENGTH: '{orig}' → '{fmt}'"
+                                )
+                            elif (
+                                "  " in orig
+                                and "    " in fmt
+                                or ("    " in orig and "  " in fmt)
+                            ):
+                                pattern_counts["spacing_fixes"] += 1
+                                logger.warning(
+                                    f"  Line {i + 1} SPACING: '{orig}' → '{fmt}'"
+                                )
+                            elif "import" in orig.lower() and "import" in fmt.lower():
+                                pattern_counts["import_reordering"] += 1
+                                logger.warning(
+                                    f"  Line {i + 1} IMPORT: '{orig}' → '{fmt}'"
+                                )
+                            else:
+                                pattern_counts["other"] += 1
+                                logger.warning(
+                                    f"  Line {i + 1} OTHER: '{orig}' → '{fmt}'"
+                                )
+                    logger.warning("🔍 Pattern Analysis Summary:")
+                    for pattern, count in pattern_counts.items():
+                        if count > 0:
+                            logger.warning(f"    {pattern}: {count} changes")
+                    self._record_formatting_patterns(
+                        file_path="unknown",
+                        pattern_counts=pattern_counts,
+                        total_changes=len(
+                            [
+                                1
+                                for orig, fmt in zip(original_lines, formatted_lines)
+                                if orig != fmt
+                            ]
+                        ),
+                        original_length=len(cleaned_code),
+                        formatted_length=len(formatted_code),
+                        original_lines=len(original_lines),
+                        formatted_lines=len(formatted_lines),
+                    )
+                logger.info("✅ Generated code formatted with Black")
+                return formatted_code
+            except Exception as e:
+                logger.warning(
+                    f"Black formatting failed: {e}, returning unformatted code"
+                )
+                return cleaned_code
+        else:
+            logger.warning("Black not available - returning unformatted code")
+            return cleaned_code
+
+    def _record_formatting_patterns(
+        self,
+        file_path: str,
+        pattern_counts: dict[str, Any],
+        total_changes: int,
+        original_length: int,
+        formatted_length: int,
+        original_lines: int,
+        formatted_lines: int,
+    ) -> Any:
+        """
+        Record formatting patterns for analysis and learning
+        """
+        import json
+        from datetime import datetime
+        from pathlib import Path
+
+        patterns_dir = Path("formatting_patterns")
+        patterns_dir.mkdir(exist_ok=True)
+        pattern_record = {
+            "timestamp": datetime.now().isoformat(),
+            "file_path": file_path,
+            "total_changes": total_changes,
+            "original_length": original_length,
+            "formatted_length": formatted_length,
+            "original_lines": original_lines,
+            "formatted_lines": formatted_lines,
+            "pattern_counts": pattern_counts,
+            "model_id": getattr(self, "current_model_id", "unknown"),
+            "generation_id": getattr(self, "current_generation_id", "unknown"),
+        }
+        today = datetime.now().strftime("%Y-%m-%d")
+        pattern_file = patterns_dir / f"formatting_patterns_{today}.jsonl"
+        try:
+            with open(pattern_file, "a") as f:
+                f.write(json.dumps(pattern_record) + "\n")
+            logger.info(f"📊 Recorded formatting patterns to {pattern_file}")
+        except Exception as e:
+            logger.warning(f"Failed to record formatting patterns: {e}")
 
     def _generate_class_from_extracted_model(
         self,
@@ -398,11 +534,7 @@ class RoundTripModelSystem:
         decorator_code = ""
         for decorator in decorators:
             decorator_code += f"@{decorator}\n"
-        code = f"""{decorator_code}{class_def}
-            ""\"
-            {responsibility}
-            ""\"
-        """
+        code = f'{decorator_code}{class_def}\n    """\n    {responsibility}\n    """\n'
         for i, method in enumerate(methods):
             code += self._generate_method_from_extracted_model(method, extracted_model)
             if i < len(methods) - 1:
@@ -424,7 +556,7 @@ class RoundTripModelSystem:
         parameters = method_info.get("parameters", [])
         param_parts = []
         for param in parameters:
-            if isinstance(param, dict) and "name" in param and "type" in param:
+            if isinstance(param, dict) and "name" in param and ("type" in param):
                 param_name = param["name"]
                 param_type = param["type"]
                 if param_name != "self":
@@ -473,7 +605,9 @@ class RoundTripModelSystem:
                 return_stmt = "return []"
             elif "tuple[" in cleaned_return_type:
                 return_stmt = "return ()"
-            elif cleaned_return_type and not cleaned_return_type.startswith("Optional"):
+            elif cleaned_return_type and (
+                not cleaned_return_type.startswith("Optional")
+            ):
                 if cleaned_return_type in [
                     "Any",
                     "str",
@@ -525,12 +659,7 @@ class RoundTripModelSystem:
             print(
                 f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated body content length: {len(body_content)}"
             )
-            code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-        {body_content}
-        """
+            code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n{body_content}\n'
             print(
                 f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated code with body, length: {len(code)}"
             )
@@ -539,52 +668,18 @@ class RoundTripModelSystem:
                 f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating test method placeholder"
             )
             if "ClewcrewState" in name or "state" in name.lower():
-                code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-                # Test implementation
-                assert True  # Placeholder assertion
-                {return_stmt}
-        """
+                code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n        # Test implementation\n        assert True  # Placeholder assertion\n        {return_stmt}\n'
             elif "orchestrator" in name.lower():
-                code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-                # Test implementation
-                assert True  # Placeholder assertion
-                {return_stmt}
-        """
+                code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n        # Test implementation\n        assert True  # Placeholder assertion\n        {return_stmt}\n'
             elif "mock" in name.lower():
-                code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-                # Test implementation
-                assert True  # Placeholder assertion
-                {return_stmt}
-        """
+                code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n        # Test implementation\n        assert True  # Placeholder assertion\n        {return_stmt}\n'
             else:
-                code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-                # Test implementation
-                assert True  # Placeholder assertion
-                {return_stmt}
-        """
+                code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n        # Test implementation\n        assert True  # Placeholder assertion\n        {return_stmt}\n'
         else:
             print(
                 f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating skeleton placeholder"
             )
-            code = f"""{decorator_code}{method_sig}
-                ""\"
-                {docstring}
-                ""\"
-                # TODO: Implement {method_name}
-                {return_stmt}
-        """
+            code = f'{decorator_code}{method_sig}\n        """\n        {docstring}\n        """\n        # TODO: Implement {method_name}\n        {return_stmt}\n'
         print(
             f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Final code length: {len(code)}"
         )
@@ -601,7 +696,7 @@ class RoundTripModelSystem:
         parameters = func_info.get("parameters", [])
         param_parts = []
         for param in parameters:
-            if isinstance(param, dict) and "name" in param and "type" in param:
+            if isinstance(param, dict) and "name" in param and ("type" in param):
                 param_name = param["name"]
                 param_type = param["type"]
                 param_parts.append(f"{param_name}: {param_type}")
@@ -616,13 +711,7 @@ class RoundTripModelSystem:
             return_stmt = "return ClewcrewLogger()"
         else:
             return_stmt = "return None"
-        code = f"""def {func_name}({param_str}) -> {return_type}:
-            ""\"
-            {docstring}
-            ""\"
-            # TODO: Implement {func_name}
-            {return_stmt}
-        """
+        code = f'def {func_name}({param_str}) -> {return_type}:\n    """\n    {docstring}\n    """\n    # TODO: Implement {func_name}\n    {return_stmt}\n'
         return code
 
     def _generate_function_code(self, component: ModelComponent) -> str:
@@ -635,28 +724,17 @@ class RoundTripModelSystem:
         if params:
             param_parts = []
             for param in params:
-                if isinstance(param, dict) and "name" in param and "type" in param:
+                if isinstance(param, dict) and "name" in param and ("type" in param):
                     param_parts.append(f"{param['name']}: {param['type']}")
                 elif isinstance(param, str):
                     param_parts.append(param)
                 else:
                     param_parts.append(str(param))
             param_str = ", ".join(param_parts)
-        code = f"""#!/usr/bin/env python3
-        ""\"
-        {component.description}
-        ""\"
-        """
+        code = f'#!/usr/bin/env python3\n"""\n{component.description}\n"""\n\n'
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
-        code += f"""
-        def {component.name}({param_str}) -> {return_type}:
-            ""\"
-            {component.description}
-            ""\"
-            # TODO: Implement based on requirements: {component.requirements}
-            pass
-        """
+        code += f'\n\ndef {component.name}({param_str}) -> {return_type}:\n    """\n    {component.description}\n    """\n    # TODO: Implement based on requirements: {component.requirements}\n    pass\n'
         return code
 
     def _generate_class_code(self, component: ModelComponent) -> str:
@@ -664,22 +742,10 @@ class RoundTripModelSystem:
         Generate class code from component design
         """
         methods = component.metadata.get("methods", [])
-        code = f"""#!/usr/bin/env python3
-        ""\"
-        {component.description}
-        ""\"
-        """
+        code = f'#!/usr/bin/env python3\n"""\n{component.description}\n"""\n\n'
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
-        code += f"""
-        class {component.name}:
-            ""\"
-            {component.description}
-            ""\"
-            def __init__(self) -> None:
-                # TODO: Initialize based on requirements: {component.requirements}
-                return None
-        """
+        code += f'\n\n\nclass {component.name}:\n    """\n    {component.description}\n    """\n\n    def __init__(self) -> None:\n        # TODO: Initialize based on requirements: {component.requirements}\n        return None\n'
         for method in methods:
             if isinstance(method, str) and method.startswith("__init__"):
                 continue
@@ -759,14 +825,7 @@ class RoundTripModelSystem:
             method_sig = f"def {method_name}(self, {param_str}) -> {return_type}:"
         else:
             method_sig = f"def {method_name}(self) -> {return_type}:"
-        code = f"""
-            {method_sig}
-                ""\"
-                {method_name}(self, {param_str}) -> {return_type}
-                ""\"
-                # TODO: Implement {method_name}(self, {param_str}) -> {return_type}
-                {return_stmt}
-        """
+        code = f'\n    {method_sig}\n        """\n        {method_name}(self, {param_str}) -> {return_type}\n        """\n        # TODO: Implement {method_name}(self, {param_str}) -> {return_type}\n        {return_stmt}\n'
         return code
 
     def _generate_method_from_dict(self, method: dict) -> str:
@@ -790,14 +849,7 @@ class RoundTripModelSystem:
             method_sig = f"def {method_name}(self, {param_str}) -> {return_type}:"
         else:
             method_sig = f"def {method_name}(self) -> {return_type}:"
-        code = f"""
-            {method_sig}
-                ""\"
-                {method_name}(self, {param_str}) -> {return_type}
-                ""\"
-                # TODO: Implement {method_name}(self, {param_str}) -> {return_type}
-                {return_stmt}
-        """
+        code = f'\n    {method_sig}\n        """\n        {method_name}(self, {param_str}) -> {return_type}\n        """\n        # TODO: Implement {method_name}(self, {param_str}) -> {return_type}\n        {return_stmt}\n'
         return code
 
     def _clean_complex_type(self, type_annotation: str) -> str:
@@ -843,57 +895,20 @@ class RoundTripModelSystem:
         """
         Generate module code from component design
         """
-        code = f"""#!/usr/bin/env python3
-        ""\"
-        {component.description}
-        This module contains:
-        {chr(10).join(f'- {req}' for req in component.requirements)}
-        ""\"
-        # Module imports
-        """
+        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nThis module contains:\n{chr(10).join((f'- {req}' for req in component.requirements))}\n"""\n\n# Module imports\n'''
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
-        code += f"""
-        # Module-level variables and constants
-        # TODO: Add based on requirements: {component.requirements}
-        # Module-level functions
-        # TODO: Add based on requirements: {component.requirements}
-        """
+        code += f"\n\n# Module-level variables and constants\n# TODO: Add based on requirements: {component.requirements}\n\n# Module-level functions\n# TODO: Add based on requirements: {component.requirements}\n"
         return code
 
     def _generate_domain_code(self, component: ModelComponent) -> str:
         """
         Generate domain code from component design
         """
-        code = f"""#!/usr/bin/env python3
-        ""\"
-        {component.description}
-        Domain Model Requirements:
-        {chr(10).join(f'- {req}' for req in component.requirements)}
-        ""\"
-        from dataclasses import dataclass, field
-        from typing import Any, Dict, List, Optional
-        from pathlib import Path
-        """
+        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nDomain Model Requirements:\n{chr(10).join((f'- {req}' for req in component.requirements))}\n"""\n\nfrom dataclasses import dataclass, field\nfrom typing import Any, Dict, List, Optional\nfrom pathlib import Path\n\n'''
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
-        code += f"""
-        @dataclass
-        class {component.name}Domain:
-            ""\"
-            {component.description}
-            ""\"
-            # Domain-specific fields
-            # TODO: Add based on requirements: {component.requirements}
-            def __post_init__(self):
-                ""\"Initialize domain-specific components""\"
-                # TODO: Initialize based on requirements: {component.requirements}
-                pass
-            def validate_domain(self) -> bool:
-                ""\"Validate domain requirements""\"
-                # TODO: Implement validation based on requirements: {component.requirements}
-                return True
-        """
+        code += f'\n\n@dataclass\nclass {component.name}Domain:\n    """\n    {component.description}\n    """\n\n    # Domain-specific fields\n    # TODO: Add based on requirements: {component.requirements}\n\n    def __post_init__(self):\n        """Initialize domain-specific components"""\n        # TODO: Initialize based on requirements: {component.requirements}\n        pass\n\n    def validate_domain(self) -> bool:\n        """Validate domain requirements"""\n        # TODO: Implement validation based on requirements: {component.requirements}\n        return True\n'
         return code
 
     def save_model(self, model_name: str, file_path: str) -> Any:

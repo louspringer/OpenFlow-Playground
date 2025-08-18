@@ -268,8 +268,7 @@ class Neo4jRoundTripTester:
                     )
                 elif db_rules[rule_name] != expected_emoji:
                     validation_errors.append(
-                        f"Rule '{rule_name}' emoji mismatch: expected {expected_emoji}, got {
-                            db_rules[rule_name]}"
+                        f"Rule '{rule_name}' emoji mismatch: expected {expected_emoji}, got {db_rules[rule_name]}"
                     )
 
             if not validation_errors:
@@ -346,9 +345,7 @@ class Neo4jRoundTripTester:
                                 f"    ❌ {test['name']}: Expected to fail but succeeded"
                             )
                         except Exception:
-                            print(
-                                f"    ✅ {test['name']}: Correctly failed as expected"
-                            )
+                            print(f"    ✅ {test['name']}: Correctly failed as expected")
                             passed += 1
                     else:
                         # Expect this to succeed
@@ -358,23 +355,16 @@ class Neo4jRoundTripTester:
                         if "expected_count" in test:
                             if len(results) == test["expected_count"]:
                                 print(
-                                    f"    ✅ {
-                                        test['name']}: Correct count {
-                                        len(results)}"
+                                    f"    ✅ {test['name']}: Correct count {len(results)}"
                                 )
                                 passed += 1
                             else:
                                 print(
-                                    f"    ❌ {
-                                        test['name']}: Expected {
-                                        test['expected_count']}, got {
-                                        len(results)}"
+                                    f"    ❌ {test['name']}: Expected {test['expected_count']}, got {len(results)}"
                                 )
                         else:
                             print(
-                                f"    ✅ {
-                                    test['name']}: Executed successfully, returned {
-                                    len(results)} results"
+                                f"    ✅ {test['name']}: Executed successfully, returned {len(results)} results"
                             )
                             passed += 1
 
@@ -433,8 +423,7 @@ class Neo4jRoundTripTester:
                     {
                         "test": "performance",
                         "status": "passed",
-                        "details": f"Execution time: {
-                            execution_time:.4f}s, Performance: {performance_status}",
+                        "details": f"Execution time: {execution_time:.4f}s, Performance: {performance_status}",
                     }
                 )
 

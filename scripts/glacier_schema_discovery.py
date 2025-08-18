@@ -731,9 +731,7 @@ class GlacierSchemaProcessor:
 
             # Log processing result
             logging.info(
-                f"Processed schema {schema_id} with {
-                    trigger.processor_function} in {
-                    end_time - start_time:.2f}s"
+                f"Processed schema {schema_id} with {trigger.processor_function} in {end_time - start_time:.2f}s"
             )
 
         except Exception as e:

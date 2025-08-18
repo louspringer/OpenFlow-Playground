@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #34495e; }
+      .label { font-family: Arial, sans-serif; font-size: 14px; fill: #2c3e50; }
+      .state-label { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .transition-label { font-family: Arial, sans-serif; font-size: 11px; fill: #34495e; }
+      .initial-state { fill: #27ae60; stroke: #229954; stroke-width: 3; }
+      .workflow-state { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .sub-state { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .final-state { fill: #9b59b6; stroke: #8e44ad; stroke-width: 3; }
+      .error-state { fill: #e67e22; stroke: #d35400; stroke-width: 2; }
+      .arrow { stroke: #34495e; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .sub-arrow { stroke: #e74c3c; stroke-width: 2; fill: none; marker-end: url(#subarrow); }
+      .error-arrow { stroke: #e67e22; stroke-width: 2; fill: none; marker-end: url(#errorarrow); }
+      .box { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 1; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+    <marker id="subarrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+    </marker>
+    <marker id="errorarrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e67e22" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" class="title">Ghostbusters Workflow State Machine</text>
+  
+  <!-- Initial State -->
+  <circle cx="700" cy="100" r="25" class="initial-state"/>
+  <text x="700" y="105" text-anchor="middle" class="label">Start</text>
+  
+  <!-- Initialized State -->
+  <rect x="600" y="150" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="700" y="180" text-anchor="middle" class="subtitle">Initialized</text>
+  <text x="700" y="200" text-anchor="middle" class="label">System Ready</text>
+  
+  <!-- Detection State -->
+  <rect x="100" y="250" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="200" y="280" text-anchor="middle" class="subtitle">Detection</text>
+  <text x="200" y="300" text-anchor="middle" class="label">Agent Execution</text>
+  
+  <!-- Detection Sub-states -->
+  <rect x="50" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="125" y="375" text-anchor="middle" class="state-label">Running Agents</text>
+  
+  <rect x="220" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="295" y="375" text-anchor="middle" class="state-label">Processing Results</text>
+  
+  <rect x="390" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="465" y="375" text-anchor="middle" class="state-label">Detection Complete</text>
+  
+  <!-- Validation State -->
+  <rect x="600" y="250" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="700" y="280" text-anchor="middle" class="subtitle">Validation</text>
+  <text x="700" y="300" text-anchor="middle" class="label">Findings Validation</text>
+  
+  <!-- Validation Sub-states -->
+  <rect x="550" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="625" y="375" text-anchor="middle" class="state-label">Running Validators</text>
+  
+  <rect x="720" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="795" y="375" text-anchor="middle" class="state-label">Processing Validation</text>
+  
+  <rect x="890" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="965" y="375" text-anchor="middle" class="state-label">Validation Complete</text>
+  
+  <!-- Planning State -->
+  <rect x="1100" y="250" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="1200" y="280" text-anchor="middle" class="subtitle">Planning</text>
+  <text x="1200" y="300" text-anchor="middle" class="label">Recovery Planning</text>
+  
+  <!-- Planning Sub-states -->
+  <rect x="1050" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="1125" y="375" text-anchor="middle" class="state-label">Analyzing Issues</text>
+  
+  <rect x="1220" y="350" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="1295" y="375" text-anchor="middle" class="state-label">Generating Plan</text>
+  
+  <!-- Execution State -->
+  <rect x="100" y="450" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="200" y="480" text-anchor="middle" class="subtitle">Execution</text>
+  <text x="200" y="500" text-anchor="middle" class="label">Recovery Execution</text>
+  
+  <!-- Execution Sub-states -->
+  <rect x="50" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="125" y="575" text-anchor="middle" class="state-label">Running Recovery</text>
+  
+  <rect x="220" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="295" y="575" text-anchor="middle" class="state-label">Processing Recovery</text>
+  
+  <!-- Recovery Validation State -->
+  <rect x="600" y="450" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="700" y="480" text-anchor="middle" class="subtitle">Recovery Validation</text>
+  <text x="700" y="500" text-anchor="middle" class="label">Validate Recovery</text>
+  
+  <!-- Recovery Validation Sub-states -->
+  <rect x="550" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="625" y="575" text-anchor="middle" class="state-label">Validating Recovery</text>
+  
+  <rect x="720" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="795" y="575" text-anchor="middle" class="state-label">Recovery Validated</text>
+  
+  <!-- Report Generation State -->
+  <rect x="1100" y="450" width="200" height="60" rx="10" class="workflow-state"/>
+  <text x="1200" y="480" text-anchor="middle" class="subtitle">Report Generation</text>
+  <text x="1200" y="500" text-anchor="middle" class="label">Generate Report</text>
+  
+  <!-- Report Generation Sub-states -->
+  <rect x="1050" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="1125" y="575" text-anchor="middle" class="state-label">Collecting Results</text>
+  
+  <rect x="1220" y="550" width="150" height="50" rx="8" class="sub-state"/>
+  <text x="1295" y="575" text-anchor="middle" class="state-label">Generating Report</text>
+  
+  <!-- Final State -->
+  <circle cx="700" cy="700" r="25" class="final-state"/>
+  <text x="700" y="705" text-anchor="middle" class="label">End</text>
+  
+  <!-- Error State -->
+  <rect x="600" y="600" width="200" height="60" rx="10" class="error-state"/>
+  <text x="700" y="630" text-anchor="middle" class="subtitle">Error</text>
+  <text x="700" y="650" text-anchor="middle" class="label">Workflow Failed</text>
+  
+  <!-- Main Workflow Transitions -->
+  <line x1="700" y1="125" x2="700" y2="150" class="arrow"/>
+  <text x="720" y="140" class="transition-label">initialize()</text>
+  
+  <line x1="700" y1="210" x2="200" y2="250" class="arrow"/>
+  <text x="450" y="230" class="transition-label">run_ghostbusters()</text>
+  
+  <line x1="200" y1="310" x2="700" y2="250" class="arrow"/>
+  <text x="450" y="280" class="transition-label">_validate_findings_node</text>
+  
+  <line x1="700" y1="310" x2="1200" y2="250" class="arrow"/>
+  <text x="950" y="280" class="transition-label">_plan_recovery_node</text>
+  
+  <line x1="1200" y1="310" x2="200" y2="450" class="arrow"/>
+  <text x="700" y="380" class="transition-label">_execute_recovery_node</text>
+  
+  <line x1="200" y1="510" x2="700" y2="450" class="arrow"/>
+  <text x="450" y="480" class="transition-label">_validate_recovery_node</text>
+  
+  <line x1="700" y1="510" x2="1200" y2="450" class="arrow"/>
+  <text x="950" y="480" class="transition-label">_generate_report_node</text>
+  
+  <line x1="1200" y1="510" x2="700" y2="675" class="arrow"/>
+  <text x="950" y="600" class="transition-label">workflow complete</text>
+  
+  <!-- Sub-state Transitions -->
+  <line x1="125" y1="400" x2="295" y2="400" class="sub-arrow"/>
+  <line x1="295" y1="400" x2="465" y2="400" class="sub-arrow"/>
+  
+  <line x1="625" y1="400" x2="795" y2="400" class="sub-arrow"/>
+  <line x1="795" y1="400" x2="965" y2="400" class="sub-arrow"/>
+  
+  <line x1="1125" y1="400" x2="1295" y2="400" class="sub-arrow"/>
+  
+  <line x1="125" y1="600" x2="295" y2="600" class="sub-arrow"/>
+  <line x1="295" y1="600" x2="125" y2="600" class="sub-arrow"/>
+  
+  <line x1="625" y1="600" x2="795" y2="600" class="sub-arrow"/>
+  
+  <line x1="1125" y1="600" x2="1295" y2="600" class="sub-arrow"/>
+  
+  <!-- Error Transitions -->
+  <line x1="200" y1="310" x2="700" y2="600" class="error-arrow"/>
+  <text x="450" y="580" class="transition-label">Agent failures</text>
+  
+  <line x1="700" y1="310" x2="700" y2="600" class="error-arrow"/>
+  <text x="720" y="580" class="transition-label">Validation failures</text>
+  
+  <line x1="1200" y1="310" x2="700" y2="600" class="error-arrow"/>
+  <text x="950" y="580" class="transition-label">Planning failures</text>
+  
+  <line x1="200" y1="510" x2="700" y2="600" class="error-arrow"/>
+  <text x="450" y="580" class="transition-label">Recovery failures</text>
+  
+  <line x1="700" y1="510" x2="700" y2="600" class="error-arrow"/>
+  <text x="720" y="580" class="transition-label">Recovery validation failed</text>
+  
+  <line x1="700" y1="660" x2="700" y2="675" class="error-arrow"/>
+  <text x="720" y="670" class="transition-label">error handling</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="50" width="300" height="120" rx="8" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="70" y="75" class="subtitle">State Types</text>
+  
+  <circle cx="80" cy="95" r="8" class="initial-state"/>
+  <text x="95" y="100" class="label">Initial State</text>
+  
+  <rect x="75" y="110" width="16" height="16" rx="3" class="workflow-state"/>
+  <text x="95" y="122" class="label">Workflow State</text>
+  
+  <rect x="75" y="130" width="16" height="16" rx="3" class="sub-state"/>
+  <text x="95" y="142" class="label">Sub-state</text>
+  
+  <rect x="75" y="150" width="16" height="16" rx="3" class="error-state"/>
+  <text x="95" y="162" class="label">Error State</text>
+  
+  <circle cx="80" cy="175" r="8" class="final-state"/>
+  <text x="95" y="180" class="label">Final State</text>
+  
+  <!-- Workflow Description -->
+  <rect x="1000" y="50" width="350" height="200" rx="8" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="1020" y="75" class="subtitle">Workflow Description</text>
+  <text x="1020" y="95" class="label">1. <strong>Detection</strong>: Multi-agent analysis</text>
+  <text x="1020" y="110" class="label">2. <strong>Validation</strong>: Validate findings</text>
+  <text x="1020" y="125" class="label">3. <strong>Planning</strong>: Plan recovery actions</text>
+  <text x="1020" y="140" class="label">4. <strong>Execution</strong>: Execute recovery</text>
+  <text x="1020" y="155" class="label">5. <strong>Validation</strong>: Validate recovery</text>
+  <text x="1020" y="170" class="label">6. <strong>Reporting</strong>: Generate final report</text>
+  <text x="1020" y="185" class="label">Each phase has sub-states for detailed tracking</text>
+</svg>

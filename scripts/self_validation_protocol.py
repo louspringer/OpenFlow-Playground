@@ -152,9 +152,11 @@ class SelfValidationProtocol:
                 return {
                     "passed": True,
                     "message": "Tool runs successfully and responds to --help",
-                    "output": result.stdout[:200] + "..."
-                    if len(result.stdout) > 200
-                    else result.stdout,
+                    "output": (
+                        result.stdout[:200] + "..."
+                        if len(result.stdout) > 200
+                        else result.stdout
+                    ),
                 }
             else:
                 # Try running without arguments
@@ -166,9 +168,11 @@ class SelfValidationProtocol:
                     return {
                         "passed": True,
                         "message": "Tool runs successfully without arguments",
-                        "output": result2.stdout[:200] + "..."
-                        if len(result2.stdout) > 200
-                        else result2.stdout,
+                        "output": (
+                            result2.stdout[:200] + "..."
+                            if len(result2.stdout) > 200
+                            else result2.stdout
+                        ),
                     }
                 else:
                     return {

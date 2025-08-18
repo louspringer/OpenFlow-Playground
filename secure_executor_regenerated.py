@@ -10,27 +10,20 @@ Generation ID: 0d32d786-9fee-4688-99ef-b8c59961d43a
 Generated at: 2025-08-17T12:53:21.010988
 """
 
-from typing import Any, Optional
-
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Optional
 
 
 class CommandResult:
-    """
-
-    """
+    """ """
 
 
 class SecureExecutor:
-    """
+    """ """
 
-    """
     def __init__(self, timeout: int, working_dir: Optional[Path]) -> None:
-        """
-
-        """
+        """ """
         return
 
     def _load_allowed_commands(self) -> dict[str, Any]:
@@ -51,19 +44,37 @@ class SecureExecutor:
         """
         return []
 
-    async def execute(self, command: list[Any], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult:
+    async def execute(
+        self,
+        command: list[Any],
+        capture_output: Optional[bool],
+        text: Optional[bool],
+        timeout: Optional[int],
+    ) -> CommandResult:
         """
         Execute command securely
         """
         return CommandResult()
 
-    def execute_sync(self, command: list[Any], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult:
+    def execute_sync(
+        self,
+        command: list[Any],
+        capture_output: Optional[bool],
+        text: Optional[bool],
+        timeout: Optional[int],
+    ) -> CommandResult:
         """
         Synchronous version of execute
         """
         return CommandResult()
 
-    def run(self, command: list[Any], capture_output: Optional[bool], text: Optional[bool], timeout: Optional[int]) -> CommandResult:
+    def run(
+        self,
+        command: list[Any],
+        capture_output: Optional[bool],
+        text: Optional[bool],
+        timeout: Optional[int],
+    ) -> CommandResult:
         """
         Alias for execute_sync
         """

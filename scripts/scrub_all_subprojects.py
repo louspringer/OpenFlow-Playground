@@ -113,9 +113,7 @@ class SubprojectScrubber:
             if final_ruff_result["success"]:
                 result["ruff_issues_after"] = final_ruff_result["issue_count"]
                 print(
-                    f"   📊 Issues: {
-                        result['ruff_issues_before']} → {
-                        result['ruff_issues_after']}"
+                    f"   📊 Issues: {result['ruff_issues_before']} → {result['ruff_issues_after']}"
                 )
             else:
                 result["errors"].append(
@@ -286,9 +284,7 @@ class SubprojectScrubber:
             }.get(result["status"], "❓")
 
             print(
-                f"   {status_emoji} {name}: {
-                    result['ruff_issues_before']} → {
-                    result['ruff_issues_after']} issues"
+                f"   {status_emoji} {name}: {result['ruff_issues_before']} → {result['ruff_issues_after']} issues"
             )
 
             if result["errors"]:

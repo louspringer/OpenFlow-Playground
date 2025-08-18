@@ -75,9 +75,7 @@ class LokiChaosEnhancer:
     def transform_form(self, target_form: LokiForm) -> bool:
         """Loki transforms into a different form"""
         print(
-            f"🔄 Loki transforming from {
-                self.current_form.value} to {
-                target_form.value}..."
+            f"🔄 Loki transforming from {self.current_form.value} to {target_form.value}..."
         )
 
         # Transformation has a chance of failure (chaos!)

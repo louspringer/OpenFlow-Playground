@@ -6,7 +6,7 @@ Enhanced Round-trip test using the enhanced reverse engineered model
 import json
 import os
 
-from round_trip_model_system import RoundTripModelSystem
+from src.round_trip_engineering.round_trip_model_system import RoundTripModelSystem
 
 
 def load_json_file(file_path: str) -> dict:
@@ -78,7 +78,9 @@ def run_enhanced_round_trip_test() -> None:
 
     # Use the enhanced reverse engineer to create a model
     try:
-        from enhanced_reverse_engineer import EnhancedReverseEngineer
+        from src.round_trip_engineering.enhanced_reverse_engineer import (
+            EnhancedReverseEngineer,
+        )
 
         # Create reverse engineer instance
         reverse_engineer = EnhancedReverseEngineer()
