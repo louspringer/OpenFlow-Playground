@@ -5390,6 +5390,33 @@
       "threshold": "Zero linting errors",
       "prevention": "Apply formatting and linting rules during generation",
       "description": "Prevents code quality failures that require post-generation fixes"
+    },
+    {
+      "requirement": "JavaScript tools must have fallback mechanisms when inline execution fails",
+      "domain": "javascript_editing_tools",
+      "enforcement": "blocking",
+      "validation": "Tool execution test before use",
+      "threshold": "100% reliability or fallback available",
+      "prevention": "Always test tool execution before critical operations",
+      "description": "Prevents tool failures from blocking model updates"
+    },
+    {
+      "requirement": "Tool selection must follow clear criteria: files for complex operations, inline for simple",
+      "domain": "javascript_editing_tools",
+      "enforcement": "blocking",
+      "validation": "Tool selection logic in model",
+      "threshold": "Clear decision tree for tool selection",
+      "prevention": "Define tool selection criteria in requirements",
+      "description": "Ensures appropriate tool selection for each operation type"
+    },
+    {
+      "requirement": "All JavaScript tools must be validated before use in critical operations",
+      "domain": "javascript_editing_tools",
+      "enforcement": "blocking",
+      "validation": "Pre-execution tool validation",
+      "threshold": "100% validation before use",
+      "prevention": "Test tool execution before model updates",
+      "description": "Prevents tool failures from corrupting project model"
     }
   ],
   "round_trip_validation_system": {
@@ -5511,6 +5538,40 @@
       "rule": "Use JavaScript tools for model updates, never manual editing",
       "validation": "Schema validation required for all model changes",
       "fallback": "Direct manipulation allowed for complex system additions"
+    },
+    "reliability_requirements": {
+      "tool_selection_criteria": {
+        "use_standalone_files": [
+          "Complex model updates",
+          "Multi-step operations",
+          "Error-prone operations",
+          "Operations requiring debugging"
+        ],
+        "use_inline_commands": [
+          "Simple property updates",
+          "Single-line changes",
+          "Read-only operations",
+          "Well-tested simple operations"
+        ]
+      },
+      "fallback_mechanisms": [
+        "Create standalone JavaScript file if inline fails",
+        "Use schema manager for structured updates",
+        "Manual JSON editing as last resort",
+        "Rollback to last known good state"
+      ],
+      "validation_steps": [
+        "Test tool execution before critical operations",
+        "Validate tool output before applying changes",
+        "Check tool availability and dependencies",
+        "Verify tool permissions and access"
+      ],
+      "error_handling": {
+        "inline_failure": "Fall back to standalone file creation",
+        "tool_unavailable": "Use alternative tool or manual approach",
+        "validation_failure": "Rollback changes and retry with different approach",
+        "permission_error": "Check file permissions and tool access"
+      }
     }
   },
   "round_trip_validation_tests": [
