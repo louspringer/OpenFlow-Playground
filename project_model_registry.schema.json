@@ -128,8 +128,7 @@
         },
         "required": ["requirement", "domain", "enforcement"]
       }
-    },
-    "implementation_plan": {
+    },    "implementation_plan": {
       "type": "object",
       "properties": {
         "backlogged": {

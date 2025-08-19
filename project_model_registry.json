@@ -5462,6 +5462,5 @@
       "rule": "Use JavaScript tools for model updates, never manual editing",
       "validation": "Schema validation required for all model changes",
       "fallback": "Direct manipulation allowed for complex system additions"
-    }
-  }
+    }  }
 }

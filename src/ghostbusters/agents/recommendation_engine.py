@@ -70,7 +70,6 @@ class RecommendationEngine:
 
             # Estimate effort
             recommendations["estimated_effort"] = self._estimate_effort(priority_recs)
-
             logger.info("✅ Recommendations generated successfully")
 
         except Exception as e:
