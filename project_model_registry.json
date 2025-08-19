@@ -98,6 +98,8 @@
         "cloudformation_linting",
         "dont_break_the_fixer",
         "intelligent_linter_prevention",
+        "backlog_discovery",
+        "backlog_maintenance",
         "dynamic_prevention_rules",
         "yaml_type_specific",
         "json_type_specific"
@@ -143,6 +145,8 @@
         "cloudformation_linting": "☁️",
         "dont_break_the_fixer": "🔧",
         "intelligent_linter_prevention": "🧹",
+        "backlog_discovery": "📋",
+        "backlog_maintenance": "🔧",
         "dynamic_prevention_rules": "⚡",
         "yaml_type_specific": "📄",
         "json_type_specific": "📋"
@@ -3042,6 +3046,30 @@
       "test": "test_requirement_19_data_validation"
     },
     {
+      "requirement": "Systematic backlog discovery methodology",
+      "domain": "backlog_discovery",
+      "implementation": "Comprehensive search patterns for all backlog indicators with standardized format",
+      "test": "test_requirement_backlog_discovery_methodology"
+    },
+    {
+      "requirement": "Prevent missed backlog items through systematic discovery",
+      "domain": "backlog_discovery", 
+      "implementation": "Multi-method search approach with validation against multiple sources",
+      "test": "test_requirement_backlog_discovery_prevention"
+    },
+    {
+      "requirement": "Systematic backlog maintenance procedures",
+      "domain": "backlog_maintenance",
+      "implementation": "Standardized procedures for backlog item lifecycle management",
+      "test": "test_requirement_backlog_maintenance_procedures"
+    },
+    {
+      "requirement": "Enforce standardized backlog item format",
+      "domain": "backlog_maintenance",
+      "implementation": "Validation and enforcement of required fields and format consistency",
+      "test": "test_requirement_backlog_maintenance_format"
+    },
+    {
       "requirement": "Healthcare CDC domain validation",
       "domain": "healthcare_cdc",
       "implementation": "flake8 + black + pytest for healthcare CDC",
@@ -4767,5 +4795,286 @@
     "demo_role": "development",
     "extraction_candidate": false,
     "reason": "Node.js development environment - essential for modern tooling"
+  },
+  "backlog_discovery": {
+    "description": "Systematic methods for discovering and accessing backlog items across the project",
+    "patterns": [
+      "*.json",
+      "*.md",
+      "*.py",
+      "*.yaml",
+      "*.yml"
+    ],
+    "content_indicators": [
+      "backlog",
+      "TODO",
+      "FIXME", 
+      "HACK",
+      "XXX",
+      "BUG",
+      "pending",
+      "incomplete",
+      "not implemented",
+      "next_steps",
+      "future work",
+      "planned work"
+    ],
+    "linter": "backlog_discovery_validator",
+    "validator": "backlog_completeness_checker",
+    "formatter": "backlog_format_standardizer",
+    "requirements": [
+      "Systematic backlog discovery methodology",
+      "Comprehensive search patterns for all backlog indicators",
+      "Integration with project model registry",
+      "Standardized backlog item format",
+      "Prevention of missed backlog items"
+    ],
+    "backlog_discovery_methods": {
+      "project_model_registry": {
+        "description": "Primary source for formal backlog items",
+        "search_patterns": [
+          "backlogged array",
+          "next_steps arrays", 
+          "status: backlogged",
+          "over_engineering_prevention domain"
+        ],
+        "file_path": "project_model_registry.json"
+      },
+      "documentation_files": {
+        "description": "Documentation containing backlog items and future work",
+        "search_patterns": [
+          "docs/*.md",
+          "project_management/*.md",
+          "*.md with future work sections"
+        ],
+        "file_paths": [
+          "docs/OVER_ENGINEERING_AUDIT_COMPREHENSIVE.md",
+          "project_management/README.md"
+        ]
+      },
+      "code_level_indicators": {
+        "description": "Code-level backlog indicators in source files",
+        "search_patterns": [
+          "TODO comments",
+          "FIXME comments", 
+          "HACK comments",
+          "XXX comments",
+          "BUG comments",
+          "skeleton classes with TODO",
+          "unimplemented methods"
+        ],
+        "file_patterns": [
+          "*.py",
+          "*.js", 
+          "*.ts",
+          "*.go"
+        ]
+      },
+      "status_based_indicators": {
+        "description": "Status fields indicating backlog items",
+        "search_patterns": [
+          "status: backlogged",
+          "status: pending",
+          "status: incomplete", 
+          "status: not implemented",
+          "priority: high/medium/low",
+          "estimated_effort: X weeks",
+          "dependencies arrays"
+        ]
+      }
+    },
+    "search_commands": {
+      "comprehensive_backlog_search": "grep -r 'backlogged\\|pending\\|incomplete' project_model_registry.json",
+      "todo_pattern_search": "grep -r 'TODO\\|FIXME\\|HACK\\|XXX\\|BUG' . --include='*.py' --include='*.md'",
+      "documentation_search": "grep -r 'backlog\\|next_steps\\|future.*work' docs/",
+      "domain_specific_search": "grep -r 'over_engineering_prevention' project_model_registry.json",
+      "status_field_search": "grep -r 'status.*backlogged\\|status.*pending' ."
+    },
+    "backlog_item_format": {
+      "required_fields": [
+        "requirement",
+        "status", 
+        "domain",
+        "priority",
+        "estimated_effort",
+        "description",
+        "date_added"
+      ],
+      "optional_fields": [
+        "dependencies",
+        "acceptance_criteria",
+        "implementation_files",
+        "test_results",
+        "completion_date"
+      ]
+    },
+    "prevention_patterns": [
+      "Always search systematically using all discovery methods",
+      "Never assume a single search method is sufficient",
+      "Always check project model registry first",
+      "Always search for code-level indicators",
+      "Always validate findings against multiple sources"
+    ]
+  },
+  "backlog_maintenance": {
+    "description": "Systematic procedures for maintaining backlog items throughout their lifecycle",
+    "patterns": [
+      "*.json",
+      "*.md",
+      "*.py",
+      "*.yaml",
+      "*.yml"
+    ],
+    "content_indicators": [
+      "backlog",
+      "requirement",
+      "status",
+      "priority",
+      "estimated_effort",
+      "dependencies",
+      "acceptance_criteria",
+      "implementation_files",
+      "test_results",
+      "completion_date"
+    ],
+    "linter": "backlog_maintenance_validator",
+    "validator": "backlog_maintenance_checker",
+    "formatter": "backlog_maintenance_formatter",
+    "requirements": [
+      "Systematic backlog maintenance procedures",
+      "Standardized backlog item format enforcement",
+      "Backlog lifecycle management",
+      "Validation and documentation requirements",
+      "Integration with project model registry"
+    ],
+    "maintenance_procedures": {
+      "item_creation": {
+        "description": "Procedures for creating new backlog items",
+        "steps": [
+          "Validate the need - check if item already exists",
+          "Use standardized format with all required fields",
+          "Add to project model registry under backlogged array",
+          "Update requirements traceability section",
+          "Validate JSON syntax before committing"
+        ],
+        "required_fields": [
+          "requirement",
+          "status",
+          "domain",
+          "priority",
+          "estimated_effort",
+          "description",
+          "date_added"
+        ]
+      },
+      "item_updates": {
+        "description": "Procedures for updating existing backlog items",
+        "steps": [
+          "Locate the item in project model registry",
+          "Update relevant fields based on new information",
+          "Add date_updated field if not present",
+          "Maintain all required fields in the item",
+          "Validate JSON syntax and consistency"
+        ]
+      },
+      "item_completion": {
+        "description": "Procedures for marking backlog items complete",
+        "steps": [
+          "Verify all acceptance criteria are met",
+          "Update status to implemented",
+          "Add completion_date and test_results",
+          "Update project status and domain status",
+          "Archive implementation files and results"
+        ],
+        "verification_checklist": [
+          "All acceptance criteria met",
+          "Tests passing",
+          "Documentation updated",
+          "Code reviewed and approved",
+          "Deployment successful"
+        ]
+      },
+      "item_removal": {
+        "description": "Procedures for removing backlog items",
+        "steps": [
+          "Validate removal reason",
+          "Document removal for future reference",
+          "Update project status to reflect removal",
+          "Archive valuable information before removal",
+          "Notify stakeholders if removal affects them"
+        ]
+      }
+    },
+    "validation_checklist": {
+      "before_adding_updating": [
+        "Item doesn't already exist in current backlog",
+        "All required fields are present and complete",
+        "Domain assignment is correct and consistent",
+        "Priority and effort estimates are realistic",
+        "Dependencies are identified and valid",
+        "Acceptance criteria are specific and measurable",
+        "JSON syntax is valid and properly formatted"
+      ],
+      "after_adding_updating": [
+        "Project model registry is updated correctly",
+        "Requirements traceability is maintained",
+        "Related sections are updated if needed",
+        "JSON validation passes all checks",
+        "Changes are committed with descriptive messages",
+        "Documentation is updated if needed"
+      ]
+    },
+    "maintenance_schedule": {
+      "daily": [
+        "Check for new issues reported by users or team",
+        "Review code changes for new TODO/FIXME comments",
+        "Update status of in-progress items",
+        "Validate backlog item completeness"
+      ],
+      "weekly": [
+        "Review priority of all backlog items",
+        "Update effort estimates based on new information",
+        "Check dependencies for changes or resolution",
+        "Validate backlog item relevance"
+      ],
+      "monthly": [
+        "Comprehensive review of all backlog items",
+        "Archive completed items to completed section",
+        "Remove obsolete items with documentation",
+        "Update project status based on backlog changes"
+      ],
+      "quarterly": [
+        "Over-engineering audit using systematic discovery",
+        "Backlog health check - identify patterns and issues",
+        "Process improvement based on maintenance experience",
+        "Documentation update of maintenance procedures"
+      ]
+    },
+    "health_metrics": {
+      "quantitative": [
+        "Total backlog items count",
+        "Average age of backlog items",
+        "Priority distribution (high/medium/low)",
+        "Effort distribution (total weeks required)",
+        "Completion rate (items completed vs. added)"
+      ],
+      "qualitative": [
+        "Item clarity and completeness",
+        "Dependency health and identification",
+        "Estimate accuracy and realism",
+        "Priority alignment with business needs"
+      ],
+      "health_thresholds": {
+        "green": "< 20 items, < 30 days average age, > 80% completion rate",
+        "yellow": "20-50 items, 30-60 days average age, 60-80% completion rate",
+        "red": "> 50 items, > 60 days average age, < 60% completion rate"
+      }
+    },
+    "related_documentation": [
+      "docs/BACKLOG_MAINTENANCE_GUIDE.md",
+      ".cursor/rules/backlog-maintenance.mdc",
+      "project_model_registry.json",
+      "docs/OVER_ENGINEERING_AUDIT_COMPREHENSIVE.md"
+    ]
   }
 }
