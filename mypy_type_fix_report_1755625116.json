@@ -1,0 +1,1101 @@
+{
+  "timestamp": 1755625116.979002,
+  "target_directory": "src",
+  "total_files": 156,
+  "successful": 156,
+  "failed": 0,
+  "results": [
+    {
+      "file": "src/verify_ide_linting_hypothesis.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_model_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/complex_model_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/dynamic_rule_updater.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/perfect_ast_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/complex_model_simple_code_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ast_usage_tracker.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_manager.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/intelligent_linter_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/generate_linting_aware_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ultimate_perfect_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/linting_aware_model.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/enhanced_linting_aware_model.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/perfect_code_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/quick_state_explorer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/intelligent_model_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/abstract_factory_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/scaled_complex_model_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/recursive_code_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/prove_round_trip.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/mypy_enhanced_ast_parser.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/generate_code_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/linter_api_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/complete_linting_aware_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/complete_model_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/cli.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/quality_metrics.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/multi_agent_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/quality_gates.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/round_trip_validation.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/quality_enforcer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/quality_model.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/integrations/ci_cd_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/integrations/pre_commit_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/code_quality_system/integrations/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_testing/test_generator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_testing/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/input_validator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/https_enforcement.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/test_https_enforcement.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/rate_limiting.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/test_streamlit_security_first.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/test_security_model.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/security_manager.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_first/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/mdc_generator/mdc_model.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/mdc_generator/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/web_tool_discovery.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/enhanced_learning_timeout_agent.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/tool_discovery.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/validators.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/artifact_requirement_mapper.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/enhanced_ghostbusters.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/ghostbusters_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/test_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/recommendation_engine.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/model_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/architecture_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/code_quality_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/security_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/base_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/quality_analyzer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/build_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/issue_detector.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/agents/mcp_expert.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/indentation_fixer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/syntax_recovery_engine.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/base_recovery_engine.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/import_resolver.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/recovery_engines/type_annotation_fixer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/validators/base_validator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters/validators/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/visualization/dashboard.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/visualization/svg_engine.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/visualization/comprehensive_dashboard.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/visualization/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_generated/proven_ASTAnalyzer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_generated/proven_QualityOrchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_generated/proven_QualityRule.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_generated/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/test_projected_equivalence.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/improved_projection.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/improved_projection_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/test_simple_equivalence.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/final_projection_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/level1_granular_nodes.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/final_projection.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/mermaid_projector.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/test_projected_artifacts_pytest.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/test_projected_artifacts_simple.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/test_projected_artifacts.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/src/security_first/input_validator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/src/security_first/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/src/streamlit/openflow_quickstart_app.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/model_driven_projection/projected_artifacts/src/streamlit/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_engineering/round_trip_model_system.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_engineering/enhanced_reverse_engineer_v2.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_engineering/pattern_detector.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_engineering/enhanced_reverse_engineer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/round_trip_engineering/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_scanning/op_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_scanning/security_scanner.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_scanning/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/security_scanning/quality_integration.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters_gcp/main.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/ghostbusters_gcp/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/mcp_integration/github_mcp_client.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/documentation/mermaid_validator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/diversity_synthesis_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_anthropic_simple.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_multi_agent_blind_spot_detection.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/debug_anthropic_api.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/automate_quality_secure.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_diversity_hypothesis.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/meta_cognitive_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_live_smoke_test.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_model_traceability.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/multi_dimensional_smoke_test.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/langgraph_diversity_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/cost_analysis.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/test_meta_cognitive_orchestrator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/live_smoke_test.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/diversity_hypothesis_demo.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/live_smoke_test_langchain.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/multi_agent_testing/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_parser_enhanced.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_synthesizer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_parser.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_detector.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_correlator.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/agents/artifact_optimizer.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/models/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/utils/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/tests/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/workflows/enhanced_workflow.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/workflows/basic_workflow.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/artifact_forge/workflows/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/streamlit/openflow_quickstart_app_projected.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/streamlit/openflow_quickstart_app.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/streamlit/__init__.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/secure_shell_service/real_client.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/secure_shell_service/client.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/secure_shell_service/secure_executor.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/secure_shell_service/elegant_client.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    },
+    {
+      "file": "src/secure_shell_service/migration_example.py",
+      "success": true,
+      "output": "",
+      "error": "",
+      "return_code": 0
+    }
+  ]
+}

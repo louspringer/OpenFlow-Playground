@@ -17,9 +17,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
+    "black_formatted": false,
     "git_status": "dirty",
-    "errors": []
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-common": {
     "name": "clewcrew-common",
@@ -27,9 +29,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
-    "git_status": "dirty",
-    "errors": []
+    "black_formatted": false,
+    "git_status": "clean",
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-core": {
     "name": "clewcrew-core",
@@ -37,9 +41,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
+    "black_formatted": false,
     "git_status": "dirty",
-    "errors": []
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-framework": {
     "name": "clewcrew-framework",
@@ -47,9 +53,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
+    "black_formatted": false,
     "git_status": "dirty",
-    "errors": []
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-recovery": {
     "name": "clewcrew-recovery",
@@ -57,9 +65,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
+    "black_formatted": false,
     "git_status": "dirty",
-    "errors": []
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-tools": {
     "name": "clewcrew-tools",
@@ -67,9 +77,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
-    "git_status": "dirty",
-    "errors": []
+    "black_formatted": false,
+    "git_status": "clean",
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "clewcrew-validators": {
     "name": "clewcrew-validators",
@@ -77,9 +89,11 @@
     "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
-    "black_formatted": true,
+    "black_formatted": false,
     "git_status": "dirty",
-    "errors": []
+    "errors": [
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
+    ]
   },
   "gke-ai-microservices-hackathon": {
     "name": "gke-ai-microservices-hackathon",
@@ -108,13 +122,13 @@
   "tidb-agentx-hackathon": {
     "name": "tidb-agentx-hackathon",
     "path": "/home/lou/Documents/OpenFlow-Playground/tidb-agentx-hackathon",
-    "status": "skipped",
+    "status": "clean",
     "ruff_issues_before": 0,
     "ruff_issues_after": 0,
     "black_formatted": false,
-    "git_status": "unknown",
+    "git_status": "dirty",
     "errors": [
-      "No pyproject.toml found - not a Python project"
+      "Black formatting failed: /usr/bin/python3: No module named black\n"
     ]
   }
 }
