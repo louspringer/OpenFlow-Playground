@@ -102,7 +102,8 @@
         "backlog_maintenance",
         "dynamic_prevention_rules",
         "yaml_type_specific",
-        "json_type_specific"
+        "json_type_specific",
+        "cursor_ide_systemic_issues"
       ],
       "purpose": "Provide AI assistance rules and code quality enforcement",
       "neo4j_integration": "completed",
@@ -149,7 +150,8 @@
         "backlog_maintenance": "🔧",
         "dynamic_prevention_rules": "⚡",
         "yaml_type_specific": "📄",
-        "json_type_specific": "📋"
+        "json_type_specific": "📋",
+        "cursor_ide_systemic_issues": "🚨"
       },
       "completion_date": "2024-08-15",
       "next_phase": "pypi_packages_and_visualization_tools"
@@ -3612,6 +3614,62 @@
     ],
     "backlogged": [
       {
+        "requirement": "Cursor IDE systemic issue mitigation and prevention",
+        "status": "backlogged",
+        "domain": "cursor_ide_systemic_issues",
+        "priority": "critical",
+        "estimated_effort": "1-2 weeks",
+        "dependencies": [
+          "project_model_registry.json",
+          ".cursor/rules/*.mdc",
+          "src/**/*.py"
+        ],
+        "description": "Address ongoing Cursor IDE systemic issues that cause IDE malfunction, tool failures, and development instability. This session identified 3 distinct systemic issues: non-MDC files in rules directory, MyPy internal failures, and deterministic editing rule violations.",
+        "acceptance_criteria": [
+          "All non-MDC files removed from .cursor/rules directory",
+          "MyPy type checking fully functional without internal errors",
+          "Deterministic editing rules consistently followed",
+          "Cursor IDE stability restored and maintained",
+          "Systematic issue prevention framework implemented"
+        ],
+        "systemic_issues_identified": {
+          "issue_1": {
+            "name": "Non-MDC file in cursor rules directory",
+            "symptoms": "anti-no-verify.md file in .cursor/rules causing potential IDE malfunction",
+            "root_cause": "Incorrect file format mixing .md with .mdc files",
+            "status": "mitigated",
+            "resolution": "Stashed original, created proper anti-no-verify.mdc using deterministic tools"
+          },
+          "issue_2": {
+            "name": "MyPy internal failure (setter_type KeyError)",
+            "symptoms": "Persistent KeyError: 'setter_type' breaking type checking completely",
+            "root_cause": "MyPy 1.16.0 incompatible with Python 3.10.12",
+            "status": "mitigated",
+            "resolution": "Downgraded MyPy from 1.16.0 to 1.8.0, restored type checking"
+          },
+          "issue_3": {
+            "name": "Deterministic editing rule violation",
+            "symptoms": "Used heuristic write tool instead of deterministic MDC tools",
+            "root_cause": "Ignored deterministic editing rules, used wrong tool for MDC files",
+            "status": "mitigated",
+            "resolution": "Switched to proper deterministic MDC tools (mdc_parser.py, mdc_writer.py)"
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "CRITICAL",
+          "impact": "Cursor IDE malfunction, development instability, tool failures, code quality degradation",
+          "mitigation": "Systematic issue prevention, deterministic tool usage, proper file format enforcement"
+        },
+        "prevention_framework": {
+          "cursor_rules_protection": "Only .mdc files allowed in .cursor/rules directory",
+          "deterministic_editing": "Always use deterministic tools for structured files",
+          "tool_compatibility": "Validate tool versions before use",
+          "systematic_validation": "Test fixes incrementally and validate system stability"
+        },
+        "date_added": "2025-08-19",
+        "session_context": "MyPy type error resolution session where 3 systemic issues were identified and mitigated"
+      },
+      {
         "requirement": "Healthcare access control implementation",
         "status": "backlogged",
         "domain": "healthcare_cdc",
@@ -5219,6 +5277,53 @@
       ".cursor/rules/backlog-maintenance.mdc",
       "project_model_registry.json",
       "docs/OVER_ENGINEERING_AUDIT_COMPREHENSIVE.md"
+    ]
+  },
+  "cursor_ide_systemic_issues": {
+    "patterns": [
+      ".cursor/rules/*.mdc",
+      ".cursor/rules/*.md",
+      "src/**/*.py",
+      "scripts/**/*.py"
+    ],
+    "content_indicators": [
+      "cursor_ide",
+      "systemic_issue",
+      "IDE malfunction",
+      "tool failure",
+      "deterministic editing",
+      "non-MDC file",
+      "MyPy internal error",
+      "setter_type KeyError",
+      "deterministic editing rules",
+      "cursor rules directory protection"
+    ],
+    "linter": "flake8",
+    "formatter": "black",
+    "validator": "ast-parse",
+    "exclusions": [
+      "__pycache__/*",
+      "*.pyc",
+      ".cursor/rules/*.stashed"
+    ],
+    "requirements": [
+      "Prevent non-MDC files in .cursor/rules directory",
+      "Maintain deterministic editing rules consistently",
+      "Validate tool compatibility before use",
+      "Implement systematic issue prevention framework",
+      "Maintain Cursor IDE stability and functionality",
+      "Validate tool versions for compatibility",
+      "Use deterministic tools for structured file editing",
+      "Prevent systemic issues through proper tool usage"
+    ],
+    "demo_role": "systemic_issue_prevention",
+    "extraction_candidate": "MEDIUM",
+    "reason": "Critical for Cursor IDE stability and development productivity",
+    "extraction_benefits": [
+      "Could benefit other projects with Cursor IDE issues",
+      "Systemic issue prevention patterns",
+      "Tool compatibility validation frameworks",
+      "Deterministic editing rule enforcement"
     ]
   }
 }

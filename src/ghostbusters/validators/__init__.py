@@ -2,25 +2,7 @@
 
 from typing import Any
 
-from pydantic import BaseModel, Field, field_validator
-
-from .base_validator import BaseValidator
-
-
-class ValidationResult(BaseModel):
-    """Result from validation"""
-
-    is_valid: bool
-    confidence: float = Field(ge=0.0, le=1.0)
-    issues: list[str] = Field(default_factory=list)
-    recommendations: list[str] = Field(default_factory=list)
-    validator_name: str = Field(default="unknown")
-
-    @field_validator("confidence")
-    @classmethod
-    def validate_confidence(cls, v):
-        """Ensure confidence is between 0.0 and 1.0."""
-        return max(0.0, min(1.0, v))
+from .base_validator import BaseValidator, ValidationResult
 
 
 class SecurityValidator(BaseValidator):

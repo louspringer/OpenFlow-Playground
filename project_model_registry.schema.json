@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenFlow Playground Project Model Registry",
+  "description": "Schema for the project model registry",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "project_purpose": {
+      "type": "object"
+    },
+    "domain_architecture": {
+      "type": "object",
+      "properties": {
+        "cursor_rules": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "domains": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "emoji_prefixes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "purpose": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "domains"
+          ]
+        }
+      }
+    },
+    "domains": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "patterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content_indicators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linter": {
+            "type": "string"
+          },
+          "formatter": {
+            "type": "string"
+          },
+          "validator": {
+            "type": "string"
+          },
+          "exclusions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "demo_role": {
+            "type": "string"
+          },
+          "extraction_candidate": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "extraction_benefits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "patterns",
+          "content_indicators",
+          "requirements",
+          "demo_role"
+        ]
+      }
+    },
+    "implementation_plan": {
+      "type": "object",
+      "properties": {
+        "backlogged": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "requirement": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "string"
+              },
+              "estimated_effort": {
+                "type": "string"
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "acceptance_criteria": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "date_added": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "requirement",
+              "status",
+              "domain"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "description",
+    "author",
+    "domain_architecture"
+  ]
+}
