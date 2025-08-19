@@ -2479,7 +2479,13 @@
         "Generate code from models",
         "Maintain functional equivalence",
         "Support model-driven development",
-        "Integrate with enhanced AST parser"
+        "Integrate with enhanced AST parser",
+        "All methods must have complete type annotations",
+        "All imports must be validated before code generation",
+        "Error handling must be consistent across all methods",
+        "Code generation must produce lint-compliant output",
+        "Reverse engineering tools must validate dependencies before generation",
+        "Type checking must pass with 100% coverage"
       ],
       "todos": [
         {
@@ -5356,5 +5362,106 @@
       "Tool compatibility validation frameworks",
       "Deterministic editing rule enforcement"
     ]
+  },
+  "model_conformance_requirements": [
+    {
+      "requirement": "Code generation must produce quality-compliant output",
+      "domain": "code_quality_system",
+      "enforcement": "blocking",
+      "validation": "pre-generation quality check",
+      "threshold": "100% compliance with quality gates",
+      "prevention": "Validate code structure before generation, not after",
+      "description": "Prevents generation of code that would fail quality gates and require --no-verify"
+    },
+    {
+      "requirement": "All generated Python classes and methods must have docstrings",
+      "domain": "documentation",
+      "enforcement": "blocking",
+      "validation": "scripts/check_code_quality.py",
+      "threshold": "100% docstring coverage for all public interfaces",
+      "prevention": "Include docstrings during code generation, not as post-processing",
+      "description": "Prevents documentation coverage failures that bypass quality gates"
+    },
+    {
+      "requirement": "Generated code must pass all linting checks",
+      "domain": "code_quality_system",
+      "enforcement": "blocking",
+      "validation": "black, ruff, flake8",
+      "threshold": "Zero linting errors",
+      "prevention": "Apply formatting and linting rules during generation",
+      "description": "Prevents code quality failures that require post-generation fixes"
+    }
+  ],
+  "round_trip_validation_system": {
+    "description": "Concurrent validation and correction of model and code through iterative round-trip refinement",
+    "core_principle": "Model and code must stay in sync through back-and-forth scrubbing",
+    "workflow": [
+      "1. Extract model from current code",
+      "2. Validate model against requirements",
+      "3. Generate corrected code from validated model",
+      "4. Test generated code for correctness",
+      "5. If issues found, patch model and repeat from step 1",
+      "6. Use ONLY the final generated result, never hand-edited code"
+    ],
+    "validation_rules": [
+      "Generated code must pass all quality gates",
+      "Generated code must be functionally equivalent to original",
+      "Model must accurately reflect the actual code structure",
+      "All patches must go through the round-trip process",
+      "No hand-editing of generated files - only model patches allowed"
+    ],
+    "enforcement": {
+      "blocking": true,
+      "validation_tool": "scripts/enforce_round_trip.py",
+      "quality_gates": "All pre-commit hooks must pass",
+      "rollback": "If round-trip fails, revert to last known good state"
+    },
+    "scrubbing_mechanism": {
+      "extract": "Reverse engineer current code into model",
+      "validate": "Check model against requirements and quality standards",
+      "correct": "Patch model to fix identified issues",
+      "regenerate": "Generate new code from corrected model",
+      "test": "Validate generated code meets all requirements",
+      "iterate": "Repeat until no issues remain"
+    }
+  },
+  "javascript_editing_tools": {
+    "description": "JavaScript-based tools for deterministic model manipulation and validation",
+    "purpose": "Provide reliable, schema-validated model updates without manual JSON editing",
+    "tools": {
+      "schema_manager": {
+        "file": "scripts/schema_manager.js",
+        "description": "JSON Schema validation and structured model updates",
+        "capabilities": [
+          "Schema-driven model validation",
+          "Structured domain addition",
+          "Backlog item management",
+          "Model integrity enforcement"
+        ],
+        "usage": "node scripts/schema_manager.js"
+      },
+      "direct_manipulation": {
+        "description": "Direct model manipulation for complex updates",
+        "capabilities": [
+          "Complex system additions",
+          "Large-scale model changes",
+          "Custom validation logic",
+          "Bulk updates"
+        ],
+        "usage": "Direct node command execution for complex updates"
+      }
+    },
+    "benefits": [
+      "Deterministic model updates",
+      "Schema validation prevents corruption",
+      "No more manual JSON editing errors",
+      "Structured approach to model management",
+      "JavaScript ecosystem integration"
+    ],
+    "enforcement": {
+      "rule": "Use JavaScript tools for model updates, never manual editing",
+      "validation": "Schema validation required for all model changes",
+      "fallback": "Direct manipulation allowed for complex system additions"
+    }
   }
 }
