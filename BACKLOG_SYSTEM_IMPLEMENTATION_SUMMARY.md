@@ -100,8 +100,13 @@ When a user mentions backlog-related activities, the cursor rules automatically 
 ## 📊 **Current Backlog Status**
 
 ### **Formal Backlog Items (from project_model_registry.json):**
-1. **Healthcare access control implementation** - Medium priority, 2 weeks effort
-2. **Comprehensive MDC file validation** - Low priority, 1 week effort
+1. **Fix 131 MyPy type errors** - 🚨 **HIGH PRIORITY**, 1-2 weeks effort
+2. **Healthcare access control implementation** - **MEDIUM PRIORITY**, 2 weeks effort
+3. **Ghostbusters GCP test alignment reconciliation** - **MEDIUM PRIORITY**, 3 days effort
+4. **Dashboard reconciliation and backlog alignment** - **MEDIUM PRIORITY**, 1 day effort
+5. **Functional equivalence gap analysis and resolution** - **MEDIUM PRIORITY**, 2 days effort
+6. **Comprehensive MDC file validation** - **LOW PRIORITY**, 1 week effort
+7. **ArtifactForge parsing issue resolution verification** - **LOW PRIORITY**, 0.5 days effort
 
 ### **Major Over-Engineering Backlog (from OVER_ENGINEERING_AUDIT_COMPREHENSIVE.md):**
 - **13 major over-engineering patterns** identified

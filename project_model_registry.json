@@ -3732,6 +3732,84 @@
           "mitigation": "Systematic resolution with pre-commit hooks and CI/CD integration"
         },
         "date_added": "2025-08-19"
+      },
+      {
+        "requirement": "Dashboard reconciliation and backlog alignment",
+        "status": "backlogged",
+        "domain": "project_management",
+        "priority": "medium",
+        "estimated_effort": "1 day",
+        "dependencies": [
+          "project_model_registry.json",
+          "BACKLOG_SYSTEM_IMPLEMENTATION_SUMMARY.md"
+        ],
+        "description": "Update project dashboard to reflect current backlog status and align with actual project state. Dashboard currently shows outdated information about ArtifactForge parsing failures and incorrect linting issue counts.",
+        "acceptance_criteria": [
+          "Dashboard accurately reflects current backlog items",
+          "ArtifactForge parsing issues marked as resolved",
+          "Linting issue count updated from 321 to 131 MyPy-specific errors",
+          "New backlog items properly documented and prioritized",
+          "Dashboard recommendations updated to current priorities"
+        ],
+        "reconciliation_findings": {
+          "artifactorge_status": "resolved",
+          "linting_issues_reduced": "from 321 to 131 MyPy-specific",
+          "new_critical_item": "131 MyPy type errors",
+          "new_medium_item": "GCP test alignment reconciliation",
+          "dashboard_outdated": true
+        },
+        "date_added": "2025-08-19"
+      },
+      {
+        "requirement": "ArtifactForge parsing issue resolution verification",
+        "status": "backlogged",
+        "domain": "artifact_forge",
+        "priority": "low",
+        "estimated_effort": "0.5 days",
+        "dependencies": [
+          "src/artifact_forge/**/*.py",
+          "tests/test_artifact_forge.py"
+        ],
+        "description": "Verify that previously reported ArtifactForge parsing failures (13 files) have been resolved and are no longer occurring. This item was identified during dashboard reconciliation as potentially outdated information.",
+        "acceptance_criteria": [
+          "Confirm ArtifactForge parsing is working correctly",
+          "No parsing failures in current codebase",
+          "Document resolution of previous parsing issues",
+          "Update dashboard to reflect resolved status"
+        ],
+        "verification_approach": {
+          "method": "systematic_parsing_test",
+          "scope": "all_artifact_forge_files",
+          "expected_result": "zero_parsing_failures",
+          "dashboard_update": "mark_as_resolved"
+        },
+        "date_added": "2025-08-19"
+      },
+      {
+        "requirement": "Functional equivalence gap analysis and resolution",
+        "status": "backlogged",
+        "domain": "round_trip_engineering",
+        "priority": "medium",
+        "estimated_effort": "2 days",
+        "dependencies": [
+          "src/round_trip_engineering/**/*.py",
+          "tests/test_round_trip_engineering.py"
+        ],
+        "description": "Investigate and resolve functional equivalence gaps identified in dashboard. Some failures may be due to test harness limitations rather than actual code errors. Need to determine root cause and implement proper fixes.",
+        "acceptance_criteria": [
+          "Functional equivalence gaps identified and documented",
+          "Root cause analysis completed (code vs test harness)",
+          "Appropriate fixes implemented",
+          "Test coverage improved for actual functionality",
+          "Dashboard status updated with resolution"
+        ],
+        "investigation_scope": {
+          "test_harness_analysis": "identify_limitations",
+          "code_quality_assessment": "validate_actual_functionality",
+          "gap_categorization": "code_issue_vs_test_limitation",
+          "resolution_strategy": "fix_code_or_improve_tests"
+        },
+        "date_added": "2025-08-19"
       }
     ],
     "eliminated": [

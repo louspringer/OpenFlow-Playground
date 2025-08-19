@@ -642,22 +642,37 @@ status: ## Show comprehensive project status
 	@echo "$(YELLOW)  Status vs Backlog Alignment:$(NC)"
 	@MYPY_COUNT_ALIGN=$$($(UV) run mypy src/ --ignore-missing-imports --no-error-summary 2>/dev/null | grep -c "error:" || echo "0"); \
 	echo "    $(YELLOW)Current MyPy errors: $$MYPY_COUNT_ALIGN$(NC)"; \
-	if [ "$$MYPY_COUNT_ALIGN" -gt 100 ] 2>/dev/null; then \
-		echo "    $(RED)🚨 CRITICAL: $$MYPY_COUNT_ALIGN MyPy errors NOT in backlog$(NC)"; \
-		echo "    $(YELLOW)    → Add 'Fix MyPy type errors' to backlog$(NC)"; \
-	elif [ "$$MYPY_COUNT_ALIGN" -gt 50 ] 2>/dev/null; then \
-		echo "    $(YELLOW)⚠️  $$MYPY_COUNT_ALIGN MyPy errors need backlog tracking$(NC)"; \
-		echo "    $(YELLOW)    → Consider adding to backlog$(NC)"; \
-	else \
-		echo "    $(GREEN)✅ MyPy errors within manageable range ($$MYPY_COUNT_ALIGN found)$(NC)"; \
-	fi; \
-	echo "$(YELLOW)  Alignment Score:$(NC)"; \
 	if [ -f project_model_registry.json ]; then \
+		MYPY_IN_BACKLOG=$$(grep -c '"requirement": "Fix.*MyPy.*type errors"' project_model_registry.json || echo "0"); \
 		if [ "$$MYPY_COUNT_ALIGN" -gt 100 ] 2>/dev/null; then \
+			if [ "$$MYPY_IN_BACKLOG" -gt 0 ]; then \
+				echo "    $(YELLOW)⚠️  $$MYPY_COUNT_ALIGN MyPy errors tracked in backlog$(NC)"; \
+				echo "    $(YELLOW)    → High priority item requiring attention$(NC)"; \
+			else \
+				echo "    $(RED)🚨 CRITICAL: $$MYPY_COUNT_ALIGN MyPy errors NOT in backlog$(NC)"; \
+				echo "    $(YELLOW)    → Add 'Fix MyPy type errors' to backlog$(NC)"; \
+							fi; \
+		elif [ "$$MYPY_COUNT_ALIGN" -gt 50 ] 2>/dev/null; then \
+			if [ "$$MYPY_IN_BACKLOG" -gt 0 ]; then \
+				echo "    $(YELLOW)⚠️  $$MYPY_COUNT_ALIGN MyPy errors tracked in backlog$(NC)"; \
+				echo "    $(YELLOW)    → Medium priority item requiring attention$(NC)"; \
+			else \
+				echo "    $(YELLOW)⚠️  $$MYPY_COUNT_ALIGN MyPy errors need backlog tracking$(NC)"; \
+				echo "    $(YELLOW)    → Consider adding to backlog$(NC)"; \
+			fi; \
+		else \
+			echo "    $(GREEN)✅ MyPy errors within manageable range ($$MYPY_COUNT_ALIGN found)$(NC)"; \
+		fi; \
+		echo "$(YELLOW)  Alignment Score:$(NC)"; \
+		if [ "$$MYPY_COUNT_ALIGN" -gt 100 ] && [ "$$MYPY_IN_BACKLOG" -eq 0 ]; then \
 			echo "    $(RED)❌ POOR: Critical issues missing from backlog$(NC)"; \
+		elif [ "$$MYPY_COUNT_ALIGN" -gt 50 ] && [ "$$MYPY_IN_BACKLOG" -eq 0 ]; then \
+			echo "    $(YELLOW)🟡 FAIR: Medium issues need backlog tracking$(NC)"; \
 		else \
 			echo "    $(GREEN)✅ GOOD: Status aligns with backlog$(NC)"; \
 		fi; \
+	else \
+		echo "    $(RED)❌ project_model_registry.json not found$(NC)"; \
 	fi
 	
 	@echo ""
@@ -673,8 +688,19 @@ status: ## Show comprehensive project status
 	@echo "  $(CYAN)make clean-all$(NC)    - Clean all artifacts"
 	@MYPY_COUNT_QUICK=$$($(UV) run mypy src/ --ignore-missing-imports --no-error-summary 2>/dev/null | grep -c "error:" || echo "0"); \
 	if [ "$$MYPY_COUNT_QUICK" -gt 100 ] 2>/dev/null; then \
-		echo "  $(RED)🚨 PRIORITY: Fix MyPy type errors$(NC)"; \
-		echo "  $(YELLOW)    → Add to backlog: 'Fix $$MYPY_COUNT_QUICK MyPy type errors'$(NC)"; \
+		if [ -f project_model_registry.json ]; then \
+			MYPY_IN_BACKLOG_QUICK=$$(grep -c '"requirement": "Fix.*MyPy.*type errors"' project_model_registry.json || echo "0"); \
+			if [ "$$MYPY_IN_BACKLOG_QUICK" -gt 0 ]; then \
+				echo "  $(YELLOW)⚠️  PRIORITY: Fix MyPy type errors (tracked in backlog)$(NC)"; \
+				echo "  $(YELLOW)    → High priority item requiring attention$(NC)"; \
+			else \
+				echo "  $(RED)🚨 PRIORITY: Fix MyPy type errors$(NC)"; \
+				echo "  $(YELLOW)    → Add to backlog: 'Fix $$MYPY_COUNT_QUICK MyPy type errors'$(NC)"; \
+			fi; \
+		else \
+			echo "  $(RED)🚨 PRIORITY: Fix MyPy type errors$(NC)"; \
+			echo "  $(YELLOW)    → Add to backlog: 'Fix $$MYPY_COUNT_QUICK MyPy type errors'$(NC)"; \
+		fi; \
 	fi
 	@echo ""
 	@echo "$(GREEN)✅ Comprehensive status report complete!$(NC)"
