@@ -18,30 +18,30 @@
       ],
       "purpose": "Provide the actual demo functionality and user experience"
     },
-            "demo_tools": {
-          "description": "Tool domains that support demo creation, testing, and management",
-          "domains": [
-            "ghostbusters",
-            "intelligent_linter_system",
-            "code_quality_system",
-            "multi_agent_testing",
-            "model_driven_testing",
-            "streamlit_debugging",
-            "visualization",
-            "artifact_forge",
-            "heuristic_file_type_processor",
-            "ghostbusters_file_type_processor",
-            "semantic_diff_engine",
-            "universal_ast_enhanced_linter",
-            "glacier_spore_system",
-            "heuristic_file_processing",
-            "github_discovery_automation",
-            "one_liner_linter",
-            "round_trip_engineering",
-            "over_engineering_prevention"
-          ],
-          "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
-        },
+    "demo_tools": {
+      "description": "Tool domains that support demo creation, testing, and management",
+      "domains": [
+        "ghostbusters",
+        "intelligent_linter_system",
+        "code_quality_system",
+        "multi_agent_testing",
+        "model_driven_testing",
+        "streamlit_debugging",
+        "visualization",
+        "artifact_forge",
+        "heuristic_file_type_processor",
+        "ghostbusters_file_type_processor",
+        "semantic_diff_engine",
+        "universal_ast_enhanced_linter",
+        "glacier_spore_system",
+        "heuristic_file_processing",
+        "github_discovery_automation",
+        "one_liner_linter",
+        "round_trip_engineering",
+        "over_engineering_prevention"
+      ],
+      "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
+    },
     "demo_infrastructure": {
       "description": "Infrastructure and supporting domains for the demo ecosystem",
       "domains": [
@@ -553,7 +553,7 @@
         "GhostbustersOrchestrator",
         "BaseExpert",
         "SecurityExpert",
-        "ArchitectureExpert", 
+        "ArchitectureExpert",
         "CodeQualityExpert",
         "TestExpert",
         "BuildExpert",
@@ -2458,7 +2458,7 @@
             "current_state": "Pattern recording system implemented and working",
             "patterns_found": [
               "SPACING: Docstring formatting issues (most common)",
-              "QUOTE_CHANGES: Mixed quote usage", 
+              "QUOTE_CHANGES: Mixed quote usage",
               "LINE_LENGTH: Lines over 88 characters",
               "IMPORT_REORDERING: Import organization"
             ],
@@ -2591,7 +2591,8 @@
     },
     "known_issues": [
       "GCP tests failing due to missing 'db' attribute (unrelated to recent changes)",
-      "Some test warnings about __init__ constructors (non-critical)"
+      "Some test warnings about __init__ constructors (non-critical)",
+      "🚨 CRITICAL: Cursor IDE systemic issue - AI assistants may not scan .cursor/rules and docs/ before work, leading to incomplete context and potential errors"
     ],
     "recent_fixes": [
       "Removed 15,898 generated test files that were breaking test collection",
@@ -3053,7 +3054,7 @@
     },
     {
       "requirement": "Prevent missed backlog items through systematic discovery",
-      "domain": "backlog_discovery", 
+      "domain": "backlog_discovery",
       "implementation": "Multi-method search approach with validation against multiple sources",
       "test": "test_requirement_backlog_discovery_prevention"
     },
@@ -3524,6 +3525,12 @@
       "domain": "project_management_design",
       "implementation": "Risk assessment and milestone tracking system",
       "test": "test_requirement_95_project_management_risk_milestone"
+    },
+    {
+      "requirement": "Cursor IDE systemic issue mitigation",
+      "domain": "cursor_ide_systemic_issue_mitigation",
+      "implementation": "Makefile status reminders, risk management framework, multi-agent validation",
+      "test": "test_requirement_cursor_ide_mitigation"
     }
   ],
   "implementation_plan": {
@@ -3701,6 +3708,30 @@
           "impact": "test_failures",
           "resolution_strategy": "align_tests_with_implementation"
         }
+      },
+      {
+        "requirement": "Fix 131 MyPy type errors",
+        "status": "backlogged",
+        "domain": "python_quality",
+        "priority": "high",
+        "estimated_effort": "1-2 weeks",
+        "dependencies": [
+          "src/**/*.py",
+          "tests/**/*.py"
+        ],
+        "description": "Resolve 131 MyPy type errors currently affecting code quality and maintainability",
+        "acceptance_criteria": [
+          "All MyPy type errors resolved",
+          "Type annotations properly implemented",
+          "Code quality score improved",
+          "No new type errors introduced"
+        ],
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "impact": "Affects code quality, maintainability, and development velocity",
+          "mitigation": "Systematic resolution with pre-commit hooks and CI/CD integration"
+        },
+        "date_added": "2025-08-19"
       }
     ],
     "eliminated": [
@@ -4024,7 +4055,7 @@
     "domain_coverage": {
       "total_domains": 32,
       "core_domains": 4,
-              "tool_domains": 10,
+      "tool_domains": 10,
       "infrastructure_domains": 7,
       "api_domains": 3,
       "utility_domains": 6,
@@ -4834,7 +4865,7 @@
     "content_indicators": [
       "backlog",
       "TODO",
-      "FIXME", 
+      "FIXME",
       "HACK",
       "XXX",
       "BUG",
@@ -4860,7 +4891,7 @@
         "description": "Primary source for formal backlog items",
         "search_patterns": [
           "backlogged array",
-          "next_steps arrays", 
+          "next_steps arrays",
           "status: backlogged",
           "over_engineering_prevention domain"
         ],
@@ -4882,7 +4913,7 @@
         "description": "Code-level backlog indicators in source files",
         "search_patterns": [
           "TODO comments",
-          "FIXME comments", 
+          "FIXME comments",
           "HACK comments",
           "XXX comments",
           "BUG comments",
@@ -4891,7 +4922,7 @@
         ],
         "file_patterns": [
           "*.py",
-          "*.js", 
+          "*.js",
           "*.ts",
           "*.go"
         ]
@@ -4901,7 +4932,7 @@
         "search_patterns": [
           "status: backlogged",
           "status: pending",
-          "status: incomplete", 
+          "status: incomplete",
           "status: not implemented",
           "priority: high/medium/low",
           "estimated_effort: X weeks",
@@ -4919,7 +4950,7 @@
     "backlog_item_format": {
       "required_fields": [
         "requirement",
-        "status", 
+        "status",
         "domain",
         "priority",
         "estimated_effort",
