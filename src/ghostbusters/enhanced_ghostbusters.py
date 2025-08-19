@@ -5,16 +5,15 @@ Enhanced Ghostbusters with Real Analysis and Smart Tool Discovery
 
 import asyncio
 import logging
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-# Import our tool discovery
-sys.path.append(str(Path(__file__).parent))
-from tool_discovery import ToolDiscovery  # type: ignore
-
+# Third-party imports
 from src.secure_shell_service.secure_executor import secure_execute
+
+# Local imports (relative import)
+from .tool_discovery import ToolDiscovery
 
 # Configure detailed logging
 logging.basicConfig(

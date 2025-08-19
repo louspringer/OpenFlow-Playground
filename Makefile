@@ -398,7 +398,7 @@ validate-model: ## Validate project model registry
 
 validate-requirements: ## Validate requirements traceability
 	@echo "$(BLUE)🔍 Validating requirements traceability...$(NC)"
-	@$(UV) run python tests/test_model_traceability.py
+	@$(UV) run python src/multi_agent_testing/test_model_traceability.py
 	@echo "$(GREEN)✅ Requirements traceability validated$(NC)"
 
 # =============================================================================
