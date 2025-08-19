@@ -5,13 +5,13 @@ Tool Discovery System for Ghostbusters with Web Search
 
 # import subprocess  # REMOVED - replaced with secure_execute
 
-# Import web discovery
 import sys
 from pathlib import Path
 from typing import Any
 
 from src.secure_shell_service.secure_executor import secure_execute
 
+# Import our tool discovery
 sys.path.append(str(Path(__file__).parent))
 from web_tool_discovery import WebToolDiscovery  # type: ignore
 

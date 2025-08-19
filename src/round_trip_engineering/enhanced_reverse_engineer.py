@@ -10,7 +10,7 @@ import json
 import os
 import uuid
 from datetime import datetime
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from .pattern_detector import PatternDetector
 

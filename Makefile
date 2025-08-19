@@ -1,7 +1,7 @@
 # OpenFlow Playground - Model-Driven Makefile
 # This Makefile leverages the project_model_registry.json for domain-specific operations
 
-.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all
+.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard
 .PHONY: test test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell test-all
 .PHONY: lint lint-python lint-bash lint-cloudformation lint-docs lint-security lint-streamlit lint-healthcare lint-go lint-secure-shell lint-all
 .PHONY: format format-python format-bash format-docs format-go format-secure-shell format-all
@@ -92,6 +92,9 @@ help: ## Show this help message
 	@echo "  make test-security      - Run security tests and scans"
 	@echo "  make lint-all           - Lint all domains"
 	@echo "  make validate-model     - Validate project model registry"
+	@echo "  make status             - Show comprehensive project status"
+	@echo "  make status-quick       - Show quick project status"
+	@echo "  make status-dashboard   - Update dashboard with real data"
 	@echo "  make dev-install        - Install Node.js development environment"
 	@echo "  make mermaid-check      - Validate Mermaid diagrams"
 	@echo "  make mcp-install        - Install MCP servers"
@@ -187,8 +190,13 @@ install-secure-shell: ## Install secure shell service dependencies
 			pacman) pacman -S protobuf ;; \
 			*) echo "$(RED)❌ Unsupported package manager: $(PACKAGE_MANAGER)$(NC)"; exit 1 ;; \
 		esac; }
-	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	@if command -v go >/dev/null 2>&1; then \
+		go install google.golang.org/protobuf/cmd/protoc-gen-go@latest; \
+		go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest; \
+	else \
+		echo "$(YELLOW)⚠️  Go not found - skipping Go-specific installations$(NC)"; \
+		echo "$(YELLOW)💡 Install Go first with: make install-go$(NC)"; \
+	fi
 	@$(UV) add grpcio grpcio-tools
 	@echo "$(GREEN)✅ Secure shell service dependencies installed$(NC)"
 
@@ -256,8 +264,13 @@ test-healthcare: ## Run healthcare CDC tests
 
 test-go: ## Run Go service tests
 	@echo "$(BLUE)🐹 Running Go service tests...$(NC)"
-	@cd src/secure_shell_service && go test ./...
-	@echo "$(GREEN)✅ Go service tests completed$(NC)"
+	@if command -v go >/dev/null 2>&1; then \
+		cd src/secure_shell_service && go test ./...; \
+		echo "$(GREEN)✅ Go service tests completed$(NC)"; \
+	else \
+		echo "$(YELLOW)⚠️  Go not found - skipping Go tests$(NC)"; \
+		echo "$(YELLOW)💡 Install Go with: make install-go$(NC)"; \
+	fi
 
 test-secure-shell: ## Run secure shell service tests
 	@echo "$(BLUE)🛡️ Running secure shell service tests...$(NC)"
@@ -355,8 +368,14 @@ format-docs: ## Format documentation
 
 format-go: ## Format Go code
 	@echo "$(BLUE)🐹 Formatting Go code...$(NC)"
-	@cd src/secure_shell_service && go fmt ./...
-	@echo "$(GREEN)✅ Go code formatting completed$(NC)"
+	@if command -v go >/dev/null 2>&1; then \
+		cd src/secure_shell_service && go fmt ./...; \
+		echo "$(GREEN)✅ Go code formatting completed$(NC)"; \
+	else \
+		echo "$(YELLOW)⚠️  Go not found - skipping Go formatting$(NC)"; \
+		echo "$(YELLOW)💡 Install Go with: $(PACKAGE_MANAGER) install go$(NC)"; \
+		echo "$(YELLOW)💡 Or run: make install-go$(NC)"; \
+	fi
 
 format-secure-shell: ## Format secure shell service code
 	@echo "$(BLUE)🛡️ Formatting secure shell service code...$(NC)"
@@ -408,7 +427,11 @@ clean-cache: ## Clean all cache directories
 
 clean-go: ## Clean Go artifacts
 	@echo "$(BLUE)🧹 Cleaning Go artifacts...$(NC)"
-	@cd src/secure_shell_service && go clean
+	@if command -v go >/dev/null 2>&1; then \
+		cd src/secure_shell_service && go clean; \
+	else \
+		echo "$(YELLOW)⚠️  Go not found - skipping go clean$(NC)"; \
+	fi
 	@rm -f src/secure_shell_service/secure-shell-service
 	@rm -f src/secure_shell_service/*.pb.go
 	@echo "$(GREEN)✅ Go artifacts cleaned$(NC)"
@@ -442,10 +465,15 @@ deploy-healthcare: ## Deploy healthcare CDC components
 
 deploy-secure-shell: ## Deploy secure shell service
 	@echo "$(BLUE)🛡️ Deploying secure shell service...$(NC)"
-	@cd src/secure_shell_service && go build -o secure-shell-service .
-	@cd src/secure_shell_service && ./secure-shell-service &
-	@echo "$(GREEN)✅ Secure shell service deployed at port 50051$(NC)"
-	@echo "$(YELLOW)💡 To test: cd src/secure_shell_service && python client.py$(NC)"
+	@if command -v go >/dev/null 2>&1; then \
+		cd src/secure_shell_service && go build -o secure-shell-service .; \
+		cd src/secure_shell_service && ./secure-shell-service &; \
+		echo "$(GREEN)✅ Secure shell service deployed at port 50051$(NC)"; \
+		echo "$(YELLOW)💡 To test: cd src/secure_shell_service && python client.py$(NC)"; \
+	else \
+		echo "$(RED)❌ Go not found - cannot deploy secure shell service$(NC)"; \
+		echo "$(YELLOW)💡 Install Go with: make install-go$(NC)"; \
+	fi
 
 # =============================================================================
 # SECURITY TARGETS
@@ -539,14 +567,98 @@ show-rules: ## Show available rules
 	@echo "$(BLUE)🔍 Available rules:$(NC)"
 	@find .cursor/rules/ -name "*.mdc" -exec basename {} \;
 
-status: ## Show project status
-	@echo "$(CYAN)OpenFlow Playground Status$(NC)"
-	@echo "$(BLUE)📁 Project structure:$(NC)"
-	@find . -maxdepth 2 -type d | grep -v __pycache__ | grep -v .git | sort
+status: ## Show comprehensive project status
+status-quick: ## Show quick project status (faster)
+	@echo "$(CYAN)🚀 OpenFlow Playground - Real-Time Status Report$(NC)"
+	@echo "$(BLUE)================================================$(NC)"
 	@echo ""
-		@echo "$(BLUE)🔧 Available make targets:$(NC)"
-	@make help | grep -E "^[a-zA-Z_-]+:" | head -10
-	@echo "$(YELLOW)... and more (run 'make help' for full list)$(NC)"
+	
+	@echo "$(BLUE)📊 Code Quality Status$(NC)"
+	@echo "$(YELLOW)  Flake8 Issues:$(NC)"
+	@$(UV) run flake8 --count --statistics src/ 2>/dev/null | tail -1 | grep -Eo '[0-9]+' | head -1 | xargs -I {} echo "    $(GREEN)✅ {} issues found$(NC)" || echo "    $(RED)❌ Flake8 check failed$(NC)"
+	@echo "$(YELLOW)  MyPy Issues:$(NC)"
+	@$(UV) run mypy src/ --ignore-missing-imports --no-error-summary 2>/dev/null | grep -c "error:" | xargs -I {} echo "    $(GREEN)✅ {} type errors found$(NC)" || echo "    $(RED)❌ MyPy check failed$(NC)"
+	@echo "$(YELLOW)  Black Formatting:$(NC)"
+	@$(UV) run black --check --diff src/ 2>/dev/null && echo "    $(GREEN)✅ Code is properly formatted$(NC)" || echo "    $(RED)❌ Code needs formatting$(NC)"
+	
+	@echo ""
+	@echo "$(BLUE)🔍 Project Health$(NC)"
+	@echo "$(YELLOW)  Git Status:$(NC)"
+	@git status --porcelain | wc -l | xargs -I {} echo "    $(GREEN)✅ {} uncommitted changes$(NC)"
+	@echo "$(YELLOW)  Current Branch:$(NC)"
+	@git branch --show-current | xargs -I {} echo "    $(GREEN)✅ {}$(NC)"
+	@echo "$(YELLOW)  Last Commit:$(NC)"
+	@git log -1 --format="%h - %s (%cr)" | xargs -I {} echo "    $(GREEN)✅ {}$(NC)"
+	
+	@echo ""
+	@echo "$(BLUE)📦 Dependencies$(NC)"
+	@echo "$(YELLOW)  UV Available:$(NC)"
+	@command -v $(UV) >/dev/null 2>&1 && echo "    $(GREEN)✅ UV package manager$(NC)" || echo "    $(RED)❌ UV not found$(NC)"
+	@echo "$(YELLOW)  Python Version:$(NC)"
+	@$(PYTHON) --version | xargs -I {} echo "    $(GREEN)✅ {}$(NC)"
+	@echo "$(YELLOW)  Dependencies:$(NC)"
+	@test -f pyproject.toml && echo "    $(GREEN)✅ pyproject.toml found$(NC)" || echo "    $(RED)❌ pyproject.toml missing$(NC)"
+	@test -f uv.lock && echo "    $(GREEN)✅ uv.lock found$(NC)" || echo "    $(RED)❌ uv.lock missing$(NC)"
+	
+	@echo ""
+	@echo "$(BLUE)🏗️  System Components$(NC)"
+	@echo "$(YELLOW)  Ghostbusters:$(NC)"
+	@test -d src/ghostbusters && echo "    $(GREEN)✅ Multi-agent system available$(NC)" || echo "    $(RED)❌ Ghostbusters missing$(NC)"
+	@echo "$(YELLOW)  ArtifactForge:$(NC)"
+	@test -d src/artifact_forge && echo "    $(GREEN)✅ Artifact analysis available$(NC)" || echo "    $(RED)❌ ArtifactForge missing$(NC)"
+	@echo "$(YELLOW)  Model-Driven:$(NC)"
+	@test -d src/model_driven_projection && echo "    $(GREEN)✅ Model projection available$(NC)" || echo "    $(RED)❌ Model projection missing$(NC)"
+	@echo "$(YELLOW)  Quality System:$(NC)"
+	@test -d src/code_quality_system && echo "    $(GREEN)✅ Quality system available$(NC)" || echo "    $(RED)❌ Quality system missing$(NC)"
+	
+	@echo ""
+	@echo "$(BLUE)📈 Recent Activity$(NC)"
+	@echo "$(YELLOW)  Last 3 Commits:$(NC)"
+	@git log --oneline -3 | while read line; do echo "    $(GREEN)✅ $$line$(NC)"; done
+	
+	@echo ""
+	@echo "$(BLUE)🎯 Quick Actions$(NC)"
+	@echo "  $(CYAN)make lint-all$(NC)     - Fix all linting issues"
+	@echo "  $(CYAN)make format-all$(NC)   - Format all code"
+	@echo "  $(CYAN)make test-all$(NC)     - Run all tests"
+	@echo "  $(CYAN)make clean-all$(NC)    - Clean all artifacts"
+	@echo ""
+	@echo "$(GREEN)✅ Status report complete!$(NC)"
+
+
+
+status-dashboard: ## Update dashboard with real project data
+	@echo "$(CYAN)📊 Updating Project Dashboard with Real Data$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@echo ""
+	@echo "$(YELLOW)📋 Collecting current metrics...$(NC)"
+	
+	@echo "$(BLUE)  Flake8 Issues:$(NC)"
+	@FLAKE8_COUNT=$$($(UV) run flake8 --count --statistics src/ 2>/dev/null | tail -1 | grep -Eo '[0-9]+' | head -1 || echo "0"); \
+	echo "    Found $$FLAKE8_COUNT Flake8 issues"
+	
+	@echo "$(BLUE)  MyPy Errors:$(NC)"
+	@MYPY_COUNT=$$($(UV) run mypy src/ --ignore-missing-imports --no-error-summary 2>/dev/null | grep -c "error:" || echo "0"); \
+	echo "    Found $$MYPY_COUNT MyPy errors"
+	
+	@echo "$(BLUE)  Git Changes:$(NC)"
+	@GIT_CHANGES=$$(git status --porcelain | wc -l); \
+	echo "    $$GIT_CHANGES uncommitted changes"
+	
+	@echo "$(BLUE)  Quality Score:$(NC)"
+	@if [ "$$FLAKE8_COUNT" -eq 0 ] && [ "$$MYPY_COUNT" -eq 0 ]; then \
+		echo "    $(GREEN)✅ 100% - Perfect Quality!$(NC)"; \
+	elif [ "$$FLAKE8_COUNT" -lt 10 ] && [ "$$MYPY_COUNT" -lt 10 ]; then \
+		echo "    $(GREEN)✅ 80% - Good Quality$(NC)"; \
+	elif [ "$$FLAKE8_COUNT" -lt 50 ] && [ "$$MYPY_COUNT" -lt 50 ]; then \
+		echo "    $(YELLOW)⚠️  60% - Needs Attention$(NC)"; \
+	else \
+		echo "    $(RED)❌ 40% - Critical Issues$(NC)"; \
+	fi
+	
+	@echo ""
+	@echo "$(GREEN)✅ Dashboard data collected!$(NC)"
+	@echo "$(YELLOW)💡 Run 'make status' for full report$(NC)"
 
 # =============================================================================
 # NODE.JS DEVELOPMENT TARGETS

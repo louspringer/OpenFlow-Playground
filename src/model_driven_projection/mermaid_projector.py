@@ -10,7 +10,7 @@ import ast
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

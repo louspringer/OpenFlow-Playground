@@ -7,7 +7,7 @@ Purpose: Detect coding patterns and transform them into best practices
 
 import ast
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import Any
 
 
 @dataclass

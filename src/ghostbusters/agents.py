@@ -99,7 +99,7 @@ class SecurityExpert(BaseExpert):
             "Use Go/Rust for performance-critical shell operations",
             "Implement gRPC shell service for secure command execution",
             "Integrate GitHub MCP for intelligent repository analysis",
-            "Use mcp-git-ingest for structured repository context"
+            "Use mcp-git-ingest for structured repository context",
             "Add timeouts and resource limits to all subprocess calls",
         ]
 
@@ -188,8 +188,7 @@ class TestExpert(BaseExpert):
                 {
                     "type": "test_coverage_issue",
                     "priority": "medium",
-                    "description": f"Low test coverage: {len( \
-    test_files)} test files vs {len(source_files)} source files",
+                    "description": f"Low test coverage: {len(test_files)} test files vs {len(source_files)} source files",
                 },
             )
 

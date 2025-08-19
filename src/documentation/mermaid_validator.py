@@ -9,15 +9,14 @@ with the project's linting system to catch syntax errors before they cause issue
 import re
 import sys
 from pathlib import Path
-from typing import List
 
 
 class MermaidValidator:
     """Validates Mermaid diagram syntax in markdown files."""
 
     def __init__(self) -> None:
-        self.errors = []
-        self.warnings = []
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
 
     def validate_file(self, file_path: Path) -> bool:
         """Validate a single markdown file for Mermaid syntax."""

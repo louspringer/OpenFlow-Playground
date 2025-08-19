@@ -457,9 +457,7 @@ class SemanticDiffEngine:
             "semantic_impact": (
                 "high"
                 if diff.impact_score > 0.7
-                else "medium"
-                if diff.impact_score > 0.4
-                else "low"
+                else "medium" if diff.impact_score > 0.4 else "low"
             ),
         }
 

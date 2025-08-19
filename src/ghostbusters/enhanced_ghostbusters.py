@@ -5,12 +5,14 @@ Enhanced Ghostbusters with Real Analysis and Smart Tool Discovery
 
 import asyncio
 import logging
-
-# import subprocess  # REMOVED - replaced with secure_execute
 import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+# Import our tool discovery
+sys.path.append(str(Path(__file__).parent))
+from tool_discovery import ToolDiscovery  # type: ignore
 
 from src.secure_shell_service.secure_executor import secure_execute
 
@@ -19,10 +21,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
-
-# Import our tool discovery
-sys.path.append(str(Path(__file__).parent))
-from tool_discovery import ToolDiscovery  # type: ignore
 
 
 @dataclass
