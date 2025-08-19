@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class RecommendationEngine:
     """Agent for generating quality improvement recommendations"""
 
-    def __init__(self, config: dict[str, Any] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         """Initialize the recommendation engine agent"""
         self.config = config or {}
         self.recommendation_templates = {
@@ -53,24 +53,23 @@ class RecommendationEngine:
 
         try:
             # Generate priority recommendations
-            recommendations["priority_recommendations"] = (
-                self._generate_priority_recommendations(analysis_data)
-            )
+            recommendations[
+                "priority_recommendations"
+            ] = self._generate_priority_recommendations(analysis_data)
 
             # Generate category-specific recommendations
-            recommendations["category_recommendations"] = (
-                self._generate_category_recommendations(analysis_data)
-            )
+            recommendations[
+                "category_recommendations"
+            ] = self._generate_category_recommendations(analysis_data)
 
             # Create implementation plan
+            priority_recs = list(recommendations["priority_recommendations"])
             recommendations["implementation_plan"] = self._create_implementation_plan(
-                recommendations["priority_recommendations"]
+                priority_recs
             )
 
             # Estimate effort
-            recommendations["estimated_effort"] = self._estimate_effort(
-                recommendations["priority_recommendations"]
-            )
+            recommendations["estimated_effort"] = self._estimate_effort(priority_recs)
 
             logger.info("✅ Recommendations generated successfully")
 

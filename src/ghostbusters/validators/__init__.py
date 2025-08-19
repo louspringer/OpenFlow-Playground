@@ -2,31 +2,14 @@
 
 from typing import Any
 
-from pydantic import BaseModel, Field, field_validator
-
-from .base_validator import BaseValidator
-
-
-class ValidationResult(BaseModel):
-    """Result from validation"""
-
-    is_valid: bool
-    confidence: float = Field(ge=0.0, le=1.0)
-    issues: list[str] = Field(default_factory=list)
-    recommendations: list[str] = Field(default_factory=list)
-    validator_name: str = Field(default="unknown")
-
-    @field_validator("confidence")
-    @classmethod
-    def validate_confidence(cls, v):
-        """Ensure confidence is between 0.0 and 1.0."""
-        return max(0.0, min(1.0, v))
+from .base_validator import BaseValidator, ValidationResult
 
 
 class SecurityValidator(BaseValidator):
     """Security validator for validating security findings"""
 
     def __init__(self) -> None:
+        """Initialize SecurityValidator with name."""
         super().__init__("SecurityValidator")
 
     async def validate_findings(
@@ -66,6 +49,7 @@ class CodeQualityValidator(BaseValidator):
     """Code quality validator for validating quality findings"""
 
     def __init__(self) -> None:
+        """Initialize CodeQualityValidator with name."""
         super().__init__("CodeQualityValidator")
 
     async def validate_findings(
@@ -108,6 +92,7 @@ class TestValidator(BaseValidator):
     """Test validator for validating test findings"""
 
     def __init__(self) -> None:
+        """Initialize TestValidator with name."""
         super().__init__("TestValidator")
 
     async def validate_findings(
@@ -147,6 +132,7 @@ class BuildValidator(BaseValidator):
     """Build validator for validating build findings"""
 
     def __init__(self) -> None:
+        """Initialize BuildValidator with name."""
         super().__init__("BuildValidator")
 
     async def validate_findings(
@@ -186,6 +172,7 @@ class ArchitectureValidator(BaseValidator):
     """Architecture validator for validating architectural findings"""
 
     def __init__(self) -> None:
+        """Initialize ArchitectureValidator with name."""
         super().__init__("ArchitectureValidator")
 
     async def validate_findings(
@@ -228,6 +215,7 @@ class ModelValidator(BaseValidator):
     """Model validator for validating model findings"""
 
     def __init__(self) -> None:
+        """Initialize ModelValidator with name."""
         super().__init__("ModelValidator")
 
     async def validate_findings(

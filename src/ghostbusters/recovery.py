@@ -26,7 +26,7 @@ class RecoveryResult(BaseModel):
 
     @field_validator("confidence")
     @classmethod
-    def validate_confidence(cls, v):
+    def validate_confidence(cls, v: float) -> float:
         """Ensure confidence is between 0.0 and 1.0."""
         return max(0.0, min(1.0, v))
 
@@ -47,10 +47,10 @@ class SyntaxRecoveryEngine(BaseRecoveryEngine):
 
     async def execute_recovery(self, action: dict[str, Any]) -> RecoveryResult:
         """Execute syntax recovery"""
-        files_fixed = []
-        errors = []
-        warnings = []
-        changes_made = []
+        files_fixed: list[str] = []
+        errors: list[str] = []
+        warnings: list[str] = []
+        changes_made: list[str] = []
 
         target_files = action.get("target_files", [])
 
@@ -89,10 +89,10 @@ class IndentationFixer(BaseRecoveryEngine):
 
     async def execute_recovery(self, action: dict[str, Any]) -> RecoveryResult:
         """Execute indentation fixing"""
-        files_fixed = []
-        errors = []
-        warnings = []
-        changes_made = []
+        files_fixed: list[str] = []
+        errors: list[str] = []
+        warnings: list[str] = []
+        changes_made: list[str] = []
 
         target_files = action.get("target_files", [])
 
@@ -145,10 +145,10 @@ class ImportResolver(BaseRecoveryEngine):
 
     async def execute_recovery(self, action: dict[str, Any]) -> RecoveryResult:
         """Execute import resolution"""
-        files_fixed = []
-        errors = []
-        warnings = []
-        changes_made = []
+        files_fixed: list[str] = []
+        errors: list[str] = []
+        warnings: list[str] = []
+        changes_made: list[str] = []
 
         target_files = action.get("target_files", [])
 

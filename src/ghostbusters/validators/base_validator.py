@@ -17,7 +17,7 @@ class ValidationResult(BaseModel):
 
     @field_validator("confidence")
     @classmethod
-    def validate_confidence(cls, v):
+    def validate_confidence(cls, v: float) -> float:
         """Ensure confidence is between 0.0 and 1.0."""
         return max(0.0, min(1.0, v))
 
