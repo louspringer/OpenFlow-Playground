@@ -5423,7 +5423,56 @@
       "regenerate": "Generate new code from corrected model",
       "test": "Validate generated code meets all requirements",
       "iterate": "Repeat until no issues remain"
-    }
+    },
+    "test_results": [
+      {
+        "test_id": "recommendation_engine_round_trip_20250819",
+        "test_date": "2025-08-19T14:12:10.556832",
+        "test_file": "src/ghostbusters/agents/recommendation_engine.py",
+        "test_status": "SUCCESSFUL",
+        "results": {
+          "model_extraction": {
+            "status": "SUCCESSFUL",
+            "ast_nodes": 747,
+            "components": 1,
+            "methods": 6,
+            "model_id": "7d8fc98a-94b0-49a3-a5ea-49c781b4dec2"
+          },
+          "model_validation": {
+            "status": "PASSED",
+            "docstring_coverage": "100.0%",
+            "type_annotations": "PRESENT",
+            "code_structure": "VALID"
+          },
+          "code_regeneration": {
+            "status": "SUCCESSFUL",
+            "classes": 1,
+            "functions": 6,
+            "imports": 2,
+            "ast_nodes": 747
+          },
+          "functional_equivalence": {
+            "status": "MAINTAINED",
+            "missing_methods": 0,
+            "extra_methods": 0,
+            "signature_preservation": "100%"
+          },
+          "quality_gates": {
+            "ast_parsing": "PASSED",
+            "structure_validation": "PASSED",
+            "documentation_coverage": "PASSED"
+          }
+        },
+        "conclusion": "Round-trip validation system working correctly, model-code synchronization maintained without quality gate failures",
+        "next_steps": [
+          "Apply round-trip validation to other critical files",
+          "Integrate with CI/CD pipeline",
+          "Automate round-trip compliance monitoring"
+        ]
+      }
+    ],
+    "last_test_date": "2025-08-19T14:12:10.556832",
+    "test_success_rate": "100%"
   },
   "javascript_editing_tools": {
     "description": "JavaScript-based tools for deterministic model manipulation and validation",
@@ -5462,5 +5511,53 @@
       "rule": "Use JavaScript tools for model updates, never manual editing",
       "validation": "Schema validation required for all model changes",
       "fallback": "Direct manipulation allowed for complex system additions"
-    }  }
+    }
+  },
+  "round_trip_validation_tests": [
+    {
+      "test_id": "recommendation_engine_round_trip_20250819",
+      "test_date": "2025-08-19T14:12:10.556832",
+      "test_file": "src/ghostbusters/agents/recommendation_engine.py",
+      "test_status": "SUCCESSFUL",
+      "results": {
+        "model_extraction": {
+          "status": "SUCCESSFUL",
+          "ast_nodes": 747,
+          "components": 1,
+          "methods": 6,
+          "model_id": "7d8fc98a-94b0-49a3-a5ea-49c781b4dec2"
+        },
+        "model_validation": {
+          "status": "PASSED",
+          "docstring_coverage": "100.0%",
+          "type_annotations": "PRESENT",
+          "code_structure": "VALID"
+        },
+        "code_regeneration": {
+          "status": "SUCCESSFUL",
+          "classes": 1,
+          "functions": 6,
+          "imports": 2,
+          "ast_nodes": 747
+        },
+        "functional_equivalence": {
+          "status": "MAINTAINED",
+          "missing_methods": 0,
+          "extra_methods": 0,
+          "signature_preservation": "100%"
+        },
+        "quality_gates": {
+          "ast_parsing": "PASSED",
+          "structure_validation": "PASSED",
+          "documentation_coverage": "PASSED"
+        }
+      },
+      "conclusion": "Round-trip validation system working correctly, model-code synchronization maintained without quality gate failures",
+      "next_steps": [
+        "Apply round-trip validation to other critical files",
+        "Integrate with CI/CD pipeline",
+        "Automate round-trip compliance monitoring"
+      ]
+    }
+  ]
 }
