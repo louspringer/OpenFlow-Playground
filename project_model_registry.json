@@ -3675,6 +3675,32 @@
           "Comprehensive MDC file coverage"
         ],
         "date_added": "2024-12-19"
+      },
+      {
+        "requirement": "Ghostbusters GCP test alignment reconciliation",
+        "status": "backlogged",
+        "domain": "ghostbusters",
+        "priority": "medium",
+        "estimated_effort": "3 days",
+        "dependencies": [
+          "src/ghostbusters_gcp/main.py",
+          "tests/test_ghostbusters_gcp.py"
+        ],
+        "description": "Reconcile test drift between current Ghostbusters GCP implementation and test expectations. Current tests expect Firestore database operations but implementation uses mock responses. Need to align tests with actual implementation behavior.",
+        "acceptance_criteria": [
+          "Tests align with current mock-based implementation",
+          "No more test failures due to implementation drift",
+          "Test coverage maintained for actual functionality",
+          "Clear documentation of implementation vs test expectations"
+        ],
+        "date_added": "2025-08-19",
+        "drift_analysis": {
+          "original_expectation": "Firestore database integration",
+          "current_implementation": "Mock response system",
+          "drift_type": "implementation_change",
+          "impact": "test_failures",
+          "resolution_strategy": "align_tests_with_implementation"
+        }
       }
     ],
     "eliminated": [
