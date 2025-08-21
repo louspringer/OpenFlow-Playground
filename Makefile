@@ -1,7 +1,7 @@
 # OpenFlow Playground - Model-Driven Makefile
 # This Makefile leverages the project_model_registry.json for domain-specific operations
 
-.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard
+.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard ghostbusters ghostbusters-quick ghostbusters-detail ghostbusters-install
 .PHONY: test test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell test-all
 .PHONY: lint lint-python lint-bash lint-cloudformation lint-docs lint-security lint-streamlit lint-healthcare lint-go lint-secure-shell lint-all
 .PHONY: format format-python format-bash format-docs format-go format-secure-shell format-all
@@ -10,7 +10,7 @@
 .PHONY: deploy deploy-streamlit deploy-security deploy-healthcare deploy-secure-shell
 .PHONY: security security-scan security-check security-audit
 .PHONY: docs docs-build docs-serve docs-index
-.PHONY: dev-install node-check mermaid-check mcp-install
+.PHONY: dev-install node-check mermaid-check mcp-install mcp mcp-check mcp-setup mcp-validate backlog backlog-list backlog-add backlog-update backlog-remove backlog-stats backlog-search
 
 # Project configuration
 PROJECT_NAME := openflow-playground
@@ -98,6 +98,17 @@ help: ## Show this help message
 	@echo "  make dev-install        - Install Node.js development environment"
 	@echo "  make mermaid-check      - Validate Mermaid diagrams"
 	@echo "  make mcp-install        - Install MCP servers"
+	@echo "  make mcp                - Run MCP CLI with check command"
+	@echo "  make mcp-setup          - Complete MCP setup process"
+	@echo "  make mcp-validate       - Validate MCP configuration"
+	@echo "  make backlog            - Show backlog statistics"
+	@echo "  make backlog-list       - List all backlog items"
+	@echo ""
+	@echo "$(PURPLE)Ghostbusters Multi-Agent System:$(NC)"
+	@echo "  make ghostbusters       - Run full Ghostbusters analysis"
+	@echo "  make ghostbusters-quick - Quick Ghostbusters check"
+	@echo "  make ghostbusters-detail- Detailed Ghostbusters analysis"
+	@echo "  make ghostbusters-install- Install Ghostbusters dependencies"
 
 # =============================================================================
 # INSTALLATION TARGETS
@@ -798,6 +809,47 @@ status-dashboard: ## Update dashboard with real project data
 	@echo "$(YELLOW)💡 Run 'make status' for full report$(NC)"
 
 # =============================================================================
+# GHOSTBUSTERS MULTI-AGENT SYSTEM TARGETS
+# =============================================================================
+
+ghostbusters: ## Run Ghostbusters multi-agent delusion detection and recovery
+	@echo "$(CYAN)👻 CALLING MORE GHOSTBUSTERS!$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@echo "$(YELLOW)🔒 Multi-agent validation with all available LLMs and deterministic tools...$(NC)"
+	@echo ""
+	@echo "$(BLUE)📋 Checking Ghostbusters system...$(NC)"
+	@test -d src/ghostbusters || (echo "$(RED)❌ Ghostbusters system not found$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Ghostbusters system found$(NC)"
+	@echo "$(YELLOW)📋 Checking dependencies...$(NC)"
+	@$(UV) run python -c "import langgraph" > /dev/null 2>&1 || (echo "$(RED)❌ langgraph not available. Installing...$(NC)" && $(UV) sync)
+	@echo "$(GREEN)✅ Dependencies ready$(NC)"
+	@echo "$(YELLOW)📋 Running multi-agent analysis...$(NC)"
+	@$(UV) run python scripts/ghostbusters_cli.py detail
+	@echo "$(GREEN)✅ Ghostbusters analysis complete!$(NC)"
+
+ghostbusters-quick: ## Quick Ghostbusters check (minimal output)
+	@echo "$(CYAN)👻 Quick Ghostbusters Check$(NC)"
+	@$(UV) run python scripts/ghostbusters_cli.py quick
+
+ghostbusters-detail: ## Detailed Ghostbusters analysis with full findings
+	@echo "$(CYAN)👻 Detailed Ghostbusters Analysis$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@$(UV) run python scripts/ghostbusters_cli.py detail
+
+ghostbusters-install: ## Install Ghostbusters dependencies and verify system
+	@echo "$(CYAN)🔧 Installing Ghostbusters Dependencies$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@echo "$(YELLOW)📋 Installing Python dependencies...$(NC)"
+	@$(UV) sync
+	@echo "$(GREEN)✅ Dependencies installed$(NC)"
+	@echo "$(YELLOW)📋 Verifying Ghostbusters system...$(NC)"
+	@test -d src/ghostbusters || (echo "$(RED)❌ Ghostbusters system not found$(NC)" && exit 1)
+	@echo "$(GREEN)✅ Ghostbusters system found$(NC)"
+	@echo "$(YELLOW)📋 Testing import...$(NC)"
+	@$(UV) run python scripts/ghostbusters_cli.py install
+	@echo "$(GREEN)✅ Ghostbusters system ready!$(NC)"
+
+# =============================================================================
 # NODE.JS DEVELOPMENT TARGETS
 # =============================================================================
 
@@ -839,3 +891,73 @@ mcp-install: ## Install MCP servers for development
 	@echo "$(YELLOW)📋 Installing Doc Ops MCP...$(NC)"
 	@npm install -g doc-ops-mcp || echo "$(YELLOW)⚠️  Doc Ops MCP not available$(NC)"
 	@echo "$(GREEN)✅ MCP servers installation completed$(NC)"
+
+# =============================================================================
+# MCP MANAGEMENT TARGETS
+# =============================================================================
+
+mcp: ## Run MCP CLI with check command
+	@echo "$(CYAN)🔧 MCP Management$(NC)"
+	@$(UV) run python scripts/mcp_cli.py check
+
+mcp-setup: ## Complete MCP setup process
+	@echo "$(CYAN)🚀 MCP Setup$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@$(UV) run python scripts/mcp_cli.py setup
+
+mcp-validate: ## Validate MCP configuration
+	@echo "$(CYAN)🔍 MCP Validation$(NC)"
+	@$(UV) run python scripts/mcp_cli.py validate
+
+# =============================================================================
+# BACKLOG MANAGEMENT TARGETS
+# =============================================================================
+
+backlog: ## Show backlog statistics
+	@echo "$(CYAN)📋 Backlog Management$(NC)"
+	@node scripts/backlog_cli.js stats
+
+backlog-list: ## List all backlog items
+	@echo "$(CYAN)📋 Backlog Items$(NC)"
+	@echo "$(BLUE)==============================================$(NC)"
+	@node scripts/backlog_cli.js list
+
+backlog-add: ## Add new backlog item (requires title and description)
+	@echo "$(CYAN)➕ Add Backlog Item$(NC)"
+	@echo "$(YELLOW)Usage: make backlog-add TITLE='Item Title' DESCRIPTION='Item Description' [PRIORITY=medium] [STATUS=pending]$(NC)"
+	@if [ -z "$(TITLE)" ]; then \
+		echo "$(RED)❌ TITLE is required$(NC)"; \
+		echo "$(YELLOW)Example: make backlog-add TITLE='Fix MCP' DESCRIPTION='Implement MCP server'$(NC)"; \
+		exit 1; \
+	fi
+	@node scripts/backlog_cli.js add "$(TITLE)" "$(DESCRIPTION)" "$(PRIORITY)" "$(STATUS)"
+
+backlog-update: ## Update backlog item (requires ID, field, and value)
+	@echo "$(CYAN)📝 Update Backlog Item$(NC)"
+	@echo "$(YELLOW)Usage: make backlog-update ID='Item ID/Title' FIELD='field_name' VALUE='new_value'$(NC)"
+	@if [ -z "$(ID)" ] || [ -z "$(FIELD)" ] || [ -z "$(VALUE)" ]; then \
+		echo "$(RED)❌ ID, FIELD, and VALUE are required$(NC)"; \
+		echo "$(YELLOW)Example: make backlog-update ID='Fix MCP' FIELD='status' VALUE='in_progress'$(NC)"; \
+		exit 1; \
+	fi
+	@node scripts/backlog_cli.js update "$(ID)" "$(FIELD)" "$(VALUE)"
+
+backlog-remove: ## Remove backlog item (requires ID)
+	@echo "$(CYAN)🗑️ Remove Backlog Item$(NC)"
+	@echo "$(YELLOW)Usage: make backlog-remove ID='Item ID/Title'$(NC)"
+	@if [ -z "$(ID)" ]; then \
+		echo "$(RED)❌ ID is required$(NC)"; \
+		echo "$(YELLOW)Example: make backlog-remove ID='Fix MCP'$(NC)"; \
+		exit 1; \
+	fi
+	@node scripts/backlog_cli.js remove "$(ID)"
+
+backlog-search: ## Search backlog items (requires query)
+	@echo "$(CYAN)🔍 Search Backlog$(NC)"
+	@echo "$(YELLOW)Usage: make backlog-search QUERY='search term'$(NC)"
+	@if [ -z "$(QUERY)" ]; then \
+		echo "$(RED)❌ QUERY is required$(NC)"; \
+		echo "$(YELLOW)Example: make backlog-search QUERY='MCP'$(NC)"; \
+		exit 1; \
+	fi
+	@node scripts/backlog_cli.js search "$(QUERY)"

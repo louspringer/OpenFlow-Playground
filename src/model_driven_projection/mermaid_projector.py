@@ -45,7 +45,7 @@ class MermaidProjector:
         # Extract domain information from model
         _ = self.models.get("domain_architecture", {})
 
-        mermaid = """graph TB
+        return """graph TB
     subgraph "OpenFlow Playground"
         subgraph "Core Systems"
             AF[ArtifactForge]
@@ -79,8 +79,6 @@ class MermaidProjector:
     SEC --> VAL
     BASH --> LINT
     MDC --> VAL"""
-
-        return mermaid
 
     def project_ghostbusters_architecture_diagram(self) -> str:
         """Project Ghostbusters architecture from actual code."""
@@ -141,7 +139,7 @@ class MermaidProjector:
         # Extract actual test generator classes
         _ = self._extract_classes_from_directory(mdt_path)
 
-        mermaid = """graph TB
+        return """graph TB
     subgraph "Model-Driven Testing System"
         subgraph "Core Components"
             AM[Artifact Model Extractor]
@@ -168,8 +166,6 @@ class MermaidProjector:
     MOD --> AM
     TCG --> TESTS
     TESTS --> VALIDATION"""
-
-        return mermaid
 
     def _extract_classes_from_directory(self, directory: Path) -> dict[str, list[str]]:
         """Extract classes and methods from Python files in directory."""

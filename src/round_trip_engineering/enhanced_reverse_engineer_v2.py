@@ -10,17 +10,17 @@ import json
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
-from pattern_detector import PatternDetector
+from .pattern_detector import PatternDetector
 
 
 class EnhancedReverseEngineerV2:
     """Enhanced reverse engineer with pattern detection and transformation"""
 
-    def __init__(self):
-        self.model_data = {}
-        self.cached_nodes = None
+    def __init__(self) -> None:
+        self.model_data: dict[str, Any] = {}
+        self.cached_nodes: list[ast.AST] | None = None
         self.pattern_detector = PatternDetector()
 
     def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:
@@ -69,7 +69,7 @@ class EnhancedReverseEngineerV2:
 
     def _extract_method_info_enhanced(
         self, func_node: ast.FunctionDef, source_lines: list[str]
-    ) -> Optional[dict[str, Any]]:
+    ) -> dict[str, Any] | None:
         """Extract comprehensive method information with pattern detection"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
@@ -80,7 +80,7 @@ class EnhancedReverseEngineerV2:
                 else self._extract_type_annotation(func_node.returns)
             )
 
-            method_info = {
+            method_info: dict[str, Any] = {
                 "name": func_node.name,
                 "signature": self._build_method_signature(func_node),
                 "docstring": "",
@@ -183,7 +183,7 @@ class EnhancedReverseEngineerV2:
 
     def _extract_async_method_info_enhanced(
         self, func_node: ast.AsyncFunctionDef, source_lines: list[str]
-    ) -> Optional[dict[str, Any]]:
+    ) -> dict[str, Any] | None:
         """Extract comprehensive async method information with pattern detection"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
@@ -194,7 +194,7 @@ class EnhancedReverseEngineerV2:
                 else self._extract_type_annotation(func_node.returns)
             )
 
-            method_info = {
+            method_info: dict[str, Any] = {
                 "name": func_node.name,
                 "signature": self._build_async_method_signature(func_node),
                 "docstring": "",
@@ -347,7 +347,7 @@ class EnhancedReverseEngineerV2:
                 parameters.append(param_info)
         return parameters
 
-    def _extract_type_annotation(self, annotation) -> str:
+    def _extract_type_annotation(self, annotation: ast.expr | None) -> str:
         """Extract type annotation with enhanced analysis"""
         if annotation is None:
             return "Any"
@@ -372,7 +372,7 @@ class EnhancedReverseEngineerV2:
                         return f"{base_type}[{', '.join(slice_types)}]"
         return "Any"
 
-    def _extract_module_docstring(self, tree: ast.AST, content: str) -> None:
+    def _extract_module_docstring(self, tree: ast.Module, content: str) -> None:
         """Extract module docstring"""
         try:
             if tree.body and isinstance(tree.body[0], ast.Expr):
@@ -386,7 +386,7 @@ class EnhancedReverseEngineerV2:
             print(f"🚨 ERROR in _extract_module_docstring: {e}")
             self.model_data["module_docstring"] = ""
 
-    def _extract_file_metadata(self, tree: ast.AST, content: str) -> None:
+    def _extract_file_metadata(self, tree: ast.Module, content: str) -> None:
         """Extract file metadata"""
         try:
             lines = content.split("\n")
@@ -403,7 +403,7 @@ class EnhancedReverseEngineerV2:
         except Exception as e:
             print(f"🚨 ERROR in _extract_file_metadata: {e}")
 
-    def _extract_imports(self, tree: ast.AST) -> None:
+    def _extract_imports(self, tree: ast.Module) -> None:
         """Extract import statements"""
         try:
             imports = []
@@ -420,7 +420,7 @@ class EnhancedReverseEngineerV2:
         except Exception as e:
             print(f"🚨 ERROR in _extract_imports: {e}")
 
-    def _extract_used_names(self, tree: ast.AST) -> None:
+    def _extract_used_names(self, tree: ast.Module) -> None:
         """Extract used names from the AST"""
         try:
             used_names = set()
@@ -437,7 +437,7 @@ class EnhancedReverseEngineerV2:
         except Exception as e:
             print(f"🚨 ERROR in _extract_used_names: {e}")
 
-    def _extract_module_assignments(self, tree: ast.AST) -> None:
+    def _extract_module_assignments(self, tree: ast.Module) -> None:
         """Extract module-level assignments"""
         try:
             assignments = []
@@ -510,7 +510,7 @@ class EnhancedReverseEngineerV2:
         except Exception as e:
             print(f"🚨 ERROR in _extract_module_functions: {e}")
 
-    def _extract_file_structure(self, tree: ast.AST, content: str) -> None:
+    def _extract_file_structure(self, tree: ast.Module, content: str) -> None:
         """Extract file structure information"""
         try:
             lines = content.split("\n")
@@ -560,7 +560,7 @@ class EnhancedReverseEngineerV2:
             print(f"🚨 ERROR in _extract_file_structure: {e}")
 
 
-def main():
+def main() -> None:
     """Main entry point"""
     if len(sys.argv) != 2:
         print("Usage: python enhanced_reverse_engineer_v2.py <file_path>")

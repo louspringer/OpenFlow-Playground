@@ -27,9 +27,7 @@ def fix_broken_fstrings(content: str) -> str:
     # f"text {expression \n more}" -> f"text {expression} more"
     pattern3 = r'f"([^"]*?)\{([^"]*?)\\\\(\s*)([^"]*?)"'
     replacement3 = r'f"\1{\2}\3\4"'
-    content = re.sub(pattern3, replacement3, content)
-
-    return content
+    return re.sub(pattern3, replacement3, content)
 
 
 def main():

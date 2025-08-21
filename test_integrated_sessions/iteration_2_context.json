@@ -1,0 +1,78 @@
+{
+  "iteration_number": 2,
+  "start_time": "2025-08-20T20:51:09.955087",
+  "end_time": "2025-08-20T20:51:09.955245",
+  "agent_sessions": {
+    "security_expert": {
+      "agent_type": "security_expert",
+      "session_id": "security_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {
+        "test_context": "Test context for security_expert"
+      },
+      "created_at": "2025-08-20T20:51:09.955127",
+      "updated_at": "2025-08-20T20:51:09.955181"
+    },
+    "code_quality_expert": {
+      "agent_type": "code_quality_expert",
+      "session_id": "code_quality_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {
+        "test_context": "Test context for code_quality_expert"
+      },
+      "created_at": "2025-08-20T20:51:09.955148",
+      "updated_at": "2025-08-20T20:51:09.955192"
+    },
+    "devops_expert": {
+      "agent_type": "devops_expert",
+      "session_id": "devops_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {
+        "test_context": "Test context for devops_expert"
+      },
+      "created_at": "2025-08-20T20:51:09.955161",
+      "updated_at": "2025-08-20T20:51:09.955201"
+    }
+  },
+  "cross_agent_insights": [],
+  "synthesis": {
+    "total_findings": 0,
+    "findings_by_agent": {
+      "security_expert": 0,
+      "code_quality_expert": 0,
+      "devops_expert": 0
+    },
+    "cross_agent_patterns": [],
+    "collaborative_insights": [],
+    "recommendations": [],
+    "learning_outcomes": []
+  },
+  "learning_outcomes": []
+}

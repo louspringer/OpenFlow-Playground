@@ -1,0 +1,248 @@
+{
+  "model_id": "859842cf-48f3-476c-a950-b5672bb19c32",
+  "timestamp": "2025-08-19T15:48:24.535927",
+  "source_file": "src/round_trip_engineering/enhanced_reverse_engineer_v2.py",
+  "file_metadata": {
+    "executable": true,
+    "is_test_file": true,
+    "line_count": 605,
+    "file_size": 25500,
+    "has_docstring": true
+  },
+  "imports": [
+    "import ast",
+    "import json",
+    "import uuid",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from .pattern_detector import PatternDetector",
+    "import astor",
+    "import astor",
+    "import sys"
+  ],
+  "classes": {
+    "EnhancedReverseEngineerV2": {
+      "name": "EnhancedReverseEngineerV2",
+      "line": 18,
+      "bases": [],
+      "methods": [
+        {
+          "name": "__init__",
+          "line": 21,
+          "signature": "def __init__(self) -> None:"
+        },
+        {
+          "name": "reverse_engineer_file",
+          "line": 26,
+          "signature": "def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:"
+        },
+        {
+          "name": "_extract_method_info_enhanced",
+          "line": 70,
+          "signature": "def _extract_method_info_enhanced("
+        },
+        {
+          "name": "_extract_async_method_info_enhanced",
+          "line": 184,
+          "signature": "def _extract_async_method_info_enhanced("
+        },
+        {
+          "name": "_build_method_signature",
+          "line": 301,
+          "signature": "def _build_method_signature(self, func_node: ast.FunctionDef) -> str:"
+        },
+        {
+          "name": "_build_async_method_signature",
+          "line": 319,
+          "signature": "def _build_async_method_signature(self, func_node: ast.AsyncFunctionDef) -> str:"
+        },
+        {
+          "name": "_extract_parameters",
+          "line": 337,
+          "signature": "def _extract_parameters(self, args: ast.arguments) -> list[dict[str, Any]]:"
+        },
+        {
+          "name": "_extract_type_annotation",
+          "line": 350,
+          "signature": "def _extract_type_annotation(self, annotation: ast.expr | None) -> str:"
+        },
+        {
+          "name": "_extract_module_docstring",
+          "line": 375,
+          "signature": "def _extract_module_docstring(self, tree: ast.Module, content: str) -> None:"
+        },
+        {
+          "name": "_extract_file_metadata",
+          "line": 389,
+          "signature": "def _extract_file_metadata(self, tree: ast.Module, content: str) -> None:"
+        },
+        {
+          "name": "_extract_imports",
+          "line": 406,
+          "signature": "def _extract_imports(self, tree: ast.Module) -> None:"
+        },
+        {
+          "name": "_extract_used_names",
+          "line": 423,
+          "signature": "def _extract_used_names(self, tree: ast.Module) -> None:"
+        },
+        {
+          "name": "_extract_module_assignments",
+          "line": 440,
+          "signature": "def _extract_module_assignments(self, tree: ast.Module) -> None:"
+        },
+        {
+          "name": "_extract_classes",
+          "line": 454,
+          "signature": "def _extract_classes(self, tree: ast.AST, source_lines: list[str]) -> None:"
+        },
+        {
+          "name": "_extract_module_functions",
+          "line": 493,
+          "signature": "def _extract_module_functions(self, tree: ast.AST, source_lines: list[str]) -> None:"
+        },
+        {
+          "name": "_extract_file_structure",
+          "line": 513,
+          "signature": "def _extract_file_structure(self, tree: ast.Module, content: str) -> None:"
+        },
+        {
+          "name": "main",
+          "line": 563,
+          "signature": "def main() -> None:"
+        }
+      ],
+      "docstring": "Enhanced reverse engineer with pattern detection and transformation",
+      "decorators": []
+    }
+  },
+  "functions": [
+    {
+      "name": "__init__",
+      "line": 21,
+      "signature": "def __init__(self) -> None:",
+      "docstring": "",
+      "decorators": []
+    },
+    {
+      "name": "reverse_engineer_file",
+      "line": 26,
+      "signature": "def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:",
+      "docstring": "Reverse engineer a Python file into a comprehensive model with pattern detection",
+      "decorators": []
+    },
+    {
+      "name": "_extract_method_info_enhanced",
+      "line": 70,
+      "signature": "def _extract_method_info_enhanced(",
+      "docstring": "Extract comprehensive method information with pattern detection",
+      "decorators": []
+    },
+    {
+      "name": "_extract_async_method_info_enhanced",
+      "line": 184,
+      "signature": "def _extract_async_method_info_enhanced(",
+      "docstring": "Extract comprehensive async method information with pattern detection",
+      "decorators": []
+    },
+    {
+      "name": "_build_method_signature",
+      "line": 301,
+      "signature": "def _build_method_signature(self, func_node: ast.FunctionDef) -> str:",
+      "docstring": "Build complete method signature string",
+      "decorators": []
+    },
+    {
+      "name": "_build_async_method_signature",
+      "line": 319,
+      "signature": "def _build_async_method_signature(self, func_node: ast.AsyncFunctionDef) -> str:",
+      "docstring": "Build complete async method signature string",
+      "decorators": []
+    },
+    {
+      "name": "_extract_parameters",
+      "line": 337,
+      "signature": "def _extract_parameters(self, args: ast.arguments) -> list[dict[str, Any]]:",
+      "docstring": "Extract detailed parameter information",
+      "decorators": []
+    },
+    {
+      "name": "_extract_type_annotation",
+      "line": 350,
+      "signature": "def _extract_type_annotation(self, annotation: ast.expr | None) -> str:",
+      "docstring": "Extract type annotation with enhanced analysis",
+      "decorators": []
+    },
+    {
+      "name": "_extract_module_docstring",
+      "line": 375,
+      "signature": "def _extract_module_docstring(self, tree: ast.Module, content: str) -> None:",
+      "docstring": "Extract module docstring",
+      "decorators": []
+    },
+    {
+      "name": "_extract_file_metadata",
+      "line": 389,
+      "signature": "def _extract_file_metadata(self, tree: ast.Module, content: str) -> None:",
+      "docstring": "Extract file metadata",
+      "decorators": []
+    },
+    {
+      "name": "_extract_imports",
+      "line": 406,
+      "signature": "def _extract_imports(self, tree: ast.Module) -> None:",
+      "docstring": "Extract import statements",
+      "decorators": []
+    },
+    {
+      "name": "_extract_used_names",
+      "line": 423,
+      "signature": "def _extract_used_names(self, tree: ast.Module) -> None:",
+      "docstring": "Extract used names from the AST",
+      "decorators": []
+    },
+    {
+      "name": "_extract_module_assignments",
+      "line": 440,
+      "signature": "def _extract_module_assignments(self, tree: ast.Module) -> None:",
+      "docstring": "Extract module-level assignments",
+      "decorators": []
+    },
+    {
+      "name": "_extract_classes",
+      "line": 454,
+      "signature": "def _extract_classes(self, tree: ast.AST, source_lines: list[str]) -> None:",
+      "docstring": "Extract class information with pattern detection",
+      "decorators": []
+    },
+    {
+      "name": "_extract_module_functions",
+      "line": 493,
+      "signature": "def _extract_module_functions(self, tree: ast.AST, source_lines: list[str]) -> None:",
+      "docstring": "Extract module functions with pattern detection",
+      "decorators": []
+    },
+    {
+      "name": "_extract_file_structure",
+      "line": 513,
+      "signature": "def _extract_file_structure(self, tree: ast.Module, content: str) -> None:",
+      "docstring": "Extract file structure information",
+      "decorators": []
+    },
+    {
+      "name": "main",
+      "line": 563,
+      "signature": "def main() -> None:",
+      "docstring": "Main entry point",
+      "decorators": []
+    }
+  ],
+  "file_structure": {
+    "total_lines": 605,
+    "code_lines": 485,
+    "comment_lines": 40,
+    "blank_lines": 80,
+    "complexity_score": 505
+  }
+}

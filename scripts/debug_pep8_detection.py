@@ -25,7 +25,7 @@ print("World")"""
     lines = test_content.split("\n")
     for i, line in enumerate(lines, 1):
         print(f"\nLine {i}: {repr(line)}")
-        print(f"  Contains f\": {'f\"' in line}")
+        print(f"  Contains f\": {'f"' in line}")
         print(f"  Contains \\\\: {'\\\\' in line}")
         print(f"  Contains \\n: {'\\n' in line}")
         print(f"  Length: {len(line)}")

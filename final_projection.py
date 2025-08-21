@@ -8,9 +8,10 @@ from typing import Optional
 
 import jwt
 import redis
-import streamlit as st
 from cryptography.fernet import Fernet
 from pydantic import BaseModel, Field
+
+import streamlit as st
 
 SECURITY_CONFIG = {
     "fernet_key": os.getenv("FERNET_KEY", Fernet.generate_key()),

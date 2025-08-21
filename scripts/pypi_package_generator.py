@@ -40,7 +40,8 @@ class PyPIPackageGenerator:
     def load_model(self) -> None:
         """Load the project model"""
         if not self.model_file.exists():
-            raise FileNotFoundError(f"Model file not found: {self.model_file}")
+            msg = f"Model file not found: {self.model_file}"
+            raise FileNotFoundError(msg)
 
         with open(self.model_file) as f:
             self.model_data = json.load(f)
@@ -72,8 +73,8 @@ class PyPIPackageGenerator:
     def generate_package_structure(self, package_info: dict[str, Any]) -> None:
         """Generate the complete package structure"""
         package_name = package_info["package_name"]
-        domain_name = package_info["domain"]
-        domain_data = package_info["domain_data"]
+        package_info["domain"]
+        package_info["domain_data"]
 
         package_dir = self.packages_dir / package_name
         package_dir.mkdir(parents=True, exist_ok=True)

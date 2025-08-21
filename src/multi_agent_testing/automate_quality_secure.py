@@ -6,7 +6,9 @@ import sys
 from pathlib import Path
 
 
-def run_command_safe(cmd_list, description, cwd=None):
+def run_command_safe(
+    cmd_list: list[str], description: str, cwd: Path | None = None
+) -> bool:
     """Run a command safely without shell=True"""
     print(f"\n🔄 {description}...")
     try:
@@ -23,7 +25,7 @@ def run_command_safe(cmd_list, description, cwd=None):
         return False
 
 
-def main():
+def main() -> int:
     """Main automation sequence"""
     target_dir = sys.argv[1] if len(sys.argv) > 1 else "."
     target_path = Path(target_dir).resolve()
@@ -86,4 +88,10 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.exit(main())
+
+    sys.exit(main())
+
+    sys.exit(main())
+
     sys.exit(main())

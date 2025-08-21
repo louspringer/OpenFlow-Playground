@@ -5,8 +5,9 @@ Demonstrates complete cycle: Design → Model → Code → Model
 """
 
 import json
+from typing import Any
 
-from round_trip_model_system import RoundTripModelSystem
+from src.round_trip_model_system import RoundTripModelSystem
 
 
 def create_real_design_spec() -> dict:
@@ -130,7 +131,7 @@ def create_real_design_spec() -> dict:
     }
 
 
-def prove_round_trip():
+def prove_round_trip() -> dict[str, Any]:
     """Prove the round-trip system works with real data"""
     print("🎯 PROVING ROUND-TRIP MODEL SYSTEM")
     print("=" * 50)

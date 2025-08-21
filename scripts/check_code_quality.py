@@ -108,10 +108,7 @@ class CodeQualityEnforcer:
         # Check for unused imports (basic check)
         imported_names = set()
         for node in import_nodes:
-            if isinstance(node, ast.Import):
-                for alias in node.names:
-                    imported_names.add(alias.name)
-            elif isinstance(node, ast.ImportFrom):
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
                 for alias in node.names:
                     imported_names.add(alias.name)
 

@@ -23,7 +23,8 @@ class GraphMLIntegration:
     def load_model(self) -> None:
         """Load the project model with credential mappings"""
         if not self.model_file.exists():
-            raise FileNotFoundError(f"Model file not found: {self.model_file}")
+            msg = f"Model file not found: {self.model_file}"
+            raise FileNotFoundError(msg)
 
         with open(self.model_file) as f:
             self.model_data = json.load(f)
@@ -34,7 +35,8 @@ class GraphMLIntegration:
         credential_mappings = self.model_data.get("credential_mappings", {})
 
         if not credential_mappings:
-            raise ValueError("No credential mappings found in project model")
+            msg = "No credential mappings found in project model"
+            raise ValueError(msg)
 
         # Use 1Password CLI to get actual values
         credentials = {}
@@ -68,7 +70,8 @@ class GraphMLIntegration:
         password = credentials.get("neo4j_password", "")
 
         if not password:
-            raise ValueError("Neo4j password not available")
+            msg = "Neo4j password not available"
+            raise ValueError(msg)
 
         cmd = ["cypher-shell", "-u", username, "-p", password, query]
 

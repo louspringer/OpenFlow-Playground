@@ -81,7 +81,8 @@ class EnhancedReverseEngineer(ReverseEngineeringTool):
             engineer = RootEngineer()
             return engineer.reverse_engineer(file_path)
         except ImportError as e:
-            raise ImportError(f"Enhanced reverse engineer not available: {e}")
+            msg = f"Enhanced reverse engineer not available: {e}"
+            raise ImportError(msg)
 
 
 class RoundTripCodeGenerator(CodeGenerationTool):
@@ -103,7 +104,8 @@ class RoundTripCodeGenerator(CodeGenerationTool):
             system = RoundTripModelSystem()
             return system.generate_code_from_extracted_model(model)
         except ImportError as e:
-            raise ImportError(f"Round-trip model system not available: {e}")
+            msg = f"Round-trip model system not available: {e}"
+            raise ImportError(msg)
 
 
 class DesignSpecCodeGenerator(CodeGenerationTool):
@@ -126,7 +128,8 @@ class DesignSpecCodeGenerator(CodeGenerationTool):
             # Convert model to design spec format if needed
             return system.generate_code_from_model(model["system_name"])
         except ImportError as e:
-            raise ImportError(f"Design spec generator not available: {e}")
+            msg = f"Design spec generator not available: {e}"
+            raise ImportError(msg)
 
 
 class PythonLinter(LintingTool):
@@ -211,7 +214,8 @@ class PythonParser(ParsingTool):
                 content = f.read()
             return ast.parse(content)
         except Exception as e:
-            raise SyntaxError(f"Python parsing failed: {e}")
+            msg = f"Python parsing failed: {e}"
+            raise SyntaxError(msg)
 
 
 class YAMLParser(ParsingTool):
@@ -229,7 +233,8 @@ class YAMLParser(ParsingTool):
             with open(file_path) as f:
                 return yaml.load(f)
         except Exception as e:
-            raise SyntaxError(f"YAML parsing failed: {e}")
+            msg = f"YAML parsing failed: {e}"
+            raise SyntaxError(msg)
 
 
 class MDCParser(ParsingTool):
@@ -247,7 +252,8 @@ class MDCParser(ParsingTool):
             yaml_data, markdown_content = parser.parse_mdc(file_path)
             return {"yaml": yaml_data, "markdown": markdown_content}
         except Exception as e:
-            raise SyntaxError(f"MDC parsing failed: {e}")
+            msg = f"MDC parsing failed: {e}"
+            raise SyntaxError(msg)
 
 
 # Abstract Factory
@@ -291,7 +297,8 @@ class ModelDrivenFactory:
         for tool in self.code_generation_tools:
             if tool.can_handle(model):
                 return tool
-        raise ValueError("No code generation tool available for this model type")
+        msg = "No code generation tool available for this model type"
+        raise ValueError(msg)
 
     def get_linting_tool(self, file_path: str) -> LintingTool:
         """Get the appropriate linting tool for the file"""

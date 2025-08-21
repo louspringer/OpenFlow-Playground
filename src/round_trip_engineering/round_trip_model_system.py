@@ -367,7 +367,7 @@ Generated at: {timestamp}
                 if "typing" in imp:
                     continue
                 # Keep pytest only if we actually use pytest decorators
-                elif "pytest" in imp:
+                if "pytest" in imp:
                     # Check if any methods have pytest decorators
                     has_pytest_decorators = any(
                         "pytest" in method.get("decorators", [])
@@ -903,25 +903,12 @@ if __name__ == "__main__":
                     f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating test method placeholder"
                 )
                 # Generate realistic test method code that uses imports
-                if "ClewcrewState" in name or "state" in name.lower():
-                    code = f"""{decorator_code}{method_sig}
-        \"\"\"
-        {docstring}
-        \"\"\"
-        # Test implementation
-        assert True  # Placeholder assertion
-        {return_stmt}
-"""
-                elif "orchestrator" in name.lower():
-                    code = f"""{decorator_code}{method_sig}
-        \"\"\"
-        {docstring}
-        \"\"\"
-        # Test implementation
-        assert True  # Placeholder assertion
-        {return_stmt}
-"""
-                elif "mock" in name.lower():
+                if (
+                    "ClewcrewState" in name
+                    or "state" in name.lower()
+                    or "orchestrator" in name.lower()
+                    or "mock" in name.lower()
+                ):
                     code = f"""{decorator_code}{method_sig}
         \"\"\"
         {docstring}
@@ -987,14 +974,13 @@ if __name__ == "__main__":
             return_stmt = "return None"
 
         # Build function code
-        code = f"""def {func_name}({param_str}) -> {return_type}:
+        return f"""def {func_name}({param_str}) -> {return_type}:
     \"\"\"
     {docstring}
     \"\"\"
     # TODO: Implement {func_name}
     {return_stmt}
 """
-        return code
 
     def _generate_function_code(self, component: ModelComponent) -> str:
         """Generate function code from component design"""
@@ -1073,9 +1059,12 @@ class {component.name}:
         # Add methods with proper signature parsing
         for method in methods:
             # Skip __init__ method since we already generated it above
-            if isinstance(method, str) and method.startswith("__init__"):
-                continue
-            elif isinstance(method, dict) and method.get("name") == "__init__":
+            if (
+                isinstance(method, str)
+                and method.startswith("__init__")
+                or isinstance(method, dict)
+                and method.get("name") == "__init__"
+            ):
                 continue
 
             # Parse method signature if it's a string
@@ -1129,13 +1118,12 @@ class {component.name}:
                     "params": params,
                     "return_type": return_type,
                 }
-            else:
-                # Fallback for malformed signatures
-                return {
-                    "name": method_signature.strip(),
-                    "params": [],
-                    "return_type": "Any",
-                }
+            # Fallback for malformed signatures
+            return {
+                "name": method_signature.strip(),
+                "params": [],
+                "return_type": "Any",
+            }
         except Exception:
             # Fallback for any parsing errors
             return {
@@ -1170,7 +1158,7 @@ class {component.name}:
         else:
             method_sig = f"def {method_name}(self) -> {return_type}:"
 
-        code = f"""
+        return f"""
     {method_sig}
         \"\"\"
         {method_name}(self, {param_str}) -> {return_type}
@@ -1178,7 +1166,6 @@ class {component.name}:
         # TODO: Implement {method_name}(self, {param_str}) -> {return_type}
         {return_stmt}
 """
-        return code
 
     def _generate_method_from_dict(self, method: dict) -> str:
         """Generate method code from method dict"""
@@ -1206,7 +1193,7 @@ class {component.name}:
         else:
             method_sig = f"def {method_name}(self) -> {return_type}:"
 
-        code = f"""
+        return f"""
     {method_sig}
         \"\"\"
         {method_name}(self, {param_str}) -> {return_type}
@@ -1214,7 +1201,6 @@ class {component.name}:
         # TODO: Implement {method_name}(self, {param_str}) -> {return_type}
         {return_stmt}
 """
-        return code
 
     def _clean_complex_type(self, type_annotation: str) -> str:
         """Clean up overly complex type annotations"""
@@ -1230,22 +1216,19 @@ class {component.name}:
             # Any dict with complex types becomes dict[str, Any]
             if "Tuple[" in type_str or "dict[" in type_str or "list[" in type_str:
                 return "dict[str, Any]"
-            else:
-                return "dict[str, Any]"
+            return "dict[str, Any]"
 
         # Handle list types with complex nested types
-        elif "list[" in type_str:
+        if "list[" in type_str:
             if "dict[" in type_str or "Tuple[" in type_str:
                 return "list[dict[str, Any]]"
-            else:
-                return "list[Any]"
+            return "list[Any]"
 
         # Handle tuple types with complex nested types
-        elif "Tuple[" in type_str:
+        if "Tuple[" in type_str:
             if "dict[" in type_str or "list[" in type_str:
                 return "tuple[str, Any]"
-            else:
-                return "tuple[Any, ...]"
+            return "tuple[Any, ...]"
 
         # Return the original type if it's simple
         return type_str

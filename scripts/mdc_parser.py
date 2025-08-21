@@ -35,9 +35,8 @@ class MDCParser:
                 delimiter_positions.append(i)
 
         if len(delimiter_positions) != 2:
-            raise ValueError(
-                f"MDC file must have exactly 2 '---' delimiters, found {len(delimiter_positions)}"
-            )
+            msg = f"MDC file must have exactly 2 '---' delimiters, found {len(delimiter_positions)}"
+            raise ValueError(msg)
 
         # Extract frontmatter
         frontmatter_start = delimiter_positions[0]

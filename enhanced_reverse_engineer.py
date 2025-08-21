@@ -148,10 +148,7 @@ class EnhancedReverseEngineer:
                                 self.model_data["module_docstring"] = docstring
                                 self._parse_module_docstring(docstring)
                                 break
-                            else:
-                                print(
-                                    f"⚠️  Docstring is not a string: {type(docstring)}"
-                                )
+                            print(f"⚠️  Docstring is not a string: {type(docstring)}")
         except Exception as e:
             print(f"🚨 ERROR in _extract_module_docstring: {type(e).__name__}: {e}")
             print(f"🚨 Content type: {type(content)}")
@@ -223,7 +220,9 @@ class EnhancedReverseEngineer:
             print(
                 f"🚨 Lines type: {type(lines) if 'lines' in locals() else 'Not defined'}"
             )
-            print(f"🚨 Lines content: {lines if 'lines' in locals() else 'Not defined'}")
+            print(
+                f"🚨 Lines content: {lines if 'lines' in locals() else 'Not defined'}"
+            )
 
     def _extract_file_metadata(self, tree: ast.AST, content: str) -> None:
         """Extract file-level metadata like executable status, test status, etc."""
@@ -332,7 +331,9 @@ class EnhancedReverseEngineer:
             self.model_data["used_names"] = list(used_names)
         except Exception as e:
             print(f"🚨 ERROR in _extract_imports: {type(e).__name__}: {e}")
-            print(f"🚨 Node type: {type(node) if 'node' in locals() else 'Not defined'}")
+            print(
+                f"🚨 Node type: {type(node) if 'node' in locals() else 'Not defined'}"
+            )
             print(
                 f"🚨 Node names type: {type(node.names) if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}"
             )
@@ -608,8 +609,7 @@ class EnhancedReverseEngineer:
         param_str = ", ".join(params) if params else ""
         if param_str:
             return f"{func_node.name}(self, {param_str}) -> {return_type}"
-        else:
-            return f"{func_node.name}(self) -> {return_type}"
+        return f"{func_node.name}(self) -> {return_type}"
 
     def _extract_parameters(self, args: ast.arguments) -> list[dict[str, Any]]:
         """Extract detailed parameter information"""
@@ -650,9 +650,9 @@ class EnhancedReverseEngineer:
 
         if isinstance(annotation, ast.Name):
             return annotation.id
-        elif isinstance(annotation, ast.Constant):
+        if isinstance(annotation, ast.Constant):
             return annotation.value
-        elif isinstance(annotation, ast.Subscript):
+        if isinstance(annotation, ast.Subscript):
             # Handle generic types like List[str], Dict[str, int]
             if isinstance(annotation.value, ast.Name):
                 base_type = annotation.value.id
@@ -683,8 +683,7 @@ class EnhancedReverseEngineer:
         param_str = ", ".join(params) if params else ""
         if param_str:
             return f"{func_node.name}(self, {param_str}) -> {return_type}"
-        else:
-            return f"{func_node.name}(self) -> {return_type}"
+        return f"{func_node.name}(self) -> {return_type}"
 
     def _extract_module_functions(self, tree: ast.AST) -> None:
         """Extract module-level functions (not inside classes)"""
@@ -771,8 +770,7 @@ class EnhancedReverseEngineer:
         param_str = ", ".join(params) if params else ""
         if param_str:
             return f"{func_node.name}({param_str}) -> {return_type}"
-        else:
-            return f"{func_node.name}() -> {return_type}"
+        return f"{func_node.name}() -> {return_type}"
 
     def _extract_file_structure(self, tree: ast.AST, content: str) -> None:
         """Extract overall file structure information"""
@@ -809,8 +807,7 @@ class EnhancedReverseEngineer:
                     [
                         node
                         for node in all_nodes
-                        if isinstance(node, ast.Import)
-                        or isinstance(node, ast.ImportFrom)
+                        if isinstance(node, (ast.Import, ast.ImportFrom))
                     ]
                 ),
                 "expression_nodes": len(

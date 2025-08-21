@@ -589,7 +589,7 @@ def test_scaled_complex_model_generator() -> None:
     generator.scan_all_files()
 
     # Analyze mypy errors
-    generator.analyze_mypy_errors()
+    generator.analyze_comprehensive_errors()
 
     # Fix all errors
     generator.fix_all_errors()

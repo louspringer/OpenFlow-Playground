@@ -1,0 +1,143 @@
+{
+  "model_id": "dee65c52-d64c-4cd5-98bc-613c757deeac",
+  "timestamp": "2025-08-19T15:39:47.313292",
+  "source_file": "src/round_trip_engineering/enhanced_reverse_engineer_v2.py",
+  "file_stats": {
+    "total_lines": 605,
+    "code_lines": 485,
+    "comment_lines": 40,
+    "blank_lines": 80,
+    "file_size": 25500
+  },
+  "imports": [
+    "import ast",
+    "import json",
+    "import uuid",
+    "from datetime import datetime",
+    "from pathlib import Path",
+    "from typing import Any",
+    "from .pattern_detector import PatternDetector",
+    "import astor",
+    "import astor",
+    "import sys"
+  ],
+  "classes": [
+    {
+      "name": "EnhancedReverseEngineerV2",
+      "line": 18,
+      "methods": [
+        "__init__",
+        "reverse_engineer_file",
+        "_extract_method_info_enhanced",
+        "_extract_async_method_info_enhanced",
+        "_build_method_signature",
+        "_build_async_method_signature",
+        "_extract_parameters",
+        "_extract_type_annotation",
+        "_extract_module_docstring",
+        "_extract_file_metadata",
+        "_extract_imports",
+        "_extract_used_names",
+        "_extract_module_assignments",
+        "_extract_classes",
+        "_extract_module_functions",
+        "_extract_file_structure",
+        "main"
+      ],
+      "docstring": "Enhanced reverse engineer with pattern detection and transformation"
+    }
+  ],
+  "functions": [
+    {
+      "name": "__init__",
+      "line": 21,
+      "docstring": ""
+    },
+    {
+      "name": "reverse_engineer_file",
+      "line": 26,
+      "docstring": "Reverse engineer a Python file into a comprehensive model with pattern detection"
+    },
+    {
+      "name": "_extract_method_info_enhanced",
+      "line": 70,
+      "docstring": "Extract comprehensive method information with pattern detection"
+    },
+    {
+      "name": "_extract_async_method_info_enhanced",
+      "line": 184,
+      "docstring": "Extract comprehensive async method information with pattern detection"
+    },
+    {
+      "name": "_build_method_signature",
+      "line": 301,
+      "docstring": "Build complete method signature string"
+    },
+    {
+      "name": "_build_async_method_signature",
+      "line": 319,
+      "docstring": "Build complete async method signature string"
+    },
+    {
+      "name": "_extract_parameters",
+      "line": 337,
+      "docstring": "Extract detailed parameter information"
+    },
+    {
+      "name": "_extract_type_annotation",
+      "line": 350,
+      "docstring": "Extract type annotation with enhanced analysis"
+    },
+    {
+      "name": "_extract_module_docstring",
+      "line": 375,
+      "docstring": "Extract module docstring"
+    },
+    {
+      "name": "_extract_file_metadata",
+      "line": 389,
+      "docstring": "Extract file metadata"
+    },
+    {
+      "name": "_extract_imports",
+      "line": 406,
+      "docstring": "Extract import statements"
+    },
+    {
+      "name": "_extract_used_names",
+      "line": 423,
+      "docstring": "Extract used names from the AST"
+    },
+    {
+      "name": "_extract_module_assignments",
+      "line": 440,
+      "docstring": "Extract module-level assignments"
+    },
+    {
+      "name": "_extract_classes",
+      "line": 454,
+      "docstring": "Extract class information with pattern detection"
+    },
+    {
+      "name": "_extract_module_functions",
+      "line": 493,
+      "docstring": "Extract module functions with pattern detection"
+    },
+    {
+      "name": "_extract_file_structure",
+      "line": 513,
+      "docstring": "Extract file structure information"
+    },
+    {
+      "name": "main",
+      "line": 563,
+      "docstring": "Main entry point"
+    }
+  ],
+  "structure": {
+    "has_main": true,
+    "is_test_file": true,
+    "has_docstring": true,
+    "indentation_levels": 9
+  }
+}

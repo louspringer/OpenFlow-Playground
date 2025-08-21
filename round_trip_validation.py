@@ -9,9 +9,8 @@ Projection System: round_trip_validation
 
 import json
 
-from round_trip_model_system import RoundTripModelSystem
-
 from enhanced_reverse_engineer import EnhancedReverseEngineer
+from round_trip_model_system import RoundTripModelSystem
 
 
 def main() -> None:
@@ -31,7 +30,9 @@ def main() -> None:
             f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines"
         )
         print(f"   🏗️  Classes: {extracted_model.get('classes', {}).get('count', 0)}")
-        print(f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}")
+        print(
+            f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}"
+        )
 
         # Save extracted model
         with open("test_orchestrator_extracted_model.json", "w") as f:

@@ -7,6 +7,7 @@ Interactive dashboard combining all SVG visualizations
 import logging
 
 import plotly.graph_objects as go
+
 import streamlit as st
 
 from .svg_engine import SVGVisualizationEngine

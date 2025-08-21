@@ -174,12 +174,11 @@ class GitGuardianSecurityScanner:
         """Calculate priority based on severity and status"""
         if incident["severity"] == "high" and incident["status"] == "TRIGGERED":
             return "CRITICAL"
-        elif incident["severity"] == "high":
+        if incident["severity"] == "high":
             return "HIGH"
-        elif incident["severity"] == "medium":
+        if incident["severity"] == "medium":
             return "MEDIUM"
-        else:
-            return "LOW"
+        return "LOW"
 
     def _generate_actionable_items(self, issues: list[SecurityIssue]) -> list[str]:
         """Generate actionable items for the security team"""

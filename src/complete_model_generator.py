@@ -6,6 +6,7 @@ Encodes ALL linting rules in the model - no post-generation fixes needed
 
 import ast
 from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass
@@ -157,8 +158,8 @@ class CompleteModelGenerator:
         return perfect_code
 
     def _generate_perfect_code_from_analysis(
-        self, initial_code: str, analysis
-    ) -> str:  # type: ignore
+        self, initial_code: str, analysis: Any
+    ) -> str:
         """Generate perfect code by removing unused elements"""
         lines = initial_code.split("\n")
         perfect_lines = []
@@ -185,7 +186,7 @@ class CompleteModelGenerator:
 
         return result
 
-    def _is_import_used(self, import_line: str, analysis) -> bool:  # type: ignore
+    def _is_import_used(self, import_line: str, analysis: Any) -> bool:
         """Check if an import is actually used"""
         if " as " in import_line:
             imported_name = import_line.split(" as ")[1].strip()

@@ -151,7 +151,7 @@ def investigate_python_parser_stages():
     # Stage 2: AST Parsing
     print("\nStage 2: AST Parsing")
     try:
-        tree = ast.parse(broken_code)
+        ast.parse(broken_code)
         print("  ✅ AST parsing successful")
     except SyntaxError as e:
         print(f"  ❌ AST parsing failed: {e}")
@@ -160,7 +160,7 @@ def investigate_python_parser_stages():
     # Stage 3: Compilation
     print("\nStage 3: Compilation")
     try:
-        compiled = compile(broken_code, "<string>", "exec")
+        compile(broken_code, "<string>", "exec")
         print("  ✅ Compilation successful")
     except SyntaxError as e:
         print(f"  ❌ Compilation failed: {e}")

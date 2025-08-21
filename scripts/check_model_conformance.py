@@ -135,21 +135,19 @@ class ModelConformanceChecker:
         categories = {"standard_library": 0, "third_party": 0, "local": 0, "unknown": 0}
 
         for imp in imports:
-            if (
-                imp.startswith("from typing import")
-                or imp.startswith("import os")
-                or imp.startswith("import sys")
+            if imp.startswith(
+                (
+                    "from typing import",
+                    "import os",
+                    "import sys",
+                    "from pathlib import",
+                    "import pathlib",
+                )
             ):
                 categories["standard_library"] += 1
-            elif imp.startswith("from pathlib import") or imp.startswith(
-                "import pathlib"
-            ):
-                categories["standard_library"] += 1
-            elif imp.startswith("from base_expert import") or imp.startswith(
-                "import base_expert"
-            ):
+            elif imp.startswith(("from base_expert import", "import base_expert")):
                 categories["local"] += 1
-            elif imp.startswith("from ") or imp.startswith("import "):
+            elif imp.startswith(("from ", "import ")):
                 categories["third_party"] += 1
             else:
                 categories["unknown"] += 1

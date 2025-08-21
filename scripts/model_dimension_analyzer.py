@@ -22,7 +22,8 @@ class Load_Model:
     def load_model(self) -> None:
         """Load the project model"""
         if not self.model_file.exists():
-            raise FileNotFoundError(f"Model file not found: {self.model_file}")
+            msg = f"Model file not found: {self.model_file}"
+            raise FileNotFoundError(msg)
 
         with open(self.model_file) as f:
             self.model_data = json.load(f)
@@ -31,7 +32,8 @@ class Load_Model:
     def analyze_dimensions(self) -> dict[str, set[str]]:
         """Analyze all dimensions in the model"""
         if not self.model_data:
-            raise ValueError("Model not loaded")
+            msg = "Model not loaded"
+            raise ValueError(msg)
 
         print("🔍 Analyzing model dimensions...")
 
@@ -62,13 +64,13 @@ class Load_Model:
             if "domains" in neo4j:
                 self.dimensions["neo4j_domains"] = set(neo4j["domains"])
             if "requirements" in neo4j:
-                self.dimensions["neo4j_requirements"] = set(
+                self.dimensions["neo4j_requirements"] = {
                     str(i) for i in range(len(neo4j["requirements"]))
-                )
+                }
             if "completed_tasks" in neo4j:
-                self.dimensions["neo4j_completed_tasks"] = set(
+                self.dimensions["neo4j_completed_tasks"] = {
                     str(i) for i in range(len(neo4j["completed_tasks"]))
-                )
+                }
 
         # Analyze domain structures
         self._analyze_domain_structures()
@@ -88,17 +90,17 @@ class Load_Model:
 
                 # Patterns and content indicators
                 if "patterns" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_patterns"] = set(
+                    self.dimensions[f"domain_{domain_name}_patterns"] = {
                         str(i) for i in range(len(domain_data["patterns"]))
-                    )
+                    }
                 if "content_indicators" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_indicators"] = set(
+                    self.dimensions[f"domain_{domain_name}_indicators"] = {
                         str(i) for i in range(len(domain_data["content_indicators"]))
-                    )
+                    }
                 if "requirements" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_requirements"] = set(
+                    self.dimensions[f"domain_{domain_name}_requirements"] = {
                         str(i) for i in range(len(domain_data["requirements"]))
-                    )
+                    }
 
                 # Package potential if exists
                 if "package_potential" in domain_data:
@@ -107,7 +109,7 @@ class Load_Model:
 
     def generate_neo4j_meta_query(self) -> str:
         """Generate Cypher query to discover model dimensions in Neo4j"""
-        query = """
+        return """
 // Meta-Model Discovery Query
 // This query discovers all dimensions and relationships in the project model
 
@@ -161,7 +163,6 @@ RETURN m.model_type as model_type,
        m.domain_coverage as coverage,
        m.test_coverage as test_coverage;
 """
-        return query
 
     def generate_json_meta_query(self) -> dict[str, Any]:
         """Generate JSON query structure to discover model dimensions"""

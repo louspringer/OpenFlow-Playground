@@ -71,7 +71,8 @@ class BanditSecurityScanner:
             config_file: Optional path to Bandit configuration file
         """
         if not BANDIT_AVAILABLE:
-            raise ImportError("Bandit is not available. Install with: uv add bandit")
+            msg = "Bandit is not available. Install with: uv add bandit"
+            raise ImportError(msg)
 
         self.config_file = config_file
         self.bandit_config = None

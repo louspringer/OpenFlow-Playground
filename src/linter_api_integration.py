@@ -126,7 +126,7 @@ class LinterAPIIntegration:
 
             result = secure_execute(cmd, capture_output=True, text=True, timeout=30)
 
-            if result.return_code == 0 and not result.stdout.strip():
+            if result.returncode == 0 and not result.stdout.strip():
                 return []  # No violations
 
             violations = []
@@ -173,7 +173,7 @@ class LinterAPIIntegration:
             result = secure_execute(cmd, capture_output=True, text=True, timeout=30)
 
             violations = []
-            if result.return_code != 0:
+            if result.returncode != 0:
                 # Black needs formatting
                 violations.append(
                     LinterViolation(

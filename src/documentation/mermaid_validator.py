@@ -52,8 +52,7 @@ class MermaidValidator:
     def _extract_mermaid_blocks(self, content: str) -> list[str]:
         """Extract all Mermaid code blocks from content."""
         pattern = r"```mermaid\s*\n(.*?)\n```"
-        matches = re.findall(pattern, content, re.DOTALL)
-        return matches
+        return re.findall(pattern, content, re.DOTALL)
 
     def _validate_mermaid_block(
         self, block: str, block_num: int, file_path: Path
@@ -126,11 +125,7 @@ class MermaidValidator:
         lines = block.strip().split("\n")
         first_line = lines[0].strip() if lines else ""
         is_class_diagram = first_line.startswith("classDiagram")
-        is_graph_like = (
-            first_line.startswith("graph")
-            or first_line.startswith("flowchart")
-            or first_line.startswith("stateDiagram")
-        )
+        is_graph_like = first_line.startswith(("graph", "flowchart", "stateDiagram"))
 
         # Check for unmatched brackets/parentheses
         if block.count("(") != block.count(")"):

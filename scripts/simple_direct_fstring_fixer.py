@@ -17,9 +17,7 @@ def fix_fstring_backslash_newline(content: str) -> str:
 
     # Replace backslash followed by newline with just newline
     # This preserves the structure but removes the problematic backslash
-    fixed_content = content.replace("\\\n", "\n")
-
-    return fixed_content
+    return content.replace("\\\n", "\n")
 
 
 def test_simple_fixer():

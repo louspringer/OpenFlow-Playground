@@ -18,7 +18,7 @@ def load_model(model_file: str) -> dict[str, Any]:
 def generate_auto_formatter(model: dict[str, Any]) -> str:
     """Generate the comprehensive auto-formatter using abstract factory pattern from the model"""
 
-    code = f'''#!/usr/bin/env python3
+    return f'''#!/usr/bin/env python3
 """
 {model['name'].replace('_', ' ').title()}
 
@@ -247,8 +247,6 @@ def main():
 if __name__ == "__main__":
     main()
 '''
-
-    return code
 
 
 def validate_generated_code(code: str, script_name: str) -> dict[str, Any]:

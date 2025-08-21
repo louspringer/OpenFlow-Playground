@@ -374,7 +374,7 @@ Requirements: {component.requirements}
         return design_model
 
 
-def main():
+def main() -> None:
     """Demonstrate round-trip model system"""
     system = RoundTripModelSystem()
 

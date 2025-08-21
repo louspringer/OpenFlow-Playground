@@ -1,0 +1,131 @@
+{
+  "iteration_number": 8,
+  "start_time": "2025-08-20T21:26:17.269220",
+  "end_time": "2025-08-20T21:26:17.270139",
+  "agent_sessions": {
+    "security_expert": {
+      "agent_type": "security_expert",
+      "session_id": "security_expert_8_20250820_212617",
+      "iteration_number": 8,
+      "previous_findings": [
+        {
+          "agent_type": "security_expert",
+          "finding_id": "3e74e2a688c5",
+          "category": "security",
+          "severity": "High",
+          "description": "Potential SQL injection vulnerability detected",
+          "recommendations": [
+            "Use parameterized queries",
+            "Validate user input"
+          ],
+          "confidence": 0.9,
+          "timestamp": "2025-08-20T21:26:17.269398",
+          "metadata": {
+            "file": "database.py",
+            "line": 42
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T21:26:17.269265",
+      "updated_at": "2025-08-20T21:26:17.269507"
+    },
+    "code_quality_expert": {
+      "agent_type": "code_quality_expert",
+      "session_id": "code_quality_expert_8_20250820_212617",
+      "iteration_number": 8,
+      "previous_findings": [
+        {
+          "agent_type": "code_quality_expert",
+          "finding_id": "f384fb0248f4",
+          "category": "quality",
+          "severity": "Medium",
+          "description": "Code complexity exceeds threshold",
+          "recommendations": [
+            "Refactor complex functions",
+            "Add unit tests"
+          ],
+          "confidence": 0.8,
+          "timestamp": "2025-08-20T21:26:17.269491",
+          "metadata": {
+            "file": "main.py",
+            "line": 15
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T21:26:17.269285",
+      "updated_at": "2025-08-20T21:26:17.269534"
+    },
+    "devops_expert": {
+      "agent_type": "devops_expert",
+      "session_id": "devops_expert_8_20250820_212617",
+      "iteration_number": 8,
+      "previous_findings": [
+        {
+          "agent_type": "devops_expert",
+          "finding_id": "725261b0dd1c",
+          "category": "devops",
+          "severity": "Low",
+          "description": "Missing health check endpoint",
+          "recommendations": [
+            "Add /health endpoint",
+            "Implement monitoring"
+          ],
+          "confidence": 0.7,
+          "timestamp": "2025-08-20T21:26:17.269500",
+          "metadata": {
+            "file": "app.py",
+            "line": 30
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T21:26:17.269298",
+      "updated_at": "2025-08-20T21:26:17.269544"
+    }
+  },
+  "cross_agent_insights": [],
+  "synthesis": {
+    "total_findings": 3,
+    "findings_by_agent": {
+      "security_expert": 1,
+      "code_quality_expert": 1,
+      "devops_expert": 1
+    },
+    "cross_agent_patterns": [],
+    "collaborative_insights": [],
+    "recommendations": [],
+    "learning_outcomes": [
+      "Generated 3 findings across 3 agents"
+    ]
+  },
+  "learning_outcomes": []
+}

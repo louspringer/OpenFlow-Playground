@@ -118,9 +118,7 @@ class DeterministicFStringFixer:
         # Pattern: f"text {len(\n    data)}" -> f"text {len(data)}"
         pattern3 = r'f"([^"]*?)\{([^}]*?)\\\\(\s*)\n(\s*)([^}]*?)\}'
         replacement3 = r'f"\1{\2}\3\4\5}'
-        fixed_content = re.sub(pattern3, replacement3, fixed_content)
-
-        return fixed_content
+        return re.sub(pattern3, replacement3, fixed_content)
 
     def _save_fixed_file(self, py_file: Path, fixed_content: str) -> bool:
         """Save the fixed content back to the file"""
@@ -176,9 +174,8 @@ class DeterministicFStringFixer:
             if self._save_fixed_file(py_file, fixed_content):
                 print(f"✅ Successfully fixed {file_path}")
                 return True
-            else:
-                print(f"❌ Failed to fix {file_path}")
-                return False
+            print(f"❌ Failed to fix {file_path}")
+            return False
 
         except Exception as e:
             print(f"❌ Error fixing {file_path}: {e}")

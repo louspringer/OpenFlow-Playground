@@ -46,6 +46,10 @@ dependencies = [
     "astor>=0.8.1",
     "bandit>=1.8.6",
     "mypy==1.8.0",
+    "pytype>=2024.10.11",
+    "langchain-core>=0.3.74",
+    "langchain-anthropic>=0.3.19",
+    "langchain-openai>=0.3.30",
 ]
 
 [project.optional-dependencies]

@@ -118,7 +118,8 @@ class ArtifactModelExtractor(ABC):
             source_content = self.source_file.read_text()
             self.ast_tree = ast.parse(source_content)
         else:
-            raise FileNotFoundError(f"Source file not found: {self.source_file}")
+            msg = f"Source file not found: {self.source_file}"
+            raise FileNotFoundError(msg)
 
     @abstractmethod
     def extract_models(self) -> list[ArtifactModel]:
@@ -636,10 +637,9 @@ class PytestCodeGenerator(TestCodeGenerator):
             file_path = artifact_model.file_path
             if file_path.suffix == ".py":
                 # Convert src/ghostbusters/ghostbusters_orchestrator.py to src.ghostbusters.ghostbusters_orchestrator
-                import_path = (
+                return (
                     str(file_path.with_suffix("")).replace("/", ".").replace("\\", ".")
                 )
-                return import_path
         # Fallback for backward compatibility
         return "src.ghostbusters.ghostbusters_orchestrator"
 

@@ -55,11 +55,10 @@ class OnePasswordIntegration:
                     f"Retrieved credential for item {item_id}, field {field_name}"
                 )
                 return credential
-            else:
-                logger.warning(
-                    f"No credential found for item {item_id}, field {field_name}"
-                )
-                return None
+            logger.warning(
+                f"No credential found for item {item_id}, field {field_name}"
+            )
+            return None
 
         except subprocess.CalledProcessError as e:
             logger.error(f"Failed to retrieve credential from 1Password: {e}")
@@ -150,9 +149,8 @@ class CredentialManager:
         if token:
             logger.info("Successfully retrieved GitGuardian API token from 1Password")
             return token
-        else:
-            logger.error("Failed to retrieve GitGuardian API token from 1Password")
-            return None
+        logger.error("Failed to retrieve GitGuardian API token from 1Password")
+        return None
 
     def get_neo4j_credentials(self) -> Optional[dict[str, str]]:
         """Get Neo4j credentials from 1Password"""
@@ -173,14 +171,13 @@ class CredentialManager:
         if username and password:
             logger.info("Successfully retrieved Neo4j credentials from 1Password")
             return {"username": username, "password": password}
-        else:
-            logger.warning(
-                "Failed to retrieve Neo4j credentials from 1Password, using environment defaults"
-            )
-            return {
-                "username": os.getenv("NEO4J_USERNAME", "neo4j"),
-                "password": os.getenv("NEO4J_PASSWORD", ""),
-            }
+        logger.warning(
+            "Failed to retrieve Neo4j credentials from 1Password, using environment defaults"
+        )
+        return {
+            "username": os.getenv("NEO4J_USERNAME", "neo4j"),
+            "password": os.getenv("NEO4J_PASSWORD", ""),
+        }
 
     def get_security_config(self) -> dict[str, Any]:
         """Get security configuration from environment"""
@@ -214,9 +211,8 @@ class CredentialManager:
             if result.returncode == 0:
                 logger.info(f"1Password CLI authenticated as: {result.stdout.strip()}")
                 return True
-            else:
-                logger.error(f"1Password CLI not authenticated: {result.stderr}")
-                return False
+            logger.error(f"1Password CLI not authenticated: {result.stderr}")
+            return False
 
         except Exception as e:
             logger.error(f"Failed to test 1Password connection: {e}")

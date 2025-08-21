@@ -30,7 +30,7 @@ class MermaidDiagramGenerator:
         if not self.models:
             self.load_project_model()
 
-        mermaid = """graph TB
+        return """graph TB
     subgraph "OpenFlow Playground"
         subgraph "Core Systems"
             AF[ArtifactForge]
@@ -64,8 +64,6 @@ class MermaidDiagramGenerator:
     SEC --> VAL
     BASH --> LINT
     MDC --> VAL"""
-
-        return mermaid
 
     def generate_ghostbusters_architecture_diagram(self) -> str:
         """Generate Ghostbusters architecture diagram from actual code"""
@@ -123,7 +121,7 @@ class MermaidDiagramGenerator:
         # Extract actual test generator classes
         _ = self._extract_classes_from_directory(mdt_path)
 
-        mermaid = """graph TB
+        return """graph TB
     subgraph "Model-Driven Testing System"
         subgraph "Core Components"
             AM[Artifact Model Extractor]
@@ -150,8 +148,6 @@ class MermaidDiagramGenerator:
     MOD --> AM
     TCG --> TESTS
     TESTS --> VALIDATION"""
-
-        return mermaid
 
     def _extract_classes_from_directory(self, directory: Path) -> dict[str, list[str]]:
         """Extract classes and methods from Python files in directory"""

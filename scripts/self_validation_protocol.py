@@ -100,7 +100,7 @@ class SelfValidationProtocol:
 
             # Check for TODO comments that indicate incomplete implementation
             todo_count = content.count("# TODO")
-            todo_implement = content.count("# TODO: Implement")
+            content.count("# TODO: Implement")
 
             # Check for method stubs that just return None or empty strings
             stub_patterns = [
@@ -158,28 +158,26 @@ class SelfValidationProtocol:
                         else result.stdout
                     ),
                 }
-            else:
-                # Try running without arguments
-                result2 = subprocess.run(
-                    ["python", tool_path], capture_output=True, text=True, timeout=10
-                )
+            # Try running without arguments
+            result2 = subprocess.run(
+                ["python", tool_path], capture_output=True, text=True, timeout=10
+            )
 
-                if result2.returncode == 0:
-                    return {
-                        "passed": True,
-                        "message": "Tool runs successfully without arguments",
-                        "output": (
-                            result2.stdout[:200] + "..."
-                            if len(result2.stdout) > 200
-                            else result2.stdout
-                        ),
-                    }
-                else:
-                    return {
-                        "passed": False,
-                        "message": f"Tool failed to run: {result2.stderr}",
-                        "error": result2.stderr,
-                    }
+            if result2.returncode == 0:
+                return {
+                    "passed": True,
+                    "message": "Tool runs successfully without arguments",
+                    "output": (
+                        result2.stdout[:200] + "..."
+                        if len(result2.stdout) > 200
+                        else result2.stdout
+                    ),
+                }
+            return {
+                "passed": False,
+                "message": f"Tool failed to run: {result2.stderr}",
+                "error": result2.stderr,
+            }
 
         except subprocess.TimeoutExpired:
             return {
@@ -267,8 +265,7 @@ class SelfValidationProtocol:
                 with open(work_item) as f:
                     content = f.read()
                 return requirement.lower() in content.lower()
-            else:
-                return False
+            return False
         except Exception:
             return False
 
@@ -395,10 +392,7 @@ class SelfValidationProtocol:
             if content.count("pass") > content.count("def") * 2:
                 return False
 
-            if content.count("# TODO") > 5:
-                return False
-
-            return True
+            return not content.count("# TODO") > 5
         except Exception:
             return False
 
@@ -473,22 +467,20 @@ def main():
 
     # Example validation
     print("\n1. Validating f-string fixer...")
-    result1 = protocol.validate_tool_effectiveness(
+    protocol.validate_tool_effectiveness(
         "scripts/deterministic_fstring_fixer.py", "Fix broken f-strings in Python files"
     )
 
     print("\n2. Validating against project model...")
-    result2 = protocol.validate_against_project_model(
+    protocol.validate_against_project_model(
         "scripts/deterministic_fstring_fixer.py", "code_quality"
     )
 
     print("\n3. Running completion checklist...")
-    result3 = protocol.completion_validation_checklist(
-        "scripts/deterministic_fstring_fixer.py"
-    )
+    protocol.completion_validation_checklist("scripts/deterministic_fstring_fixer.py")
 
     print("\n4. Calling Ghostbusters...")
-    result4 = protocol.call_ghostbusters_on_work(
+    protocol.call_ghostbusters_on_work(
         "F-string fixer implementation",
         [
             "Tool can detect f-string issues",

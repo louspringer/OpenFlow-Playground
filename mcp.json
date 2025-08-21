@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "mcp-server-filesystem"
+      ],
+      "env": {}
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "mcp-server-github"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "stack": {
+      "command": "npx",
+      "args": [
+        "mcp-server-stack"
+      ],
+      "env": {}
+    },
+    "http": {
+      "command": "npx",
+      "args": [
+        "mcp-server-http"
+      ],
+      "env": {}
+    },
+    "json": {
+      "command": "npx",
+      "args": [
+        "mcp-server-json"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -221,8 +221,7 @@ class EnhancedReverseEngineer:
         param_str = ", ".join(params) if params else ""
         if param_str:
             return f"{func_node.name}(self, {param_str}) -> {return_type}"
-        else:
-            return f"{func_node.name}(self) -> {return_type}"
+        return f"{func_node.name}(self) -> {return_type}"
 
     def _build_async_method_signature(self, func_node: ast.AsyncFunctionDef) -> str:
         """Build complete async method signature string"""
@@ -240,8 +239,7 @@ class EnhancedReverseEngineer:
         param_str = ", ".join(params) if params else ""
         if param_str:
             return f"{func_node.name}(self, {param_str}) -> {return_type}"
-        else:
-            return f"{func_node.name}(self) -> {return_type}"
+        return f"{func_node.name}(self) -> {return_type}"
 
     def _extract_parameters(self, args: ast.arguments) -> list[dict[str, Any]]:
         """Extract detailed parameter information"""
@@ -262,16 +260,16 @@ class EnhancedReverseEngineer:
             return "Any"
         if isinstance(annotation, ast.Name):
             return annotation.id
-        elif isinstance(annotation, ast.Constant):
+        if isinstance(annotation, ast.Constant):
             return annotation.value
-        elif isinstance(annotation, ast.Subscript):
+        if isinstance(annotation, ast.Subscript):
             if isinstance(annotation.value, ast.Name):
                 base_type = annotation.value.id
                 if hasattr(annotation, "slice"):
                     slice_value = annotation.slice
                     if isinstance(slice_value, ast.Name):
                         return f"{base_type}[{slice_value.id}]"
-                    elif isinstance(slice_value, ast.Tuple):
+                    if isinstance(slice_value, ast.Tuple):
                         slice_types = []
                         for elt in slice_value.elts:
                             if isinstance(elt, ast.Name):

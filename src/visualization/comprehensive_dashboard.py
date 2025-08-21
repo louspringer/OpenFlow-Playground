@@ -8,6 +8,7 @@ import logging
 from pathlib import Path
 
 import plotly.graph_objects as go
+
 import streamlit as st
 
 from .svg_engine import SVGVisualizationEngine

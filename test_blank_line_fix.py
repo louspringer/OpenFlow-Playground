@@ -59,9 +59,8 @@ def main():
     if consecutive_blank_lines <= 2:
         print("✅ Blank line fix successful!")
         return 0
-    else:
-        print("❌ Blank line fix failed!")
-        return 1
+    print("❌ Blank line fix failed!")
+    return 1
 
 
 if __name__ == "__main__":

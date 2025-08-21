@@ -58,14 +58,13 @@ def _parse_method_signature(method_signature: str) -> dict[str, Any]:
             }
             print(f"  Result: {result}")
             return result
-        else:
-            # Fallback for malformed signatures
-            print(f"  Malformed signature, using fallback")
-            return {
-                "name": method_signature.strip(),
-                "params": [],
-                "return_type": "Any",
-            }
+        # Fallback for malformed signatures
+        print(f"  Malformed signature, using fallback")
+        return {
+            "name": method_signature.strip(),
+            "params": [],
+            "return_type": "Any",
+        }
     except Exception as e:
         # Fallback for any parsing errors
         print(f"  Exception: {e}, using fallback")

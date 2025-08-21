@@ -282,7 +282,7 @@ class SecurityQualityGate:
         gate_passed = score_passed and high_severity_passed and total_issues_passed
 
         # Generate detailed report
-        report = {
+        return {
             "gate_passed": gate_passed,
             "security_score": {
                 "value": metrics.security_score,
@@ -306,8 +306,6 @@ class SecurityQualityGate:
             ),
         }
 
-        return report
-
     def _generate_gate_recommendations(
         self, metrics: SecurityQualityMetrics, gate_passed: bool
     ) -> list[str]:
@@ -317,9 +315,7 @@ class SecurityQualityGate:
         if gate_passed:
             recommendations.append("✅ Security quality gate passed")
             if metrics.security_score < 90.0:
-                recommendations.append(
-                    "📈 Consider improving security score above 90.0"
-                )
+                recommendations.append("📈 Consider improving security score above 90.0")
         else:
             recommendations.append("❌ Security quality gate failed")
 

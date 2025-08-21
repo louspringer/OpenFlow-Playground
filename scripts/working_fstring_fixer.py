@@ -24,9 +24,7 @@ def fix_broken_fstrings(content: str) -> str:
     replacement = r'f"\1{\2}\3\4\5"'
 
     # Apply the fix
-    fixed_content = re.sub(pattern, replacement, content)
-
-    return fixed_content
+    return re.sub(pattern, replacement, content)
 
 
 def test_fstring_fixer():

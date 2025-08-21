@@ -172,14 +172,8 @@ class CypherValidator:
 
             # Fix: Ensure statements end with semicolon
             stripped = line.strip()
-            if (
-                stripped.startswith("CREATE")
-                or stripped.startswith("MATCH")
-                or stripped.startswith("RETURN")
-                or stripped.startswith("WITH")
-                or stripped.startswith("MERGE")
-                or stripped.startswith("DELETE")
-                or stripped.startswith("SET")
+            if stripped.startswith(
+                ("CREATE", "MATCH", "RETURN", "WITH", "MERGE", "DELETE", "SET")
             ):
                 if not stripped.endswith(";"):
                     line = line.rstrip() + ";"

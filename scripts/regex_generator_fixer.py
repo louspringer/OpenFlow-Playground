@@ -20,7 +20,8 @@ def generate_regex_from_examples(
     """
 
     if len(before_examples) != len(after_examples):
-        raise ValueError("Must have equal numbers of before/after examples")
+        msg = "Must have equal numbers of before/after examples"
+        raise ValueError(msg)
 
     # Analyze the patterns to find common structure
     patterns = []
@@ -34,8 +35,7 @@ def generate_regex_from_examples(
     # Generate regex based on common patterns
     if patterns:
         return generate_common_pattern(patterns)
-    else:
-        return None
+    return None
 
 
 def find_differences(before: str, after: str) -> dict:
@@ -72,7 +72,7 @@ def generate_common_pattern(differences: list[dict]) -> str:
     # f"([^"]*?)\{([^}]*?)\\(\s*)\n(\s*)([^"]*?)"
     # But let's build it step by step
 
-    pattern = (
+    return (
         r'f"'  # Start of f-string
         r'([^"]*?)'  # Capture group 1: text before expression
         r"\{"  # Opening brace
@@ -84,8 +84,6 @@ def generate_common_pattern(differences: list[dict]) -> str:
         r'([^"]*?)'  # Capture group 5: text after expression
         r'"'  # Closing quote
     )
-
-    return pattern
 
 
 def fix_fstrings_with_generated_regex(content: str) -> str:
@@ -107,13 +105,11 @@ def fix_fstrings_with_generated_regex(content: str) -> str:
     if pattern:
         # Apply the fix: remove backslash and newline, keep the content
         replacement = r'f"\1{\2}\3\4\5"'
-        fixed_content = re.sub(pattern, replacement, content)
-        return fixed_content
-    else:
-        # Fallback to manual pattern if generation fails
-        manual_pattern = r'f"([^"]*?)\{([^}]*?)\\(\s*)\n(\s*)([^"]*?)"'
-        replacement = r'f"\1{\2}\3\4\5"'
-        return re.sub(manual_pattern, replacement, content)
+        return re.sub(pattern, replacement, content)
+    # Fallback to manual pattern if generation fails
+    manual_pattern = r'f"([^"]*?)\{([^}]*?)\\(\s*)\n(\s*)([^"]*?)"'
+    replacement = r'f"\1{\2}\3\4\5"'
+    return re.sub(manual_pattern, replacement, content)
 
 
 def test_regex_generator():

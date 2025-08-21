@@ -41,7 +41,8 @@ class ModelLoader:
             print(f"✅ Loaded model: {model_file}")
             return model
         except Exception as e:
-            raise ValueError(f"Failed to load model {model_file}: {e}")
+            msg = f"Failed to load model {model_file}: {e}"
+            raise ValueError(msg)
 
     @staticmethod
     def validate_model(model: dict[str, Any]) -> bool:
@@ -143,8 +144,7 @@ if __name__ == "__main__":
         \"\"\"{method_def}\"\"\"
         # TODO: Implement {method_def}
         pass"""
-        else:
-            return f"""    def {method_def}(self):
+        return f"""    def {method_def}(self):
         \"\"\"{method_def}\"\"\"
         # TODO: Implement {method_def}
         pass"""
@@ -300,15 +300,13 @@ class CodeValidator:
     @staticmethod
     def check_quality(file_path: str) -> dict[str, Any]:
         """Check overall code quality"""
-        quality = {
+        return {
             "syntax_valid": CodeValidator.validate_syntax(file_path),
             "file_exists": Path(file_path).exists(),
             "file_size": (
                 Path(file_path).stat().st_size if Path(file_path).exists() else 0
             ),
         }
-
-        return quality
 
 
 class TestRunner:
@@ -330,9 +328,8 @@ class TestRunner:
             if result.returncode == 0:
                 print("  ✅ AST parsing test passed")
                 return True
-            else:
-                print(f"  ❌ AST parsing test failed: {result.stderr}")
-                return False
+            print(f"  ❌ AST parsing test failed: {result.stderr}")
+            return False
 
         except Exception as e:
             print(f"  ❌ Smoke test failed: {e}")
@@ -358,14 +355,16 @@ class WorkflowOrchestrator:
             # Step 1: Load and validate model
             model = self.model_loader.load_model(model_file)
             if not self.model_loader.validate_model(model):
-                raise ValueError("Model validation failed")
+                msg = "Model validation failed"
+                raise ValueError(msg)
 
             # Step 2: Generate code
             code = self.code_generator.generate_code(model)
 
             # Step 3: Write code
             if not self.code_writer.write_code(output_file, code):
-                raise ValueError("Code writing failed")
+                msg = "Code writing failed"
+                raise ValueError(msg)
 
             # Step 4: Auto-format
             if not self.auto_formatter.format_file(output_file):

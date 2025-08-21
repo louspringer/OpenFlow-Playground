@@ -68,7 +68,8 @@ class Neo4jPOC:
     def generate_cypher_queries(self) -> list[str]:
         """Generate Cypher queries for Neo4j graph creation"""
         if not self.model:
-            raise ValueError("Project model not loaded")
+            msg = "Project model not loaded"
+            raise ValueError(msg)
 
         print("🔧 Generating Cypher queries...")
         queries = []
@@ -137,7 +138,7 @@ class Neo4jPOC:
         emoji_prefixes = cursor_rules["emoji_prefixes"]
 
         # Create CONTAINS relationships
-        for rule_name in emoji_prefixes.keys():
+        for rule_name in emoji_prefixes:
             relationship_query = f"MATCH (d:Domain {{name: 'cursor_rules'}}) MATCH (r:Rule {{name: '{rule_name}'}}) CREATE (d)-[:CONTAINS]->(r) RETURN d, r;"
             queries.append(relationship_query)
 

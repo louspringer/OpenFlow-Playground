@@ -50,7 +50,7 @@ def test_actual_broken_fstring():
     # Let's try to compile it
     print("\n🧪 Testing Compilation:")
     try:
-        compiled = compile(statement, "<string>", "exec")
+        compile(statement, "<string>", "exec")
         print("  ✅ Compilation successful!")
     except SyntaxError as e:
         print(f"  ❌ Compilation failed: {e}")

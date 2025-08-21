@@ -60,9 +60,7 @@ def fix_broken_fstring_line(line: str) -> str:
         return f'f"{before}{{{expression}}}{ws1}{ws2}{after}"'
 
     # Apply the fix
-    fixed_line = re.sub(fstring_pattern, fix_match, line)
-
-    return fixed_line
+    return re.sub(fstring_pattern, fix_match, line)
 
 
 def fix_fstrings_in_content(content: str) -> str:

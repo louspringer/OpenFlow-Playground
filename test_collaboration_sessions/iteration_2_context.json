@@ -1,0 +1,128 @@
+{
+  "iteration_number": 2,
+  "start_time": "2025-08-20T20:51:09.979461",
+  "end_time": "2025-08-20T20:51:09.979726",
+  "agent_sessions": {
+    "security_expert": {
+      "agent_type": "security_expert",
+      "session_id": "security_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [
+        {
+          "agent_type": "security_expert",
+          "finding_id": "sec_collab_001",
+          "category": "security",
+          "severity": "high",
+          "description": "Potential security vulnerability in authentication",
+          "recommendations": [
+            "Implement proper input validation",
+            "Add rate limiting"
+          ],
+          "confidence": 0.9,
+          "timestamp": "2025-08-20T20:51:09.979551",
+          "metadata": {
+            "test": true
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T20:51:09.979502",
+      "updated_at": "2025-08-20T20:51:09.979564"
+    },
+    "code_quality_expert": {
+      "agent_type": "code_quality_expert",
+      "session_id": "code_quality_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [
+        {
+          "agent_type": "code_quality_expert",
+          "finding_id": "qual_collab_001",
+          "category": "code_quality",
+          "severity": "medium",
+          "description": "Code complexity could be reduced",
+          "recommendations": [
+            "Extract complex methods",
+            "Add type hints"
+          ],
+          "confidence": 0.8,
+          "timestamp": "2025-08-20T20:51:09.979574",
+          "metadata": {
+            "test": true
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T20:51:09.979520",
+      "updated_at": "2025-08-20T20:51:09.979581"
+    },
+    "devops_expert": {
+      "agent_type": "devops_expert",
+      "session_id": "devops_expert_2_20250820_205109",
+      "iteration_number": 2,
+      "previous_findings": [
+        {
+          "agent_type": "devops_expert",
+          "finding_id": "devops_collab_001",
+          "category": "devops",
+          "severity": "low",
+          "description": "Deployment pipeline could be optimized",
+          "recommendations": [
+            "Add parallel stages",
+            "Implement caching"
+          ],
+          "confidence": 0.7,
+          "timestamp": "2025-08-20T20:51:09.979590",
+          "metadata": {
+            "test": true
+          },
+          "cross_references": []
+        }
+      ],
+      "learning_context": {
+        "previous_iterations": [],
+        "successful_strategies": [],
+        "failed_approaches": [],
+        "cross_agent_insights": [],
+        "cumulative_findings": {}
+      },
+      "collaboration_history": [],
+      "current_context": {},
+      "created_at": "2025-08-20T20:51:09.979532",
+      "updated_at": "2025-08-20T20:51:09.979594"
+    }
+  },
+  "cross_agent_insights": [],
+  "synthesis": {
+    "total_findings": 3,
+    "findings_by_agent": {
+      "security_expert": 1,
+      "code_quality_expert": 1,
+      "devops_expert": 1
+    },
+    "cross_agent_patterns": [],
+    "collaborative_insights": [],
+    "recommendations": [],
+    "learning_outcomes": [
+      "Generated 3 findings across 3 agents"
+    ]
+  },
+  "learning_outcomes": []
+}

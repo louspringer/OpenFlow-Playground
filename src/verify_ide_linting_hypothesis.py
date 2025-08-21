@@ -31,7 +31,7 @@ class IDELintingHypothesisVerifier:
     def collect_data_points(self) -> dict[str, Any]:
         """Collect data points from different sources to test the hypothesis."""
 
-        verification_data = {
+        verification_data: dict[str, Any] = {
             "hypothesis": "IDE linting data is fragmented and unreliable",
             "test_methods": [],
             "data_points": [],
@@ -229,7 +229,7 @@ class IDELintingHypothesisVerifier:
     ) -> dict[str, Any]:
         """Analyze if the data is fragmented and unreliable."""
 
-        analysis = {
+        analysis: dict[str, Any] = {
             "total_data_points": len(data_points),
             "sources": {},
             "linters": {},

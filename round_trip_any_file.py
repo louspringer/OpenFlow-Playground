@@ -11,9 +11,8 @@ import json
 import sys
 from pathlib import Path
 
-from round_trip_model_system import RoundTripModelSystem
-
 from enhanced_reverse_engineer import EnhancedReverseEngineer
+from round_trip_model_system import RoundTripModelSystem
 
 
 def main() -> None:
@@ -45,7 +44,9 @@ def main() -> None:
             f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines"
         )
         print(f"   🏗️  Classes: {extracted_model.get('classes', {}).get('count', 0)}")
-        print(f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}")
+        print(
+            f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}"
+        )
 
         # Save extracted model
         model_file = f"{file_name}_extracted_model.json"

@@ -1,0 +1,284 @@
+{
+  "orchestrator": {
+    "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+    "current_stage": "subproject_scrubbing",
+    "iteration_count": 5
+  },
+  "quality_reports": [
+    {
+      "timestamp": "2025-08-20T20:09:29.810936",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+      "total_files_analyzed": 13790,
+      "files_with_issues": 0,
+      "total_issues": 305,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 268,
+        "high": 5,
+        "critical": 32
+      },
+      "issues_by_type": {
+        "5": 2,
+        "PTH108": 10,
+        "INP001": 16,
+        "UP035": 82,
+        "PTH110": 29,
+        "PTH112": 1,
+        "PTH107": 4,
+        "PTH202": 1,
+        "PTH113": 1,
+        "SIM115": 3,
+        "LOG015": 56,
+        "FBT001": 20,
+        "FBT002": 12,
+        "S608": 4,
+        "S314": 3,
+        "S311": 6,
+        "N801": 9,
+        "DTZ006": 2,
+        "W293": 5,
+        "\"unknown\"}": 1,
+        "": 10,
+        "PIE790": 3,
+        "S606": 1,
+        "SIM103": 2,
+        "G001": 10,
+        "S108": 2,
+        "N802": 5,
+        "S113": 2,
+        "PTH119": 1,
+        "A001": 1,
+        "G003": 1
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 305,
+      "recommendations": [
+        "Address 305 remaining linting issues",
+        "Fix critical errors first",
+        "Address high-priority warnings"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-20T20:09:47.422608",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+      "total_files_analyzed": 13790,
+      "files_with_issues": 0,
+      "total_issues": 291,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 259,
+        "high": 0,
+        "critical": 32
+      },
+      "issues_by_type": {
+        "5": 2,
+        "PTH108": 10,
+        "INP001": 16,
+        "UP035": 82,
+        "PTH110": 29,
+        "PTH112": 1,
+        "PTH107": 4,
+        "PTH202": 1,
+        "PTH113": 1,
+        "SIM115": 3,
+        "LOG015": 56,
+        "FBT001": 20,
+        "FBT002": 12,
+        "S608": 4,
+        "S314": 3,
+        "S311": 6,
+        "N801": 9,
+        "DTZ006": 2,
+        "S606": 1,
+        "SIM103": 2,
+        "": 5,
+        "G001": 10,
+        "S108": 2,
+        "N802": 5,
+        "S113": 2,
+        "PTH119": 1,
+        "A001": 1,
+        "G003": 1
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 291,
+      "recommendations": [
+        "Address 291 remaining linting issues",
+        "Fix critical errors first"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-20T20:10:03.751050",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+      "total_files_analyzed": 13790,
+      "files_with_issues": 0,
+      "total_issues": 291,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 259,
+        "high": 0,
+        "critical": 32
+      },
+      "issues_by_type": {
+        "5": 2,
+        "PTH108": 10,
+        "INP001": 16,
+        "UP035": 82,
+        "PTH110": 29,
+        "PTH112": 1,
+        "PTH107": 4,
+        "PTH202": 1,
+        "PTH113": 1,
+        "SIM115": 3,
+        "LOG015": 56,
+        "FBT001": 20,
+        "FBT002": 12,
+        "S608": 4,
+        "S314": 3,
+        "S311": 6,
+        "N801": 9,
+        "DTZ006": 2,
+        "S606": 1,
+        "SIM103": 2,
+        "": 5,
+        "G001": 10,
+        "S108": 2,
+        "N802": 5,
+        "S113": 2,
+        "PTH119": 1,
+        "A001": 1,
+        "G003": 1
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 291,
+      "recommendations": [
+        "Address 291 remaining linting issues",
+        "Fix critical errors first"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-20T20:10:19.934039",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+      "total_files_analyzed": 13790,
+      "files_with_issues": 0,
+      "total_issues": 291,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 259,
+        "high": 0,
+        "critical": 32
+      },
+      "issues_by_type": {
+        "5": 2,
+        "PTH108": 10,
+        "INP001": 16,
+        "UP035": 82,
+        "PTH110": 29,
+        "PTH112": 1,
+        "PTH107": 4,
+        "PTH202": 1,
+        "PTH113": 1,
+        "SIM115": 3,
+        "LOG015": 56,
+        "FBT001": 20,
+        "FBT002": 12,
+        "S608": 4,
+        "S314": 3,
+        "S311": 6,
+        "N801": 9,
+        "DTZ006": 2,
+        "S606": 1,
+        "SIM103": 2,
+        "": 5,
+        "G001": 10,
+        "S108": 2,
+        "N802": 5,
+        "S113": 2,
+        "PTH119": 1,
+        "A001": 1,
+        "G003": 1
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 291,
+      "recommendations": [
+        "Address 291 remaining linting issues",
+        "Fix critical errors first"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    },
+    {
+      "timestamp": "2025-08-20T20:10:35.990667",
+      "target_directory": "/home/lou/Documents/OpenFlow-Playground",
+      "total_files_analyzed": 13790,
+      "files_with_issues": 0,
+      "total_issues": 291,
+      "issues_by_severity": {
+        "low": 0,
+        "medium": 259,
+        "high": 0,
+        "critical": 32
+      },
+      "issues_by_type": {
+        "5": 2,
+        "PTH108": 10,
+        "INP001": 16,
+        "UP035": 82,
+        "PTH110": 29,
+        "PTH112": 1,
+        "PTH107": 4,
+        "PTH202": 1,
+        "PTH113": 1,
+        "SIM115": 3,
+        "LOG015": 56,
+        "FBT001": 20,
+        "FBT002": 12,
+        "S608": 4,
+        "S314": 3,
+        "S311": 6,
+        "N801": 9,
+        "DTZ006": 2,
+        "S606": 1,
+        "SIM103": 2,
+        "": 5,
+        "G001": 10,
+        "S108": 2,
+        "N802": 5,
+        "S113": 2,
+        "PTH119": 1,
+        "A001": 1,
+        "G003": 1
+      },
+      "automated_fixes_applied": 0,
+      "manual_fixes_required": 291,
+      "recommendations": [
+        "Address 291 remaining linting issues",
+        "Fix critical errors first"
+      ],
+      "next_actions": [
+        "Continue PDCA iteration",
+        "Apply remaining automated fixes",
+        "Address manual fixes if needed"
+      ]
+    }
+  ],
+  "timestamp": "2025-08-20T20:10:52.537384"
+}

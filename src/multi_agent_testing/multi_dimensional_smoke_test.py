@@ -12,9 +12,22 @@ from typing import Any
 
 import requests
 
+# LangChain caching imports
+try:
+    from langchain.cache import InMemoryCache
+    from langchain.globals import get_llm_cache, set_llm_cache
+    from langchain_core.caches import BaseCache
+
+    LANGCHAIN_AVAILABLE = True
+except ImportError:
+    LANGCHAIN_AVAILABLE = False
+
 
 class MultiDimensionalSmokeTest:
     def __init__(self) -> None:
+        # Initialize LangChain cache if available
+        self._initialize_langchain_cache()
+
         # Updated model configurations with proven diversity
         self.models = {
             "gpt4": {
@@ -35,7 +48,7 @@ class MultiDimensionalSmokeTest:
             "claude": {
                 "api_key_env": "ANTHROPIC_API_KEY",
                 "endpoint": "https://api.anthropic.com/v1/messages",
-                "model_name": "claude-3-sonnet-20240229",
+                "model_name": "claude-3-haiku-20240307",
             },
             "claude_web": {
                 "api_key_env": "ANTHROPIC_API_KEY",
@@ -55,8 +68,18 @@ class MultiDimensionalSmokeTest:
             # New diverse models for enhanced diversity hypothesis testing
             "gpt4_vision": {
                 "api_key_env": "OPENAI_API_KEY",
-                "endpoint": "https://api.openai.com/v1/chat/completions",
+                "endpoint": "https://api.openai.com/v1/chat/completions",  # ✅ FIXED: Use proper OpenAI endpoint
                 "model_name": "gpt-4o-mini",
+            },
+            "gpt5": {
+                "api_key_env": "OPENAI_API_KEY",
+                "endpoint": "https://api.openai.com/v1/chat/completions",
+                "model_name": "gpt-5o",
+            },
+            "gpt3_5_turbo": {
+                "api_key_env": "OPENAI_API_KEY",
+                "endpoint": "https://api.openai.com/v1/chat/completions",
+                "model_name": "gpt-3.5-turbo",
             },
             "claude_opus": {
                 "api_key_env": "ANTHROPIC_API_KEY",
@@ -67,6 +90,48 @@ class MultiDimensionalSmokeTest:
                 "api_key_env": "MIXTRAL_API_KEY",
                 "endpoint": "https://api.mistral.ai/v1/chat/completions",
                 "model_name": "mistral-large-latest",
+            },
+            "huggingface": {
+                "api_key_env": "HUGGINGFACE_API_KEY",
+                "endpoint": "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf",
+                "model_name": "meta-llama/Llama-2-7b-chat-hf",
+            },
+            "claude_sonnet": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-sonnet-20240229",
+            },
+            # Google/Gemini models
+            "gemini_pro": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent",
+                "model_name": "gemini-pro",
+            },
+            "gemini_flash": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent",
+                "model_name": "gemini-1.5-flash",
+            },
+            "gemini_pro_vision": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro-vision:generateContent",
+                "model_name": "gemini-pro-vision",
+            },
+            # AWS Bedrock models
+            "claude_bedrock": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "anthropic.claude-3-sonnet-20240229-v1:0",
+            },
+            "titan_express": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "amazon.titan-text-express-v1",
+            },
+            "llama2_bedrock": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "meta.llama2-70b-chat-v1",
             },
         }
 
@@ -133,6 +198,28 @@ class MultiDimensionalSmokeTest:
             "stakeholder_analysis": "Return stakeholder analysis with impacts and recommendations for each group.",
         }
 
+    def _initialize_langchain_cache(self) -> None:
+        """Initialize LangChain caching for improved performance"""
+        if LANGCHAIN_AVAILABLE:
+            try:
+                # Check if cache is already set
+                existing_cache = get_llm_cache()
+                if existing_cache is None:
+                    # Set up in-memory cache for LLM calls
+                    cache = InMemoryCache()
+                    set_llm_cache(cache)
+                    print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
+                else:
+                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
+            except Exception as e:
+                print(
+                    f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}"
+                )
+        else:
+            print(
+                "⚠️ MultiDimensionalSmokeTest: LangChain not available, skipping cache"
+            )
+
     def call_llm(
         self,
         model_name: str,
@@ -145,15 +232,32 @@ class MultiDimensionalSmokeTest:
             msg = f"Unknown model: {model_name}"
             raise ValueError(msg)
 
-        api_key = os.getenv(model_config["api_key_env"])
+        # Use working API key if available, otherwise fall back to environment
+        api_key = None
+        if hasattr(self, "working_api_keys") and model_name in self.working_api_keys:
+            api_key = self.working_api_keys[model_name]
+            print(f"    🔑 Using working API key for {model_name}")
+        else:
+            api_key = os.getenv(model_config["api_key_env"])
+            print(f"    🔑 Using environment API key for {model_name}")
+
         if not api_key:
-            msg = f"No API key for {model_config['api_key_env']}"
+            msg = f"No API key for {model_name}"
             raise ValueError(msg)
 
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-        }
+        # Use different authentication headers for different providers
+        if "anthropic" in model_name.lower() or model_name == "claude":
+            headers = {
+                "Content-Type": "application/json",
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+            }
+        else:
+            # Default to OpenAI-style Bearer token
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            }
 
         # Enhanced prompt engineering based on proven diversity hypothesis
         enhanced_prompt = """
@@ -167,18 +271,28 @@ This is part of a diversity hypothesis test - your unique viewpoint is valuable.
 Return your analysis in the requested format with high confidence in your findings.
 """
 
-        payload = {
-            "model": model_config["model_name"],
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are an expert analyst focused on identifying blind spots and potential issues.",
-                },
-                {"role": "user", "content": enhanced_prompt},
-            ],
-            "temperature": temperature,
-            "max_tokens": 2000,
-        }
+        # Use different payload structures for different providers
+        if "anthropic" in model_name.lower() or model_name == "claude":
+            # Anthropic uses a simpler payload structure
+            payload = {
+                "model": model_config["model_name"],
+                "max_tokens": 2000,
+                "messages": [{"role": "user", "content": enhanced_prompt}],
+            }
+        else:
+            # OpenAI-style payload with system role
+            payload = {
+                "model": model_config["model_name"],
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are an expert analyst focused on identifying blind spots and potential issues.",
+                    },
+                    {"role": "user", "content": enhanced_prompt},
+                ],
+                "temperature": temperature,
+                "max_tokens": 2000,
+            }
 
         try:
             response = requests.post(
@@ -369,6 +483,13 @@ Focus on identifying what might be missing or overlooked from your unique perspe
 
         return insights
 
+    def set_working_api_keys(self, working_keys: dict[str, str]) -> None:
+        """Set working API keys for specific models"""
+        self.working_api_keys = working_keys
+        print(
+            f"🔑 MultiDimensionalSmokeTest: Set working API keys for {len(working_keys)} models"
+        )
+
     def run_comprehensive_test(
         self,
         scenario: str = "healthcare_cdc_pr",
@@ -554,9 +675,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = (
-                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
-                )
+                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")
