@@ -151,9 +151,9 @@ class OnePasswordAPIKeyManager:
             return items
 
         except subprocess.CalledProcessError as e:
-            raise RuntimeError(f"Failed to list 1Password items: {e}")
+            raise RuntimeError(f"Failed to list 1Password items: {e}") from e
         except json.JSONDecodeError as e:
-            raise RuntimeError(f"Failed to parse 1Password output: {e}")
+            raise RuntimeError(f"Failed to parse 1Password output: {e}") from e
 
     def _filter_api_keys(self, items: List[Dict[str, Any]]) -> List[APIKeyItem]:
         """
@@ -212,14 +212,12 @@ class OnePasswordAPIKeyManager:
         title = item.get("title", "").lower()
         category = item.get("category", "").lower()
 
-        # Look for API key indicators in title
+        # Look for specific API key indicators in title
         api_key_indicators = [
-            "api",
-            "key",
-            "token",
-            "secret",
-            "credential",
-            "password",
+            "api key",
+            "api token",
+            "api secret",
+            "api credential",
             "openai",
             "gpt",
             "chatgpt",
@@ -239,12 +237,16 @@ class OnePasswordAPIKeyManager:
             "secret key",
         ]
 
-        # Check if title contains API key indicators
+        # Check if title contains specific API key indicators
         if any(indicator in title for indicator in api_key_indicators):
             return True
 
-        # Check if category suggests API keys
-        if category in ["login", "secure note", "api credential"]:
+        # Check for generic API indicators (but be more specific)
+        if "api" in title and any(word in title for word in ["key", "token", "secret"]):
+            return True
+
+        # Check if category suggests API keys (but be more specific)
+        if category == "api credential":
             return True
 
         # Check tags for API key indicators
@@ -277,9 +279,9 @@ class OnePasswordAPIKeyManager:
             return json.loads(result.stdout)
 
         except subprocess.CalledProcessError as e:
-            raise RuntimeError(f"Failed to get item {item_id}: {e}")
+            raise RuntimeError(f"Failed to get item {item_id}: {e}") from e
         except json.JSONDecodeError as e:
-            raise RuntimeError(f"Failed to parse item {item_id}: {e}")
+            raise RuntimeError(f"Failed to parse item {item_id}: {e}") from e
 
     def _organize_credentials(self, api_keys: List[APIKeyItem]) -> List[CredentialPair]:
         """
@@ -306,7 +308,7 @@ class OnePasswordAPIKeyManager:
                     primary=primary,
                     secondary=secondary,
                     pair_type=self._determine_pair_type(primary, secondary),
-                    description=f"Auto-paired credentials for {primary.provider.value}",
+                    description=f"Auto-paired credentials for {primary.detected_provider.value}",
                 )
                 pairs.append(pair)
                 processed_ids.add(primary.id)
@@ -317,7 +319,7 @@ class OnePasswordAPIKeyManager:
                     primary=primary,
                     secondary=None,
                     pair_type="single",
-                    description=f"Single credential for {primary.provider.value}",
+                    description=f"Single credential for {primary.detected_provider.value}",
                 )
                 pairs.append(pair)
                 processed_ids.add(primary.id)
@@ -337,9 +339,9 @@ class OnePasswordAPIKeyManager:
         Returns:
             Related credential if found, None otherwise
         """
-        if primary.provider == ProviderType.AWS:
+        if primary.detected_provider == ProviderType.AWS:
             return self._find_aws_pair(primary, all_keys)
-        elif primary.provider == ProviderType.GOOGLE:
+        elif primary.detected_provider == ProviderType.GOOGLE:
             return self._find_google_pair(primary, all_keys)
 
         return None

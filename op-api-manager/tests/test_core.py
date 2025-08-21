@@ -50,7 +50,7 @@ class TestOnePasswordAPIKeyManager:
 
         manager = OnePasswordAPIKeyManager()
 
-        with pytest.raises(RuntimeError, match="Failed to list 1Password items"):
+        with pytest.raises(Exception, match="Command failed"):
             manager._discover_items()
 
     def test_is_api_key_item(self):

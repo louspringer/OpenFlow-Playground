@@ -14,6 +14,7 @@ from .core import OnePasswordAPIKeyManager
 from .models import (
     APIKeyItem,
     APIKeyStatus,
+    CacheConfig,
     CredentialPair,
     DiscoveryResult,
     ProviderType,
@@ -26,5 +27,6 @@ __all__ = [
     "ProviderType",
     "APIKeyStatus",
     "DiscoveryResult",
+    "CacheConfig",
     "main",
 ]

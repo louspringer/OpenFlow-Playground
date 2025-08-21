@@ -90,15 +90,15 @@ class TestAPIKeyItem:
         """Test automatic provider detection from title."""
         # OpenAI detection
         item = APIKeyItem(id="test-id", title="OpenAI GPT API Key", category="login")
-        assert item.provider == ProviderType.OPENAI
+        assert item.detected_provider == ProviderType.OPENAI
 
         # AWS detection
         item = APIKeyItem(id="test-id", title="AWS Access Key ID", category="login")
-        assert item.provider == ProviderType.AWS
+        assert item.detected_provider == ProviderType.AWS
 
         # Unknown provider
         item = APIKeyItem(id="test-id", title="Some Random Item", category="login")
-        assert item.provider == ProviderType.UNKNOWN
+        assert item.detected_provider == ProviderType.UNKNOWN
 
 
 class TestCredentialPair:

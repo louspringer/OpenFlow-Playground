@@ -9,7 +9,7 @@ from enum import Enum
 from typing import Any, Dict, List, Optional
 from uuid import UUID, uuid4
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 
 
 class ProviderType(str, Enum):
@@ -44,7 +44,7 @@ class APIKeyItem(BaseModel):
     title: str = Field(..., description="Item title")
     category: str = Field(..., description="1Password category")
     guid: UUID = Field(default_factory=uuid4, description="Unique identifier")
-    provider: ProviderType = Field(..., description="Detected provider type")
+    provider: Optional[ProviderType] = Field(None, description="Detected provider type")
     status: APIKeyStatus = Field(
         default=APIKeyStatus.DISCOVERED, description="Current status"
     )
@@ -57,14 +57,46 @@ class APIKeyItem(BaseModel):
         default_factory=dict, description="Additional metadata"
     )
 
-    @validator("provider", pre=True)
-    def detect_provider(cls, v):
+    @field_validator("provider", mode="before")
+    @classmethod
+    def detect_provider(cls, v, info):
         """Auto-detect provider from title and other fields."""
         if isinstance(v, ProviderType):
             return v
 
+        # Get title from the data if available
+        title = ""
+        if hasattr(info, "data") and info.data and "title" in info.data:
+            title = info.data["title"].lower()
+
         # Provider detection logic
-        title_lower = v.lower() if isinstance(v, str) else ""
+        if any(keyword in title for keyword in ["openai", "gpt", "chatgpt"]):
+            return ProviderType.OPENAI
+        elif any(keyword in title for keyword in ["claude", "anthropic"]):
+            return ProviderType.ANTHROPIC
+        elif any(keyword in title for keyword in ["google", "gemini"]):
+            return ProviderType.GOOGLE
+        elif any(keyword in title for keyword in ["aws", "amazon", "bedrock"]):
+            return ProviderType.AWS
+        elif any(keyword in title for keyword in ["huggingface", "hf"]):
+            return ProviderType.HUGGINGFACE
+        elif any(keyword in title for keyword in ["cohere"]):
+            return ProviderType.COHERE
+        elif any(keyword in title for keyword in ["ai21"]):
+            return ProviderType.AI21
+        elif any(keyword in title for keyword in ["azure"]):
+            return ProviderType.AZURE
+        else:
+            return ProviderType.UNKNOWN
+
+    @property
+    def detected_provider(self) -> ProviderType:
+        """Get the detected provider, computing it from title if not set."""
+        if self.provider is not None:
+            return self.provider
+
+        # Compute provider from title
+        title_lower = self.title.lower()
         if any(keyword in title_lower for keyword in ["openai", "gpt", "chatgpt"]):
             return ProviderType.OPENAI
         elif any(keyword in title_lower for keyword in ["claude", "anthropic"]):
@@ -107,30 +139,35 @@ class DiscoveryResult(BaseModel):
     credential_pairs: List[CredentialPair] = Field(
         ..., description="Organized credential pairs"
     )
-    providers: Dict[ProviderType, int] = Field(..., description="Count by provider")
-    status_summary: Dict[APIKeyStatus, int] = Field(..., description="Count by status")
+    providers: Optional[Dict[ProviderType, int]] = Field(
+        None, description="Count by provider"
+    )
+    status_summary: Optional[Dict[APIKeyStatus, int]] = Field(
+        None, description="Count by status"
+    )
     discovery_timestamp: str = Field(..., description="When discovery was performed")
     cache_file: Optional[str] = Field(None, description="Cache file location")
 
-    @validator("providers", "status_summary", pre=True)
-    def compute_summaries(cls, v, values):
+    @field_validator("providers", "status_summary", mode="before")
+    @classmethod
+    def compute_summaries(cls, v, info):
         """Compute summary statistics."""
         if v is not None:
             return v
 
-        if "api_keys" not in values:
+        if not hasattr(info, "data") or "api_keys" not in info.data:
             return {}
 
-        api_keys = values["api_keys"]
+        api_keys = info.data["api_keys"]
 
-        if "providers" in values:
+        if info.field_name == "providers":
             # Compute provider summary
             providers = {}
             for key in api_keys:
                 providers[key.provider] = providers.get(key.provider, 0) + 1
             return providers
 
-        if "status_summary" in values:
+        if info.field_name == "status_summary":
             # Compute status summary
             status_summary = {}
             for key in api_keys:
@@ -138,6 +175,23 @@ class DiscoveryResult(BaseModel):
             return status_summary
 
         return {}
+
+    def model_post_init(self, __context):
+        """Post-initialization hook to compute summaries if not provided."""
+        if self.providers is None:
+            # Compute provider summary
+            providers = {}
+            for key in self.api_keys:
+                detected_provider = key.detected_provider
+                providers[detected_provider] = providers.get(detected_provider, 0) + 1
+            self.providers = providers
+
+        if self.status_summary is None:
+            # Compute status summary
+            status_summary = {}
+            for key in self.api_keys:
+                status_summary[key.status] = status_summary.get(key.status, 0) + 1
+            self.status_summary = status_summary
 
 
 class CacheConfig(BaseModel):

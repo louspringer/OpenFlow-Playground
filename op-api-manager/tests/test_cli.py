@@ -102,7 +102,9 @@ class TestCLI:
 
         # Mock discovery result
         mock_result = Mock()
-        mock_result.providers = {"openai": 5, "anthropic": 3}
+        from op_api_manager.models import ProviderType
+
+        mock_result.providers = {ProviderType.OPENAI: 5, ProviderType.ANTHROPIC: 3}
 
         mock_manager.discover_api_keys.return_value = mock_result
 

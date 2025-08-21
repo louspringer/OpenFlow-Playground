@@ -22,7 +22,7 @@ console = Console()
 
 
 @click.group()
-@click.version_option()
+@click.version_option(version="0.1.0", prog_name="op-api-manager")
 def main():
     """
     OP API Manager - Intelligent API key discovery and management for 1Password.
@@ -71,7 +71,7 @@ def discover(force_refresh: bool, output: Optional[str], cache_file: Optional[st
 
     except Exception as e:
         console.print(f"[red]Error during discovery: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @main.command()
@@ -121,7 +121,7 @@ def summary(provider: Optional[str], status: Optional[str], cache_file: Optional
 
     except Exception as e:
         console.print(f"[red]Error displaying summary: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @main.command()
@@ -150,7 +150,7 @@ def cache(cache_file: Optional[str]):
 
     except Exception as e:
         console.print(f"[red]Error checking cache status: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @main.command()
@@ -178,7 +178,7 @@ def providers(cache_file: Optional[str]):
 
     except Exception as e:
         console.print(f"[red]Error displaying providers: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @main.command()
@@ -208,7 +208,7 @@ def refresh(cache_file: Optional[str]):
 
     except Exception as e:
         console.print(f"[red]Error refreshing cache: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 def _display_discovery_results(result):
