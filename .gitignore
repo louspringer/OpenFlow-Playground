@@ -70,7 +70,13 @@ Thumbs.db
 *.p12
 *.pfx
 secrets/
-keys/ 
+keys/
+
+# API Key Management Cache Files
+api_discovery_cache.json
+working_apis_cache.json
+cost_history.json
+op_api_cache/ 
 # Mypy cache
 .mypy_cache/
 
