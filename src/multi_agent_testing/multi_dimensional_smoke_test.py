@@ -232,7 +232,9 @@ class MultiDimensionalSmokeTest:
                     set_llm_cache(cache)
                     print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
                 else:
-                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
+                    print(
+                        "✅ MultiDimensionalSmokeTest: Using existing LangChain cache"
+                    )
             except Exception as e:
                 print(
                     f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}"
@@ -545,6 +547,181 @@ Focus on identifying what might be missing or overlooked from your unique perspe
             f"🔑 MultiDimensionalSmokeTest: Set working API keys for {len(working_keys)} models"
         )
 
+    def discover_and_test_apis(self) -> dict[str, bool]:
+        """Discover and test available APIs"""
+        working_apis = {}
+
+        # Test each API configuration
+        for api_name, config in self.models.items():
+            api_key = os.getenv(config["api_key_env"])
+            if api_key:
+                # Simple test to see if API key is valid
+                try:
+                    # Test with a simple prompt
+                    test_prompt = "Hello, this is a test. Please respond with 'OK'."
+                    response = self.call_llm(api_name, test_prompt, 0.1)
+
+                    if "error" not in response:
+                        working_apis[api_name] = True
+                        self.logger.info(f"✅ {api_name}: API working")
+                    else:
+                        working_apis[api_name] = False
+                        self.logger.info(
+                            f"❌ {api_name}: API error - {response['error']}"
+                        )
+
+                except Exception as e:
+                    working_apis[api_name] = False
+                    self.logger.info(f"❌ {api_name}: Exception - {e}")
+            else:
+                working_apis[api_name] = False
+                self.logger.info(f"❌ {api_name}: No API key found")
+
+        return working_apis
+
+    async def test_anthropic_claude(self) -> dict[str, Any]:
+        """Test Anthropic Claude API"""
+        try:
+            prompt = "Hello, this is a test. Please respond with 'OK'."
+            response = self.call_llm("claude", prompt, 0.1)
+
+            if "error" in response:
+                return {"status": "error", "error": response["error"]}
+
+            # Calculate cost (rough estimate)
+            input_tokens = len(prompt.split())
+            output_tokens = len(
+                response.get("choices", [{}])[0]
+                .get("message", {})
+                .get("content", "")
+                .split()
+            )
+
+            # Anthropic pricing (approximate)
+            input_cost = (input_tokens / 1000) * 0.00015  # $0.15 per 1K input tokens
+            output_cost = (output_tokens / 1000) * 0.0006  # $0.60 per 1K output tokens
+            total_cost = input_cost + output_cost
+
+            return {
+                "status": "success",
+                "response": response,
+                "cost": total_cost,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+            }
+
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    async def test_openai(self) -> dict[str, Any]:
+        """Test OpenAI API"""
+        try:
+            prompt = "Hello, this is a test. Please respond with 'OK'."
+            response = self.call_llm("gpt4", prompt, 0.1)
+
+            if "error" in response:
+                return {"status": "error", "error": response["error"]}
+
+            # Calculate cost (rough estimate)
+            input_tokens = len(prompt.split())
+            output_tokens = len(
+                response.get("choices", [{}])[0]
+                .get("message", {})
+                .get("content", "")
+                .split()
+            )
+
+            # OpenAI pricing (approximate)
+            input_cost = (input_tokens / 1000) * 0.00001  # $0.01 per 1K input tokens
+            output_cost = (output_tokens / 1000) * 0.00003  # $0.03 per 1K output tokens
+            total_cost = input_cost + output_cost
+
+            return {
+                "status": "success",
+                "response": response,
+                "cost": total_cost,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+            }
+
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    async def run_multi_agent_analysis(self) -> dict[str, Any]:
+        """Run multi-agent analysis using available APIs"""
+        working_apis = self.discover_and_test_apis()
+
+        security_findings = []
+        quality_findings = []
+        devops_findings = []
+        total_cost = 0.0
+
+        # Test with different agent roles
+        if "claude" in working_apis and working_apis["claude"]:
+            # Security expert analysis
+            security_prompt = """
+            You are a security expert. Analyze this codebase for security vulnerabilities.
+            Focus on: SQL injection, XSS, CSRF, authentication, authorization, and data exposure.
+            Provide specific findings with severity levels.
+            """
+            security_response = self.call_llm("claude", security_prompt, 0.1)
+            if "error" not in security_response:
+                security_findings.append(
+                    {
+                        "agent": "security_expert",
+                        "finding": "Security analysis completed",
+                        "details": security_response.get("choices", [{}])[0]
+                        .get("message", {})
+                        .get("content", "")[:200],
+                    }
+                )
+
+        if "gpt4" in working_apis and working_apis["gpt4"]:
+            # Code quality expert analysis
+            quality_prompt = """
+            You are a code quality expert. Analyze this codebase for quality issues.
+            Focus on: complexity, maintainability, readability, and best practices.
+            Provide specific findings with severity levels.
+            """
+            quality_response = self.call_llm("gpt4", quality_prompt, 0.1)
+            if "error" not in quality_response:
+                quality_findings.append(
+                    {
+                        "agent": "code_quality_expert",
+                        "finding": "Code quality analysis completed",
+                        "details": quality_response.get("choices", [{}])[0]
+                        .get("message", {})
+                        .get("content", "")[:200],
+                    }
+                )
+
+        if "claude" in working_apis and working_apis["claude"]:
+            # DevOps expert analysis
+            devops_prompt = """
+            You are a DevOps expert. Analyze this codebase for operational issues.
+            Focus on: deployment, monitoring, logging, error handling, and scalability.
+            Provide specific findings with severity levels.
+            """
+            devops_response = self.call_llm("claude", devops_prompt, 0.1)
+            if "error" not in devops_response:
+                devops_findings.append(
+                    {
+                        "agent": "devops_expert",
+                        "finding": "DevOps analysis completed",
+                        "details": devops_response.get("choices", [{}])[0]
+                        .get("message", {})
+                        .get("content", "")[:200],
+                    }
+                )
+
+        return {
+            "security_findings": security_findings,
+            "quality_findings": quality_findings,
+            "devops_findings": devops_findings,
+            "total_cost": total_cost,
+            "working_apis": working_apis,
+        }
+
     def run_comprehensive_test(
         self,
         scenario: str = "healthcare_cdc_pr",
@@ -730,7 +907,9 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
+                status = (
+                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
+                )
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")

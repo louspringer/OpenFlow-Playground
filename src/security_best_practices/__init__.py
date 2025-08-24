@@ -14,12 +14,14 @@ from .domain_model import (
     SecurityWorkflow,
     SecurityToolType,
     SecuritySeverity,
-    SecurityCategory
+    SecurityCategory,
 )
 
 __version__ = "1.0.0"
 __author__ = "OpenFlow-Playground Team"
-__description__ = "Security best practices using established tools instead of custom scanners"
+__description__ = (
+    "Security best practices using established tools instead of custom scanners"
+)
 
 __all__ = [
     "SecurityBestPractices",
@@ -29,7 +31,7 @@ __all__ = [
     "SecurityWorkflow",
     "SecurityToolType",
     "SecuritySeverity",
-    "SecurityCategory"
+    "SecurityCategory",
 ]
 
 # Core principle
@@ -37,12 +39,12 @@ CORE_PRINCIPLE = "Use established tools, not custom scanners"
 
 # Available security tools
 SECURITY_TOOLS = [
-    "Bandit",      # Python security scanning
-    "Semgrep",     # Pattern-based security scanning
-    "Safety",      # Dependency vulnerability scanning
-    "Detect-Secrets", # Secret detection
-    "Gitleaks",    # Comprehensive secret detection
-    "Trivy"        # Infrastructure and dependency scanning
+    "Bandit",  # Python security scanning
+    "Semgrep",  # Pattern-based security scanning
+    "Safety",  # Dependency vulnerability scanning
+    "Detect-Secrets",  # Secret detection
+    "Gitleaks",  # Comprehensive secret detection
+    "Trivy",  # Infrastructure and dependency scanning
 ]
 
 # Security best practices
@@ -56,8 +58,9 @@ SECURITY_BEST_PRACTICES = [
     "Integrate multiple security tools for coverage",
     "Provide clear tool installation instructions",
     "Support both Python packages and external binaries",
-    "Maintain security tool configurations"
+    "Maintain security tool configurations",
 ]
+
 
 # Quick access to main class
 def create_security_best_practices():

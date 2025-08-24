@@ -39,9 +39,9 @@ class AgentFinding:
     confidence: float
     timestamp: str
     metadata: dict[str, Any]
-    cross_references: list[
-        str
-    ] | None = None  # IDs of related findings from other agents
+    cross_references: list[str] | None = (
+        None  # IDs of related findings from other agents
+    )
 
 
 @dataclass
@@ -112,9 +112,9 @@ class AgentSessionManager:
                 if latest_context_file.exists():
                     with open(latest_context_file) as f:
                         context_data = json.load(f)
-                        self.iteration_contexts[
-                            max_iteration
-                        ] = self._deserialize_context(context_data)
+                        self.iteration_contexts[max_iteration] = (
+                            self._deserialize_context(context_data)
+                        )
                         print(
                             f"📋 Loaded existing context from iteration {max_iteration}"
                         )

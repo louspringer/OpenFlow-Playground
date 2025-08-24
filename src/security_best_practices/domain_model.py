@@ -15,6 +15,7 @@ import json
 
 class SecurityToolType(Enum):
     """Types of security tools available"""
+
     PYTHON_PACKAGE = "python_package"
     EXTERNAL_BINARY = "external_binary"
     CONFIGURATION = "configuration"
@@ -22,6 +23,7 @@ class SecurityToolType(Enum):
 
 class SecuritySeverity(Enum):
     """Security issue severity levels"""
+
     CRITICAL = "CRITICAL"
     HIGH = "HIGH"
     MEDIUM = "MEDIUM"
@@ -30,6 +32,7 @@ class SecuritySeverity(Enum):
 
 class SecurityCategory(Enum):
     """Security issue categories"""
+
     CREDENTIALS = "credentials"
     VULNERABILITIES = "vulnerabilities"
     DEPENDENCIES = "dependencies"
@@ -41,6 +44,7 @@ class SecurityCategory(Enum):
 @dataclass
 class SecurityTool:
     """Represents a security tool configuration"""
+
     name: str
     tool_type: SecurityToolType
     description: str
@@ -56,6 +60,7 @@ class SecurityTool:
 @dataclass
 class SecurityFinding:
     """Represents a security finding from any tool"""
+
     tool_name: str
     finding_id: str
     severity: SecuritySeverity
@@ -74,6 +79,7 @@ class SecurityFinding:
 @dataclass
 class SecurityScanResult:
     """Represents the result of a security scan"""
+
     tool_name: str
     scan_timestamp: str
     files_scanned: int
@@ -88,6 +94,7 @@ class SecurityScanResult:
 @dataclass
 class SecurityWorkflow:
     """Represents a security scanning workflow"""
+
     name: str
     description: str
     steps: List[str]
@@ -100,41 +107,41 @@ class SecurityWorkflow:
 @dataclass
 class SecurityBestPractices:
     """Main domain model for security best practices"""
-    
+
     # Core principles
     core_principle: str = "Use established tools, not custom scanners"
-    
+
     # Available security tools
     security_tools: List[SecurityTool] = field(default_factory=list)
-    
+
     # Security workflows
     workflows: List[SecurityWorkflow] = field(default_factory=list)
-    
+
     # Configuration
     configuration_file: str = "pyproject.toml"
     exclude_patterns: List[str] = field(default_factory=list)
     include_patterns: List[str] = field(default_factory=list)
-    
+
     # Best practices
     best_practices: List[str] = field(default_factory=list)
-    
+
     # Requirements
     requirements: List[str] = field(default_factory=list)
-    
+
     def __post_init__(self):
         """Initialize default security tools and workflows"""
         if not self.security_tools:
             self._initialize_default_tools()
-        
+
         if not self.workflows:
             self._initialize_default_workflows()
-        
+
         if not self.best_practices:
             self._initialize_best_practices()
-        
+
         if not self.requirements:
             self._initialize_requirements()
-    
+
     def _initialize_default_tools(self):
         """Initialize the default set of security tools"""
         self.security_tools = [
@@ -145,7 +152,7 @@ class SecurityBestPractices:
                 installation_command="uv add --dev --extra security",
                 configuration_file="pyproject.toml",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["src/", "scripts/"]
+                include_patterns=["src/", "scripts/"],
             ),
             SecurityTool(
                 name="Semgrep",
@@ -154,7 +161,7 @@ class SecurityBestPractices:
                 installation_command="uv add --dev semgrep",
                 configuration_file="pyproject.toml",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["src/", "scripts/"]
+                include_patterns=["src/", "scripts/"],
             ),
             SecurityTool(
                 name="Safety",
@@ -163,7 +170,7 @@ class SecurityBestPractices:
                 installation_command="uv add --dev --extra security",
                 configuration_file="pyproject.toml",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["src/", "scripts/"]
+                include_patterns=["src/", "scripts/"],
             ),
             SecurityTool(
                 name="Detect-Secrets",
@@ -172,7 +179,7 @@ class SecurityBestPractices:
                 installation_command="uv add --dev --extra security",
                 configuration_file=".secrets.baseline",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["src/", "scripts/"]
+                include_patterns=["src/", "scripts/"],
             ),
             SecurityTool(
                 name="Gitleaks",
@@ -180,7 +187,7 @@ class SecurityBestPractices:
                 description="Comprehensive secret detection in git repositories",
                 installation_command="go install github.com/zricethezav/gitleaks/v8@latest",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["."]
+                include_patterns=["."],
             ),
             SecurityTool(
                 name="Trivy",
@@ -188,10 +195,10 @@ class SecurityBestPractices:
                 description="Infrastructure and dependency vulnerability scanning",
                 installation_command="curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin",
                 exclude_patterns=["tests/", ".venv/", "__pycache__/"],
-                include_patterns=["."]
-            )
+                include_patterns=["."],
+            ),
         ]
-    
+
     def _initialize_default_workflows(self):
         """Initialize the default security workflows"""
         self.workflows = [
@@ -208,23 +215,30 @@ class SecurityBestPractices:
                     "Validate fixes with security tools",
                     "Document security improvements",
                     "Integrate security scanning into CI/CD",
-                    "Maintain security tool configurations"
+                    "Maintain security tool configurations",
                 ],
-                tools=["Bandit", "Semgrep", "Safety", "Detect-Secrets", "Gitleaks", "Trivy"],
+                tools=[
+                    "Bandit",
+                    "Semgrep",
+                    "Safety",
+                    "Detect-Secrets",
+                    "Gitleaks",
+                    "Trivy",
+                ],
                 expected_outputs=[
                     "bandit-report.json",
                     "semgrep-report.json",
                     "safety-report.json",
                     "gitleaks-report.json",
-                    "trivy-report.json"
+                    "trivy-report.json",
                 ],
                 success_criteria=[
                     "All security tools execute successfully",
                     "Security reports generated in expected formats",
                     "No critical vulnerabilities detected",
-                    "All security findings addressed within SLA"
+                    "All security findings addressed within SLA",
                 ],
-                estimated_duration=300.0  # 5 minutes
+                estimated_duration=300.0,  # 5 minutes
             ),
             SecurityWorkflow(
                 name="Quick Security Check",
@@ -233,20 +247,18 @@ class SecurityBestPractices:
                     "Run Bandit for Python security issues",
                     "Run Safety for dependency vulnerabilities",
                     "Run Detect-Secrets for secret detection",
-                    "Review findings and fix critical issues"
+                    "Review findings and fix critical issues",
                 ],
                 tools=["Bandit", "Safety", "Detect-Secrets"],
-                expected_outputs=[
-                    "Console output with security findings"
-                ],
+                expected_outputs=["Console output with security findings"],
                 success_criteria=[
                     "No critical security issues detected",
-                    "All high-priority issues addressed"
+                    "All high-priority issues addressed",
                 ],
-                estimated_duration=60.0  # 1 minute
-            )
+                estimated_duration=60.0,  # 1 minute
+            ),
         ]
-    
+
     def _initialize_best_practices(self):
         """Initialize the security best practices"""
         self.best_practices = [
@@ -264,9 +276,9 @@ class SecurityBestPractices:
             "Validate and sanitize all user inputs",
             "Implement proper authentication and authorization",
             "Use secure cryptographic primitives",
-            "Follow least privilege principle"
+            "Follow least privilege principle",
         ]
-    
+
     def _initialize_requirements(self):
         """Initialize the security requirements"""
         self.requirements = [
@@ -279,43 +291,43 @@ class SecurityBestPractices:
             "Integrate security scanning into CI/CD pipeline",
             "Provide clear installation and usage instructions",
             "Support multiple security scanning approaches",
-            "Ensure security tool compatibility and integration"
+            "Ensure security tool compatibility and integration",
         ]
-    
+
     def get_tool_by_name(self, name: str) -> Optional[SecurityTool]:
         """Get a security tool by name"""
         for tool in self.security_tools:
             if tool.name.lower() == name.lower():
                 return tool
         return None
-    
+
     def get_workflow_by_name(self, name: str) -> Optional[SecurityWorkflow]:
         """Get a security workflow by name"""
         for workflow in self.workflows:
             if workflow.name.lower() == name.lower():
                 return workflow
         return None
-    
+
     def validate_configuration(self) -> List[str]:
         """Validate the security configuration"""
         errors = []
-        
+
         # Check if all required tools are available
         for tool in self.security_tools:
             if tool.enabled and not self._is_tool_available(tool):
                 errors.append(f"Tool {tool.name} is not available")
-        
+
         # Check configuration files
         if not Path(self.configuration_file).exists():
             errors.append(f"Configuration file {self.configuration_file} not found")
-        
+
         return errors
-    
+
     def _is_tool_available(self, tool: SecurityTool) -> bool:
         """Check if a security tool is available"""
         # This is a simplified check - in practice, you'd check actual tool availability
         return True
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert the domain model to a dictionary"""
         return {
@@ -326,28 +338,34 @@ class SecurityBestPractices:
             "exclude_patterns": self.exclude_patterns,
             "include_patterns": self.include_patterns,
             "best_practices": self.best_practices,
-            "requirements": self.requirements
+            "requirements": self.requirements,
         }
-    
+
     def save_configuration(self, file_path: str):
         """Save the configuration to a file"""
         config = self.to_dict()
-        with open(file_path, 'w') as f:
+        with open(file_path, "w") as f:
             json.dump(config, f, indent=2, default=str)
-    
+
     @classmethod
-    def load_configuration(cls, file_path: str) -> 'SecurityBestPractices':
+    def load_configuration(cls, file_path: str) -> "SecurityBestPractices":
         """Load the configuration from a file"""
-        with open(file_path, 'r') as f:
+        with open(file_path, "r") as f:
             config = json.load(f)
-        
+
         # Reconstruct the domain model
         instance = cls()
         instance.core_principle = config.get("core_principle", instance.core_principle)
-        instance.configuration_file = config.get("configuration_file", instance.configuration_file)
-        instance.exclude_patterns = config.get("exclude_patterns", instance.exclude_patterns)
-        instance.include_patterns = config.get("include_patterns", instance.include_patterns)
-        
+        instance.configuration_file = config.get(
+            "configuration_file", instance.configuration_file
+        )
+        instance.exclude_patterns = config.get(
+            "exclude_patterns", instance.exclude_patterns
+        )
+        instance.include_patterns = config.get(
+            "include_patterns", instance.include_patterns
+        )
+
         return instance
 
 
@@ -355,36 +373,36 @@ def main():
     """Main function to demonstrate the domain model"""
     # Create security best practices instance
     security_bp = SecurityBestPractices()
-    
+
     # Print the domain model
     print("🔒 Security Best Practices Domain Model")
     print("=" * 50)
     print(f"Core Principle: {security_bp.core_principle}")
     print()
-    
+
     print("🛠️  Available Security Tools:")
     for tool in security_bp.security_tools:
         print(f"  ✅ {tool.name}: {tool.description}")
         print(f"      Type: {tool.tool_type.value}")
         print(f"      Installation: {tool.installation_command}")
         print()
-    
+
     print("🚀 Security Workflows:")
     for workflow in security_bp.workflows:
         print(f"  📋 {workflow.name}")
         print(f"      Description: {workflow.description}")
         print(f"      Estimated Duration: {workflow.estimated_duration}s")
         print()
-    
+
     print("📚 Best Practices:")
     for i, practice in enumerate(security_bp.best_practices, 1):
         print(f"  {i:2d}. {practice}")
-    
+
     print()
     print("📋 Requirements:")
     for i, requirement in enumerate(security_bp.requirements, 1):
         print(f"  {i:2d}. {requirement}")
-    
+
     # Validate configuration
     errors = security_bp.validate_configuration()
     if errors:

@@ -102,5 +102,3 @@ if __name__ == "__main__":
 
     print("\n🎉 All F-string policy tests passed!")
     print("✅ F-strings are mandatory and F541 is eliminated!")
-
-

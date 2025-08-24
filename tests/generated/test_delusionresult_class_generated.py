@@ -26,6 +26,6 @@ class TestDelusionResult:
     def test_validate_confidence_method(self, ghostbustersorchestrator):
         """Test that validate_confidence method works correctly"""
         instance = DelusionResult()
-        assert hasattr(instance, 'validate_confidence')
-        method_obj = getattr(instance, 'validate_confidence')
+        assert hasattr(instance, "validate_confidence")
+        method_obj = getattr(instance, "validate_confidence")
         assert callable(method_obj)

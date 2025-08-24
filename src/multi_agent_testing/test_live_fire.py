@@ -12,6 +12,7 @@ import logging
 import sys
 import time
 from pathlib import Path
+from datetime import datetime
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -96,7 +97,9 @@ async def test_multi_agent_analysis():
 
         # Test the full LangGraph workflow
         logger.info("🔄 Testing Full LangGraph Workflow...")
-        orchestrator = LangGraphOrchestrator(agent_session_manager)
+        orchestrator = LangGraphOrchestrator(
+            target_directory=".", storage_dir="agent_sessions"
+        )
 
         # Run the workflow
         start_time = time.time()
@@ -146,42 +149,64 @@ async def test_agent_collaboration():
         logger.info(f"🔄 Started iteration {iteration}")
 
         # Add findings from different agents
-        agent_session_manager.add_agent_finding(
-            "security_expert",
-            iteration,
-            "security",
-            "High",
-            "Potential SQL injection vulnerability detected",
-            "Found unvalidated user input in database queries",
+        from src.multi_agent_testing.agent_session_manager import (
+            AgentType,
+            AgentFinding,
         )
 
-        agent_session_manager.add_agent_finding(
-            "code_quality_expert",
-            iteration,
-            "quality",
-            "Medium",
-            "Code complexity exceeds threshold",
-            "Function has cyclomatic complexity of 15 (threshold: 10)",
+        # Create security finding
+        security_finding = AgentFinding(
+            agent_type=AgentType.SECURITY,
+            finding_id="",
+            category="security",
+            severity="High",
+            description="Potential SQL injection vulnerability detected",
+            recommendations=["Found unvalidated user input in database queries"],
+            confidence=0.9,
+            timestamp=datetime.now().isoformat(),
+            metadata={"source": "test", "line_number": 123},
         )
+        agent_session_manager.add_agent_finding(AgentType.SECURITY, security_finding)
 
-        agent_session_manager.add_agent_finding(
-            "devops_expert",
-            iteration,
-            "devops",
-            "Low",
-            "Missing health check endpoint",
-            "Application lacks /health endpoint for monitoring",
+        # Create code quality finding
+        quality_finding = AgentFinding(
+            agent_type=AgentType.QUALITY,
+            finding_id="",
+            category="quality",
+            severity="Medium",
+            description="Code complexity exceeds threshold",
+            recommendations=[
+                "Function has cyclomatic complexity of 15 (threshold: 10)"
+            ],
+            confidence=0.8,
+            timestamp=datetime.now().isoformat(),
+            metadata={"source": "test", "complexity": 15, "threshold": 10},
         )
+        agent_session_manager.add_agent_finding(AgentType.QUALITY, quality_finding)
+
+        # Create DevOps finding
+        devops_finding = AgentFinding(
+            agent_type=AgentType.DEVOPS,
+            finding_id="",
+            category="devops",
+            severity="Low",
+            description="Missing health check endpoint",
+            recommendations=["Application lacks /health endpoint for monitoring"],
+            confidence=0.7,
+            timestamp=datetime.now().isoformat(),
+            metadata={"source": "test", "endpoint": "/health"},
+        )
+        agent_session_manager.add_agent_finding(AgentType.DEVOPS, devops_finding)
 
         # Test cross-agent context
         logger.info("🔍 Testing Cross-Agent Context...")
-        for agent_type in ["security_expert", "code_quality_expert", "devops_expert"]:
-            agent_session_manager.get_agent_context(agent_type, iteration)
+        for agent_type in [AgentType.SECURITY, AgentType.QUALITY, AgentType.DEVOPS]:
+            cross_context = agent_session_manager.get_cross_agent_context(agent_type)
             other_findings = agent_session_manager.get_agent_previous_findings(
                 agent_type, iteration
             )
             logger.info(
-                f"  {agent_type}: {len(other_findings)} other agents' findings available"
+                f"  {agent_type.value}: {len(other_findings)} other agents' findings available"
             )
 
         # Generate synthesis
