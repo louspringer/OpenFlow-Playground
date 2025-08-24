@@ -38,7 +38,10 @@
         "github_discovery_automation",
         "one_liner_linter",
         "round_trip_engineering",
-        "over_engineering_prevention"
+        "over_engineering_prevention",
+        "op_api_manager",
+        "cache_manager",
+        "f_string_policy"
       ],
       "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
     },
@@ -617,6 +620,155 @@
         ],
         "pypi_ready": true,
         "package_name": "openflow-ghostbusters"
+      }
+    },
+    "op_api_manager": {
+      "patterns": [
+        "op-api-manager/**/*.py",
+        "op-api-manager/src/**/*.py",
+        "op-api-manager/tests/**/*.py",
+        "**/*op_api_manager*.py"
+      ],
+      "content_indicators": [
+        "OnePasswordAPIKeyManager",
+        "UnifiedOPInterface",
+        "StatusManager",
+        "CredentialStatus",
+        "op-api-manager",
+        "1Password",
+        "API key discovery",
+        "credential pairing",
+        "GUID assignment",
+        "cache management"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "pytest",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc",
+        "*.log",
+        "api_discovery_cache.json"
+      ],
+      "requirements": [
+        "Intelligent API key discovery and management for 1Password",
+        "Complete CRUD operations coverage (Create, Read, Update, Delete)",
+        "Standalone tool completely separate from multi-agent systems",
+        "Convenience function for retrieving, testing, and persisting API keys",
+        "Environment file integration for 1Password freedom",
+        "Comprehensive lifecycle management (discovery → testing → working → archived)",
+        "Provider detection for AWS, Azure, OpenAI, Anthropic, Google, and unknown APIs",
+        "Secure credential handling with no plain text storage",
+        "Cache management with metadata-only storage",
+        "CLI interface with Click framework and Rich output",
+        "Testing and validation of API endpoints",
+        "Archive functionality for failed or unused keys",
+        "Environment file backup and verification",
+        "Performance optimization with efficient caching",
+        "Error handling and recovery mechanisms",
+        "Granular testing controls (limit, provider-specific, force retest)",
+        "Enhanced working command options (refresh, provider filter, verbose output)",
+        "Selective discovery capabilities (provider-specific, force bypass cache)",
+        "Interactive CLI experience with sensible defaults and power-user options",
+        "Comprehensive filtering and limiting options across all commands",
+        "Dry-run capabilities for safe operation preview",
+        "Interactive guided mode for complex operations",
+        "Multiple output formats (JSON, CSV, rich tables)",
+        "Advanced filtering by status, provider, and metadata",
+        "Statistical reporting and health monitoring",
+        "1Password connectivity verification and diagnostics",
+        "Cache backup and restore functionality",
+        "Batch operation support with progress indicators"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "HIGH",
+      "reason": "Standalone API key management tool with clear separation of concerns",
+      "extraction_benefits": [
+        "Reusable across multiple projects",
+        "Could become a standalone security tool",
+        "Has potential for enterprise use",
+        "Could integrate with other security tools"
+      ],
+      "package_potential": {
+        "score": 9,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed and completed",
+          "High-value domain identified",
+          "Has description",
+          "Has purpose",
+          "External value for security and DevOps",
+          "Reusable across projects",
+          "Comprehensive CRUD coverage",
+          "Security-first design",
+          "1Password integration",
+          "Environment file management",
+          "API testing capabilities"
+        ],
+        "pypi_ready": true,
+        "package_name": "op-api-manager"
+      }
+    },
+    "cache_manager": {
+      "patterns": [
+        "cache-manager/**/*.py",
+        "cache-manager/src/**/*.py",
+        "cache-manager/tests/**/*.py",
+        "**/*cache_manager*.py"
+      ],
+      "content_indicators": [
+        "CacheManager",
+        "CacheConfig",
+        "CacheHealth",
+        "CacheStats",
+        "cache-manager",
+        "cache operations",
+        "data persistence",
+        "cache validation"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "pytest",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc",
+        "*.log"
+      ],
+      "requirements": [
+        "Provide independent cache lifecycle management (create, read, update, delete)",
+        "Support multiple cache formats (JSON, YAML, binary, SQLite)",
+        "Implement cache validation, repair, and health monitoring",
+        "Include performance optimization and statistics tracking",
+        "Support cache migration and versioning",
+        "Provide comprehensive CLI for cache operations",
+        "Handle cache corruption and recovery gracefully",
+        "Support backup and restore operations",
+        "Include TTL and size limit management",
+        "Provide cache health scoring and recommendations"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "HIGH",
+      "reason": "Standalone cache management system with clear separation of concerns",
+      "extraction_benefits": [
+        "Reusable across multiple projects",
+        "Could become a standalone caching tool",
+        "Has potential for enterprise use",
+        "Could integrate with other data management tools"
+      ],
+      "package_potential": {
+        "score": 8,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed architecture",
+          "High-value domain identified",
+          "Has comprehensive models and CLI",
+          "External value for data management",
+          "Reusable across projects",
+          "Multiple format support",
+          "Health monitoring capabilities"
+        ],
+        "pypi_ready": false,
+        "package_name": "cache-manager"
       }
     },
     "intelligent_linter_system": {
@@ -4870,6 +5022,41 @@
         "Model-driven everything",
         "Loki's transformative chaos powers"
       ]
+    },
+    "f_string_policy": {
+      "description": "Comprehensive f-string usage policy and standards",
+      "patterns": ["**/*.py", "**/*.md", "**/*.mdc"],
+      "content_indicators": ["f-string", "F541", "string formatting"],
+      "linter": "none",
+      "formatter": "black",
+      "requirements": [
+        "F-strings are the standard string formatting method",
+        "F541 rule is completely ignored and eliminated",
+        "Use f-strings consistently throughout the codebase",
+        "No conversion of f-strings to other formats",
+        "Focus on real security issues, not f-string syntax"
+      ],
+      "policy": {
+        "f_string_usage": "mandatory",
+        "f541_rule": "eliminated",
+        "consistency": "required",
+        "security_focus": "input_validation_sql_injection_command_injection"
+      },
+      "examples": {
+        "good": [
+          "print(f'Simple message')",
+          "print(f'Count: {count}')",
+          "logger.info(f'Processing {filename}')"
+        ],
+        "bad": [
+          "print('Simple message')",
+          "print('Count: {}'.format(count))",
+          "logger.info('Processing %s' % filename)"
+        ]
+      },
+      "demo_role": "policy",
+      "extraction_candidate": false,
+      "reason": "This is a project-wide policy that should remain in this project"
     }
   },
   "cursor_rules": {
