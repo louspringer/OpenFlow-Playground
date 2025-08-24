@@ -11,18 +11,18 @@ Usage:
     python scripts/enforce_round_trip.py <python_file>
 """
 
+
 import sys
 import tempfile
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 try:
-    from enhanced_reverse_engineer_fixed_v2 import EnhancedReverseEngineer
-    from round_trip_model_system import RoundTripModelSystem
+    from src.round_trip_engineering import EnhancedReverseEngineer, RoundTripModelSystem
 
     ENHANCED_REVERSE_ENGINEER_AVAILABLE = True
 except ImportError:
@@ -30,7 +30,7 @@ except ImportError:
     print("⚠️  Enhanced reverse engineer not available, using fallback")
 
 try:
-    from abstract_factory_system import ToolFactory
+    from src.abstract_factory_system import ModelDrivenFactory
 
     ABSTRACT_FACTORY_AVAILABLE = True
 except ImportError:
@@ -41,19 +41,21 @@ except ImportError:
 class RoundTripEnforcer:
     """Enforces round-trip engineering compliance"""
 
-    def __init__(self):
-        self.tool_factory = ToolFactory() if ABSTRACT_FACTORY_AVAILABLE else None
-        self.reverse_engineer = None
-        self.code_generator = None
+    def __init__(self) -> None:
+        self.tool_factory = ModelDrivenFactory() if ABSTRACT_FACTORY_AVAILABLE else None
+        self.reverse_engineer: Any = None
+        self.code_generator: Any = None
         self.setup_tools()
 
-    def setup_tools(self):
+    def setup_tools(self) -> None:
         """Setup reverse engineering and code generation tools"""
         if self.tool_factory:
             self.reverse_engineer = self.tool_factory.get_reverse_engineering_tool(
                 "python"
             )
-            self.code_generator = self.tool_factory.get_code_generation_tool("python")
+            # We need a model to get the code generator, but we don't have one yet
+            # We'll get it when we have a model
+            self.code_generator = None
         else:
             # Fallback to direct tools
             if ENHANCED_REVERSE_ENGINEER_AVAILABLE:
@@ -63,13 +65,19 @@ class RoundTripEnforcer:
                 print("❌ No reverse engineering tools available")
                 sys.exit(1)
 
-    def enforce_round_trip(self, file_path: str) -> dict:
+    def enforce_round_trip(self, file_path: str) -> dict[str, Any]:
         """Enforce round-trip engineering for a single file"""
         print(f"🔄 Enforcing round-trip engineering for: {file_path}")
 
         # Step 1: Reverse engineer the file
         print("  📥 Step 1: Reverse engineering...")
-        model = self.reverse_engineer.reverse_engineer_file(file_path)
+        if self.reverse_engineer is None:
+            return {
+                "success": False,
+                "error": "Reverse engineer not available",
+                "file": file_path,
+            }
+        model = self.reverse_engineer.reverse_engineer(file_path)
 
         if not model:
             return {
@@ -80,7 +88,13 @@ class RoundTripEnforcer:
 
         # Step 2: Generate code from the model
         print("  📤 Step 2: Generating code...")
-        generated_code = self.code_generator.generate_code_from_extracted_model(model)
+        if self.code_generator is None:
+            return {
+                "success": False,
+                "error": "Code generator not available",
+                "file": file_path,
+            }
+        generated_code = self.code_generator.generate_code(model)
 
         if not generated_code:
             return {
@@ -94,6 +108,12 @@ class RoundTripEnforcer:
         with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write(generated_code)
             temp_file = f.name
+
+        # Also save to a permanent file for inspection
+        output_file = f"{Path(file_path).stem}_regenerated.py"
+        with open(output_file, "w") as f:
+            f.write(generated_code)
+        print(f"  💾 Generated code saved to: {output_file}")
 
         try:
             # Step 4: Test functional equivalence
@@ -120,7 +140,7 @@ class RoundTripEnforcer:
 
     def test_functional_equivalence(
         self, original_file: str, generated_file: str
-    ) -> dict:
+    ) -> dict[str, Any]:
         """Test functional equivalence between original and generated files"""
         try:
             # Test 1: AST parsing
@@ -163,7 +183,7 @@ class RoundTripEnforcer:
     def parse_python_file(self, file_path: str) -> Optional[object]:
         """Parse Python file and return AST"""
         try:
-            with Path(file_path).open() as f:
+            with open(file_path) as f:
                 content = f.read()
             import ast
 
@@ -174,7 +194,7 @@ class RoundTripEnforcer:
     def extract_imports(self, file_path: str) -> list[str]:
         """Extract imports from Python file"""
         try:
-            with Path(file_path).open() as f:
+            with open(file_path) as f:
                 content = f.read()
 
             imports = []
@@ -188,17 +208,17 @@ class RoundTripEnforcer:
         except Exception:
             return []
 
-    def extract_structure(self, file_path: str) -> dict:
+    def extract_structure(self, file_path: str) -> dict[str, Any]:
         """Extract class and method structure from Python file"""
         try:
-            with Path(file_path).open() as f:
+            with open(file_path) as f:
                 content = f.read()
 
             import ast
 
             tree = ast.parse(content)
 
-            structure = {"classes": {}, "functions": []}
+            structure: dict[str, Any] = {"classes": {}, "functions": []}
 
             for node in ast.walk(tree):
                 if isinstance(node, ast.ClassDef):
@@ -215,7 +235,7 @@ class RoundTripEnforcer:
             return {"classes": {}, "functions": []}
 
 
-def main():
+def main() -> None:
     """Main entry point"""
     # Handle pre-commit mode
     if len(sys.argv) > 1 and sys.argv[1] == "--pre-commit":
@@ -223,14 +243,16 @@ def main():
         import subprocess
 
         try:
-            result = subprocess.run(
+            git_result = subprocess.run(
                 ["git", "diff", "--cached", "--name-only", "--diff-filter=AM"],
                 capture_output=True,
                 text=True,
                 check=True,
             )
             python_files = [
-                f for f in result.stdout.strip().split("\n") if f.endswith(".py") and f
+                f
+                for f in git_result.stdout.strip().split("\n")
+                if f.endswith(".py") and f
             ]
 
             if not python_files:
@@ -243,8 +265,8 @@ def main():
             for file_path in python_files:
                 if Path(file_path).exists():
                     print(f"🔍 Checking round-trip for: {file_path}")
-                    result = enforcer.enforce_round_trip(file_path)
-                    if result["success"]:
+                    round_trip_result = enforcer.enforce_round_trip(file_path)
+                    if round_trip_result["success"]:
                         print(f"✅ Round-trip passed for: {file_path}")
                     else:
                         print(f"❌ Round-trip failed for: {file_path}")
@@ -290,6 +312,54 @@ def main():
                 print("   ✅ Import structure preserved")
             else:
                 print("   ⚠️  Import structure differs")
+
+            if equiv.get("structure", {}).get("match", False):
+                print("   ✅ Code structure preserved")
+            else:
+                print("   ⚠️  Code structure differs")
+
+            # Exit with success
+            sys.exit(0)
+        else:
+            print(f"❌ Round-trip engineering FAILED for {file_path}")
+            print(f"   🚨 Error: {result['error']}")
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+
+            if equiv.get("structure", {}).get("match", False):
+                print("   ✅ Code structure preserved")
+            else:
+                print("   ⚠️  Code structure differs")
+
+            # Exit with success
+            sys.exit(0)
+        else:
+            print(f"❌ Round-trip engineering FAILED for {file_path}")
+            print(f"   🚨 Error: {result['error']}")
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+
+            if equiv.get("structure", {}).get("match", False):
+                print("   ✅ Code structure preserved")
+            else:
+                print("   ⚠️  Code structure differs")
+
+            # Exit with success
+            sys.exit(0)
+        else:
+            print(f"❌ Round-trip engineering FAILED for {file_path}")
+            print(f"   🚨 Error: {result['error']}")
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
 
             if equiv.get("structure", {}).get("match", False):
                 print("   ✅ Code structure preserved")
