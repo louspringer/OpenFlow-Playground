@@ -8,7 +8,7 @@ and the main multi-agent system, allowing seamless integration.
 
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 # Add the op-api-manager src to the path
 current_dir = Path(__file__).parent
@@ -51,7 +51,7 @@ class OPManagerIntegration:
         # Initialize manager
         self.manager = OnePasswordAPIKeyManager(cache_config)
 
-    def get_working_api_keys(self) -> List[Dict[str, Any]]:
+    def get_working_api_keys(self) -> list[dict[str, Any]]:
         """
         Get all working API keys for use in the main project.
 
@@ -82,7 +82,7 @@ class OPManagerIntegration:
             print(f"❌ Error getting working API keys: {e}")
             return []
 
-    def get_api_keys_by_provider(self, provider: str) -> List[Dict[str, Any]]:
+    def get_api_keys_by_provider(self, provider: str) -> list[dict[str, Any]]:
         """
         Get API keys for a specific provider.
 
@@ -113,7 +113,7 @@ class OPManagerIntegration:
             print(f"❌ Error getting API keys for provider {provider}: {e}")
             return []
 
-    def get_credential_pairs(self) -> List[Dict[str, Any]]:
+    def get_credential_pairs(self) -> list[dict[str, Any]]:
         """
         Get credential pairs for use in the main project.
 
@@ -134,14 +134,16 @@ class OPManagerIntegration:
                         "provider": pair.primary.provider.value,
                         "guid": str(pair.primary.guid),
                     },
-                    "secondary": {
-                        "id": pair.secondary.id,
-                        "title": pair.secondary.title,
-                        "provider": pair.secondary.provider.value,
-                        "guid": str(pair.secondary.guid),
-                    }
-                    if pair.secondary
-                    else None,
+                    "secondary": (
+                        {
+                            "id": pair.secondary.id,
+                            "title": pair.secondary.title,
+                            "provider": pair.secondary.provider.value,
+                            "guid": str(pair.secondary.guid),
+                        }
+                        if pair.secondary
+                        else None
+                    ),
                 }
                 for pair in result.credential_pairs
             ]
@@ -149,7 +151,7 @@ class OPManagerIntegration:
             print(f"❌ Error getting credential pairs: {e}")
             return []
 
-    def get_discovery_summary(self) -> Dict[str, Any]:
+    def get_discovery_summary(self) -> dict[str, Any]:
         """
         Get a summary of the current discovery state.
 

@@ -5,6 +5,7 @@ Tests for the CLI module.
 from unittest.mock import Mock, patch
 
 from click.testing import CliRunner
+
 from op_api_manager.cli import main
 
 

@@ -5,6 +5,7 @@ Tests for the core module.
 from unittest.mock import Mock, patch
 
 import pytest
+
 from op_api_manager.core import OnePasswordAPIKeyManager
 from op_api_manager.models import CacheConfig, ProviderType
 

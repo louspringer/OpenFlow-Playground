@@ -6,7 +6,7 @@ and discovery results.
 """
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field, field_validator
@@ -23,6 +23,7 @@ class ProviderType(str, Enum):
     COHERE = "cohere"
     AI21 = "ai21"
     AZURE = "azure"
+    OPENROUTER = "openrouter"
     UNKNOWN = "unknown"
 
 
@@ -34,6 +35,7 @@ class APIKeyStatus(str, Enum):
     WORKING = "working"
     FAILED = "failed"
     EXPIRED = "expired"
+    ARCHIVED = "archived"
     UNKNOWN = "unknown"
 
 
@@ -50,71 +52,19 @@ class APIKeyItem(BaseModel):
     )
     url: Optional[str] = Field(None, description="Associated URL")
     notes: Optional[str] = Field(None, description="Item notes")
-    tags: List[str] = Field(default_factory=list, description="Item tags")
+    tags: list[str] = Field(default_factory=list, description="Item tags")
     created_at: Optional[str] = Field(None, description="Creation timestamp")
     updated_at: Optional[str] = Field(None, description="Last update timestamp")
-    metadata: Dict[str, Any] = Field(
+    metadata: dict[str, Any] = Field(
         default_factory=dict, description="Additional metadata"
     )
-
-    @field_validator("provider", mode="before")
-    @classmethod
-    def detect_provider(cls, v, info):
-        """Auto-detect provider from title and other fields."""
-        if isinstance(v, ProviderType):
-            return v
-
-        # Get title from the data if available
-        title = ""
-        if hasattr(info, "data") and info.data and "title" in info.data:
-            title = info.data["title"].lower()
-
-        # Provider detection logic
-        if any(keyword in title for keyword in ["openai", "gpt", "chatgpt"]):
-            return ProviderType.OPENAI
-        elif any(keyword in title for keyword in ["claude", "anthropic"]):
-            return ProviderType.ANTHROPIC
-        elif any(keyword in title for keyword in ["google", "gemini"]):
-            return ProviderType.GOOGLE
-        elif any(keyword in title for keyword in ["aws", "amazon", "bedrock"]):
-            return ProviderType.AWS
-        elif any(keyword in title for keyword in ["huggingface", "hf"]):
-            return ProviderType.HUGGINGFACE
-        elif any(keyword in title for keyword in ["cohere"]):
-            return ProviderType.COHERE
-        elif any(keyword in title for keyword in ["ai21"]):
-            return ProviderType.AI21
-        elif any(keyword in title for keyword in ["azure"]):
-            return ProviderType.AZURE
-        else:
-            return ProviderType.UNKNOWN
 
     @property
     def detected_provider(self) -> ProviderType:
         """Get the detected provider, computing it from title if not set."""
         if self.provider is not None:
             return self.provider
-
-        # Compute provider from title
-        title_lower = self.title.lower()
-        if any(keyword in title_lower for keyword in ["openai", "gpt", "chatgpt"]):
-            return ProviderType.OPENAI
-        elif any(keyword in title_lower for keyword in ["claude", "anthropic"]):
-            return ProviderType.ANTHROPIC
-        elif any(keyword in title_lower for keyword in ["google", "gemini"]):
-            return ProviderType.GOOGLE
-        elif any(keyword in title_lower for keyword in ["aws", "amazon", "bedrock"]):
-            return ProviderType.AWS
-        elif any(keyword in title_lower for keyword in ["huggingface", "hf"]):
-            return ProviderType.HUGGINGFACE
-        elif any(keyword in title_lower for keyword in ["cohere"]):
-            return ProviderType.COHERE
-        elif any(keyword in title_lower for keyword in ["ai21"]):
-            return ProviderType.AI21
-        elif any(keyword in title_lower for keyword in ["azure"]):
-            return ProviderType.AZURE
-        else:
-            return ProviderType.UNKNOWN
+        return ProviderType.UNKNOWN
 
 
 class CredentialPair(BaseModel):
@@ -135,14 +85,14 @@ class DiscoveryResult(BaseModel):
     """Result of an API key discovery operation."""
 
     total_items: int = Field(..., description="Total items discovered")
-    api_keys: List[APIKeyItem] = Field(..., description="Discovered API keys")
-    credential_pairs: List[CredentialPair] = Field(
+    api_keys: list[APIKeyItem] = Field(..., description="Discovered API keys")
+    credential_pairs: list[CredentialPair] = Field(
         ..., description="Organized credential pairs"
     )
-    providers: Optional[Dict[ProviderType, int]] = Field(
+    providers: Optional[dict[ProviderType, int]] = Field(
         None, description="Count by provider"
     )
-    status_summary: Optional[Dict[APIKeyStatus, int]] = Field(
+    status_summary: Optional[dict[APIKeyStatus, int]] = Field(
         None, description="Count by status"
     )
     discovery_timestamp: str = Field(..., description="When discovery was performed")
