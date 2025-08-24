@@ -6,17 +6,19 @@ Updated with proven diversity hypothesis models and enhanced test scenarios.
 """
 
 import json
+import logging
 import os
 from datetime import datetime
-from typing import Any
+from pathlib import Path
+from typing import Any, Optional
 
 import requests
+from dotenv import load_dotenv
 
 # LangChain caching imports
 try:
-    from langchain.cache import InMemoryCache
-    from langchain.globals import get_llm_cache, set_llm_cache
-    from langchain_core.caches import BaseCache
+    from langchain_core.caches import InMemoryCache
+    from langchain_core.globals import get_llm_cache, set_llm_cache
 
     LANGCHAIN_AVAILABLE = True
 except ImportError:
@@ -24,26 +26,40 @@ except ImportError:
 
 
 class MultiDimensionalSmokeTest:
-    def __init__(self) -> None:
+    """Enhanced multi-dimensional smoke test with proven diversity hypothesis"""
+
+    def __init__(self, env_file: Optional[str] = None):
+        """Initialize with optional .env file path"""
+        # Load environment variables from .env file if specified
+        if env_file:
+            load_dotenv(env_file)
+        else:
+            # Default to ~/.env
+            load_dotenv(Path.home() / ".env")
+
+        # Initialize logging
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
+
         # Initialize LangChain cache if available
         self._initialize_langchain_cache()
 
         # Updated model configurations with proven diversity
         self.models = {
             "gpt4": {
-                "api_key_env": "OPENAI_API_KEY",
-                "endpoint": "https://api.openai.com/v1/chat/completions",
-                "model_name": "gpt-4o-mini",
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
             },
             "gpt4o": {
-                "api_key_env": "OPENAI_API_KEY",
-                "endpoint": "https://api.openai.com/v1/chat/completions",
-                "model_name": "gpt-4o-mini",
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
             },
             "gpt4_turbo": {
-                "api_key_env": "OPENAI_API_KEY",
-                "endpoint": "https://api.openai.com/v1/chat/completions",
-                "model_name": "gpt-4o-mini",
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
             },
             "claude": {
                 "api_key_env": "ANTHROPIC_API_KEY",
@@ -174,6 +190,10 @@ class MultiDimensionalSmokeTest:
             "process_enforcer": "You are a process enforcer who ensures proper procedures and compliance.",
             "innovation_seeker": "You are an innovation seeker who looks for creative solutions and opportunities.",
             "quality_gatekeeper": "You are a quality gatekeeper who ensures high standards and best practices.",
+            # Additional roles for multi-agent analysis
+            "security_expert": "You are a security expert who identifies vulnerabilities, security flaws, and potential attack vectors.",
+            "code_quality_expert": "You are a code quality expert who analyzes code structure, maintainability, and best practices.",
+            "devops_engineer": "You are a DevOps engineer who focuses on deployment, infrastructure, and operational concerns.",
         }
 
         # Enhanced prompt structures
@@ -186,11 +206,13 @@ class MultiDimensionalSmokeTest:
             "process_oriented": "Focus on processes, procedures, and compliance requirements.",
             "creative_exploration": "Explore creative solutions and innovative approaches.",
             "quality_assurance": "Focus on quality standards, testing, and best practices.",
+            "structured_analysis": "Provide a structured, systematic analysis of the topic with clear organization.",
         }
 
         # Enhanced response formats
         self.response_formats = {
             "json_structured": "Return structured JSON with questions, confidence, blind spots, and recommendations.",
+            "json": "Return your response in JSON format with clear structure and key findings.",
             "narrative": "Return a narrative analysis with key insights and recommendations.",
             "bullet_points": "Return bullet points with key findings and action items.",
             "risk_matrix": "Return a risk matrix with likelihood, impact, and mitigation strategies.",
@@ -210,7 +232,9 @@ class MultiDimensionalSmokeTest:
                     set_llm_cache(cache)
                     print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
                 else:
-                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
+                    print(
+                        "✅ MultiDimensionalSmokeTest: Using existing LangChain cache"
+                    )
             except Exception as e:
                 print(
                     f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}"
@@ -227,23 +251,37 @@ class MultiDimensionalSmokeTest:
         temperature: float = 0.7,
     ) -> dict[str, Any]:
         """Call LLM with enhanced error handling and retry logic"""
+        print(
+            f"    🔍 call_llm called with model_name='{model_name}', prompt type: {type(prompt)}"
+        )
+
+        # Check if prompt is None
+        if prompt is None:
+            print(f"    ❌ ERROR: prompt is None for model {model_name}")
+            return {"error": "Prompt is None"}
+
         model_config = self.models.get(model_name)
         if not model_config:
+            print(f"    ❌ ERROR: Unknown model: {model_name}")
+            print(f"    Available models: {list(self.models.keys())}")
             msg = f"Unknown model: {model_name}"
             raise ValueError(msg)
 
-        # Use working API key if available, otherwise fall back to environment
-        api_key = None
-        if hasattr(self, "working_api_keys") and model_name in self.working_api_keys:
-            api_key = self.working_api_keys[model_name]
-            print(f"    🔑 Using working API key for {model_name}")
-        else:
-            api_key = os.getenv(model_config["api_key_env"])
-            print(f"    🔑 Using environment API key for {model_name}")
-
-        if not api_key:
-            msg = f"No API key for {model_name}"
+        # Get API key from environment variables (standard pattern)
+        api_key_env = model_config.get("api_key_env")
+        if not api_key_env:
+            msg = f"No API key environment variable configured for {model_name}"
             raise ValueError(msg)
+
+        api_key = os.getenv(api_key_env)
+        if not api_key:
+            msg = f"No API key found in environment variable {api_key_env} for {model_name}"
+            print(
+                f"    🔑 Available environment variables: {[k for k in os.environ if 'API_KEY' in k]}"
+            )
+            raise ValueError(msg)
+
+        print(f"    🔑 Using environment variable {api_key_env} for {model_name}")
 
         # Use different authentication headers for different providers
         if "anthropic" in model_name.lower() or model_name == "claude":
@@ -309,17 +347,36 @@ Return your analysis in the requested format with high confidence in your findin
 
     def run_test(self, config: dict[str, Any], scenario: str) -> dict[str, Any]:
         """Run a single test with enhanced analysis"""
+        print(f"🔍 DEBUG: run_test called with config: {config}")
+        print(f"🔍 DEBUG: scenario: {scenario}")
+
         model_name = config["model"]
         temperature = config["temperature"]
-        config["role"]
-        config["prompt_structure"]
-        config["response_format"]
+        role_key = config["role"]
+        prompt_structure_key = config["prompt_structure"]
+        response_format_key = config["response_format"]
+
+        # Map keys to actual descriptions
+        role = self.roles.get(role_key, f"You are a {role_key} expert.")
+        prompt_structure = self.prompt_structures.get(
+            prompt_structure_key, prompt_structure_key
+        )
+        response_format = self.response_formats.get(
+            response_format_key, response_format_key
+        )
+
+        print(
+            f"🔍 DEBUG: Extracted values - model: {model_name}, role_key: {role_key}, prompt_structure_key: {prompt_structure_key}, response_format_key: {response_format_key}"
+        )
+        print(
+            f"🔍 DEBUG: Mapped values - role: {str(role)[:50] if role else 'None'}..., prompt_structure: {str(prompt_structure)[:50] if prompt_structure else 'None'}..., response_format: {str(response_format)[:50] if response_format else 'None'}..."
+        )
 
         # Enhanced scenario context
-        self.scenarios.get(scenario, {}).get("context", scenario)
+        scenario_context = self.scenarios.get(scenario, {}).get("context", scenario)
 
-        prompt = """
-You are a {role} analyzing a technical decision.
+        prompt = f"""
+{role}
 
 Context: {scenario_context}
 
@@ -675,7 +732,9 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
+                status = (
+                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
+                )
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")
@@ -780,11 +839,44 @@ Focus on identifying what might be missing or overlooked from your unique perspe
 
 
 def main() -> None:
-    """Main function to run the enhanced smoke test"""
-    test = MultiDimensionalSmokeTest()
+    """Main function to run the enhanced smoke test with command line options"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Multi-Dimensional Smoke Test")
+    parser.add_argument("--env-file", help="Path to .env file (default: ~/.env)")
+    parser.add_argument("--anthropic-key", help="Anthropic API key (overrides .env)")
+    parser.add_argument("--openai-key", help="OpenAI API key (overrides .env)")
+    parser.add_argument("--google-key", help="Google API key (overrides .env)")
+    parser.add_argument(
+        "--scenario",
+        default="healthcare_cdc_pr",
+        help="Test scenario (default: healthcare_cdc_pr)",
+    )
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+
+    args = parser.parse_args()
+
+    # Set environment variables from command line if provided
+    if args.anthropic_key:
+        os.environ["ANTHROPIC_API_KEY"] = args.anthropic_key
+    if args.openai_key:
+        os.environ["OPENAI_API_KEY"] = args.openai_key
+    if args.google_key:
+        os.environ["GOOGLE_API_KEY"] = args.google_key
+
+    # Initialize test system
+    test = MultiDimensionalSmokeTest(env_file=args.env_file)
+
+    if args.verbose:
+        print("🔍 Available environment variables:")
+        for key, value in os.environ.items():
+            if "API_KEY" in key:
+                preview = value[:8] + "..." if len(value) > 8 else value
+                print(f"  {key}: {preview}")
+        print()
 
     # Run comprehensive test
-    results = test.run_comprehensive_test("healthcare_cdc_pr")
+    results = test.run_comprehensive_test(args.scenario)
 
     print("\n🎯 DIVERSITY HYPOTHESIS RESULTS:")
     print(f"   Diversity Score: {results['diversity_score']:.2f}")

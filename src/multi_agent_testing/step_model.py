@@ -11,7 +11,6 @@ This follows a model-first approach:
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List
 
 
 class StepType(Enum):
@@ -314,7 +313,7 @@ class StepModelBuilder:
         return errors
 
     @staticmethod
-    def generate_workflow_diagram(model: WorkflowModel) -> str:
+    def generate_workflow_diagram() -> str:
         """Generate a Mermaid diagram for the workflow"""
         mermaid_lines = [
             "graph TD",

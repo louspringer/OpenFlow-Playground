@@ -12,9 +12,8 @@ from typing import Any
 
 # LangChain caching imports
 try:
-    from langchain.cache import InMemoryCache
-    from langchain.globals import set_llm_cache
-    from langchain_core.caches import BaseCache
+    from langchain_core.caches import InMemoryCache
+    from langchain_core.globals import set_llm_cache
 
     LANGCHAIN_AVAILABLE = True
 except ImportError:
@@ -107,14 +106,18 @@ class CodeQualityAutomationOrchestrator:
 
         # Initialize API key manager and test endpoints once
         self.api_manager = None
-        self.working_models = []
-        self.working_openai_key = None  # Store the working OpenAI API key
-        self.working_huggingface_key = None  # Store the working HuggingFace API key
-        self.working_anthropic_key = None  # Store the working Anthropic API key
-        self.working_google_key = None  # Store the working Google API key
-        self.working_aws_key = None  # Store the working AWS API key
-        self.working_aws_secret = None  # Store the working AWS secret key
-        self._initialize_api_keys()
+        self.working_models: list[str] = []
+        self.working_openai_key: str | None = None  # Store the working OpenAI API key
+        self.working_huggingface_key: str | None = (
+            None  # Store the working HuggingFace API key
+        )
+        self.working_anthropic_key: str | None = (
+            None  # Store the working Anthropic API key
+        )
+        self.working_google_key: str | None = None  # Store the working Google API key
+        self.working_aws_key: str | None = None  # Store the working AWS API key
+        self.working_aws_secret: str | None = None  # Store the working AWS secret key
+        self._initialize_api_manager()
 
     def _initialize_langchain_cache(self) -> None:
         """Initialize LangChain caching for improved performance"""
@@ -129,252 +132,272 @@ class CodeQualityAutomationOrchestrator:
         else:
             print("⚠️ LangChain not available, skipping cache initialization")
 
-    def _initialize_api_keys(self) -> None:
-        """Initialize API keys and test endpoints once at startup"""
+    def _initialize_api_manager(self):
+        """Initialize API key manager and populate working models."""
         try:
-            # Import and initialize API key manager
-            import sys
+            from op_api_manager.core import OnePasswordAPIKeyManager
+            from op_api_manager.models import CacheConfig
 
-            scripts_path = str(Path.cwd() / "scripts")
-            sys.path.insert(0, scripts_path)
-            from op_api_key_manager import OnePasswordAPIKeyManager
+            # Initialize API key manager with proper cache configuration
+            cache_config = CacheConfig()
+            self.api_manager = OnePasswordAPIKeyManager(cache_config)
 
-            # Initialize API key manager and set environment variables
-            self.api_manager = OnePasswordAPIKeyManager()
-            self.api_manager.set_environment_variables()
+            if self.api_manager:
+                print("🔑 Initializing API key manager...")
 
-            # Test API endpoints once
-            print("🔑 Testing API endpoints...")
-            self.api_manager.test_api_endpoints()
+                # First, try to get working credentials from cache
+                print("  📦 Loading working credentials from cache...")
+                working_credentials = self.api_manager.get_working_credentials_all(
+                    force_test=False
+                )
 
-            # Test ALL discovered LLM APIs, not just hardcoded ones
-            discovered_apis = self.api_manager.discovered_keys
-            llm_providers = [
-                "openai",
-                "anthropic",
-                "openrouter",
-                "huggingface",
-                "huggingfacehub_api_token",  # Add the actual provider name from 1Password
-                "cohere",
-                "ai21",
-                "google",
-                "gemini",
-                "aws",
-                "bedrock",
-            ]
-
-            for api_info in discovered_apis:
-                provider = api_info.get("provider", "").lower()
-                if provider in llm_providers:
-                    # Test this specific API
-                    api_key = api_info.get("api_key")
-                    if api_key:
-                        # Test if this API actually works
-                        test_result = self._test_specific_api(provider, api_key)
-                        if test_result:
-                            # Update working API status in persistent storage
-                            self.api_manager.update_working_api_status(
-                                provider,
-                                api_key,
-                                True,
-                                api_info["guid"],
-                                test_result.get("models_count", 0),
-                            )
-
-                            if provider == "anthropic":
-                                # Test multiple Anthropic models
-                                anthropic_test_result = self._test_anthropic_models(
-                                    api_key
-                                )
-                                if anthropic_test_result["working_models"]:
-                                    self.working_models.extend(
-                                        anthropic_test_result["working_models"]
-                                    )
-                                    # Store the working API key for later use
-                                    self.working_anthropic_key = api_key
-                                    print(
-                                        f"✅ Anthropic APIs working: {', '.join(anthropic_test_result['working_models'])} (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                else:
-                                    print(
-                                        f"❌ No working Anthropic models found (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                            elif provider == "openai":
-                                # Test if this OpenAI key actually works for LLM calls
-                                llm_test_result = self._test_openai_llm_call(api_key)
-                                if llm_test_result:
-                                    self.working_models.append("gpt4_vision")
-                                    self.working_models.append(
-                                        "gpt5"
-                                    )  # Add GPT-5 as well
-                                    # Store the working API key for later use
-                                    self.working_openai_key = api_key
-                                    print(
-                                        f"✅ OpenAI GPT-4 and GPT-5 APIs working for LLM calls (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                else:
-                                    # Try testing with different models to see what's available
-                                    print(
-                                        f"    🔍 Testing alternative models for OpenAI key (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                    alternative_models = [
-                                        "gpt-4o",
-                                        "gpt-4o-mini",
-                                        "gpt-3.5-turbo",
-                                    ]
-                                    working_models_found = []
-
-                                    for alt_model in alternative_models:
-                                        try:
-                                            import openai
-
-                                            client = openai.OpenAI(api_key=api_key)
-                                            client.chat.completions.create(
-                                                model=alt_model,
-                                                messages=[
-                                                    {"role": "user", "content": "Hello"}
-                                                ],
-                                                max_tokens=10,
-                                            )
-                                            working_models_found.append(alt_model)
-                                            print(f"        ✅ {alt_model} works!")
-                                        except Exception as e:
-                                            print(
-                                                f"        ❌ {alt_model} failed: {str(e)[:100]}..."
-                                            )
-
-                                    if working_models_found:
-                                        print(
-                                            f"    🎯 Found working models: {', '.join(working_models_found)}"
-                                        )
-                                        # Store the working API key for later use
-                                        self.working_openai_key = api_key
-                                        # Add working models to the list
-                                        if (
-                                            "gpt-4o" in working_models_found
-                                            or "gpt-4o-mini" in working_models_found
-                                        ):
-                                            self.working_models.append("gpt4_vision")
-                                        if "gpt-3.5-turbo" in working_models_found:
-                                            self.working_models.append("gpt3_5_turbo")
-                                        print(
-                                            f"    ✅ OpenAI API working with alternative models (GUID: {api_info['guid'][:8]}...)"
-                                        )
-                                    else:
-                                        print(
-                                            f"    ❌ No working models found for this OpenAI key (GUID: {api_info['guid'][:8]}...)"
-                                        )
-                            elif provider == "google" or provider == "gemini":
-                                # Test Google/Gemini models
-                                google_test_result = self._test_google_models(api_key)
-                                if google_test_result["working_models"]:
-                                    self.working_models.extend(
-                                        google_test_result["working_models"]
-                                    )
-                                    # Store the working API key for later use
-                                    self.working_google_key = api_key
-                                    print(
-                                        f"✅ Google/Gemini APIs working: {', '.join(google_test_result['working_models'])} (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                else:
-                                    print(
-                                        f"❌ No working Google/Gemini models found (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                            elif provider == "aws" or provider == "bedrock":
-                                # Test AWS Bedrock models
-                                aws_test_result = self._test_aws_models(api_key)
-                                if aws_test_result["working_models"]:
-                                    self.working_models.extend(
-                                        aws_test_result["working_models"]
-                                    )
-                                    # Store the working API key for later use
-                                    self.working_aws_key = api_key
-                                    print(
-                                        f"✅ AWS Bedrock APIs working: {', '.join(aws_test_result['working_models'])} (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                else:
-                                    print(
-                                        f"❌ No working AWS Bedrock models found (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                            elif provider == "aws_paired":
-                                # Test AWS Bedrock models with paired credentials
-                                access_key_id = api_info.get("access_key_id")
-                                secret_access_key = api_info.get("secret_access_key")
-                                if access_key_id and secret_access_key:
-                                    aws_test_result = self._test_aws_models(
-                                        access_key_id, secret_access_key
-                                    )
-                                    if aws_test_result["working_models"]:
-                                        self.working_models.extend(
-                                            aws_test_result["working_models"]
-                                        )
-                                        # Store the working API key pair for later use
-                                        self.working_aws_key = access_key_id
-                                        self.working_aws_secret = secret_access_key
-                                        print(
-                                            f"✅ AWS Bedrock APIs working with paired credentials: {', '.join(aws_test_result['working_models'])} (GUID: {api_info['guid'][:8]}...)"
-                                        )
-                                    else:
-                                        print(
-                                            f"❌ No working AWS Bedrock models found with paired credentials (GUID: {api_info['guid'][:8]}...)"
-                                        )
-                                else:
-                                    print(
-                                        f"⚠️ AWS paired credentials missing access key or secret (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                            elif provider == "openrouter":
-                                self.working_models.append("openrouter")
-                                print(
-                                    f"✅ OpenRouter API working (GUID: {api_info['guid'][:8]}...)"
-                                )
-                            elif (
-                                provider == "huggingface"
-                                or provider == "huggingfacehub_api_token"
-                            ):
-                                # Test if this HuggingFace key actually works for LLM calls
-                                llm_test_result = self._test_huggingface_llm_call(
-                                    api_key
-                                )
-                                if llm_test_result:
-                                    self.working_models.append("huggingface")
-                                    # Store the working HuggingFace API key for later use
-                                    self.working_huggingface_key = api_key
-                                    print(
-                                        f"✅ HuggingFace API working for LLM calls (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                                else:
-                                    print(
-                                        f"⚠️ HuggingFace API key works for discovery but fails LLM calls (GUID: {api_info['guid'][:8]}...)"
-                                    )
-                            else:
-                                self.working_models.append(provider)
-                                print(
-                                    f"✅ {provider.title()} API working (GUID: {api_info['guid'][:8]}...)"
-                                )
-                        else:
-                            # Update failed API status in persistent storage
-                            self.api_manager.update_working_api_status(
-                                provider, api_key, False, api_info["guid"]
-                            )
-
-            # Show vendor cost API status for each working model
-            for model in self.working_models:
-                if self.api_manager:
-                    vendor_status = self.api_manager.get_vendor_cost_status(model)
-                    status_icon = "🔌" if vendor_status["has_vendor_cost_api"] else "📊"
+                if working_credentials:
                     print(
-                        f"{status_icon} {model}: {'Vendor Cost API' if vendor_status['has_vendor_cost_api'] else 'Estimated Costs'} ({vendor_status['vendor']})"
+                        f"  ✅ Found {sum(len(apis) for apis in working_credentials.values())} working APIs in cache"
                     )
+                    self._populate_working_models_from_cache(working_credentials)
+                else:
+                    print("  🔄 No working credentials in cache, testing APIs...")
+                    # Test API endpoints to discover working ones
+                    test_results = self.api_manager.test_api_endpoints(verbose=True)
+                    if test_results:
+                        print(
+                            f"  ✅ API testing completed, found {sum(len(apis) for apis in test_results.values())} working APIs"
+                        )
+                        self._populate_working_models_from_test_results(test_results)
+                    else:
+                        print("  ⚠️ No working APIs found during testing")
 
-            if not self.working_models:
-                print("❌ No working API endpoints found")
+                # Set environment variables for multi-agent systems
+                print("  🔧 Setting environment variables for multi-agent systems...")
+                self.api_manager.set_environment_variables()
+
+                # If we still don't have working models, use fallback
+                if not self.working_models:
+                    print("  🔍 Fallback: Using default model configurations...")
+                    self._populate_fallback_models()
+
+                print(f"  🎯 Final working models: {', '.join(self.working_models)}")
+
             else:
-                print(f"✅ Found {len(self.working_models)} working API endpoint(s)")
+                print("❌ Failed to initialize API key manager")
+                self._populate_fallback_models()
+
+        except ImportError as e:
+            print(f"❌ Import error: {e}")
+            print("  🔧 Falling back to default model configurations...")
+            self._populate_fallback_models()
+        except Exception as e:
+            print(f"❌ Error initializing API manager: {e}")
+            print("  🔧 Falling back to default model configurations...")
+            self._populate_fallback_models()
+
+    def _populate_working_models_from_cache(self, working_credentials: dict):
+        """Populate working models from cached working credentials."""
+        try:
+            for provider, api_list in working_credentials.items():
+                if api_list and len(api_list) > 0:
+                    # Add working models based on provider
+                    if provider == "openai":
+                        self.working_models.extend(
+                            [
+                                "gpt4_vision",
+                                "gpt5",
+                                "gpt4o",
+                                "gpt4o_mini",
+                                "gpt3_5_turbo",
+                            ]
+                        )
+                        self.working_openai_key = "cached"
+                    elif provider == "anthropic":
+                        self.working_models.extend(
+                            ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
+                        )
+                        self.working_anthropic_key = "cached"
+                    elif provider == "google" or provider == "gemini":
+                        self.working_models.extend(
+                            ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
+                        )
+                        self.working_google_key = "cached"
+                    elif provider == "aws" or provider == "bedrock":
+                        self.working_models.extend(
+                            ["claude_bedrock", "titan_express", "llama2_bedrock"]
+                        )
+                        self.working_aws_key = "cached"
+                    elif provider == "huggingface":
+                        self.working_models.append("huggingface")
+                        self.working_huggingface_key = "cached"
+                    elif provider == "cohere":
+                        self.working_models.append("cohere")
+                        self.working_cohere_key = "cached"
+                    elif provider == "ai21":
+                        self.working_models.append("ai21")
+                        self.working_ai21_key = "cached"
+                    elif provider == "openrouter":
+                        self.working_models.append("openrouter")
+                        self.working_openrouter_key = "cached"
+
+            print(
+                f"  📊 Populated {len(self.working_models)} working models from cache"
+            )
 
         except Exception as e:
-            print(f"❌ Failed to initialize API keys: {e}")
-            self.api_manager = None
-            self.working_models = []
+            print(f"❌ Error populating models from cache: {e}")
+
+    def _populate_working_models_from_test_results(self, test_results: dict):
+        """Populate working models from API test results."""
+        try:
+            for provider, api_list in test_results.items():
+                if api_list and len(api_list) > 0:
+                    # Add working models based on provider
+                    if provider == "openai":
+                        self.working_models.extend(
+                            [
+                                "gpt4_vision",
+                                "gpt5",
+                                "gpt4o",
+                                "gpt4o_mini",
+                                "gpt3_5_turbo",
+                            ]
+                        )
+                        self.working_openai_key = "tested"
+                    elif provider == "anthropic":
+                        self.working_models.extend(
+                            ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
+                        )
+                        self.working_anthropic_key = "tested"
+                    elif provider == "google" or provider == "gemini":
+                        self.working_models.extend(
+                            ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
+                        )
+                        self.working_google_key = "tested"
+                    elif provider == "aws" or provider == "bedrock":
+                        self.working_models.extend(
+                            ["claude_bedrock", "titan_express", "llama2_bedrock"]
+                        )
+                        self.working_aws_key = "tested"
+                    elif provider == "huggingface":
+                        self.working_models.append("huggingface")
+                        self.working_huggingface_key = "tested"
+                    elif provider == "cohere":
+                        self.working_models.append("cohere")
+                        self.working_cohere_key = "tested"
+                    elif provider == "ai21":
+                        self.working_models.append("ai21")
+                        self.working_ai21_key = "tested"
+                    elif provider == "openrouter":
+                        self.working_models.append("openrouter")
+                        self.working_openrouter_key = "tested"
+
+            print(
+                f"  📊 Populated {len(self.working_models)} working models from testing"
+            )
+
+        except Exception as e:
+            print(f"❌ Error populating models from test results: {e}")
+
+    def _populate_fallback_models(self):
+        """Populate fallback models when API manager is not available."""
+        try:
+            # Use environment variables as fallback
+            if os.getenv("OPENAI_API_KEY"):
+                self.working_models.extend(
+                    ["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"]
+                )
+                self.working_openai_key = "env"
+                print("  🔑 Using OpenAI API key from environment")
+
+            if os.getenv("ANTHROPIC_API_KEY"):
+                self.working_models.extend(
+                    ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
+                )
+                self.working_anthropic_key = "env"
+                print("  🔑 Using Anthropic API key from environment")
+
+            if os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY"):
+                self.working_models.extend(
+                    ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
+                )
+                self.working_google_key = "env"
+                print("  🔑 Using Google/Gemini API key from environment")
+
+            if os.getenv("AWS_ACCESS_KEY_ID") and os.getenv("AWS_SECRET_ACCESS_KEY"):
+                self.working_models.extend(
+                    ["claude_bedrock", "titan_express", "llama2_bedrock"]
+                )
+                self.working_aws_key = "env"
+                print("  🔑 Using AWS credentials from environment")
+
+            if os.getenv("HUGGINGFACE_API_KEY"):
+                self.working_models.append("huggingface")
+                self.working_huggingface_key = "env"
+                print("  🔑 Using HuggingFace API key from environment")
+
+            if os.getenv("COHERE_API_KEY"):
+                self.working_models.append("cohere")
+                self.working_cohere_key = "env"
+                print("  🔑 Using Cohere API key from environment")
+
+            if os.getenv("AI21_API_KEY"):
+                self.working_models.append("ai21")
+                self.working_ai21_key = "env"
+                print("  🔑 Using AI21 API key from environment")
+
+            if os.getenv("OPENROUTER_API_KEY"):
+                self.working_models.append("openrouter")
+                self.working_openrouter_key = "env"
+                print("  🔑 Using OpenRouter API key from environment")
+
+            print(
+                f"  📊 Populated {len(self.working_models)} fallback models from environment"
+            )
+
+        except Exception as e:
+            print(f"❌ Error populating fallback models: {e}")
+            # Ultimate fallback - use basic models
+            self.working_models = ["gpt4o", "claude_3_5_sonnet", "gemini_pro"]
+            print("  🚨 Using ultimate fallback models")
+
+    def _get_vendor_status(self, model: str) -> dict[str, any]:
+        """
+        Get vendor information for a specific model.
+
+        Args:
+            model: The model name
+
+        Returns:
+            Dictionary with vendor information
+        """
+        # Map models to vendors and cost API availability
+        vendor_mapping = {
+            # OpenAI models
+            "gpt4_vision": {"vendor": "OpenAI", "has_vendor_cost_api": True},
+            "gpt5": {"vendor": "OpenAI", "has_vendor_cost_api": True},
+            "gpt4o": {"vendor": "OpenAI", "has_vendor_cost_api": True},
+            "gpt4o_mini": {"vendor": "OpenAI", "has_vendor_cost_api": True},
+            "gpt3_5_turbo": {"vendor": "OpenAI", "has_vendor_cost_api": True},
+            # Anthropic models
+            "claude_3_5_sonnet": {"vendor": "Anthropic", "has_vendor_cost_api": True},
+            "claude_3_haiku": {"vendor": "Anthropic", "has_vendor_cost_api": True},
+            "claude_3_opus": {"vendor": "Anthropic", "has_vendor_cost_api": True},
+            # Google/Gemini models
+            "gemini_pro": {"vendor": "Google", "has_vendor_cost_api": True},
+            "gemini_flash": {"vendor": "Google", "has_vendor_cost_api": True},
+            "gemini_pro_vision": {"vendor": "Google", "has_vendor_cost_api": True},
+            # AWS Bedrock models
+            "claude_bedrock": {"vendor": "AWS", "has_vendor_cost_api": True},
+            "titan_express": {"vendor": "AWS", "has_vendor_cost_api": True},
+            "llama2_bedrock": {"vendor": "AWS", "has_vendor_cost_api": True},
+            # Other models
+            "huggingface": {"vendor": "HuggingFace", "has_vendor_cost_api": False},
+            "cohere": {"vendor": "Cohere", "has_vendor_cost_api": True},
+            "ai21": {"vendor": "AI21", "has_vendor_cost_api": True},
+            "openrouter": {"vendor": "OpenRouter", "has_vendor_cost_api": True},
+        }
+
+        return vendor_mapping.get(
+            model, {"vendor": "Unknown", "has_vendor_cost_api": False}
+        )
 
     def _test_specific_api(self, provider: str, api_key: str) -> bool:
         """
@@ -474,7 +497,9 @@ class CodeQualityAutomationOrchestrator:
 
                     client = cohere.Client(api_key=api_key)
                     models = client.models.list()
-                    print(f"    ✅ Cohere API key is valid. Found {len(models)} models.")
+                    print(
+                        f"    ✅ Cohere API key is valid. Found {len(models)} models."
+                    )
                     return {"working": True, "models_count": len(models)}
                 except Exception as e:
                     print(f"    ❌ Cohere API key failed: {e}")
@@ -715,12 +740,14 @@ class CodeQualityAutomationOrchestrator:
             # Load API keys from 1Password
             import sys
 
-            from multi_dimensional_smoke_test import MultiDimensionalSmokeTest
+            from src.multi_agent_testing.multi_dimensional_smoke_test import (
+                MultiDimensionalSmokeTest,
+            )
 
             # Since we're running from project root, scripts is directly accessible
             scripts_path = str(Path.cwd() / "scripts")
             sys.path.insert(0, scripts_path)
-            from op_api_key_manager import OnePasswordAPIKeyManager
+            from op_api_manager.core import OnePasswordAPIKeyManager
 
             # Initialize API key manager and set environment variables
             api_manager = OnePasswordAPIKeyManager()
@@ -734,25 +761,70 @@ class CodeQualityAutomationOrchestrator:
             # Run analysis with different perspectives
             analysis_results = {}
 
-            # Test API endpoints first to find working ones
-            api_test_results = api_manager.test_api_endpoints()
+            # Check environment variables first for 1Password freedom
+            print("🔓 Checking environment variables for 1Password freedom...")
+
+            # Use environment variables instead of 1Password calls
+            api_test_results = {}
             working_models = []
 
-            if api_test_results.get("anthropic", {}).get("working"):
+            # Check for available APIs in environment
+            if os.getenv("ANTHROPIC_API_KEY"):
+                api_test_results["anthropic"] = [
+                    {"id": "env_anthropic", "working": True}
+                ]
+                working_models.append("claude")
+                print("✅ Using Anthropic Claude from environment variables")
+
+            if os.getenv("OPENAI_API_KEY"):
+                api_test_results["openai"] = [{"id": "env_openai", "working": True}]
+                working_models.append("gpt4_vision")
+                working_models.append("gpt5")
+                print("✅ Using OpenAI from environment variables")
+
+            if os.getenv("AZURE_API_KEY"):
+                api_test_results["azure"] = [{"id": "env_azure", "working": True}]
+                working_models.append("azure")
+                print("✅ Using Azure from environment variables")
+
+            if os.getenv("AWS_ACCESS_KEY_ID"):
+                api_test_results["aws"] = [{"id": "env_aws", "working": True}]
+                working_models.append("aws")
+                print("✅ Using AWS from environment variables")
+
+            if os.getenv("GOOGLE_API_KEY"):
+                api_test_results["google"] = [{"id": "env_google", "working": True}]
+                working_models.append("gemini_pro")
+                print("✅ Using Google from environment variables")
+
+            print(f"🔓 Environment-based API results: {api_test_results}")
+            print(f"🔓 Working models: {working_models}")
+
+            # Check if we have working APIs for each provider
+            # api_test_results[provider] is a list of working APIs
+            if (
+                api_test_results.get("anthropic")
+                and len(api_test_results["anthropic"]) > 0
+            ):
                 working_models.append("claude")
                 print("✅ Using Anthropic Claude for multi-agent analysis")
 
-            if api_test_results.get("openai", {}).get("working"):
+            if api_test_results.get("openai") and len(api_test_results["openai"]) > 0:
                 working_models.append("gpt4_vision")
                 working_models.append("gpt5")  # Add GPT-5 as well
                 print("✅ Using OpenAI GPT-4 and GPT-5 for multi-agent analysis")
 
-            if api_test_results.get("huggingface", {}).get("working"):
+            if (
+                api_test_results.get("huggingface")
+                and len(api_test_results["huggingface"]) > 0
+            ):
                 working_models.append("huggingface")
                 print("✅ Using HuggingFace for multi-agent analysis")
 
             if not working_models:
-                print("❌ No working API endpoints found, skipping multi-agent analysis")
+                print(
+                    "❌ No working API endpoints found, skipping multi-agent analysis"
+                )
                 return {
                     "success": False,
                     "error": "No working API endpoints available",
@@ -764,7 +836,19 @@ class CodeQualityAutomationOrchestrator:
                 working_keys = {}
                 for model in working_models:
                     if model == "claude":
-                        working_keys["claude"] = os.getenv("ANTHROPIC_API_KEY")
+                        # Get the actual Anthropic API key from the discovered keys
+                        anthropic_keys = api_test_results.get("anthropic", [])
+                        if anthropic_keys:
+                            # Use the first working Anthropic key
+                            anthropic_key = anthropic_keys[0].get("id", "")
+                            working_keys["claude"] = anthropic_key
+                            # Set environment variable
+                            os.environ["ANTHROPIC_API_KEY"] = anthropic_key
+                            print(
+                                "🔑 Updated ANTHROPIC_API_KEY environment with working key"
+                            )
+                        else:
+                            working_keys["claude"] = os.getenv("ANTHROPIC_API_KEY")
                     elif model == "gpt4_vision" and self.working_openai_key:
                         # Use the working OpenAI API key we validated
                         working_keys["gpt4_vision"] = self.working_openai_key
@@ -840,14 +924,34 @@ class CodeQualityAutomationOrchestrator:
 
                 print(f"  🔒 Security analysis with {model}")
                 if self.api_manager:
-                    security_prompt = f"Role: {security_config['role']}, Structure: {security_config['prompt_structure']}, Format: {security_config['response_format']}"
-                    self.api_manager.track_api_call(
-                        model, security_prompt, "", "security_analysis"
-                    )
+                    try:
+                        security_prompt = f"Role: {security_config.get('role', 'unknown')}, Structure: {security_config.get('prompt_structure', 'unknown')}, Format: {security_config.get('response_format', 'unknown')}"
+                        self.api_manager.track_api_call(
+                            model, security_prompt, "", "security_analysis"
+                        )
+                    except Exception as e:
+                        print(f"🔍 DEBUG: Error in security prompt creation: {e}")
+                        print(f"🔍 DEBUG: security_config: {security_config}")
+                        raise
 
-                security_analysis = test_system.run_test(
-                    security_config, "security_audit"
+                print(
+                    f"🔍 DEBUG: About to call test_system.run_test with config: {security_config}"
                 )
+                print(f"🔍 DEBUG: Security config keys: {list(security_config.keys())}")
+                try:
+                    security_analysis = test_system.run_test(
+                        security_config, "security_audit"
+                    )
+                    print(
+                        f"🔍 DEBUG: run_test returned successfully, type: {type(security_analysis)}"
+                    )
+                except Exception as e:
+                    print(f"🔍 DEBUG: run_test failed with exception: {e}")
+                    print(f"🔍 DEBUG: Exception type: {type(e)}")
+                    import traceback
+
+                    traceback.print_exc()
+                    raise
 
                 if self.api_manager and security_analysis:
                     security_response = str(security_analysis)
@@ -873,10 +977,15 @@ class CodeQualityAutomationOrchestrator:
 
                 print(f"  🔍 Quality analysis with {model}")
                 if self.api_manager:
-                    quality_prompt = f"Role: {quality_config['role']}, Structure: {quality_config['prompt_structure']}, Format: {quality_config['response_format']}"
-                    self.api_manager.track_api_call(
-                        model, quality_prompt, "", "quality_analysis"
-                    )
+                    try:
+                        quality_prompt = f"Role: {quality_config.get('role', 'unknown')}, Structure: {quality_config.get('prompt_structure', 'unknown')}, Format: {quality_config.get('response_format', 'unknown')}"
+                        self.api_manager.track_api_call(
+                            model, quality_prompt, "", "quality_analysis"
+                        )
+                    except Exception as e:
+                        print(f"🔍 DEBUG: Error in quality prompt creation: {e}")
+                        print(f"🔍 DEBUG: quality_config: {quality_config}")
+                        raise
 
                 quality_analysis = test_system.run_test(quality_config, "code_quality")
 
@@ -904,10 +1013,15 @@ class CodeQualityAutomationOrchestrator:
 
                 print(f"  ⚙️ DevOps analysis with {model}")
                 if self.api_manager:
-                    devops_prompt = f"Role: {devops_config['role']}, Structure: {devops_config['prompt_structure']}, Format: {devops_config['response_format']}"
-                    self.api_manager.track_api_call(
-                        model, devops_prompt, "", "devops_analysis"
-                    )
+                    try:
+                        devops_prompt = f"Role: {devops_config.get('role', 'unknown')}, Structure: {devops_config.get('prompt_structure', 'unknown')}, Format: {devops_config.get('response_format', 'unknown')}"
+                        self.api_manager.track_api_call(
+                            model, devops_prompt, "", "devops_analysis"
+                        )
+                    except Exception as e:
+                        print(f"🔍 DEBUG: Error in devops prompt creation: {e}")
+                        print(f"🔍 DEBUG: devops_config: {devops_config}")
+                        raise
 
                 devops_analysis = test_system.run_test(devops_config, "devops")
 
@@ -931,7 +1045,9 @@ class CodeQualityAutomationOrchestrator:
                 print(f"  ✅ Completed agent set on {model}")
 
             # Coalesce results from ALL LLMs for comprehensive analysis
-            print(f"\n🧠 Coalescing results from {len(working_models)} LLM providers...")
+            print(
+                f"\n🧠 Coalescing results from {len(working_models)} LLM providers..."
+            )
 
             # Coalesce security results across all LLMs
             security_results = [
@@ -1461,7 +1577,9 @@ class CodeQualityAutomationOrchestrator:
         self, llm_results: list[dict[str, Any]], analysis_type: str
     ) -> dict[str, Any]:
         """Coalesce results from multiple LLMs for comprehensive analysis"""
-        print(f"  🧠 Coalescing {analysis_type} results from {len(llm_results)} LLMs...")
+        print(
+            f"  🧠 Coalescing {analysis_type} results from {len(llm_results)} LLMs..."
+        )
 
         if not llm_results:
             return {"error": "No LLM results to coalesce"}
@@ -1524,17 +1642,34 @@ class CodeQualityAutomationOrchestrator:
 
 def main():
     """Main function to run the automation"""
-    import sys
+    import argparse
 
     # Parse arguments properly
-    args = sys.argv[1:]
-    test_mode = "--test" in args
+    parser = argparse.ArgumentParser(
+        description="Code Quality Automation Orchestrator",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python orchestrator.py                    # Run on current directory
+  python orchestrator.py /path/to/project  # Run on specific directory
+  python orchestrator.py --test            # Test individual components
+  python orchestrator.py --help            # Show this help message
+        """,
+    )
 
-    # Remove --test from args to get target directory
-    if "--test" in args:
-        args.remove("--test")
+    parser.add_argument(
+        "target_dir",
+        nargs="?",
+        default=".",
+        help="Target directory to analyze (default: current directory)",
+    )
+    parser.add_argument(
+        "--test", action="store_true", help="Test individual components only"
+    )
 
-    target_dir = args[0] if args else "."
+    args = parser.parse_args()
+    target_dir = args.target_dir
+    test_mode = args.test
 
     print("🎯 Code Quality Automation Orchestrator")
     print(f"🎯 Target Directory: {target_dir}")

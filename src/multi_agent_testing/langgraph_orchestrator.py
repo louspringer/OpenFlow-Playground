@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Annotated, Any, Dict, List, Optional, TypedDict
+from typing import Annotated, Any, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langgraph.graph import END, StateGraph
@@ -99,26 +99,39 @@ class LangGraphOrchestrator:
 
             scripts_path = str(Path.cwd() / "scripts")
             sys.path.insert(0, scripts_path)
-            from op_api_key_manager import OnePasswordAPIKeyManager
+            from op_api_manager import OnePasswordAPIKeyManager
 
             self.api_manager = OnePasswordAPIKeyManager()
-            self.api_manager.set_environment_variables()
 
-            # Test API endpoints
-            api_test_results = self.api_manager.test_api_endpoints()
+            # Try to get working API keys (will fail gracefully if 1Password not signed in)
+            try:
+                working_keys = self.api_manager.get_working_api_keys()
+                if working_keys:
+                    # Extract provider types from working keys
+                    providers = set()
+                    for key_info in working_keys:
+                        if hasattr(key_info, "detected_provider"):
+                            providers.add(key_info.detected_provider.value)
 
-            if api_test_results.get("anthropic", {}).get("working"):
-                self.working_models.append("claude")
-                print("✅ Using Anthropic Claude for multi-agent analysis")
+                    if "anthropic" in providers:
+                        self.working_models.append("claude")
+                        print("✅ Using Anthropic Claude for multi-agent analysis")
 
-            if api_test_results.get("openai", {}).get("working"):
-                self.working_models.append("gpt4_vision")
-                print("✅ Using OpenAI GPT-4 for multi-agent analysis")
+                    if "openai" in providers:
+                        self.working_models.append("gpt4_vision")
+                        print("✅ Using OpenAI GPT-4 for multi-agent analysis")
 
-            if not self.working_models:
-                print("⚠️ No working API endpoints found")
-            else:
-                print(f"🚀 Multi-LLM setup: {len(self.working_models)} models available")
+                    if self.working_models:
+                        print(
+                            f"🚀 Multi-LLM setup: {len(self.working_models)} models available"
+                        )
+                    else:
+                        print("⚠️ No working API endpoints found")
+                else:
+                    print("⚠️ No working API endpoints found")
+            except Exception as e:
+                print(f"⚠️ API key discovery failed (1Password not signed in): {e}")
+                print("⚠️ Multi-LLM analysis will use fallback methods")
 
         except Exception as e:
             print(f"⚠️ Error initializing API keys: {e}")
@@ -232,30 +245,34 @@ class LangGraphOrchestrator:
 
     def _should_continue_to_synthesize(self, state: OrchestratorState) -> bool:
         """Determine if we should continue to synthesis phase"""
-        logger.info("🔍 _should_continue_to_synthesize: always continue after act phase")
+        logger.info(
+            "🔍 _should_continue_to_synthesize: always continue after act phase"
+        )
         # Always continue to synthesis after act phase
         return True
 
     def _should_continue_to_next_iteration(self, state: OrchestratorState) -> bool:
         """Determine if we should continue to the next iteration"""
+        iteration_number = state.get("iteration_number", 0)
+        max_iterations = state.get("max_iterations", 5)
         logger.info(
-            f"🔍 _should_continue_to_next_iteration: iteration={state.iteration_number}, max_iterations={state.max_iterations}"
+            f"🔍 _should_continue_to_next_iteration: iteration={iteration_number}, max_iterations={max_iterations}"
         )
 
         # Check if we've reached max iterations
-        if state.iteration_number >= state.max_iterations:
+        if iteration_number >= max_iterations:
             logger.info("❌ Max iterations reached, stopping")
             return False
 
         # Check if we have quality issues to address
-        if state.quality_report and state.quality_report.get("total_issues", 0) > 0:
+        quality_report = state.get("quality_report")
+        if quality_report and quality_report.get("total_issues", 0) > 0:
             logger.info("✅ Quality issues found, continuing to next iteration")
             return True
 
         # Check if we have agent findings to process
-        total_findings = sum(
-            len(findings) for findings in state.agent_findings.values()
-        )
+        agent_findings = state.get("agent_findings", {})
+        total_findings = sum(len(findings) for findings in agent_findings.values())
         if total_findings > 0:
             logger.info(
                 f"✅ Agent findings found: {total_findings}, continuing to next iteration"
@@ -351,18 +368,17 @@ class LangGraphOrchestrator:
                 "should_continue": False,
             }
 
-    async def _check_phase(self, state: OrchestratorState) -> OrchestratorState:
+    async def _check_phase(self, state: OrchestratorState) -> dict[str, Any]:
         """Check phase: Run pre-commit validation"""
-        print(f"🔍 Validation phase for iteration {state.iteration_number}")
-        state.current_stage = WorkflowStage.CHECK
+        print(f"🔍 Validation phase for iteration {state.get('iteration_number', 0)}")
 
         try:
             # Run pre-commit checks
             pre_commit_result = await self._run_pre_commit_check()
-            state.pre_commit_results = pre_commit_result
 
             # Add validation message
-            state.messages.append(
+            messages = state.get("messages", [])
+            messages.append(
                 HumanMessage(
                     content=f"Pre-commit validation: {pre_commit_result.get('success', False)}"
                 )
@@ -372,29 +388,34 @@ class LangGraphOrchestrator:
                 f"✅ Validation complete: pre-commit {'passed' if pre_commit_result.get('success') else 'failed'}"
             )
 
+            return {
+                "current_stage": WorkflowStage.CHECK.value,
+                "pre_commit_results": pre_commit_result,
+                "messages": messages,
+            }
+
         except Exception as e:
-            state.error_message = f"Validation phase failed: {str(e)}"
-            state.should_continue = False
             print(f"❌ Validation phase failed: {e}")
+            return {
+                "current_stage": WorkflowStage.CHECK.value,
+                "error_message": f"Validation phase failed: {str(e)}",
+                "should_continue": False,
+            }
 
-        return state
-
-    async def _act_phase(self, state: OrchestratorState) -> OrchestratorState:
+    async def _act_phase(self, state: OrchestratorState) -> dict[str, Any]:
         """Act phase: Run multi-agent analysis"""
-        print(f"🤖 Multi-agent analysis phase for iteration {state.iteration_number}")
-        state.current_stage = WorkflowStage.ACT
+        print(
+            f"🤖 Multi-agent analysis phase for iteration {state.get('iteration_number', 0)}"
+        )
 
         try:
             # Run multi-agent analysis
             agent_results = await self._run_multi_agent_analysis()
 
-            # Store agent findings
-            for agent_type, findings in agent_results.items():
-                state.agent_findings[agent_type] = findings
-
             # Add analysis message
             total_findings = sum(len(findings) for findings in agent_results.values())
-            state.messages.append(
+            messages = state.get("messages", [])
+            messages.append(
                 HumanMessage(
                     content=f"Multi-agent analysis complete: {total_findings} findings across {len(agent_results)} agents"
                 )
@@ -402,38 +423,47 @@ class LangGraphOrchestrator:
 
             print(f"✅ Multi-agent analysis complete: {total_findings} findings")
 
+            return {
+                "current_stage": WorkflowStage.ACT.value,
+                "agent_findings": agent_results,
+                "messages": messages,
+            }
+
         except Exception as e:
-            state.error_message = f"Multi-agent analysis failed: {str(e)}"
-            state.should_continue = False
             print(f"❌ Multi-agent analysis failed: {e}")
+            return {
+                "current_stage": WorkflowStage.ACT.value,
+                "error_message": f"Multi-agent analysis failed: {str(e)}",
+                "should_continue": False,
+            }
 
-        return state
-
-    async def _synthesize_phase(self, state: OrchestratorState) -> OrchestratorState:
+    async def _synthesize_phase(self, state: OrchestratorState) -> dict[str, Any]:
         """Synthesize phase: Analyze results and plan next iteration"""
-        print(f"🧠 Synthesis phase for iteration {state.iteration_number}")
-        state.current_stage = WorkflowStage.SYNTHESIZE
+        print(f"🧠 Synthesis phase for iteration {state.get('iteration_number', 0)}")
 
         try:
             # Synthesize iteration results
             synthesis = self.agent_session_manager.synthesize_iteration_results()
-            state.synthesis = synthesis
 
             # Extract learning outcomes
-            state.learning_outcomes = synthesis.get("learning_outcomes", [])
+            learning_outcomes = synthesis.get("learning_outcomes", [])
 
             # Determine if we should continue
+            iteration_number = state.get("iteration_number", 0)
+            max_iterations = state.get("max_iterations", 5)
+            quality_report = state.get("quality_report")
+            pre_commit_results = state.get("pre_commit_results", {})
+
             should_continue = (
-                state.iteration_number < state.max_iterations
-                and state.quality_report
-                and state.quality_report.get("total_issues", 0) > 0
-                and not state.pre_commit_results.get("success", False)
+                iteration_number < max_iterations
+                and quality_report
+                and quality_report.get("total_issues", 0) > 0
+                and not pre_commit_results.get("success", False)
             )
 
-            state.should_continue = should_continue
-
             # Add synthesis message
-            state.messages.append(
+            messages = state.get("messages", [])
+            messages.append(
                 AIMessage(
                     content=f"Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations, continue={should_continue}"
                 )
@@ -443,12 +473,21 @@ class LangGraphOrchestrator:
                 f"✅ Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations"
             )
 
-        except Exception as e:
-            state.error_message = f"Synthesis phase failed: {str(e)}"
-            state.should_continue = False
-            print(f"❌ Synthesis phase failed: {e}")
+            return {
+                "current_stage": WorkflowStage.SYNTHESIZE.value,
+                "synthesis": synthesis,
+                "learning_outcomes": learning_outcomes,
+                "should_continue": should_continue,
+                "messages": messages,
+            }
 
-        return state
+        except Exception as e:
+            print(f"❌ Synthesis phase failed: {e}")
+            return {
+                "current_stage": WorkflowStage.SYNTHESIZE.value,
+                "error_message": f"Synthesis phase failed: {str(e)}",
+                "should_continue": False,
+            }
 
     async def _complete_phase(self, state: OrchestratorState) -> dict[str, Any]:
         """Complete the workflow and finalize results"""
