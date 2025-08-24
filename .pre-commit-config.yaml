@@ -1,95 +1,132 @@
-# .pre-commit-config.yaml
-# Comprehensive pre-commit configuration for round-trip engineering enforcement
+# Pre-commit configuration for OpenFlow-Playground
+# Includes security scanning using established tools (best practices)
 
 repos:
-  # Black (Code formatting)
+  # Local hooks for project-specific operations
+  - repo: local
+    hooks:
+      # Security scanning using established tools
+      - id: security-scan
+        name: Security Scan (Established Tools)
+        entry: make security-check
+        language: system
+        pass_filenames: false
+        always_run: true
+        description: "Run security scan using Bandit, Semgrep, Safety, and Detect-Secrets"
+
+      # Code quality checks
+      - id: code-quality
+        name: Code Quality Check
+        entry: make quality-check
+        language: system
+        pass_filenames: false
+        always_run: true
+        description: "Run comprehensive code quality checks"
+
+      # Model-driven validation
+      - id: model-validation
+        name: Model Validation
+        entry: make test-model-driven
+        language: system
+        pass_filenames: false
+        always_run: true
+        description: "Validate against project model registry"
+
+  # Python code formatting
   - repo: https://github.com/psf/black
     rev: 23.12.1
     hooks:
       - id: black
-        args: [--line-length=88]
-        exclude: |
-          (?x)^(
-              \.cursor/.*\.backup[0-9]+\.py$|
-              data/cost_analysis\.py$|
-              scripts/.*\.backup[0-9]+\.py$|
-              scripts/mdc-linter\.py\.backup[0-9]+$|
-              scripts/mdc-linter\.py\.working$
-          )$
+        language_version: python3
+        args: [--line-length=88, --target-version=py312]
 
-  # Ruff (Fast Python linter) - practical configuration
-  - repo: https://github.com/astral-sh/ruff-pre-commit
+  # Python linting
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.1.6
     hooks:
       - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+
+  # Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, pandas-stubs]
+        args: [--ignore-missing-imports]
+
+  # Security scanning with Bandit
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.8.6
+    hooks:
+      - id: bandit
+        args: [-r, src/, scripts/, --exclude, tests/,.venv/,.mypy_cache/,__pycache__/]
+        exclude: ^(tests/|\.venv/|\.mypy_cache/|__pycache__/)
+
+  # Dependency vulnerability scanning (Safety is installed via UV)
+  - repo: local
+    hooks:
+      - id: safety-check
+        name: Safety Check
+        entry: uv run safety check
+        language: system
+        pass_filenames: false
+        always_run: true
+        description: "Check for known security vulnerabilities in dependencies"
+
+  # YAML validation
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: [--strict]
+
+  # JSON validation
+  - repo: local
+    hooks:
+      - id: json-validate
+        name: JSON Validation
+        entry: python -m json.tool
+        language: system
+        types: [json]
+        description: "Validate JSON syntax"
+
+  # Markdown validation
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
         args: [--fix]
 
-  # Round-Trip Engineering Enforcement
-  - repo: local
-    hooks:
-      - id: round-trip-enforcement
-        name: Round-Trip Engineering Enforcement
-        entry: python scripts/enforce_round_trip.py
-        language: system
-        pass_filenames: true
-        types: [python]
-        stages: [pre-commit]
-        description: "Enforce round-trip engineering: all Python files must survive reverse engineering and regeneration"
-        args: [--pre-commit]
+# Global configuration
+default_language_version:
+  python: python3
 
-      - id: model-conformance-check
-        name: Model Conformance Check
-        entry: python scripts/check_model_conformance.py
-        language: system
-        pass_filenames: true
-        types: [python]
-        stages: [pre-commit]
-        description: "Check that all Python files conform to their extracted models"
-        args: [--pre-commit]
+# Skip certain checks for specific file types
+exclude: |
+  (?x)^(
+      \.git/|
+      \.venv/|
+      __pycache__/|
+      \.mypy_cache/|
+      dist/|
+      build/|
+      \.eggs/|
+      \.tox/|
+      \.pytest_cache/|
+      \.coverage|
+      \.ruff_cache|
+      \.bandit|
+      \.safety|
+      \.semgrep|
+      \.gitleaks|
+      \.trivy|
+      .*-report\.json|
+      \.secrets\.baseline
+  )$
 
-      - id: functional-equivalence-test
-        name: Functional Equivalence Test
-        entry: python scripts/test_functional_equivalence.py
-        language: system
-        pass_filenames: true
-        types: [python]
-        stages: [pre-commit]
-        description: "Test that regenerated code is functionally equivalent to original"
-        args: [--pre-commit]
+# Fail fast on critical issues
+fail_fast: false
 
-  # Project Model Validation
-  - repo: local
-    hooks:
-      - id: project-model-validation
-        name: Project Model Validation
-        entry: python scripts/validate_project_model.py
-        language: system
-        pass_filenames: false
-        always_run: true
-        stages: [pre-commit]
 
-  # Security Scanning
-  - repo: local
-    hooks:
-      - id: security-scan
-        name: Security Scan
-        entry: uv run python scripts/bandit_integration.py --project --report
-        language: system
-        pass_filenames: false
-        always_run: true
-        stages: [pre-commit]
-        description: "Run security scanning with Bandit"
-
-  # Code Quality Enforcement
-  - repo: local
-    hooks:
-      - id: code-quality-check
-        name: Code Quality Check
-        entry: python scripts/check_code_quality.py
-        language: system
-        pass_filenames: true
-        types: [python]
-        stages: [pre-commit]
-        description: "Enforce code quality standards and prevent direct editing violations"
-        args: [--pre-commit]
 

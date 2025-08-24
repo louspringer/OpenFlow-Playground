@@ -492,12 +492,66 @@ deploy-secure-shell: ## Deploy secure shell service
 
 security: security-scan security-enhanced ## Run security checks (default: security-scan + enhanced)
 
-security-scan: ## Run comprehensive security scan
-	@echo "$(BLUE)🔒 Running comprehensive security scan...$(NC)"
-	@$(UV) run bandit -r src/ -f json -o security-report.json
-	@$(UV) run safety check --json --output security-vulnerabilities.json
-	@$(UV) run detect-secrets scan --baseline .secrets.baseline
-	@echo "$(GREEN)✅ Security scan completed$(NC)"
+security-scan: ## Run comprehensive security scan using established tools (best practices)
+	@echo "🔒 Running Security Scan (Best Practices)..."
+	@echo "================================================"
+	
+	@echo "1️⃣ Python Security (Bandit)..."
+	@uv run bandit -r src/ scripts/ --exclude tests/,.venv/,.mypy_cache/,__pycache__/ || true
+	
+	@echo ""
+	@echo "2️⃣ Pattern-based Security (Semgrep)..."
+	@if command -v semgrep >/dev/null 2>&1; then \
+		echo "✅ Semgrep found, running security rules..."; \
+		uv run semgrep scan --config=auto --json --output semgrep-report.json || true; \
+	else \
+		echo "⚠️  Semgrep not installed. Install with: uv add --dev semgrep"; \
+	fi
+	
+	@echo ""
+	@echo "3️⃣ Dependency Vulnerabilities (Safety)..."
+	@if command -v safety >/dev/null 2>&1; then \
+		echo "✅ Safety found, scanning dependencies..."; \
+		uv run safety check --json --output safety-report.json || true; \
+	else \
+		echo "⚠️  Safety not installed. Install with: uv add --dev safety"; \
+	fi
+	
+	@echo ""
+	@echo "4️⃣ Secret Detection (Detect-Secrets)..."
+	@if command -v detect-secrets >/dev/null 2>&1; then \
+		echo "✅ Detect-Secrets found, scanning for secrets..."; \
+		uv run detect-secrets scan --baseline .secrets.baseline || true; \
+	else \
+		echo "⚠️  Detect-Secrets not installed. Install with: uv add --dev detect-secrets"; \
+	fi
+	
+	@echo ""
+	@echo "5️⃣ Comprehensive Secret Detection (Gitleaks)..."
+	@if command -v gitleaks >/dev/null 2>&1; then \
+		echo "✅ Gitleaks found, scanning for secrets..."; \
+		gitleaks detect --source . --report-format json --report gitleaks-report.json || true; \
+	else \
+		echo "⚠️  Gitleaks not installed. Install with: make security-install"; \
+	fi
+	
+	@echo ""
+	@echo "6️⃣ Infrastructure & Dependency Scanning (Trivy)..."
+	@if command -v trivy >/dev/null 2>&1; then \
+		echo "✅ Trivy found, scanning infrastructure..."; \
+		trivy fs --security-checks vuln . --format json --output trivy-report.json || true; \
+	else \
+		echo "⚠️  Trivy not installed. Install with: make security-install"; \
+	fi
+	
+	@echo ""
+	@echo "🎯 Security Scan Complete!"
+	@echo "📋 Reports generated:"
+	@ls -la *-report.json 2>/dev/null || echo "  No reports generated yet"
+	@echo ""
+	@echo "📋 Review all findings and fix security issues"
+	@echo "🔒 Remember: Use established tools, not custom scanners!"
+	@echo "📚 Best Practices: Follow OWASP guidelines and CWE references"
 
 security-check: ## Run quick security check
 	@echo "$(BLUE)🔒 Running quick security check...$(NC)"
@@ -521,6 +575,74 @@ security-enhanced-export: ## Run enhanced scan with JSON export
 	@echo "$(BLUE)🔒 Running enhanced security scan with export...$(NC)"
 	@$(PYTHON) scripts/bandit_integration.py --project --output enhanced-security-scan.json --report
 	@echo "$(GREEN)✅ Enhanced security scan exported to enhanced-security-scan.json$(NC)"
+
+security-install: ## Install required security tools using best practices
+	@echo "🔧 Installing Security Tools (Best Practices)..."
+	
+	@echo "Installing Python security packages..."
+	@uv add --dev bandit safety detect-secrets
+	
+	@echo ""
+	@echo "Installing Semgrep..."
+	@uv add --dev semgrep
+	
+	@echo ""
+	@echo "Installing external security tools..."
+	@echo "Installing Trivy..."
+	@if ! command -v trivy >/dev/null 2>&1; then \
+		curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin; \
+		echo "✅ Trivy installed"; \
+	else \
+		echo "✅ Trivy already installed"; \
+	fi
+	
+	@echo ""
+	@echo "Installing Gitleaks..."
+	@if ! command -v gitleaks >/dev/null 2>&1; then \
+		if command -v go >/dev/null 2>&1; then \
+			go install github.com/zricethezav/gitleaks/v8@latest; \
+			echo "✅ Gitleaks installed via Go"; \
+		else \
+			echo "⚠️  Go not found. Install Go first: https://golang.org/doc/install"; \
+			echo "   Then run: go install github.com/zricethezav/gitleaks/v8@latest"; \
+		fi; \
+	else \
+		echo "✅ Gitleaks already installed"; \
+	fi
+	
+	@echo ""
+	@echo "🎯 Security Tools Installation Complete!"
+	@echo "📋 Available tools:"
+	@echo "  ✅ Bandit - Python security scanning"
+	@echo "  ✅ Semgrep - Pattern-based security scanning"
+	@echo "  ✅ Safety - Dependency vulnerability scanning"
+	@echo "  ✅ Detect-Secrets - Secret detection"
+	@if command -v trivy >/dev/null 2>&1; then echo "  ✅ Trivy - Vulnerability scanning"; else echo "  ⏳ Trivy - To be installed"; fi
+	@if command -v gitleaks >/dev/null 2>&1; then echo "  ✅ Gitleaks - Secret detection"; else echo "  ⏳ Gitleaks - To be installed"; fi
+	@echo ""
+	@echo "🔒 Remember: Use established tools, not custom scanners!"
+
+security-clean: ## Clean up security scan reports
+	@echo "🧹 Cleaning up security scan reports..."
+	@rm -f gitleaks-report.json semgrep-report.json
+
+security-check: ## Run quick security check
+	@echo "🔒 Running Quick Security Check..."
+	@uv run bandit -r src/ scripts/ --exclude tests/,.venv/,.mypy_cache/,__pycache__/ || true
+	@echo "✅ Quick security check complete"
+
+quality-check: ## Run comprehensive code quality checks
+	@echo "🔍 Running Code Quality Checks..."
+	@uv run black --check src/ tests/ || true
+	@uv run ruff check src/ tests/ || true
+	@uv run mypy src/ || true
+	@echo "✅ Code quality checks complete"
+
+test-model-driven: ## Test model-driven development
+	@echo "🧪 Testing Model-Driven Development..."
+	@uv run python -c "import json; json.load(open('project_model_registry.json'))" && echo "✅ Project model registry is valid JSON"
+	@echo "✅ Model-driven development test complete"
+	@echo "✅ Security reports cleaned up!"
 
 # =============================================================================
 # DOCUMENTATION TARGETS

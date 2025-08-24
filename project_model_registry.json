@@ -51,6 +51,7 @@
         "model_driven_projection",
         "mdc_generator",
         "security_first",
+        "security_best_practices",
         "healthcare_cdc",
         "package_management",
         "rule_compliance",
@@ -1296,64 +1297,179 @@
       }
     },
     "security_first": {
+      "description": "Security-first development with established tools and best practices",
       "patterns": [
-        "src/security_first/*.py",
-        "src/security_first/**/*.py",
-        "**/*security*.py",
-        "scripts/bandit_integration.py"
+        "*.py",
+        "*.yaml",
+        "*.yml",
+        "*.json",
+        "*.sh",
+        "*.md",
+        "*.toml",
+        "*.lock"
       ],
       "content_indicators": [
         "security",
-        "encryption",
+        "credential",
+        "password",
+        "api_key",
+        "secret",
+        "vulnerability",
         "authentication",
         "authorization",
-        "https",
-        "ssl",
-        "tls",
-        "bandit",
-        "security_scanning"
+        "encryption",
+        "hash",
+        "jwt",
+        "bcrypt",
+        "cryptography"
       ],
-      "linter": "flake8",
+      "linter": "bandit",
+      "validator": "safety",
       "formatter": "black",
-      "validator": "ast-parse",
-      "security_scanner": "bandit",
-      "exclusions": [
-        "__pycache__/*",
-        "*.pyc"
+      "security_scanner": "semgrep",
+      "secret_detector": "detect-secrets",
+      "external_tools": [
+        "gitleaks",
+        "trivy"
       ],
       "requirements": [
-        "Provide security-first architecture for demo development",
-        "Enforce HTTPS for all demo connections",
-        "Implement rate limiting and CSRF protection",
-        "Support secure credential management",
-        "Provide audit logging for compliance",
-        "Integrate Bandit security scanning via Python API",
-        "Provide model-driven security scanning capabilities",
-        "Support comprehensive security issue reporting and export"
+        "Use established security tools (Bandit, Semgrep, Safety, Detect-Secrets)",
+        "NEVER build custom security scanners",
+        "Follow OWASP guidelines and CWE references",
+        "Use proper severity levels (CRITICAL, HIGH, MEDIUM, LOW)",
+        "Implement security-first architecture patterns",
+        "Use environment variables for all secrets",
+        "Validate and sanitize all user inputs",
+        "Implement proper authentication and authorization",
+        "Use secure cryptographic primitives",
+        "Follow least privilege principle"
       ],
-      "demo_role": "infrastructure",
-      "extraction_candidate": "MEDIUM",
-      "reason": "Generic security framework that could benefit many projects",
-      "extraction_benefits": [
-        "Could become a standalone security framework",
-        "Has potential for integration with other applications",
-        "Could be used in security-focused projects"
+      "best_practices": [
+        "Bandit for Python security scanning",
+        "Semgrep for pattern-based security issues",
+        "Safety for dependency vulnerability scanning",
+        "Detect-Secrets for secret detection",
+        "Gitleaks for comprehensive secret scanning",
+        "Trivy for infrastructure and dependency scanning",
+        "OWASP Top 10 compliance",
+        "CWE reference implementation",
+        "Security headers enforcement",
+        "HTTPS enforcement",
+        "Rate limiting implementation",
+        "CSRF protection",
+        "Input validation and sanitization",
+        "Secure session management",
+        "Audit logging"
       ],
-      "package_potential": {
-        "score": 8,
-        "reasons": [
-          "Standalone tool with clear purpose",
-          "Has description",
-          "Has purpose",
-          "External value for development",
-          "Reusable across projects",
-          "Enterprise security potential",
-          "Security tool integration",
-          "Comprehensive security framework"
-        ],
-        "pypi_ready": true,
-        "package_name": "openflow-security-first"
-      }
+      "exclusions": [
+        "tests/",
+        ".venv/",
+        "__pycache__/",
+        ".mypy_cache/",
+        "*.lock",
+        "*.exe",
+        "*.dll",
+        "*.so",
+        "*.dylib"
+      ],
+      "security_workflow": [
+        "1. Run Bandit for Python security issues",
+        "2. Run Semgrep for pattern-based security issues",
+        "3. Run Safety for dependency vulnerabilities",
+        "4. Run Detect-Secrets for secret detection",
+        "5. Run Gitleaks for comprehensive secret scanning",
+        "6. Run Trivy for infrastructure and dependency scanning",
+        "7. Review and fix all findings",
+        "8. Follow OWASP guidelines",
+        "9. Use CWE references for classification",
+        "10. Implement proper severity levels"
+      ]
+    },
+    "security_best_practices": {
+      "description": "Security best practices using established tools instead of custom scanners",
+      "patterns": [
+        "*.py",
+        "*.yaml",
+        "*.yml",
+        "*.json",
+        "*.sh",
+        "*.md",
+        "*.toml",
+        "requirements*.txt",
+        "pyproject.toml"
+      ],
+      "content_indicators": [
+        "security",
+        "best_practices",
+        "established_tools",
+        "bandit",
+        "semgrep",
+        "safety",
+        "detect-secrets",
+        "gitleaks",
+        "trivy",
+        "owasp",
+        "cwe",
+        "security_workflow"
+      ],
+      "linter": "bandit",
+      "validator": "safety",
+      "formatter": "black",
+      "security_scanner": "semgrep",
+      "secret_detector": "detect-secrets",
+      "external_tools": [
+        "gitleaks",
+        "trivy"
+      ],
+      "requirements": [
+        "Use established security tools instead of custom scanners",
+        "Follow industry best practices (OWASP, CWE)",
+        "Implement comprehensive security scanning workflow",
+        "Use proper tool integration and configuration",
+        "Maintain security tool availability and updates",
+        "Document security best practices and workflows",
+        "Integrate security scanning into CI/CD pipeline",
+        "Provide clear installation and usage instructions",
+        "Support multiple security scanning approaches",
+        "Ensure security tool compatibility and integration"
+      ],
+      "best_practices": [
+        "NEVER build custom security scanners",
+        "ALWAYS use established, battle-tested tools",
+        "Follow OWASP Top 10 guidelines",
+        "Use CWE references for issue classification",
+        "Implement proper severity levels",
+        "Use comprehensive security scanning workflow",
+        "Integrate multiple security tools for coverage",
+        "Provide clear tool installation instructions",
+        "Support both Python packages and external binaries",
+        "Maintain security tool configurations"
+      ],
+      "exclusions": [
+        "tests/",
+        ".venv/",
+        "__pycache__/",
+        ".mypy_cache/",
+        "*.lock",
+        "*.exe",
+        "*.dll",
+        "*.so",
+        "*.dylib",
+        "custom_security_scanners/",
+        "security_scanning/"
+      ],
+      "security_workflow": [
+        "1. Install security tools via Makefile targets",
+        "2. Configure security tools via pyproject.toml",
+        "3. Run comprehensive security scanning workflow",
+        "4. Generate security reports in multiple formats",
+        "5. Review and classify security findings",
+        "6. Fix security issues following best practices",
+        "7. Validate fixes with security tools",
+        "8. Document security improvements",
+        "9. Integrate security scanning into CI/CD",
+        "10. Maintain security tool configurations"
+      ]
     },
     "healthcare_cdc": {
       "patterns": [
@@ -3374,6 +3490,12 @@
       "domain": "package_management",
       "implementation": "cryptography, PyJWT, bandit, safety managed via UV",
       "test": "test_requirement_38_security_dependencies_uv"
+    },
+    {
+      "requirement": "Security best practices using established tools instead of custom scanners",
+      "domain": "security_best_practices",
+      "implementation": "Bandit, Semgrep, Safety, Detect-Secrets, Gitleaks, Trivy integration",
+      "test": "test_requirement_39_security_best_practices"
     },
     {
       "requirement": "Development dependencies with UV",
