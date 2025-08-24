@@ -232,9 +232,7 @@ class MultiDimensionalSmokeTest:
                     set_llm_cache(cache)
                     print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
                 else:
-                    print(
-                        "✅ MultiDimensionalSmokeTest: Using existing LangChain cache"
-                    )
+                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
             except Exception as e:
                 print(
                     f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}"
@@ -732,9 +730,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = (
-                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
-                )
+                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")
