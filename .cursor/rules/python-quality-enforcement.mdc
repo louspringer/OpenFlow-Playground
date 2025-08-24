@@ -106,11 +106,24 @@ import json, asyncio, sys, os  # Only import what you actually use
 ```
 
 ### F-string Usage
+
+**✅ ALWAYS use f-strings for consistency:**
 ```python
-# GOOD - Use f-strings when needed
-print("Simple message")  # No f-string needed
-print(f"Count: {count}")  # F-string with placeholder
+# GOOD - Use f-strings everywhere for consistency
+print(f"Simple message")  # Even without placeholders
+print(f"Count: {count}")  # With placeholders
+print(f"Status: {status}")  # With placeholders
 ```
+
+**❌ DON'T convert f-strings unnecessarily:**
+```python
+# BAD - Don't do this
+print("Simple message")  # Inconsistent with f-string usage
+print("Count: {}".format(count))  # Old-style formatting
+print("Status: %s" % status)  # Old-style formatting
+```
+
+**Policy: F-strings are the standard string formatting method in this project.**
 
 ### Type Annotations
 ```python

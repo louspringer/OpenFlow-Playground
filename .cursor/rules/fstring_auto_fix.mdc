@@ -1,39 +1,38 @@
-# F-String Auto-Fix Rule
+# F-String Policy Rule
 
-## Trigger Conditions
-- User mentions "fstring", "f-string", "fstring issues", "broken f-string"
-- User encounters "f-string expression part cannot include a backslash" errors
-- User needs to fix f-string syntax errors
+## Current Status: F541 Rule ELIMINATED ✅
 
-## Automatic Actions
-1. **Immediately run the deterministic f-string fixer**:
-   ```bash
-   uv run python scripts/deterministic_fstring_fixer.py <affected_file>
-   ```
+**The F541 rule has been eliminated from this project because:**
+- It provides no security value
+- Creates false positives and cognitive overhead
+- Enforces style preferences as security requirements
+- Real security risks are elsewhere (input validation, SQL injection, etc.)
 
-2. **If the fixer doesn't work, use the round-trip system**:
-   - Reverse engineer the problematic file
-   - Regenerate clean code from the model
-   - Replace the original file
+## Policy: F-Strings Are Always Allowed
 
-3. **Validate the fix**:
-   - Test that the file can be imported
-   - Run any relevant tests
-   - Ensure no new syntax errors
+**Use f-strings freely:**
+- `f"Simple message"` ✅ (even without placeholders)
+- `f"Count: {count}"` ✅ (with placeholders)
+- `f"Status: {status}"` ✅ (with placeholders)
 
-## F-String Common Issues
-- **Backslash in expressions**: `f"Value: {len(\n    data)}"` → `f"Value: {len(data)}"`
-- **Line continuation problems**: Broken multi-line f-strings
-- **Invalid expression syntax**: Malformed expressions inside `{}`
+## No More "Fixing" Needed
 
-## Prevention
-- Always use the deterministic f-string fixer first
-- Never manually edit f-strings - use the systematic approach
-- Round-trip any manually fixed files to ensure model consistency
+**Do NOT:**
+- ❌ Try to "fix" f-strings without placeholders
+- ❌ Convert f-strings to regular strings
+- ❌ Run f-string "fixer" scripts
+- ❌ Treat f-string usage as a problem
+
+**DO:**
+- ✅ Use f-strings consistently throughout the codebase
+- ✅ Prefer f-strings for all string formatting
+- ✅ Ignore any F541 linting warnings
+- ✅ Focus on real security issues instead
 
 ## Remember
-**"F-string issues are systematic - fix them systematically, not manually!"**
-description:
-globs:
-alwaysApply: false
+**"F-strings are a Python feature, not a security problem. Use them freely and consistently!"**
+
+description: F-string policy enforcement - F541 rule eliminated, f-strings mandatory
+globs: **/*.py,**/*.md,**/*.mdc
+alwaysApply: true
 ---
