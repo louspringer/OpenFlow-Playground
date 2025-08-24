@@ -3,8 +3,9 @@
 Generated tests for Testghostbusters_orchestrator
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import ghostbusters_orchestrator
 

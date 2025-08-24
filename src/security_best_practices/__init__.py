@@ -8,13 +8,13 @@ instead of custom security scanners. It follows industry standards and OWASP gui
 
 from .domain_model import (
     SecurityBestPractices,
-    SecurityTool,
+    SecurityCategory,
     SecurityFinding,
     SecurityScanResult,
-    SecurityWorkflow,
-    SecurityToolType,
     SecuritySeverity,
-    SecurityCategory,
+    SecurityTool,
+    SecurityToolType,
+    SecurityWorkflow,
 )
 
 __version__ = "1.0.0"

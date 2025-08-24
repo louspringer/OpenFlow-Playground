@@ -11,8 +11,8 @@ import asyncio
 import logging
 import sys
 import time
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -150,8 +150,8 @@ async def test_agent_collaboration():
 
         # Add findings from different agents
         from src.multi_agent_testing.agent_session_manager import (
-            AgentType,
             AgentFinding,
+            AgentType,
         )
 
         # Create security finding

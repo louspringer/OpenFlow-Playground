@@ -5,10 +5,12 @@ Security Scanner Test Suite
 Tests the security scanner functionality to identify any issues.
 """
 
-import pytest
-import tempfile
 import os
+import tempfile
 from pathlib import Path
+
+import pytest
+
 from src.security_scanning import SecurityScanner, create_security_scanner
 
 

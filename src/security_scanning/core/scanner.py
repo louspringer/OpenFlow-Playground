@@ -10,11 +10,11 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
-from .worker_pool import WorkerPool
+from ..configuration.config_manager import ConfigManager
 from ..patterns.pattern_manager import PatternManager
 from ..reporting.report_generator import ReportGenerator
-from ..configuration.config_manager import ConfigManager
 from ..utils.file_utils import FileUtils
+from .worker_pool import WorkerPool
 
 logger = logging.getLogger(__name__)
 
@@ -55,11 +55,11 @@ class SecurityScanner:
     def scan_project(
         self,
         project_path: str = ".",
-        exclude_patterns: Optional[List[str]] = None,
-        include_patterns: Optional[List[str]] = None,
+        exclude_patterns: Optional[list[str]] = None,
+        include_patterns: Optional[list[str]] = None,
         max_workers: Optional[int] = None,
         show_progress: bool = True,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Perform comprehensive security scan of project
 
@@ -130,10 +130,10 @@ class SecurityScanner:
 
     def scan_files(
         self,
-        file_paths: List[str],
+        file_paths: list[str],
         max_workers: Optional[int] = None,
         show_progress: bool = True,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Scan specific files for security issues
 
@@ -179,9 +179,9 @@ class SecurityScanner:
     def _identify_scannable_files(
         self,
         project_path: Path,
-        exclude_patterns: Optional[List[str]] = None,
-        include_patterns: Optional[List[str]] = None,
-    ) -> List[Path]:
+        exclude_patterns: Optional[list[str]] = None,
+        include_patterns: Optional[list[str]] = None,
+    ) -> list[Path]:
         """
         Identify files that should be scanned for security issues
 
@@ -203,7 +203,7 @@ class SecurityScanner:
 
         return scannable_files
 
-    def _scan_single_file(self, file_path: Path) -> List[Dict[str, Any]]:
+    def _scan_single_file(self, file_path: Path) -> list[dict[str, Any]]:
         """
         Scan a single file for security issues
 
@@ -236,8 +236,8 @@ class SecurityScanner:
             ]
 
     def _process_worker_results(
-        self, worker_results: List[Any]
-    ) -> List[Dict[str, Any]]:
+        self, worker_results: list[Any]
+    ) -> list[dict[str, Any]]:
         """
         Process results from worker threads
 
@@ -277,8 +277,8 @@ class SecurityScanner:
         return sorted_findings
 
     def _deduplicate_findings(
-        self, findings: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+        self, findings: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
         """
         Remove duplicate findings based on content and location
 
@@ -305,8 +305,8 @@ class SecurityScanner:
         return unique_findings
 
     def _sort_findings_by_severity(
-        self, findings: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+        self, findings: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
         """
         Sort findings by severity level
 
@@ -326,10 +326,10 @@ class SecurityScanner:
 
     def _generate_scan_report(
         self,
-        findings: List[Dict[str, Any]],
-        performance_summary: Dict[str, Any],
+        findings: list[dict[str, Any]],
+        performance_summary: dict[str, Any],
         project_path: Path,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Generate comprehensive security scan report
 
@@ -353,7 +353,7 @@ class SecurityScanner:
 
         return report
 
-    def _create_empty_report(self) -> Dict[str, Any]:
+    def _create_empty_report(self) -> dict[str, Any]:
         """Create empty report when no files to scan"""
         return {
             "summary": {
@@ -368,7 +368,7 @@ class SecurityScanner:
             "recommendations": ["No files were scanned"],
         }
 
-    def _create_error_report(self, error_message: str) -> Dict[str, Any]:
+    def _create_error_report(self, error_message: str) -> dict[str, Any]:
         """Create error report when scan fails"""
         return {
             "summary": {
@@ -387,7 +387,7 @@ class SecurityScanner:
             "recommendations": [f"Fix error: {error_message}"],
         }
 
-    def get_scan_statistics(self) -> Dict[str, Any]:
+    def get_scan_statistics(self) -> dict[str, Any]:
         """Get statistics about the last scan"""
         if not self.scan_start_time:
             return {"status": "no_scan_performed"}
@@ -415,7 +415,6 @@ class SecurityScanner:
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit"""
         # Cleanup if needed
-        pass
 
 
 def create_security_scanner(config: Optional[ConfigManager] = None) -> SecurityScanner:

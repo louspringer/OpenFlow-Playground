@@ -22,11 +22,11 @@ Architecture:
 - Performance monitoring and optimization
 """
 
+from .configuration.config_manager import ConfigManager
 from .core.scanner import SecurityScanner, create_security_scanner
 from .core.worker_pool import WorkerPool, create_worker_pool
 from .patterns.pattern_manager import PatternManager
 from .reporting.report_generator import ReportGenerator
-from .configuration.config_manager import ConfigManager
 
 __version__ = "1.0.0"
 __author__ = "OpenFlow Playground Security Team"

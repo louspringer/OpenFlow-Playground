@@ -37,11 +37,11 @@ class ReportGenerator:
 
     def generate_report(
         self,
-        findings: List[Dict[str, Any]],
-        performance_metrics: Dict[str, Any],
+        findings: list[dict[str, Any]],
+        performance_metrics: dict[str, Any],
         project_path: str,
         scan_duration: float,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Generate comprehensive security report
 
@@ -98,8 +98,8 @@ class ReportGenerator:
         return report
 
     def _group_findings_by_severity(
-        self, findings: List[Dict[str, Any]]
-    ) -> Dict[str, List[Dict[str, Any]]]:
+        self, findings: list[dict[str, Any]]
+    ) -> dict[str, list[dict[str, Any]]]:
         """
         Group findings by severity level
 
@@ -120,8 +120,8 @@ class ReportGenerator:
         return grouped
 
     def _generate_recommendations(
-        self, findings: List[Dict[str, Any]], performance_metrics: Dict[str, Any]
-    ) -> List[str]:
+        self, findings: list[dict[str, Any]], performance_metrics: dict[str, Any]
+    ) -> list[str]:
         """
         Generate actionable recommendations based on findings
 
@@ -195,8 +195,8 @@ class ReportGenerator:
         return recommendations
 
     def _calculate_scan_efficiency(
-        self, performance_metrics: Dict[str, Any], scan_duration: float
-    ) -> Dict[str, Any]:
+        self, performance_metrics: dict[str, Any], scan_duration: float
+    ) -> dict[str, Any]:
         """
         Calculate scan efficiency metrics
 
@@ -240,7 +240,7 @@ class ReportGenerator:
         return datetime.now().isoformat()
 
     def export_json(
-        self, report: Dict[str, Any], output_file: str = "security_report.json"
+        self, report: dict[str, Any], output_file: str = "security_report.json"
     ) -> str:
         """
         Export report to JSON file
@@ -263,7 +263,7 @@ class ReportGenerator:
             logger.error(f"Failed to export JSON report: {e}")
             raise
 
-    def print_console_report(self, report: Dict[str, Any]):
+    def print_console_report(self, report: dict[str, Any]):
         """
         Print formatted report to console
 
@@ -291,7 +291,9 @@ class ReportGenerator:
                 icon = (
                     "🚨"
                     if severity == "CRITICAL"
-                    else "⚠️" if severity == "HIGH" else "🔍"
+                    else "⚠️"
+                    if severity == "HIGH"
+                    else "🔍"
                 )
                 print(f"  {icon} {severity}: {count}")
 
@@ -325,4 +327,3 @@ class ReportGenerator:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit"""
-        pass

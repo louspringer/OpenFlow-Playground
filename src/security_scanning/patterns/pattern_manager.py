@@ -37,7 +37,7 @@ class PatternManager:
 
         logger.debug("Pattern manager initialized")
 
-    def _load_security_patterns(self) -> List[Dict[str, Any]]:
+    def _load_security_patterns(self) -> list[dict[str, Any]]:
         """Load security detection patterns"""
         return [
             # API Keys
@@ -147,7 +147,7 @@ class PatternManager:
             },
         ]
 
-    def scan_file(self, file_path: Path) -> List[Dict[str, Any]]:
+    def scan_file(self, file_path: Path) -> list[dict[str, Any]]:
         """
         Scan a single file for security issues with parallel pattern matching
 
@@ -161,7 +161,7 @@ class PatternManager:
 
         try:
             # Read file content
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 content = f.read()
                 lines = content.split("\n")
 
@@ -193,7 +193,7 @@ class PatternManager:
 
     def _scan_line(
         self, line: str, line_num: int, file_path: Path
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """
         Scan a single line for security patterns
 
@@ -240,7 +240,7 @@ class PatternManager:
         return findings
 
     def _is_false_positive(
-        self, pattern: Dict[str, Any], matched_text: str, line: str, file_path: Path
+        self, pattern: dict[str, Any], matched_text: str, line: str, file_path: Path
     ) -> bool:
         """
         Check if a pattern match is a false positive
@@ -292,8 +292,8 @@ class PatternManager:
         return False
 
     def _deduplicate_findings(
-        self, findings: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+        self, findings: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
         """
         Remove duplicate findings
 
@@ -317,8 +317,8 @@ class PatternManager:
         return unique_findings
 
     def _sort_findings_by_severity(
-        self, findings: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+        self, findings: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
         """
         Sort findings by severity level
 

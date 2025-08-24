@@ -3,8 +3,9 @@
 Generated tests for TestDelusionResult
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import DelusionResult
 
@@ -27,5 +28,5 @@ class TestDelusionResult:
         """Test that validate_confidence method works correctly"""
         instance = DelusionResult()
         assert hasattr(instance, "validate_confidence")
-        method_obj = getattr(instance, "validate_confidence")
+        method_obj = instance.validate_confidence
         assert callable(method_obj)

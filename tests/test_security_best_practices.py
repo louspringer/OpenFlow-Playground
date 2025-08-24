@@ -6,10 +6,11 @@ This test demonstrates using established open-source security tools
 instead of building custom security scanners.
 """
 
+import os
 import subprocess
 import tempfile
-import os
 from pathlib import Path
+
 import pytest
 
 

@@ -14,14 +14,15 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
+
 import psutil
 
 try:
     from tenacity import (
         retry,
+        retry_if_exception_type,
         stop_after_attempt,
         wait_exponential,
-        retry_if_exception_type,
     )
 
     TENACITY_AVAILABLE = True
@@ -149,10 +150,10 @@ class WorkerPool:
 
     def process_files(
         self,
-        files: List[Path],
+        files: list[Path],
         worker_func: Callable[[Path], Any],
         show_progress: bool = True,
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """
         Process a list of files using the worker pool
 
@@ -335,8 +336,8 @@ class WorkerPool:
         return retry_wrapper
 
     def _process_batch(
-        self, worker_func: Callable[[Path], Any], batch: List[Path]
-    ) -> List[Any]:
+        self, worker_func: Callable[[Path], Any], batch: list[Path]
+    ) -> list[Any]:
         """
         Process a batch of files using the worker function
 
@@ -405,7 +406,7 @@ class WorkerPool:
             if elapsed > 0:
                 self.metrics["throughput"] = self.metrics["tasks_completed"] / elapsed
 
-    def get_performance_summary(self) -> Dict[str, Any]:
+    def get_performance_summary(self) -> dict[str, Any]:
         """Get a summary of performance metrics"""
         self._update_metrics()
 

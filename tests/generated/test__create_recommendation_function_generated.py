@@ -3,8 +3,9 @@
 Generated tests for Test_create_recommendation
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import _create_recommendation
 

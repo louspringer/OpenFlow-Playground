@@ -33,16 +33,16 @@ def main():
 Examples:
   # Scan current directory
   python -m src.security_scanning.cli.main
-  
+
   # Scan specific directory
   python -m src.security_scanning.cli.main --path /path/to/project
-  
+
   # Scan with custom worker count
   python -m src.security_scanning.cli.main --workers 8
-  
+
   # Scan specific files
   python -m src.security_scanning.cli.main --files file1.py file2.py
-  
+
   # Export to JSON
   python -m src.security_scanning.cli.main --output report.json
         """,

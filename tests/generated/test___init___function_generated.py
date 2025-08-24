@@ -3,8 +3,9 @@
 Generated tests for Test__init__
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import __init__
 

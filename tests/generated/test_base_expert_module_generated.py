@@ -3,8 +3,9 @@
 Generated tests for Testbase_expert
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import base_expert
 

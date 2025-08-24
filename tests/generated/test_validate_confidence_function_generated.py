@@ -3,8 +3,9 @@
 Generated tests for Testvalidate_confidence
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from src.ghostbusters.ghostbusters_orchestrator import validate_confidence
 

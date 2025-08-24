@@ -38,7 +38,7 @@ class ConfigManager:
 
         logger.debug("Configuration manager initialized")
 
-    def _load_default_config(self) -> Dict[str, Any]:
+    def _load_default_config(self) -> dict[str, Any]:
         """Load default configuration"""
         return {
             "scanning": {
@@ -123,27 +123,27 @@ class ConfigManager:
         # Set the value
         config[keys[-1]] = value
 
-    def get_scanning_config(self) -> Dict[str, Any]:
+    def get_scanning_config(self) -> dict[str, Any]:
         """Get scanning configuration"""
         return self.config.get("scanning", {})
 
-    def get_patterns_config(self) -> Dict[str, Any]:
+    def get_patterns_config(self) -> dict[str, Any]:
         """Get patterns configuration"""
         return self.config.get("patterns", {})
 
-    def get_reporting_config(self) -> Dict[str, Any]:
+    def get_reporting_config(self) -> dict[str, Any]:
         """Get reporting configuration"""
         return self.config.get("reporting", {})
 
-    def get_exclusions_config(self) -> Dict[str, Any]:
+    def get_exclusions_config(self) -> dict[str, Any]:
         """Get exclusions configuration"""
         return self.config.get("exclusions", {})
 
-    def get_performance_config(self) -> Dict[str, Any]:
+    def get_performance_config(self) -> dict[str, Any]:
         """Get performance configuration"""
         return self.config.get("performance", {})
 
-    def update_config(self, updates: Dict[str, Any]):
+    def update_config(self, updates: dict[str, Any]):
         """
         Update configuration with new values
 
@@ -155,7 +155,7 @@ class ConfigManager:
 
         logger.info("Configuration updated")
 
-    def validate_config(self) -> List[str]:
+    def validate_config(self) -> list[str]:
         """
         Validate configuration for errors
 
@@ -188,7 +188,7 @@ class ConfigManager:
 
         return errors
 
-    def get_effective_config(self) -> Dict[str, Any]:
+    def get_effective_config(self) -> dict[str, Any]:
         """
         Get effective configuration with all defaults applied
 
@@ -203,4 +203,3 @@ class ConfigManager:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit"""
-        pass

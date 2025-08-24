@@ -6,11 +6,11 @@ This module defines the domain model for security best practices,
 focusing on using established tools instead of custom security scanners.
 """
 
+import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Dict, Any, Optional
 from pathlib import Path
-import json
+from typing import Any, Dict, List, Optional
 
 
 class SecurityToolType(Enum):
@@ -51,8 +51,8 @@ class SecurityTool:
     installation_command: str
     configuration_file: Optional[str] = None
     output_format: str = "json"
-    exclude_patterns: List[str] = field(default_factory=list)
-    include_patterns: List[str] = field(default_factory=list)
+    exclude_patterns: list[str] = field(default_factory=list)
+    include_patterns: list[str] = field(default_factory=list)
     enabled: bool = True
     version: Optional[str] = None
 
@@ -73,7 +73,7 @@ class SecurityFinding:
     confidence: float = 1.0
     false_positive: bool = False
     remediation: Optional[str] = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -84,11 +84,11 @@ class SecurityScanResult:
     scan_timestamp: str
     files_scanned: int
     findings_count: int
-    findings: List[SecurityFinding]
+    findings: list[SecurityFinding]
     scan_duration: float
     success: bool
     error_message: Optional[str] = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -97,10 +97,10 @@ class SecurityWorkflow:
 
     name: str
     description: str
-    steps: List[str]
-    tools: List[str]
-    expected_outputs: List[str]
-    success_criteria: List[str]
+    steps: list[str]
+    tools: list[str]
+    expected_outputs: list[str]
+    success_criteria: list[str]
     estimated_duration: float
 
 
@@ -112,21 +112,21 @@ class SecurityBestPractices:
     core_principle: str = "Use established tools, not custom scanners"
 
     # Available security tools
-    security_tools: List[SecurityTool] = field(default_factory=list)
+    security_tools: list[SecurityTool] = field(default_factory=list)
 
     # Security workflows
-    workflows: List[SecurityWorkflow] = field(default_factory=list)
+    workflows: list[SecurityWorkflow] = field(default_factory=list)
 
     # Configuration
     configuration_file: str = "pyproject.toml"
-    exclude_patterns: List[str] = field(default_factory=list)
-    include_patterns: List[str] = field(default_factory=list)
+    exclude_patterns: list[str] = field(default_factory=list)
+    include_patterns: list[str] = field(default_factory=list)
 
     # Best practices
-    best_practices: List[str] = field(default_factory=list)
+    best_practices: list[str] = field(default_factory=list)
 
     # Requirements
-    requirements: List[str] = field(default_factory=list)
+    requirements: list[str] = field(default_factory=list)
 
     def __post_init__(self):
         """Initialize default security tools and workflows"""
@@ -308,7 +308,7 @@ class SecurityBestPractices:
                 return workflow
         return None
 
-    def validate_configuration(self) -> List[str]:
+    def validate_configuration(self) -> list[str]:
         """Validate the security configuration"""
         errors = []
 
@@ -328,7 +328,7 @@ class SecurityBestPractices:
         # This is a simplified check - in practice, you'd check actual tool availability
         return True
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert the domain model to a dictionary"""
         return {
             "core_principle": self.core_principle,
@@ -350,7 +350,7 @@ class SecurityBestPractices:
     @classmethod
     def load_configuration(cls, file_path: str) -> "SecurityBestPractices":
         """Load the configuration from a file"""
-        with open(file_path, "r") as f:
+        with open(file_path) as f:
             config = json.load(f)
 
         # Reconstruct the domain model

@@ -37,7 +37,7 @@ class FileUtils:
 
         logger.debug("File utilities initialized")
 
-    def _get_default_exclusions(self) -> Set[str]:
+    def _get_default_exclusions(self) -> set[str]:
         """Get default file exclusion patterns"""
         return {
             # Cache and temporary files
@@ -90,7 +90,7 @@ class FileUtils:
             "*.accdb",
         }
 
-    def _get_default_inclusions(self) -> Set[str]:
+    def _get_default_inclusions(self) -> set[str]:
         """Get default file inclusion patterns"""
         return {
             # Source code files
@@ -338,7 +338,7 @@ class FileUtils:
 
             # Try to read first few bytes to check if it's text
             try:
-                with open(file_path, "r", encoding="utf-8") as f:
+                with open(file_path, encoding="utf-8") as f:
                     f.read(1024)
                 return True
             except (UnicodeDecodeError, UnicodeError):
@@ -351,9 +351,9 @@ class FileUtils:
     def find_scannable_files(
         self,
         project_path: Path,
-        exclude_patterns: List[str] = None,
-        include_patterns: List[str] = None,
-    ) -> List[Path]:
+        exclude_patterns: list[str] = None,
+        include_patterns: list[str] = None,
+    ) -> list[Path]:
         """
         Find all scannable files in a project directory
 
@@ -416,7 +416,7 @@ class FileUtils:
             return []
 
     def _is_scannable_with_patterns(
-        self, file_path: Path, exclusions: Set[str], inclusions: Set[str]
+        self, file_path: Path, exclusions: set[str], inclusions: set[str]
     ) -> bool:
         """
         Check if file is scannable using custom patterns
@@ -466,7 +466,7 @@ class FileUtils:
             logger.warning(f"Error checking patterns for {file_path}: {e}")
             return False
 
-    def get_file_statistics(self, file_paths: List[Path]) -> dict:
+    def get_file_statistics(self, file_paths: list[Path]) -> dict:
         """
         Get statistics about the files to be scanned
 

@@ -237,9 +237,7 @@ class CodeQualityAutomationOrchestrator:
                         self.working_models.append("openrouter")
                         self.working_openrouter_key = "cached"
 
-            print(
-                f"  📊 Populated {len(self.working_models)} working models from cache"
-            )
+            print(f"  📊 Populated {len(self.working_models)} working models from cache")
 
         except Exception as e:
             print(f"❌ Error populating models from cache: {e}")
@@ -497,9 +495,7 @@ class CodeQualityAutomationOrchestrator:
 
                     client = cohere.Client(api_key=api_key)
                     models = client.models.list()
-                    print(
-                        f"    ✅ Cohere API key is valid. Found {len(models)} models."
-                    )
+                    print(f"    ✅ Cohere API key is valid. Found {len(models)} models.")
                     return {"working": True, "models_count": len(models)}
                 except Exception as e:
                     print(f"    ❌ Cohere API key failed: {e}")
@@ -822,9 +818,7 @@ class CodeQualityAutomationOrchestrator:
                 print("✅ Using HuggingFace for multi-agent analysis")
 
             if not working_models:
-                print(
-                    "❌ No working API endpoints found, skipping multi-agent analysis"
-                )
+                print("❌ No working API endpoints found, skipping multi-agent analysis")
                 return {
                     "success": False,
                     "error": "No working API endpoints available",
@@ -1045,9 +1039,7 @@ class CodeQualityAutomationOrchestrator:
                 print(f"  ✅ Completed agent set on {model}")
 
             # Coalesce results from ALL LLMs for comprehensive analysis
-            print(
-                f"\n🧠 Coalescing results from {len(working_models)} LLM providers..."
-            )
+            print(f"\n🧠 Coalescing results from {len(working_models)} LLM providers...")
 
             # Coalesce security results across all LLMs
             security_results = [
@@ -1577,9 +1569,7 @@ class CodeQualityAutomationOrchestrator:
         self, llm_results: list[dict[str, Any]], analysis_type: str
     ) -> dict[str, Any]:
         """Coalesce results from multiple LLMs for comprehensive analysis"""
-        print(
-            f"  🧠 Coalescing {analysis_type} results from {len(llm_results)} LLMs..."
-        )
+        print(f"  🧠 Coalescing {analysis_type} results from {len(llm_results)} LLMs...")
 
         if not llm_results:
             return {"error": "No LLM results to coalesce"}

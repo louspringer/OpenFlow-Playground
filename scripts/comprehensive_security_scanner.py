@@ -10,6 +10,7 @@ This scanner goes beyond Bandit to detect:
 - Credential patterns in text files
 """
 
+import hashlib
 import json
 import logging
 import re
@@ -17,7 +18,6 @@ import subprocess
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
-import hashlib
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -32,8 +32,8 @@ class CredentialPattern:
     pattern: str
     severity: str
     description: str
-    examples: List[str]
-    false_positive_patterns: List[str] = None
+    examples: list[str]
+    false_positive_patterns: list[str] = None
 
 
 @dataclass
@@ -60,7 +60,7 @@ class ComprehensiveSecurityScanner:
         self.excluded_patterns = self._load_excluded_patterns()
         self.scan_results = []
 
-    def _load_credential_patterns(self) -> List[CredentialPattern]:
+    def _load_credential_patterns(self) -> list[CredentialPattern]:
         """Load credential detection patterns"""
         return [
             # API Keys
@@ -175,7 +175,7 @@ class ComprehensiveSecurityScanner:
             ),
         ]
 
-    def _load_excluded_patterns(self) -> Set[str]:
+    def _load_excluded_patterns(self) -> set[str]:
         """Load patterns for files to exclude from scanning"""
         return {
             # Lock files
@@ -241,18 +241,18 @@ class ComprehensiveSecurityScanner:
     def _is_text_file(self, file_path: Path) -> bool:
         """Check if file is a text file that can be scanned"""
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 f.read(1024)  # Try to read first 1KB
                 return True
         except (UnicodeDecodeError, PermissionError, FileNotFoundError):
             return False
 
-    def _scan_file_for_credentials(self, file_path: Path) -> List[SecurityFinding]:
+    def _scan_file_for_credentials(self, file_path: Path) -> list[SecurityFinding]:
         """Scan a single file for credential patterns"""
         findings = []
 
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 content = f.read()
                 lines = content.split("\n")
 
@@ -337,7 +337,7 @@ class ComprehensiveSecurityScanner:
 
         return False
 
-    def scan_project(self, project_path: str = ".") -> Dict[str, Any]:
+    def scan_project(self, project_path: str = ".") -> dict[str, Any]:
         """Scan entire project for security issues"""
         project_path = Path(project_path)
         all_findings = []
@@ -378,8 +378,8 @@ class ComprehensiveSecurityScanner:
         return report
 
     def _deduplicate_findings(
-        self, findings: List[SecurityFinding]
-    ) -> List[SecurityFinding]:
+        self, findings: list[SecurityFinding]
+    ) -> list[SecurityFinding]:
         """Remove duplicate findings based on hash"""
         seen_hashes = set()
         unique_findings = []
@@ -393,10 +393,10 @@ class ComprehensiveSecurityScanner:
 
     def _generate_report(
         self,
-        findings: List[SecurityFinding],
+        findings: list[SecurityFinding],
         files_scanned: int,
         files_with_issues: int,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Generate comprehensive security report"""
 
         # Group findings by severity
@@ -443,7 +443,7 @@ class ComprehensiveSecurityScanner:
 
         return report
 
-    def _generate_recommendations(self, findings: List[SecurityFinding]) -> List[str]:
+    def _generate_recommendations(self, findings: list[SecurityFinding]) -> list[str]:
         """Generate actionable security recommendations"""
         recommendations = []
 
@@ -488,7 +488,7 @@ class ComprehensiveSecurityScanner:
         return recommendations
 
     def save_report(
-        self, report: Dict[str, Any], output_file: str = "security_scan_report.json"
+        self, report: dict[str, Any], output_file: str = "security_scan_report.json"
     ):
         """Save security report to file"""
         try:
@@ -498,7 +498,7 @@ class ComprehensiveSecurityScanner:
         except Exception as e:
             logger.error(f"Failed to save report: {e}")
 
-    def print_summary(self, report: Dict[str, Any]):
+    def print_summary(self, report: dict[str, Any]):
         """Print a summary of the security scan"""
         summary = report["summary"]
         findings_by_severity = report["findings_by_severity"]
@@ -518,7 +518,9 @@ class ComprehensiveSecurityScanner:
                 icon = (
                     "🚨"
                     if severity == "CRITICAL"
-                    else "⚠️" if severity == "HIGH" else "🔍"
+                    else "⚠️"
+                    if severity == "HIGH"
+                    else "🔍"
                 )
                 print(f"  {icon} {severity}: {count}")
 
