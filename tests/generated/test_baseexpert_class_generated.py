@@ -3,9 +3,8 @@
 Generated tests for TestBaseExpert
 """
 
-from pathlib import Path
-
 import pytest
+from pathlib import Path
 
 from src.ghostbusters.ghostbusters_orchestrator import BaseExpert
 
@@ -27,11 +26,11 @@ class TestBaseExpert:
     def test_name_attribute_exists(self, ghostbustersorchestrator):
         """Test that name attribute exists and is properly initialized"""
         instance = BaseExpert()
-        assert hasattr(instance, "name")
+        assert hasattr(instance, 'name')
         # Add specific attribute validation here
 
     def test_confidence_threshold_attribute_exists(self, ghostbustersorchestrator):
         """Test that confidence_threshold attribute exists and is properly initialized"""
         instance = BaseExpert()
-        assert hasattr(instance, "confidence_threshold")
+        assert hasattr(instance, 'confidence_threshold')
         # Add specific attribute validation here

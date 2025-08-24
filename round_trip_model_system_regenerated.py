@@ -222,7 +222,7 @@ class RoundTripModelSystem:
                         name.strip() for name in imported_names_str.split(", ")
                     ]
                     print(f"🔍 DEBUG: Split names: {imported_names}")
-                    if any((name in used_names for name in imported_names)):
+                    if any(name in used_names for name in imported_names):
                         essential_imports.append(imp)
                         print(f"✅ DEBUG: Added from import: {imp}")
                     else:
@@ -256,25 +256,25 @@ class RoundTripModelSystem:
                     continue
                 elif "pytest" in imp:
                     has_pytest_decorators = any(
-                        (
+
                             "pytest" in method.get("decorators", [])
                             for class_info in extracted_model.get(
                                 "components", {}
                             ).values()
                             for method in class_info.get("methods", [])
-                        )
+
                     )
                     if has_pytest_decorators:
                         essential_imports.append(imp)
                 elif "Mock" in imp or "AsyncMock" in imp:
                     if any(
-                        (
+
                             "Mock" in str(method) or "AsyncMock" in str(method)
                             for class_info in extracted_model.get(
                                 "components", {}
                             ).values()
                             for method in class_info.get("methods", [])
-                        )
+
                     ):
                         essential_imports.append(imp)
                 else:
@@ -895,7 +895,7 @@ class RoundTripModelSystem:
         """
         Generate module code from component design
         """
-        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nThis module contains:\n{chr(10).join((f'- {req}' for req in component.requirements))}\n"""\n\n# Module imports\n'''
+        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nThis module contains:\n{chr(10).join(f'- {req}' for req in component.requirements)}\n"""\n\n# Module imports\n'''
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
         code += f"\n\n# Module-level variables and constants\n# TODO: Add based on requirements: {component.requirements}\n\n# Module-level functions\n# TODO: Add based on requirements: {component.requirements}\n"
@@ -905,7 +905,7 @@ class RoundTripModelSystem:
         """
         Generate domain code from component design
         """
-        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nDomain Model Requirements:\n{chr(10).join((f'- {req}' for req in component.requirements))}\n"""\n\nfrom dataclasses import dataclass, field\nfrom typing import Any, Dict, List, Optional\nfrom pathlib import Path\n\n'''
+        code = f'''#!/usr/bin/env python3\n"""\n{component.description}\n\nDomain Model Requirements:\n{chr(10).join(f'- {req}' for req in component.requirements)}\n"""\n\nfrom dataclasses import dataclass, field\nfrom typing import Any, Dict, List, Optional\nfrom pathlib import Path\n\n'''
         for dep in component.dependencies:
             code += f"from {dep} import *\n"
         code += f'\n\n@dataclass\nclass {component.name}Domain:\n    """\n    {component.description}\n    """\n\n    # Domain-specific fields\n    # TODO: Add based on requirements: {component.requirements}\n\n    def __post_init__(self):\n        """Initialize domain-specific components"""\n        # TODO: Initialize based on requirements: {component.requirements}\n        pass\n\n    def validate_domain(self) -> bool:\n        """Validate domain requirements"""\n        # TODO: Implement validation based on requirements: {component.requirements}\n        return True\n'

@@ -165,13 +165,13 @@ class FunctionalEquivalenceTester:
                 "class_count_match": len(original_structure["classes"])
                 == len(generated_structure["classes"]),
                 "method_count_match": sum(
-                    (len(methods) for methods in original_structure["classes"].values())
+                    len(methods) for methods in original_structure["classes"].values()
                 )
                 == sum(
-                    (
+
                         len(methods)
                         for methods in generated_structure["classes"].values()
-                    )
+
                 ),
             }
         except Exception as e:
