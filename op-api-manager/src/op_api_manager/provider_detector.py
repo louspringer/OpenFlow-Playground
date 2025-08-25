@@ -77,7 +77,8 @@ class ProviderDetector:
         """Initialize the provider detector with predefined provider configurations."""
         self._provider_configs = self._build_provider_configs()
         self._patterns = [
-            pattern for config in self._provider_configs.values() 
+            pattern
+            for config in self._provider_configs.values()
             for pattern in config.patterns
         ]
 
@@ -91,51 +92,57 @@ class ProviderDetector:
                     ProviderPattern(
                         keywords=["openai", "gpt", "chatgpt"],
                         confidence=0.9,
-                        service_type="direct_api"
+                        service_type="direct_api",
                     )
                 ],
                 endpoint="https://api.openai.com/v1/chat/completions",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Bearer", "sk-", "API key starting with sk-")
+                    CredentialAttribute(
+                        "api_key", "Bearer", "sk-", "API key starting with sk-"
+                    )
                 ],
                 env_vars=["OPENAI_API_KEY"],
-                models=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"]
+                models=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"],
             ),
-            
             "anthropic": ProviderConfig(
                 name="Anthropic",
                 patterns=[
                     ProviderPattern(
                         keywords=["anthropic", "claude"],
                         confidence=0.9,
-                        service_type="direct_api"
+                        service_type="direct_api",
                     )
                 ],
                 endpoint="https://api.anthropic.com/v1/messages",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "x-api-key", "sk-ant-", "API key starting with sk-ant-")
+                    CredentialAttribute(
+                        "api_key",
+                        "x-api-key",
+                        "sk-ant-",
+                        "API key starting with sk-ant-",
+                    )
                 ],
                 env_vars=["ANTHROPIC_API_KEY"],
-                models=["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"]
+                models=["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"],
             ),
-            
             "google": ProviderConfig(
                 name="Google AI",
                 patterns=[
                     ProviderPattern(
                         keywords=["google", "gemini", "palm"],
                         confidence=0.9,
-                        service_type="direct_api"
+                        service_type="direct_api",
                     )
                 ],
                 endpoint="https://generativelanguage.googleapis.com/v1beta/models",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Authorization", "AIza", "API key starting with AIza")
+                    CredentialAttribute(
+                        "api_key", "Authorization", "AIza", "API key starting with AIza"
+                    )
                 ],
                 env_vars=["GOOGLE_API_KEY"],
-                models=["gemini-1.5-pro", "gemini-1.5-flash", "gemini-pro"]
+                models=["gemini-1.5-pro", "gemini-1.5-flash", "gemini-pro"],
             ),
-            
             # Gateway/Proxy services
             "openrouter": ProviderConfig(
                 name="OpenRouter",
@@ -143,18 +150,26 @@ class ProviderDetector:
                     ProviderPattern(
                         keywords=["openrouter", "router", "gateway"],
                         confidence=0.8,
-                        service_type="gateway_service"
+                        service_type="gateway_service",
                     )
                 ],
                 endpoint="https://openrouter.ai/api/v1/chat/completions",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for OpenRouter")
+                    CredentialAttribute(
+                        "api_key",
+                        "Authorization",
+                        "Bearer",
+                        "Bearer token for OpenRouter",
+                    )
                 ],
                 env_vars=["OPENROUTER_API_KEY"],
-                models=["openai/gpt-4o", "anthropic/claude-3-sonnet", "meta-llama/llama-3.1-70b"],
-                description="Gateway service that routes to multiple providers (OpenAI, Anthropic, Meta, etc.)"
+                models=[
+                    "openai/gpt-4o",
+                    "anthropic/claude-3-sonnet",
+                    "meta-llama/llama-3.1-70b",
+                ],
+                description="Gateway service that routes to multiple providers (OpenAI, Anthropic, Meta, etc.)",
             ),
-            
             # Specialized providers
             "huggingface": ProviderConfig(
                 name="Hugging Face",
@@ -162,89 +177,112 @@ class ProviderDetector:
                     ProviderPattern(
                         keywords=["huggingface", "hugging_face", "hf_"],
                         confidence=0.9,
-                        service_type="model_hosting"
+                        service_type="model_hosting",
                     )
                 ],
                 endpoint="https://api-inference.huggingface.co/models",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for HuggingFace")
+                    CredentialAttribute(
+                        "api_key",
+                        "Authorization",
+                        "Bearer",
+                        "Bearer token for HuggingFace",
+                    )
                 ],
                 env_vars=["HUGGINGFACE_API_KEY"],
                 models=["meta-llama/Llama-2-7b-chat-hf", "microsoft/DialoGPT-medium"],
-                description="Model hosting platform with its own API format and models"
+                description="Model hosting platform with its own API format and models",
             ),
-            
             "aws_bedrock": ProviderConfig(
                 name="AWS Bedrock",
                 patterns=[
                     ProviderPattern(
                         keywords=["bedrock", "aws", "amazon"],
                         confidence=0.8,
-                        service_type="cloud_service"
+                        service_type="cloud_service",
                     )
                 ],
                 endpoint="bedrock-runtime",
                 credential_attributes=[
-                    CredentialAttribute("access_key_id", "AWS_ACCESS_KEY_ID", "AKIA", "AWS Access Key ID"),
-                    CredentialAttribute("secret_access_key", "AWS_SECRET_ACCESS_KEY", "", "AWS Secret Access Key")
+                    CredentialAttribute(
+                        "access_key_id",
+                        "AWS_ACCESS_KEY_ID",
+                        "AKIA",
+                        "AWS Access Key ID",
+                    ),
+                    CredentialAttribute(
+                        "secret_access_key",
+                        "AWS_SECRET_ACCESS_KEY",
+                        "",
+                        "AWS Secret Access Key",
+                    ),
                 ],
                 env_vars=["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"],
                 models=["anthropic.claude-3-sonnet", "amazon.titan-text-express"],
-                description="AWS managed service with different authentication and endpoint structure"
+                description="AWS managed service with different authentication and endpoint structure",
             ),
-            
             "azure_openai": ProviderConfig(
                 name="Azure OpenAI",
                 patterns=[
                     ProviderPattern(
                         keywords=["azure", "openai", "gpt"],
                         confidence=0.8,
-                        service_type="cloud_service"
+                        service_type="cloud_service",
                     )
                 ],
                 endpoint="https://{resource}.openai.azure.com/openai/deployments/{deployment}",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "api-key", "", "Azure OpenAI API key"),
-                    CredentialAttribute("endpoint", "AZURE_OPENAI_ENDPOINT", "", "Azure OpenAI endpoint")
+                    CredentialAttribute(
+                        "api_key", "api-key", "", "Azure OpenAI API key"
+                    ),
+                    CredentialAttribute(
+                        "endpoint", "AZURE_OPENAI_ENDPOINT", "", "Azure OpenAI endpoint"
+                    ),
                 ],
                 env_vars=["AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT"],
                 models=["gpt-4", "gpt-35-turbo"],
-                description="Azure-hosted OpenAI models with different endpoint structure"
+                description="Azure-hosted OpenAI models with different endpoint structure",
             ),
-            
             "cohere": ProviderConfig(
                 name="Cohere",
                 patterns=[
                     ProviderPattern(
                         keywords=["cohere", "command"],
                         confidence=0.9,
-                        service_type="direct_api"
+                        service_type="direct_api",
                     )
                 ],
                 endpoint="https://api.cohere.ai/v1/chat",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for Cohere")
+                    CredentialAttribute(
+                        "api_key", "Authorization", "Bearer", "Bearer token for Cohere"
+                    )
                 ],
                 env_vars=["COHERE_API_KEY"],
-                models=["command-r-plus", "command-r", "command"]
+                models=["command-r-plus", "command-r", "command"],
             ),
-            
             "mistral": ProviderConfig(
                 name="Mistral AI",
                 patterns=[
                     ProviderPattern(
                         keywords=["mistral", "mixtral"],
                         confidence=0.9,
-                        service_type="direct_api"
+                        service_type="direct_api",
                     )
                 ],
                 endpoint="https://api.mistral.ai/v1/chat/completions",
                 credential_attributes=[
-                    CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for Mistral")
+                    CredentialAttribute(
+                        "api_key", "Authorization", "Bearer", "Bearer token for Mistral"
+                    )
                 ],
                 env_vars=["MISTRAL_API_KEY"],
-                models=["mistral-large-latest", "mixtral-8x7b-instruct", "mistral-7b-instruct"]
-            )
+                models=[
+                    "mistral-large-latest",
+                    "mixtral-8x7b-instruct",
+                    "mistral-7b-instruct",
+                ],
+            ),
         }
 
     def get_provider_config(self, provider: ProviderType) -> Optional[ProviderConfig]:
@@ -382,7 +420,9 @@ class ProviderDetector:
         """
         config = self.get_provider_config(provider)
         if config:
-            return [keyword for pattern in config.patterns for keyword in pattern.keywords]
+            return [
+                keyword for pattern in config.patterns for keyword in pattern.keywords
+            ]
         return []
 
     def get_provider_env_vars(self, provider: ProviderType) -> list[str]:

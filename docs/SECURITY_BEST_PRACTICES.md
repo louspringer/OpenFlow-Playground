@@ -7,6 +7,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 ## 🎯 **Core Principle: Use Established Tools, Not Custom Scanners**
 
 ### ❌ **What We DON'T Do:**
+
 - Build custom security scanners
 - Implement custom false positive detection
 - Create custom pattern matching systems
@@ -14,6 +15,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 - Reinvent security scanning wheels
 
 ### ✅ **What We DO:**
+
 - Use industry-standard security tools
 - Follow OWASP guidelines
 - Implement CWE references
@@ -25,6 +27,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 ### **Python Security Tools (UV Packages)**
 
 #### 1. **Bandit** - Python Security Scanning
+
 - **Purpose**: Python-specific security vulnerability detection
 - **Installation**: `uv add --dev --extra security`
 - **Configuration**: `pyproject.toml` [tool.bandit] section
@@ -32,6 +35,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 - **Output**: JSON reports with CWE references
 
 #### 2. **Semgrep** - Pattern-based Security Scanning
+
 - **Purpose**: Pattern-based security issue detection
 - **Installation**: `uv add --dev semgrep`
 - **Configuration**: `pyproject.toml` [tool.security.semgrep] section
@@ -39,6 +43,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 - **Output**: JSON reports with rule-based findings
 
 #### 3. **Safety** - Dependency Vulnerability Scanning
+
 - **Purpose**: Python dependency vulnerability detection
 - **Installation**: `uv add --dev --extra security`
 - **Configuration**: `pyproject.toml` [tool.security.safety] section
@@ -46,6 +51,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 - **Output**: JSON reports with vulnerability details
 
 #### 4. **Detect-Secrets** - Secret Detection
+
 - **Purpose**: Hardcoded secret detection in code
 - **Installation**: `uv add --dev --extra security`
 - **Configuration**: `.secrets.baseline` file
@@ -55,6 +61,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 ### **External Security Tools (Binary Installations)**
 
 #### 5. **Gitleaks** - Comprehensive Secret Detection
+
 - **Purpose**: Git repository secret scanning
 - **Installation**: `go install github.com/zricethezav/gitleaks/v8@latest`
 - **Coverage**: All file types, git history, branches
@@ -62,6 +69,7 @@ This document outlines the security best practices implemented in the OpenFlow-P
 - **Integration**: Makefile targets for automation
 
 #### 6. **Trivy** - Infrastructure & Dependency Scanning
+
 - **Purpose**: Comprehensive vulnerability scanning
 - **Installation**: `curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin`
 - **Coverage**: OS packages, language dependencies, infrastructure
@@ -158,6 +166,7 @@ security-check: ## Run quick security check
 ### **CWE References**
 
 All security findings include Common Weakness Enumeration (CWE) references:
+
 - **CWE-78**: OS Command Injection
 - **CWE-89**: SQL Injection
 - **CWE-259**: Hardcoded Password
@@ -245,16 +254,19 @@ jobs:
 ## 📚 **References**
 
 ### **OWASP Resources**
+
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
 
 ### **CWE Resources**
+
 - [CWE Homepage](https://cwe.mitre.org/)
 - [CWE/SANS Top 25](https://cwe.mitre.org/top25/)
 - [CWE Search](https://cwe.mitre.org/data/index.html)
 
 ### **Tool Documentation**
+
 - [Bandit Documentation](https://bandit.readthedocs.io/)
 - [Semgrep Documentation](https://semgrep.dev/docs/)
 - [Safety Documentation](https://pyup.io/safety/)
@@ -265,18 +277,21 @@ jobs:
 ## 🎯 **Success Metrics**
 
 ### **Security Coverage**
+
 - **100% Python files scanned** with Bandit
 - **100% dependencies scanned** with Safety
 - **100% secrets detected** with Detect-Secrets and Gitleaks
 - **100% infrastructure scanned** with Trivy
 
 ### **Issue Resolution**
+
 - **0 critical vulnerabilities** in production code
 - **0 hardcoded credentials** in source code
 - **0 known vulnerable dependencies** in use
 - **100% security findings addressed** within SLA
 
 ### **Tool Integration**
+
 - **100% security tools available** in development environment
 - **100% security tools integrated** in CI/CD pipeline
 - **100% security reports generated** in standard formats
@@ -287,11 +302,13 @@ jobs:
 ### **Quick Start**
 
 1. **Install security tools**:
+
    ```bash
    make security-install
    ```
 
 2. **Run security scan**:
+
    ```bash
    make security-scan
    ```

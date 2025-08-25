@@ -44,7 +44,7 @@ async def test_multi_agent_analysis():
         logger.info("🔧 Initializing Multi-Agent System...")
 
         # Create agent session manager
-        agent_session_manager = AgentSessionManager()
+        AgentSessionManager()
         logger.info("✅ Agent Session Manager initialized")
 
         # Create multi-dimensional smoke test
@@ -201,7 +201,7 @@ async def test_agent_collaboration():
         # Test cross-agent context
         logger.info("🔍 Testing Cross-Agent Context...")
         for agent_type in [AgentType.SECURITY, AgentType.QUALITY, AgentType.DEVOPS]:
-            cross_context = agent_session_manager.get_cross_agent_context(agent_type)
+            agent_session_manager.get_cross_agent_context(agent_type)
             other_findings = agent_session_manager.get_agent_previous_findings(
                 agent_type, iteration
             )

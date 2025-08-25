@@ -7,15 +7,18 @@ The OP API Manager has been refactored to provide a clean, consistent CRUD inter
 ## 🏗️ **Architecture Components**
 
 ### **1. StatusManager (`status_manager.py`)**
+
 **Purpose**: Atomic status management for API credentials
 
 **Key Features**:
+
 - **Atomic Operations**: All status changes are atomic with rollback capability
 - **Transaction Safety**: Context manager for complex operations
 - **Cache Consistency**: Ensures cache and 1Password stay in sync
 - **Status History**: Tracks all status changes with timestamps and reasons
 
 **Core Methods**:
+
 ```python
 class StatusManager:
     def update_credential_status(self, item_id: str, new_status: str, reason: str = None) -> bool
@@ -29,15 +32,18 @@ class StatusManager:
 ```
 
 ### **2. UnifiedOPInterface (`unified_interface.py`)**
+
 **Purpose**: Clean CRUD interface for all operations
 
 **Key Features**:
+
 - **Consistent API**: All operations follow the same pattern
 - **Error Handling**: Proper error handling and validation
 - **Status Abstraction**: Hides complexity of status management
 - **Utility Operations**: Cache validation and integrity checks
 
 **Core Methods**:
+
 ```python
 class UnifiedOPInterface:
     # CREATE
@@ -64,6 +70,7 @@ class UnifiedOPInterface:
 ## 🔄 **CRUD Operations Flow**
 
 ### **CREATE (Discovery)**
+
 ```
 User Request → UnifiedOPInterface.discover_credentials()
   ↓
@@ -75,6 +82,7 @@ Commit Transaction
 ```
 
 ### **READ (Retrieval)**
+
 ```
 User Request → UnifiedOPInterface.get_working_credentials()
   ↓
@@ -86,6 +94,7 @@ Return Working Credentials
 ```
 
 ### **UPDATE (Status Management)**
+
 ```
 User Request → UnifiedOPInterface.mark_credential_working()
   ↓
@@ -97,6 +106,7 @@ Commit Transaction
 ```
 
 ### **DELETE (Archiving)**
+
 ```
 User Request → UnifiedOPInterface.archive_credential()
   ↓
@@ -110,6 +120,7 @@ Commit Transaction
 ## 🎭 **Method Activity Diagrams**
 
 ### **Unified Discovery Flow**
+
 ```
 start → discover_credentials(force_refresh)
   ↓
@@ -123,6 +134,7 @@ return DiscoveryResult
 ```
 
 ### **Unified Testing Flow**
+
 ```
 start → test_api_endpoints()
   ↓
@@ -142,6 +154,7 @@ return test_results
 ```
 
 ### **Unified Archive Flow**
+
 ```
 start → archive_credential(item_id, reason)
   ↓
@@ -159,28 +172,34 @@ return success
 ## 🔧 **Key Improvements Over Previous Implementation**
 
 ### **1. Atomic Operations**
+
 - **Before**: Status updates could fail partially, leaving cache in inconsistent state
 - **After**: All operations are atomic with rollback capability
 
 ### **2. State Consistency**
+
 - **Before**: Cache and 1Password could get out of sync
 - **After**: Single source of truth with validation
 
 ### **3. Error Handling**
+
 - **Before**: Silent failures and unclear error states
 - **After**: Proper error handling with rollback and validation
 
 ### **4. Method Organization**
+
 - **Before**: Scattered methods with overlapping functionality
 - **After**: Clear CRUD separation with consistent patterns
 
 ### **5. Cache Management**
+
 - **Before**: Cache updates scattered throughout code
 - **After**: Centralized cache management with transaction safety
 
 ## 🚀 **Usage Examples**
 
 ### **Basic Operations**
+
 ```python
 from op_api_manager.status_manager import StatusManager
 from op_api_manager.unified_interface import UnifiedOPInterface
@@ -201,6 +220,7 @@ success = interface.archive_credential(
 ```
 
 ### **Transaction Safety**
+
 ```python
 # Atomic operation with rollback
 with status_manager.transaction():
@@ -210,6 +230,7 @@ with status_manager.transaction():
 ```
 
 ### **Status Management**
+
 ```python
 # Update status with reason
 interface.update_credential_status(
@@ -228,6 +249,7 @@ print(f"Archived: {summary['archived']}")
 ## 🧪 **Testing**
 
 ### **Run Tests**
+
 ```bash
 # Test the new unified interface
 uv run python test_unified_interface.py
@@ -241,6 +263,7 @@ print('StatusManager imported successfully')
 ```
 
 ### **Test Coverage**
+
 - ✅ **StatusManager**: Cache operations, status updates, transactions
 - ✅ **UnifiedOPInterface**: CRUD operations, error handling
 - ✅ **Transaction Safety**: Rollback capabilities, atomic operations
@@ -248,21 +271,25 @@ print('StatusManager imported successfully')
 ## 🔮 **Future Enhancements**
 
 ### **1. Integration with Existing Core**
+
 - Replace existing status management in `core.py` with `StatusManager`
 - Update `test_api_endpoints()` to use unified interface
 - Integrate with existing discovery and testing logic
 
 ### **2. Enhanced Validation**
+
 - Add schema validation for cache entries
 - Implement integrity checks for 1Password operations
 - Add audit logging for all status changes
 
 ### **3. Performance Optimization**
+
 - Add caching layers for frequently accessed data
 - Implement batch operations for multiple status updates
 - Add async support for long-running operations
 
 ### **4. Monitoring and Observability**
+
 - Add metrics collection for operations
 - Implement health checks for cache and 1Password
 - Add performance profiling and optimization
@@ -270,12 +297,14 @@ print('StatusManager imported successfully')
 ## 📋 **Migration Guide**
 
 ### **From Old Implementation**
+
 1. **Replace direct cache operations** with `StatusManager` methods
 2. **Update status management** to use unified interface
 3. **Replace archive operations** with new atomic methods
 4. **Update error handling** to use transaction rollback
 
 ### **Benefits of Migration**
+
 - **Reliability**: Atomic operations prevent partial failures
 - **Maintainability**: Clear separation of concerns
 - **Testability**: Easier to test individual components

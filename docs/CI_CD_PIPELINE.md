@@ -211,7 +211,7 @@ gcloud iam service-accounts keys create ~/github-actions-key.json \
 
 ### **For Operations**
 
-1. **Monitor builds**: https://console.cloud.google.com/cloud-build/builds
+1. **Monitor builds**: <https://console.cloud.google.com/cloud-build/builds>
 2. **View logs**: `gcloud builds log [BUILD_ID]`
 3. **Manual trigger**: `./scripts/trigger-build.sh`
 
@@ -229,6 +229,6 @@ gcloud iam service-accounts keys create ~/github-actions-key.json \
 - **Deployment time**: 10-15 seconds
 - **Cold start**: 1-5 seconds for Cloud Run
 
-## 🎉 Success!
+## 🎉 Success
 
 The CI/CD pipeline is now fully operational and will automatically deploy the Ghostbusters API on every push to the `ghostbusters-gcp-implementation` branch! 🚀

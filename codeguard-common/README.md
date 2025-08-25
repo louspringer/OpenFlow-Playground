@@ -36,6 +36,7 @@ uv add clewcrew-common
 ## **🚀 Quick Start**
 
 ### **Confidence Scoring**
+
 ```python
 from clewcrew_common import ConfidenceCalculator, ConfidenceScore
 
@@ -51,6 +52,7 @@ print(f"Factors: {confidence.factors}")
 ```
 
 ### **Logging Framework**
+
 ```python
 from clewcrew_common import ClewcrewLogger
 
@@ -61,6 +63,7 @@ logger.error("Error occurred during execution")
 ```
 
 ### **Configuration Management**
+
 ```python
 from clewcrew_common import ConfigManager
 
@@ -72,9 +75,11 @@ debug_mode = config.get("DEBUG", default=False)
 ## **🔧 Core Components**
 
 ### **1. Confidence Scoring** 🎯
+
 **Purpose**: Eliminate duplication of confidence calculation logic
 
 **Features**:
+
 - **Agent Confidence**: Calculate confidence for expert agents
 - **Recovery Confidence**: Calculate confidence for recovery engines
 - **Validation Confidence**: Calculate confidence for validators
@@ -82,54 +87,66 @@ debug_mode = config.get("DEBUG", default=False)
 - **Score Combination**: Combine multiple confidence scores
 
 ### **2. Logging Framework** 📝
+
 **Purpose**: Unified logging across all clewcrew components
 
 **Features**:
+
 - **Structured Logging**: Consistent log format
 - **Log Levels**: Standardized log levels
 - **Context Tracking**: Track execution context
 - **Performance Monitoring**: Built-in performance tracking
 
 ### **3. Configuration Management** ⚙️
+
 **Purpose**: Centralized configuration management
 
 **Features**:
+
 - **Environment Variables**: Load from environment
 - **Configuration Files**: Support for YAML/JSON configs
 - **Validation**: Validate configuration values
 - **Defaults**: Sensible defaults for all settings
 
 ### **4. Data Models** 📊
+
 **Purpose**: Common Pydantic models for all components
 
 **Features**:
+
 - **BaseResult**: Common result model
 - **BaseConfig**: Common configuration model
 - **Validation**: Built-in validation rules
 - **Serialization**: Easy JSON serialization
 
 ### **5. Async Utilities** ⚡
+
 **Purpose**: Common async patterns and utilities
 
 **Features**:
+
 - **AsyncExecutor**: Execute async operations
 - **Retry Logic**: Built-in retry mechanisms
 - **Timeout Handling**: Configurable timeouts
 - **Error Handling**: Standardized error handling
 
 ### **6. File Operations** 📁
+
 **Purpose**: Common file and path operations
 
 **Features**:
+
 - **Path Handling**: Cross-platform path operations
 - **File Reading**: Safe file reading utilities
 - **File Writing**: Safe file writing utilities
 - **Directory Operations**: Directory management utilities
 
 ### **7. Validation Utilities** ✅
+
 **Purpose**: Common validation patterns
 
 **Features**:
+
 - **Input Validation**: Validate user inputs
 - **Data Validation**: Validate data structures
 - **Schema Validation**: Validate against schemas
@@ -138,10 +155,12 @@ debug_mode = config.get("DEBUG", default=False)
 ## **🔗 Dependencies**
 
 ### **Core Dependencies**
+
 - **Pydantic**: Data validation and serialization
 - **Typing Extensions**: Enhanced type hints
 
 ### **Development Dependencies**
+
 - **Pytest**: Testing framework
 - **Black**: Code formatting
 - **Ruff**: Linting
@@ -150,6 +169,7 @@ debug_mode = config.get("DEBUG", default=False)
 ## **🧪 Testing**
 
 ### **Run Tests**
+
 ```bash
 # Install development dependencies
 pip install -e ".[dev]"
@@ -168,6 +188,7 @@ pytest -m "slow"
 ## **📚 Documentation**
 
 ### **API Reference**
+
 - [Confidence Scoring API](docs/confidence.md)
 - [Logging Framework API](docs/logging.md)
 - [Configuration Management API](docs/configuration.md)
@@ -179,6 +200,7 @@ pytest -m "slow"
 ## **🤝 Contributing**
 
 ### **Development Setup**
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -187,6 +209,7 @@ pytest -m "slow"
 6. Submit a pull request
 
 ### **Code Standards**
+
 - Follow PEP 8 style guidelines
 - Use type hints for all functions
 - Add docstrings for all classes and methods
@@ -195,6 +218,7 @@ pytest -m "slow"
 ## **📈 Performance**
 
 ### **Benchmarks**
+
 - **Confidence Calculation**: < 1ms for typical workloads
 - **Logging Operations**: < 0.1ms per log entry
 - **Configuration Loading**: < 10ms for complex configs
@@ -203,6 +227,7 @@ pytest -m "slow"
 ## **🔒 Security**
 
 ### **Security Features**
+
 - **Input Validation**: Validate all inputs
 - **Safe File Operations**: Prevent path traversal
 - **Configuration Security**: Secure configuration handling
@@ -211,12 +236,14 @@ pytest -m "slow"
 ## **🚀 Roadmap**
 
 ### **Version 0.2.0 (Next Month)**
+
 - [ ] **Enhanced Logging**: Structured logging with correlation IDs
 - [ ] **Configuration Validation**: Schema-based configuration validation
 - [ ] **Performance Monitoring**: Built-in performance metrics
 - [ ] **Error Handling**: Advanced error handling and recovery
 
 ### **Version 0.3.0 (Next Quarter)**
+
 - [ ] **Plugin System**: Extensible plugin architecture
 - [ ] **Metrics Collection**: Comprehensive metrics and analytics
 - [ ] **Distributed Tracing**: Support for distributed systems
@@ -225,13 +252,15 @@ pytest -m "slow"
 ## **📞 Support**
 
 ### **Getting Help**
+
 - **Issues**: [GitHub Issues](https://github.com/louspringer/clewcrew-common/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/louspringer/clewcrew-common/discussions)
 - **Documentation**: [Project Wiki](https://github.com/louspringer/clewcrew-common/wiki)
 
 ### **Contact**
+
 - **Author**: Lou Springer
-- **Email**: lou@example.com
+- **Email**: <lou@example.com>
 - **Project**: [clewcrew-common](https://github.com/louspringer/clewcrew-common)
 
 ## **📄 License**

@@ -329,13 +329,12 @@ class ComprehensiveSecurityScanner:
                 return True
 
         # Check file path for test/example indicators
-        if any(
-            indicator in str(file_path).lower()
-            for indicator in ["test", "example", "demo", "template", "sample"]
-        ):
-            return True
-
-        return False
+        return bool(
+            any(
+                indicator in str(file_path).lower()
+                for indicator in ["test", "example", "demo", "template", "sample"]
+            )
+        )
 
     def scan_project(self, project_path: str = ".") -> dict[str, Any]:
         """Scan entire project for security issues"""
@@ -371,11 +370,7 @@ class ComprehensiveSecurityScanner:
         unique_findings = self._deduplicate_findings(all_findings)
 
         # Generate report
-        report = self._generate_report(
-            unique_findings, files_scanned, files_with_issues
-        )
-
-        return report
+        return self._generate_report(unique_findings, files_scanned, files_with_issues)
 
     def _deduplicate_findings(
         self, findings: list[SecurityFinding]
@@ -419,7 +414,7 @@ class ComprehensiveSecurityScanner:
         real_issues = [f for f in findings if not f.false_positive]
         false_positives = [f for f in findings if f.false_positive]
 
-        report = {
+        return {
             "summary": {
                 "files_scanned": files_scanned,
                 "files_with_issues": files_with_issues,
@@ -440,8 +435,6 @@ class ComprehensiveSecurityScanner:
             "all_findings": [asdict(f) for f in findings],
             "recommendations": self._generate_recommendations(findings),
         }
-
-        return report
 
     def _generate_recommendations(self, findings: list[SecurityFinding]) -> list[str]:
         """Generate actionable security recommendations"""

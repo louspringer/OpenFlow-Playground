@@ -3,6 +3,7 @@
 ## 🚨 CRITICAL: Two Generation Methods
 
 ### ❌ WRONG METHOD (Generates Skeletons)
+
 ```python
 system = RoundTripModelSystem()
 model_obj = system.create_model_from_design(design_spec)
@@ -10,6 +11,7 @@ generated_files = system.generate_code_from_model(model_obj.name)  # SKELETONS!
 ```
 
 ### ✅ RIGHT METHOD (Generates Working Code)
+
 ```python
 system = RoundTripModelSystem()
 complete_code = system.generate_code_from_extracted_model(model)  # WORKING CODE!

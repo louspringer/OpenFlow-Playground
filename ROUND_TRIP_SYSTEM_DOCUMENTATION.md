@@ -7,25 +7,29 @@ The Round Trip System is a **complete code generation system** that can extract 
 ## Key Components
 
 ### 1. Enhanced AST Parser (`enhanced_ast_wrapper.py`)
+
 - **Purpose**: Provides access to the enhanced AST parser for deep code analysis
 - **Function**: `get_enhanced_ast_linter()` returns the `ASTEnhancedLinter` class
 - **Status**: ✅ **FULLY WORKING** - No issues, no fixes needed
 
 ### 2. Enhanced Reverse Engineer (`enhanced_reverse_engineer.py`)
+
 - **Purpose**: Extracts comprehensive models from Python source code
-- **Capabilities**: 
+- **Capabilities**:
   - Parses 137+ AST nodes per file
   - Extracts classes, methods, parameters, type hints, docstrings
   - Generates detailed JSON models
 - **Status**: ✅ **FULLY WORKING** - No issues, no fixes needed
 
 ### 3. Round Trip Model System (`round_trip_model_system.py`)
+
 - **Purpose**: Generates Python code from models
 - **Status**: ✅ **FULLY WORKING** - But has TWO different generation methods
 
 ## Critical: Two Different Generation Methods
 
 ### ❌ Method 1: `generate_code_from_model()` - SKELETON GENERATOR
+
 ```python
 # This generates skeleton classes with TODO comments
 system = RoundTripModelSystem()
@@ -35,6 +39,7 @@ generated_files = system.generate_code_from_model(model_obj.name)
 ```
 
 **What it generates:**
+
 ```python
 class Calculator:
     def add(self, a: float, b: float) -> float:
@@ -45,6 +50,7 @@ class Calculator:
 **When to use:** When you want to create new class structures from scratch
 
 ### ✅ Method 2: `generate_code_from_extracted_model()` - COMPLETE CODE GENERATOR
+
 ```python
 # This generates complete, working Python code
 system = RoundTripModelSystem()
@@ -53,6 +59,7 @@ complete_module_code = system.generate_code_from_extracted_model(model)
 ```
 
 **What it generates:**
+
 ```python
 class Calculator:
     def add(self, a: float, b: float) -> float:
@@ -68,6 +75,7 @@ class Calculator:
 ## Complete Workflow
 
 ### Step 1: Extract Model from Source Code
+
 ```python
 # Use enhanced reverse engineer to extract model
 python enhanced_reverse_engineer.py scripts/simple_calculator.py
@@ -75,6 +83,7 @@ python enhanced_reverse_engineer.py scripts/simple_calculator.py
 ```
 
 ### Step 2: Generate Working Code from Model
+
 ```python
 from round_trip_model_system import RoundTripModelSystem
 import json
@@ -93,6 +102,7 @@ with open('regenerated_module.py', 'w') as f:
 ```
 
 ### Step 3: Validate Functional Equivalence
+
 ```python
 # Compare original vs generated
 # Check: classes, methods, type hints, docstrings, structure
@@ -100,7 +110,8 @@ with open('regenerated_module.py', 'w') as f:
 
 ## What Gets Generated
 
-### Complete Python Files With:
+### Complete Python Files With
+
 - ✅ Proper shebang (`#!/usr/bin/env python3`)
 - ✅ Module docstrings
 - ✅ Import statements
@@ -111,7 +122,8 @@ with open('regenerated_module.py', 'w') as f:
 - ✅ `if __name__ == "__main__"` block
 - ✅ Working code structure
 
-### Example Generated Output:
+### Example Generated Output
+
 ```python
 #!/usr/bin/env python3
 
@@ -147,7 +159,8 @@ if __name__ == "__main__":
 
 ## Common Mistakes to Avoid
 
-### ❌ Don't Do This:
+### ❌ Don't Do This
+
 ```python
 # Wrong: Using skeleton generator for code regeneration
 system = RoundTripModelSystem()
@@ -155,7 +168,8 @@ model_obj = system.create_model_from_design(design_spec)
 generated_files = system.generate_code_from_model(model_obj.name)  # SKELETONS!
 ```
 
-### ✅ Do This Instead:
+### ✅ Do This Instead
+
 ```python
 # Right: Using complete code generator for code regeneration
 system = RoundTripModelSystem()
@@ -164,18 +178,21 @@ complete_code = system.generate_code_from_extracted_model(model)  # WORKING CODE
 
 ## Testing the System
 
-### Run Enhanced Round Trip Test:
+### Run Enhanced Round Trip Test
+
 ```bash
 python enhanced_round_trip_test.py
 ```
 
 **Expected Output:**
+
 - ✅ Model extraction successful
 - ✅ Complete module generation successful  
 - ✅ Generated code has same structure as original
 - ✅ Functional equivalence validation
 
-### Test Individual Components:
+### Test Individual Components
+
 ```bash
 # Test enhanced AST parser
 python enhanced_ast_wrapper.py

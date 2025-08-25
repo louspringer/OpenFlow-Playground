@@ -9,12 +9,14 @@ The solution involves migrating from dataclasses to pydantic v2 BaseModel classe
 ## Architecture
 
 ### Current State
+
 - **Data Models**: Using Python `@dataclass` decorators
 - **LangChain Version**: 0.3.27 (uses pydantic v2 internally)
 - **Pydantic Version**: 2.9.2
 - **Issue**: LangGraph expects pydantic models for state serialization, but we're using dataclasses
 
 ### Target State
+
 - **Data Models**: Migrate to pydantic v2 `BaseModel` classes
 - **State Management**: Use pydantic models for LangGraph state
 - **Serialization**: Proper JSON serialization/deserialization
@@ -25,6 +27,7 @@ The solution involves migrating from dataclasses to pydantic v2 BaseModel classe
 ### 1. Base Data Models Migration
 
 **Current Implementation:**
+
 ```python
 @dataclass
 class DelusionResult:
@@ -35,6 +38,7 @@ class DelusionResult:
 ```
 
 **New Implementation:**
+
 ```python
 from pydantic import BaseModel, Field, validator
 from typing import List, Dict, Any
@@ -53,6 +57,7 @@ class DelusionResult(BaseModel):
 ### 2. LangGraph State Model
 
 **Current Implementation:**
+
 ```python
 @dataclass
 class GhostbustersState:
@@ -62,6 +67,7 @@ class GhostbustersState:
 ```
 
 **New Implementation:**
+
 ```python
 class GhostbustersState(BaseModel):
     project_path: str
@@ -82,6 +88,7 @@ class GhostbustersState(BaseModel):
 ### 3. Agent Interface Updates
 
 **Base Expert Class:**
+
 ```python
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
@@ -100,6 +107,7 @@ class BaseExpert(ABC):
 ### 4. Validator Interface Updates
 
 **Base Validator Class:**
+
 ```python
 class ValidationResult(BaseModel):
     is_valid: bool
@@ -112,6 +120,7 @@ class ValidationResult(BaseModel):
 ### 5. Recovery Engine Interface Updates
 
 **Base Recovery Engine Class:**
+
 ```python
 class RecoveryResult(BaseModel):
     success: bool
@@ -154,16 +163,19 @@ BaseModel (pydantic)
 ## Error Handling
 
 ### 1. Pydantic Validation Errors
+
 - Catch `ValidationError` exceptions during model creation
 - Provide meaningful error messages for invalid data
 - Fallback to default values where appropriate
 
 ### 2. LangGraph Serialization Errors
+
 - Ensure all state objects are JSON serializable
 - Handle complex objects in metadata with custom serializers
 - Validate state transitions between workflow nodes
 
 ### 3. Import Compatibility
+
 - Remove any remaining pydantic v1 imports
 - Use direct pydantic imports instead of langchain_core.pydantic_v1
 - Handle deprecation warnings gracefully
@@ -171,21 +183,25 @@ BaseModel (pydantic)
 ## Testing Strategy
 
 ### 1. Unit Tests for Data Models
+
 - Test pydantic model validation
 - Test field constraints and validators
 - Test serialization/deserialization
 
 ### 2. Integration Tests for LangGraph
+
 - Test state transitions in workflow
 - Test serialization of complex state objects
 - Test error handling in workflow nodes
 
 ### 3. Compatibility Tests
+
 - Test with current LangChain version (0.3.27)
 - Test with current pydantic version (2.9.2)
 - Test import statements work correctly
 
 ### 4. Migration Tests
+
 - Test that existing functionality still works
 - Test that test suite passes with new models
 - Test performance impact of pydantic validation
@@ -193,26 +209,31 @@ BaseModel (pydantic)
 ## Migration Strategy
 
 ### Phase 1: Base Model Migration
+
 1. Update base data model classes to use pydantic BaseModel
 2. Add field validation and constraints
 3. Update import statements
 
 ### Phase 2: State Model Migration  
+
 1. Convert GhostbustersState to pydantic BaseModel
 2. Update LangGraph workflow initialization
 3. Test state serialization
 
 ### Phase 3: Interface Updates
+
 1. Update all agent, validator, and recovery engine interfaces
 2. Ensure return types match new pydantic models
 3. Update error handling
 
 ### Phase 4: Test Re-enablement
+
 1. Re-enable disabled test file
 2. Update test assertions for pydantic models
 3. Add new tests for pydantic-specific features
 
 ### Phase 5: Validation and Cleanup
+
 1. Run full test suite
 2. Fix any remaining compatibility issues
 3. Remove deprecated code and imports

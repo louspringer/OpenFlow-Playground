@@ -20,18 +20,21 @@ This implementation provides a complete **Change Data Capture (CDC) pipeline** f
 ## Key Components
 
 ### 1. Domain Model (`healthcare_cdc_domain_model.py`)
+
 - **HealthcareClaim**: Complete claim data structure
 - **CDCEvent**: Change data capture events (INSERT, MODIFY, REMOVE)
 - **InfrastructureComponents**: AWS and Snowflake resource configuration
 - **PipelineConfiguration**: Openflow pipeline setup
 
 ### 2. Infrastructure (`models/healthcare-cdc-infrastructure.yaml`)
+
 - **DynamoDB Table**: `InsuranceClaims` with stream enabled
 - **Kinesis Stream**: `InsuranceClaimsStream` for event capture
 - **EC2 Instance**: Automated data ingestion and monitoring
 - **IAM Roles**: Secure permissions for all components
 
 ### 3. Snowflake Schema (`sql/healthcare-cdc-schema.sql`)
+
 - **Destination Table**: `openflow_insclaim_dest_tbl` (synchronized)
 - **CDC Table**: `openflow_insclaim_cdc_tbl` (staging)
 - **Event History**: `openflow_insclaim_event_hist_tbl` (audit)
@@ -40,11 +43,13 @@ This implementation provides a complete **Change Data Capture (CDC) pipeline** f
 ## Features
 
 ### ✅ Real-time CDC Operations
+
 - **INSERT**: New claims automatically synchronized
 - **MODIFY**: Claim updates propagated instantly
 - **REMOVE**: Claim deletions reflected immediately
 
 ### ✅ Healthcare-Specific Data Model
+
 - Patient information (demographics, contact)
 - Provider details (NPI, location)
 - Payer information (insurance company)
@@ -52,11 +57,13 @@ This implementation provides a complete **Change Data Capture (CDC) pipeline** f
 - Status tracking (claim status, payment status)
 
 ### ✅ Automated Data Ingestion
+
 - Python script generates realistic healthcare claims
 - Continuous data flow simulation
 - Monitoring and logging capabilities
 
 ### ✅ Audit and Compliance
+
 - Complete event history tracking
 - Timestamp-based audit trail
 - Data lineage and traceability
@@ -112,6 +119,7 @@ journalctl -u healthcare-cdc-ingestion.service -f
 ## Data Flow
 
 ### 1. Claim Creation
+
 ```python
 # Sample claim data
 claim = {
@@ -128,11 +136,13 @@ claim = {
 ```
 
 ### 2. DynamoDB Stream Capture
+
 - Changes automatically captured
 - Stream events sent to Kinesis
 - Real-time event processing
 
 ### 3. Openflow Processing
+
 - **Parse JSON**: Extract event data
 - **Flat JSON**: Flatten nested structures
 - **Jolt Transform**: Standardize data format
@@ -141,6 +151,7 @@ claim = {
 - **SQL Merge**: Synchronize destination table
 
 ### 4. Snowflake Analytics
+
 ```sql
 -- Query recent claims
 SELECT * FROM v_healthcare_claims_summary 
@@ -159,11 +170,13 @@ GROUP BY claimStatus;
 ## Monitoring and Observability
 
 ### AWS CloudWatch Metrics
+
 - DynamoDB table metrics
 - Kinesis stream metrics
 - EC2 instance metrics
 
 ### Snowflake Query History
+
 ```sql
 -- Monitor query performance
 SELECT 
@@ -176,6 +189,7 @@ ORDER BY start_time DESC;
 ```
 
 ### Openflow Pipeline Monitoring
+
 - Queue depths and throughput
 - Processor status and errors
 - Data transformation logs
@@ -183,16 +197,19 @@ ORDER BY start_time DESC;
 ## Security Considerations
 
 ### ✅ Data Encryption
+
 - DynamoDB streams encrypted at rest
 - Kinesis streams with KMS encryption
 - Snowflake data encrypted in transit and at rest
 
 ### ✅ Access Control
+
 - IAM roles with least privilege
 - Snowflake role-based access control
 - Network security groups
 
 ### ✅ Audit Logging
+
 - Complete event history
 - Change tracking and traceability
 - Compliance-ready audit trail
@@ -200,16 +217,19 @@ ORDER BY start_time DESC;
 ## Performance Optimization
 
 ### DynamoDB
+
 - On-demand billing for variable workloads
 - Stream enabled for real-time CDC
 - Efficient key schema design
 
 ### Kinesis
+
 - Single shard for demo (scale as needed)
 - KMS encryption for security
 - Real-time stream processing
 
 ### Snowflake
+
 - Small warehouse for cost optimization
 - Auto-suspend/resume for efficiency
 - Optimized table structure
@@ -219,12 +239,14 @@ ORDER BY start_time DESC;
 ### Common Issues
 
 1. **DynamoDB Stream Not Capturing**
+
    ```bash
    # Check stream status
    aws dynamodb describe-table --table-name InsuranceClaims
    ```
 
 2. **Kinesis Stream Errors**
+
    ```bash
    # Verify stream exists
    aws kinesis describe-stream --stream-name InsuranceClaimsStream
@@ -236,6 +258,7 @@ ORDER BY start_time DESC;
    - Review error logs
 
 4. **Snowflake Connection Problems**
+
    ```sql
    -- Test connection
    SELECT CURRENT_USER(), CURRENT_ROLE(), CURRENT_DATABASE();
@@ -263,7 +286,8 @@ Any unauthorized reproduction, distribution, modification, or use is strictly pr
 ## Support
 
 For issues and questions:
+
 1. Check the troubleshooting section above
 2. Review CloudWatch logs and metrics
 3. Consult Snowflake documentation
-4. Open an issue in this repository 
+4. Open an issue in this repository

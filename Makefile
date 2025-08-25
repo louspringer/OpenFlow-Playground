@@ -553,11 +553,30 @@ security-scan: ## Run comprehensive security scan using established tools (best 
 	@echo "🔒 Remember: Use established tools, not custom scanners!"
 	@echo "📚 Best Practices: Follow OWASP guidelines and CWE references"
 
-security-check: ## Run quick security check
-	@echo "$(BLUE)🔒 Running quick security check...$(NC)"
-	@$(UV) run bandit -r src/ -f txt
-	@$(UV) run safety check
-	@echo "$(GREEN)✅ Quick security check completed$(NC)"
+security-check: ## Run comprehensive security check following project model workflow
+	@echo "$(BLUE)🔒 Running comprehensive security check (Project Model Workflow)...$(NC)"
+	@echo "📋 Step 1: Python security issues (Bandit)"
+	@$(UV) run bandit -r src/ --exclude tests/,.venv/,.mypy_cache/,__pycache__/ -f txt || true
+	@echo "📋 Step 2: Pattern-based security issues (Semgrep)"
+	@$(UV) run semgrep scan --config auto --json --output semgrep-report.json || true
+	@echo "📋 Step 3: Dependency vulnerabilities (Safety)"
+	@$(UV) run safety check || true
+	@echo "📋 Step 4: Secret detection (Detect-Secrets)"
+	@$(UV) run detect-secrets scan --baseline .secrets.baseline || true
+	@echo "📋 Step 5: Comprehensive secret scanning (Gitleaks)"
+	@if command -v gitleaks >/dev/null 2>&1; then \
+		gitleaks detect --source . --report-format json --report gitleaks-report.json || true; \
+	else \
+		echo "⚠️  Gitleaks not installed. Run 'make security-install' to install."; \
+	fi
+	@echo "📋 Step 6: Infrastructure and dependency scanning (Trivy)"
+	@if command -v trivy >/dev/null 2>&1; then \
+		trivy fs --format json --output trivy-report.json . || true; \
+	else \
+		echo "⚠️  Trivy not installed. Run 'make security-install' to install."; \
+	fi
+	@echo "$(GREEN)✅ Comprehensive security check completed following project model workflow$(NC)"
+	@echo "📊 Reports generated: semgrep-report.json, gitleaks-report.json, trivy-report.json"
 
 security-audit: ## Run security audit
 	@echo "$(BLUE)🔒 Running security audit...$(NC)"
@@ -625,11 +644,6 @@ security-install: ## Install required security tools using best practices
 security-clean: ## Clean up security scan reports
 	@echo "🧹 Cleaning up security scan reports..."
 	@rm -f gitleaks-report.json semgrep-report.json
-
-security-check: ## Run quick security check
-	@echo "🔒 Running Quick Security Check..."
-	@uv run bandit -r src/ scripts/ --exclude tests/,.venv/,.mypy_cache/,__pycache__/ || true
-	@echo "✅ Quick security check complete"
 
 quality-check: ## Run comprehensive code quality checks
 	@echo "🔍 Running Code Quality Checks..."

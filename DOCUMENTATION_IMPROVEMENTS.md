@@ -7,6 +7,7 @@ The `generate_code_from_extracted_model` method in `round_trip_model_system.py` 
 ## 📚 **Before vs After Documentation**
 
 ### **Before (Inadequate)**
+
 ```python
 def generate_code_from_extracted_model(
     self, extracted_model: dict[str, Any]
@@ -15,6 +16,7 @@ def generate_code_from_extracted_model(
 ```
 
 **Problems:**
+
 - ❌ One-line docstring that doesn't explain what the method actually does
 - ❌ No explanation of the sophisticated features
 - ❌ No usage examples
@@ -22,6 +24,7 @@ def generate_code_from_extracted_model(
 - ❌ Developers would have no idea what to expect
 
 ### **After (Comprehensive)**
+
 ```python
 def generate_code_from_extracted_model(
     self, extracted_model: dict[str, Any]
@@ -67,24 +70,28 @@ The method now has clear inline comments showing the 8-step process:
 4. **🔍 STEP 4**: Detect advanced typing needs (dataclass, pydantic, enum)
 5. **🏗️ STEP 5**: Generate all classes with methods and type hints
 6. **⚙️ STEP 6**: Generate standalone functions with type hints
-7. **🚀 STEP 7**: Generate main entry point and __main__ guard
+7. **🚀 STEP 7**: Generate main entry point and **main** guard
 8. **✨ STEP 8**: Clean up and format the final generated code
 
 ## 🎯 **Why This Documentation Matters**
 
 ### **1. Developer Understanding**
+
 - **Before**: Developers had no idea what the method generated
 - **After**: Clear understanding of skeleton code vs. full implementation
 
 ### **2. Usage Clarity**
+
 - **Before**: No examples of how to use the method
 - **After**: Clear understanding that it generates TODO-filled skeletons
 
 ### **3. Feature Discovery**
+
 - **Before**: Hidden sophisticated features (smart imports, type detection)
 - **After**: All features clearly documented and explained
 
 ### **4. Maintenance**
+
 - **Before**: Future developers would struggle to understand the logic
 - **After**: Clear step-by-step process with inline comments
 

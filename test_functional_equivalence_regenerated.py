@@ -168,10 +168,7 @@ class FunctionalEquivalenceTester:
                     len(methods) for methods in original_structure["classes"].values()
                 )
                 == sum(
-
-                        len(methods)
-                        for methods in generated_structure["classes"].values()
-
+                    len(methods) for methods in generated_structure["classes"].values()
                 ),
             }
         except Exception as e:

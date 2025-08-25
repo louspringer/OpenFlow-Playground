@@ -11,21 +11,25 @@ OP API Manager is a Python package that provides intelligent discovery, organiza
 ## 🚀 Features
 
 ### ✨ **Intelligent Discovery**
+
 - **Automatic Detection**: Scans 1Password vault for items that appear to be API keys
 - **Smart Filtering**: Uses multiple indicators (title, category, tags) to identify API keys
 - **Provider Recognition**: Automatically detects and categorizes API keys by provider (OpenAI, Anthropic, Google, AWS, etc.)
 
 ### 🔐 **Credential Organization**
+
 - **Automatic Pairing**: Pairs related credentials (e.g., AWS Access Key + Secret Access Key)
 - **Logical Grouping**: Organizes credentials into logical groups based on provider and type
 - **GUID Assignment**: Assigns unique identifiers to each discovered API key
 
 ### 💾 **Caching & Performance**
+
 - **Intelligent Caching**: Caches discovery results to avoid repeated 1Password API calls
 - **Configurable Expiry**: Set custom cache expiration times
 - **Force Refresh**: Option to bypass cache when needed
 
 ### 🖥️ **Rich CLI Interface**
+
 - **Beautiful Output**: Rich terminal output with tables, panels, and color coding
 - **Multiple Commands**: Discover, summary, cache management, provider breakdown
 - **Filtering Options**: Filter results by provider, status, and other criteria
@@ -33,16 +37,19 @@ OP API Manager is a Python package that provides intelligent discovery, organiza
 ## 📦 Installation
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - 1Password CLI (`op`) installed and authenticated
 - Access to 1Password vault
 
 ### Install from PyPI
+
 ```bash
 pip install op-api-manager
 ```
 
 ### Install from Source
+
 ```bash
 git clone https://github.com/openflow-dev/op-api-manager.git
 cd op-api-manager
@@ -52,6 +59,7 @@ pip install -e .
 ## 🔧 Setup
 
 ### 1. Install 1Password CLI
+
 ```bash
 # macOS
 brew install --cask 1password-cli
@@ -66,6 +74,7 @@ sudo apt update && sudo apt install 1password-cli
 ```
 
 ### 2. Authenticate with 1Password
+
 ```bash
 # Sign in to your account
 op account add
@@ -78,6 +87,7 @@ op signin --account <account-name>
 ```
 
 ### 3. Verify Installation
+
 ```bash
 # Check if op-api-manager is available
 op-api-manager --help
@@ -89,6 +99,7 @@ op item list --limit 1
 ## 🎯 Usage
 
 ### Basic Discovery
+
 ```bash
 # Discover all API keys
 op-api-manager discover
@@ -101,6 +112,7 @@ op-api-manager discover --output results.json
 ```
 
 ### View Summary
+
 ```bash
 # Show all discovered API keys
 op-api-manager summary
@@ -113,6 +125,7 @@ op-api-manager summary --status working
 ```
 
 ### Cache Management
+
 ```bash
 # Check cache status
 op-api-manager cache
@@ -125,6 +138,7 @@ op-api-manager cache --cache-file /path/to/cache.json
 ```
 
 ### Provider Information
+
 ```bash
 # Show provider breakdown
 op-api-manager providers
@@ -150,6 +164,7 @@ OP API Manager automatically detects and categorizes API keys from these provide
 ## 📊 Output Examples
 
 ### Discovery Results
+
 ```
 ================================================================================
 API Key Discovery Results
@@ -176,6 +191,7 @@ API Key Discovery Results
 ```
 
 ### Credential Pairs
+
 ```
 ┌─────────────────┬──────────────────────────────┬──────────────────────────────┬─────────────────────────────────────┐
 │ Type            │ Primary                       │ Secondary                    │ Description                          │
@@ -189,6 +205,7 @@ API Key Discovery Results
 ## ⚙️ Configuration
 
 ### Cache Configuration
+
 ```python
 from op_api_manager import OnePasswordAPIKeyManager, CacheConfig
 
@@ -204,6 +221,7 @@ manager = OnePasswordAPIKeyManager(cache_config)
 ```
 
 ### Environment Variables
+
 ```bash
 # Custom cache file location
 export OP_API_CACHE_FILE="/path/to/cache.json"
@@ -218,6 +236,7 @@ export OP_API_CACHE_ENABLED=false
 ## 🧪 Testing
 
 ### Run Tests
+
 ```bash
 # Install development dependencies
 pip install -e ".[dev]"
@@ -234,6 +253,7 @@ pytest -m "integration"
 ```
 
 ### Test Categories
+
 - **Unit Tests**: Individual component testing
 - **Integration Tests**: End-to-end workflow testing
 - **CLI Tests**: Command-line interface testing
@@ -241,6 +261,7 @@ pytest -m "integration"
 ## 🔧 Development
 
 ### Project Structure
+
 ```
 op-api-manager/
 ├── src/op_api_manager/
@@ -255,6 +276,7 @@ op-api-manager/
 ```
 
 ### Adding New Providers
+
 ```python
 # In models.py, add new provider type
 class ProviderType(str, Enum):
@@ -269,6 +291,7 @@ def _is_api_key_item(self, item: Dict[str, Any]) -> bool:
 ```
 
 ### Contributing
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -283,6 +306,7 @@ def _is_api_key_item(self, item: Dict[str, Any]) -> bool:
 The main class for managing API key discovery and organization.
 
 #### Methods
+
 - `discover_api_keys(force_refresh=False)`: Discover all API keys
 - `get_api_keys_by_provider(provider)`: Get keys for specific provider
 - `get_working_api_keys()`: Get all working API keys
@@ -292,26 +316,32 @@ The main class for managing API key discovery and organization.
 ### Models
 
 #### APIKeyItem
+
 Represents a discovered API key with metadata.
 
 #### CredentialPair
+
 Represents a pair of related credentials.
 
 #### DiscoveryResult
+
 Contains the complete result of a discovery operation.
 
 #### CacheConfig
+
 Configuration for caching operations.
 
 ## 🚨 Security Considerations
 
 ### Credential Safety
+
 - **No Credential Storage**: OP API Manager never stores actual credential values
 - **Metadata Only**: Only stores metadata (titles, IDs, categories) from 1Password
 - **Secure Caching**: Cache files contain no sensitive information
 - **1Password Integration**: Leverages 1Password's security for credential storage
 
 ### Best Practices
+
 - **Regular Rotation**: Regularly rotate API keys and credentials
 - **Access Control**: Limit access to 1Password vault
 - **Audit Logging**: Monitor access to sensitive credentials
@@ -320,11 +350,13 @@ Configuration for caching operations.
 ## 🤝 Support
 
 ### Getting Help
+
 - **Documentation**: [https://op-api-manager.readthedocs.io](https://op-api-manager.readthedocs.io)
 - **Issues**: [GitHub Issues](https://github.com/openflow-dev/op-api-manager/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/openflow-dev/op-api-manager/discussions)
 
 ### Common Issues
+
 - **Authentication Errors**: Ensure 1Password CLI is properly authenticated
 - **Permission Denied**: Check 1Password vault access permissions
 - **Cache Issues**: Use `--force-refresh` to bypass cache problems
@@ -343,6 +375,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🚀 Roadmap
 
 ### Upcoming Features
+
 - **Credential Testing**: Test API keys for validity
 - **Cost Tracking**: Track API usage and costs
 - **Integration APIs**: Python library for programmatic use
@@ -350,6 +383,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Multi-Vault Support**: Support for multiple 1Password vaults
 
 ### Version History
+
 - **v0.1.0**: Initial release with basic discovery and CLI
 - **v0.2.0**: Enhanced credential pairing and caching
 - **v0.3.0**: Provider-specific optimizations and testing
@@ -359,4 +393,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Made with ❤️ by the OpenFlow Team**
 
 For more information, visit [https://github.com/openflow-dev/op-api-manager](https://github.com/openflow-dev/op-api-manager)
-

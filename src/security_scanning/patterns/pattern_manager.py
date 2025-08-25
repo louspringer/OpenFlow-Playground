@@ -172,9 +172,7 @@ class PatternManager:
 
             # Remove duplicates and sort by severity
             unique_findings = self._deduplicate_findings(findings)
-            sorted_findings = self._sort_findings_by_severity(unique_findings)
-
-            return sorted_findings
+            return self._sort_findings_by_severity(unique_findings)
 
         except Exception as e:
             logger.warning(f"Error scanning {file_path}: {e}")
@@ -283,13 +281,12 @@ class PatternManager:
                 return True
 
         # Check file path for test/example indicators
-        if any(
-            indicator in str(file_path).lower()
-            for indicator in ["test", "example", "demo", "template", "sample"]
-        ):
-            return True
-
-        return False
+        return bool(
+            any(
+                indicator in str(file_path).lower()
+                for indicator in ["test", "example", "demo", "template", "sample"]
+            )
+        )
 
     def _deduplicate_findings(
         self, findings: list[dict[str, Any]]

@@ -6,9 +6,9 @@ API keys stored in 1Password.
 """
 
 import json
+import sys
 from pathlib import Path
 from typing import Optional
-import sys
 
 import click
 from rich.console import Console
@@ -217,9 +217,7 @@ def test(
         console.print("[bold green]🧪 Starting API key testing...[/bold green]")
 
         if dry_run:
-            console.print(
-                "[yellow]🔍 DRY RUN MODE - No tests will be executed[/yellow]"
-            )
+            console.print("[yellow]🔍 DRY RUN MODE - No tests will be executed[/yellow]")
 
         if provider != "all":
             console.print(f"[blue]🎯 Provider filter: {provider}[/blue]")
@@ -255,9 +253,7 @@ def test(
                 filtered_keys = manager._apply_test_filters(
                     cached_keys, provider, status, limit, force
                 )
-                console.print(
-                    f"[green]📊 Would test {len(filtered_keys)} items[/green]"
-                )
+                console.print(f"[green]📊 Would test {len(filtered_keys)} items[/green]")
                 if provider != "all":
                     provider_count = len(
                         [k for k in filtered_keys if k.get("provider") == provider]
@@ -402,7 +398,9 @@ def working(
 
         # Display or export results
         if export == "table":
-            _display_working_apis(working_credentials, provider if provider != "all" else None)
+            _display_working_apis(
+                working_credentials, provider if provider != "all" else None
+            )
         else:
             _export_working_apis(working_credentials, export, output, verbose)
 
@@ -848,9 +846,7 @@ def restore(backup_file: str, cache_file: Optional[str], force: bool, verify: bo
             )
 
         if verify:
-            console.print(
-                "[blue]🔍 Verification will be performed after restore[/blue]"
-            )
+            console.print("[blue]🔍 Verification will be performed after restore[/blue]")
 
         console.print()
 
@@ -927,28 +923,36 @@ def archive(item_id: str, reason: str, cache_file: Optional[str]):
 @main.command()
 @click.option("--title", required=True, help="Human-readable title for the API key")
 @click.option("--api-key", required=True, help="The actual API key value")
-@click.option("--provider", default="unknown", help="Provider type (openai, anthropic, google, aws, azure, unknown)")
-@click.option("--status", default="discovered", help="Initial status (discovered, tested, working, failed)")
+@click.option(
+    "--provider",
+    default="unknown",
+    help="Provider type (openai, anthropic, google, aws, azure, unknown)",
+)
+@click.option(
+    "--status",
+    default="discovered",
+    help="Initial status (discovered, tested, working, failed)",
+)
 def add_manual_key(title: str, api_key: str, provider: str, status: str):
     """
     Manually add an API key for testing when 1Password is unavailable.
     """
     try:
         from .core import OnePasswordAPIKeyManager
-        
+
         # Initialize manager
         manager = OnePasswordAPIKeyManager()
-        
+
         # Add the manual API key
         success = manager.add_manual_api_key(title, api_key, provider, status)
-        
+
         if success:
             console.print(f"[green]✅ Successfully added API key: {title}[/green]")
             console.print(f"[blue]Provider: {provider}[/blue]")
             console.print(f"[blue]Status: {status}[/blue]")
         else:
             console.print(f"[red]❌ Failed to add API key: {title}[/red]")
-            
+
     except Exception as e:
         console.print(f"[red]❌ Error: {e}[/red]")
         sys.exit(1)
@@ -1423,7 +1427,9 @@ def _display_health_status(health_status):
     health_icon = (
         "✅"
         if overall_health == "healthy"
-        else "❌" if overall_health == "unhealthy" else "⚠️"
+        else "❌"
+        if overall_health == "unhealthy"
+        else "⚠️"
     )
     console.print(
         f"[bold {overall_health}]Overall Health: {health_icon} {overall_health.title()}[/bold {overall_health}]"

@@ -360,7 +360,7 @@ curl -X POST https://us-central1-ghostbusters-project.cloudfunctions.net/ghostbu
 
 ### **✅ Dashboard Access:**
 
-- **URL**: https://ghostbusters-dashboard-xxxxx-uc.a.run.app
+- **URL**: <https://ghostbusters-dashboard-xxxxx-uc.a.run.app>
 - **Authentication**: Firebase Auth integration
 - **Features**: Real-time analytics, progress tracking, user management
 

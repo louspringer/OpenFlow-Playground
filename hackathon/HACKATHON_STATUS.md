@@ -13,6 +13,7 @@
 ## 🏆 **Hackathon Progress**
 
 ### **1. GKE Turns 10 Hackathon** 🚀
+
 - **Status**: 🟡 **Planning Phase**
 - **Dates**: August 18 – September 22, 2025
 - **Deadline**: September 22, 2025
@@ -20,6 +21,7 @@
 - **Focus**: Building next-generation microservices with AI agents
 
 #### **Progress Tracking**
+
 - [ ] **Account Setup**: GKE cluster configuration
 - [ ] **Component Mapping**: Validate all relevant domains
 - [ ] **Development**: AI agent microservices implementation
@@ -29,6 +31,7 @@
 - [ ] **Submission**: Final hackathon submission
 
 #### **Component Status**
+
 | Component | Status | Notes |
 |-----------|--------|-------|
 | `ghostbusters` | ✅ Ready | Multi-agent orchestration system |
@@ -39,6 +42,7 @@
 | `streamlit_demo_app` | ✅ Ready | User interface |
 
 #### **Next Steps**
+
 1. **Week 1-2**: GKE cluster setup and configuration
 2. **Week 3-4**: Microservices containerization
 3. **Week 5-6**: AI agent integration testing
@@ -47,6 +51,7 @@
 ---
 
 ### **2. TiDB AgentX Hackathon 2025** 🔥
+
 - **Status**: 🔴 **High Priority - Immediate Action Required**
 - **Dates**: August 1 – September 15, 2025
 - **Deadline**: September 15, 2025
@@ -54,6 +59,7 @@
 - **Focus**: Forging agentic AI for real-world impact using TiDB Serverless
 
 #### **Progress Tracking**
+
 - [ ] **Account Setup**: TiDB Serverless account and setup
 - [ ] **Component Mapping**: Validate all relevant domains
 - [ ] **Development**: TiDB integration and vector search
@@ -63,6 +69,7 @@
 - [ ] **Submission**: Final hackathon submission
 
 #### **Component Status**
+
 | Component | Status | Notes |
 |-----------|--------|-------|
 | `ghostbusters` | ✅ Ready | Multi-agent orchestration |
@@ -73,12 +80,14 @@
 | `tidb_integration` | ❌ **NEEDS DEVELOPMENT** | TiDB Serverless integration |
 
 #### **Critical Dependencies**
+
 - **TiDB Serverless Account**: Need to set up immediately
 - **Vector Search Implementation**: Core requirement for submission
 - **Data Migration Scripts**: For existing data integration
 - **Performance Testing**: Ensure sub-second response times
 
 #### **Next Steps**
+
 1. **This Week**: TiDB Serverless account setup
 2. **Next Week**: Vector search implementation
 3. **Week 3**: Multi-agent workflow integration
@@ -89,6 +98,7 @@
 ---
 
 ### **3. Code with Kiro Hackathon** 💻
+
 - **Status**: 🟡 **Planning Phase**
 - **Dates**: Deadline: September 15, 2025
 - **Deadline**: September 15, 2025
@@ -96,6 +106,7 @@
 - **Focus**: Exploring Kiro AI-powered IDE for spec-driven development
 
 #### **Progress Tracking**
+
 - [ ] **Account Setup**: Kiro IDE access and API exploration
 - [ ] **Component Mapping**: Validate all relevant domains
 - [ ] **Development**: Kiro IDE integration implementation
@@ -105,6 +116,7 @@
 - [ ] **Submission**: Final hackathon submission
 
 #### **Component Status**
+
 | Component | Status | Notes |
 |-----------|--------|-------|
 | `model_driven_projection` | ✅ Ready | Spec-driven development |
@@ -115,12 +127,14 @@
 | `kiro_integration` | 🟡 **ACCESS OBTAINED** | Kiro IDE access secured - ready for development |
 
 #### **Critical Dependencies**
+
 - **Kiro IDE Access**: ✅ **COMPLETE** - Access obtained and ready
 - **Workflow Automation**: Develop Kiro-specific workflows
 - **User Experience**: Optimize for Kiro IDE users
 - **Integration Testing**: Ensure seamless Kiro integration
 
 #### **Next Steps**
+
 1. **Week 1**: ✅ **COMPLETE** - Kiro IDE access obtained
 2. **Week 2**: Integration development and API exploration
 3. **Week 3**: Workflow automation
@@ -133,6 +147,7 @@
 ## 📊 **Resource Allocation**
 
 ### **Development Team**
+
 | Developer | Primary Hackathon | Secondary Hackathon | Notes |
 |-----------|-------------------|---------------------|-------|
 | **TBD** | TiDB AgentX | GKE Turns 10 | High priority - immediate action |
@@ -140,6 +155,7 @@
 | **TBD** | GKE Turns 10 | Code with Kiro | Lower priority - later deadline |
 
 ### **Infrastructure Requirements**
+
 | Resource | Status | Priority | Notes |
 |----------|--------|----------|-------|
 | **TiDB Serverless** | ❌ Not Set Up | 🔴 **HIGH** | Required for TiDB hackathon |
@@ -152,6 +168,7 @@
 ## 🎯 **Success Metrics**
 
 ### **Technical Metrics**
+
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
 | **Component Integration** | 100% | 0% | ❌ Not Started |
@@ -160,6 +177,7 @@
 | **Reliability** | 99.9% uptime | N/A | ❌ Not Tested |
 
 ### **Hackathon Metrics**
+
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
 | **Submissions** | 3 | 0 | ❌ Not Started |
@@ -172,18 +190,21 @@
 ## 🚨 **Immediate Action Items**
 
 ### **This Week (Critical)**
+
 1. **Set up TiDB Serverless account** - Required for TiDB hackathon
 2. **Obtain Kiro IDE access** - ✅ **COMPLETE** - Ready for development
 3. **Configure GKE cluster** - Required for GKE hackathon
 4. **Assign development team** - Ensure coverage across all hackathons
 
 ### **Next Week (High Priority)**
+
 1. **Begin TiDB integration development** - Core requirement
 2. **Start Kiro IDE exploration** - Understand capabilities
 3. **Plan GKE deployment strategy** - Architecture design
 4. **Create development timeline** - Detailed milestones
 
 ### **Ongoing (Medium Priority)**
+
 1. **Component validation** - Ensure all mapped components work
 2. **Integration testing** - Test component interactions
 3. **Documentation preparation** - Start submission materials
@@ -194,6 +215,7 @@
 ## 📈 **Progress Summary**
 
 ### **Overall Progress**
+
 - **Planning**: 100% Complete ✅
 - **Setup**: 0% Complete ❌
 - **Development**: 0% Complete ❌
@@ -202,11 +224,13 @@
 - **Submission**: 0% Complete ❌
 
 ### **Risk Assessment**
+
 - **High Risk**: TiDB integration complexity and timeline
 - **Medium Risk**: Kiro IDE integration and GKE deployment
 - **Low Risk**: Component availability and quality
 
 ### **Next Milestone**
+
 **TiDB Serverless Account Setup** - Target: End of this week
 
 ---

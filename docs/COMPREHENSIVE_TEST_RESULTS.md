@@ -162,6 +162,7 @@ $ python -m pytest tests/test_file_existence.py -v
    ```
 
 4. **Add Missing Files**
+
    ```bash
    # Create missing files:
    touch requirements.txt

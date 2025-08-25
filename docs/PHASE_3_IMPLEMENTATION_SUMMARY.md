@@ -420,8 +420,8 @@ curl -X POST https://us-central1-ghostbusters-project.cloudfunctions.net/ghostbu
 
 ### **✅ Dashboard Access:**
 
-- **Basic Dashboard**: https://ghostbusters-dashboard-xxxxx-uc.a.run.app
-- **Advanced Dashboard**: https://ghostbusters-advanced-dashboard-xxxxx-uc.a.run.app
+- **Basic Dashboard**: <https://ghostbusters-dashboard-xxxxx-uc.a.run.app>
+- **Advanced Dashboard**: <https://ghostbusters-advanced-dashboard-xxxxx-uc.a.run.app>
 - **Authentication**: Firebase Auth integration
 - **Features**: ML insights, custom agents, enterprise analytics
 

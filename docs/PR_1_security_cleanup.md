@@ -108,14 +108,14 @@ pie title Security Risk Reduction
 
 ## 🔄 Migration Guide
 
-### For Existing Deployments:
+### For Existing Deployments
 
 1. **Backup** current configuration
 2. **Run** `./deploy.sh setup`
 3. **Enter** your Snowflake credentials
 4. **Deploy** with new secure configuration
 
-### For New Deployments:
+### For New Deployments
 
 1. **Clone** repository
 2. **Run** `./deploy.sh setup`

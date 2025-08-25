@@ -55,6 +55,7 @@ ALTER USER openflow_user SET DEFAULT_SECONDARY_ROLES = ('ALL');
 ```
 
 **The wizard will ask for:**
+
 - Your Snowflake account URL
 - Your organization and account identifiers
 - All OAuth credentials from Snowflake
@@ -82,11 +83,13 @@ ALTER USER openflow_user SET DEFAULT_SECONDARY_ROLES = ('ALL');
 ## Step 6: Verify Deployment (5 minutes)
 
 1. **Check deployment status:**
+
    ```bash
    ./deploy.sh status
    ```
 
 2. **Monitor resources:**
+
    ```bash
    ./monitor.sh
    ```
@@ -98,15 +101,18 @@ ALTER USER openflow_user SET DEFAULT_SECONDARY_ROLES = ('ALL');
 ### Common Issues
 
 **Setup wizard fails:**
+
 - Ensure Python 3.6+ is installed
 - Check that you have all required Snowflake values
 
 **Deployment fails:**
+
 - Run `./deploy.sh validate` to check configuration
 - Ensure AWS CLI is configured with proper permissions
 - Check that all Snowflake values are correct
 
 **Configuration issues:**
+
 - Run `./deploy.sh setup` to reconfigure
 - Contact Snowflake support if you're missing values
 
@@ -168,4 +174,4 @@ The deployment creates a complete Openflow environment that connects your AWS in
 
 ---
 
-**Remember:** This setup wizard makes deployment easy and secure. No more manual configuration files! 
+**Remember:** This setup wizard makes deployment easy and secure. No more manual configuration files!

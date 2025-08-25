@@ -256,25 +256,17 @@ class RoundTripModelSystem:
                     continue
                 elif "pytest" in imp:
                     has_pytest_decorators = any(
-
-                            "pytest" in method.get("decorators", [])
-                            for class_info in extracted_model.get(
-                                "components", {}
-                            ).values()
-                            for method in class_info.get("methods", [])
-
+                        "pytest" in method.get("decorators", [])
+                        for class_info in extracted_model.get("components", {}).values()
+                        for method in class_info.get("methods", [])
                     )
                     if has_pytest_decorators:
                         essential_imports.append(imp)
                 elif "Mock" in imp or "AsyncMock" in imp:
                     if any(
-
-                            "Mock" in str(method) or "AsyncMock" in str(method)
-                            for class_info in extracted_model.get(
-                                "components", {}
-                            ).values()
-                            for method in class_info.get("methods", [])
-
+                        "Mock" in str(method) or "AsyncMock" in str(method)
+                        for class_info in extracted_model.get("components", {}).values()
+                        for method in class_info.get("methods", [])
                     ):
                         essential_imports.append(imp)
                 else:

@@ -1,9 +1,11 @@
 # OP API Manager Domain Model
 
 ## 🎯 **Domain Purpose**
+
 **Intelligent API key discovery and management for 1Password, completely separate from multi-agent systems.**
 
 The op-api-manager serves as a **convenience function** for:
+
 1. **Retrieving** API keys from 1Password
 2. **Testing** API endpoints for functionality
 3. **Persisting** working keys to environment files
@@ -12,12 +14,15 @@ The op-api-manager serves as a **convenience function** for:
 ## 🏗️ **Architecture Principles**
 
 ### **Separation of Concerns**
+
 - **op-api-manager**: Standalone tool for API key management
 - **Multi-agent systems**: Use environment variables, never call 1Password directly
 - **No tight coupling**: op-api-manager is a utility, not a dependency
 
 ### **CRUD Operations Coverage**
+
 Every API key goes through a complete lifecycle with full CRUD coverage:
+
 - **Create**: Discovery and initial creation in cache
 - **Read**: Retrieval, listing, and status checking
 - **Update**: Status changes, testing results, metadata updates
@@ -26,6 +31,7 @@ Every API key goes through a complete lifecycle with full CRUD coverage:
 ## 📋 **Core Use Cases**
 
 ### **1. Discovery & Creation (CREATE)**
+
 ```mermaid
 graph TD
     A[1Password Vault] --> B[Scan for API Keys]
@@ -36,15 +42,18 @@ graph TD
 ```
 
 **Commands:**
+
 - `discover` - Initial discovery and creation
 - `refresh` - Force re-discovery
 
 **Use Cases:**
+
 - Initial setup and onboarding
 - Adding new API keys to 1Password
 - Periodic refresh of available keys
 
 ### **2. Retrieval & Reading (READ)**
+
 ```mermaid
 graph TD
     A[Cache] --> B[List by Status]
@@ -54,6 +63,7 @@ graph TD
 ```
 
 **Commands:**
+
 - `summary` - Overview of all keys
 - `working` - Show working keys only
 - `providers` - Breakdown by provider
@@ -61,12 +71,14 @@ graph TD
 - `cache` - Cache status and information
 
 **Use Cases:**
+
 - Inventory management
 - Status reporting
 - Provider analysis
 - Debugging and troubleshooting
 
 ### **3. Testing & Validation (UPDATE)**
+
 ```mermaid
 graph TD
     A[DISCOVERED] --> B[Test API Endpoint]
@@ -79,16 +91,19 @@ graph TD
 ```
 
 **Commands:**
+
 - `test` - Test all discovered APIs
 - `working --force-test` - Re-test all APIs
 
 **Use Cases:**
+
 - Validation of API functionality
 - Quality assurance
 - Troubleshooting failed APIs
 - Performance monitoring
 
 ### **4. Lifecycle Management (UPDATE)**
+
 ```mermaid
 graph TD
     A[WORKING] --> B[Monitor Usage]
@@ -102,15 +117,18 @@ graph TD
 ```
 
 **Commands:**
+
 - `archive` - Archive failed/unused keys
 - Status transitions in cache
 
 **Use Cases:**
+
 - Key rotation and expiration
 - Cleanup of unused keys
 - Compliance and security
 
 ### **5. Environment Integration (CREATE/UPDATE)**
+
 ```mermaid
 graph TD
     A[Working Keys] --> B[Extract from Cache]
@@ -122,10 +140,12 @@ graph TD
 ```
 
 **Commands:**
+
 - `env-update` - Update .env file with working keys
 - `env-verify` - Verify .env file integrity
 
 **Use Cases:**
+
 - Multi-agent system setup
 - Development environment configuration
 - CI/CD environment setup
@@ -134,6 +154,7 @@ graph TD
 ## 🔧 **Command Structure & Organization**
 
 ### **Discovery & Creation Commands**
+
 ```bash
 # Core discovery
 op-api-manager discover          # Initial discovery
@@ -142,6 +163,7 @@ op-api-manager cache             # Cache status
 ```
 
 ### **Read & Report Commands**
+
 ```bash
 # Information display
 op-api-manager summary           # Overview
@@ -151,6 +173,7 @@ op-api-manager ids               # Full identifiers
 ```
 
 ### **Testing & Validation Commands**
+
 ```bash
 # API testing
 op-api-manager test              # Test all APIs
@@ -158,6 +181,7 @@ op-api-manager working --force-test  # Re-test all
 ```
 
 ### **Lifecycle Management Commands**
+
 ```bash
 # Status management
 op-api-manager archive           # Archive keys
@@ -165,6 +189,7 @@ op-api-manager status            # Status transitions
 ```
 
 ### **Environment Integration Commands**
+
 ```bash
 # Environment management
 op-api-manager env-update        # Update .env file
@@ -175,6 +200,7 @@ op-api-manager env-backup        # Backup .env file
 ## 🎯 **Use Case Scenarios**
 
 ### **Scenario 1: Initial Setup**
+
 ```bash
 # 1. Discover all available API keys
 op-api-manager discover --verbose
@@ -190,6 +216,7 @@ op-api-manager env-update --backup --verify
 ```
 
 ### **Scenario 2: Regular Maintenance**
+
 ```bash
 # 1. Check cache status
 op-api-manager cache
@@ -205,6 +232,7 @@ op-api-manager env-update
 ```
 
 ### **Scenario 3: Troubleshooting**
+
 ```bash
 # 1. Check what's available
 op-api-manager summary --provider aws
@@ -220,6 +248,7 @@ op-api-manager archive <item_id> --reason "Consistent failures"
 ```
 
 ### **Scenario 4: Multi-Agent System Setup**
+
 ```bash
 # 1. Ensure working keys are cached
 op-api-manager working
@@ -236,18 +265,21 @@ op-api-manager env-verify
 ## 🔒 **Security & Privacy**
 
 ### **Credential Handling**
+
 - **Never store actual credentials** in cache files
 - **Cache only metadata** (ID, title, status, provider)
 - **Retrieve credentials on-demand** from 1Password
 - **Immediate cleanup** after use
 
 ### **Access Control**
+
 - **1Password authentication required** for all operations
 - **Session management** with automatic timeout
 - **Audit logging** of all operations
 - **No credential persistence** in plain text
 
 ### **Environment File Security**
+
 - **Backup existing files** before modification
 - **Verify file integrity** after updates
 - **Secure file permissions** on .env files
@@ -256,6 +288,7 @@ op-api-manager env-verify
 ## 📊 **Data Flow & State Management**
 
 ### **Cache Structure**
+
 ```json
 {
   "api_keys": [
@@ -276,6 +309,7 @@ op-api-manager env-verify
 ```
 
 ### **Status Transitions**
+
 ```
 DISCOVERED → TESTED → WORKING → ARCHIVED
      ↓           ↓        ↓
@@ -283,6 +317,7 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 ```
 
 ### **Provider Detection**
+
 - **AWS**: Access key + Secret key pairs
 - **Azure**: API keys, connection strings
 - **OpenAI**: API keys
@@ -293,18 +328,21 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 ## 🧪 **Testing Strategy**
 
 ### **Unit Tests**
+
 - **Command parsing** and validation
 - **Cache operations** and persistence
 - **Provider detection** logic
 - **Status management** and transitions
 
 ### **Integration Tests**
+
 - **1Password CLI integration**
 - **API endpoint testing**
 - **Environment file operations**
 - **Cache consistency**
 
 ### **End-to-End Tests**
+
 - **Complete workflow testing**
 - **Error handling** and recovery
 - **Performance testing** with large vaults
@@ -313,6 +351,7 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 ## 🚀 **Future Enhancements**
 
 ### **Planned Features**
+
 - **Batch operations** for multiple keys
 - **Scheduled testing** and monitoring
 - **Webhook integration** for status changes
@@ -320,6 +359,7 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 - **Export formats** (JSON, CSV, YAML)
 
 ### **Integration Opportunities**
+
 - **CI/CD pipelines** for automated testing
 - **Monitoring systems** for API health
 - **Security tools** for credential scanning
@@ -328,6 +368,7 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 ## 📝 **Implementation Notes**
 
 ### **Dependencies**
+
 - **1Password CLI** (`op`) for vault access
 - **Click** for CLI framework
 - **Rich** for terminal output
@@ -335,12 +376,14 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 - **Python-dotenv** for environment file handling
 
 ### **Error Handling**
+
 - **Graceful degradation** when 1Password unavailable
 - **Comprehensive logging** for debugging
 - **User-friendly error messages**
 - **Recovery mechanisms** for common failures
 
 ### **Performance Considerations**
+
 - **Efficient caching** to minimize 1Password calls
 - **Batch operations** where possible
 - **Async operations** for API testing
@@ -349,18 +392,21 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 ## 🎯 **Success Metrics**
 
 ### **Functional Metrics**
+
 - **Discovery accuracy**: % of actual API keys found
 - **Testing reliability**: % of tests that complete successfully
 - **Cache consistency**: % of cache operations that succeed
 - **Environment integration**: % of successful .env updates
 
 ### **User Experience Metrics**
+
 - **Command completion time**: Average time per operation
 - **Error rate**: % of commands that fail
 - **User satisfaction**: Ease of use and reliability
 - **Adoption rate**: Usage across development teams
 
 ### **Security Metrics**
+
 - **Credential exposure**: Zero instances of credential logging
 - **Access control**: Proper authentication enforcement
 - **Audit coverage**: Complete operation logging

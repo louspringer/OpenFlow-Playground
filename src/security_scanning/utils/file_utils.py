@@ -68,7 +68,6 @@ class FileUtils:
             "desktop.ini",
             # Specific cache files
             "api_discovery_cache.json",
-            "*.cache",
             "cache.json",
             "maven-metadata.xml",
             "maven-metadata-local.xml",
@@ -142,15 +141,10 @@ class FileUtils:
             "*.bat",
             "*.cmd",
             "*.vbs",
-            "*.js",
-            "*.py",
-            "*.rb",
             "*.pl",
             # Infrastructure files
             "*.tf",
             "*.hcl",
-            "*.yaml",
-            "*.yml",
             "Dockerfile*",
             "docker-compose*.yml",
             "*.dockerfile",
@@ -207,10 +201,7 @@ class FileUtils:
                 return False
 
             # Check if file is text-based
-            if not self._is_text_file(file_path):
-                return False
-
-            return True
+            return self._is_text_file(file_path)
 
         except Exception as e:
             logger.warning(f"Error checking file {file_path}: {e}")
@@ -230,10 +221,7 @@ class FileUtils:
         parent_dirs = [p.name.lower() for p in file_path.parents]
 
         for pattern in self.default_exclusions:
-            if pattern.startswith("*."):
-                if file_name.endswith(pattern[1:]):
-                    return True
-            elif pattern.startswith("*"):
+            if pattern.startswith(("*.", "*")):
                 if file_name.endswith(pattern[1:]):
                     return True
             elif pattern in file_name or pattern in parent_dirs:
@@ -254,10 +242,7 @@ class FileUtils:
         file_name = file_path.name.lower()
 
         for pattern in self.default_inclusions:
-            if pattern.startswith("*."):
-                if file_name.endswith(pattern[1:]):
-                    return True
-            elif pattern.startswith("*"):
+            if pattern.startswith(("*.", "*")):
                 if file_name.endswith(pattern[1:]):
                     return True
             elif pattern in file_name:
@@ -439,10 +424,7 @@ class FileUtils:
             parent_dirs = [p.name.lower() for p in file_path.parents]
 
             for pattern in exclusions:
-                if pattern.startswith("*."):
-                    if file_name.endswith(pattern[1:]):
-                        return False
-                elif pattern.startswith("*"):
+                if pattern.startswith(("*.", "*")):
                     if file_name.endswith(pattern[1:]):
                         return False
                 elif pattern in file_name or pattern in parent_dirs:
@@ -450,10 +432,7 @@ class FileUtils:
 
             # Check inclusions
             for pattern in inclusions:
-                if pattern.startswith("*."):
-                    if file_name.endswith(pattern[1:]):
-                        return True
-                elif pattern.startswith("*"):
+                if pattern.startswith(("*.", "*")):
                     if file_name.endswith(pattern[1:]):
                         return True
                 elif pattern in file_name:

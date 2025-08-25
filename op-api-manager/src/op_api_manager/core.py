@@ -8,18 +8,18 @@ API key discovery, organization, and management.
 import json
 import os
 import subprocess
+import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional
-import uuid
 
 from .models import (
     APIKeyItem,
+    APIKeyStatus,
     CacheConfig,
     CredentialPair,
     DiscoveryResult,
     ProviderType,
-    APIKeyStatus,
 )
 from .provider_detector import ProviderDetector
 
@@ -319,13 +319,27 @@ class OnePasswordAPIKeyManager:
 
         for key in self._cache["api_keys"]:
             # Handle both dict and APIKeyItem objects
-            if hasattr(key, 'status'):
+            if hasattr(key, "status"):
                 # It's an APIKeyItem object
-                status = key.status.value if hasattr(key.status, 'value') else str(key.status)
+                status = (
+                    key.status.value
+                    if hasattr(key.status, "value")
+                    else str(key.status)
+                )
                 title = key.title
                 key_id = key.id
-                detected_provider = key.detected_provider.value if hasattr(key.detected_provider, 'value') else str(key.detected_provider)
-                provider = key.provider.value if hasattr(key.provider, 'value') else str(key.provider) if key.provider else detected_provider
+                detected_provider = (
+                    key.detected_provider.value
+                    if hasattr(key.detected_provider, "value")
+                    else str(key.detected_provider)
+                )
+                provider = (
+                    key.provider.value
+                    if hasattr(key.provider, "value")
+                    else str(key.provider)
+                    if key.provider
+                    else detected_provider
+                )
             else:
                 # It's a dict (fallback)
                 status = key.get("status")
@@ -333,7 +347,7 @@ class OnePasswordAPIKeyManager:
                 key_id = key.get("id")
                 detected_provider = key.get("detected_provider", "unknown")
                 provider = key.get("provider", "unknown")
-            
+
             if status == "working":
                 # Get the provider from the cache
                 if not provider or provider == "unknown":
@@ -449,7 +463,6 @@ class OnePasswordAPIKeyManager:
                         for label in credential_field_labels
                     )
                 ):
-
                     total_time = time.time() - start_time
                     print(
                         f"    🎯 Found credential in field '{field.get('label')}' after {total_time:.2f}s"
@@ -752,9 +765,7 @@ class OnePasswordAPIKeyManager:
                         f"  🔑 Would set {env_var} for {key.title[:30]}... (no credential found)"
                     )
 
-        print(
-            f"  ✅ Environment variables prepared for {len(result.api_keys)} API keys"
-        )
+        print(f"  ✅ Environment variables prepared for {len(result.api_keys)} API keys")
 
     def _update_working_status(self, item_id: str, working: bool) -> None:
         """
@@ -842,10 +853,10 @@ class OnePasswordAPIKeyManager:
                     from datetime import datetime
 
                     from .models import (
-    APIKeyItem,
-    DiscoveryResult,
-    ProviderType,
-)
+                        APIKeyItem,
+                        DiscoveryResult,
+                        ProviderType,
+                    )
 
                     # Convert cache back to DiscoveryResult format and save
                     updated_keys = []
@@ -1017,18 +1028,15 @@ class OnePasswordAPIKeyManager:
         try:
             # Check if 1Password CLI is authenticated
             auth_check = subprocess.run(
-                ["op", "whoami"],
-                capture_output=True,
-                text=True,
-                check=False
+                ["op", "whoami"], capture_output=True, text=True, check=False
             )
-            
+
             if auth_check.returncode != 0:
                 print("  ⚠️  1Password CLI not authenticated")
                 print("  💡 Run 'op signin' to authenticate")
                 print("  🔄 Falling back to cached data...")
                 return []
-            
+
             # List only API Credential items
             result = subprocess.run(
                 [
@@ -1467,65 +1475,92 @@ class OnePasswordAPIKeyManager:
             if cache_path.exists():
                 with open(cache_path) as f:
                     cache_data = json.load(f)
-                    
+
                     # Fix missing provider detection in cached data
-                    if 'api_keys' in cache_data:
-                        for key in cache_data['api_keys']:
+                    if "api_keys" in cache_data:
+                        for key in cache_data["api_keys"]:
                             # If provider is missing, detect it from title
-                            if not key.get('provider') or not key.get('detected_provider'):
-                                title = key.get('title', '')
+                            if not key.get("provider") or not key.get(
+                                "detected_provider"
+                            ):
+                                title = key.get("title", "")
                                 if title:
-                                    detected_provider = self._provider_detector.detect_from_title(title)
-                                    key['detected_provider'] = detected_provider.value
-                                    key['provider'] = detected_provider.value
-                                    print(f"🔍 Fixed missing provider for '{title}': {detected_provider.value}")
-                    
+                                    detected_provider = (
+                                        self._provider_detector.detect_from_title(title)
+                                    )
+                                    key["detected_provider"] = detected_provider.value
+                                    key["provider"] = detected_provider.value
+                                    print(
+                                        f"🔍 Fixed missing provider for '{title}': {detected_provider.value}"
+                                    )
+
                     # Update in-memory cache
                     self._cache = cache_data
                     self._last_discovery = datetime.fromtimestamp(
                         cache_path.stat().st_mtime
                     )
-                    
+
                     # Convert raw cache data to proper model objects
                     try:
-                        print(f"🔍 DEBUG: Converting {len(cache_data.get('api_keys', []))} API keys from cache")
-                        
+                        print(
+                            f"🔍 DEBUG: Converting {len(cache_data.get('api_keys', []))} API keys from cache"
+                        )
+
                         # Convert api_keys to APIKeyItem objects
-                        if 'api_keys' in cache_data:
+                        if "api_keys" in cache_data:
                             converted_api_keys = []
-                            for i, key_data in enumerate(cache_data['api_keys']):
+                            for i, key_data in enumerate(cache_data["api_keys"]):
                                 try:
-                                    print(f"🔍 DEBUG: Converting key {i+1}: {key_data.get('title', 'unknown')}")
+                                    print(
+                                        f"🔍 DEBUG: Converting key {i+1}: {key_data.get('title', 'unknown')}"
+                                    )
                                     print(f"🔍 DEBUG: Key data: {key_data}")
-                                    
+
                                     # Handle both old and new field names
-                                    if 'detected_provider' in key_data and key_data['detected_provider']:
-                                        key_data['provider'] = key_data['detected_provider']
-                                    
+                                    if (
+                                        "detected_provider" in key_data
+                                        and key_data["detected_provider"]
+                                    ):
+                                        key_data["provider"] = key_data[
+                                            "detected_provider"
+                                        ]
+
                                     # Create APIKeyItem with proper validation
                                     api_key_item = APIKeyItem(**key_data)
                                     converted_api_keys.append(api_key_item)
                                     print(f"✅ DEBUG: Successfully converted key {i+1}")
                                 except Exception as e:
-                                    print(f"❌ DEBUG: Failed to convert key {i+1} '{key_data.get('title', 'unknown')}': {e}")
+                                    print(
+                                        f"❌ DEBUG: Failed to convert key {i+1} '{key_data.get('title', 'unknown')}': {e}"
+                                    )
                                     print(f"❌ DEBUG: Error type: {type(e)}")
                                     # Skip invalid keys
                                     continue
-                            
-                            cache_data['api_keys'] = converted_api_keys
-                            print(f"🔍 DEBUG: Successfully converted {len(converted_api_keys)} keys")
-                        
-                        print(f"🔍 DEBUG: Creating DiscoveryResult with {len(cache_data.get('api_keys', []))} keys")
+
+                            cache_data["api_keys"] = converted_api_keys
+                            print(
+                                f"🔍 DEBUG: Successfully converted {len(converted_api_keys)} keys"
+                            )
+
+                        print(
+                            f"🔍 DEBUG: Creating DiscoveryResult with {len(cache_data.get('api_keys', []))} keys"
+                        )
                         return DiscoveryResult(**cache_data)
                     except Exception as e:
-                        print(f"⚠️  Warning: Could not create DiscoveryResult from cache: {e}")
+                        print(
+                            f"⚠️  Warning: Could not create DiscoveryResult from cache: {e}"
+                        )
                         # Fallback: create minimal result
                         return DiscoveryResult(
-                            total_items=len(cache_data.get('api_keys', [])),
-                            api_keys=cache_data.get('api_keys', []),
-                            credential_pairs=cache_data.get('credential_pairs', []),
-                            discovery_timestamp=cache_data.get('discovery_timestamp', datetime.now().isoformat()),
-                            cache_file=cache_data.get('cache_file', 'api_discovery_cache.json')
+                            total_items=len(cache_data.get("api_keys", [])),
+                            api_keys=cache_data.get("api_keys", []),
+                            credential_pairs=cache_data.get("credential_pairs", []),
+                            discovery_timestamp=cache_data.get(
+                                "discovery_timestamp", datetime.now().isoformat()
+                            ),
+                            cache_file=cache_data.get(
+                                "cache_file", "api_discovery_cache.json"
+                            ),
                         )
         except Exception:
             # Silently fail file cache loading
@@ -1631,40 +1666,78 @@ class OnePasswordAPIKeyManager:
 
                             # Check if we should use cached values only
                             if use_cached_only and cred_info.get("cached"):
-                                print(
-                                    f"🔍 ENV UPDATE: Using cached value for {item_id}"
-                                )
+                                print(f"🔍 ENV UPDATE: Using cached value for {item_id}")
                                 # For cached values, we'll use placeholder since we don't store actual credentials
                                 # But we'll map them to the correct environment variable names
                                 if provider == "azure":
-                                    env_vars["AZURE_API_KEY"] = "YOUR_AZURE_API_KEY_HERE"
+                                    env_vars[
+                                        "AZURE_API_KEY"
+                                    ] = "YOUR_AZURE_API_KEY_HERE"
                                 elif provider == "aws":
-                                    env_vars["AWS_ACCESS_KEY_ID"] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
-                                    env_vars["AWS_SECRET_ACCESS_KEY"] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
+                                    env_vars[
+                                        "AWS_ACCESS_KEY_ID"
+                                    ] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
+                                    env_vars[
+                                        "AWS_SECRET_ACCESS_KEY"
+                                    ] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
                                 elif provider == "anthropic":
-                                    env_vars["ANTHROPIC_API_KEY"] = "YOUR_ANTHROPIC_API_KEY_HERE"
+                                    env_vars[
+                                        "ANTHROPIC_API_KEY"
+                                    ] = "YOUR_ANTHROPIC_API_KEY_HERE"
                                 elif provider == "openai":
-                                    env_vars["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY_HERE"
+                                    env_vars[
+                                        "OPENAI_API_KEY"
+                                    ] = "YOUR_OPENAI_API_KEY_HERE"
                                 elif provider == "google":
-                                    env_vars["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY_HERE"
+                                    env_vars[
+                                        "GOOGLE_API_KEY"
+                                    ] = "YOUR_GOOGLE_API_KEY_HERE"
                                 elif provider == "openrouter":
-                                    env_vars["OPENROUTER_API_KEY"] = "YOUR_OPENROUTER_API_KEY_HERE"
+                                    env_vars[
+                                        "OPENROUTER_API_KEY"
+                                    ] = "YOUR_OPENROUTER_API_KEY_HERE"
                                 elif provider == "unknown":
                                     # For unknown providers, try to detect from title
                                     title = cred_info.get("title", "")
-                                    if "anthropic" in title.lower() or "claude" in title.lower():
-                                        env_vars["ANTHROPIC_API_KEY"] = "YOUR_ANTHROPIC_API_KEY_HERE"
-                                    elif "openai" in title.lower() or "gpt" in title.lower():
-                                        env_vars["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY_HERE"
-                                    elif "aws" in title.lower() or "access key" in title.lower():
-                                        env_vars["AWS_ACCESS_KEY_ID"] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
-                                        env_vars["AWS_SECRET_ACCESS_KEY"] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
-                                    elif "google" in title.lower() or "gemini" in title.lower():
-                                        env_vars["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY_HERE"
+                                    if (
+                                        "anthropic" in title.lower()
+                                        or "claude" in title.lower()
+                                    ):
+                                        env_vars[
+                                            "ANTHROPIC_API_KEY"
+                                        ] = "YOUR_ANTHROPIC_API_KEY_HERE"
+                                    elif (
+                                        "openai" in title.lower()
+                                        or "gpt" in title.lower()
+                                    ):
+                                        env_vars[
+                                            "OPENAI_API_KEY"
+                                        ] = "YOUR_OPENAI_API_KEY_HERE"
+                                    elif (
+                                        "aws" in title.lower()
+                                        or "access key" in title.lower()
+                                    ):
+                                        env_vars[
+                                            "AWS_ACCESS_KEY_ID"
+                                        ] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
+                                        env_vars[
+                                            "AWS_SECRET_ACCESS_KEY"
+                                        ] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
+                                    elif (
+                                        "google" in title.lower()
+                                        or "gemini" in title.lower()
+                                    ):
+                                        env_vars[
+                                            "GOOGLE_API_KEY"
+                                        ] = "YOUR_GOOGLE_API_KEY_HERE"
                                     elif "openrouter" in title.lower():
-                                        env_vars["OPENROUTER_API_KEY"] = "YOUR_OPENROUTER_API_KEY_HERE"
+                                        env_vars[
+                                            "OPENROUTER_API_KEY"
+                                        ] = "YOUR_OPENROUTER_API_KEY_HERE"
                                     else:
-                                        env_vars[f"UNKNOWN_API_KEY_{i+1}"] = f"YOUR_UNKNOWN_API_KEY_{i+1}_HERE"
+                                        env_vars[
+                                            f"UNKNOWN_API_KEY_{i+1}"
+                                        ] = f"YOUR_UNKNOWN_API_KEY_{i+1}_HERE"
                                 continue
 
                             # Try to retrieve from 1Password if not using cached only
@@ -1688,9 +1761,9 @@ class OnePasswordAPIKeyManager:
                                     env_vars["AWS_ACCESS_KEY_ID"] = aws_credentials.get(
                                         "access_key_id"
                                     )
-                                    env_vars["AWS_SECRET_ACCESS_KEY"] = (
-                                        aws_credentials.get("secret_access_key")
-                                    )
+                                    env_vars[
+                                        "AWS_SECRET_ACCESS_KEY"
+                                    ] = aws_credentials.get("secret_access_key")
                                     print(
                                         "      ✅ AWS credentials extracted successfully"
                                     )
@@ -1706,9 +1779,9 @@ class OnePasswordAPIKeyManager:
                                     )
                             elif provider == "anthropic":
                                 print("🔍 ENV UPDATE: Processing Anthropic provider")
-                                env_vars["ANTHROPIC_API_KEY"] = (
-                                    self._get_credential_value(item_id)
-                                )
+                                env_vars[
+                                    "ANTHROPIC_API_KEY"
+                                ] = self._get_credential_value(item_id)
                                 print(
                                     f"🔍 ENV UPDATE: Anthropic API key extracted: {'SUCCESS' if env_vars['ANTHROPIC_API_KEY'] else 'FAILED'}"
                                 )
@@ -1731,9 +1804,9 @@ class OnePasswordAPIKeyManager:
                             elif provider == "unknown":
                                 print("🔍 ENV UPDATE: Processing Unknown provider")
                                 # Handle unknown providers - they might be API keys
-                                env_vars[f"UNKNOWN_API_KEY_{i+1}"] = (
-                                    self._get_credential_value(item_id)
-                                )
+                                env_vars[
+                                    f"UNKNOWN_API_KEY_{i+1}"
+                                ] = self._get_credential_value(item_id)
                                 print(
                                     f"🔍 ENV UPDATE: Unknown API key {i+1} extracted: {'SUCCESS' if env_vars[f'UNKNOWN_API_KEY_{i+1}'] else 'FAILED'}"
                                 )
@@ -2369,31 +2442,31 @@ class OnePasswordAPIKeyManager:
         try:
             cache_path = Path(self._get_cache_file_path())
             cache_path.parent.mkdir(parents=True, exist_ok=True)
-            
-            with open(cache_path, 'w') as f:
+
+            with open(cache_path, "w") as f:
                 json.dump(self._cache, f, indent=2, default=str)
-                
+
             print(f"💾 Cache saved to: {cache_path}")
-            
+
         except Exception as e:
             print(f"❌ Error saving cache: {e}")
 
     def add_manual_api_key(
-        self, 
-        title: str, 
-        api_key: str, 
+        self,
+        title: str,
+        api_key: str,
         provider: str = "unknown",
-        status: str = "discovered"
+        status: str = "discovered",
     ) -> bool:
         """
         Manually add an API key for testing when 1Password is unavailable.
-        
+
         Args:
             title: Human-readable title for the API key
             api_key: The actual API key value
             provider: Provider type (openai, anthropic, google, aws, azure, unknown)
             status: Initial status (discovered, tested, working, failed)
-            
+
         Returns:
             True if successfully added, False otherwise
         """
@@ -2401,34 +2474,35 @@ class OnePasswordAPIKeyManager:
             # Load existing cache
             if not self._cache:
                 self._load_from_cache()
-            
+
             # Create a unique ID for the manual key
             manual_id = f"manual_{uuid.uuid4().hex[:8]}"
-            
+
             # Create API key item
-            from .models import APIKeyStatus, ProviderType
-            
+
             # Add to cache
             if "api_keys" not in self._cache:
                 self._cache["api_keys"] = []
-            
-            self._cache["api_keys"].append({
-                "id": manual_id,
-                "title": title,
-                "category": "API Credential",
-                "detected_provider": provider,
-                "status": status,
-                "manual_added": True,
-                "added_at": datetime.now().isoformat(),
-                "source": "manual_input"
-            })
-            
+
+            self._cache["api_keys"].append(
+                {
+                    "id": manual_id,
+                    "title": title,
+                    "category": "API Credential",
+                    "detected_provider": provider,
+                    "status": status,
+                    "manual_added": True,
+                    "added_at": datetime.now().isoformat(),
+                    "source": "manual_input",
+                }
+            )
+
             # Save cache
             self._save_cache()
-            
+
             print(f"✅ Manually added API key: {title} ({provider})")
             return True
-            
+
         except Exception as e:
             print(f"❌ Failed to add manual API key: {e}")
             return False

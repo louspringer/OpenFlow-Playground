@@ -53,14 +53,14 @@ class RecommendationEngine:
 
         try:
             # Generate priority recommendations
-            recommendations["priority_recommendations"] = (
-                self._generate_priority_recommendations(analysis_data)
-            )
+            recommendations[
+                "priority_recommendations"
+            ] = self._generate_priority_recommendations(analysis_data)
 
             # Generate category-specific recommendations
-            recommendations["category_recommendations"] = (
-                self._generate_category_recommendations(analysis_data)
-            )
+            recommendations[
+                "category_recommendations"
+            ] = self._generate_category_recommendations(analysis_data)
 
             # Create implementation plan
             priority_recs = list(recommendations["priority_recommendations"])

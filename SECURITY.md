@@ -9,6 +9,7 @@ API keys are **CREDENTIALS** and must be treated as **SECRETS**. Exposing them i
 ## 🔒 API Key Management
 
 ### **1. Environment Variables Only**
+
 ```bash
 # ✅ CORRECT: Use environment variables
 export OPENAI_API_KEY="your-key-here"
@@ -17,6 +18,7 @@ export GOOGLE_API_KEY="your-key-here"
 ```
 
 ### **2. .env Files (Local Only)**
+
 ```bash
 # ✅ CORRECT: .env file (add to .gitignore)
 OPENAI_API_KEY=your-key-here
@@ -25,6 +27,7 @@ GOOGLE_API_KEY=your-key-here
 ```
 
 ### **3. 1Password Integration**
+
 ```bash
 # ✅ CORRECT: Use 1Password CLI
 op item get "OpenAI API Key" --fields api_key
@@ -34,6 +37,7 @@ op item get "Anthropic API Key" --fields api_key
 ## 🚫 What NOT to Do
 
 ### **❌ NEVER:**
+
 - Hardcode API keys in source code
 - Commit API keys to git
 - Store API keys in JSON files
@@ -42,6 +46,7 @@ op item get "Anthropic API Key" --fields api_key
 - Store API keys in cache files
 
 ### **❌ Examples of WRONG:**
+
 ```python
 # WRONG: Hardcoded API key
 api_key = "sk-1234567890abcdef1234567890abcdef1234567890abcdef"
@@ -55,6 +60,7 @@ config = {
 ## 🛡️ Security Checklist
 
 ### **Before Committing:**
+
 - [ ] No API keys in source code
 - [ ] No API keys in config files
 - [ ] No API keys in documentation
@@ -63,6 +69,7 @@ config = {
 - [ ] .gitignore includes sensitive files
 
 ### **Sensitive Files to Ignore:**
+
 ```
 # Add to .gitignore
 .env
@@ -81,6 +88,7 @@ credentials.json
 ## 🔍 Security Scanning
 
 ### **Regular Security Checks:**
+
 ```bash
 # Scan for potential API keys
 grep -r "sk-" . --exclude-dir=.git
@@ -105,6 +113,7 @@ grep -r "export.*API_KEY" . --exclude-dir=.git
 ## 📚 Best Practices
 
 ### **1. Use Placeholders in Examples**
+
 ```python
 # ✅ CORRECT: Use placeholders
 api_key = os.getenv("OPENAI_API_KEY")
@@ -113,6 +122,7 @@ if not api_key:
 ```
 
 ### **2. Validate Environment Variables**
+
 ```python
 # ✅ CORRECT: Validate at startup
 required_vars = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY"]
@@ -122,6 +132,7 @@ if missing_vars:
 ```
 
 ### **3. Use Configuration Management**
+
 ```python
 # ✅ CORRECT: Use proper config management
 from pydantic import BaseSettings
@@ -137,16 +148,19 @@ class Settings(BaseSettings):
 ## 🔐 Additional Security Measures
 
 ### **1. API Key Rotation**
+
 - Rotate API keys regularly
 - Use different keys for different environments
 - Monitor API key usage for anomalies
 
 ### **2. Access Control**
+
 - Limit API key permissions to minimum required
 - Use service accounts when possible
 - Monitor and log all API usage
 
 ### **3. Secure Development**
+
 - Use pre-commit hooks to scan for secrets
 - Integrate security scanning in CI/CD
 - Regular security audits of codebase
@@ -154,6 +168,7 @@ class Settings(BaseSettings):
 ## 📞 Security Contacts
 
 If you discover a security issue:
+
 1. **DO NOT** create a public issue
 2. **DO NOT** discuss in public channels
 3. **IMMEDIATELY** contact the security team
@@ -162,4 +177,3 @@ If you discover a security issue:
 ---
 
 **Remember: Security is everyone's responsibility. When in doubt, ask before committing sensitive information.**
-

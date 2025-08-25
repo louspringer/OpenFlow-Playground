@@ -10,10 +10,11 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
-from ..configuration.config_manager import ConfigManager
-from ..patterns.pattern_manager import PatternManager
-from ..reporting.report_generator import ReportGenerator
-from ..utils.file_utils import FileUtils
+from src.security_scanning.configuration.config_manager import ConfigManager
+from src.security_scanning.patterns.pattern_manager import PatternManager
+from src.security_scanning.reporting.report_generator import ReportGenerator
+from src.security_scanning.utils.file_utils import FileUtils
+
 from .worker_pool import WorkerPool
 
 logger = logging.getLogger(__name__)
@@ -272,9 +273,7 @@ class SecurityScanner:
 
         # Remove duplicates and sort by severity
         unique_findings = self._deduplicate_findings(all_findings)
-        sorted_findings = self._sort_findings_by_severity(unique_findings)
-
-        return sorted_findings
+        return self._sort_findings_by_severity(unique_findings)
 
     def _deduplicate_findings(
         self, findings: list[dict[str, Any]]
@@ -342,7 +341,7 @@ class SecurityScanner:
             Comprehensive security report
         """
         # Generate report using report generator
-        report = self.report_generator.generate_report(
+        return self.report_generator.generate_report(
             findings=findings,
             performance_metrics=performance_summary,
             project_path=str(project_path),
@@ -350,8 +349,6 @@ class SecurityScanner:
                 self.scan_end_time - self.scan_start_time if self.scan_end_time else 0
             ),
         )
-
-        return report
 
     def _create_empty_report(self) -> dict[str, Any]:
         """Create empty report when no files to scan"""

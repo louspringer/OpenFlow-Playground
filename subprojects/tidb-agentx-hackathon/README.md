@@ -3,6 +3,7 @@
 **AI-powered multi-agent testing with TiDB Serverless**
 
 ## **🏆 Hackathon Details**
+
 - **Contest**: TiDB AgentX Hackathon 2025
 - **Deadline**: September 15, 2025
 - **Prize**: $30,500
@@ -13,6 +14,7 @@
 This project demonstrates a comprehensive AI-powered multi-agent testing system integrated with TiDB Serverless for vector search and data management. The system showcases real-world AI agent workflows with automated testing, validation, and orchestration.
 
 ### **Key Features**
+
 - **Multi-Agent Orchestration**: AI agent coordination and workflow management
 - **TiDB Serverless Integration**: Vector search and data management
 - **Automated Testing**: Comprehensive AI agent testing and validation
@@ -45,11 +47,13 @@ TiDB AgentX Hackathon
 ## **📦 Installation**
 
 ### **Prerequisites**
+
 - Python 3.9+
 - TiDB Serverless account
 - Docker (for containerized deployment)
 
 ### **Local Development**
+
 ```bash
 # Clone the repository
 git clone https://github.com/louspringer/tidb-agentx-hackathon.git
@@ -67,6 +71,7 @@ uv run streamlit run src/streamlit_app.py
 ```
 
 ### **Docker Deployment**
+
 ```bash
 # Build and run with Docker Compose
 docker-compose up --build
@@ -79,6 +84,7 @@ docker run -p 8000:8000 tidb-agentx-hackathon
 ## **🔧 Configuration**
 
 ### **Environment Variables**
+
 ```bash
 # TiDB Serverless Configuration
 TIDB_HOST=your-tidb-host.tidbcloud.com
@@ -95,6 +101,7 @@ API_PORT=8000
 ```
 
 ### **TiDB Serverless Setup**
+
 1. Create a TiDB Serverless account at [tidbcloud.com](https://tidbcloud.com)
 2. Create a new cluster
 3. Enable vector search capabilities
@@ -104,6 +111,7 @@ API_PORT=8000
 ## **🚀 Usage**
 
 ### **Quick Start**
+
 ```python
 from tidb_agentx_hackathon import TiDBAgentOrchestrator, MultiAgentTestingService
 
@@ -116,6 +124,7 @@ testing_service = MultiAgentTestingService()
 ```
 
 ### **API Endpoints**
+
 - `GET /api/agents` - List all AI agents
 - `GET /api/workflows` - List all workflows
 - `POST /api/workflows` - Create new workflow
@@ -126,6 +135,7 @@ testing_service = MultiAgentTestingService()
 ## **🧪 Testing**
 
 ### **Run Tests**
+
 ```bash
 # Run all tests
 uv run pytest
@@ -140,6 +150,7 @@ uv run pytest --cov=src --cov-report=html
 ```
 
 ### **Test Structure**
+
 - **Unit Tests**: Individual component testing
 - **Integration Tests**: Component interaction testing
 - **Performance Tests**: Response time and scalability testing
@@ -148,12 +159,14 @@ uv run pytest --cov=src --cov-report=html
 ## **📊 Performance**
 
 ### **Target Metrics**
+
 - **Vector Search**: < 1 second response time
 - **Workflow Execution**: < 5 seconds for simple workflows
 - **Concurrent Users**: Support for 100+ users
 - **Uptime**: 99.9% availability during demo
 
 ### **Monitoring**
+
 - Real-time performance metrics
 - Workflow execution tracking
 - Agent status monitoring
@@ -162,6 +175,7 @@ uv run pytest --cov=src --cov-report=html
 ## **🔒 Security**
 
 ### **Security Features**
+
 - Environment variable configuration
 - No hardcoded credentials
 - Input validation and sanitization
@@ -169,6 +183,7 @@ uv run pytest --cov=src --cov-report=html
 - Audit logging
 
 ### **Compliance**
+
 - Follows security best practices
 - No sensitive data in code
 - Secure communication protocols
@@ -176,30 +191,35 @@ uv run pytest --cov=src --cov-report=html
 ## **📈 Development Roadmap**
 
 ### **Week 1 (August 12-18) - CRISIS MODE**
+
 - [x] Project structure setup
 - [ ] TiDB Serverless integration
 - [ ] Basic AI agent framework
 - [ ] Component packaging
 
 ### **Week 2 (August 19-25) - CORE DEVELOPMENT**
+
 - [ ] TiDB vector search implementation
 - [ ] Multi-agent orchestration
 - [ ] Workflow engine development
 - [ ] Testing framework
 
 ### **Week 3 (August 26 - September 1) - INTEGRATION**
+
 - [ ] End-to-end testing
 - [ ] Performance optimization
 - [ ] User interface development
 - [ ] Documentation
 
 ### **Week 4 (September 2-8) - FINAL PREPARATION**
+
 - [ ] Final testing and validation
 - [ ] Demo video creation
 - [ ] Submission materials
 - [ ] Performance tuning
 
 ### **Week 5 (September 9-15) - SUBMISSION**
+
 - [ ] Final validation
 - [ ] Hackathon submission
 - [ ] Documentation review
@@ -208,6 +228,7 @@ uv run pytest --cov=src --cov-report=html
 ## **🤝 Contributing**
 
 ### **Development Setup**
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -216,6 +237,7 @@ uv run pytest --cov=src --cov-report=html
 6. Submit a pull request
 
 ### **Code Standards**
+
 - Follow PEP 8 style guidelines
 - Use type hints for all functions
 - Add docstrings for all classes and methods
@@ -224,12 +246,14 @@ uv run pytest --cov=src --cov-report=html
 ## **📚 Documentation**
 
 ### **Additional Resources**
+
 - [API Documentation](docs/api.md)
 - [Deployment Guide](docs/deployment.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Performance Tuning](docs/performance.md)
 
 ### **Examples**
+
 - [Basic Usage](examples/basic_usage.py)
 - [Workflow Creation](examples/workflow_creation.py)
 - [TiDB Integration](examples/tidb_integration.py)
@@ -238,6 +262,7 @@ uv run pytest --cov=src --cov-report=html
 ## **🏆 Hackathon Submission**
 
 ### **Submission Requirements**
+
 - [ ] Complete AI agent workflow with TiDB
 - [ ] Professional documentation
 - [ ] Demo video (2-3 minutes)
@@ -245,6 +270,7 @@ uv run pytest --cov=src --cov-report=html
 - [ ] Performance metrics
 
 ### **Success Criteria**
+
 - **Technical**: Seamless TiDB integration
 - **Performance**: Sub-second vector search
 - **Innovation**: Novel AI agent approach
@@ -254,13 +280,15 @@ uv run pytest --cov=src --cov-report=html
 ## **📞 Support**
 
 ### **Getting Help**
+
 - **Issues**: [GitHub Issues](https://github.com/louspringer/tidb-agentx-hackathon/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/louspringer/tidb-agentx-hackathon/discussions)
 - **Documentation**: [Project Wiki](https://github.com/louspringer/tidb-agentx-hackathon/wiki)
 
 ### **Contact**
+
 - **Author**: Lou Springer
-- **Email**: lou@example.com
+- **Email**: <lou@example.com>
 - **Project**: [TiDB AgentX Hackathon](https://github.com/louspringer/tidb-agentx-hackathon)
 
 ---
@@ -271,10 +299,3 @@ uv run pytest --cov=src --cov-report=html
 **Success Criteria**: Complete AI agent workflow with TiDB
 
 **Let's build something amazing for the TiDB AgentX Hackathon! 🚀✨**
-
-
-
-
-
-
-

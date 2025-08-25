@@ -1,9 +1,11 @@
 # Cloud Build GitHub Integration - LLM Problem Wrapper
 
 ## Problem Summary
+
 Need to create automatic Cloud Build triggers for GitHub repository `louspringer/OpenFlow-Playground` using **CLI only** - no web console allowed. All attempts have failed.
 
 ## Current Status
+
 - ✅ Cloud Build API enabled
 - ✅ Secret Manager API enabled  
 - ✅ Manual builds working (`gcloud builds submit` succeeds)
@@ -13,6 +15,7 @@ Need to create automatic Cloud Build triggers for GitHub repository `louspringer
 - ❌ All trigger creation attempts fail with "INVALID_ARGUMENT"
 
 ## Failed Attempts Summary
+
 1. **CLI Approach**: `gcloud builds triggers create github` fails with "INVALID_ARGUMENT"
 2. **Python Approach**: Google Cloud client libraries import errors
 3. **2nd-Gen Approach**: GitHub connection created, trigger creation fails
@@ -22,7 +25,9 @@ Need to create automatic Cloud Build triggers for GitHub repository `louspringer
 7. **1st-Gen REST API**: Also fails with "INVALID_ARGUMENT"
 
 ## Root Cause Analysis
+
 The fundamental issue is that **GitHub repository is not properly connected to Cloud Build**:
+
 - **2nd-gen connection created** but triggers fail
 - **1st-gen approach also fails** with same error
 - **Repository linking works** but triggers still fail
@@ -31,6 +36,7 @@ The fundamental issue is that **GitHub repository is not properly connected to C
 This suggests the GitHub App installation or repository authorization is missing.
 
 ## Working REST API Script (Partial Success)
+
 ```python
 #!/usr/bin/env python3
 """
@@ -152,6 +158,7 @@ def create_trigger(repository_name: str, token: str) -> None:
 ```
 
 ## Error Messages Encountered
+
 1. `ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument`
 2. `ModuleNotFoundError: No module named 'google.cloud'`
 3. `ImportError: cannot import name 'cloudbuild_v1' from 'google.cloud'`
@@ -161,6 +168,7 @@ def create_trigger(repository_name: str, token: str) -> None:
 7. `{'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}` (1st-gen REST API)
 
 ## Failed CLI Commands
+
 ```bash
 # This fails with "INVALID_ARGUMENT"
 gcloud builds triggers create github \
@@ -177,6 +185,7 @@ gcloud builds connections create github github-connection \
 ```
 
 ## Project Context
+
 - **Project ID**: `aardvark-linkedin-grepper`
 - **Region**: `us-central1`
 - **Repository**: `louspringer/OpenFlow-Playground`
@@ -184,15 +193,18 @@ gcloud builds connections create github github-connection \
 - **Build Config**: `cloudbuild.yaml`
 
 ## Key Requirements
+
 - **CLI only** - no web console
 - **Automatic triggers** - builds on push to develop
 - **Proper error handling** - handle existing resources
 - **Security** - use Secret Manager for tokens
 
 ## Expected Outcome
+
 After successful setup, pushing to `develop` branch should automatically trigger Cloud Build using `cloudbuild.yaml` configuration.
 
 ## Next Steps for LLM
+
 1. **Research GitHub App installation** - Understand why repository authorization fails
 2. **Use webhook triggers** - Alternative to GitHub integration
 3. **Use manual triggers** - Fallback to manual trigger creation
@@ -200,6 +212,7 @@ After successful setup, pushing to `develop` branch should automatically trigger
 5. **Test integration** - Verify triggers work on push
 
 ## Available Files
+
 - `cloudbuild_github_setup_spore.py` - Failed Python script with diagnostics
 - `cloudbuild_github_rest_api.py` - Working REST API script (partial success)
 - `cloudbuild_github_1stgen.py` - 1st-gen REST API script (also fails)
@@ -208,12 +221,14 @@ After successful setup, pushing to `develop` branch should automatically trigger
 - `cloudbuild.yaml` - Build configuration file
 
 ## Environment
+
 - Using `uv` for package management
 - Python 3.12
 - Google Cloud SDK installed
 - Cloud Build and Secret Manager APIs enabled
 
 ## Critical Insight
+
 **All approaches fail at trigger creation due to missing GitHub repository authorization.** The REST API approach successfully creates the GitHub connection and links the repository, but all trigger creation attempts fail with "INVALID_ARGUMENT". This suggests:
 
 1. **GitHub App not installed** on the repository
@@ -222,7 +237,8 @@ After successful setup, pushing to `develop` branch should automatically trigger
 4. **Alternative approach needed** - webhook triggers or manual triggers
 
 The next LLM needs to:
+
 1. **Install GitHub App** on the repository
 2. **Configure repository permissions** for Cloud Build
 3. **Use webhook triggers** as alternative
-4. **Use manual triggers** as fallback 
+4. **Use manual triggers** as fallback

@@ -67,7 +67,7 @@ class ReportGenerator:
         )
 
         # Create comprehensive report
-        report = {
+        return {
             "summary": {
                 "project_path": project_path,
                 "scan_duration": scan_duration,
@@ -94,8 +94,6 @@ class ReportGenerator:
                 ),
             },
         }
-
-        return report
 
     def _group_findings_by_severity(
         self, findings: list[dict[str, Any]]
@@ -217,7 +215,7 @@ class ReportGenerator:
             }
 
         files_per_second = files_processed / scan_duration
-        worker_count = performance_metrics.get("worker_count", 1)
+        performance_metrics.get("worker_count", 1)
 
         # Calculate efficiency score (0-100)
         # Base score on throughput and worker utilization

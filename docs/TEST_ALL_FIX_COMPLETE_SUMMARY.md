@@ -95,14 +95,14 @@ def validate_account_url(cls, v):
 ```makefile
 # Updated to handle missing tools gracefully
 lint-bash: ## Lint bash scripts
-	@if command -v shellcheck >/dev/null 2>&1; then \
-		find scripts/ -name "*.sh" -exec shellcheck {} \; ; \
-	else \
-		echo "⚠️  shellcheck not installed, skipping bash linting" ; \
-	fi
+ @if command -v shellcheck >/dev/null 2>&1; then \
+  find scripts/ -name "*.sh" -exec shellcheck {} \; ; \
+ else \
+  echo "⚠️  shellcheck not installed, skipping bash linting" ; \
+ fi
 
 test-security: ## Run security tests and scans
-	@$(UV) run bandit -c .bandit -r src/
+ @$(UV) run bandit -c .bandit -r src/
 ```
 
 ### 4. **Tool Installation**

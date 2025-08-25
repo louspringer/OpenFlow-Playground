@@ -83,8 +83,9 @@ source sql/healthcare-cdc-schema.sql
 ## Documentation
 
 See `docs/HEALTHCARE_CDC_README.md` for comprehensive documentation including:
+
 - Architecture diagrams
 - Data flow examples
 - Troubleshooting guides
 - Monitoring and observability
-- Security considerations 
+- Security considerations

@@ -212,9 +212,9 @@ sudo tail -f /var/log/neo4j/neo4j.log
 
 ### **Documentation Links:**
 
-- **Official Docs:** https://neo4j.com/docs/
-- **Cypher Reference:** https://neo4j.com/docs/cypher-manual/current/
-- **Community Edition:** https://neo4j.com/community/
+- **Official Docs:** <https://neo4j.com/docs/>
+- **Cypher Reference:** <https://neo4j.com/docs/cypher-manual/current/>
+- **Community Edition:** <https://neo4j.com/community/>
 
 ## 🎉 **Conclusion**
 

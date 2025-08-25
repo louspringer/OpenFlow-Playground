@@ -83,12 +83,8 @@ async def simple_live_fire():
         # Summary
         print(f"\n📊 LIVE FIRE RESULTS:")
         print("=" * 70)
-        print(
-            f"🎯 Claude (Anthropic): {'✅ WORKING' if claude_result else '❌ FAILED'}"
-        )
-        print(
-            f"🎯 GPT-4 Vision (OpenAI): {'✅ WORKING' if gpt4_result else '❌ FAILED'}"
-        )
+        print(f"🎯 Claude (Anthropic): {'✅ WORKING' if claude_result else '❌ FAILED'}")
+        print(f"🎯 GPT-4 Vision (OpenAI): {'✅ WORKING' if gpt4_result else '❌ FAILED'}")
         print(
             f"🎯 GPT-3.5 Turbo (OpenAI): {'✅ WORKING' if gpt35_result else '❌ FAILED'}"
         )

@@ -1,12 +1,15 @@
 # F-String Policy: Complete Guide
 
 ## Overview
+
 This project has eliminated the F541 linting rule and standardized on f-strings as the primary string formatting method.
 
 ## Policy Statement
+
 **F-strings are mandatory for all string formatting in this project.**
 
 ## Why F541 Was Eliminated
+
 - **No security value**: F-strings without placeholders pose no security risk
 - **False positives**: Rule creates unnecessary cognitive overhead
 - **Style enforcement**: Enforces personal preferences as security requirements
@@ -15,6 +18,7 @@ This project has eliminated the F541 linting rule and standardized on f-strings 
 ## Usage Standards
 
 ### ✅ Always Use F-Strings
+
 ```python
 # Simple messages (even without placeholders)
 print(f"Starting process...")
@@ -34,6 +38,7 @@ logger.debug(f"Processing item {i} of {total}")
 ```
 
 ### ❌ Never Use Alternatives
+
 ```python
 # Don't use these:
 print("Starting process...")  # Inconsistent
@@ -43,18 +48,23 @@ logger.info("User %s performed %s" % (user.name, action))  # Old style
 ```
 
 ## Linting Configuration
+
 The F541 rule is completely ignored in `.ruff.toml`:
+
 ```toml
 "F541",  # f-string without any placeholders (PEP 8's most annoying rule - f-strings are valid even without placeholders)
 ```
 
 ## Migration Guide
+
 If you find old-style string formatting:
+
 1. **Convert to f-strings** immediately
 2. **Maintain consistency** with existing code
 3. **No exceptions** - f-strings are mandatory
 
 ## Benefits
+
 - **Consistency**: All string formatting uses the same method
 - **Readability**: F-strings are more readable than alternatives
 - **Performance**: Negligible difference, but consistent approach
@@ -63,6 +73,7 @@ If you find old-style string formatting:
 ## Examples by Context
 
 ### Logging
+
 ```python
 # ✅ Good
 logger.info(f"Processing file: {filename}")
@@ -76,6 +87,7 @@ logger.debug("Configuration: %s" % config)
 ```
 
 ### User Messages
+
 ```python
 # ✅ Good
 print(f"Welcome, {user.name}!")
@@ -89,6 +101,7 @@ print("Operation completed in %.2f seconds" % duration)
 ```
 
 ### Error Messages
+
 ```python
 # ✅ Good
 raise ValueError(f"Invalid configuration: {config}")
@@ -104,15 +117,19 @@ return "Error processing %s: %s" % (item, error)
 ## Enforcement
 
 ### Pre-commit Hooks
+
 The project's pre-commit hooks are configured to ignore F541 violations.
 
 ### Code Review
+
 All code reviews should enforce f-string usage:
+
 - ✅ F-strings used consistently
 - ❌ Old-style formatting found
 - ❌ Mixed formatting approaches
 
 ### IDE Configuration
+
 - **Ruff**: F541 rule disabled
 - **Black**: No impact on f-strings
 - **MyPy**: No impact on f-strings
@@ -120,6 +137,7 @@ All code reviews should enforce f-string usage:
 ## Common Patterns
 
 ### Simple Messages
+
 ```python
 # ✅ Always use f-strings
 print(f"Starting...")
@@ -128,6 +146,7 @@ print(f"Error occurred")
 ```
 
 ### Variable Interpolation
+
 ```python
 # ✅ Use f-strings with variables
 name = "Alice"
@@ -137,6 +156,7 @@ print(f"Found {count} items")
 ```
 
 ### Complex Expressions
+
 ```python
 # ✅ F-strings handle complex expressions
 print(f"Result: {calculate_result()}")
@@ -145,6 +165,7 @@ print(f"Time: {datetime.now():%Y-%m-%d %H:%M:%S}")
 ```
 
 ### Multi-line Strings
+
 ```python
 # ✅ F-strings work with multi-line strings
 message = f"""
@@ -158,15 +179,17 @@ Processing complete:
 ## Troubleshooting
 
 ### "F541: f-string without any placeholders"
+
 This warning is completely ignored in this project. F-strings without placeholders are perfectly valid and encouraged.
 
 ### "Should I convert this to a regular string?"
+
 **No!** Always use f-strings for consistency, even without placeholders.
 
 ### "What about performance?"
+
 The performance difference is negligible. Consistency and readability are more important.
 
 ## Summary
+
 **F-strings are mandatory for all string formatting in this project. The F541 rule has been eliminated. Use f-strings consistently and ignore any warnings about missing placeholders.**
-
-
