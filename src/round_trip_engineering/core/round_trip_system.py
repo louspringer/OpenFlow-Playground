@@ -203,7 +203,14 @@ class RoundTripSystem:
             if not model:
                 raise ValueError(f"Model {model_name} not found")
 
-            result = self.code_generator.generate_from_model(model)
+            # CRITICAL FIX: Apply vocabulary alignment before code generation
+            # This ensures components are in the correct format (dict vs list)
+            logger.info("🔄 Applying vocabulary alignment to stored model...")
+            aligned_model = self.vocabulary_aligner.align_vocabulary(model)
+            logger.info(f"✅ Vocabulary alignment completed for {model_name}")
+
+            # Generate code from the aligned model
+            result = self.code_generator.generate_from_model(aligned_model)
             return result
         except Exception as e:
             log_error_with_context(
