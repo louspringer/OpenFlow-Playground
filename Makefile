@@ -1,7 +1,7 @@
 # OpenFlow Playground - Model-Driven Makefile
 # This Makefile leverages the project_model_registry.json for domain-specific operations
 
-.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard status-clean ghostbusters ghostbusters-quick ghostbusters-detail ghostbusters-install
+.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard status-clean ghostbusters ghostbusters-quick ghostbusters-detail ghostbusters-install pre-commit
 .PHONY: test test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell test-all
 .PHONY: lint lint-python lint-bash lint-cloudformation lint-docs lint-security lint-streamlit lint-healthcare lint-go lint-secure-shell lint-all
 .PHONY: format format-python format-bash format-docs format-go format-secure-shell format-all
@@ -766,6 +766,11 @@ quality-check: ## Run comprehensive code quality checks
 	@uv run ruff check src/ tests/ || true
 	@uv run mypy src/ || true
 	@echo "✅ Code quality checks complete"
+
+pre-commit: ## Run pre-commit hooks for all files
+	@echo "🔍 Running Pre-commit Hooks..."
+	@pre-commit run --all-files || (echo "❌ Pre-commit hooks failed" && exit 1)
+	@echo "✅ Pre-commit hooks passed!"
 
 test-model-driven: ## Test model-driven development
 	@echo "🧪 Testing Model-Driven Development..."
