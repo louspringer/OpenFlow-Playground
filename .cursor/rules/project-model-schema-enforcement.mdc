@@ -1,0 +1,134 @@
+---
+description: Project Model Schema Enforcement Rule for **/project_model_registry.json
+alwaysApply: false
+---
+
+# Project Model Schema Enforcement Rule
+
+## Purpose
+Enforce proper schema validation and structured editing for the project model registry to prevent file corruption and ensure data integrity.
+
+## Schema Requirements
+- **ALWAYS validate against schema**: Use `project_model_registry.schema.json` before any modifications
+- **Use structured editing tools**: Prefer `jq` for JSON manipulation over manual text editing
+- **Schema-first approach**: Check schema before making changes
+- **Backup before modification**: Create timestamped backups before any changes
+
+## Required Tools
+- **jq**: For JSON manipulation and validation
+- **jsonschema-cli**: For schema validation
+- **Python validation script**: `scripts/validate_project_model.py`
+
+## Editing Workflow
+
+### 1. Pre-Edit Validation
+```bash
+# Always validate before editing
+jq -e . project_model_registry.json > /dev/null
+jsonschema -i project_model_registry.json project_model_registry.schema.json
+```
+
+### 2. Backup Creation
+```bash
+# Create timestamped backup
+cp project_model_registry.json project_model_registry.json.backup_$(date +%Y%m%d_%H%M%S)
+```
+
+### 3. Structured Editing with jq
+```bash
+# Add new domain
+jq '.domains.new_domain = {"patterns": [], "content_indicators": []}' project_model_registry.json > temp.json && mv temp.json project_model_registry.json
+
+# Add new requirement
+jq '.requirements_traceability += [{"requirement": "new requirement", "domain": "domain_name"}]' project_model_registry.json > temp.json && mv temp.json project_model_registry.json
+
+# Add new backlog item
+jq '.backlog += [{"id": "backlog_n", "title": "New Item"}]' project_model_registry.json > temp.json && mv temp.json project_model_registry.json
+```
+
+### 4. Post-Edit Validation
+```bash
+# Validate JSON syntax
+jq -e . project_model_registry.json > /dev/null
+
+# Validate against schema
+jsonschema -i project_model_registry.json project_model_registry.schema.json
+
+# Run Python validation script
+python scripts/validate_project_model.py
+```
+
+## Prohibited Actions
+- ❌ **Manual text editing** of JSON content
+- ❌ **Direct file manipulation** without validation
+- ❌ **Regex-based replacements** in JSON files
+- ❌ **Copy-paste operations** without validation
+- ❌ **Manual indentation changes** without proper tools
+
+## Required Actions
+- ✅ **Always use jq** for JSON modifications
+- ✅ **Validate against schema** before and after changes
+- ✅ **Create backups** before any modifications
+- ✅ **Use Python validation script** for comprehensive checks
+- ✅ **Test JSON syntax** with `jq -e .` before committing
+
+## Error Recovery
+If file corruption occurs:
+1. **Restore from backup**: Use most recent timestamped backup
+2. **Restore from git**: `git checkout HEAD -- project_model_registry.json`
+3. **Re-run validation**: Ensure file is valid before proceeding
+4. **Document the issue**: Note what caused corruption
+
+## Integration with Makefile
+```makefile
+validate-model: ## Validate project model registry
+	@echo "🔍 Validating project model registry..."
+	@jq -e . project_model_registry.json > /dev/null
+	@jsonschema -i project_model_registry.json project_model_registry.schema.json
+	@python scripts/validate_project_model.py
+	@echo "✅ Project model validation passed!"
+
+backup-model: ## Create backup of project model registry
+	@echo "💾 Creating backup of project model registry..."
+	@cp project_model_registry.json project_model_registry.json.backup_$(shell date +%Y%m%d_%H%M%S)
+	@echo "✅ Backup created!"
+```
+
+## Schema Structure Reference
+```json
+{
+  "domains": {
+    "domain_name": {
+      "patterns": ["**/*.py", "**/*.js"],
+      "content_indicators": ["python", "javascript"],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "mypy"
+    }
+  },
+  "requirements_traceability": [
+    {
+      "requirement": "Requirement description",
+      "domain": "domain_name",
+      "implementation": "Implementation details",
+      "test": "test_name"
+    }
+  ],
+  "backlog": [
+    {
+      "id": "backlog_n",
+      "title": "Item title",
+      "description": "Item description",
+      "priority": "critical|high|medium|low",
+      "effort": "1-2 weeks",
+      "dependencies": ["dependency1", "dependency2"],
+      "acceptance_criteria": ["criteria1", "criteria2"]
+    }
+  ]
+}
+```
+
+## Remember
+**The project model registry is the single source of truth for the entire project.**
+**Always use structured tools and validate against the schema to prevent corruption.**
+**When in doubt, use jq and validate twice.**

@@ -404,8 +404,14 @@ validate-all: validate-model validate-requirements ## Validate all components
 
 validate-model: ## Validate project model registry
 	@echo "$(BLUE)🔍 Validating project model registry...$(NC)"
-	@$(PYTHON) -c "import json; json.load(open('$(MODEL_FILE)'))"
-	@echo "$(GREEN)✅ Project model registry is valid JSON$(NC)"
+	@jq -e . project_model_registry.json > /dev/null
+	@if command -v jsonschema >/dev/null 2>&1; then \
+		jsonschema -i project_model_registry.json project_model_registry.schema.json; \
+	else \
+		echo "⚠️  jsonschema CLI tool not found. Install with: pip install jsonschema-cli"; \
+	fi
+	@$(UV) run python scripts/validate_project_model.py
+	@echo "$(GREEN)✅ Project model validation passed!$(NC)"
 
 validate-requirements: ## Validate requirements traceability
 	@echo "$(BLUE)🔍 Validating requirements traceability...$(NC)"
@@ -609,8 +615,7 @@ security-check: ## Run comprehensive security check following project model work
 	@if command -v trivy >/dev/null 2>&1; then \
 		trivy fs --format json --output trivy-report.json . \
 			--skip-dirs ".mypy_cache,.venv,node_modules,op-api-manager/.venv" \
-			--skip-files "*.report.json,*.analysis_report.json,comprehensive_artifact_analysis_report.json,semgrep-report.json,gitleaks-report.json,trivy-report.json" \
-			--max-file-size 500KB || true; \
+			--skip-files "*.report.json,*.analysis_report.json,comprehensive_artifact_analysis_report.json,semgrep-report.json,gitleaks-report.json,trivy-report.json" || true; \
 	else \
 		echo "⚠️  Trivy not installed. Run 'make security-install' to install."; \
 	fi
@@ -619,6 +624,21 @@ security-check: ## Run comprehensive security check following project model work
 	@echo "$(GREEN)🎉 Comprehensive security check completed following project model workflow!$(NC)"
 	@echo "📊 Reports generated: semgrep-report.json, gitleaks-report.json, trivy-report.json"
 	@echo "🚀 All security tools completed successfully!"
+
+distributed-security-check: ## Run distributed security scanning across multiple machines
+	@echo "$(BLUE)🚀 Running distributed security scanning...$(NC)"
+	@echo ""
+	@echo "🔄 Setting up distributed security scanning framework..."
+	@$(UV) run python scripts/distributed_security_scanner.py
+	@echo ""
+	@echo "$(GREEN)🎉 Distributed security scanning completed!$(NC)"
+	@echo "📊 Report generated: distributed_security_report.json"
+	@echo "🖥️  Scanners distributed across multiple machines for optimal performance"
+
+backup-model: ## Create backup of project model registry
+	@echo "$(BLUE)💾 Creating backup of project model registry...$(NC)"
+	@cp project_model_registry.json project_model_registry.json.backup_$(shell date +%Y%m%d_%H%M%S)
+	@echo "$(GREEN)✅ Backup created!$(NC)"
 
 security-audit: ## Run security audit
 	@echo "$(BLUE)🔒 Running security audit...$(NC)"
