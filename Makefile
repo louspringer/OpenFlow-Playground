@@ -1,7 +1,7 @@
 # OpenFlow Playground - Model-Driven Makefile
 # This Makefile leverages the project_model_registry.json for domain-specific operations
 
-.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard ghostbusters ghostbusters-quick ghostbusters-detail ghostbusters-install
+.PHONY: help install install-python install-bash install-cloudformation install-docs install-security install-streamlit install-healthcare install-go install-secure-shell install-all status status-quick status-dashboard status-clean ghostbusters ghostbusters-quick ghostbusters-detail ghostbusters-install
 .PHONY: test test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell test-all
 .PHONY: lint lint-python lint-bash lint-cloudformation lint-docs lint-security lint-streamlit lint-healthcare lint-go lint-secure-shell lint-all
 .PHONY: format format-python format-bash format-docs format-go format-secure-shell format-all
@@ -94,6 +94,7 @@ help: ## Show this help message
 	@echo "  make validate-model     - Validate project model registry"
 	@echo "  make status             - Show comprehensive project status"
 	@echo "  make status-quick       - Show quick project status"
+	@echo "  make status-clean       - Show clean project status (no verbose output)"
 	@echo "  make status-dashboard   - Update dashboard with real data"
 	@echo "  make dev-install        - Install Node.js development environment"
 	@echo "  make mermaid-check      - Validate Mermaid diagrams"
@@ -1023,7 +1024,10 @@ status-quick: ## Show quick project status (faster)
 	@echo ""
 	@echo "$(GREEN)✅ Status report complete!$(NC)"
 
-
+status-clean: ## Show clean project status (no verbose output)
+	@echo "$(CYAN)🚀 OpenFlow Playground - Clean Status$(NC)"
+	@echo "$(BLUE)=====================================$(NC)"
+	@$(UV) run python scripts/status.py
 
 status-dashboard: ## Update dashboard with real project data
 	@echo "$(CYAN)📊 Updating Project Dashboard with Real Data$(NC)"
