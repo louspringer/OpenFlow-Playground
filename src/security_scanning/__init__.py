@@ -24,7 +24,7 @@ Architecture:
 
 from .configuration.config_manager import ConfigManager
 from .core.scanner import SecurityScanner, create_security_scanner
-from .core.worker_pool import WorkerPool, create_worker_pool
+from .core.worker_pool import WorkerPool
 from .patterns.pattern_manager import PatternManager
 from .reporting.report_generator import ReportGenerator
 
@@ -33,6 +33,7 @@ __author__ = "OpenFlow Playground Security Team"
 
 __all__ = [
     "SecurityScanner",
+    "create_security_scanner",
     "WorkerPool",
     "PatternManager",
     "ReportGenerator",

@@ -9,9 +9,15 @@ factory pattern to handle different artifact types (classes, functions, modules)
 
 import ast
 import json
+import os
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Optional, Protocol
+
+# Safety guard: prevent automatic test generation in CI/CD or testing environments
+AUTO_GENERATION_DISABLED = (
+    os.getenv("DISABLE_TEST_GENERATION", "false").lower() == "true"
+)
 
 
 class ArtifactModel(Protocol):
@@ -56,6 +62,11 @@ class ClassArtifactModel:
     def file_path(self) -> Path:
         return self._file_path
 
+    @property
+    def source_file(self) -> Path:
+        """Source file path (alias for file_path for compatibility)"""
+        return self._file_path
+
 
 class FunctionArtifactModel:
     """Model of a Python function for test generation"""
@@ -77,6 +88,11 @@ class FunctionArtifactModel:
 
     @property
     def file_path(self) -> Path:
+        return self._file_path
+
+    @property
+    def source_file(self) -> Path:
+        """Source file path (alias for file_path for compatibility)"""
         return self._file_path
 
 
@@ -101,6 +117,11 @@ class ModuleArtifactModel:
 
     @property
     def file_path(self) -> Path:
+        return self._file_path
+
+    @property
+    def source_file(self) -> Path:
+        """Source file path (alias for file_path for compatibility)"""
         return self._file_path
 
 
@@ -777,6 +798,13 @@ class PythonUnitTestGenerator:
         self, source_file: Path, artifact_types: list[str] = None
     ) -> list[Path]:
         """Generate tests for all artifacts in a source file"""
+        # Safety check: prevent automatic generation in CI/CD or testing environments
+        if AUTO_GENERATION_DISABLED:
+            print(
+                "Test generation disabled by DISABLE_TEST_GENERATION environment variable"
+            )
+            return []
+
         if artifact_types is None:
             artifact_types = ["class", "function", "module"]
 
@@ -803,6 +831,16 @@ class PythonUnitTestGenerator:
     def _generate_test_for_model(self, model: ArtifactModel) -> Optional[Path]:
         """Generate test for a specific artifact model"""
         try:
+            # Validate that the model has valid data before generating tests
+            if not model.name or not model.artifact_type:
+                print(f"Skipping invalid model: {model}")
+                return None
+
+            # Check if the source file actually exists and contains the artifact
+            if not model.source_file or not model.source_file.exists():
+                print(f"Skipping model with non-existent source file: {model.name}")
+                return None
+
             # Generate test model
             if model.artifact_type in self.test_generators:
                 generator_class = self.test_generators[model.artifact_type]
@@ -828,6 +866,13 @@ class PythonUnitTestGenerator:
 
     def generate_tests_from_project_model(self) -> list[Path]:
         """Generate tests for all artifacts defined in project model"""
+        # Safety check: prevent automatic generation in CI/CD or testing environments
+        if AUTO_GENERATION_DISABLED:
+            print(
+                "Test generation disabled by DISABLE_TEST_GENERATION environment variable"
+            )
+            return []
+
         generated_files = []
 
         # Load project model
@@ -858,15 +903,22 @@ class PythonUnitTestGenerator:
 
 
 if __name__ == "__main__":
-    # Example usage
-    project_root = Path()
-    test_generator = PythonUnitTestGenerator(project_root)
+    # Example usage - only run when explicitly executed
+    print("Test generator main function - use for development only")
+    print("To generate tests, import and use PythonUnitTestGenerator class directly")
 
-    # Generate tests for GhostbustersOrchestrator
-    source_file = Path("src/ghostbusters/ghostbusters_orchestrator.py")
-    test_files = test_generator.generate_tests_for_file(source_file, ["class"])
-    print(f"Generated {len(test_files)} test files")
-
-    # Generate tests from project model
-    generated_files = test_generator.generate_tests_from_project_model()
-    print(f"Generated {len(generated_files)} total test files")
+    # Uncomment the following lines only when you want to generate tests
+    # project_root = Path()
+    # test_generator = PythonUnitTestGenerator(project_root)
+    #
+    # # Generate tests for specific file
+    # source_file = Path("src/ghostbusters/ghostbusters_orchestrator.py")
+    # if source_file.exists():
+    #     test_files = test_generator.generate_tests_for_file(source_file, ["class"])
+    #     print(f"Generated {len(test_files)} test files")
+    # else:
+    #     print(f"Source file not found: {source_file}")
+    #
+    # # Generate tests from project model
+    # generated_files = test_generator.generate_tests_from_project_model()
+    # print(f"Generated {len(generated_files)} total test files")

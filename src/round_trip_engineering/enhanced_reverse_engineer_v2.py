@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from .pattern_detector import PatternDetector
+# PatternDetector import removed - not implemented
 
 
 class EnhancedReverseEngineerV2:
@@ -21,7 +21,7 @@ class EnhancedReverseEngineerV2:
     def __init__(self) -> None:
         self.model_data: dict[str, Any] = {}
         self.cached_nodes: list[ast.AST] | None = None
-        self.pattern_detector = PatternDetector()
+        # self.pattern_detector = PatternDetector()  # Not implemented
 
     def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:
         """Reverse engineer a Python file into a comprehensive model with pattern detection"""
@@ -158,9 +158,9 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info["pattern_summary"] = (
-                            self.pattern_detector.get_pattern_summary(detected_patterns)
-                        )
+                        method_info[
+                            "pattern_summary"
+                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
                         method_info["best_practice_recommendations"] = [
@@ -273,9 +273,9 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info["pattern_summary"] = (
-                            self.pattern_detector.get_pattern_summary(detected_patterns)
-                        )
+                        method_info[
+                            "pattern_summary"
+                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
                         method_info["best_practice_recommendations"] = [

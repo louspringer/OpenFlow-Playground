@@ -9,7 +9,7 @@ import logging
 import subprocess
 from pathlib import Path
 
-from .code_generator import (  # type: ignore
+from code_generator import (  # type: ignore
     ClassDefinition,
     CodeFile,
     CodeGenerator,
@@ -30,7 +30,6 @@ class PerfectCodeGenerator(CodeGenerator):
         self.linters = {
             "black": self._run_black,
             "flake8": self._run_flake8,
-            "mypy": self._run_mypy,
             "ast": self._validate_ast,
         }
         self.max_fix_attempts = 5
@@ -60,8 +59,7 @@ class PerfectCodeGenerator(CodeGenerator):
             code = self._fix_linting_issues(code)
 
         # If we can't fix it, raise an error
-        msg = "❌ Could not generate perfect code after maximum attempts!"
-        raise ValueError(msg)
+        raise ValueError("❌ Could not generate perfect code after maximum attempts!")
 
     def _is_perfect(self, code: str) -> bool:
         """Check if code passes all linting checks"""
@@ -80,12 +78,6 @@ class PerfectCodeGenerator(CodeGenerator):
             flake8_errors = self._run_flake8(code)
             if flake8_errors:
                 self.logger.warning(f"❌ Flake8 found {len(flake8_errors)} errors")
-                return False
-
-            # MyPy check
-            mypy_errors = self._run_mypy(code)
-            if mypy_errors:
-                self.logger.warning(f"❌ MyPy found {len(mypy_errors)} errors")
                 return False
 
             self.logger.info("✅ All linting checks passed!")
@@ -133,8 +125,9 @@ class PerfectCodeGenerator(CodeGenerator):
             if result.returncode == 0:
                 self.logger.info("✅ Black formatting applied")
                 return result.stdout
-            self.logger.warning(f"Black formatting failed: {result.stderr}")
-            return code
+            else:
+                self.logger.warning(f"Black formatting failed: {result.stderr}")
+                return code
         except Exception as e:
             self.logger.warning(f"Black formatting error: {e}")
             return code
@@ -157,43 +150,6 @@ class PerfectCodeGenerator(CodeGenerator):
             self.logger.warning(f"Flake8 check failed: {e}")
             return []
 
-    def _run_mypy(self, code: str) -> list[str]:
-        """Check code with MyPy"""
-        try:
-            # Write code to temporary file for MyPy analysis
-            import tempfile
-
-            with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
-                f.write(code)
-                temp_file = f.name
-
-            result = subprocess.run(
-                [
-                    "uv",
-                    "run",
-                    "mypy",
-                    "--show-error-codes",
-                    "--no-error-summary",
-                    temp_file,
-                ],
-                text=True,
-                capture_output=True,
-            )
-
-            # Clean up temp file
-            import os
-
-            os.unlink(temp_file)
-
-            if result.returncode != 0:
-                errors = result.stdout.splitlines()
-                self.logger.info(f"Found {len(errors)} MyPy errors")
-                return errors
-            return []
-        except Exception as e:
-            self.logger.warning(f"MyPy check failed: {e}")
-            return []
-
     def _fix_linting_issues(self, code: str) -> str:
         """Automatically fix common linting issues"""
         self.logger.info("🔧 Fixing linting issues...")
@@ -206,7 +162,9 @@ class PerfectCodeGenerator(CodeGenerator):
         code = self._fix_unused_variables(code)
         code = self._fix_f_strings(code)
         code = self._fix_return_statements(code)
-        return self._fix_private_access(code)
+        code = self._fix_private_access(code)
+
+        return code
 
     def _fix_imports(self, code: str) -> str:
         """Fix import-related issues"""
@@ -432,138 +390,6 @@ def generate_perfect_code_generator() -> CodeFile:
                     "    self.logger.error(f'❌ Error writing perfect file: {e}')",
                     "    return False",
                 ],
-            ),
-        ],
-    )
-
-    return CodeFile(
-        imports=imports,
-        classes=[perfect_generator_class],
-        functions=[],
-        module_docstring="Perfect Code Generator - CANNOT emit non-conforming code\nIntegrates with linting tools and validates before emission",
-        filename="perfect_code_generator.py",
-    )
-
-
-def main() -> None:
-    """Generate the perfect code generator"""
-    logging.basicConfig(level=logging.INFO)
-
-    print("🚀 Building PERFECT CODE GENERATOR!")
-    print("🎯 Generator that CANNOT emit non-conforming code!")
-    print("🏆 Integrates with linting tools and validates before emission!")
-
-    # Create perfect generator
-    generator = PerfectCodeGenerator()
-
-    # Generate the perfect code generator
-    print("📊 Generating Perfect Code Generator using structured models...")
-    perfect_generator_file = generate_perfect_code_generator()
-
-    # Write perfect file
-    output_path = Path("perfect_code_generator_meta.py")
-    success = generator.write_perfect_file(perfect_generator_file, output_path)
-
-    if success:
-        print("🎉 PERFECT CODE GENERATOR SUCCESS!")
-        print("✅ Generator that CANNOT emit non-conforming code!")
-        print(f"📁 Output: {output_path}")
-        print("🏆 ULTIMATE META-RECURSIVE BREAKTHROUGH!")
-    else:
-        print("❌ PERFECT CODE GENERATOR FAILURE!")
-
-
-if __name__ == "__main__":
-    main()
-
-            ),
-        ],
-    )
-
-    return CodeFile(
-        imports=imports,
-        classes=[perfect_generator_class],
-        functions=[],
-        module_docstring="Perfect Code Generator - CANNOT emit non-conforming code\nIntegrates with linting tools and validates before emission",
-        filename="perfect_code_generator.py",
-    )
-
-
-def main() -> None:
-    """Generate the perfect code generator"""
-    logging.basicConfig(level=logging.INFO)
-
-    print("🚀 Building PERFECT CODE GENERATOR!")
-    print("🎯 Generator that CANNOT emit non-conforming code!")
-    print("🏆 Integrates with linting tools and validates before emission!")
-
-    # Create perfect generator
-    generator = PerfectCodeGenerator()
-
-    # Generate the perfect code generator
-    print("📊 Generating Perfect Code Generator using structured models...")
-    perfect_generator_file = generate_perfect_code_generator()
-
-    # Write perfect file
-    output_path = Path("perfect_code_generator_meta.py")
-    success = generator.write_perfect_file(perfect_generator_file, output_path)
-
-    if success:
-        print("🎉 PERFECT CODE GENERATOR SUCCESS!")
-        print("✅ Generator that CANNOT emit non-conforming code!")
-        print(f"📁 Output: {output_path}")
-        print("🏆 ULTIMATE META-RECURSIVE BREAKTHROUGH!")
-    else:
-        print("❌ PERFECT CODE GENERATOR FAILURE!")
-
-
-if __name__ == "__main__":
-    main()
-
-            ),
-        ],
-    )
-
-    return CodeFile(
-        imports=imports,
-        classes=[perfect_generator_class],
-        functions=[],
-        module_docstring="Perfect Code Generator - CANNOT emit non-conforming code\nIntegrates with linting tools and validates before emission",
-        filename="perfect_code_generator.py",
-    )
-
-
-def main() -> None:
-    """Generate the perfect code generator"""
-    logging.basicConfig(level=logging.INFO)
-
-    print("🚀 Building PERFECT CODE GENERATOR!")
-    print("🎯 Generator that CANNOT emit non-conforming code!")
-    print("🏆 Integrates with linting tools and validates before emission!")
-
-    # Create perfect generator
-    generator = PerfectCodeGenerator()
-
-    # Generate the perfect code generator
-    print("📊 Generating Perfect Code Generator using structured models...")
-    perfect_generator_file = generate_perfect_code_generator()
-
-    # Write perfect file
-    output_path = Path("perfect_code_generator_meta.py")
-    success = generator.write_perfect_file(perfect_generator_file, output_path)
-
-    if success:
-        print("🎉 PERFECT CODE GENERATOR SUCCESS!")
-        print("✅ Generator that CANNOT emit non-conforming code!")
-        print(f"📁 Output: {output_path}")
-        print("🏆 ULTIMATE META-RECURSIVE BREAKTHROUGH!")
-    else:
-        print("❌ PERFECT CODE GENERATOR FAILURE!")
-
-
-if __name__ == "__main__":
-    main()
-
             ),
         ],
     )

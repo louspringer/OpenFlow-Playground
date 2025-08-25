@@ -10,9 +10,10 @@ import json
 import os
 import uuid
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Optional
 
-from .pattern_detector import PatternDetector
+# PatternDetector import removed - not implemented
 
 
 class EnhancedReverseEngineer:
@@ -21,7 +22,7 @@ class EnhancedReverseEngineer:
     def __init__(self):
         self.model_data = {}
         self.cached_nodes = None
-        self.pattern_detector = PatternDetector()
+        # self.pattern_detector = PatternDetector()  # Not implemented
 
     def reverse_engineer_file(self, file_path: str) -> dict[str, Any]:
         """Reverse engineer a Python file into a comprehensive model"""
@@ -502,7 +503,7 @@ def main():
         sys.exit(1)
 
     file_path = sys.argv[1]
-    if not os.path.exists(file_path):
+    if not Path(file_path).exists():
         print(f"❌ File not found: {file_path}")
         sys.exit(1)
 

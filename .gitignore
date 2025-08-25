@@ -95,3 +95,7 @@ tidb-agentx-hackathon/
 *.log
 *_output.txt
 *_regenerated.py
+
+# Generated test files (broken artifacts)
+tests/generated/
+tests/backup_generated/
