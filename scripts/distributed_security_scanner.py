@@ -209,9 +209,11 @@ class DistributedSecurityScanner:
                 success=result["StatusCode"] == 0,
                 output=logs,
                 duration=duration,
-                error=None
-                if result["StatusCode"] == 0
-                else f"Exit code: {result['StatusCode']}",
+                error=(
+                    None
+                    if result["StatusCode"] == 0
+                    else f"Exit code: {result['StatusCode']}"
+                ),
             )
 
         except Exception as e:
@@ -341,9 +343,9 @@ class DistributedSecurityScanner:
                 "successful_scans": successful_scans,
                 "failed_scans": total_scanners - successful_scans,
                 "total_duration": total_duration,
-                "average_duration": total_duration / total_scanners
-                if total_scanners > 0
-                else 0,
+                "average_duration": (
+                    total_duration / total_scanners if total_scanners > 0 else 0
+                ),
             },
             "results_by_machine": results_by_machine,
             "detailed_results": [

@@ -10,33 +10,25 @@ requires-python = ">=3.10"
 dependencies = [
     # Core Framework
     "streamlit>=1.28.0",
-    
     # Security Dependencies (Best Practices)
     "bcrypt>=4.0.0",
     "cryptography>=41.0.0",
     "PyJWT>=2.8.0",
-    
     # Data Processing
     "pandas>=2.0.0",
     "numpy>=1.24.0",
-    
     # Visualization
     "plotly>=5.15.0",
-    
     # AWS Integration
     "boto3>=1.28.0",
     "botocore>=1.31.0",
-    
     # Database and Caching
     "redis>=4.6.0",
-    
     # HTTP Requests
     "requests>=2.31.0",
-    
     # Data Validation
     "pydantic>=2.0.0",
     "autoflake8>=0.4.1",
-    
     # Multi-Agent Framework
     "langgraph>=0.2.0",
     "langchain>=0.2.0",
@@ -52,21 +44,19 @@ dependencies = [
     "neo4j>=5.28.2",
     "jq>=1.10.0",
     "astor>=0.8.1",
-    
     # Code Quality Tools
     "mypy==1.8.0",
     "pytype>=2024.10.11",
-    
     # LangChain Components
     "langchain-core>=0.3.74",
     "langchain-anthropic>=0.3.19",
     "langchain-openai>=0.3.30",
     "langchain-community>=0.3.27",
-    
     # Utilities
     "python-dotenv>=1.1.1",
     "psutil>=6.1.1",
     "tenacity>=9.1.2",
+    "rdflib>=7.1.4",
 ]
 
 [project.optional-dependencies]

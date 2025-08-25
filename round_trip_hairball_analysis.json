@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "total_duplicates": 5,
+    "has_hairball": true,
+    "multiple_runs": true
+  },
+  "detailed_analysis": {
+    "src/round_trip_engineering/enhanced_reverse_engineer_v2.py": {
+      "method_extraction_calls": 4,
+      "method_generation_calls": 0
+    },
+    "src/round_trip_engineering/round_trip_model_system.py": {
+      "method_extraction_calls": 0,
+      "method_generation_calls": 2
+    },
+    "generated_proven_ASTAnalyzer.py": {
+      "duplicate_returns": 0,
+      "duplicate_methods": 1,
+      "todo_comments": 6
+    },
+    "generated_proven_QualityOrchestrator.py": {
+      "duplicate_returns": 1,
+      "duplicate_methods": 0,
+      "todo_comments": 4
+    },
+    "generated_proven_QualityRule.py": {
+      "duplicate_returns": 4,
+      "duplicate_methods": 1,
+      "todo_comments": 3
+    },
+    "generated___init__.py": {
+      "duplicate_returns": 0,
+      "duplicate_methods": 0,
+      "todo_comments": 0
+    },
+    "hairball_patterns": {
+      "root_files": 2,
+      "generated_files": 4,
+      "total_duplicates": 5
+    }
+  },
+  "recommendations": [
+    "Delete broken generated files",
+    "Fix duplication bug in round-trip system",
+    "Regenerate clean code from models",
+    "Validate no duplications exist"
+  ]
+}

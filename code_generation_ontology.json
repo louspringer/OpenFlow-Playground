@@ -1,0 +1,555 @@
+[
+  {
+    "@id": "http://example.org/code-generation#hasDescription",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has description"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#transformsTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#QualityRule"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "transformsTo"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/code-generation#QualityRule"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#transformsFrom",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#CodeGenerationComponent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "transforms from"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/reverse-engineering#ReverseEngineeringComponent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#hasReturnType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code#Method"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has return type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#Method",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A method within a component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Method"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#DictFormat",
+    "@type": [
+      "http://example.org/code-generation#Format"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Dict Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/reverse-engineering#ReverseEngineeringContext",
+    "@type": [
+      "http://example.org/code-generation#Context"
+    ],
+    "http://example.org/code-generation#hasFormat": [
+      {
+        "@id": "http://example.org/code-generation#ListFormat"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Reverse Engineering Context"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#generate_fix_param_0",
+    "@type": [
+      "http://example.org/code#Parameter"
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "code"
+      }
+    ],
+    "http://example.org/code-generation#hasType": [
+      {
+        "@value": "str"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#analyze_file_param_0",
+    "@type": [
+      "http://example.org/code#Parameter"
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "file_path"
+      }
+    ],
+    "http://example.org/code-generation#hasType": [
+      {
+        "@value": "str"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#generate_fix",
+    "@type": [
+      "http://example.org/code#Method"
+    ],
+    "http://example.org/code#hasParameter": [
+      {
+        "@id": "http://example.org/code#generate_fix_param_0"
+      }
+    ],
+    "http://example.org/code#hasReturnType": [
+      {
+        "@value": "str"
+      }
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "generate_fix"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#ASTAnalyzer",
+    "@type": [
+      "http://example.org/code-generation#Component",
+      "http://example.org/reverse-engineering#ReverseEngineeringComponent"
+    ],
+    "http://example.org/code-generation#hasContext": [
+      {
+        "@id": "http://example.org/reverse-engineering#ReverseEngineeringContext"
+      }
+    ],
+    "http://example.org/code-generation#hasDescription": [
+      {
+        "@value": "AST-based code analyzer with quality rule integration"
+      }
+    ],
+    "http://example.org/code-generation#hasMethod": [
+      {
+        "@id": "http://example.org/code#analyze_file"
+      }
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "ASTAnalyzer"
+      }
+    ],
+    "http://example.org/code-generation#hasType": [
+      {
+        "@value": "class"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/reverse-engineering#transformsTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/reverse-engineering#ReverseEngineeringComponent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "transforms to"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/code-generation#CodeGenerationComponent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#hasContext",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has context"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/code-generation#Context"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#QualityRule",
+    "@type": [
+      "http://example.org/code-generation#Component",
+      "http://example.org/reverse-engineering#ReverseEngineeringComponent"
+    ],
+    "http://example.org/code-generation#hasContext": [
+      {
+        "@id": "http://example.org/reverse-engineering#ReverseEngineeringContext"
+      }
+    ],
+    "http://example.org/code-generation#hasDescription": [
+      {
+        "@value": "Represents a code quality rule with detection and fix strategies"
+      }
+    ],
+    "http://example.org/code-generation#hasMethod": [
+      {
+        "@id": "http://example.org/code#detect_violations"
+      },
+      {
+        "@id": "http://example.org/code#generate_fix"
+      }
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "QualityRule"
+      }
+    ],
+    "http://example.org/code-generation#hasType": [
+      {
+        "@value": "class"
+      }
+    ],
+    "http://example.org/code-generation#transformsTo": [
+      {
+        "@id": "http://example.org/code-generation#QualityRule"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#analyze_file",
+    "@type": [
+      "http://example.org/code#Method"
+    ],
+    "http://example.org/code#hasParameter": [
+      {
+        "@id": "http://example.org/code#analyze_file_param_0"
+      }
+    ],
+    "http://example.org/code#hasReturnType": [
+      {
+        "@value": "Dict[str, Any]"
+      }
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "analyze_file"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#ListFormat",
+    "@type": [
+      "http://example.org/code-generation#Format"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "List Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#CodeGenerationComponent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A component to be generated by the code generation system"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Code Generation Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#hasName",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has name"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#CodeGenerationContext",
+    "@type": [
+      "http://example.org/code-generation#Context"
+    ],
+    "http://example.org/code-generation#hasFormat": [
+      {
+        "@id": "http://example.org/code-generation#DictFormat"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Code Generation Context"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#hasType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#Format",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "The data format of a component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#hasFormat",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has format"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/code-generation#Format"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#Component",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A code component that can be discovered or generated"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Component"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#detect_violations_param_0",
+    "@type": [
+      "http://example.org/code#Parameter"
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "code"
+      }
+    ],
+    "http://example.org/code-generation#hasType": [
+      {
+        "@value": "str"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/reverse-engineering#ReverseEngineeringComponent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "A component discovered during reverse engineering"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Reverse Engineering Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#hasMethod",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/code-generation#Component"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has method"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/code#Method"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code#detect_violations",
+    "@type": [
+      "http://example.org/code#Method"
+    ],
+    "http://example.org/code#hasParameter": [
+      {
+        "@id": "http://example.org/code#detect_violations_param_0"
+      }
+    ],
+    "http://example.org/code#hasReturnType": [
+      {
+        "@value": "List[str]"
+      }
+    ],
+    "http://example.org/code-generation#hasName": [
+      {
+        "@value": "detect_violations"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/code-generation#Context",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "The context in which a component exists"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Context"
+      }
+    ]
+  }
+]

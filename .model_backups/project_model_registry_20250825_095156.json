@@ -2770,17 +2770,18 @@
     },
     "round_trip_engineering": {
       "patterns": [
-        "src/round_trip_engineering/**/*.py",
-        "tests/test_round_trip_system.py",
-        "docs/activity_models/**/*.md"
+        "**/*round_trip*.py",
+        "**/*enhanced_reverse_engineer*.py",
+        "**/*enhanced_round_trip*.py",
+        "src/round_trip_engineering/**/*.py"
       ],
       "content_indicators": [
         "round_trip",
-        "vocabulary_alignment",
+        "reverse_engineer",
+        "model_driven",
         "code_generation",
-        "duplication_cleaning",
-        "ontological_modeling",
-        "modular_architecture"
+        "enhanced_analysis",
+        "pattern_detection"
       ],
       "linter": "flake8",
       "formatter": "black",
@@ -2789,14 +2790,14 @@
         "__pycache__/*",
         "*.pyc",
         "*.pyo",
-        "src/round_trip_generated/*.py"
+        "mass_reverse_engineering*",
+        "reverse_engineer_model*"
       ],
       "requirements": [
         "DEPENDENCY: Use ArtifactForge for basic artifact parsing and analysis",
-        "RESPONSIBILITY: Implement modular round-trip engineering architecture",
-        "RESPONSIBILITY: Provide ontological vocabulary alignment between domains",
-        "RESPONSIBILITY: Generate code with comprehensive duplication cleaning",
-        "RESPONSIBILITY: Implement comprehensive logging and profiling",
+        "RESPONSIBILITY: ENRICH ArtifactForge output with enhanced method body extraction",
+        "RESPONSIBILITY: Add pattern detection and best practice analysis",
+        "RESPONSIBILITY: Generate code from enriched models with zero duplication",
         "BOUNDARY: Round-trip Engineering is NOT ArtifactForge - it extends and enriches",
         "Generate code from models with proper type annotations and MyPy compliance",
         "Maintain functional equivalence through round-trip validation",
@@ -2809,48 +2810,39 @@
         "Maintain zero duplication in generated artifacts across all formats",
         "Ensure generated code is syntactically correct and follows best practices",
         "Provide comprehensive testing and validation capabilities",
-        "Maintain clear separation: consume ArtifactForge output, enrich it, generate code",
-        "Implement activity model validation for expected vs actual behavior",
-        "Provide performance profiling and comprehensive logging"
+        "Maintain clear separation: consume ArtifactForge output, enrich it, generate code"
       ],
       "todos": [
         {
           "id": "fix_code_generation_duplication",
           "description": "Fix systematic code duplication in generated artifacts causing 524 MyPy errors",
           "priority": "critical",
-          "status": "completed",
+          "status": "in_progress",
           "details": {
-            "current_state": "Modular round-trip system implemented with duplication cleaning",
-            "root_cause": "Monolithic architecture causing code duplication issues",
-            "solution": "Refactored into modular components with dedicated duplication cleaner",
+            "current_state": "Round-trip system generating broken code with duplicate return statements",
+            "root_cause": "Code generation logic creating unreachable statements and duplications",
+            "impact": "524 MyPy errors, 36 unreachable statement errors, broken generated code",
             "next_steps": [
-              "Run comprehensive tests with logging and profiling",
-              "Validate activity models and expected behavior",
-              "Fix remaining MyPy errors after refactoring",
-              "Integrate with ontology framework subproject"
+              "Fix code generation duplication bug in round-trip system",
+              "Delete broken generated files",
+              "Regenerate clean code from models",
+              "Validate MyPy compliance",
+              "Ensure zero duplication in generated artifacts"
             ],
             "metrics": {
-              "architecture": "Modular (8 focused modules vs 1 monolithic file)",
-              "code_reduction": "48% (1932 → 997 lines)",
-              "duplication_cleaning": "Implemented",
-              "logging_profiling": "Comprehensive system implemented"
+              "files_affected": "src/round_trip_generated/*.py",
+              "total_mypy_errors": 524,
+              "unreachable_statements": 36,
+              "duplicate_code_blocks": "Multiple files affected"
             }
           },
           "created": "2025-01-27T10:00:00",
-          "completed": "2025-01-27T15:00:00",
-          "assigned_to": "AI Assistant"
-        },
-        {
-          "id": "validate_activity_models",
-          "description": "Validate expected vs actual behavior using comprehensive testing",
-          "priority": "high",
-          "status": "in_progress",
           "assigned_to": "AI Assistant"
         }
       ],
       "demo_role": "tool",
       "extraction_candidate": true,
-      "reason": "Modular round-trip engineering system with ontological vocabulary alignment and comprehensive testing"
+      "reason": "Unified artifact processing system for model-driven development across all artifact types"
     },
     "over_engineering_prevention": {
       "patterns": [

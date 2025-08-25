@@ -1,5 +1,6 @@
 ---
-description: Project Model Schema Enforcement Rule for **/project_model_registry.json
+description: "Project Model Schema Enforcement Rule for **/project_model_registry.json"
+globs: "**/project_model_registry.json"
 alwaysApply: false
 ---
 

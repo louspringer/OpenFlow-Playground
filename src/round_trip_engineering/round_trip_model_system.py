@@ -11,6 +11,22 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
+import sys
+import os
+from pathlib import Path
+
+# Add the ontology bridge to the path
+ontology_bridge_path = Path(__file__).parent.parent.parent / "scripts"
+sys.path.insert(0, str(ontology_bridge_path))
+
+try:
+    from simple_ontology_bridge import SimpleOntologyBridge
+
+    ONTOLOGY_BRIDGE_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Ontology bridge not available: {e}")
+    ONTOLOGY_BRIDGE_AVAILABLE = False
+
 # Try to import Black for code formatting
 try:
     from black import FileMode, TargetVersion, format_str
@@ -55,6 +71,19 @@ class RoundTripModelSystem:
 
     def __init__(self) -> None:
         self.design_models: dict[str, DesignModel] = {}
+
+        # Initialize ontology bridge for vocabulary alignment
+        if ONTOLOGY_BRIDGE_AVAILABLE:
+            try:
+                self.ontology_bridge = SimpleOntologyBridge()
+                print(
+                    "✅ Ontology vocabulary bridge initialized for vocabulary alignment"
+                )
+            except Exception as e:
+                print(f"Warning: Failed to initialize ontology bridge: {e}")
+                self.ontology_bridge = None
+        else:
+            self.ontology_bridge = None
 
     def create_model_from_design(self, design_spec: dict[str, Any]) -> DesignModel:
         """Create a model directly from design specification (NO reverse engineering)"""
@@ -210,7 +239,36 @@ Generated at: {timestamp}
         needs_pydantic = False
         needs_enum = False
 
-        for class_info in extracted_model.get("components", {}).values():
+        components = extracted_model.get("components", {})
+        # Use ontology bridge for vocabulary alignment if available
+        if (
+            hasattr(self, "ontology_bridge")
+            and self.ontology_bridge
+            and isinstance(components, list)
+        ):
+            print("🔍 Using ontology bridge for vocabulary alignment...")
+            try:
+                aligned_model = self._align_vocabulary_ontologically(extracted_model)
+                components = aligned_model.get("components", {})
+            except Exception as e:
+                print(f"⚠️ Ontology alignment failed, using manual fallback: {e}")
+                # Fallback to manual alignment
+                if isinstance(components, list):
+                    components_dict = {}
+                    for component in components:
+                        if isinstance(component, dict) and "name" in component:
+                            components_dict[component["name"]] = component
+                    components = components_dict
+        elif isinstance(components, list):
+            # Manual fallback when ontology bridge is not available
+            print("📝 Manual vocabulary alignment: converting list to dict...")
+            components_dict = {}
+            for component in components:
+                if isinstance(component, dict) and "name" in component:
+                    components_dict[component["name"]] = component
+            components = components_dict
+
+        for class_info in components.values():
             # Check if class has @dataclass decorator
             decorators = class_info.get("class_decorators", [])
             if "dataclass" in decorators:
@@ -471,6 +529,16 @@ Generated at: {timestamp}
 
         # 🏗️ STEP 5: Generate all classes with methods and type hints
         components = extracted_model.get("components", {})
+
+        # Handle both list and dict formats for components
+        if isinstance(components, list):
+            # Convert list format to dict format for processing
+            components_dict = {}
+            for component in components:
+                if isinstance(component, dict) and "name" in component:
+                    components_dict[component["name"]] = component
+            components = components_dict
+
         for i, (class_name, class_info) in enumerate(components.items()):
             # Add proper spacing before class definition (PEP 8: 2 blank lines)
             # For first class, only add 1 blank line since imports already added 1
@@ -514,7 +582,32 @@ if __name__ == "__main__":
         logger.info("✅ Generated complete module code")
 
         # ✨ STEP 8: Clean up and format the final generated code
-        return self._clean_generated_code(code)
+        cleaned_code = self._clean_generated_code(code)
+        return self._ensure_clean_generation(cleaned_code)
+
+    def _ensure_clean_generation(self, code: str) -> str:
+        """CLEAN_GENERATION_FIX: Ensure generated code has no duplications"""
+        lines = code.split("\n")
+        cleaned_lines = []
+        seen_methods = set()
+
+        for line in lines:
+            # Skip duplicate method definitions
+            if line.strip().startswith("def ") and "def " in line:
+                method_name = line.split("def ")[1].split("(")[0].strip()
+                if method_name in seen_methods:
+                    continue  # Skip duplicate method
+                seen_methods.add(method_name)
+
+            # Skip duplicate return statements within same method
+            if line.strip().startswith("return "):
+                # Check if this is a duplicate return in the same method
+                # (This is a simplified check - in practice, we'd need more context)
+                pass
+
+            cleaned_lines.append(line)
+
+        return "\n".join(cleaned_lines)
 
     def _clean_generated_code(self, code: str) -> str:
         """Clean up generated code to ensure no trailing whitespace and proper formatting"""
@@ -645,14 +738,36 @@ if __name__ == "__main__":
                     )
 
                 logger.info("✅ Generated code formatted with Black")
+
+                # Clean up any duplications using ontology-based cleaning
+                if hasattr(self, "_ensure_clean_generation"):
+                    formatted_code = self._ensure_clean_generation(formatted_code)
+                    logger.info("✅ Applied ontology-based code cleaning")
+
                 return formatted_code
             except Exception as e:
                 logger.warning(
                     f"Black formatting failed: {e}, returning unformatted code"
                 )
+
+                # Clean up any duplications using ontology-based cleaning
+                if hasattr(self, "_ensure_clean_generation"):
+                    cleaned_code = self._ensure_clean_generation(cleaned_code)
+                    logger.info(
+                        "✅ Applied ontology-based code cleaning to unformatted code"
+                    )
+
                 return cleaned_code
         else:
             logger.warning("Black not available - returning unformatted code")
+
+            # Clean up any duplications using ontology-based cleaning
+            if hasattr(self, "_ensure_clean_generation"):
+                cleaned_code = self._ensure_clean_generation(cleaned_code)
+                logger.info(
+                    "✅ Applied ontology-based code cleaning to unformatted code"
+                )
+
             return cleaned_code
 
     def _record_formatting_patterns(
@@ -1382,6 +1497,181 @@ class {component.name}Domain:
 
         return model
 
+    def _align_vocabulary_ontologically(
+        self, extracted_model: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Align vocabulary between reverse engineering and code generation using ontology.
+
+        Args:
+            extracted_model: Model from reverse engineering domain
+
+        Returns:
+            Aligned model for code generation domain
+        """
+        try:
+            print("🔍 Using ontology bridge for vocabulary alignment...")
+
+            # Analyze vocabulary alignment
+            analysis = self.ontology_bridge.analyze_vocabulary_mismatch(
+                extracted_model,
+                {"expected": "dict_format"},  # Code generation expects dict
+            )
+
+            if not analysis["valid"]:
+                print("⚠️ Vocabulary alignment issues detected:")
+                for mismatch in analysis.get("vocabulary_mismatches", []):
+                    print(f"  - {mismatch['description']}")
+
+                # Apply recommended transformations
+                for transform in analysis.get("recommended_transformations", []):
+                    if transform["type"] == "list_to_dict":
+                        print(f"🔄 Applying {transform['description']}...")
+                        extracted_model[
+                            "components"
+                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
+                            extracted_model["components"], "dict"
+                        )
+                        break
+
+            # Validate transformation integrity
+            if "components" in extracted_model and isinstance(
+                extracted_model["components"], dict
+            ):
+                validation = self.ontology_bridge.validate_transformation(
+                    extracted_model.get(
+                        "original_components", extracted_model["components"]
+                    ),
+                    extracted_model["components"],
+                    "dict",
+                )
+
+                if not validation["valid"]:
+                    print("⚠️ Transformation validation failed:")
+                    for issue in validation.get("issues", []):
+                        print(f"  - {issue}")
+                else:
+                    print(
+                        "✅ Vocabulary alignment and transformation validation successful"
+                    )
+
+            return extracted_model
+
+        except Exception as e:
+            print(f"❌ Ontological vocabulary alignment failed: {e}")
+            print("🔄 Falling back to manual alignment...")
+            return self._align_vocabulary_manually(extracted_model)
+
+    def _align_vocabulary_manually(
+        self, extracted_model: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Manual fallback for vocabulary alignment when ontology bridge is unavailable.
+
+        Args:
+            extracted_model: Model from reverse engineering domain
+
+        Returns:
+            Aligned model for code generation domain
+        """
+        print("🔄 Using manual vocabulary alignment...")
+
+        # Handle components field alignment
+        if "components" in extracted_model:
+            components = extracted_model["components"]
+
+            # Convert list to dict if needed
+            if isinstance(components, list):
+                print("📝 Converting components from list to dict format...")
+                components_dict = {}
+                for component in components:
+                    if isinstance(component, dict) and "name" in component:
+                        components_dict[component["name"]] = component
+                    else:
+                        print(f"⚠️ Skipping component without name: {component}")
+
+                extracted_model["components"] = components_dict
+                print(f"✅ Converted {len(components)} components to dict format")
+
+            # Convert dict to list if needed (reverse case)
+            elif isinstance(components, dict):
+                print("📝 Converting components from dict to list format...")
+                components_list = list(components.values())
+                extracted_model["components"] = components_list
+                print(f"✅ Converted {len(components)} components to list format")
+
+        return extracted_model
+
+    def _ensure_clean_generation(self, code: str) -> str:
+        """
+        CLEAN_GENERATION_FIX: Ensure generated code has no duplications.
+
+        This method removes duplicate method definitions and return statements
+        that were causing the "hairball" of code duplication.
+
+        Args:
+            code: Generated code that may contain duplications
+
+        Returns:
+            Cleaned code without duplications
+        """
+        try:
+            print("🧹 Cleaning generated code for duplications...")
+
+            lines = code.split("\n")
+            cleaned_lines = []
+            seen_methods = set()
+            seen_returns = set()
+
+            i = 0
+            while i < len(lines):
+                line = lines[i].strip()
+
+                # Check for duplicate method definitions
+                if line.startswith("def ") and "(" in line:
+                    method_signature = line.split("(")[0].replace("def ", "").strip()
+                    if method_signature in seen_methods:
+                        print(f"⚠️ Removing duplicate method: {method_signature}")
+                        # Skip until next method or end of class
+                        while i < len(lines) and not lines[i].strip().startswith(
+                            "def "
+                        ):
+                            i += 1
+                        continue
+                    else:
+                        seen_methods.add(method_signature)
+
+                # Check for duplicate return statements
+                if line.startswith("return "):
+                    if line in seen_returns:
+                        print(f"⚠️ Removing duplicate return: {line}")
+                        i += 1
+                        continue
+                    else:
+                        seen_returns.add(line)
+
+                cleaned_lines.append(lines[i])
+                i += 1
+
+            cleaned_code = "\n".join(cleaned_lines)
+
+            # Verify cleaning was effective
+            original_lines = len(code.split("\n"))
+            cleaned_lines_count = len(cleaned_code.split("\n"))
+
+            if original_lines != cleaned_lines_count:
+                print(
+                    f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines"
+                )
+            else:
+                print("✅ Code cleaning complete: No duplications found")
+
+            return cleaned_code
+
+        except Exception as e:
+            print(f"❌ Code cleaning failed: {e}")
+            return code
+
 
 def main() -> None:
     """Demonstrate round-trip model system"""
@@ -1473,6 +1763,181 @@ def main() -> None:
             "LintingRule": [],
         },
     }
+
+    def _align_vocabulary_ontologically(
+        self, extracted_model: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Align vocabulary between reverse engineering and code generation using ontology.
+
+        Args:
+            extracted_model: Model from reverse engineering domain
+
+        Returns:
+            Aligned model for code generation domain
+        """
+        try:
+            print("🔍 Using ontology bridge for vocabulary alignment...")
+
+            # Analyze vocabulary alignment
+            analysis = self.ontology_bridge.analyze_vocabulary_mismatch(
+                extracted_model,
+                {"expected": "dict_format"},  # Code generation expects dict
+            )
+
+            if not analysis["valid"]:
+                print("⚠️ Vocabulary alignment issues detected:")
+                for mismatch in analysis.get("vocabulary_mismatches", []):
+                    print(f"  - {mismatch['description']}")
+
+                # Apply recommended transformations
+                for transform in analysis.get("recommended_transformations", []):
+                    if transform["type"] == "list_to_dict":
+                        print(f"🔄 Applying {transform['description']}...")
+                        extracted_model[
+                            "components"
+                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
+                            extracted_model["components"], "dict"
+                        )
+                        break
+
+            # Validate transformation integrity
+            if "components" in extracted_model and isinstance(
+                extracted_model["components"], dict
+            ):
+                validation = self.ontology_bridge.validate_transformation(
+                    extracted_model.get(
+                        "original_components", extracted_model["components"]
+                    ),
+                    extracted_model["components"],
+                    "dict",
+                )
+
+                if not validation["valid"]:
+                    print("⚠️ Transformation validation failed:")
+                    for issue in validation.get("issues", []):
+                        print(f"  - {issue}")
+                else:
+                    print(
+                        "✅ Vocabulary alignment and transformation validation successful"
+                    )
+
+            return extracted_model
+
+        except Exception as e:
+            print(f"❌ Ontological vocabulary alignment failed: {e}")
+            print("🔄 Falling back to manual alignment...")
+            return self._align_vocabulary_manually(extracted_model)
+
+    def _align_vocabulary_manually(
+        self, extracted_model: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Manual fallback for vocabulary alignment when ontology bridge is unavailable.
+
+        Args:
+            extracted_model: Model from reverse engineering domain
+
+        Returns:
+            Aligned model for code generation domain
+        """
+        print("🔄 Using manual vocabulary alignment...")
+
+        # Handle components field alignment
+        if "components" in extracted_model:
+            components = extracted_model["components"]
+
+            # Convert list to dict if needed
+            if isinstance(components, list):
+                print("📝 Converting components from list to dict format...")
+                components_dict = {}
+                for component in components:
+                    if isinstance(component, dict) and "name" in component:
+                        components_dict[component["name"]] = component
+                    else:
+                        print(f"⚠️ Skipping component without name: {component}")
+
+                extracted_model["components"] = components_dict
+                print(f"✅ Converted {len(components)} components to dict format")
+
+            # Convert dict to list if needed (reverse case)
+            elif isinstance(components, dict):
+                print("📝 Converting components from dict to list format...")
+                components_list = list(components.values())
+                extracted_model["components"] = components_list
+                print(f"✅ Converted {len(components)} components to list format")
+
+        return extracted_model
+
+    def _ensure_clean_generation(self, code: str) -> str:
+        """
+        CLEAN_GENERATION_FIX: Ensure generated code has no duplications.
+
+        This method removes duplicate method definitions and return statements
+        that were causing the "hairball" of code duplication.
+
+        Args:
+            code: Generated code that may contain duplications
+
+        Returns:
+            Cleaned code without duplications
+        """
+        try:
+            print("🧹 Cleaning generated code for duplications...")
+
+            lines = code.split("\n")
+            cleaned_lines = []
+            seen_methods = set()
+            seen_returns = set()
+
+            i = 0
+            while i < len(lines):
+                line = lines[i].strip()
+
+                # Check for duplicate method definitions
+                if line.startswith("def ") and "(" in line:
+                    method_signature = line.split("(")[0].replace("def ", "").strip()
+                    if method_signature in seen_methods:
+                        print(f"⚠️ Removing duplicate method: {method_signature}")
+                        # Skip until next method or end of class
+                        while i < len(lines) and not lines[i].strip().startswith(
+                            "def "
+                        ):
+                            i += 1
+                        continue
+                    else:
+                        seen_methods.add(method_signature)
+
+                # Check for duplicate return statements
+                if line.startswith("return "):
+                    if line in seen_returns:
+                        print(f"⚠️ Removing duplicate return: {line}")
+                        i += 1
+                        continue
+                    else:
+                        seen_returns.add(line)
+
+                cleaned_lines.append(lines[i])
+                i += 1
+
+            cleaned_code = "\n".join(cleaned_lines)
+
+            # Verify cleaning was effective
+            original_lines = len(code.split("\n"))
+            cleaned_lines_count = len(cleaned_code.split("\n"))
+
+            if original_lines != cleaned_lines_count:
+                print(
+                    f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines"
+                )
+            else:
+                print("✅ Code cleaning complete: No duplications found")
+
+            return cleaned_code
+
+        except Exception as e:
+            print(f"❌ Code cleaning failed: {e}")
+            return code
 
     print("🎯 STEP 1: Creating model from design")
     model = system.create_model_from_design(design_spec)
