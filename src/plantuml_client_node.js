@@ -31,14 +31,14 @@ class NodePlantUMLClient {
      * @param {string} format - Output format (png, svg, etc.)
      * @returns {Promise<string|null>} Path to generated diagram file, or null if failed
      */
-    async generateDiagram(plantumlCode, outputPath, format = 'png') {
+    async generateDiagram(plantumlCode, outputPath, format = 'svg') {
         try {
             console.log(`🔄 Generating ${format.toUpperCase()} diagram...`);
             
             // Encode the PlantUML code
             const encodedCode = encodeURIComponent(plantumlCode);
             
-            // Construct the URL
+            // Construct the URL with SVG format
             const url = `${this.serverUrl}/uml/${encodedCode}`;
             
             // Make the HTTP request
@@ -344,7 +344,7 @@ stop
 @enduml`;
     
     console.log('🔄 Testing simple diagram generation...');
-    const result = await client.generateDiagram(simpleDiagram, 'test_node_client.png');
+    const result = await client.generateDiagram(simpleDiagram, 'test_node_client.svg');
     
     if (result) {
         console.log(`✅ Diagram generated successfully: ${result}`);

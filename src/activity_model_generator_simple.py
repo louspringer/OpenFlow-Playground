@@ -346,13 +346,13 @@ class SimpleActivityModelGenerator:
 
         try:
             # Generate activity diagram
-            activity_diagram_path = self.output_dir / "activity_diagram.png"
+            activity_diagram_path = self.output_dir / "activity_diagram.svg"
             self.plantuml.generate_activity_diagram(
                 class_structure, str(activity_diagram_path)
             )
-
+            
             # Generate sequence diagram
-            sequence_diagram_path = self.output_dir / "sequence_diagram.png"
+            sequence_diagram_path = self.output_dir / "sequence_diagram.svg"
             self.plantuml.generate_sequence_diagram(
                 class_structure, str(sequence_diagram_path)
             )

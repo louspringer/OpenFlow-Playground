@@ -66,7 +66,7 @@ class NodePlantUMLWrapper:
             return False
     
     def generate_diagram(self, plantuml_code: str, output_path: str, 
-                         format: str = "png") -> Optional[str]:
+                         format: str = "svg") -> Optional[str]:
         """
         Generate a diagram from PlantUML code using Node.js client.
         
@@ -423,7 +423,7 @@ stop
 @enduml"""
         
         print("🔄 Testing simple diagram generation...")
-        result = wrapper.generate_diagram(simple_diagram, "test_wrapper.png")
+        result = wrapper.generate_diagram(simple_diagram, "test_wrapper.svg")
         
         if result:
             print(f"✅ Diagram generated successfully: {result}")
