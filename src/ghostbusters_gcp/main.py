@@ -15,6 +15,28 @@ from typing import Any, Optional
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Mock Firestore client for testing
+# In production, this would be: from google.cloud import firestore
+db = None  # Placeholder for Firestore client
+
+
+def mock_ghostbusters_analysis(project_path: str) -> dict[str, Any]:
+    """
+    Mock Ghostbusters analysis for testing purposes.
+
+    Args:
+        project_path: Path to the project to analyze
+
+    Returns:
+        Mock analysis results
+    """
+    return {
+        "confidence_score": 0.95,
+        "delusions_detected": [{"type": "security"}],
+        "recovery_actions": [{"action": "fix"}],
+        "errors": [],
+    }
+
 
 class GCPGhostbustersOrchestrator:
     """
@@ -63,9 +85,9 @@ class GCPGhostbustersOrchestrator:
             )
 
             # Calculate overall metrics
-            investigation_results["deployment_quality"] = (
-                self._calculate_deployment_quality(investigation_results)
-            )
+            investigation_results[
+                "deployment_quality"
+            ] = self._calculate_deployment_quality(investigation_results)
             investigation_results["security_posture"] = self._assess_security_posture(
                 investigation_results
             )
