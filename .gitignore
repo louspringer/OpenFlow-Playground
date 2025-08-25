@@ -96,6 +96,11 @@ tidb-agentx-hackathon/
 *_output.txt
 *_regenerated.py
 
+# Security scan reports (generated during pre-commit hooks)
+*-report.json
+*.analysis_report.json
+comprehensive_artifact_analysis_report.json
+
 # Generated test files (broken artifacts)
 tests/generated/
 tests/backup_generated/

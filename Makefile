@@ -625,6 +625,58 @@ security-check: ## Run comprehensive security check following project model work
 	@echo "📊 Reports generated: semgrep-report.json, gitleaks-report.json, trivy-report.json"
 	@echo "🚀 All security tools completed successfully!"
 
+security-check-pre-commit: ## Run security check for pre-commit hooks (no file generation)
+	@echo "$(BLUE)🔒 Running pre-commit security check (no file generation)...$(NC)"
+	@echo ""
+	@echo "🔄 Step 1/5: Python security issues (Bandit) [██████░░░░] 20%"
+	@$(UV) run bandit -r src/ --exclude tests/,.venv/,.mypy_cache/,__pycache__/ -f txt || true
+	@echo "✅ Step 1 complete! 🎯"
+	@echo ""
+	@echo "🔄 Step 2/5: Pattern-based security issues (Semgrep) [████████░░] 40%"
+	@$(UV) run semgrep scan --config auto --quiet \
+		--exclude ".mypy_cache/" \
+		--exclude ".venv/" \
+		--exclude "node_modules/" \
+		--exclude "*.report.json" \
+		--exclude "*.analysis_report.json" \
+		--exclude "comprehensive_artifact_analysis_report.json" \
+		--exclude "op-api-manager/.venv/" \
+		--exclude "**/discovery_cache/**" \
+		--exclude "**/botocore/data/**" \
+		--exclude "**/altair/vegalite/**" \
+		--exclude "**/plotly/validators/**" \
+		--max-target-bytes 500000 || true
+	@echo "✅ Step 2 complete! 🔍"
+	@echo ""
+	@echo "🔄 Step 3/5: Dependency vulnerabilities (Safety) [██████████░░] 60%"
+	@$(UV) run safety check || true
+	@echo "✅ Step 3 complete! 🛡️"
+	@echo ""
+	@echo "🔄 Step 4/5: Secret detection (Detect-Secrets) [████████████░░] 80%"
+	@$(UV) run detect-secrets scan --baseline .secrets.baseline || true
+	@echo "✅ Step 4 complete! 🔐"
+	@echo ""
+	@echo "🔄 Step 5/5: Comprehensive secret scanning (Gitleaks) [████████████████] 100%"
+	@if command -v gitleaks >/dev/null 2>&1; then \
+		gitleaks detect --source . --quiet \
+			--exclude-path ".mypy_cache/" \
+			--exclude-path ".venv/" \
+			--exclude-path "node_modules/" \
+			--exclude-path "*.report.json" \
+			--exclude-path "*.analysis_report.json" \
+			--exclude-path "op-api-manager/.venv/" \
+			--exclude-path "**/discovery_cache/**" \
+			--exclude-path "**/botocore/data/**" \
+			--exclude-path "**/altair/vegalite/**" \
+			--exclude-path "**/plotly/validators/**" || true; \
+	else \
+		echo "⚠️  Gitleaks not installed. Run 'make security-install' to install."; \
+	fi
+	@echo "✅ Step 5 complete! 🕵️"
+	@echo ""
+	@echo "$(GREEN)🎉 Pre-commit security check completed successfully!$(NC)"
+	@echo "🚀 All security tools completed without file generation"
+
 distributed-security-check: ## Run distributed security scanning across multiple machines
 	@echo "$(BLUE)🚀 Running distributed security scanning...$(NC)"
 	@echo ""

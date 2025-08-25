@@ -1384,7 +1384,8 @@
                 "8. Follow OWASP guidelines",
                 "9. Use CWE references for classification",
                 "10. Implement proper severity levels"
-            ]
+            ],
+            "demo_role": "security"
         },
         "security_best_practices": {
             "description": "Security best practices using established tools instead of custom scanners",
@@ -1470,7 +1471,8 @@
                 "8. Document security improvements",
                 "9. Integrate security scanning into CI/CD",
                 "10. Maintain security tool configurations"
-            ]
+            ],
+            "demo_role": "security"
         },
         "healthcare_cdc": {
             "patterns": [
