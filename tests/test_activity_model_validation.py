@@ -14,6 +14,7 @@ from typing import Dict, Any, List
 
 # Add src to path for imports
 import sys
+
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from round_trip_engineering.core.round_trip_system import RoundTripSystem
@@ -27,11 +28,11 @@ class TestActivityModelValidation:
         """Set up test environment."""
         cls.logger = logging.getLogger(__name__)
         cls.logger.setLevel(logging.INFO)
-        
+
         # Create test directory
         cls.test_dir = Path("/tmp/activity_model_validation_test")
         cls.test_dir.mkdir(exist_ok=True)
-        
+
         # Initialize system
         cls.system = RoundTripSystem()
         cls.logger.info("✅ Activity Model Validation test suite initialized")
@@ -75,7 +76,7 @@ class TestActivityModelValidation:
         start_time = time.time()
         model = self.system.create_model_from_design(design_spec)
         creation_time = time.time() - start_time
-        
+
         assert model is not None
         assert model["name"] == "TestWorkflowSystem"
         assert len(model.get("components", [])) == 1
@@ -87,7 +88,7 @@ class TestActivityModelValidation:
         model_file = self.test_dir / "test_workflow_model.json"
         self.system.save_model("TestWorkflowSystem", str(model_file))
         save_time = time.time() - start_time
-        
+
         assert model_file.exists()
         self.logger.info(f"✅ Model save completed in {save_time:.3f}s")
 
@@ -96,7 +97,7 @@ class TestActivityModelValidation:
         start_time = time.time()
         loaded_model = self.system.load_model(str(model_file))
         load_time = time.time() - start_time
-        
+
         assert loaded_model is not None
         assert loaded_model["name"] == "TestWorkflowSystem"
         self.logger.info(f"✅ Model load completed in {load_time:.3f}s")
@@ -106,7 +107,7 @@ class TestActivityModelValidation:
         start_time = time.time()
         generated_files = self.system.generate_code_from_model("TestWorkflowSystem")
         generation_time = time.time() - start_time
-        
+
         assert isinstance(generated_files, dict)
         assert len(generated_files) > 0
         self.logger.info(f"✅ Code generation completed in {generation_time:.3f}s")
@@ -126,33 +127,34 @@ class TestActivityModelValidation:
 
         # Performance validation
         total_time = creation_time + save_time + load_time + generation_time
-        assert total_time < 2.0, f"Total workflow time {total_time:.3f}s exceeds 2s limit"
-        
+        assert total_time < 2.0, (
+            f"Total workflow time {total_time:.3f}s exceeds 2s limit"
+        )
+
         self.logger.info(f"✅ Complete workflow completed in {total_time:.3f}s")
         self.logger.info("✅ Activity Model 1 validation passed")
 
     def test_activity_model_2_code_generation_complete_model(self):
         """Validate Activity Model 2: Code Generation with Complete Model."""
-        self.logger.info("🧪 Testing Activity Model 2: Code Generation with Complete Model")
+        self.logger.info(
+            "🧪 Testing Activity Model 2: Code Generation with Complete Model"
+        )
 
         # Test data with incomplete structure
         incomplete_model = {
             "components": {
-                "TestClass": {
-                    "name": "TestClass",
-                    "methods": [
-                        {"name": "test_method"}
-                    ]
-                }
+                "TestClass": {"name": "TestClass", "methods": [{"name": "test_method"}]}
             }
         }
 
         # Test complete model building
         self.logger.info("🔄 Testing complete model building")
         start_time = time.time()
-        complete_model = self.system.code_generator._build_complete_model(incomplete_model)
+        complete_model = self.system.code_generator._build_complete_model(
+            incomplete_model
+        )
         build_time = time.time() - start_time
-        
+
         # Validate complete model structure
         assert "system_name" in complete_model
         assert "description" in complete_model
@@ -160,12 +162,12 @@ class TestActivityModelValidation:
         assert "model_id" in complete_model
         assert "file_metadata" in complete_model
         assert "components" in complete_model
-        
+
         # Validate component structure
         components = complete_model["components"]
         assert isinstance(components, dict)
         assert "TestClass" in components
-        
+
         test_class = components["TestClass"]
         assert "name" in test_class
         assert "type" in test_class
@@ -174,7 +176,7 @@ class TestActivityModelValidation:
         assert "methods" in test_class
         assert "bases" in test_class
         assert "class_decorators" in test_class
-        
+
         # Validate method structure
         methods = test_class["methods"]
         assert len(methods) == 1
@@ -184,8 +186,10 @@ class TestActivityModelValidation:
         assert "return_type" in method
         assert "parameters" in method
         assert "decorators" in method
-        
-        assert build_time < 0.1, f"Model building time {build_time:.3f}s exceeds 100ms limit"
+
+        assert build_time < 0.1, (
+            f"Model building time {build_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Complete model building completed in {build_time:.3f}s")
 
         # Test model validation
@@ -193,22 +197,28 @@ class TestActivityModelValidation:
         start_time = time.time()
         self.system.code_generator._validate_complete_model(complete_model)
         validation_time = time.time() - start_time
-        
-        assert validation_time < 0.1, f"Validation time {validation_time:.3f}s exceeds 100ms limit"
+
+        assert validation_time < 0.1, (
+            f"Validation time {validation_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Model validation completed in {validation_time:.3f}s")
 
         # Test code generation from complete model
         self.logger.info("🔄 Testing code generation from complete model")
         start_time = time.time()
-        generated_code = self.system.code_generator._generate_from_complete_model(complete_model, "python")
+        generated_code = self.system.code_generator._generate_from_complete_model(
+            complete_model, "python"
+        )
         generation_time = time.time() - start_time
-        
+
         # Validate generated code
         assert "class TestClass" in generated_code
         assert "def test_method" in generated_code
         # Note: We don't automatically add __init__ methods - only what's in the model
-        
-        assert generation_time < 0.5, f"Code generation time {generation_time:.3f}s exceeds 500ms limit"
+
+        assert generation_time < 0.5, (
+            f"Code generation time {generation_time:.3f}s exceeds 500ms limit"
+        )
         self.logger.info(f"✅ Code generation completed in {generation_time:.3f}s")
 
         # Save generated code for inspection
@@ -229,13 +239,13 @@ class TestActivityModelValidation:
                 {
                     "name": "TestComponent",
                     "type": "class",
-                    "description": "A test component"
+                    "description": "A test component",
                 },
                 {
                     "name": "AnotherComponent",
                     "type": "class",
-                    "description": "Another test component"
-                }
+                    "description": "Another test component",
+                },
             ]
         }
 
@@ -244,19 +254,21 @@ class TestActivityModelValidation:
         start_time = time.time()
         aligned_data = self.system.vocabulary_aligner.align_vocabulary(list_format_data)
         alignment_time = time.time() - start_time
-        
+
         # Validate output format
         assert isinstance(aligned_data["components"], dict)
         assert "TestComponent" in aligned_data["components"]
         assert "AnotherComponent" in aligned_data["components"]
-        
+
         # Validate data integrity
         test_component = aligned_data["components"]["TestComponent"]
         assert test_component["name"] == "TestComponent"
         assert test_component["type"] == "class"
         assert test_component["description"] == "A test component"
-        
-        assert alignment_time < 0.05, f"Alignment time {alignment_time:.3f}s exceeds 50ms limit"
+
+        assert alignment_time < 0.05, (
+            f"Alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        )
         self.logger.info(f"✅ List → dict alignment completed in {alignment_time:.3f}s")
 
         # Test data with existing dict format
@@ -265,7 +277,7 @@ class TestActivityModelValidation:
                 "ExistingComponent": {
                     "name": "ExistingComponent",
                     "type": "class",
-                    "description": "An existing component"
+                    "description": "An existing component",
                 }
             }
         }
@@ -273,14 +285,20 @@ class TestActivityModelValidation:
         # Test vocabulary alignment (dict → dict, no change)
         self.logger.info("🔄 Testing dict → dict vocabulary alignment (no change)")
         start_time = time.time()
-        aligned_dict_data = self.system.vocabulary_aligner.align_vocabulary(dict_format_data)
+        aligned_dict_data = self.system.vocabulary_aligner.align_vocabulary(
+            dict_format_data
+        )
         dict_alignment_time = time.time() - start_time
-        
+
         # Validate no change occurred
         assert aligned_dict_data["components"] == dict_format_data["components"]
-        
-        assert dict_alignment_time < 0.05, f"Dict alignment time {dict_alignment_time:.3f}s exceeds 50ms limit"
-        self.logger.info(f"✅ Dict → dict alignment completed in {dict_alignment_time:.3f}s")
+
+        assert dict_alignment_time < 0.05, (
+            f"Dict alignment time {dict_alignment_time:.3f}s exceeds 50ms limit"
+        )
+        self.logger.info(
+            f"✅ Dict → dict alignment completed in {dict_alignment_time:.3f}s"
+        )
 
         self.logger.info("✅ Activity Model 3 validation passed")
 
@@ -309,27 +327,33 @@ class TestActivityModelValidation:
         start_time = time.time()
         cleaned_code = self.system.duplication_cleaner.clean_code(test_code)
         cleaning_time = time.time() - start_time
-        
+
         # Validate cleaning results
         lines = cleaned_code.split("\n")
         original_lines = test_code.split("\n")
-        
+
         # Should have fewer lines after cleaning
         assert len(lines) < len(original_lines), "Cleaning should reduce line count"
-        
+
         # Should have only one occurrence of duplicate_method
         duplicate_method_count = cleaned_code.count("def duplicate_method")
-        assert duplicate_method_count == 1, f"Should have only one duplicate_method, got {duplicate_method_count}"
-        
+        assert duplicate_method_count == 1, (
+            f"Should have only one duplicate_method, got {duplicate_method_count}"
+        )
+
         # Should have no unreachable returns
         return_count = cleaned_code.count("return")
-        assert return_count == 3, f"Should have 3 returns (one per method), got {return_count}"
-        
+        assert return_count == 3, (
+            f"Should have 3 returns (one per method), got {return_count}"
+        )
+
         # Should preserve unique method
         assert "def unique_method" in cleaned_code
         assert "def another_method" in cleaned_code
-        
-        assert cleaning_time < 1.0, f"Cleaning time {cleaning_time:.3f}s exceeds 1s limit"
+
+        assert cleaning_time < 1.0, (
+            f"Cleaning time {cleaning_time:.3f}s exceeds 1s limit"
+        )
         self.logger.info(f"✅ Duplication cleaning completed in {cleaning_time:.3f}s")
 
         # Save cleaned code for inspection
@@ -350,36 +374,44 @@ class TestActivityModelValidation:
         # Test error handling and logging
         self.logger.info("🔄 Testing error handling and logging")
         start_time = time.time()
-        
+
         try:
             # This should fail and be logged
             self.system.generate_code_from_extracted_model(invalid_data)
             assert False, "Should have raised an exception"
         except Exception as e:
             self.logger.info(f"✅ Expected error caught: {e}")
-            
+
             # Check that error was logged with context
             profiling_stats = self.system.get_profiling_stats()
             assert profiling_stats is not None
-            
+
             error_handling_time = time.time() - start_time
-            assert error_handling_time < 0.5, f"Error handling time {error_handling_time:.3f}s exceeds 500ms limit"
-            self.logger.info(f"✅ Error handling completed in {error_handling_time:.3f}s")
+            assert error_handling_time < 0.5, (
+                f"Error handling time {error_handling_time:.3f}s exceeds 500ms limit"
+            )
+            self.logger.info(
+                f"✅ Error handling completed in {error_handling_time:.3f}s"
+            )
 
         # Test performance profiling integration
         self.logger.info("🔄 Testing performance profiling integration")
         start_time = time.time()
-        
+
         # Run a simple operation to generate profiling data
-        test_data = {"components": {"Test": {"name": "Test", "type": "class", "methods": []}}}
+        test_data = {
+            "components": {"Test": {"name": "Test", "type": "class", "methods": []}}
+        }
         self.system.generate_code_from_extracted_model(test_data)
-        
+
         # Get profiling stats
         profiling_stats = self.system.get_profiling_stats()
         assert profiling_stats is not None
-        
+
         profiling_time = time.time() - start_time
-        assert profiling_time < 1.0, f"Profiling time {profiling_time:.3f}s exceeds 1s limit"
+        assert profiling_time < 1.0, (
+            f"Profiling time {profiling_time:.3f}s exceeds 1s limit"
+        )
         self.logger.info(f"✅ Performance profiling completed in {profiling_time:.3f}s")
 
         # Test logging system
@@ -410,10 +442,10 @@ class TestActivityModelValidation:
                             "name": f"method_{j}",
                             "docstring": f"Test method {j}",
                             "return_type": "str",
-                            "parameters": []
+                            "parameters": [],
                         }
                         for j in range(5)  # 5 methods per component
-                    ]
+                    ],
                 }
                 for i in range(20)  # 20 components
             }
@@ -422,29 +454,43 @@ class TestActivityModelValidation:
         # Test model building performance
         self.logger.info("🔄 Testing model building performance (20 components)")
         start_time = time.time()
-        complete_model = self.system.code_generator._build_complete_model(large_test_data)
+        complete_model = self.system.code_generator._build_complete_model(
+            large_test_data
+        )
         build_time = time.time() - start_time
-        
-        assert build_time < 0.1, f"Large model building time {build_time:.3f}s exceeds 100ms limit"
+
+        assert build_time < 0.1, (
+            f"Large model building time {build_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Large model building completed in {build_time:.3f}s")
 
         # Test code generation performance
         self.logger.info("🔄 Testing code generation performance (20 components)")
         start_time = time.time()
-        generated_code = self.system.code_generator._generate_from_complete_model(complete_model, "python")
+        generated_code = self.system.code_generator._generate_from_complete_model(
+            complete_model, "python"
+        )
         generation_time = time.time() - start_time
-        
-        assert generation_time < 0.5, f"Large code generation time {generation_time:.3f}s exceeds 500ms limit"
-        self.logger.info(f"✅ Large code generation completed in {generation_time:.3f}s")
+
+        assert generation_time < 0.5, (
+            f"Large code generation time {generation_time:.3f}s exceeds 500ms limit"
+        )
+        self.logger.info(
+            f"✅ Large code generation completed in {generation_time:.3f}s"
+        )
 
         # Test vocabulary alignment performance
         self.logger.info("🔄 Testing vocabulary alignment performance (20 components)")
         start_time = time.time()
         aligned_data = self.system.vocabulary_aligner.align_vocabulary(large_test_data)
         alignment_time = time.time() - start_time
-        
-        assert alignment_time < 0.05, f"Large vocabulary alignment time {alignment_time:.3f}s exceeds 50ms limit"
-        self.logger.info(f"✅ Large vocabulary alignment completed in {alignment_time:.3f}s")
+
+        assert alignment_time < 0.05, (
+            f"Large vocabulary alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        )
+        self.logger.info(
+            f"✅ Large vocabulary alignment completed in {alignment_time:.3f}s"
+        )
 
         # Save large generated code for inspection
         large_code_file = self.test_dir / "large_generated_code.py"
@@ -481,10 +527,8 @@ class TestActivityModelValidation:
                             "name": "validate_data",
                             "docstring": "Validate data integrity",
                             "return_type": "bool",
-                            "parameters": [
-                                {"name": "data", "type": "Dict[str, Any]"}
-                            ],
-                        }
+                            "parameters": [{"name": "data", "type": "Dict[str, Any]"}],
+                        },
                     ],
                 },
                 {
@@ -502,28 +546,30 @@ class TestActivityModelValidation:
                             ],
                         }
                     ],
-                }
+                },
             ],
         }
 
         # Run complete integration test
         self.logger.info("🔄 Running complete integration test")
         start_time = time.time()
-        
+
         # Create model
         model = self.system.create_model_from_design(comprehensive_design)
         assert model is not None
-        
+
         # Save and load model
         model_file = self.test_dir / "comprehensive_model.json"
         self.system.save_model("ComprehensiveTestSystem", str(model_file))
         loaded_model = self.system.load_model(str(model_file))
         assert loaded_model is not None
-        
+
         # Generate code
-        generated_files = self.system.generate_code_from_model("ComprehensiveTestSystem")
+        generated_files = self.system.generate_code_from_model(
+            "ComprehensiveTestSystem"
+        )
         assert len(generated_files) > 0
-        
+
         # Validate generated code
         for filename, code in generated_files.items():
             assert "class DataProcessor" in code
@@ -531,16 +577,20 @@ class TestActivityModelValidation:
             assert "def process_data" in code
             assert "def validate_data" in code
             assert "def format_result" in code
-            
+
             # Save generated code
             code_file = self.test_dir / filename
             with open(code_file, "w") as f:
                 f.write(code)
             self.logger.info(f"💾 Integration test code saved to: {code_file}")
-        
+
         integration_time = time.time() - start_time
-        assert integration_time < 2.0, f"Integration test time {integration_time:.3f}s exceeds 2s limit"
-        self.logger.info(f"✅ Complete integration test completed in {integration_time:.3f}s")
+        assert integration_time < 2.0, (
+            f"Integration test time {integration_time:.3f}s exceeds 2s limit"
+        )
+        self.logger.info(
+            f"✅ Complete integration test completed in {integration_time:.3f}s"
+        )
 
         self.logger.info("✅ Integration validation passed")
 
@@ -548,15 +598,15 @@ class TestActivityModelValidation:
         """Provide final validation summary and next steps."""
         self.logger.info("🎯 FINAL ACTIVITY MODEL VALIDATION SUMMARY")
         self.logger.info("=" * 60)
-        
+
         # Log performance metrics
         self.logger.info("📊 Performance Metrics:")
         self.logger.info("  ✅ Model Building: < 100ms")
-        self.logger.info("  ✅ Code Generation: < 500ms") 
+        self.logger.info("  ✅ Code Generation: < 500ms")
         self.logger.info("  ✅ Duplication Cleaning: < 1s")
         self.logger.info("  ✅ Vocabulary Alignment: < 50ms")
         self.logger.info("  ✅ End-to-End Workflow: < 2s")
-        
+
         # Log validation results
         self.logger.info("🔍 Validation Results:")
         self.logger.info("  ✅ Activity Model 1: Complete Round-Trip Workflow")
@@ -566,7 +616,7 @@ class TestActivityModelValidation:
         self.logger.info("  ✅ Activity Model 5: Error Handling and Logging")
         self.logger.info("  ✅ Performance Benchmarks")
         self.logger.info("  ✅ Integration Validation")
-        
+
         # Log next steps
         self.logger.info("📋 Next Steps:")
         self.logger.info("  1. ✅ All activity models validated")
@@ -574,10 +624,12 @@ class TestActivityModelValidation:
         self.logger.info("  3. ✅ Error handling verified")
         self.logger.info("  4. ✅ Integration tests passing")
         self.logger.info("  5. ✅ Expected vs actual behavior aligned")
-        
+
         self.logger.info("🎉 ACTIVITY MODEL VALIDATION COMPLETE!")
-        self.logger.info("The Round-Trip Engineering system behaves exactly as designed!")
-        
+        self.logger.info(
+            "The Round-Trip Engineering system behaves exactly as designed!"
+        )
+
         # Log test artifacts location
         self.logger.info(f"📁 Test artifacts saved in: {self.test_dir}")
         self.logger.info("💡 Check the generated files for detailed inspection")

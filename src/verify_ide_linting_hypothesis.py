@@ -291,17 +291,17 @@ class IDELintingHypothesisVerifier:
 
         report = f"""
 🔬 IDE LINTING HYPOTHESIS VERIFICATION REPORT
-{'='*50}
+{"=" * 50}
 
-HYPOTHESIS: {data['hypothesis']}
+HYPOTHESIS: {data["hypothesis"]}
 
-DATA POINTS COLLECTED: {data['analysis']['total_data_points']}
+DATA POINTS COLLECTED: {data["analysis"]["total_data_points"]}
 
 FRAGMENTATION ANALYSIS:
-- Fragmentation Score: {data['analysis']['fragmentation_score']:.2f}/10
-- Reliability Score: {data['analysis']['reliability_score']:.2f}/10
-- Sources Found: {len(data['analysis']['sources'])}
-- Linters Found: {len(data['analysis']['linters'])}
+- Fragmentation Score: {data["analysis"]["fragmentation_score"]:.2f}/10
+- Reliability Score: {data["analysis"]["reliability_score"]:.2f}/10
+- Sources Found: {len(data["analysis"]["sources"])}
+- Linters Found: {len(data["analysis"]["linters"])}
 
 DATA BREAKDOWN:
 """

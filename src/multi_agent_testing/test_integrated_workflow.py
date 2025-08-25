@@ -280,7 +280,7 @@ async def test_agent_collaboration():
         if synthesis.get("recommendations"):
             print("\n📋 Top Recommendations:")
             for i, rec in enumerate(synthesis["recommendations"][:3]):
-                print(f"  {i+1}. {rec}")
+                print(f"  {i + 1}. {rec}")
 
         return True
 
@@ -311,9 +311,9 @@ async def main():
         all_passed = True
 
         for test_name, test_func in tests:
-            print(f"\n{'='*60}")
+            print(f"\n{'=' * 60}")
             print(f"🧪 Running: {test_name}")
-            print(f"{'='*60}")
+            print(f"{'=' * 60}")
 
             try:
                 result = await test_func()
@@ -331,9 +331,9 @@ async def main():
                 all_passed = False
 
         # Summary
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print("📊 TEST SUMMARY")
-        print(f"{'='*60}")
+        print(f"{'=' * 60}")
 
         for test_name, result in results.items():
             status = "✅ PASSED" if result else "❌ FAILED"

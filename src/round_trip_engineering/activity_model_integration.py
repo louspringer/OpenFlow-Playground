@@ -158,12 +158,18 @@ class ActivityModelIntegration:
                     [m for m in results["generated_models"] if m["status"] == "success"]
                 ),
                 "errors_count": len(results["errors"]),
-                "success_rate": len(
-                    [m for m in results["generated_models"] if m["status"] == "success"]
-                )
-                / len(source_paths)
-                if source_paths
-                else 0,
+                "success_rate": (
+                    len(
+                        [
+                            m
+                            for m in results["generated_models"]
+                            if m["status"] == "success"
+                        ]
+                    )
+                    / len(source_paths)
+                    if source_paths
+                    else 0
+                ),
             }
 
             logger.info(

@@ -129,7 +129,7 @@
     "from neo4j import GraphDatabase",
     "from scripts.neo4j_poc import Neo4jPOC"
   ],
-  "module_docstring": "\nNeo4j Round-Trip Test Suite\n\nThis script tests the complete round-trip:\n1. Model \u2192 Cypher \u2192 Database\n2. Database \u2192 Query \u2192 Results\n3. Results \u2192 Model validation\n\nCritical for ensuring our model-driven approach works end-to-end.\n",
+  "module_docstring": "\nNeo4j Round-Trip Test Suite\n\nThis script tests the complete round-trip:\n1. Model → Cypher → Database\n2. Database → Query → Results\n3. Results → Model validation\n\nCritical for ensuring our model-driven approach works end-to-end.\n",
   "file_structure": {
     "total_lines": 532,
     "code_lines": 420,

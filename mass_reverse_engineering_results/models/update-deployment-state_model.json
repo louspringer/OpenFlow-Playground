@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\udd04 Deployment State Updater",
+  "system_name": "🔄 Deployment State Updater",
   "description": "Updates the deployment state in the project model registry based on current GKE cluster status",
   "purpose": "",
   "graph_api_level": 1,
@@ -135,7 +135,7 @@
     "from typing import List",
     "from typing import Any"
   ],
-  "module_docstring": "\n\ud83d\udd04 Deployment State Updater\nUpdates the deployment state in the project model registry based on current GKE cluster status\n",
+  "module_docstring": "\n🔄 Deployment State Updater\nUpdates the deployment state in the project model registry based on current GKE cluster status\n",
   "file_structure": {
     "total_lines": 311,
     "code_lines": 229,

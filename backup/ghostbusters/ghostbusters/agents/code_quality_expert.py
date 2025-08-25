@@ -151,8 +151,9 @@ class CodeQualityExpert(BaseExpert):
                     "systemic_import_issues",
                     "project-wide",
                     1,
-                    f"Widespread import organization issues: {len( \
-    import_errors)} import-related errors across {len(files_affected)} files",
+                    f"Widespread import organization issues: {
+                        len(import_errors)
+                    } import-related errors across {len(files_affected)} files",
                     0.9,
                     "high",
                 )
@@ -170,8 +171,9 @@ class CodeQualityExpert(BaseExpert):
                     "systemic_formatting_issues",
                     "project-wide",
                     1,
-                    f"Widespread code formatting issues: {len( \
-    formatting_errors)} formatting errors across {len(files_affected)} files",
+                    f"Widespread code formatting issues: {
+                        len(formatting_errors)
+                    } formatting errors across {len(files_affected)} files",
                     0.85,
                     "medium",
                 )
@@ -187,8 +189,9 @@ class CodeQualityExpert(BaseExpert):
                     "systemic_type_issues",
                     "project-wide",
                     1,
-                    f"Widespread type annotation issues: {len( \
-    type_errors)} type-related errors across {len(files_affected)} files",
+                    f"Widespread type annotation issues: {
+                        len(type_errors)
+                    } type-related errors across {len(files_affected)} files",
                     0.8,
                     "medium",
                 )
@@ -203,8 +206,9 @@ class CodeQualityExpert(BaseExpert):
                     "widespread_quality_issues",
                     "project-wide",
                     1,
-                    f"Quality issues spread across {len( \
-    files_affected)} files, indicating systemic process problems",
+                    f"Quality issues spread across {
+                        len(files_affected)
+                    } files, indicating systemic process problems",
                     0.9,
                     "high",
                 )
@@ -231,8 +235,9 @@ class CodeQualityExpert(BaseExpert):
         if import_errors:
             recommendations.append(
                 self._create_recommendation(
-                    f"Implement import sorting with isort: {len( \
-    import_errors)} import organization issues detected",
+                    f"Implement import sorting with isort: {
+                        len(import_errors)
+                    } import organization issues detected",
                     "high",
                 ),
             )
@@ -250,8 +255,9 @@ class CodeQualityExpert(BaseExpert):
         if formatting_errors:
             recommendations.append(
                 self._create_recommendation(
-                    f"Implement automated formatting with Black: {len( \
-    formatting_errors)} formatting issues detected",
+                    f"Implement automated formatting with Black: {
+                        len(formatting_errors)
+                    } formatting issues detected",
                     "high",
                 ),
             )
@@ -267,8 +273,9 @@ class CodeQualityExpert(BaseExpert):
         if type_errors:
             recommendations.append(
                 self._create_recommendation(
-                    f"Implement gradual type annotation strategy: {len( \
-    type_errors)} type-related issues detected",
+                    f"Implement gradual type annotation strategy: {
+                        len(type_errors)
+                    } type-related issues detected",
                     "high",
                 ),
             )

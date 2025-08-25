@@ -77,12 +77,12 @@ class CodeGenerator:
         # Combine all parts
         code = f'''#!/usr/bin/env python3
 """
-{model.get('system_name', 'Generated System')}
-{model.get('description', 'Generated from JSON model')}
+{model.get("system_name", "Generated System")}
+{model.get("description", "Generated from JSON model")}
 
-Purpose: {model.get('purpose', 'To be defined')}
-Graph API Level: {model.get('graph_api_level', 1)}
-Projection System: {model.get('projection_system', 'default')}
+Purpose: {model.get("purpose", "To be defined")}
+Graph API Level: {model.get("graph_api_level", 1)}
+Projection System: {model.get("projection_system", "default")}
 """
 
 {imports}

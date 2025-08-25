@@ -1,5 +1,5 @@
 {
-  "system_name": "Test Model Traceability: Requirements \u2192 Implementation \u2192 Validation",
+  "system_name": "Test Model Traceability: Requirements → Implementation → Validation",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -84,7 +84,7 @@
     "from project_model import ProjectModel",
     "from src.secure_shell_service.secure_executor import secure_execute"
   ],
-  "module_docstring": "\nTest Model Traceability: Requirements \u2192 Implementation \u2192 Validation\n",
+  "module_docstring": "\nTest Model Traceability: Requirements → Implementation → Validation\n",
   "file_structure": {
     "total_lines": 197,
     "code_lines": 126,

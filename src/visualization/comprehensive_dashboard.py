@@ -298,13 +298,13 @@ class ComprehensiveDashboard:
         with col2:
             st.metric(
                 "AST Success Rate",
-                f"{quality_metrics['AST Parsing Success']/quality_metrics['Python Files']*100:.1f}%",
+                f"{quality_metrics['AST Parsing Success'] / quality_metrics['Python Files'] * 100:.1f}%",
             )
 
         with col3:
             st.metric(
                 "Traced Artifacts",
-                f"{quality_metrics['Traced Artifacts']/quality_metrics['Total Artifacts']*100:.1f}%",
+                f"{quality_metrics['Traced Artifacts'] / quality_metrics['Total Artifacts'] * 100:.1f}%",
             )
 
         # Quality radar chart

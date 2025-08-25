@@ -83,8 +83,12 @@ async def simple_live_fire():
         # Summary
         print(f"\n📊 LIVE FIRE RESULTS:")
         print("=" * 70)
-        print(f"🎯 Claude (Anthropic): {'✅ WORKING' if claude_result else '❌ FAILED'}")
-        print(f"🎯 GPT-4 Vision (OpenAI): {'✅ WORKING' if gpt4_result else '❌ FAILED'}")
+        print(
+            f"🎯 Claude (Anthropic): {'✅ WORKING' if claude_result else '❌ FAILED'}"
+        )
+        print(
+            f"🎯 GPT-4 Vision (OpenAI): {'✅ WORKING' if gpt4_result else '❌ FAILED'}"
+        )
         print(
             f"🎯 GPT-3.5 Turbo (OpenAI): {'✅ WORKING' if gpt35_result else '❌ FAILED'}"
         )
@@ -93,7 +97,7 @@ async def simple_live_fire():
             [bool(claude_result), bool(gpt4_result), bool(gpt35_result)]
         )
         print(
-            f"\n🚀 SUCCESS RATE: {working_models}/3 models working ({working_models/3*100:.1f}%)"
+            f"\n🚀 SUCCESS RATE: {working_models}/3 models working ({working_models / 3 * 100:.1f}%)"
         )
 
         if working_models >= 2:

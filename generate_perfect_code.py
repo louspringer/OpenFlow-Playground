@@ -33,7 +33,7 @@ def generate_perfect_code() -> None:
         # Show first few lines
         lines = perfect_code.splitlines()
         for i, line in enumerate(lines[:20]):
-            print(f"{i+1:3d}: {line}")
+            print(f"{i + 1:3d}: {line}")
 
         if len(lines) > 20:
             print("   ...")

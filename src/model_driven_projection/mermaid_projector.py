@@ -124,7 +124,7 @@ class MermaidProjector:
             if i == 0:
                 mermaid += f"    Initialized --> {state}\n"
             else:
-                mermaid += f"    {states[i-1]} --> {state}\n"
+                mermaid += f"    {states[i - 1]} --> {state}\n"
 
         mermaid += f"    {states[-1]} --> [*]\n"
 

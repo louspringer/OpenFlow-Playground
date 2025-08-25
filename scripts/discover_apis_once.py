@@ -77,7 +77,7 @@ def discover_all_apis() -> list:
             # Check if this item looks like an API key
             if any(pattern in item_title for pattern in api_patterns):
                 try:
-                    print(f"  🔍 [{i+1}/{len(items)}] Checking {item_title}...")
+                    print(f"  🔍 [{i + 1}/{len(items)}] Checking {item_title}...")
 
                     # Get detailed item information
                     item_result = subprocess.run(

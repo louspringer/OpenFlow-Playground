@@ -308,7 +308,9 @@ class AdvancedNeo4jIntegration:
 
             # 1. Graph structure analysis
             graph_analysis = self.analyze_graph_structure(credentials)
-            print(f"✅ Graph structure analysis complete: {len(graph_analysis)} metrics")
+            print(
+                f"✅ Graph structure analysis complete: {len(graph_analysis)} metrics"
+            )
 
             # 2. Cross-domain pattern discovery
             cross_domain_patterns = self.discover_cross_domain_patterns(credentials)

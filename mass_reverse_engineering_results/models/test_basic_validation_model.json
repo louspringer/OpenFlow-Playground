@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\uddea Basic Validation Test for Streamlit App",
+  "system_name": "🧪 Basic Validation Test for Streamlit App",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -7,7 +7,7 @@
   "components": {},
   "module_functions": [],
   "imports": [],
-  "module_docstring": "\n\ud83e\uddea Basic Validation Test for Streamlit App\n\nSimple test suite that validates core functionality without external dependencies.\n",
+  "module_docstring": "\n🧪 Basic Validation Test for Streamlit App\n\nSimple test suite that validates core functionality without external dependencies.\n",
   "file_structure": {
     "total_lines": 7,
     "code_lines": 4,

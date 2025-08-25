@@ -682,7 +682,7 @@ class PytestCodeGenerator(TestCodeGenerator):
             return [
                 "    @pytest.fixture",
                 f"    def {fixture['name']}(self):",
-                f"        \"\"\"{fixture['description']}\"\"\"",
+                f'        """{fixture["description"]}"""',
                 f"        return {self._get_artifact_name()}()",
             ]
         return []
@@ -691,7 +691,7 @@ class PytestCodeGenerator(TestCodeGenerator):
         """Generate a test method"""
         lines = [
             f"    def {method['name']}(self, {self._get_fixture_params(method)}):",
-            f"        \"\"\"{method['description']}\"\"\"",
+            f'        """{method["description"]}"""',
         ]
 
         # Use artifact_type from __init__

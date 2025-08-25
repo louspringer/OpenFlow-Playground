@@ -48,9 +48,9 @@ def test_config_uses_placeholders() -> None:
         if Path(config_file).exists():
             content = Path(config_file).read_text()
             # Check that it uses placeholder patterns
-            assert (
-                "YOUR_" in content or "${" in content
-            ), f"{config_file} should use placeholders"
+            assert "YOUR_" in content or "${" in content, (
+                f"{config_file} should use placeholders"
+            )
 
 
 def test_environment_validation() -> None:

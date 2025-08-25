@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83c\udfaf ASK THE DIVERSITY SYSTEM: What do you think about the Ghostbusters problem?",
+  "system_name": "🎯 ASK THE DIVERSITY SYSTEM: What do you think about the Ghostbusters problem?",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -31,7 +31,7 @@
     "from multi_dimensional_smoke_test import MultiDimensionalSmokeTest",
     "from multi_dimensional_smoke_test import MultiDimensionalSmokeTest"
   ],
-  "module_docstring": "\n\ud83c\udfaf ASK THE DIVERSITY SYSTEM: What do you think about the Ghostbusters problem?\n\nThis script uses your proven diversity hypothesis system to analyze the Ghostbusters issue\nfrom multiple AI perspectives.\n",
+  "module_docstring": "\n🎯 ASK THE DIVERSITY SYSTEM: What do you think about the Ghostbusters problem?\n\nThis script uses your proven diversity hypothesis system to analyze the Ghostbusters issue\nfrom multiple AI perspectives.\n",
   "file_structure": {
     "total_lines": 193,
     "code_lines": 141,

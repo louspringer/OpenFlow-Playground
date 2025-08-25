@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\uddf9 Teardown Script Generator for GCP Project",
+  "system_name": "🧹 Teardown Script Generator for GCP Project",
   "description": "Generates teardown-gcp-project.sh from the project model registry template",
   "purpose": "",
   "graph_api_level": 1,
@@ -81,7 +81,7 @@
     "import sys",
     "from pathlib import Path"
   ],
-  "module_docstring": "\n\ud83e\uddf9 Teardown Script Generator for GCP Project\nGenerates teardown-gcp-project.sh from the project model registry template\n",
+  "module_docstring": "\n🧹 Teardown Script Generator for GCP Project\nGenerates teardown-gcp-project.sh from the project model registry template\n",
   "file_structure": {
     "total_lines": 176,
     "code_lines": 128,

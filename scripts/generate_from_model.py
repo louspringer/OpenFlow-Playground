@@ -20,9 +20,9 @@ def generate_auto_formatter(model: dict[str, Any]) -> str:
 
     return f'''#!/usr/bin/env python3
 """
-{model['name'].replace('_', ' ').title()}
+{model["name"].replace("_", " ").title()}
 
-{model['description']}
+{model["description"]}
 """
 
 import json
@@ -31,8 +31,8 @@ from typing import Dict, Any, Set
 from collections import defaultdict
 
 
-class {model['components']['ModelDimensionAnalyzer']['methods'][0].split('(')[0].title()}:
-    """{model['description']}"""
+class {model["components"]["ModelDimensionAnalyzer"]["methods"][0].split("(")[0].title()}:
+    """{model["description"]}"""
 
     def __init__(self, model_file: str = "project_model_registry.json"):
         self.model_file = Path(model_file)
@@ -218,7 +218,7 @@ RETURN m.model_type as model_type,
 
 def main():
     """Main execution function"""
-    analyzer = {model['components']['ModelDimensionAnalyzer']['methods'][0].split('(')[0].title()}()
+    analyzer = {model["components"]["ModelDimensionAnalyzer"]["methods"][0].split("(")[0].title()}()
 
     try:
         analyzer.load_model()

@@ -11,7 +11,6 @@ Usage:
     python scripts/enforce_round_trip.py <python_file>
 """
 
-
 import sys
 import tempfile
 from pathlib import Path

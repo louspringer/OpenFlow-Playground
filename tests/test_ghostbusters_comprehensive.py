@@ -51,9 +51,9 @@ class TestGhostbustersBasic:
         # Check that the file has content
         content = rules_file.read_text()
         assert len(content) > 0, "Ghostbusters rules file should have content"
-        assert (
-            "Ghostbusters Component" in content
-        ), "Rules file should contain component description"
+        assert "Ghostbusters Component" in content, (
+            "Rules file should contain component description"
+        )
 
 
 if __name__ == "__main__":

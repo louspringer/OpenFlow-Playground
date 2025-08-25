@@ -1,6 +1,6 @@
 {
   "system_name": "Ghostbusters Check Script - Uses Secure Shell Service",
-  "description": "NO MORE DIRECT SHELL COMMANDS! \ud83d\udee1\ufe0f",
+  "description": "NO MORE DIRECT SHELL COMMANDS! 🛡️",
   "purpose": "",
   "graph_api_level": 1,
   "projection_system": "default",
@@ -13,7 +13,7 @@
     "from src.ghostbusters.ghostbusters_orchestrator import run_ghostbusters",
     "from src.secure_shell_service.elegant_client import secure_execute"
   ],
-  "module_docstring": "\nGhostbusters Check Script - Uses Secure Shell Service\nNO MORE DIRECT SHELL COMMANDS! \ud83d\udee1\ufe0f\n",
+  "module_docstring": "\nGhostbusters Check Script - Uses Secure Shell Service\nNO MORE DIRECT SHELL COMMANDS! 🛡️\n",
   "file_structure": {
     "total_lines": 64,
     "code_lines": 41,

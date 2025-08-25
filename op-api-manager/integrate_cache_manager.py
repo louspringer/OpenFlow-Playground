@@ -73,7 +73,7 @@ def validate_cache_data(data: dict) -> bool:
     # Show API key details
     for i, key in enumerate(api_keys):
         print(
-            f"   🔑 Key {i+1}: {key.get('title', 'Unknown')} ({key.get('provider', 'unknown')})"
+            f"   🔑 Key {i + 1}: {key.get('title', 'Unknown')} ({key.get('provider', 'unknown')})"
         )
 
     return True

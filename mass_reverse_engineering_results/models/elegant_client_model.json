@@ -1,12 +1,12 @@
 {
-  "system_name": "Elegant Secure Shell Client - NO MORE CRINGING! \ud83d\ude04",
+  "system_name": "Elegant Secure Shell Client - NO MORE CRINGING! 😄",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
   "projection_system": "default",
   "components": {
     "ElegantSecureShellClient": {
-      "responsibility": "Elegant secure shell client - NO MORE SHELL COMMANDS! \ud83c\udf89",
+      "responsibility": "Elegant secure shell client - NO MORE SHELL COMMANDS! 🎉",
       "methods": [
         {
           "name": "connect",
@@ -38,7 +38,7 @@
         {
           "name": "execute_command",
           "signature": "execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[Tuple[str, Any]]",
-          "docstring": "Execute command elegantly - NO MORE CRINGING! \ud83d\ude04",
+          "docstring": "Execute command elegantly - NO MORE CRINGING! 😄",
           "decorators": [],
           "line_number": 115,
           "return_type": "dict[Tuple[str, Any]]",
@@ -101,7 +101,7 @@
         {
           "name": "ExecuteCommand",
           "signature": "ExecuteCommand(self, request: Any, timeout: Any) -> Any",
-          "docstring": "Elegant command execution - NO MORE CRINGING! \ud83d\ude04",
+          "docstring": "Elegant command execution - NO MORE CRINGING! 😄",
           "decorators": [],
           "line_number": 52,
           "return_type": "Any",
@@ -162,7 +162,7 @@
     "import grpc",
     "from src.secure_shell_service.secure_executor import secure_execute"
   ],
-  "module_docstring": "\nElegant Secure Shell Client - NO MORE CRINGING! \ud83d\ude04\n",
+  "module_docstring": "\nElegant Secure Shell Client - NO MORE CRINGING! 😄\n",
   "file_structure": {
     "total_lines": 239,
     "code_lines": 182,

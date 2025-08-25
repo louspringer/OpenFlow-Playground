@@ -1,5 +1,5 @@
 {
-  "system_name": "Migration Example - From CRINGY subprocess to ELEGANT secure shell! \ud83d\ude04",
+  "system_name": "Migration Example - From CRINGY subprocess to ELEGANT secure shell! 😄",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -9,7 +9,7 @@
     {
       "name": "cringy_old_way",
       "signature": "cringy_old_way() -> None",
-      "docstring": "The old way - makes you cringe every time you see it \ud83d\ude31",
+      "docstring": "The old way - makes you cringe every time you see it 😱",
       "decorators": [],
       "line_number": 14,
       "return_type": null,
@@ -21,7 +21,7 @@
     "from elegant_client import secure_execute",
     "from src.secure_shell_service.secure_executor import secure_execute"
   ],
-  "module_docstring": "\nMigration Example - From CRINGY subprocess to ELEGANT secure shell! \ud83d\ude04\n",
+  "module_docstring": "\nMigration Example - From CRINGY subprocess to ELEGANT secure shell! 😄\n",
   "file_structure": {
     "total_lines": 166,
     "code_lines": 98,

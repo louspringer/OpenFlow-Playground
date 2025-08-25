@@ -202,11 +202,11 @@ class {component.name}:
             param_str = f"({param_str})" if param_str else "()"
 
             code += f"""
-    def {method['name']}{param_str} -> {return_type}:
+    def {method["name"]}{param_str} -> {return_type}:
         \"\"\"
-        {method.get('description', 'TODO: Add description')}
+        {method.get("description", "TODO: Add description")}
         \"\"\"
-        # TODO: Implement based on requirements: {method.get('requirements', [])}
+        # TODO: Implement based on requirements: {method.get("requirements", [])}
         pass
 """
 
@@ -281,7 +281,7 @@ class {component.name}:
 {component.description}
 
 This module contains:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 {chr(10).join(imports)}

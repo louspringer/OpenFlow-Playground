@@ -273,10 +273,10 @@ class ASTGuidedCodeGenerator:
 \"\"\"Generated using AST-guided code generation\"\"\"
 
 # AST Analysis Results:
-# - {len(analysis.get('ast_nodes', []))} AST nodes
-# - {len(analysis.get('linting_issues', []))} linting issues
-# - {len(analysis.get('fix_strategies', []))} fix strategies
-# - {len(analysis.get('syntactic_boundaries', []))} syntactic boundaries
+# - {len(analysis.get("ast_nodes", []))} AST nodes
+# - {len(analysis.get("linting_issues", []))} linting issues
+# - {len(analysis.get("fix_strategies", []))} fix strategies
+# - {len(analysis.get("syntactic_boundaries", []))} syntactic boundaries
 
 # TODO: Implement actual AST-guided code generation
 # This would respect syntactic boundaries and apply AST-aware fixes

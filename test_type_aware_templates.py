@@ -114,8 +114,8 @@ class TypeAwareTemplateEngine:
                 [f"{p['name']}: {p['type']}" for p in method["params"]]
             )
             class_code += f"""
-    def {method['name']}(self, {param_str}) -> {method['return_type']}:
-        {method['body']}"""
+    def {method["name"]}(self, {param_str}) -> {method["return_type"]}:
+        {method["body"]}"""
 
         return class_code
 
@@ -339,8 +339,8 @@ class TypeAwareTemplateEngine:
                 [f"{p['name']}: {p['type']}" for p in method["params"]]
             )
             class_code += f"""
-    def {method['name']}(self, {param_str}) -> {method['return_type']}:
-        {method['body']}"""
+    def {method["name"]}(self, {param_str}) -> {method["return_type"]}:
+        {method["body"]}"""
 
         return class_code
 

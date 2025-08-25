@@ -378,8 +378,8 @@ class ComplexModel:
         """Apply MyPy fix to content"""
         if issue["code"] == "no-return":
             content = content.replace(
-                f"""def {issue['description'].split("'")[1]}(""",
-                f"""def {issue['description'].split("'")[1]}(self) -> Any:""",
+                f"""def {issue["description"].split("'")[1]}(""",
+                f"""def {issue["description"].split("'")[1]}(self) -> Any:""",
             )
         return content
 

@@ -33,7 +33,7 @@
         "json",
         "pathlib.Path",
         "typing.Dict",
-        "typing.Any", 
+        "typing.Any",
         "typing.Set",
         "collections.defaultdict"
       ],

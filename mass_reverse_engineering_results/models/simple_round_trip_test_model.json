@@ -1,5 +1,5 @@
 {
-  "system_name": "Simple Round-trip test: reverse engineer \u2192 generate code \u2192 compare results",
+  "system_name": "Simple Round-trip test: reverse engineer → generate code → compare results",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -65,7 +65,7 @@
     "import json",
     "from round_trip_model_system import RoundTripModelSystem"
   ],
-  "module_docstring": "\nSimple Round-trip test: reverse engineer \u2192 generate code \u2192 compare results\n",
+  "module_docstring": "\nSimple Round-trip test: reverse engineer → generate code → compare results\n",
   "file_structure": {
     "total_lines": 180,
     "code_lines": 115,

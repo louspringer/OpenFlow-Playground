@@ -23,7 +23,7 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
 
     # Run the parser multiple times
     for i in range(num_runs):
-        print(f"🔄 Run {i+1}/{num_runs}...")
+        print(f"🔄 Run {i + 1}/{num_runs}...")
 
         # Create a fresh instance each time
         reverse_engineer = EnhancedReverseEngineer()
@@ -41,9 +41,9 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
             results.append(model)
             hashes.append(model_hash)
 
-            print(f"   ✅ Run {i+1} completed - Hash: {model_hash[:8]}...")
+            print(f"   ✅ Run {i + 1} completed - Hash: {model_hash[:8]}...")
         else:
-            print(f"   ❌ Run {i+1} failed")
+            print(f"   ❌ Run {i + 1} failed")
             return
 
     print()
@@ -63,7 +63,7 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
         print("   🔍 Hash variations:")
         for i, hash_val in enumerate(hashes):
             status = "✅" if hash_val == first_hash else "❌"
-            print(f"      Run {i+1}: {hash_val[:8]}... {status}")
+            print(f"      Run {i + 1}: {hash_val[:8]}... {status}")
 
     # Detailed comparison of results
     print(f"\n📊 Detailed Result Comparison:")

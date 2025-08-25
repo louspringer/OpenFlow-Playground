@@ -92,7 +92,7 @@ def test_parallel_execution():
 
     print(f"\n📊 Parallel Groups: {len(parallel_groups)}")
     for i, group in enumerate(parallel_groups):
-        print(f"  Group {i+1}: {', '.join(group)}")
+        print(f"  Group {i + 1}: {', '.join(group)}")
 
     return True
 
@@ -107,7 +107,7 @@ def test_workflow_flow():
     print("🔄 Workflow Flow:")
     for i, step_name in enumerate(step_order):
         step = CODE_QUALITY_WORKFLOW.steps[step_name]
-        print(f"  {i+1}. {step_name} ({step.step_type.value})")
+        print(f"  {i + 1}. {step_name} ({step.step_type.value})")
         print(f"     Timeout: {step.timeout_seconds}s")
         print(f"     Retries: {step.retry_count}")
         print(f"     Parallel: {'Yes' if step.parallel_executable else 'No'}")

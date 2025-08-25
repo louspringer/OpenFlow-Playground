@@ -245,7 +245,9 @@ class LangGraphOrchestrator:
 
     def _should_continue_to_synthesize(self, state: OrchestratorState) -> bool:
         """Determine if we should continue to synthesis phase"""
-        logger.info("🔍 _should_continue_to_synthesize: always continue after act phase")
+        logger.info(
+            "🔍 _should_continue_to_synthesize: always continue after act phase"
+        )
         # Always continue to synthesis after act phase
         return True
 
@@ -822,7 +824,7 @@ class LangGraphOrchestrator:
                     if isinstance(delusions, list):
                         for i, delusion in enumerate(delusions):
                             finding = {
-                                "finding_id": f"{agent_type.value}_{i+1:03d}",
+                                "finding_id": f"{agent_type.value}_{i + 1:03d}",
                                 "category": delusion.get("category", "unknown"),
                                 "severity": self._determine_severity(delusion),
                                 "description": delusion.get(
@@ -843,7 +845,7 @@ class LangGraphOrchestrator:
                     # Handle findings format
                     for i, finding_data in enumerate(result["findings"]):
                         finding = {
-                            "finding_id": f"{agent_type.value}_{i+1:03d}",
+                            "finding_id": f"{agent_type.value}_{i + 1:03d}",
                             "category": finding_data.get("category", "unknown"),
                             "severity": self._determine_severity(finding_data),
                             "description": finding_data.get(

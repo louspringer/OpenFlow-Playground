@@ -50,7 +50,7 @@ class CodeGenerator:
 {component.description}
 
 This class provides:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 from dataclasses import dataclass, field
@@ -98,7 +98,7 @@ class {component.name}:
 {component.description}
 
 This module contains:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 # Module imports
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 {component.description}
 
 Domain Model Requirements:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 from dataclasses import dataclass, field

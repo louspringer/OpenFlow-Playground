@@ -386,7 +386,7 @@ def validate_and_show_workflow():
     print("\n🔄 Step Flow:")
     for i, step_name in enumerate(CODE_QUALITY_WORKFLOW.step_order):
         step = CODE_QUALITY_WORKFLOW.steps[step_name]
-        print(f"  {i+1}. {step.name} ({step.step_type.value})")
+        print(f"  {i + 1}. {step.name} ({step.step_type.value})")
         print(
             f"     Dependencies: {', '.join(step.dependencies) if step.dependencies else 'None'}"
         )
@@ -395,11 +395,11 @@ def validate_and_show_workflow():
 
     print("\n⚡ Parallel Execution Groups:")
     for i, group in enumerate(CODE_QUALITY_WORKFLOW.parallel_groups):
-        print(f"  Group {i+1}: {', '.join(group)}")
+        print(f"  Group {i + 1}: {', '.join(group)}")
 
     print("\n🎯 Success Criteria:")
     for i, criterion in enumerate(CODE_QUALITY_WORKFLOW.success_criteria):
-        print(f"  {i+1}. {criterion}")
+        print(f"  {i + 1}. {criterion}")
 
     return True
 

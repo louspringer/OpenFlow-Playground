@@ -345,7 +345,9 @@ class Neo4jRoundTripTester:
                                 f"    ❌ {test['name']}: Expected to fail but succeeded"
                             )
                         except Exception:
-                            print(f"    ✅ {test['name']}: Correctly failed as expected")
+                            print(
+                                f"    ✅ {test['name']}: Correctly failed as expected"
+                            )
                             passed += 1
                     else:
                         # Expect this to succeed

@@ -172,10 +172,10 @@ class GraphMLIntegration:
         for pred in sorted(
             predictions, key=lambda x: x["predicted_value"], reverse=True
         ):
-            predictions_summary += f"""### {pred['target'].replace('package_potential_', '')}
-- **Predicted Score**: {pred['predicted_value']:.1f}/10
-- **Confidence**: {pred['confidence']:.2f}
-- **Algorithm**: {pred['algorithm']}
+            predictions_summary += f"""### {pred["target"].replace("package_potential_", "")}
+- **Predicted Score**: {pred["predicted_value"]:.1f}/10
+- **Confidence**: {pred["confidence"]:.2f}
+- **Algorithm**: {pred["algorithm"]}
 
 """
 

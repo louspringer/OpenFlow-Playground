@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\uddd1\ufe0f Delete All Cloud Functions",
+  "system_name": "🗑️ Delete All Cloud Functions",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -103,7 +103,7 @@
     "import subprocess",
     "from typing import Any"
   ],
-  "module_docstring": "\n\ud83d\uddd1\ufe0f Delete All Cloud Functions\n\nSafely delete all Cloud Functions to reduce costs.\n",
+  "module_docstring": "\n🗑️ Delete All Cloud Functions\n\nSafely delete all Cloud Functions to reduce costs.\n",
   "file_structure": {
     "total_lines": 203,
     "code_lines": 150,

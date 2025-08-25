@@ -205,7 +205,7 @@ class TestRoundTripSystem:
         # Debug: Print the cleaned code to see what we're working with
         self.logger.info("🔍 DEBUG: Cleaned code content:")
         for i, line in enumerate(lines):
-            self.logger.info(f"  Line {i+1}: {repr(line)}")
+            self.logger.info(f"  Line {i + 1}: {repr(line)}")
 
         for line in lines:
             line_stripped = line.strip()
@@ -233,15 +233,15 @@ class TestRoundTripSystem:
         )
 
         # Validate cleaning effectiveness
-        assert (
-            remaining_duplicate_methods == 1
-        ), f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
-        assert (
-            remaining_unreachable_returns == 0
-        ), f"Should have no unreachable returns, got {remaining_unreachable_returns}"
-        assert (
-            cleaned_lines < original_lines
-        ), f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
+        assert remaining_duplicate_methods == 1, (
+            f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
+        )
+        assert remaining_unreachable_returns == 0, (
+            f"Should have no unreachable returns, got {remaining_unreachable_returns}"
+        )
+        assert cleaned_lines < original_lines, (
+            f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
+        )
 
         # Save cleaned code for inspection
         cleaned_file = self.test_dir / "cleaned_test_code.py"

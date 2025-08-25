@@ -15,9 +15,9 @@ from typing import Any, Optional
 
 def print_header(title: str):
     """Print a formatted header"""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"🔑 {title}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
 
 def print_section(title: str):
@@ -484,7 +484,7 @@ def display_provider_details(manager: OnePasswordAPIKeyManager):
         for i, key in enumerate(keys[:3]):  # Show first 3 per provider
             title = key.get("title", "Unknown")[:50]
             guid = key.get("guid", "Unknown")[:8]
-            print(f"  {i+1}. {title} (GUID: {guid}...)")
+            print(f"  {i + 1}. {title} (GUID: {guid}...)")
 
         if len(keys) > 3:
             print(f"  ... and {len(keys) - 3} more keys")

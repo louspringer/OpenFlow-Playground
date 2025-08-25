@@ -114,7 +114,7 @@ async def live_fire_exercise():
             print(f"  🎯 Total Tokens: {total_tokens:,}")
             print(f"  💰 Total Cost: ${total_cost:.6f}")
             print(
-                f"  🚀 Cost per Finding: ${total_cost/max(result.get('total_issues', 1), 1):.6f}"
+                f"  🚀 Cost per Finding: ${total_cost / max(result.get('total_issues', 1), 1):.6f}"
             )
 
         # Mission assessment

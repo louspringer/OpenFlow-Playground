@@ -94,7 +94,7 @@ def test_fixed_round_trip():
 
             print(f"   📊 Original file: {original_lines} lines")
             print(f"   📊 Generated file: {generated_lines} lines")
-            print(f"   📊 Line count ratio: {generated_lines/original_lines:.1%}")
+            print(f"   📊 Line count ratio: {generated_lines / original_lines:.1%}")
 
             if generated_lines / original_lines > 0.8:
                 print("   ✅ Line count suggests good functional equivalence!")

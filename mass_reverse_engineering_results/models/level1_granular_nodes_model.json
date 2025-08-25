@@ -6,12 +6,12 @@
   "projection_system": "default",
   "components": {
     "CodeNode": {
-      "responsibility": "A granular code node (\u226450 lines).",
+      "responsibility": "A granular code node (≤50 lines).",
       "methods": [
         {
           "name": "validate_granularity",
           "signature": "validate_granularity(self) -> bool",
-          "docstring": "Ensure node is paragraph-sized (\u226450 lines).",
+          "docstring": "Ensure node is paragraph-sized (≤50 lines).",
           "decorators": [],
           "line_number": 35,
           "return_type": "bool",
@@ -407,7 +407,7 @@
     "from datetime import datetime",
     "from typing import Any"
   ],
-  "module_docstring": "\nLevel 1: Granular Code Nodes Implementation\n\nThis implements the first level of model-driven projection:\n- Granular code nodes (\u226450 lines)\n- Basic projection engine\n- Dependency resolution\n- Composition into files\n",
+  "module_docstring": "\nLevel 1: Granular Code Nodes Implementation\n\nThis implements the first level of model-driven projection:\n- Granular code nodes (≤50 lines)\n- Basic projection engine\n- Dependency resolution\n- Composition into files\n",
   "file_structure": {
     "total_lines": 405,
     "code_lines": 297,

@@ -108,12 +108,14 @@ class SimpleClassAnalyzer:
 
 class PlantUMLGenerator:
     """Generates UML diagrams using Node.js PlantUML wrapper"""
-    
+
     def __init__(self, server_url: str = "http://localhost:20075"):
         self.server_url = server_url
         try:
             self.client = NodePlantUMLWrapper()
-            logger.info(f"Node.js PlantUML generator initialized with server: {server_url}")
+            logger.info(
+                f"Node.js PlantUML generator initialized with server: {server_url}"
+            )
         except Exception as e:
             logger.warning(f"⚠️  Node.js PlantUML client not available: {e}")
             self.client = None
@@ -299,10 +301,14 @@ class PlantUMLGenerator:
                     logger.info(f"✅ Sequence diagram generated: {output_path}")
                     return output_path
                 else:
-                    logger.warning(f"⚠️  Node.js PlantUML sequence diagram generation failed")
+                    logger.warning(
+                        f"⚠️  Node.js PlantUML sequence diagram generation failed"
+                    )
                     return code_path
             except Exception as e:
-                logger.warning(f"⚠️  Node.js PlantUML sequence diagram generation failed: {e}")
+                logger.warning(
+                    f"⚠️  Node.js PlantUML sequence diagram generation failed: {e}"
+                )
                 return code_path
         else:
             return code_path
@@ -350,7 +356,7 @@ class SimpleActivityModelGenerator:
             self.plantuml.generate_activity_diagram(
                 class_structure, str(activity_diagram_path)
             )
-            
+
             # Generate sequence diagram
             sequence_diagram_path = self.output_dir / "sequence_diagram.svg"
             self.plantuml.generate_sequence_diagram(

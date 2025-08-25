@@ -9,7 +9,7 @@ import logging
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict
 
 import sys
 import os
@@ -468,7 +468,7 @@ Generated at: {timestamp}
             # Add imports
             if essential_imports:
                 # Group imports by module to consolidate them
-                import_groups = {}
+                import_groups: Dict[str, list] = {}
                 for imp in essential_imports:
                     if "from " in imp and " import " in imp:
                         # Extract module and imported names
@@ -585,30 +585,6 @@ if __name__ == "__main__":
         cleaned_code = self._clean_generated_code(code)
         return self._ensure_clean_generation(cleaned_code)
 
-    def _ensure_clean_generation(self, code: str) -> str:
-        """CLEAN_GENERATION_FIX: Ensure generated code has no duplications"""
-        lines = code.split("\n")
-        cleaned_lines = []
-        seen_methods = set()
-
-        for line in lines:
-            # Skip duplicate method definitions
-            if line.strip().startswith("def ") and "def " in line:
-                method_name = line.split("def ")[1].split("(")[0].strip()
-                if method_name in seen_methods:
-                    continue  # Skip duplicate method
-                seen_methods.add(method_name)
-
-            # Skip duplicate return statements within same method
-            if line.strip().startswith("return "):
-                # Check if this is a duplicate return in the same method
-                # (This is a simplified check - in practice, we'd need more context)
-                pass
-
-            cleaned_lines.append(line)
-
-        return "\n".join(cleaned_lines)
-
     def _clean_generated_code(self, code: str) -> str:
         """Clean up generated code to ensure no trailing whitespace and proper formatting"""
         lines = code.split("\n")
@@ -686,12 +662,12 @@ if __name__ == "__main__":
                             if "'" in orig and '"' in fmt or '"' in orig and "'" in fmt:
                                 pattern_counts["quote_changes"] += 1
                                 logger.warning(
-                                    f"  Line {i+1} QUOTE: '{orig}' → '{fmt}'"
+                                    f"  Line {i + 1} QUOTE: '{orig}' → '{fmt}'"
                                 )
                             elif len(orig) > 88 and len(fmt) <= 88:
                                 pattern_counts["line_length_fixes"] += 1
                                 logger.warning(
-                                    f"  Line {i+1} LENGTH: '{orig}' → '{fmt}'"
+                                    f"  Line {i + 1} LENGTH: '{orig}' → '{fmt}'"
                                 )
                             elif (
                                 "  " in orig
@@ -701,17 +677,17 @@ if __name__ == "__main__":
                             ):
                                 pattern_counts["spacing_fixes"] += 1
                                 logger.warning(
-                                    f"  Line {i+1} SPACING: '{orig}' → '{fmt}'"
+                                    f"  Line {i + 1} SPACING: '{orig}' → '{fmt}'"
                                 )
                             elif "import" in orig.lower() and "import" in fmt.lower():
                                 pattern_counts["import_reordering"] += 1
                                 logger.warning(
-                                    f"  Line {i+1} IMPORT: '{orig}' → '{fmt}'"
+                                    f"  Line {i + 1} IMPORT: '{orig}' → '{fmt}'"
                                 )
                             else:
                                 pattern_counts["other"] += 1
                                 logger.warning(
-                                    f"  Line {i+1} OTHER: '{orig}' → '{fmt}'"
+                                    f"  Line {i + 1} OTHER: '{orig}' → '{fmt}'"
                                 )
 
                     # Log pattern summary for learning
@@ -1329,7 +1305,7 @@ class {component.name}:
         # Handle dict types with complex nested types
         if "dict[" in type_str:
             # Any dict with complex types becomes dict[str, Any]
-            if "Tuple[" in type_str or "dict[" in type_str or "list[" in type_str:
+            if "Tuple[" in type_str or "list[" in type_str:
                 return "dict[str, Any]"
             return "dict[str, Any]"
 
@@ -1368,7 +1344,7 @@ class {component.name}:
 {component.description}
 
 This module contains:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 # Module imports
@@ -1396,7 +1372,7 @@ This module contains:
 {component.description}
 
 Domain Model Requirements:
-{chr(10).join(f'- {req}' for req in component.requirements)}
+{chr(10).join(f"- {req}" for req in component.requirements)}
 \"\"\"
 
 from dataclasses import dataclass, field
@@ -1527,10 +1503,10 @@ class {component.name}Domain:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model[
-                            "components"
-                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
-                            extracted_model["components"], "dict"
+                        extracted_model["components"] = (
+                            self.ontology_bridge.resolve_vocabulary_mismatch(
+                                extracted_model["components"], "dict"
+                            )
                         )
                         break
 
@@ -1794,10 +1770,10 @@ def main() -> None:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model[
-                            "components"
-                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
-                            extracted_model["components"], "dict"
+                        extracted_model["components"] = (
+                            self.ontology_bridge.resolve_vocabulary_mismatch(
+                                extracted_model["components"], "dict"
+                            )
                         )
                         break
 
@@ -1869,75 +1845,37 @@ def main() -> None:
 
         return extracted_model
 
-    def _ensure_clean_generation(self, code: str) -> str:
-        """
-        CLEAN_GENERATION_FIX: Ensure generated code has no duplications.
 
-        This method removes duplicate method definitions and return statements
-        that were causing the "hairball" of code duplication.
+def main() -> None:
+    """Demonstrate round-trip model system"""
+    system = RoundTripModelSystem()
 
-        Args:
-            code: Generated code that may contain duplications
-
-        Returns:
-            Cleaned code without duplications
-        """
-        try:
-            print("🧹 Cleaning generated code for duplications...")
-
-            lines = code.split("\n")
-            cleaned_lines = []
-            seen_methods = set()
-            seen_returns = set()
-
-            i = 0
-            while i < len(lines):
-                line = lines[i].strip()
-
-                # Check for duplicate method definitions
-                if line.startswith("def ") and "(" in line:
-                    method_signature = line.split("(")[0].replace("def ", "").strip()
-                    if method_signature in seen_methods:
-                        print(f"⚠️ Removing duplicate method: {method_signature}")
-                        # Skip until next method or end of class
-                        while i < len(lines) and not lines[i].strip().startswith(
-                            "def "
-                        ):
-                            i += 1
-                        continue
-                    else:
-                        seen_methods.add(method_signature)
-
-                # Check for duplicate return statements
-                if line.startswith("return "):
-                    if line in seen_returns:
-                        print(f"⚠️ Removing duplicate return: {line}")
-                        i += 1
-                        continue
-                    else:
-                        seen_returns.add(line)
-
-                cleaned_lines.append(lines[i])
-                i += 1
-
-            cleaned_code = "\n".join(cleaned_lines)
-
-            # Verify cleaning was effective
-            original_lines = len(code.split("\n"))
-            cleaned_lines_count = len(cleaned_code.split("\n"))
-
-            if original_lines != cleaned_lines_count:
-                print(
-                    f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines"
-                )
-            else:
-                print("✅ Code cleaning complete: No duplications found")
-
-            return cleaned_code
-
-        except Exception as e:
-            print(f"❌ Code cleaning failed: {e}")
-            return code
+    # STEP 1: Create model from design (NO reverse engineering)
+    design_spec = {
+        "name": "ASTGuidedCodeGenerator",
+        "description": "AST-guided code generator that respects syntactic boundaries",
+        "components": [
+            {
+                "name": "ASTNode",
+                "type": "class",
+                "description": "Represents an AST node with metadata",
+                "requirements": [
+                    "dataclass",
+                    "metadata support",
+                    "parent-child relationships",
+                ],
+                "dependencies": ["dataclasses", "typing"],
+                "metadata": {
+                    "methods": [
+                        {
+                            "name": "__post_init__",
+                            "description": "Initialize default values",
+                        }
+                    ]
+                },
+            }
+        ],
+    }
 
     print("🎯 STEP 1: Creating model from design")
     model = system.create_model_from_design(design_spec)

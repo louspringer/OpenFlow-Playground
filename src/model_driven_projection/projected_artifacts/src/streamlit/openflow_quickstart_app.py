@@ -68,8 +68,7 @@ class CredentialManager:
         payload = {
             "user_id": user_id,
             "role": role,
-            "exp": datetime.now(timezone.utc)
-            + timedelta(minutes=int(timeout_minutes)),  # type: ignore
+            "exp": datetime.now(timezone.utc) + timedelta(minutes=int(timeout_minutes)),  # type: ignore
         }
         return jwt.encode(
             payload,

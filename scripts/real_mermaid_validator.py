@@ -56,7 +56,7 @@ def validate_mermaid_syntax():
         print("\n🔍 Problematic sections:")
         for i, match in enumerate(re.finditer(r"```mermaid.*?```", content, re.DOTALL)):
             section = content[match.start() : match.end()]
-            print(f"\n--- Block {i+1} ---")
+            print(f"\n--- Block {i + 1} ---")
             print(section)
             if "```\n```" in section:
                 print("❌ DOUBLE BACKTICKS DETECTED!")

@@ -147,7 +147,7 @@ class MDCEditor:
                 items = [
                     f'"{item}"' if " " in str(item) else str(item) for item in value
                 ]
-                lines.append(f'{key}: [{", ".join(items)}]')
+                lines.append(f"{key}: [{', '.join(items)}]")
             elif isinstance(value, str) and " " in value:
                 # Handle strings with spaces
                 lines.append(f'{key}: "{value}"')

@@ -323,11 +323,11 @@ class ArtifactOptimizer:
             if line.strip() and not line.startswith("#"):
                 # Check for mixed tabs and spaces
                 if "\t" in line and "    " in line:
-                    issues.append(f"Mixed tabs and spaces at line {i+1}")
+                    issues.append(f"Mixed tabs and spaces at line {i + 1}")
 
                 # Check for inconsistent indentation
                 if line.startswith(" ") and len(line) - len(line.lstrip()) % 4 != 0:
-                    issues.append(f"Inconsistent indentation at line {i+1}")
+                    issues.append(f"Inconsistent indentation at line {i + 1}")
 
         return issues
 

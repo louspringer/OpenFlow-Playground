@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\udd16 Gemini GCP Billing Analyzer with LangGraph/LangChain",
+  "system_name": "🤖 Gemini GCP Billing Analyzer with LangGraph/LangChain",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -226,7 +226,7 @@
     "from langgraph.graph import END",
     "from langgraph.graph import StateGraph"
   ],
-  "module_docstring": "\n\ud83e\udd16 Gemini GCP Billing Analyzer with LangGraph/LangChain\n\nUses Gemini LLM to analyze GCP billing data with 1Password credential management.\nCreates a comprehensive Jupyter notebook with the analysis.\n",
+  "module_docstring": "\n🤖 Gemini GCP Billing Analyzer with LangGraph/LangChain\n\nUses Gemini LLM to analyze GCP billing data with 1Password credential management.\nCreates a comprehensive Jupyter notebook with the analysis.\n",
   "file_structure": {
     "total_lines": 738,
     "code_lines": 629,

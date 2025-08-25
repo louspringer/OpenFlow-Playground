@@ -27,9 +27,9 @@ except ImportError:
 
 def print_header(title: str):
     """Print a formatted header"""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"👻 {title}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
 
 def print_section(title: str):
@@ -84,7 +84,7 @@ def display_quick_results(result: dict):
                     delusion_type = delusion.get("type", "Unknown")
                     description = delusion.get("description", "No description")[:80]
                     print(
-                        f"  {shown+1}. [{agent_name}] {delusion_type}: {description}..."
+                        f"  {shown + 1}. [{agent_name}] {delusion_type}: {description}..."
                     )
                     shown += 1
                 if shown >= 3:
@@ -133,7 +133,7 @@ def display_detailed_results(result: dict):
                     file_path = finding.get("file", "Unknown")
                     line_number = finding.get("line", "Unknown")
 
-                    print(f"    {i+1}. [{finding_type}] {description[:60]}...")
+                    print(f"    {i + 1}. [{finding_type}] {description[:60]}...")
                     print(f"       File: {file_path}:{line_number}")
                     print(
                         f"       Confidence: {confidence_score:.2f} | Severity: {severity}"

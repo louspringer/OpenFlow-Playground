@@ -72,10 +72,10 @@ class VocabularyAligner:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         logger.info(f"🔄 Applying {transform['description']}...")
-                        extracted_model[
-                            "components"
-                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
-                            extracted_model["components"], "dict"
+                        extracted_model["components"] = (
+                            self.ontology_bridge.resolve_vocabulary_mismatch(
+                                extracted_model["components"], "dict"
+                            )
                         )
                         break
 
