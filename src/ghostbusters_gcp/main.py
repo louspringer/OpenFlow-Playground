@@ -10,6 +10,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Any, Optional
+from dataclasses import dataclass
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -38,15 +39,16 @@ def mock_ghostbusters_analysis(project_path: str) -> dict[str, Any]:
     }
 
 
+@dataclass
 class GCPGhostbustersOrchestrator:
-    """
-    GCP Ghostbusters Orchestrator for cloud infrastructure investigation.
+    """GCP-specific Ghostbusters Orchestrator for infrastructure quality investigation"""
 
-    This orchestrator specializes in GCP-specific quality analysis including
-    Cloud Build, Cloud Run, and infrastructure as code validation.
-    """
+    config: dict[str, Any]
+    gcp_services: dict[str, Any]
+    infrastructure_issues: dict[str, Any]
+    deployment_metrics: dict[str, Any]
 
-    def __init__(self, config: Optional[dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None) -> None:
         """Initialize the GCP Ghostbusters Orchestrator"""
         self.config = config or {}
         self.gcp_services = {}
@@ -59,7 +61,7 @@ class GCPGhostbustersOrchestrator:
         """Investigate GCP infrastructure quality issues"""
         logger.info(f"🔍 Investigating GCP infrastructure for project: {project_id}")
 
-        investigation_results = {
+        investigation_results: dict[str, Any] = {
             "project_id": project_id,
             "timestamp": self._get_timestamp(),
             "gcp_services_analyzed": [],
@@ -108,7 +110,7 @@ class GCPGhostbustersOrchestrator:
 
     def _analyze_cloud_build(self, project_id: str) -> dict[str, Any]:
         """Analyze Cloud Build configuration quality"""
-        analysis = {
+        analysis: dict[str, Any] = {
             "service": "cloud_build",
             "issues": [],
             "config_files": [],
@@ -203,7 +205,11 @@ class GCPGhostbustersOrchestrator:
 
     def _analyze_cloud_run(self, project_id: str) -> dict[str, Any]:
         """Analyze Cloud Run configuration quality"""
-        analysis = {"service": "cloud_run", "issues": [], "deployment_files": []}
+        analysis: dict[str, Any] = {
+            "service": "cloud_run",
+            "issues": [],
+            "deployment_files": [],
+        }
 
         try:
             # Look for Cloud Run deployment files
@@ -247,7 +253,7 @@ class GCPGhostbustersOrchestrator:
         # Weight issues by severity
         severity_weights = {"low": 1.0, "medium": 2.0, "high": 5.0, "critical": 10.0}
 
-        total_weight = 0
+        total_weight: float = 0.0
         for issue in issues:
             severity = issue.get("severity", "low")
             weight = severity_weights.get(severity, 1.0)
@@ -353,7 +359,7 @@ def run_gcp_ghostbusters(project_id: str = "default") -> dict[str, Any]:
     return orchestrator.investigate_gcp_infrastructure(project_id)
 
 
-def ghostbusters_analyze(request) -> dict[str, Any]:
+def ghostbusters_analyze(request: Any) -> dict[str, Any]:
     """
     Analyze GCP infrastructure using Ghostbusters.
 
@@ -385,7 +391,7 @@ def ghostbusters_analyze(request) -> dict[str, Any]:
         }
 
 
-def ghostbusters_history(request) -> dict[str, Any]:
+def ghostbusters_history(request: Any) -> dict[str, Any]:
     """
     Get GCP infrastructure investigation history.
 
@@ -413,7 +419,7 @@ def ghostbusters_history(request) -> dict[str, Any]:
         }
 
 
-def ghostbusters_status(request) -> tuple[dict[str, Any], int]:
+def ghostbusters_status(request: Any) -> tuple[dict[str, Any], int]:
     """
     Get status of a GCP infrastructure analysis.
 
