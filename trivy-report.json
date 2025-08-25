@@ -1,13 +1,13 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-08-25T06:25:54.902416091-06:00",
+  "CreatedAt": "2025-08-25T07:55:16.104497569-06:00",
   "ArtifactName": ".",
   "ArtifactType": "filesystem",
   "Metadata": {
     "RepoURL": "https://github.com/louspringer/OpenFlow-Playground.git",
     "Branch": "develop",
-    "Commit": "9f36d26752247293a2c264426eb662fc0380a3ea",
-    "CommitMsg": "fix: Complete MyPy type error resolution in ghostbusters_gcp main module - Add @dataclass decorator with proper type annotations for class variables - Fix var-annotated errors by declaring types at class level - Fix Sequence[str] vs list[str] type compatibility issues - Fix float/int assignment type mismatch in _calculate_deployment_quality - Add explicit type annotations for all analysis dictionaries - Add proper type annotations for Cloud Function request parameters - All MyPy errors now resolved in this file",
+    "Commit": "79ac62d40cc9ac1dd64a4e1b3506534eea9b722e",
+    "CommitMsg": "feat: Add missing backlog items and implement fallback system for multi-agent analysis failures - Add ghostbusters_gcp implementation gaps to backlog - Add backlog management package creation requirement - Add critical priority item for multi-agent analysis fallback system - Fix Makefile duplicate security-check target - Update project model registry with comprehensive backlog items - Apply Black formatting to multiple files - Add security scan reports and quality automation artifacts",
     "Author": "louspringer \u003clou@louspringer.com\u003e",
     "Committer": "louspringer \u003clou@louspringer.com\u003e"
   },
@@ -935,6 +935,121 @@
       "Target": "semgrep-report.json",
       "Class": "secret",
       "Secrets": [
+        {
+          "RuleID": "jwt-token",
+          "Category": "JWT",
+          "Severity": "MEDIUM",
+          "Title": "JWT token",
+          "StartLine": 1,
+          "EndLine": 1,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "FirstCause": true,
+                "LastCause": true
+              }
+            ]
+          },
+          "Match": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\""
+        },
+        {
+          "RuleID": "jwt-token",
+          "Category": "JWT",
+          "Severity": "MEDIUM",
+          "Title": "JWT token",
+          "StartLine": 1,
+          "EndLine": 1,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "FirstCause": true,
+                "LastCause": true
+              }
+            ]
+          },
+          "Match": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\""
+        },
+        {
+          "RuleID": "jwt-token",
+          "Category": "JWT",
+          "Severity": "MEDIUM",
+          "Title": "JWT token",
+          "StartLine": 1,
+          "EndLine": 1,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "FirstCause": true,
+                "LastCause": true
+              }
+            ]
+          },
+          "Match": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\""
+        },
+        {
+          "RuleID": "jwt-token",
+          "Category": "JWT",
+          "Severity": "MEDIUM",
+          "Title": "JWT token",
+          "StartLine": 1,
+          "EndLine": 1,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "FirstCause": true,
+                "LastCause": true
+              }
+            ]
+          },
+          "Match": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\""
+        },
+        {
+          "RuleID": "jwt-token",
+          "Category": "JWT",
+          "Severity": "MEDIUM",
+          "Title": "JWT token",
+          "StartLine": 1,
+          "EndLine": 1,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 1,
+                "Content": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\"",
+                "FirstCause": true,
+                "LastCause": true
+              }
+            ]
+          },
+          "Match": "\\\": \\\"                    \\\\\\\"**************************************************************************************************************************************************************\"\\\", \\\"message\\\": \\\""
+        },
         {
           "RuleID": "jwt-token",
           "Category": "JWT",
