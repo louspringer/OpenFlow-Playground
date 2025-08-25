@@ -231,7 +231,7 @@ test-all: test-python test-bash test-cloudformation test-docs test-security test
 
 test-python: ## Run Python tests
 	@echo "$(BLUE)🐍 Running Python tests...$(NC)"
-	@$(UV) run pytest tests/ -v
+	@DISABLE_TEST_GENERATION=1 $(UV) run pytest tests/ -v
 	@echo "$(GREEN)✅ Python tests completed$(NC)"
 
 
