@@ -10,6 +10,7 @@ import streamlit as st
 import os
 import json
 import base64
+import ast
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 import subprocess
@@ -631,7 +632,7 @@ class WorkflowVisualizationGUI:
 
     def _render_quick_analysis(self):
         """Render quick analysis section."""
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
 
         with col1:
             if st.button("🚀 Quick Control Flow"):
@@ -640,6 +641,10 @@ class WorkflowVisualizationGUI:
         with col2:
             if st.button("📊 Quick Complexity"):
                 self._run_quick_complexity()
+
+        with col3:
+            if st.button("🎨 Quick UML Generation"):
+                self._run_quick_uml_generation()
 
     def _run_quick_control_flow(self):
         """Run quick control flow analysis."""
@@ -660,6 +665,79 @@ class WorkflowVisualizationGUI:
                 st.json(result)
         except Exception as e:
             st.error(f"❌ Quick analysis failed: {str(e)}")
+
+    def _run_quick_uml_generation(self):
+        """Run quick UML generation."""
+        try:
+            # Use the first test file for quick UML generation
+            selected_file = self.test_files[0]
+            
+            with st.spinner("Generating quick UML diagram..."):
+                # Generate a simple UML diagram using our existing UML generator
+                if hasattr(self, 'uml_generator'):
+                    result = self.uml_generator.generate_activity_diagram(selected_file)
+                    if result:
+                        st.success("✅ Quick UML generation completed!")
+                        
+                        # Display the generated UML
+                        st.subheader("🎨 Generated UML Diagram")
+                        st.code(result, language="plantuml")
+                        
+                        # Try to render as SVG if PlantUML service is available
+                        try:
+                            svg_content = self._render_plantuml_as_svg(result)
+                            if svg_content:
+                                st.markdown("### 📊 Visualized Diagram")
+                                st.markdown(svg_content, unsafe_allow_html=True)
+                        except Exception as svg_error:
+                            st.info("💡 Tip: Enable PlantUML service for SVG visualization")
+                    else:
+                        st.error("❌ UML generation failed")
+                else:
+                    # Fallback: create a simple UML representation
+                    st.info("📝 Creating simple UML representation...")
+                    simple_uml = self._create_simple_uml(selected_file)
+                    st.code(simple_uml, language="plantuml")
+                    st.success("✅ Simple UML representation created!")
+                    
+        except Exception as e:
+            st.error(f"❌ Quick UML generation failed: {str(e)}")
+
+    def _create_simple_uml(self, file_path: str) -> str:
+        """Create a simple UML representation of the file."""
+        try:
+            with open(file_path, 'r') as f:
+                content = f.read()
+            
+            # Parse the file to extract basic structure
+            tree = ast.parse(content)
+            
+            # Extract classes and functions
+            classes = [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
+            functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+            
+            # Generate simple PlantUML
+            uml = "@startuml\n"
+            uml += f"title {os.path.basename(file_path)}\n\n"
+            
+            # Add classes
+            for cls in classes:
+                uml += f"class {cls.name} {{\n"
+                # Add methods
+                for func in [n for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)]:
+                    uml += f"  + {func.name}()\n"
+                uml += "}\n\n"
+            
+            # Add standalone functions
+            for func in functions:
+                if not any(cls.name in [n.name for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)] for cls in classes):
+                    uml += f"function {func.name}()\n"
+            
+            uml += "@enduml"
+            return uml
+            
+        except Exception as e:
+            return f"@startuml\ntitle Error\nnote right: Could not parse {file_path}\nnote right: {str(e)}\n@enduml"
 
     def _refresh_all_artifacts(self):
         """Refresh all artifacts."""
