@@ -14,39 +14,39 @@ def test_ghostbusters_domain_in_model() -> None:
         model_data = json.load(f)
 
     # Check that ghostbusters domain exists
-    assert (
-        "ghostbusters" in model_data["domains"]
-    ), "Ghostbusters domain should exist in project model"
+    assert "ghostbusters" in model_data["domains"], (
+        "Ghostbusters domain should exist in project model"
+    )
 
     ghostbusters_domain = model_data["domains"]["ghostbusters"]
 
     # Check required fields
     assert "patterns" in ghostbusters_domain, "Ghostbusters domain should have patterns"
-    assert (
-        "content_indicators" in ghostbusters_domain
-    ), "Ghostbusters domain should have content_indicators"
+    assert "content_indicators" in ghostbusters_domain, (
+        "Ghostbusters domain should have content_indicators"
+    )
     assert "linter" in ghostbusters_domain, "Ghostbusters domain should have linter"
-    assert (
-        "validator" in ghostbusters_domain
-    ), "Ghostbusters domain should have validator"
-    assert (
-        "formatter" in ghostbusters_domain
-    ), "Ghostbusters domain should have formatter"
-    assert (
-        "requirements" in ghostbusters_domain
-    ), "Ghostbusters domain should have requirements"
+    assert "validator" in ghostbusters_domain, (
+        "Ghostbusters domain should have validator"
+    )
+    assert "formatter" in ghostbusters_domain, (
+        "Ghostbusters domain should have formatter"
+    )
+    assert "requirements" in ghostbusters_domain, (
+        "Ghostbusters domain should have requirements"
+    )
 
     # Check patterns
     patterns = ghostbusters_domain["patterns"]
-    assert (
-        "src/ghostbusters/**/*.py" in patterns
-    ), "Should include Ghostbusters source files"
-    assert (
-        "tests/test_ghostbusters*.py" in patterns
-    ), "Should include Ghostbusters test files"
-    assert (
-        "**/*ghostbusters*.py" in patterns
-    ), "Should include all Ghostbusters Python files"
+    assert "src/ghostbusters/**/*.py" in patterns, (
+        "Should include Ghostbusters source files"
+    )
+    assert "tests/test_ghostbusters*.py" in patterns, (
+        "Should include Ghostbusters test files"
+    )
+    assert "**/*ghostbusters*.py" in patterns, (
+        "Should include all Ghostbusters Python files"
+    )
 
     # Check content indicators
     content_indicators = ghostbusters_domain["content_indicators"]
@@ -58,15 +58,15 @@ def test_ghostbusters_domain_in_model() -> None:
         "LangChain",
     ]
     for indicator in expected_indicators:
-        assert (
-            indicator in content_indicators
-        ), f"Should include '{indicator}' in content indicators"
+        assert indicator in content_indicators, (
+            f"Should include '{indicator}' in content indicators"
+        )
 
     # Check tools
     assert ghostbusters_domain["linter"] == "flake8", "Should use flake8 as linter"
-    assert (
-        ghostbusters_domain["validator"] == "ast-parse"
-    ), "Should use ast-parse as validator"
+    assert ghostbusters_domain["validator"] == "ast-parse", (
+        "Should use ast-parse as validator"
+    )
     assert ghostbusters_domain["formatter"] == "black", "Should use black as formatter"
 
     # Check requirements
@@ -84,9 +84,9 @@ def test_ghostbusters_domain_in_model() -> None:
     ]
 
     for requirement in expected_requirements:
-        assert any(
-            req.startswith(requirement.split()[0]) for req in requirements
-        ), f"Should include requirement: {requirement}"
+        assert any(req.startswith(requirement.split()[0]) for req in requirements), (
+            f"Should include requirement: {requirement}"
+        )
 
 
 def test_ghostbusters_requirements_traceability() -> None:
@@ -103,9 +103,9 @@ def test_ghostbusters_requirements_traceability() -> None:
         req for req in requirements_traceability if req.get("domain") == "ghostbusters"
     ]
 
-    assert (
-        len(ghostbusters_requirements) >= 7
-    ), "Should have at least 7 Ghostbusters requirements in traceability"
+    assert len(ghostbusters_requirements) >= 7, (
+        "Should have at least 7 Ghostbusters requirements in traceability"
+    )
 
     # Check for key requirements
     requirement_texts = [req["requirement"] for req in ghostbusters_requirements]
@@ -121,9 +121,9 @@ def test_ghostbusters_requirements_traceability() -> None:
     ]
 
     for expected_req in expected_requirements:
-        assert any(
-            expected_req in req_text for req_text in requirement_texts
-        ), f"Should include requirement: {expected_req}"
+        assert any(expected_req in req_text for req_text in requirement_texts), (
+            f"Should include requirement: {expected_req}"
+        )
 
 
 def test_ghostbusters_rule_exists() -> None:
@@ -188,9 +188,9 @@ def test_ghostbusters_file_organization() -> None:
 
     # Check that Ghostbusters rule is included
     ghostbusters_rule = ".cursor/rules/ghostbusters.mdc"
-    assert (
-        ghostbusters_rule in domain_rules
-    ), "Ghostbusters rule should be in domain rules"
+    assert ghostbusters_rule in domain_rules, (
+        "Ghostbusters rule should be in domain rules"
+    )
     assert (
         domain_rules[ghostbusters_rule]
         == "Ghostbusters multi-agent delusion detection and recovery guidelines"

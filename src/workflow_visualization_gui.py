@@ -671,18 +671,18 @@ class WorkflowVisualizationGUI:
         try:
             # Use the first test file for quick UML generation
             selected_file = self.test_files[0]
-            
+
             with st.spinner("Generating quick UML diagram..."):
                 # Generate a simple UML diagram using our existing UML generator
-                if hasattr(self, 'uml_generator'):
+                if hasattr(self, "uml_generator"):
                     result = self.uml_generator.generate_activity_diagram(selected_file)
                     if result:
                         st.success("✅ Quick UML generation completed!")
-                        
+
                         # Display the generated UML
                         st.subheader("🎨 Generated UML Diagram")
                         st.code(result, language="plantuml")
-                        
+
                         # Try to render as SVG if PlantUML service is available
                         try:
                             svg_content = self._render_plantuml_as_svg(result)
@@ -690,7 +690,9 @@ class WorkflowVisualizationGUI:
                                 st.markdown("### 📊 Visualized Diagram")
                                 st.markdown(svg_content, unsafe_allow_html=True)
                         except Exception as svg_error:
-                            st.info("💡 Tip: Enable PlantUML service for SVG visualization")
+                            st.info(
+                                "💡 Tip: Enable PlantUML service for SVG visualization"
+                            )
                     else:
                         st.error("❌ UML generation failed")
                 else:
@@ -699,43 +701,53 @@ class WorkflowVisualizationGUI:
                     simple_uml = self._create_simple_uml(selected_file)
                     st.code(simple_uml, language="plantuml")
                     st.success("✅ Simple UML representation created!")
-                    
+
         except Exception as e:
             st.error(f"❌ Quick UML generation failed: {str(e)}")
 
     def _create_simple_uml(self, file_path: str) -> str:
         """Create a simple UML representation of the file."""
         try:
-            with open(file_path, 'r') as f:
+            with open(file_path, "r") as f:
                 content = f.read()
-            
+
             # Parse the file to extract basic structure
             tree = ast.parse(content)
-            
+
             # Extract classes and functions
-            classes = [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
-            functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-            
+            classes = [
+                node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)
+            ]
+            functions = [
+                node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)
+            ]
+
             # Generate simple PlantUML
             uml = "@startuml\n"
             uml += f"title {os.path.basename(file_path)}\n\n"
-            
+
             # Add classes
             for cls in classes:
                 uml += f"class {cls.name} {{\n"
                 # Add methods
-                for func in [n for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)]:
+                for func in [
+                    n for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)
+                ]:
                     uml += f"  + {func.name}()\n"
                 uml += "}\n\n"
-            
+
             # Add standalone functions
             for func in functions:
-                if not any(cls.name in [n.name for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)] for cls in classes):
+                if not any(
+                    cls.name
+                    in [n.name for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)]
+                    for cls in classes
+                ):
                     uml += f"function {func.name}()\n"
-            
+
             uml += "@enduml"
             return uml
-            
+
         except Exception as e:
             return f"@startuml\ntitle Error\nnote right: Could not parse {file_path}\nnote right: {str(e)}\n@enduml"
 
@@ -857,42 +869,42 @@ class WorkflowVisualizationGUI:
     def _display_existing_diagrams(self):
         """Display existing diagrams."""
         st.subheader("📋 Existing Diagrams")
-        
+
         # Find existing diagram files
         diagram_files = []
         for ext in [".puml", ".mmd", ".dot", ".png", ".svg"]:
             diagram_files.extend(self.project_root.glob(f"*{ext}"))
-        
+
         if diagram_files:
             for diagram in diagram_files:
                 with st.expander(f"📄 {diagram.name}", expanded=False):
-                    if diagram.suffix == '.puml':
+                    if diagram.suffix == ".puml":
                         # Try to display as SVG visualization first
                         svg_content = self._convert_plantuml_to_svg(diagram)
                         if svg_content:
                             st.markdown("**🎨 PlantUML → SVG Visualization:**")
                             st.markdown(svg_content, unsafe_allow_html=True)
-                            
+
                             # Also show the raw PlantUML for reference
                             with st.expander("📝 Raw PlantUML Code", expanded=False):
-                                with open(diagram, 'r') as f:
+                                with open(diagram, "r") as f:
                                     content = f.read()
-                                    st.code(content, language='text')
+                                    st.code(content, language="text")
                         else:
                             st.warning("⚠️ Could not convert PlantUML to SVG")
                             # Fallback to raw text
-                            with open(diagram, 'r') as f:
+                            with open(diagram, "r") as f:
                                 content = f.read()
-                                st.code(content, language='text')
+                                st.code(content, language="text")
                     elif diagram.suffix in [".mmd", ".dot"]:
                         with open(diagram, "r") as f:
                             content = f.read()
                             st.code(content, language="text")
                     elif diagram.suffix == ".png":
                         st.image(str(diagram), caption=diagram.name)
-                    elif diagram.suffix == '.svg':
+                    elif diagram.suffix == ".svg":
                         # Display SVG directly
-                        with open(diagram, 'r') as f:
+                        with open(diagram, "r") as f:
                             content = f.read()
                             st.markdown(content, unsafe_allow_html=True)
         else:
@@ -1049,36 +1061,42 @@ class WorkflowVisualizationGUI:
         """Convert PlantUML file to SVG content using Docker service."""
         try:
             # Read the PlantUML content
-            with open(puml_file, 'r') as f:
+            with open(puml_file, "r") as f:
                 plantuml_content = f.read()
-            
+
             # Encode the PlantUML content for HTTP request
             encoded_content = urllib.parse.quote(plantuml_content)
-            
+
             # Use the Docker PlantUML service on port 20075
-            
+
             # Create the URL for the PlantUML service
             plantuml_url = f"http://localhost:20075/svg/{encoded_content}"
-            
+
             # Make the request to get SVG
             response = requests.get(plantuml_url, timeout=30)
-            
+
             if response.status_code == 200:
                 svg_content = response.text
-                
+
                 # Validate that we got actual SVG content
-                if svg_content.startswith('<?xml') or svg_content.startswith('<svg'):
+                if svg_content.startswith("<?xml") or svg_content.startswith("<svg"):
                     return svg_content
                 else:
-                    st.error(f"PlantUML service returned non-SVG content: {response.text[:200]}")
+                    st.error(
+                        f"PlantUML service returned non-SVG content: {response.text[:200]}"
+                    )
                     return None
             else:
-                st.error(f"PlantUML service request failed: HTTP {response.status_code}")
+                st.error(
+                    f"PlantUML service request failed: HTTP {response.status_code}"
+                )
                 return None
-                
+
         except requests.exceptions.RequestException as e:
             st.error(f"Error connecting to PlantUML Docker service: {str(e)}")
-            st.info("💡 Make sure the PlantUML Docker service is running: sudo docker start plantuml-server")
+            st.info(
+                "💡 Make sure the PlantUML Docker service is running: sudo docker start plantuml-server"
+            )
             return None
         except Exception as e:
             st.error(f"Error converting PlantUML to SVG: {str(e)}")
@@ -1089,6 +1107,7 @@ class WorkflowVisualizationGUI:
 # This must be at the top level, not inside any function
 gui = WorkflowVisualizationGUI()
 gui.run()
+
 
 def main():
     """Main entry point."""

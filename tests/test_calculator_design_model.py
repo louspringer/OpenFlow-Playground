@@ -206,9 +206,9 @@ class TestCalculatorDesignModel:
 
         expected_methods = ["__init__", "add", "subtract", "multiply", "divide"]
         for expected_method in expected_methods:
-            assert (
-                expected_method in method_names
-            ), f"Method {expected_method} not found in reverse engineered model"
+            assert expected_method in method_names, (
+                f"Method {expected_method} not found in reverse engineered model"
+            )
 
     def test_design_model_validation(self, calculator_design_spec):
         """Test that the design model follows proper validation rules"""
@@ -222,9 +222,9 @@ class TestCalculatorDesignModel:
                 "metadata",
             ]
             for field in required_fields:
-                assert (
-                    field in comp
-                ), f"Component {comp['name']} missing required field: {field}"
+                assert field in comp, (
+                    f"Component {comp['name']} missing required field: {field}"
+                )
 
             # Check metadata structure
             metadata = comp["metadata"]
@@ -241,17 +241,17 @@ class TestCalculatorDesignModel:
         component_names = [
             comp["name"] for comp in calculator_design_spec["components"]
         ]
-        assert len(component_names) == len(
-            set(component_names)
-        ), "Duplicate component names found"
+        assert len(component_names) == len(set(component_names)), (
+            "Duplicate component names found"
+        )
 
         # Check that dependencies are valid (if any)
         for comp in calculator_design_spec["components"]:
             dependencies = comp.get("dependencies", [])
             for dep in dependencies:
-                assert (
-                    dep in component_names
-                ), f"Dependency {dep} not found in components"
+                assert dep in component_names, (
+                    f"Dependency {dep} not found in components"
+                )
 
 
 if __name__ == "__main__":

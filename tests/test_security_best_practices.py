@@ -54,17 +54,17 @@ def run_command(user_input):
             output = result.stdout + result.stderr
 
             # Should detect hardcoded password
-            assert (
-                "hardcoded_password_string" in output
-            ), "Should detect hardcoded password"
+            assert "hardcoded_password_string" in output, (
+                "Should detect hardcoded password"
+            )
 
             # Should detect weak hash
             assert "hashlib" in output, "Should detect weak hash usage"
 
             # Should detect command injection
-            assert (
-                "start_process_with_a_shell" in output
-            ), "Should detect command injection"
+            assert "start_process_with_a_shell" in output, (
+                "Should detect command injection"
+            )
 
             print("✅ Bandit successfully detected security issues")
 

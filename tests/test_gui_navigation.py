@@ -106,8 +106,8 @@ class GUITestBase:
                 "--disable-features=VizDisplayCompositor",
                 "--enable-javascript",  # Explicitly enable JavaScript
                 "--no-sandbox",
-                "--disable-dev-shm-usage"
-            ]
+                "--disable-dev-shm-usage",
+            ],
         )
         self.page = self.browser.new_page()
 
@@ -150,20 +150,20 @@ class TestGUINavigation(GUITestBase):
         """Minimal test to see if the app renders anything at all."""
         # Wait for page to load
         self.page.wait_for_load_state("networkidle")
-        
+
         print("🔍 Testing minimal app rendering...")
-        
+
         # Take screenshot
         self.take_screenshot("minimal_app_test", "Minimal app rendering test")
-        
+
         # Get page title
         page_title = self.page.title()
         print(f"📄 Page title: {page_title}")
-        
+
         # Get current URL
         current_url = self.page.url
         print(f"🌐 Current URL: {current_url}")
-        
+
         # Try to get any text content on the page
         print("\n📝 Page Content Check:")
         try:
@@ -175,7 +175,7 @@ class TestGUINavigation(GUITestBase):
                 print("❌ No text content found")
         except Exception as e:
             print(f"❌ Error getting text content: {e}")
-        
+
         # Try to find any HTML elements
         print("\n🔍 HTML Elements Check:")
         try:
@@ -184,35 +184,35 @@ class TestGUINavigation(GUITestBase):
             h2_count = self.page.locator("h2").count()
             div_count = self.page.locator("div").count()
             span_count = self.page.locator("span").count()
-            
+
             print(f"  H1 elements: {h1_count}")
             print(f"  H2 elements: {h2_count}")
             print(f"  Div elements: {div_count}")
             print(f"  Span elements: {span_count}")
-            
+
             if h1_count + h2_count + div_count + span_count > 0:
                 print("✅ Found HTML elements")
             else:
                 print("❌ No HTML elements found")
-                
+
         except Exception as e:
             print(f"❌ Error counting elements: {e}")
-        
+
         # Check if this is just a blank Streamlit page
         print("\n🎯 Streamlit Status Check:")
         try:
             # Look for Streamlit-specific elements
             streamlit_elements = self.page.locator("[data-testid]").count()
             print(f"  Streamlit elements: {streamlit_elements}")
-            
+
             if streamlit_elements > 0:
                 print("✅ Streamlit is rendering elements")
             else:
                 print("❌ Streamlit is not rendering elements")
-                
+
         except Exception as e:
             print(f"❌ Error checking Streamlit elements: {e}")
-        
+
         print("\n🎯 Minimal test completed")
         # This test should always pass - it's just for debugging
         assert True, "Minimal app rendering test completed"
@@ -223,7 +223,9 @@ class TestGUINavigation(GUITestBase):
         self.page.wait_for_load_state("networkidle")
 
         # Check main title - use the actual title text
-        expect(self.page.locator("text=🔍 Workflow Extraction Visualization System")).to_be_visible()
+        expect(
+            self.page.locator("text=🔍 Workflow Extraction Visualization System")
+        ).to_be_visible()
 
         # Check component count - look for the specific metric card
         component_metric = self.page.locator("text=Components").first
@@ -236,23 +238,27 @@ class TestGUINavigation(GUITestBase):
         """Comprehensive debug test to see exactly what's on the page."""
         # Wait for page to load
         self.page.wait_for_load_state("networkidle")
-        
+
         print("🔍 Starting comprehensive debug test...")
-        
+
         # Take screenshot of dashboard
-        self.take_screenshot("comprehensive_debug_dashboard", "Dashboard for comprehensive debugging")
-        
+        self.take_screenshot(
+            "comprehensive_debug_dashboard", "Dashboard for comprehensive debugging"
+        )
+
         # Check dashboard elements
         print("\n📊 Dashboard Elements:")
         try:
-            main_title = self.page.locator("text=🔍 Workflow Extraction Visualization System")
+            main_title = self.page.locator(
+                "text=🔍 Workflow Extraction Visualization System"
+            )
             if main_title.count() > 0:
                 print("✅ Main title found")
             else:
                 print("❌ Main title not found")
         except Exception as e:
             print(f"❌ Error finding main title: {e}")
-        
+
         # Try to navigate to a component
         print("\n🧭 Navigation Test:")
         try:
@@ -262,39 +268,44 @@ class TestGUINavigation(GUITestBase):
                 print("✅ Component selector found")
                 component_selector.click()
                 print("✅ Component selector clicked")
-                
+
                 # Find and click UC-2 component
-                uc2_component = self.page.locator("text=UC-2: Control Flow Pattern Recognition")
+                uc2_component = self.page.locator(
+                    "text=UC-2: Control Flow Pattern Recognition"
+                )
                 if uc2_component.count() > 0:
                     print("✅ UC-2 component found")
                     uc2_component.click()
                     print("✅ UC-2 component selected")
-                    
+
                     # Wait for navigation
                     time.sleep(3)
-                    
+
                     # Take screenshot of component page
-                    self.take_screenshot("comprehensive_debug_component_page", "Component page for comprehensive debugging")
-                    
+                    self.take_screenshot(
+                        "comprehensive_debug_component_page",
+                        "Component page for comprehensive debugging",
+                    )
+
                     # Get page title
                     page_title = self.page.title()
                     print(f"📄 Page title: {page_title}")
-                    
+
                     # Get current URL
                     current_url = self.page.url
                     print(f"🌐 Current URL: {current_url}")
-                    
+
                     # Try to find all text elements on the page
                     print("\n🔍 Page Content Analysis:")
-                    
+
                     # Look for common elements
                     elements_to_check = [
                         "Select file to analyze:",
                         "Analyze Control Flow",
                         "Control Flow Pattern Recognition",
-                        "🔄 Control Flow Pattern Recognition"
+                        "🔄 Control Flow Pattern Recognition",
                     ]
-                    
+
                     for element_text in elements_to_check:
                         try:
                             element = self.page.locator(f"text={element_text}")
@@ -305,33 +316,35 @@ class TestGUINavigation(GUITestBase):
                                 print(f"❌ Not found: '{element_text}'")
                         except Exception as e:
                             print(f"❌ Error checking '{element_text}': {e}")
-                    
+
                     # Try to get all visible text content
                     print("\n📝 All Visible Text Elements:")
                     try:
                         # Use a more specific selector for text elements
-                        text_elements = self.page.locator("h1, h2, h3, h4, h5, h6, p, span, div, label, button").all()
+                        text_elements = self.page.locator(
+                            "h1, h2, h3, h4, h5, h6, p, span, div, label, button"
+                        ).all()
                         print(f"Found {len(text_elements)} potential text elements")
-                        
+
                         # Print first 10 elements with text content
                         for i, elem in enumerate(text_elements[:10]):
                             try:
                                 text_content = elem.text_content().strip()
                                 if text_content:
-                                    print(f"  {i+1}: '{text_content}'")
+                                    print(f"  {i + 1}: '{text_content}'")
                             except:
                                 pass
                     except Exception as e:
                         print(f"❌ Error getting text elements: {e}")
-                        
+
                 else:
                     print("❌ UC-2 component not found")
             else:
                 print("❌ Component selector not found")
-                
+
         except Exception as e:
             print(f"❌ Error during navigation: {e}")
-        
+
         print("\n🎯 Debug test completed")
         # This test should always pass - it's just for debugging
         assert True, "Comprehensive debug test completed"
@@ -373,7 +386,9 @@ class TestGUINavigation(GUITestBase):
             )
 
             # Verify basic functionality still works - look for the main title
-            main_title = self.page.locator("text=🔍 Workflow Extraction Visualization System").first
+            main_title = self.page.locator(
+                "text=🔍 Workflow Extraction Visualization System"
+            ).first
             expect(main_title).to_be_visible()
 
 
