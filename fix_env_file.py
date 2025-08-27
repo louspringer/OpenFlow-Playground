@@ -116,7 +116,9 @@ AWS_ACCESS_KEY_ID=YOUR_FULL_AWS_ACCESS_KEY_ID_HERE
 ANTHROPIC_API_KEY=YOUR_FULL_ANTHROPIC_API_KEY_HERE
 
 # Preserve existing environment variables
-""".format(timestamp=os.popen("date").read().strip())
+""".format(
+        timestamp=os.popen("date").read().strip()
+    )
 
     # Add existing variables (excluding the ones we're fixing)
     for key, value in existing_env.items():

@@ -29,7 +29,7 @@ rm -rf ~/.config/Cursor/User/globalStorage/* 2>/dev/null || true
 
 # 4. Minimal Cursor settings (disables Python language server)
 echo "⚙️  Applying minimal Cursor settings..."
-cat > ~/.config/Cursor/User/settings.json << 'EOF'
+cat >~/.config/Cursor/User/settings.json <<'EOF'
 {
     "python.analysis.autoImportCompletions": false,
     "python.analysis.typeCheckingMode": "off",
@@ -97,4 +97,4 @@ echo "   ✅ All heavy processes killed"
 echo ""
 echo "💡 Restart Cursor now!"
 echo "⚠️  Note: Python language server is disabled for maximum performance"
-echo "🎯 If still slow, consider using a lighter editor (vim, nano)" 
+echo "🎯 If still slow, consider using a lighter editor (vim, nano)"

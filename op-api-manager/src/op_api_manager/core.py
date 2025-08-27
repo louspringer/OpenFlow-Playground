@@ -765,9 +765,7 @@ class OnePasswordAPIKeyManager:
                         f"  🔑 Would set {env_var} for {key.title[:30]}... (no credential found)"
                     )
 
-        print(
-            f"  ✅ Environment variables prepared for {len(result.api_keys)} API keys"
-        )
+        print(f"  ✅ Environment variables prepared for {len(result.api_keys)} API keys")
 
     def _update_working_status(self, item_id: str, working: bool) -> None:
         """
@@ -1670,38 +1668,36 @@ class OnePasswordAPIKeyManager:
 
                             # Check if we should use cached values only
                             if use_cached_only and cred_info.get("cached"):
-                                print(
-                                    f"🔍 ENV UPDATE: Using cached value for {item_id}"
-                                )
+                                print(f"🔍 ENV UPDATE: Using cached value for {item_id}")
                                 # For cached values, we'll use placeholder since we don't store actual credentials
                                 # But we'll map them to the correct environment variable names
                                 if provider == "azure":
-                                    env_vars["AZURE_API_KEY"] = (
-                                        "YOUR_AZURE_API_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "AZURE_API_KEY"
+                                    ] = "YOUR_AZURE_API_KEY_HERE"
                                 elif provider == "aws":
-                                    env_vars["AWS_ACCESS_KEY_ID"] = (
-                                        "YOUR_AWS_ACCESS_KEY_ID_HERE"
-                                    )
-                                    env_vars["AWS_SECRET_ACCESS_KEY"] = (
-                                        "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "AWS_ACCESS_KEY_ID"
+                                    ] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
+                                    env_vars[
+                                        "AWS_SECRET_ACCESS_KEY"
+                                    ] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
                                 elif provider == "anthropic":
-                                    env_vars["ANTHROPIC_API_KEY"] = (
-                                        "YOUR_ANTHROPIC_API_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "ANTHROPIC_API_KEY"
+                                    ] = "YOUR_ANTHROPIC_API_KEY_HERE"
                                 elif provider == "openai":
-                                    env_vars["OPENAI_API_KEY"] = (
-                                        "YOUR_OPENAI_API_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "OPENAI_API_KEY"
+                                    ] = "YOUR_OPENAI_API_KEY_HERE"
                                 elif provider == "google":
-                                    env_vars["GOOGLE_API_KEY"] = (
-                                        "YOUR_GOOGLE_API_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "GOOGLE_API_KEY"
+                                    ] = "YOUR_GOOGLE_API_KEY_HERE"
                                 elif provider == "openrouter":
-                                    env_vars["OPENROUTER_API_KEY"] = (
-                                        "YOUR_OPENROUTER_API_KEY_HERE"
-                                    )
+                                    env_vars[
+                                        "OPENROUTER_API_KEY"
+                                    ] = "YOUR_OPENROUTER_API_KEY_HERE"
                                 elif provider == "unknown":
                                     # For unknown providers, try to detect from title
                                     title = cred_info.get("title", "")
@@ -1709,41 +1705,41 @@ class OnePasswordAPIKeyManager:
                                         "anthropic" in title.lower()
                                         or "claude" in title.lower()
                                     ):
-                                        env_vars["ANTHROPIC_API_KEY"] = (
-                                            "YOUR_ANTHROPIC_API_KEY_HERE"
-                                        )
+                                        env_vars[
+                                            "ANTHROPIC_API_KEY"
+                                        ] = "YOUR_ANTHROPIC_API_KEY_HERE"
                                     elif (
                                         "openai" in title.lower()
                                         or "gpt" in title.lower()
                                     ):
-                                        env_vars["OPENAI_API_KEY"] = (
-                                            "YOUR_OPENAI_API_KEY_HERE"
-                                        )
+                                        env_vars[
+                                            "OPENAI_API_KEY"
+                                        ] = "YOUR_OPENAI_API_KEY_HERE"
                                     elif (
                                         "aws" in title.lower()
                                         or "access key" in title.lower()
                                     ):
-                                        env_vars["AWS_ACCESS_KEY_ID"] = (
-                                            "YOUR_AWS_ACCESS_KEY_ID_HERE"
-                                        )
-                                        env_vars["AWS_SECRET_ACCESS_KEY"] = (
-                                            "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
-                                        )
+                                        env_vars[
+                                            "AWS_ACCESS_KEY_ID"
+                                        ] = "YOUR_AWS_ACCESS_KEY_ID_HERE"
+                                        env_vars[
+                                            "AWS_SECRET_ACCESS_KEY"
+                                        ] = "YOUR_AWS_SECRET_ACCESS_KEY_HERE"
                                     elif (
                                         "google" in title.lower()
                                         or "gemini" in title.lower()
                                     ):
-                                        env_vars["GOOGLE_API_KEY"] = (
-                                            "YOUR_GOOGLE_API_KEY_HERE"
-                                        )
+                                        env_vars[
+                                            "GOOGLE_API_KEY"
+                                        ] = "YOUR_GOOGLE_API_KEY_HERE"
                                     elif "openrouter" in title.lower():
-                                        env_vars["OPENROUTER_API_KEY"] = (
-                                            "YOUR_OPENROUTER_API_KEY_HERE"
-                                        )
+                                        env_vars[
+                                            "OPENROUTER_API_KEY"
+                                        ] = "YOUR_OPENROUTER_API_KEY_HERE"
                                     else:
-                                        env_vars[f"UNKNOWN_API_KEY_{i + 1}"] = (
-                                            f"YOUR_UNKNOWN_API_KEY_{i + 1}_HERE"
-                                        )
+                                        env_vars[
+                                            f"UNKNOWN_API_KEY_{i + 1}"
+                                        ] = f"YOUR_UNKNOWN_API_KEY_{i + 1}_HERE"
                                 continue
 
                             # Try to retrieve from 1Password if not using cached only
@@ -1767,9 +1763,9 @@ class OnePasswordAPIKeyManager:
                                     env_vars["AWS_ACCESS_KEY_ID"] = aws_credentials.get(
                                         "access_key_id"
                                     )
-                                    env_vars["AWS_SECRET_ACCESS_KEY"] = (
-                                        aws_credentials.get("secret_access_key")
-                                    )
+                                    env_vars[
+                                        "AWS_SECRET_ACCESS_KEY"
+                                    ] = aws_credentials.get("secret_access_key")
                                     print(
                                         "      ✅ AWS credentials extracted successfully"
                                     )
@@ -1785,9 +1781,9 @@ class OnePasswordAPIKeyManager:
                                     )
                             elif provider == "anthropic":
                                 print("🔍 ENV UPDATE: Processing Anthropic provider")
-                                env_vars["ANTHROPIC_API_KEY"] = (
-                                    self._get_credential_value(item_id)
-                                )
+                                env_vars[
+                                    "ANTHROPIC_API_KEY"
+                                ] = self._get_credential_value(item_id)
                                 print(
                                     f"🔍 ENV UPDATE: Anthropic API key extracted: {'SUCCESS' if env_vars['ANTHROPIC_API_KEY'] else 'FAILED'}"
                                 )
@@ -1810,9 +1806,9 @@ class OnePasswordAPIKeyManager:
                             elif provider == "unknown":
                                 print("🔍 ENV UPDATE: Processing Unknown provider")
                                 # Handle unknown providers - they might be API keys
-                                env_vars[f"UNKNOWN_API_KEY_{i + 1}"] = (
-                                    self._get_credential_value(item_id)
-                                )
+                                env_vars[
+                                    f"UNKNOWN_API_KEY_{i + 1}"
+                                ] = self._get_credential_value(item_id)
                                 print(
                                     f"🔍 ENV UPDATE: Unknown API key {i + 1} extracted: {'SUCCESS' if env_vars[f'UNKNOWN_API_KEY_{i + 1}'] else 'FAILED'}"
                                 )

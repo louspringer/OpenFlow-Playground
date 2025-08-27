@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; fill: #666; }
+      .participant { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; rx: 5; }
+      .message { stroke: #ff5722; stroke-width: 2; marker-end: url(#arrowhead); }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .message-text { font-family: Arial, sans-serif; font-size: 11px; fill: #ff5722; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff5722" />
+    </marker>
+  </defs>
+
+  <text x="450" y="30" text-anchor="middle" class="title">Python Module Sequence Model</text>
+  <text x="450" y="50" text-anchor="middle" class="subtitle">Classes: 1</text>
+
+  <rect x="50" y="80" width="200" height="40" class="participant" />
+  <text x="150" y="105" text-anchor="middle" class="text">User</text>
+  <rect x="300" y="80" width="200" height="40" class="participant" />
+  <text x="400" y="105" text-anchor="middle" class="text">ClassAnalyzer</text>
+  <rect x="550" y="80" width="200" height="40" class="participant" />
+  <text x="650" y="105" text-anchor="middle" class="text">PlantUMLGenerator</text>
+  <line x1="150" y1="160" x2="150" y2="260" stroke="#666" stroke-width="1" stroke-dasharray="5,5" />
+  <line x1="400" y1="160" x2="400" y2="260" stroke="#666" stroke-width="1" stroke-dasharray="5,5" />
+  <line x1="650" y1="160" x2="650" y2="260" stroke="#666" stroke-width="1" stroke-dasharray="5,5" />
+  <line x1="150" y1="180" x2="400" y2="180" class="message" />
+  <text x="275" y="175" text-anchor="middle" class="message-text">analyze_module()</text>
+  <line x1="400" y1="195" x2="400" y2="195" class="message" />
+  <text x="400" y="190" text-anchor="middle" class="message-text">Parse AST</text>
+  <line x1="400" y1="210" x2="150" y2="210" class="message" />
+  <text x="275" y="205" text-anchor="middle" class="message-text">class_structure</text>
+  <line x1="150" y1="225" x2="650" y2="225" class="message" />
+  <text x="400" y="220" text-anchor="middle" class="message-text">generate_diagrams()</text>
+  <line x1="650" y1="240" x2="650" y2="240" class="message" />
+  <text x="650" y="235" text-anchor="middle" class="message-text">Create SVG</text>
+  <line x1="650" y1="255" x2="150" y2="255" class="message" />
+  <text x="400" y="250" text-anchor="middle" class="message-text">generated_diagrams</text>
+</svg>

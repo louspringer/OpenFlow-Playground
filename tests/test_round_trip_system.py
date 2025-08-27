@@ -233,15 +233,15 @@ class TestRoundTripSystem:
         )
 
         # Validate cleaning effectiveness
-        assert remaining_duplicate_methods == 1, (
-            f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
-        )
-        assert remaining_unreachable_returns == 0, (
-            f"Should have no unreachable returns, got {remaining_unreachable_returns}"
-        )
-        assert cleaned_lines < original_lines, (
-            f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
-        )
+        assert (
+            remaining_duplicate_methods == 1
+        ), f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
+        assert (
+            remaining_unreachable_returns == 0
+        ), f"Should have no unreachable returns, got {remaining_unreachable_returns}"
+        assert (
+            cleaned_lines < original_lines
+        ), f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
 
         # Save cleaned code for inspection
         cleaned_file = self.test_dir / "cleaned_test_code.py"

@@ -365,9 +365,7 @@ def main():
             report = fixer.generate_ontological_report(fix_result)
 
             print(f"\n📊 ONTOLOGICAL REPORT:")
-            print(
-                f"  Success: {'✅' if report['ontological_fix']['success'] else '❌'}"
-            )
+            print(f"  Success: {'✅' if report['ontological_fix']['success'] else '❌'}")
             print(
                 f"  Input validation: {'✅ PASS' if report['ontological_validation']['input']['valid'] else '❌ FAIL'}"
             )

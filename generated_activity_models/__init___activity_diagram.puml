@@ -1,0 +1,16 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Module Complete;
+stop
+
+@enduml

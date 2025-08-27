@@ -14,90 +14,90 @@ NC='\033[0m' # No Color
 
 # Function to print colored output
 print_status() {
-    echo -e "${GREEN}[INFO]${NC} $1"
+	echo -e "${GREEN}[INFO]${NC} $1"
 }
 
 print_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+	echo -e "${YELLOW}[WARNING]${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+	echo -e "${RED}[ERROR]${NC} $1"
 }
 
 print_header() {
-    echo -e "${BLUE}=== $1 ===${NC}"
+	echo -e "${BLUE}=== $1 ===${NC}"
 }
 
 # Function to check if command exists
 command_exists() {
-    command -v "$1" >/dev/null 2>&1
+	command -v "$1" >/dev/null 2>&1
 }
 
 # Function to install pre-commit
 install_pre_commit() {
-    print_header "Installing Pre-commit Hooks"
-    
-    if ! command_exists pre-commit; then
-        print_status "Installing pre-commit..."
-        if command_exists pip; then
-            pip install pre-commit
-        elif command_exists pip3; then
-            pip3 install pre-commit
-        else
-            print_error "pip not found. Please install pip first."
-            exit 1
-        fi
-    else
-        print_status "pre-commit already installed"
-    fi
-    
-    # Install the git hook scripts
-    print_status "Installing git hooks..."
-    pre-commit install
-    
-    print_success "Pre-commit hooks installed successfully!"
+	print_header "Installing Pre-commit Hooks"
+
+	if ! command_exists pre-commit; then
+		print_status "Installing pre-commit..."
+		if command_exists pip; then
+			pip install pre-commit
+		elif command_exists pip3; then
+			pip3 install pre-commit
+		else
+			print_error "pip not found. Please install pip first."
+			exit 1
+		fi
+	else
+		print_status "pre-commit already installed"
+	fi
+
+	# Install the git hook scripts
+	print_status "Installing git hooks..."
+	pre-commit install
+
+	print_success "Pre-commit hooks installed successfully!"
 }
 
 # Function to create secrets baseline
 create_secrets_baseline() {
-    print_header "Creating Secrets Baseline"
-    
-    if command_exists detect-secrets; then
-        print_status "Creating .secrets.baseline..."
-        detect-secrets scan --baseline .secrets.baseline
-        print_success "Secrets baseline created!"
-    else
-        print_warning "detect-secrets not found. Install with: pip install detect-secrets"
-    fi
+	print_header "Creating Secrets Baseline"
+
+	if command_exists detect-secrets; then
+		print_status "Creating .secrets.baseline..."
+		detect-secrets scan --baseline .secrets.baseline
+		print_success "Secrets baseline created!"
+	else
+		print_warning "detect-secrets not found. Install with: pip install detect-secrets"
+	fi
 }
 
 # Function to test security checks
 test_security_checks() {
-    print_header "Testing Security Checks"
-    
-    print_status "Running security check script..."
-    if [ -f "scripts/security-check.sh" ]; then
-        ./scripts/security-check.sh
-        print_success "Security checks working!"
-    else
-        print_error "Security check script not found!"
-        exit 1
-    fi
+	print_header "Testing Security Checks"
+
+	print_status "Running security check script..."
+	if [ -f "scripts/security-check.sh" ]; then
+		./scripts/security-check.sh
+		print_success "Security checks working!"
+	else
+		print_error "Security check script not found!"
+		exit 1
+	fi
 }
 
 # Function to create git hooks directory
 setup_git_hooks() {
-    print_header "Setting up Git Hooks"
-    
-    if [ -d ".git" ]; then
-        print_status "Git repository found"
-        
-        # Create hooks directory if it doesn't exist
-        mkdir -p .git/hooks
-        
-        # Create a pre-commit hook that runs our security checks
-        cat > .git/hooks/pre-commit << 'EOF'
+	print_header "Setting up Git Hooks"
+
+	if [ -d ".git" ]; then
+		print_status "Git repository found"
+
+		# Create hooks directory if it doesn't exist
+		mkdir -p .git/hooks
+
+		# Create a pre-commit hook that runs our security checks
+		cat >.git/hooks/pre-commit <<'EOF'
 #!/bin/bash
 # Pre-commit hook for security checks
 
@@ -114,19 +114,19 @@ fi
 
 echo "✅ Security checks passed!"
 EOF
-        
-        chmod +x .git/hooks/pre-commit
-        print_success "Git pre-commit hook installed!"
-    else
-        print_warning "Not in a git repository. Skipping git hooks setup."
-    fi
+
+		chmod +x .git/hooks/pre-commit
+		print_success "Git pre-commit hook installed!"
+	else
+		print_warning "Not in a git repository. Skipping git hooks setup."
+	fi
 }
 
 # Function to create documentation
 create_documentation() {
-    print_header "Creating Security Documentation"
-    
-    cat > SECURITY_GUIDELINES.md << 'EOF'
+	print_header "Creating Security Documentation"
+
+	cat >SECURITY_GUIDELINES.md <<'EOF'
 # Security Guidelines
 
 ## Pre-commit Hooks
@@ -189,64 +189,64 @@ git commit -m "your message"  # Will run security checks automatically
 - `bandit`: Python security linting
 - `flake8`: Code quality checks
 EOF
-    
-    print_success "Security documentation created!"
+
+	print_success "Security documentation created!"
 }
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 [command]"
-    echo ""
-    echo "Commands:"
-    echo "  install    - Install all security hooks and tools (default)"
-    echo "  test       - Test security checks"
-    echo "  docs       - Create security documentation"
-    echo "  all        - Install, test, and create docs"
-    echo "  help       - Show this help message"
-    echo ""
-    echo "This script sets up security checks to prevent:"
-    echo "  - Hardcoded credentials"
-    echo "  - Account-specific data"
-    echo "  - Security vulnerabilities"
-    echo "  - Sloppy practices"
+	echo "Usage: $0 [command]"
+	echo ""
+	echo "Commands:"
+	echo "  install    - Install all security hooks and tools (default)"
+	echo "  test       - Test security checks"
+	echo "  docs       - Create security documentation"
+	echo "  all        - Install, test, and create docs"
+	echo "  help       - Show this help message"
+	echo ""
+	echo "This script sets up security checks to prevent:"
+	echo "  - Hardcoded credentials"
+	echo "  - Account-specific data"
+	echo "  - Security vulnerabilities"
+	echo "  - Sloppy practices"
 }
 
 # Main function
 main() {
-    case "${1:-install}" in
-        "install")
-            install_pre_commit
-            setup_git_hooks
-            create_secrets_baseline
-            ;;
-        "test")
-            test_security_checks
-            ;;
-        "docs")
-            create_documentation
-            ;;
-        "all")
-            install_pre_commit
-            setup_git_hooks
-            create_secrets_baseline
-            test_security_checks
-            create_documentation
-            ;;
-        "help"|"-h"|"--help")
-            show_usage
-            ;;
-        *)
-            print_error "Unknown command: $1"
-            show_usage
-            exit 1
-            ;;
-    esac
-    
-    print_header "Setup Complete!"
-    print_status "Security hooks are now active."
-    print_status "Run './scripts/security-check.sh' to test manually."
-    print_status "Security checks will run automatically on git commit."
+	case "${1:-install}" in
+	"install")
+		install_pre_commit
+		setup_git_hooks
+		create_secrets_baseline
+		;;
+	"test")
+		test_security_checks
+		;;
+	"docs")
+		create_documentation
+		;;
+	"all")
+		install_pre_commit
+		setup_git_hooks
+		create_secrets_baseline
+		test_security_checks
+		create_documentation
+		;;
+	"help" | "-h" | "--help")
+		show_usage
+		;;
+	*)
+		print_error "Unknown command: $1"
+		show_usage
+		exit 1
+		;;
+	esac
+
+	print_header "Setup Complete!"
+	print_status "Security hooks are now active."
+	print_status "Run './scripts/security-check.sh' to test manually."
+	print_status "Security checks will run automatically on git commit."
 }
 
 # Run main function
-main "$@" 
+main "$@"

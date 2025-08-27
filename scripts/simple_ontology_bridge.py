@@ -385,9 +385,7 @@ class SimpleOntologyBridge:
             Transformed data in target format
         """
         try:
-            logger.info(
-                f"🔄 Resolving vocabulary mismatch to {target_format} format..."
-            )
+            logger.info(f"🔄 Resolving vocabulary mismatch to {target_format} format...")
 
             # Determine transformation type
             if target_format == "dict" and isinstance(reverse_engineering_data, list):

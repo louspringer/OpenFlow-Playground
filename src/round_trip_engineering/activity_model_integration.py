@@ -84,54 +84,65 @@ class ActivityModelIntegration:
             Dictionary containing generation results and metadata
         """
         start_time = time.time()
+
+        # Expand directories to individual Python files
+        python_files = self._expand_source_paths(source_paths)
+
         results = {
             "source_paths": source_paths,
+            "python_files": python_files,
             "generated_models": [],
             "errors": [],
-            "performance_metrics": {},
+            "performance_metrics": {
+                "python_files_found": len(python_files),
+                "models_generated": 0,
+                "errors_count": 0,
+                "total_time": 0,
+                "success_rate": 0.0,
+            },
             "round_trip_integration": include_round_trip
             and self.round_trip_system is not None,
         }
 
         try:
-            # Generate activity models for each source path
-            for source_path in source_paths:
+            # Generate activity models for each Python file
+            for python_file in python_files:
                 try:
-                    logger.info(f"🔍 Processing: {source_path}")
+                    logger.info(f"🔍 Processing Python file: {python_file}")
 
-                    # Generate activity models
+                    # Generate activity models from individual file
                     model_result = self.activity_generator.generate_from_code(
-                        source_path
+                        python_file
                     )
 
                     if model_result:
                         results["generated_models"].append(
                             {
-                                "source_path": source_path,
+                                "source_path": python_file,
                                 "result": model_result,
                                 "status": "success",
                             }
                         )
-                        logger.info(f"✅ Generated models for: {source_path}")
+                        logger.info(f"✅ Generated models for: {python_file}")
                     else:
                         results["generated_models"].append(
                             {
-                                "source_path": source_path,
+                                "source_path": python_file,
                                 "result": None,
                                 "status": "failed",
                             }
                         )
                         logger.warning(
-                            f"⚠️  Failed to generate models for: {source_path}"
+                            f"⚠️  Failed to generate models for: {python_file}"
                         )
 
                 except Exception as e:
-                    error_msg = f"Error processing {source_path}: {e}"
+                    error_msg = f"Error processing {python_file}: {e}"
                     logger.error(error_msg)
                     results["errors"].append(error_msg)
                     results["generated_models"].append(
                         {
-                            "source_path": source_path,
+                            "source_path": python_file,
                             "result": None,
                             "status": "error",
                             "error": str(e),
@@ -154,6 +165,7 @@ class ActivityModelIntegration:
             end_time = time.time()
             results["performance_metrics"] = {
                 "total_time": end_time - start_time,
+                "python_files_found": len(python_files),
                 "models_generated": len(
                     [m for m in results["generated_models"] if m["status"] == "success"]
                 ),
@@ -166,8 +178,8 @@ class ActivityModelIntegration:
                             if m["status"] == "success"
                         ]
                     )
-                    / len(source_paths)
-                    if source_paths
+                    / len(python_files)
+                    if python_files
                     else 0
                 ),
             }
@@ -182,6 +194,40 @@ class ActivityModelIntegration:
             results["errors"].append(error_msg)
 
         return results
+
+    def _expand_source_paths(self, source_paths: List[str]) -> List[str]:
+        """
+        Expand source paths to individual Python files.
+
+        Args:
+            source_paths: List of source files or directories
+
+        Returns:
+            List of individual Python file paths
+        """
+        python_files = []
+
+        for source_path in source_paths:
+            path = Path(source_path)
+
+            if path.is_file() and path.suffix == ".py":
+                # Single Python file
+                python_files.append(str(path))
+            elif path.is_dir():
+                # Directory - find all Python files recursively
+                logger.info(f"🔍 Scanning directory: {source_path}")
+                for py_file in path.rglob("*.py"):
+                    # Skip __pycache__ and generated files
+                    if "__pycache__" not in str(py_file) and "generated" not in str(
+                        py_file
+                    ):
+                        python_files.append(str(py_file))
+                        logger.debug(f"  Found Python file: {py_file}")
+            else:
+                logger.warning(f"⚠️  Skipping non-Python file: {source_path}")
+
+        logger.info(f"📁 Found {len(python_files)} Python files to analyze")
+        return python_files
 
     def _integrate_with_round_trip(
         self, activity_results: Dict[str, Any]
@@ -244,6 +290,9 @@ class ActivityModelIntegration:
         # Summary
         report_lines.append("📊 SUMMARY")
         report_lines.append(f"  Source Paths: {len(results['source_paths'])}")
+        report_lines.append(
+            f"  Python Files Found: {results['performance_metrics']['python_files_found']}"
+        )
         report_lines.append(
             f"  Models Generated: {results['performance_metrics']['models_generated']}"
         )

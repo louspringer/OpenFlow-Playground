@@ -44,9 +44,7 @@ def main() -> None:
             f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines"
         )
         print(f"   🏗️  Classes: {extracted_model.get('classes', {}).get('count', 0)}")
-        print(
-            f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}"
-        )
+        print(f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}")
 
         # Save extracted model
         model_file = f"{file_name}_extracted_model.json"

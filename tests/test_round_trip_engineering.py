@@ -241,9 +241,9 @@ if __name__ == "__main__":
         ]
 
         for file_path in conflicting_files:
-            assert not Path(file_path).exists(), (
-                f"Conflicting file {file_path} still exists"
-            )
+            assert not Path(
+                file_path
+            ).exists(), f"Conflicting file {file_path} still exists"
 
     def test_project_model_registry_integration(self):
         """Test that round_trip_engineering domain is properly configured"""
@@ -263,15 +263,17 @@ if __name__ == "__main__":
         assert "formatter" in domain
         assert "validator" in domain
 
-        # Check that canonical files are included in patterns
+        # Check that canonical files are included in patterns (using glob patterns)
         patterns = domain["patterns"]
-        assert "src/round_trip_engineering/enhanced_reverse_engineer.py" in patterns
-        assert "src/round_trip_engineering/round_trip_model_system.py" in patterns
+        assert "src/round_trip_engineering/**/*.py" in patterns
+        assert "tests/test_round_trip_system.py" in patterns
+        assert "**/*round_trip*.py" in patterns
 
         # Check that conflicting files are excluded
         exclusions = domain["exclusions"]
-        assert "mass_reverse_engineering*" in exclusions
-        assert "reverse_engineer_model*" in exclusions
+        assert "__pycache__/*" in exclusions
+        assert "*.pyc" in exclusions
+        assert "src/round_trip_generated/*.py" in exclusions
 
     def test_enhanced_round_trip_test_import(self):
         """Test that the enhanced round-trip test can be imported"""

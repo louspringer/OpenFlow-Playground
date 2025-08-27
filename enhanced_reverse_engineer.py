@@ -220,9 +220,7 @@ class EnhancedReverseEngineer:
             print(
                 f"🚨 Lines type: {type(lines) if 'lines' in locals() else 'Not defined'}"
             )
-            print(
-                f"🚨 Lines content: {lines if 'lines' in locals() else 'Not defined'}"
-            )
+            print(f"🚨 Lines content: {lines if 'lines' in locals() else 'Not defined'}")
 
     def _extract_file_metadata(self, tree: ast.AST, content: str) -> None:
         """Extract file-level metadata like executable status, test status, etc."""
@@ -331,9 +329,7 @@ class EnhancedReverseEngineer:
             self.model_data["used_names"] = list(used_names)
         except Exception as e:
             print(f"🚨 ERROR in _extract_imports: {type(e).__name__}: {e}")
-            print(
-                f"🚨 Node type: {type(node) if 'node' in locals() else 'Not defined'}"
-            )
+            print(f"🚨 Node type: {type(node) if 'node' in locals() else 'Not defined'}")
             print(
                 f"🚨 Node names type: {type(node.names) if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}"
             )

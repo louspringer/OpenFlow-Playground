@@ -1,0 +1,29 @@
+@startuml SequenceModel
+!theme plain
+skinparam backgroundColor white
+skinparam sequenceFontSize 12
+skinparam sequenceFontName Arial
+
+title Python Module Sequence Model
+
+actor User
+participant ClassAnalyzer
+participant PlantUMLGenerator
+
+User -> ClassAnalyzer: analyze_module(source_path)
+activate ClassAnalyzer
+
+ClassAnalyzer -> ClassAnalyzer: Parse AST
+ClassAnalyzer -> ClassAnalyzer: Extract classes
+ClassAnalyzer -> ClassAnalyzer: Extract methods
+ClassAnalyzer --> User: class_structure
+deactivate ClassAnalyzer
+
+User -> PlantUMLGenerator: generate_diagrams()
+activate PlantUMLGenerator
+PlantUMLGenerator -> PlantUMLGenerator: Create PlantUML code
+PlantUMLGenerator -> PlantUMLGenerator: Generate diagrams
+PlantUMLGenerator --> User: generated_diagrams
+deactivate PlantUMLGenerator
+
+@enduml

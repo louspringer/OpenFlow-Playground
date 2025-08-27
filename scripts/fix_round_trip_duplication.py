@@ -219,9 +219,7 @@ def main():
             print("📋 Summary:")
             print(f"  - Cleaned up {cleaned_count} broken files")
             print(f"  - Applied duplication fix: {'✅' if fix_applied else '❌'}")
-            print(
-                f"  - Regenerated clean code: {'✅' if regeneration_success else '❌'}"
-            )
+            print(f"  - Regenerated clean code: {'✅' if regeneration_success else '❌'}")
         else:
             print(
                 "\n⚠️  PARTIAL SUCCESS: Cleanup and fix applied, but regeneration failed"

@@ -1,0 +1,46 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: EnhancedReverseEngineer;
+
+:__init__;
+:reverse_engineer_file;
+:_extract_method_info_enhanced;
+:_extract_async_method_info_enhanced;
+:_build_method_signature;
+:_build_async_method_signature;
+:_extract_parameters;
+:_extract_type_annotation;
+:_extract_module_docstring;
+:_extract_file_metadata;
+:_extract_imports;
+:_extract_used_names;
+:_extract_module_assignments;
+:_extract_classes;
+:_extract_module_functions;
+:_extract_file_structure;
+
+:Process Standalone Functions;
+
+:main;
+:__init__;
+:reverse_engineer_file;
+:_extract_method_info_enhanced;
+:_extract_async_method_info_enhanced;
+:... and 12 more;
+
+:Module Complete;
+stop
+
+@enduml

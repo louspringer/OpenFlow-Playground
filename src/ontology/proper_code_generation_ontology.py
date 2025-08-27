@@ -567,9 +567,7 @@ def main():
     print("\n✅ Testing transformation validation...")
     test_data = {"components": [{"name": "QualityRule", "type": "class"}]}
     validation = ontology.validate_transformation(test_data, "dict")
-    print(
-        f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}"
-    )
+    print(f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}")
 
     # Get ontology statistics
     stats = ontology.get_statistics()

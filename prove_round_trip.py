@@ -199,15 +199,15 @@ def prove_round_trip():
         loaded = loaded_components[name]
         assert original.name == loaded.name, f"Component name mismatch: {name}"
         assert original.type == loaded.type, f"Component type mismatch: {name}"
-        assert original.description == loaded.description, (
-            f"Component description mismatch: {name}"
-        )
-        assert original.requirements == loaded.requirements, (
-            f"Component requirements mismatch: {name}"
-        )
-        assert original.dependencies == loaded.dependencies, (
-            f"Component dependencies mismatch: {name}"
-        )
+        assert (
+            original.description == loaded.description
+        ), f"Component description mismatch: {name}"
+        assert (
+            original.requirements == loaded.requirements
+        ), f"Component requirements mismatch: {name}"
+        assert (
+            original.dependencies == loaded.dependencies
+        ), f"Component dependencies mismatch: {name}"
 
     print("   ✅ Round-trip integrity verified!")
 

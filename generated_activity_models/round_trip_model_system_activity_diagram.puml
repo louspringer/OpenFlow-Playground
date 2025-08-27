@@ -1,0 +1,66 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: ModelComponent;
+
+
+:Process Class: DesignModel;
+
+
+:Process Class: RoundTripModelSystem;
+
+:__init__;
+:create_model_from_design;
+:generate_code_from_model;
+:generate_code_from_extracted_model;
+:_clean_generated_code;
+:_record_formatting_patterns;
+:_generate_class_from_extracted_model;
+:_generate_method_from_extracted_model;
+:_generate_function_from_extracted_model;
+:_generate_function_code;
+:_generate_class_code;
+:_parse_method_signature;
+:_generate_method_from_parsed;
+:_generate_method_from_dict;
+:_clean_complex_type;
+:_get_default_value;
+:_generate_module_code;
+:_generate_domain_code;
+:save_model;
+:load_model;
+:_align_vocabulary_ontologically;
+:_align_vocabulary_manually;
+:_ensure_clean_generation;
+
+if (Condition Check?) then (yes)
+  :Process Success Path;
+else (no)
+  :Process Fallback Path;
+endif
+
+
+:Process Standalone Functions;
+
+:main;
+:main;
+:__init__;
+:create_model_from_design;
+:generate_code_from_model;
+:... and 22 more;
+
+:Module Complete;
+stop
+
+@enduml

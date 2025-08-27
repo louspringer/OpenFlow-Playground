@@ -217,9 +217,7 @@ def test(
         console.print("[bold green]🧪 Starting API key testing...[/bold green]")
 
         if dry_run:
-            console.print(
-                "[yellow]🔍 DRY RUN MODE - No tests will be executed[/yellow]"
-            )
+            console.print("[yellow]🔍 DRY RUN MODE - No tests will be executed[/yellow]")
 
         if provider != "all":
             console.print(f"[blue]🎯 Provider filter: {provider}[/blue]")
@@ -255,9 +253,7 @@ def test(
                 filtered_keys = manager._apply_test_filters(
                     cached_keys, provider, status, limit, force
                 )
-                console.print(
-                    f"[green]📊 Would test {len(filtered_keys)} items[/green]"
-                )
+                console.print(f"[green]📊 Would test {len(filtered_keys)} items[/green]")
                 if provider != "all":
                     provider_count = len(
                         [k for k in filtered_keys if k.get("provider") == provider]
@@ -850,9 +846,7 @@ def restore(backup_file: str, cache_file: Optional[str], force: bool, verify: bo
             )
 
         if verify:
-            console.print(
-                "[blue]🔍 Verification will be performed after restore[/blue]"
-            )
+            console.print("[blue]🔍 Verification will be performed after restore[/blue]")
 
         console.print()
 

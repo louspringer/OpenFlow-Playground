@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: ActivityModelIntegration;
+
+:__init__;
+:generate_activity_models;
+:_expand_source_paths;
+:_integrate_with_round_trip;
+:generate_report;
+
+:Process Standalone Functions;
+
+:main;
+:__init__;
+:generate_activity_models;
+:_expand_source_paths;
+:_integrate_with_round_trip;
+:... and 1 more;
+
+:Module Complete;
+stop
+
+@enduml

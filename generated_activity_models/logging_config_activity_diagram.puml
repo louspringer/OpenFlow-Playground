@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: ProfilingLogger;
+
+:__init__;
+:start_timer;
+:end_timer;
+:get_performance_summary;
+:log_performance_summary;
+
+:Process Standalone Functions;
+
+:profile_operation;
+:setup_logging;
+:get_logger;
+:log_data_transformation;
+:log_error_with_context;
+:... and 7 more;
+
+:Module Complete;
+stop
+
+@enduml

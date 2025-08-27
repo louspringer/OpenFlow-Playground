@@ -284,7 +284,9 @@ class CIActivityModelGenerator:
                     shutil.rmtree(old_dir)
                     logger.info(f"🗑️  Removed old artifact directory: {old_dir}")
                 except Exception as e:
-                    logger.warning(f"⚠️  Failed to remove old artifact: {old_dir} - {e}")
+                    logger.warning(
+                        f"⚠️  Failed to remove old artifact: {old_dir} - {e}"
+                    )
 
         logger.info("✅ Artifact management completed")
 

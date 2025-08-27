@@ -1,0 +1,12 @@
+flowchart TD
+    %% Simple Workflow Analysis
+
+    n1([Start])
+    n2[Function__test_security_manager_initialization__]
+    n3[Function__test_input_validator_methods__]
+    n4([End])
+
+    n1 -->|Call| n2
+    n1 -->|Call| n3
+    n2 -->|Complete| n4
+    n3 -->|Complete| n4

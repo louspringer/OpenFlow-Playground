@@ -108,8 +108,8 @@ class SimplePlantUMLClient {{
             // Encode the PlantUML code
             const encodedCode = encodeURIComponent(plantumlCode);
             
-            // Construct the URL
-            const url = `${{this.serverUrl}}/uml/${{encodedCode}}`;
+            // Construct the URL for SVG format
+            const url = `${{this.serverUrl}}/svg/${{encodedCode}}`;
             
             // Make the HTTP request
             const response = await this.makeHttpRequest(url);
