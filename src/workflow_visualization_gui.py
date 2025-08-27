@@ -195,7 +195,8 @@ class WorkflowVisualizationGUI:
         st.sidebar.subheader("📊 System Status")
         self._render_system_status()
 
-        return selected if selected else None
+        # Fix: Return the selected component only if it's not empty string
+        return selected if selected != "" else None
 
     def _render_dashboard(self):
         """Render the main dashboard."""
@@ -264,8 +265,11 @@ class WorkflowVisualizationGUI:
         """Render a specific component page."""
         component_info = self.components[component_name]
 
-        # Header - Use title instead of markdown to avoid H1 conflicts
-        st.title(f"{component_info['icon']} {component_name}")
+        # Header
+        st.markdown(
+            f"<h1>{component_info['icon']} {component_name}</h1>",
+            unsafe_allow_html=True,
+        )
         st.markdown(f"**{component_info['description']}**")
         st.markdown("---")
 
@@ -627,7 +631,7 @@ class WorkflowVisualizationGUI:
 
     def _render_quick_analysis(self):
         """Render quick analysis section."""
-        col1, col2, col3 = st.columns(3)
+        col1, col2 = st.columns(2)
 
         with col1:
             if st.button("🚀 Quick Control Flow"):
@@ -636,10 +640,6 @@ class WorkflowVisualizationGUI:
         with col2:
             if st.button("📊 Quick Complexity"):
                 self._run_quick_complexity()
-
-        with col3:
-            if st.button("🎨 Quick UML Generation"):
-                self._run_quick_uml_generation()
 
     def _run_quick_control_flow(self):
         """Run quick control flow analysis."""
@@ -660,18 +660,6 @@ class WorkflowVisualizationGUI:
                 st.json(result)
         except Exception as e:
             st.error(f"❌ Quick analysis failed: {str(e)}")
-
-    def _run_quick_uml_generation(self):
-        """Run quick UML generation."""
-        try:
-            result = self.uml_generator.generate_activity_diagram(self.test_files[0], "quick_uml")
-            if result:
-                st.success("✅ Quick UML generation completed!")
-                self._display_uml_results(result, "quick_uml")
-            else:
-                st.error("❌ Quick UML generation failed")
-        except Exception as e:
-            st.error(f"❌ Quick UML generation failed: {str(e)}")
 
     def _refresh_all_artifacts(self):
         """Refresh all artifacts."""
@@ -768,7 +756,7 @@ class WorkflowVisualizationGUI:
 
         # Check for generated files
         generated_files = []
-        for ext in [".puml", ".mmd", ".dot", ".png", ".svg"]:
+        for ext in [".puml", ".mmd", ".dot", ".png"]:
             file_path = self.project_root / f"{output_name}{ext}"
             if file_path.exists():
                 generated_files.append((file_path, ext))
@@ -779,35 +767,12 @@ class WorkflowVisualizationGUI:
             # Display each format
             for file_path, ext in generated_files:
                 with st.expander(f"{ext.upper()} Diagram", expanded=False):
-                    if ext == '.puml':
-                        # Try to display as SVG visualization first
-                        svg_content = self._convert_plantuml_to_svg(file_path)
-                        if svg_content:
-                            st.markdown("**🎨 PlantUML → SVG Visualization:**")
-                            st.markdown(svg_content, unsafe_allow_html=True)
-                            
-                            # Also show the raw PlantUML for reference
-                            with st.expander("📝 Raw PlantUML Code", expanded=False):
-                                with open(file_path, 'r') as f:
-                                    content = f.read()
-                                    st.code(content, language='text')
-                        else:
-                            st.warning("⚠️ Could not convert PlantUML to SVG")
-                            # Fallback to raw text
-                            with open(file_path, 'r') as f:
-                                content = f.read()
-                                st.code(content, language='text')
-                    elif ext in [".mmd", ".dot"]:
+                    if ext in [".puml", ".mmd", ".dot"]:
                         with open(file_path, "r") as f:
                             content = f.read()
                             st.code(content, language="text")
                     elif ext == ".png":
                         st.image(str(file_path), caption=f"{ext.upper()} Diagram")
-                    elif ext == '.svg':
-                        # Display SVG directly
-                        with open(file_path, 'r') as f:
-                            content = f.read()
-                            st.markdown(content, unsafe_allow_html=True)
         else:
             st.warning("No diagram files were generated")
 
@@ -1009,19 +974,16 @@ class WorkflowVisualizationGUI:
             with open(puml_file, 'r') as f:
                 plantuml_content = f.read()
             
-            # Use the Docker PlantUML service on port 20075 with POST method
-            # This avoids URI length limits by sending content in request body
+            # Encode the PlantUML content for HTTP request
+            encoded_content = urllib.parse.quote(plantuml_content)
+            
+            # Use the Docker PlantUML service on port 20075
             
             # Create the URL for the PlantUML service
-            plantuml_url = "http://localhost:20075/svg"
+            plantuml_url = f"http://localhost:20075/svg/{encoded_content}"
             
-            # Send POST request with PlantUML content in body
-            response = requests.post(
-                plantuml_url,
-                data=plantuml_content,
-                headers={'Content-Type': 'text/plain'},
-                timeout=30
-            )
+            # Make the request to get SVG
+            response = requests.get(plantuml_url, timeout=30)
             
             if response.status_code == 200:
                 svg_content = response.text
@@ -1034,8 +996,6 @@ class WorkflowVisualizationGUI:
                     return None
             else:
                 st.error(f"PlantUML service request failed: HTTP {response.status_code}")
-                if response.status_code == 414:
-                    st.info("💡 URI too long - this is fixed by using POST method")
                 return None
                 
         except requests.exceptions.RequestException as e:
@@ -1046,6 +1006,11 @@ class WorkflowVisualizationGUI:
             st.error(f"Error converting PlantUML to SVG: {str(e)}")
             return None
 
+
+# Ensure the app runs when imported by Streamlit
+# This must be at the top level, not inside any function
+gui = WorkflowVisualizationGUI()
+gui.run()
 
 def main():
     """Main entry point."""

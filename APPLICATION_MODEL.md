@@ -7,6 +7,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ## 🏗️ **Architecture**
 
 ### **Core Components**
+
 - **Streamlit Web Application**: Main GUI framework
 - **Component Integration**: Direct integration with all workflow analysis tools
 - **PlantUML Docker Service**: SVG visualization service for UML diagrams
@@ -14,6 +15,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Artifact Management**: Comprehensive artifact discovery and display
 
 ### **Technology Stack**
+
 - **Frontend**: Streamlit (Python web framework)
 - **Testing**: Playwright (browser automation)
 - **Visualization**: PlantUML, Mermaid, Graphviz DOT
@@ -23,6 +25,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ## 📋 **Use Cases & Implementation Status**
 
 ### **UC-1: Function Call Chain Analysis** ✅
+
 - **Component**: `pydeps` integration
 - **Description**: Analyzes function call relationships using dependency graphs
 - **Implementation**: Direct subprocess integration with pydeps
@@ -30,6 +33,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-2: Control Flow Pattern Recognition** ✅
+
 - **Component**: `ControlFlowAnalyzer`
 - **Description**: Recognizes complex control flow patterns in Python code
 - **Implementation**: Custom AST-based analyzer with pattern recognition
@@ -37,6 +41,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-3: Method Workflow Extraction** ✅
+
 - **Component**: `ast2json` integration
 - **Description**: Extracts workflows from AST using ast2json
 - **Implementation**: Subprocess integration with ast2json
@@ -44,6 +49,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-4: UML Activity Diagram Generation** ✅
+
 - **Component**: `UMLActivityGenerator`
 - **Description**: Generates UML activity diagrams in multiple formats
 - **Implementation**: Custom generator with PlantUML/Mermaid/DOT support
@@ -51,6 +57,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented with SVG visualization
 
 ### **UC-5: Code Complexity Metrics** ✅
+
 - **Component**: `ComplexityMetricsAnalyzer`
 - **Description**: Analyzes code complexity using Radon
 - **Implementation**: Custom analyzer with industry metrics
@@ -58,6 +65,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-6: Multi-File Workflow Analysis** ✅
+
 - **Component**: `MultiFileWorkflowAnalyzer`
 - **Description**: Analyzes workflows across multiple files
 - **Implementation**: NetworkX-based dependency analysis
@@ -65,6 +73,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-7: Round-Trip Validation Framework** ✅
+
 - **Component**: `RoundTripValidator`
 - **Description**: Validates extracted models against source code
 - **Implementation**: Custom validation engine with accuracy metrics
@@ -72,6 +81,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 - **Status**: Fully implemented and tested
 
 ### **UC-9: Performance Optimization** ✅
+
 - **Component**: `PerformanceOptimizer`
 - **Description**: Benchmarks and optimizes system performance
 - **Implementation**: Custom optimizer with bottleneck detection
@@ -81,6 +91,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ## 🧭 **Navigation Structure**
 
 ### **Dashboard (Main Page)**
+
 ```
 🔍 Workflow Extraction Visualization System
 ├── 📊 Overview Metrics
@@ -98,6 +109,7 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ```
 
 ### **Sidebar Navigation**
+
 ```
 🔍 Workflow Extraction
 ├── 📋 Tested Components
@@ -109,7 +121,9 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ```
 
 ### **Component Pages**
+
 Each component page follows this structure:
+
 ```
 [Component Icon] [Component Name]
 [Component Description]
@@ -121,11 +135,13 @@ Each component page follows this structure:
 ## 🎨 **Visualization Capabilities**
 
 ### **SVG Rendering**
+
 - **PlantUML → SVG**: POST-based conversion via Docker service
 - **Direct SVG Display**: Native SVG rendering in browser
 - **Fallback Support**: Raw text display if conversion fails
 
 ### **Supported Formats**
+
 - **PlantUML (.puml)**: Primary UML format with SVG visualization
 - **Mermaid (.mmd)**: Alternative diagram format
 - **Graphviz DOT (.dot)**: Graph visualization format
@@ -133,6 +149,7 @@ Each component page follows this structure:
 - **SVG (.svg)**: Vector graphics format
 
 ### **PlantUML Service Integration**
+
 - **Docker Service**: Running on port 20075
 - **POST Method**: Avoids URI length limits
 - **Error Handling**: Comprehensive error messages and hints
@@ -141,12 +158,14 @@ Each component page follows this structure:
 ## 🧪 **Testing Framework**
 
 ### **Playwright Integration**
+
 - **Browser Automation**: Headless Chromium testing
 - **Screenshot Capture**: Automatic screenshot generation
 - **Navigation Testing**: Complete user journey validation
 - **Responsive Testing**: Multiple viewport sizes
 
 ### **Test Coverage**
+
 - **Dashboard Loading**: Main page functionality
 - **Sidebar Navigation**: Component switching
 - **Quick Actions**: Analysis button functionality
@@ -157,6 +176,7 @@ Each component page follows this structure:
 - **Responsive Design**: Cross-device compatibility
 
 ### **Screenshot Artifacts**
+
 - **Timestamped Naming**: `YYYYMMDD_HHMMSS_testname.png`
 - **Metadata Files**: Associated `.txt` files with test details
 - **Organized Storage**: `test_screenshots/` directory
@@ -165,6 +185,7 @@ Each component page follows this structure:
 ## 🔧 **Implementation Details**
 
 ### **File Structure**
+
 ```
 src/
 ├── workflow_visualization_gui.py    # Main GUI application
@@ -184,6 +205,7 @@ makefiles/
 ```
 
 ### **Key Methods**
+
 - **`run()`**: Main application entry point
 - **`_render_sidebar()`**: Navigation sidebar
 - **`_render_component_page()`**: Component-specific pages
@@ -191,6 +213,7 @@ makefiles/
 - **`_display_uml_results()`**: UML visualization display
 
 ### **State Management**
+
 - **Session State**: Component selection persistence
 - **Component Mapping**: Dynamic component information
 - **Test Files**: Predefined test file selection
@@ -199,6 +222,7 @@ makefiles/
 ## 🚀 **Deployment & Usage**
 
 ### **Launch Commands**
+
 ```bash
 # Launch GUI
 make gui
@@ -214,11 +238,13 @@ uv sync --extra dev
 ```
 
 ### **Service Requirements**
+
 - **PlantUML Docker**: `docker start plantuml-server`
 - **Port 20075**: PlantUML service endpoint
 - **Python Environment**: UV-managed dependencies
 
 ### **Browser Compatibility**
+
 - **Chrome/Chromium**: Full support
 - **Firefox**: Compatible
 - **Safari**: Compatible
@@ -227,12 +253,14 @@ uv sync --extra dev
 ## 📊 **Performance & Scalability**
 
 ### **Optimization Features**
+
 - **Lazy Loading**: Component pages loaded on demand
 - **Caching**: Analysis results cached in session
 - **Async Processing**: Non-blocking analysis execution
 - **Resource Management**: Efficient memory usage
 
 ### **Scalability Considerations**
+
 - **Component Addition**: Easy to add new components
 - **Artifact Types**: Extensible visualization support
 - **Test Coverage**: Comprehensive testing framework
@@ -241,12 +269,14 @@ uv sync --extra dev
 ## 🔮 **Future Enhancements**
 
 ### **Planned Features**
+
 - **Real-time Updates**: Live artifact monitoring
 - **Advanced Filtering**: Enhanced search and filtering
 - **Export Capabilities**: PDF, Word document export
 - **Collaboration**: Multi-user support
 
 ### **Integration Opportunities**
+
 - **CI/CD Integration**: Automated testing in pipelines
 - **API Endpoints**: RESTful API for external access
 - **Plugin System**: Extensible component architecture
@@ -255,11 +285,13 @@ uv sync --extra dev
 ## 📝 **Documentation & Support**
 
 ### **User Guides**
+
 - **GUI_README.md**: Comprehensive usage guide
 - **Component Documentation**: Individual component guides
 - **Troubleshooting**: Common issues and solutions
 
 ### **Developer Resources**
+
 - **Test Suite**: Complete testing framework
 - **Code Examples**: Implementation patterns
 - **API Reference**: Component interface documentation
