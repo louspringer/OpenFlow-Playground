@@ -98,6 +98,8 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 │   ├── Components (8 Tested)
 │   ├── Artifacts (Generated)
 │   ├── Formats (4 Types)
+│   └── Test Status (100% Success Rate)
+```
 │   └── Status (✅ Complete)
 ├── 📋 Component Overview
 │   └── [Expandable component cards]
@@ -117,6 +119,10 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 ├── ⚡ Quick Actions
 │   ├── 🔄 Refresh All Artifacts
 │   └── 📊 Generate Demo Data
+├── 🚀 Quick Analysis
+│   ├── 🚀 Quick Control Flow
+│   ├── 📊 Quick Complexity
+│   └── 🎨 Quick UML Generation
 └── 📊 System Status
 ```
 
@@ -169,11 +175,19 @@ Each component page follows this structure:
 - **Dashboard Loading**: Main page functionality
 - **Sidebar Navigation**: Component switching
 - **Quick Actions**: Analysis button functionality
+- **Quick Analysis**: All three analysis buttons (Control Flow, Complexity, UML)
 - **File Selection**: Dropdown interactions
 - **Analysis Execution**: End-to-end workflows
 - **UML Generation**: Diagram creation and display
 - **Error Handling**: Fallback scenarios
 - **Responsive Design**: Cross-device compatibility
+
+### **Test Results**
+
+- **Success Rate**: 100% (5/5 tests passing)
+- **Previous Status**: 80% (4/5 tests passing)
+- **Fixed Issues**: Missing Quick UML Generation button
+- **New Features**: AST-based UML generation with PlantUML integration
 
 ### **Screenshot Artifacts**
 
@@ -211,6 +225,8 @@ makefiles/
 - **`_render_component_page()`**: Component-specific pages
 - **`_convert_plantuml_to_svg()`**: SVG conversion service
 - **`_display_uml_results()`**: UML visualization display
+- **`_run_quick_uml_generation()`**: AST-based UML generation
+- **`_render_quick_analysis()`**: Quick analysis section with 3-column layout
 
 ### **State Management**
 
