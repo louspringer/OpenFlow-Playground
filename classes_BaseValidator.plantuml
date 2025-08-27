@@ -1,0 +1,20 @@
+@startuml classes_BaseValidator
+set namespaceSeparator none
+class "BaseValidator" as clewcrew_validators.base_validator.BaseValidator {
+  config : Dict[str, Any]
+  enabled : bool
+  logger : NoneType, RootLogger
+  name : str
+  configure(config: Dict[str, Any]) -> None
+  create_failure_result(issues: list, metadata: Optional[Dict[str, Any]]) -> ValidationResult
+  create_issue(message: str, severity: ValidationSeverity, field: Optional[str], value: Optional[Any], expected: Optional[Any], code: Optional[str], context: Optional[Dict[str, Any]]) -> ValidationIssue
+  create_success_result(metadata: Optional[Dict[str, Any]]) -> ValidationResult
+  disable() -> None
+  enable() -> None
+  get_config() -> Dict[str, Any]
+  get_info() -> Dict[str, Any]
+  is_enabled() -> bool
+  {abstract}validate(data: Any) -> ValidationResult
+  validate_with_timing(data: Any) -> ValidationResult
+}
+@enduml

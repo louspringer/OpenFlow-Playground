@@ -13,7 +13,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import os
-from control_flow_analyzer import ControlFlowAnalyzer
+from src.control_flow_analyzer import ControlFlowAnalyzer
 
 
 class UMLActivityGenerator:

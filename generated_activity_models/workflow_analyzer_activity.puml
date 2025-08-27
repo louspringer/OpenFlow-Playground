@@ -1,0 +1,271 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - workflow_analyzer.py
+
+:Expression;
+:Function Call;
+:Expression;
+:Expression;
+:Expression;
+start
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+while (For: class_info in artifact.parsed_data.get('classes', [])) is (continue)
+endwhile (exit)
+:Function Call;
+:Function Call;
+:Function Call;
+if (method_nodes) then (yes)
+else (no)
+endif
+:Function Call;
+while (For: func_info in artifact.parsed_data.get('functions', [])) is (continue)
+endwhile (exit)
+:Function Call;
+:Function Call;
+:Function Call;
+while (For: node in nodes) is (continue)
+endwhile (exit)
+if (node.node_type in ['activity', 'decision', 'merge']) then (yes)
+else (no)
+endif
+if (not has_outgoing) then (yes)
+else (no)
+endif
+:Function Call;
+stop
+start
+:Expression;
+if (class_match) then (yes)
+else (no)
+endif
+while (For: match in method_matches) is (continue)
+endwhile (exit)
+:Function Call;
+stop
+start
+:Expression;
+if (not lines) then (yes)
+else (no)
+endif
+while (For: line in lines[1:]) is (continue)
+endwhile (exit)
+if (line.strip() == '') then (yes)
+else (no)
+endif
+:Function Call;
+if (current_indent <= indent_level and line.strip()) then (yes)
+else (no)
+endif
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+while (For: (i, line) in enumerate(lines)) is (continue)
+endwhile (exit)
+if (line.startswith('if ')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('elif ')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('else:')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('for ')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('while ')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('try:')) then (yes)
+else (no)
+endif
+:Function Call;
+if (line.startswith('except ')) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+if (not workflow_data.get('workflow_analysis_successful', False)) then (yes)
+else (no)
+endif
+while (For: node in nodes) is (continue)
+endwhile (exit)
+if (node['type'] == 'start') then (yes)
+else (no)
+endif
+:Function Call;
+if (node['type'] == 'end') then (yes)
+else (no)
+endif
+:Function Call;
+if (node['type'] == 'decision') then (yes)
+else (no)
+endif
+:Function Call;
+if (node['type'] == 'activity') then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+:Function Call;
+while (For: edge in edges) is (continue)
+endwhile (exit)
+if (condition) then (yes)
+else (no)
+endif
+:Function Call;
+if (label) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+if (not text) then (yes)
+else (no)
+endif
+if (len(cleaned) > 50) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+:Function Call;
+:Function Call;
+stop
+
+node_1 --> node_2
+node_2 --> node_3
+node_3 --> node_4
+node_4 --> node_5
+node_5 --> node_6
+node_6 --> node_7
+node_7 --> node_8
+node_8 --> node_9
+node_9 --> node_10
+node_10 --> node_11
+node_11 --> node_12
+node_12 --> node_13
+node_13 --> node_14
+node_14 --> node_15
+node_15 --> node_16
+node_16 --> node_17
+node_17 --> node_18
+node_18 --> node_19
+node_19 --> node_20
+node_20 --> node_21
+node_21 --> node_22
+node_22 --> node_23
+node_18 --> node_24
+node_24 --> node_25
+node_25 --> node_26
+node_24 --> node_27
+node_27 --> node_28
+node_28 --> node_29
+node_29 --> node_30
+node_30 --> node_31
+node_28 --> node_32
+node_32 --> node_33
+node_33 --> node_34
+node_34 --> node_35
+node_35 --> node_36
+node_36 --> node_37
+node_35 --> node_38
+node_38 --> node_39
+node_39 --> node_40
+node_40 --> node_41
+node_41 --> node_42
+node_42 --> node_43
+node_43 --> node_44
+node_43 --> node_45
+node_45 --> node_46
+node_42 --> node_47
+node_47 --> node_48
+node_48 --> node_49
+node_49 --> node_50
+node_50 --> node_51
+node_51 --> node_52
+node_52 --> node_53
+node_52 --> node_54
+node_54 --> node_55
+node_54 --> node_56
+node_56 --> node_57
+node_56 --> node_58
+node_58 --> node_59
+node_58 --> node_60
+node_60 --> node_61
+node_60 --> node_62
+node_62 --> node_63
+node_62 --> node_64
+node_64 --> node_65
+node_51 --> node_66
+node_66 --> node_67
+node_67 --> node_68
+node_68 --> node_69
+node_69 --> node_70
+node_70 --> node_71
+node_71 --> node_72
+node_72 --> node_73
+node_73 --> node_74
+node_74 --> node_75
+node_75 --> node_76
+node_76 --> node_77
+node_77 --> node_78
+node_78 --> node_79
+node_78 --> node_80
+node_80 --> node_81
+node_80 --> node_82
+node_82 --> node_83
+node_82 --> node_84
+node_84 --> node_85
+node_84 --> node_86
+node_77 --> node_87
+node_87 --> node_88
+node_88 --> node_89
+node_89 --> node_90
+node_89 --> node_91
+node_91 --> node_92
+node_91 --> node_93
+node_88 --> node_94
+node_94 --> node_95
+node_95 --> node_96
+node_96 --> node_97
+node_97 --> node_98
+node_98 --> node_99
+node_99 --> node_100
+node_100 --> node_101
+node_101 --> node_102
+node_102 --> node_103
+node_103 --> node_104
+@enduml

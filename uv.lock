@@ -187,6 +187,15 @@ wheels = [
 ]
 
 [[package]]
+name = "ast2json"
+version = "0.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2b/dc/7c11f80a782f051beafcc4707dd54888e7fcdeea5afa9236aa2e2cfa7073/ast2json-0.4.tar.gz", hash = "sha256:b5cc42e97c29b77845b5d4ec32e74dcac538fb4c61a7faa570964bc96b19aeb7", size = 4734, upload-time = "2025-02-07T13:54:01.23Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f0/ef/cc0efc91e4f0f98780ca77f073578f9b7e5e687c5577bdc5537a3b2d7bf3/ast2json-0.4-py2.py3-none-any.whl", hash = "sha256:df60746b65384a7fdfc7ef29a6f703ef9cc6e643586e7636e0a44a9f47901810", size = 5495, upload-time = "2025-02-07T13:53:58.921Z" },
+]
+
+[[package]]
 name = "astor"
 version = "0.8.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2872,6 +2881,7 @@ version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "actdiag" },
+    { name = "ast2json" },
     { name = "astor" },
     { name = "autoflake8" },
     { name = "bcrypt" },
@@ -2896,6 +2906,8 @@ dependencies = [
     { name = "mypy" },
     { name = "napkin" },
     { name = "neo4j" },
+    { name = "networkx", version = "3.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "networkx", version = "3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "pandas" },
@@ -2965,6 +2977,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "actdiag", specifier = ">=3.0.0" },
+    { name = "ast2json", specifier = ">=0.4" },
     { name = "astor", specifier = ">=0.8.1" },
     { name = "autoflake", marker = "extra == 'dev'", specifier = ">=2.3.1" },
     { name = "autoflake8", specifier = ">=0.4.1" },
@@ -2998,6 +3011,7 @@ requires-dist = [
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
     { name = "napkin", specifier = ">=0.6.9" },
     { name = "neo4j", specifier = ">=5.28.2" },
+    { name = "networkx", specifier = ">=3.4.2" },
     { name = "numpy", specifier = ">=1.24.0" },
     { name = "pandas", specifier = ">=2.0.0" },
     { name = "pandas-stubs", marker = "extra == 'dev'", specifier = ">=2.0.0" },

@@ -1,0 +1,216 @@
+@startuml
+!theme plain
+title Python Workflow Activity Diagram
+
+start
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (1 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (1 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (1 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (2 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+if (3 complexity) then
+  :Process condition;
+else
+  :Handle else case;
+endif
+while (Loop: line) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: Tuple) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: file_path) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: node) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: node) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: Tuple) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: Tuple) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: file_path) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: file_path) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: node) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: node) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: file_path) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: Tuple) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: file_path) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: edge) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: Tuple) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: export) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: call) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: imp) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: alias) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: func) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: call) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: alias) is (has items)
+  :Process item;
+endwhile (no more items)
+while (Loop: target) is (has items)
+  :Process item;
+endwhile (no more items)
+:Try block;
+:Handle exceptions;
+:Try block;
+:Handle exceptions;
+:Try block;
+:Handle exceptions;
+:Try block;
+:Handle exceptions;
+:Try block;
+:Handle exceptions;
+:Try block;
+:Handle exceptions;
+:Guard clause check;
+if (condition met) then
+  :Early return;
+  stop
+endif
+stop
+@enduml

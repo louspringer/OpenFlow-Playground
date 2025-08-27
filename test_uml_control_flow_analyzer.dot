@@ -1,0 +1,14 @@
+digraph PythonWorkflow {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor=lightblue];
+    edge [color=black];
+
+    start [shape=oval, fillcolor=green, label="Start"];
+    if_stmt [shape=diamond, fillcolor=yellow, label="If Statement"];
+    for_loop [shape=box, fillcolor=orange, label="For Loop"];
+    while_loop [shape=box, fillcolor=orange, label="While Loop"];
+    end [shape=oval, fillcolor=red, label="End"];
+
+    start -> if_stmt;
+    if_stmt -> end;
+}

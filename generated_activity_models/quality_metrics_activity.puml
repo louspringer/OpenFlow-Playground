@@ -1,0 +1,184 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - quality_metrics.py
+
+:Expression;
+:Expression;
+start
+:Expression;
+if (not 0.0 <= self.score <= 100.0) then (yes)
+else (no)
+endif
+if (self.weight < 0.0) then (yes)
+else (no)
+endif
+stop
+:Expression;
+start
+:Expression;
+if (not self.scores) then (yes)
+else (no)
+endif
+if (total_weight == 0.0) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+:Function Call;
+stop
+start
+:Expression;
+while (For: score in self.scores) is (continue)
+endwhile (exit)
+if (score.metric_name == metric_name) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+if (existing_score) then (yes)
+else (no)
+endif
+while (For: (key, value) in kwargs.items()) is (continue)
+endwhile (exit)
+:Call: setattr();
+:Function Call;
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+:Function Call;
+stop
+start
+:Expression;
+while (For: score_data in data.get('scores', [])) is (continue)
+endwhile (exit)
+:Function Call;
+stop
+:Expression;
+start
+stop
+start
+:Expression;
+if (not flake8_issues) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+if (not security_issues) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+if ('slow_operations' in performance_metrics) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+if ('flake8_issues' in analysis_results) then (yes)
+else (no)
+endif
+:Function Call;
+if ('security_issues' in analysis_results) then (yes)
+else (no)
+endif
+:Function Call;
+if ('coverage_percentage' in analysis_results) then (yes)
+else (no)
+endif
+:Function Call;
+if ('performance_metrics' in analysis_results) then (yes)
+else (no)
+endif
+:Function Call;
+stop
+
+node_1 --> node_2
+node_2 --> node_3
+node_3 --> node_4
+node_4 --> node_5
+node_5 --> node_6
+node_6 --> node_7
+node_7 --> node_8
+node_8 --> node_9
+node_9 --> node_10
+node_10 --> node_11
+node_11 --> node_12
+node_12 --> node_13
+node_13 --> node_14
+node_14 --> node_15
+node_15 --> node_16
+node_16 --> node_17
+node_17 --> node_18
+node_18 --> node_19
+node_19 --> node_20
+node_20 --> node_21
+node_21 --> node_22
+node_22 --> node_23
+node_23 --> node_24
+node_23 --> node_25
+node_25 --> node_26
+node_26 --> node_27
+node_27 --> node_28
+node_28 --> node_29
+node_29 --> node_30
+node_28 --> node_31
+node_28 --> node_32
+node_32 --> node_33
+node_33 --> node_34
+node_34 --> node_35
+node_35 --> node_36
+node_36 --> node_37
+node_37 --> node_38
+node_38 --> node_39
+node_39 --> node_40
+node_40 --> node_41
+node_41 --> node_42
+node_42 --> node_43
+node_42 --> node_44
+node_44 --> node_45
+node_45 --> node_46
+node_46 --> node_47
+node_47 --> node_48
+node_48 --> node_49
+node_49 --> node_50
+node_50 --> node_51
+node_51 --> node_52
+node_52 --> node_53
+node_53 --> node_54
+node_54 --> node_55
+node_55 --> node_56
+node_56 --> node_57
+node_57 --> node_58
+node_58 --> node_59
+node_59 --> node_60
+node_60 --> node_61
+node_61 --> node_62
+node_62 --> node_63
+node_63 --> node_64
+node_64 --> node_65
+node_65 --> node_66
+node_65 --> node_67
+node_67 --> node_68
+node_67 --> node_69
+node_69 --> node_70
+node_69 --> node_71
+node_71 --> node_72
+node_71 --> node_73
+@enduml

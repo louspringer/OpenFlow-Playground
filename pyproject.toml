@@ -66,6 +66,8 @@ dependencies = [
     "pyan3>=1.2.0",
     "pydeps>=3.0.1",
     "radon>=6.0.1",
+    "ast2json>=0.4",
+    "networkx>=3.4.2",
 ]
 
 [project.optional-dependencies]

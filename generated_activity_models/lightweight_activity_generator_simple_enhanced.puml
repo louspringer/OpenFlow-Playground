@@ -1,0 +1,36 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - lightweight_activity_generator.py
+
+start
+:__init__();
+:_find_plantuml_jar();
+:_check_java();
+:analyze_python_file();
+:generate_plantuml_activity();
+:generate_svg();
+:_generate_svg_plantuml_jar();
+:_generate_svg_plantuml_server();
+:_generate_svg_graphviz();
+:_plantuml_to_dot();
+:generate_activity_diagram();
+:analyze_workflow();
+:__init__();
+:_add_node();
+:visit_FunctionDef();
+:visit_If();
+:visit_While();
+:visit_For();
+:visit_Expr();
+:main();
+if (success?) then (yes)
+  :Generate activity diagram;
+else (no)
+  :Handle error;
+endif
+stop
+@enduml

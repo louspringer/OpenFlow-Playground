@@ -14,10 +14,10 @@ from typing import Dict, List, Any, Optional, Tuple, Set
 from pathlib import Path
 import statistics
 from dataclasses import dataclass
-from control_flow_analyzer import ControlFlowAnalyzer
-from multi_file_workflow_analyzer import MultiFileWorkflowAnalyzer
-from uml_activity_generator import UMLActivityGenerator
-from complexity_metrics_analyzer import ComplexityMetricsAnalyzer
+from src.control_flow_analyzer import ControlFlowAnalyzer
+from src.multi_file_workflow_analyzer import MultiFileWorkflowAnalyzer
+from src.uml_activity_generator import UMLActivityGenerator
+from src.complexity_metrics_analyzer import ComplexityMetricsAnalyzer
 
 
 @dataclass
