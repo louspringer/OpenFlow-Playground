@@ -233,29 +233,55 @@ class WorkflowExtractionOrchestrator:
 
 ---
 
-## 📅 **Timeline & Milestones**
+## 📅 **Updated Timeline & Milestones (Risk-Prioritized)**
 
-### **Week 1: Discovery & Tool Testing**
-- **Day 1-2**: Test pyan functionality
-- **Day 3-4**: Evaluate Understand/SonarQube
-- **Day 5**: Integration feasibility assessment
+### **Week 1-2: Critical Risk Mitigation (UC-1, UC-3, UC-7)**
+- **Days 1-3**: UC-1 Function Call Chain Analysis
+  - Test pydeps on complex code with dynamic features
+  - Validate pyRegurgitator AST capabilities
+  - Implement fallback strategies for unknown patterns
+- **Days 4-6**: UC-3 Method Workflow Extraction
+  - Test pyRegurgitator on complex methods
+  - Validate Pylint structural analysis
+  - Implement enhanced control flow analysis
+- **Days 7-10**: UC-7 Round-Trip Validation Framework
+  - Design validation algorithms
+  - Implement accuracy measurement
+  - Create test suite for validation
 
-### **Week 2: Integration Design & Implementation**
-- **Day 1-3**: Interface design and adapter implementation
-- **Day 4-5**: Core integration testing
+### **Week 3-4: Important Risk Mitigation (UC-2, UC-6)**
+- **Days 1-5**: UC-2 Control Flow Pattern Recognition
+  - Enhance AST parsing for complex boolean expressions
+  - Implement pattern recognition algorithms
+  - Test with nested control structures
+- **Days 6-10**: UC-6 Multi-File Workflow Analysis
+  - Test pydeps cross-file capabilities
+  - Implement circular dependency detection
+  - Validate namespace resolution
 
-### **Week 3: Production Readiness**
-- **Day 1-3**: Performance optimization and testing
-- **Day 4-5**: Documentation and deployment
+### **Week 5-6: Low Risk Implementation & Production Readiness**
+- **Days 1-3**: UC-4, UC-5, UC-9 Implementation
+  - UML diagram generation
+  - Complexity assessment
+  - Accuracy and coverage metrics
+- **Days 4-7**: Performance Optimization & Testing
+  - Integration testing
+  - Performance benchmarking
+  - Memory usage optimization
+- **Days 8-10**: Documentation & Deployment
+  - API documentation
+  - User guides
+  - Production deployment
 
 ---
 
 ## 💡 **Strategic Recommendations**
 
-### **1. Immediate Actions**
-- **Start pyan testing** today - this is our primary call graph solution
-- **Research Understand licensing** - determine if we can access professional tools
-- **Prepare fallback strategy** - custom AST-based workflow extraction
+### **1. Immediate Actions (Week 1-2)**
+- **Focus on UC-1**: Test pydeps on complex code with dynamic features
+- **Focus on UC-3**: Validate pyRegurgitator on complex methods
+- **Focus on UC-7**: Design round-trip validation framework
+- **Prepare fallback strategies** for each critical unknown
 
 ### **2. Architecture Decisions**
 - **Interface-first design** - define clean interfaces before implementation
@@ -279,7 +305,7 @@ Our discovery phase has revealed critical issues with the original tool selectio
 3. **✅ Pylint+Radon confirmed working** - Professional-grade analysis tools ready for integration
 4. **Prepare fallback strategy** - Custom solutions based on working tools
 
-**Next Action**: Proceed to Task 1.4 (Tool Capability Matrix) to complete the discovery phase.
+**Next Action**: Begin Critical Risk Mitigation (UC-1, UC-3, UC-7) with focus on testing critical unknowns and implementing fallback strategies.
 
 ---
 

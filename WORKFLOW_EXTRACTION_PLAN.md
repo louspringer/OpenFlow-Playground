@@ -68,6 +68,38 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
 
 ## 📋 **Requirements Analysis**
 
+### **5 Key Use Cases (Prioritized by Risk)**
+
+#### **🔴 CRITICAL - Must Address First (Week 1-2)**
+1. **UC-1: Function Call Chain Analysis** - **Risk Score: 0.92**
+   - **Objective**: Extract complete function call sequences from source code
+   - **Success Criteria**: All function calls identified, call hierarchy preserved, no missing relationships
+   - **Critical Unknowns**: Dynamic Python features, metaprogramming, decorators
+   - **Tools**: pydeps (call graph) + pyRegurgitator (AST structure)
+
+2. **UC-3: Method Workflow Extraction** - **Risk Score: 0.89**
+   - **Objective**: Extract workflow within individual methods/functions
+   - **Success Criteria**: Method entry/exit points, internal logic flow, variable state changes
+   - **Critical Unknowns**: Exception handling, recursion, state-dependent logic
+   - **Tools**: pyRegurgitator (AST) + Pylint (structural analysis)
+
+3. **UC-7: Round-Trip Validation** - **Risk Score: 0.85**
+   - **Objective**: Verify extracted model matches source code
+   - **Success Criteria**: >95% accuracy, no missing critical paths, no false positives
+   - **Critical Unknowns**: Validation strategy, accuracy measurement, performance cost
+   - **Tools**: Custom validation engine
+
+#### **🟡 IMPORTANT - Address Second (Week 3-4)**
+4. **UC-2: Control Flow Pattern Recognition** - **Risk Score: 0.68**
+   - **Objective**: Identify control flow structures (if/else, loops, try/catch)
+   - **Success Criteria**: All conditionals mapped, loop structures identified, exception paths captured
+   - **Tools**: pyRegurgitator (AST) + Radon (complexity analysis)
+
+5. **UC-6: Multi-File Workflow Analysis** - **Risk Score: 0.64**
+   - **Objective**: Analyze workflows across multiple Python files/modules
+   - **Success Criteria**: Cross-file dependencies mapped, import relationships preserved
+   - **Tools**: pydeps (dependencies) + pyRegurgitator (cross-file AST)
+
 ### **Functional Requirements**
 1. **Call Graph Extraction**: Generate function call relationships
 2. **AST Structure Analysis**: Extract code structure and flow control
@@ -83,13 +115,60 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
 
 ---
 
-## ⚠️ **Risk Assessment**
+## ⚠️ **Enhanced Risk Assessment with Additional Criteria**
 
-### **High Risk**
-- **Tool Compatibility**: pyan + pyRegurgitator + Understand integration complexity
-- **Performance Issues**: AST analysis could be too slow for large files
-- **Accuracy Problems**: Extracted models may not reflect actual code behavior
-- **Tool Availability**: Understand/SonarQube may require licensing or have access restrictions
+### **Risk Scoring Formula:**
+```
+Risk Score = (Failure Impact × Implementation Complexity × Tool Reliability × Known Unknowns) / 4
+```
+
+**Risk Levels:**
+- **🔴 HIGH RISK**: 0.7 - 1.0 (Critical - Address First)
+- **🟡 MEDIUM RISK**: 0.4 - 0.69 (Important - Address Second)  
+- **🟢 LOW RISK**: 0.0 - 0.39 (Nice-to-Have - Address Last)
+
+### **🔴 CRITICAL RISK USE CASES (Address First)**
+
+#### **UC-1: Function Call Chain Analysis** - **Risk Score: 0.92**
+- **Failure Impact**: 10/10 (Complete system failure)
+- **Implementation Complexity**: 9/10 (Complex AST + call graph integration)
+- **Tool Reliability**: 7/10 (pydeps untested on complex code, pyRegurgitator unknown)
+- **Known Unknowns**: 9/10 (Dynamic Python features, metaprogramming, decorators)
+- **Critical Unknowns**: Dynamic imports, eval/exec, callback patterns
+
+#### **UC-3: Method Workflow Extraction** - **Risk Score: 0.89**
+- **Failure Impact**: 10/10 (Incomplete workflow models)
+- **Implementation Complexity**: 9/10 (Complex control flow analysis)
+- **Tool Reliability**: 8/10 (pyRegurgitator untested on complex methods)
+- **Known Unknowns**: 8/10 (Exception handling, recursion, state machines)
+- **Critical Unknowns**: Nested try/catch, recursive patterns, async/await
+
+#### **UC-7: Round-Trip Validation** - **Risk Score: 0.85**
+- **Failure Impact**: 10/10 (Cannot trust generated models)
+- **Implementation Complexity**: 8/10 (Validation algorithm design)
+- **Tool Reliability**: 6/10 (No existing validation tools)
+- **Known Unknowns**: 8/10 (Accuracy metrics, validation strategies)
+- **Critical Unknowns**: Validation strategy, accuracy measurement, performance cost
+
+### **🟡 IMPORTANT RISK USE CASES (Address Second)**
+
+#### **UC-2: Control Flow Pattern Recognition** - **Risk Score: 0.68**
+- **Failure Impact**: 8/10 (Incomplete control flow)
+- **Implementation Complexity**: 7/10 (Pattern recognition algorithms)
+- **Tool Reliability**: 7/10 (pyRegurgitator + Radon combination untested)
+- **Known Unknowns**: 6/10 (Boolean logic complexity, loop analysis)
+
+#### **UC-6: Multi-File Workflow Analysis** - **Risk Score: 0.64**
+- **Failure Impact**: 8/10 (Incomplete cross-file analysis)
+- **Implementation Complexity**: 6/10 (Dependency resolution)
+- **Tool Reliability**: 7/10 (pydeps cross-file capabilities untested)
+- **Known Unknowns**: 6/10 (Circular imports, dynamic loading)
+
+### **🟢 LOW RISK USE CASES (Address Last)**
+
+#### **UC-4: UML Activity Diagram Generation** - **Risk Score: 0.32**
+#### **UC-5: Workflow Complexity Assessment** - **Risk Score: 0.28**
+#### **UC-9: Accuracy and Coverage Requirements** - **Risk Score: 0.24**
 
 ### **Medium Risk**
 - **Integration Complexity**: Combining multiple tools may create maintenance burden

@@ -13,54 +13,58 @@ This document tracks the execution of our workflow extraction integration plan. 
 
 ---
 
-## 🚀 **Phase 1: Discovery Phase (Week 1)**
+## 🚀 **Phase 1: Critical Risk Mitigation (Week 1-2)**
 
-### **Task 1.1: pyan Discovery & Installation**
-- **Objective**: Test pyan installation and basic functionality
+### **Task 1.1: UC-1 Function Call Chain Analysis** - **Risk Score: 0.92**
+- **Objective**: Test pydeps on complex code with dynamic features and validate pyRegurgitator AST capabilities
 - **Success Criteria**: 
-  - [ ] pyan installs successfully
-  - [ ] Basic call graph generation works
-  - [ ] Analysis completes in <5 seconds for simple files
+  - [ ] pydeps handles complex code with dynamic imports
+  - [ ] pyRegurgitator extracts AST structure reliably
+  - [ ] Fallback strategies implemented for unknown patterns
+  - [ ] All function calls identified and mapped
 - **Failure Conditions**:
-  - [ ] Installation fails
-  - [ ] Tool crashes on basic usage
-  - [ ] Performance >5 seconds for simple files
+  - [ ] pydeps fails on dynamic Python features
+  - [ ] pyRegurgitator cannot parse complex ASTs
+  - [ ] No fallback strategies available
 - **Status**: 🔴 **NOT STARTED**
 - **Assignee**: TBD
-- **Estimated Effort**: 2 hours
+- **Estimated Effort**: 8 hours
 - **Dependencies**: None
-- **Notes**: PyCG replacement - actively maintained tool
+- **Notes**: Critical risk - must address dynamic Python features, metaprogramming, decorators
 
-### **Task 1.2: pyRegurgitator Discovery & Installation**
-- **Objective**: Test pyRegurgitator AST analysis capabilities
+### **Task 1.2: UC-3 Method Workflow Extraction** - **Risk Score: 0.89**
+- **Objective**: Test pyRegurgitator on complex methods and validate Pylint structural analysis
 - **Success Criteria**:
-  - [ ] pyRegurgitator installs successfully
-  - [ ] AST structure analysis works
-  - [ ] Analysis completes in <3 seconds for simple files
+  - [ ] pyRegurgitator handles complex method ASTs
+  - [ ] Pylint provides reliable structural analysis
+  - [ ] Enhanced control flow analysis implemented
+  - [ ] Method entry/exit points and logic flow mapped
 - **Failure Conditions**:
-  - [ ] Installation fails
-  - [ ] Tool crashes on basic usage
-  - [ ] Performance >3 seconds for simple files
+  - [ ] pyRegurgitator fails on complex methods
+  - [ ] Pylint cannot analyze complex structures
+  - [ ] Control flow analysis incomplete
 - **Status**: 🔴 **NOT STARTED**
 - **Assignee**: TBD
-- **Estimated Effort**: 2 hours
-- **Dependencies**: None
+- **Estimated Effort**: 8 hours
+- **Dependencies**: Task 1.1
+- **Notes**: Critical risk - must address exception handling, recursion, state-dependent logic
 
-### **Task 1.3: Understand/SonarQube Discovery & Installation**
-- **Objective**: Test Understand or SonarQube workflow extraction capabilities
+### **Task 1.3: UC-7 Round-Trip Validation Framework** - **Risk Score: 0.85**
+- **Objective**: Design and implement round-trip validation algorithms and accuracy measurement
 - **Success Criteria**:
-  - [ ] Tool installs successfully or is accessible
-  - [ ] Workflow pattern recognition works
-  - [ ] Analysis completes in <10 seconds for simple files
+  - [ ] Validation algorithms designed and implemented
+  - [ ] Accuracy measurement system working
+  - [ ] Test suite for validation created
+  - [ ] >95% accuracy achieved in validation
 - **Failure Conditions**:
-  - [ ] Installation fails or access denied
-  - [ ] Tool crashes on basic usage
-  - [ ] Performance >10 seconds for simple files
+  - [ ] Validation strategy unclear or ineffective
+  - [ ] Accuracy measurement system fails
+  - [ ] Test suite incomplete or ineffective
 - **Status**: 🔴 **NOT STARTED**
 - **Assignee**: TBD
-- **Estimated Effort**: 2 hours
-- **Dependencies**: None
-- **Notes**: ScaMaha alternative - professional-grade code analysis tools
+- **Estimated Effort**: 10 hours
+- **Dependencies**: Tasks 1.1, 1.2
+- **Notes**: Critical risk - must address validation strategy, accuracy measurement, performance cost
 
 ### **Task 1.4: Tool Capability Matrix**
 - **Objective**: Create comprehensive matrix of tool capabilities
@@ -80,23 +84,24 @@ This document tracks the execution of our workflow extraction integration plan. 
 
 ---
 
-## 🔧 **Phase 2: Integration Phase (Week 2)**
+## 🔧 **Phase 2: Important Risk Mitigation (Week 3-4)**
 
-### **Task 2.1: Integration Layer Design**
-- **Objective**: Design clean integration layer between tools
+### **Task 2.1: UC-2 Control Flow Pattern Recognition** - **Risk Score: 0.68**
+- **Objective**: Enhance AST parsing for complex boolean expressions and implement pattern recognition algorithms
 - **Success Criteria**:
-  - [ ] Interface definitions completed
-  - [ ] Integration architecture designed
-  - [ ] Data flow diagrams created
-  - [ ] Error handling strategy defined
+  - [ ] Enhanced AST parsing for complex boolean expressions
+  - [ ] Pattern recognition algorithms implemented
+  - [ ] Nested control structures handled correctly
+  - [ ] All conditionals, loops, and exception paths mapped
 - **Failure Conditions**:
-  - [ ] Design complexity exceeds 2 weeks effort
-  - [ ] Integration conflicts cannot be resolved
-  - [ ] Performance degradation >20% from individual tools
+  - [ ] Complex boolean expressions not parsed correctly
+  - [ ] Pattern recognition algorithms ineffective
+  - [ ] Nested control structures incomplete
 - **Status**: 🔴 **NOT STARTED**
 - **Assignee**: TBD
-- **Estimated Effort**: 8 hours
-- **Dependencies**: Task 1.4
+- **Estimated Effort**: 12 hours
+- **Dependencies**: Tasks 1.1, 1.2, 1.3
+- **Notes**: Important risk - must address boolean logic complexity, loop analysis
 
 ### **Task 2.2: Core Class Implementation**
 - **Objective**: Implement core classes for workflow extraction
