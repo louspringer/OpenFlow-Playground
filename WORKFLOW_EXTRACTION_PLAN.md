@@ -17,6 +17,12 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
 - ❌ We have presentation tools without the core reverse engineering capability
 - ❌ We're building custom tools when proven solutions exist
 
+### **Updated Solution Strategy**
+- ✅ **PyCG Replacement**: Use **pyan** for call graph generation (actively maintained)
+- ✅ **ScaMaha Alternative**: Use **Understand** or **SonarQube** for comprehensive analysis
+- ✅ **pyRegurgitator**: Confirmed working for AST analysis
+- 🎯 **New Architecture**: pyan + pyRegurgitator + Understand/SonarQube integration
+
 ### **Solution Approach**
 - ✅ **Integration-First**: Use existing tools instead of building from scratch
 - ✅ **Fail-Fast Discovery**: Test each tool individually before integration
@@ -30,7 +36,7 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
 ### **1. Core Concept: Integration-First Architecture**
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   PyCG          │    │ pyRegurgitator  │    │    ScaMaha      │
+│     pyan        │    │ pyRegurgitator  │    │   Understand    │
 │ Call Graph Gen  │    │   AST Analysis  │    │ Workflow Extract│
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
@@ -46,6 +52,11 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
                     │ Model Generator │
                     └─────────────────┘
 ```
+
+### **2. Updated Tool Selection**
+- **pyan**: Actively maintained Python call graph generator
+- **pyRegurgitator**: Confirmed working AST analysis tool
+- **Understand/SonarQube**: Professional-grade code analysis tools
 
 ### **2. Key Principles**
 - **Fail-Fast Discovery**: Test each tool individually before integration
@@ -75,9 +86,10 @@ This plan addresses the critical gap in our round-trip engineering system: **we 
 ## ⚠️ **Risk Assessment**
 
 ### **High Risk**
-- **Tool Compatibility**: PyCG/pyRegurgitator/ScaMaha may not work together
+- **Tool Compatibility**: pyan + pyRegurgitator + Understand integration complexity
 - **Performance Issues**: AST analysis could be too slow for large files
 - **Accuracy Problems**: Extracted models may not reflect actual code behavior
+- **Tool Availability**: Understand/SonarQube may require licensing or have access restrictions
 
 ### **Medium Risk**
 - **Integration Complexity**: Combining multiple tools may create maintenance burden

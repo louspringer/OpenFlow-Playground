@@ -44,9 +44,9 @@
 ### **Phase 1: Discovery Phase**
 | Task | Status | Progress | Start Date | End Date | Notes |
 |------|--------|----------|------------|----------|-------|
-| 1.1 PyCG Discovery | 🟡 **PARTIALLY COMPLETE** | 50% | 2024-12-19 | - | PyCG installs but has internal import issues |
+| 1.1 pyan Discovery | 🔴 **NOT STARTED** | 0% | - | - | PyCG replacement - actively maintained tool |
 | 1.2 pyRegurgitator Discovery | ✅ **COMPLETE** | 100% | 2024-12-19 | 2024-12-19 | Successfully installed and working |
-| 1.3 ScaMaha Discovery | ❌ **FAILED** | 0% | 2024-12-19 | 2024-12-19 | Package not available on PyPI |
+| 1.3 Understand/SonarQube Discovery | 🔴 **NOT STARTED** | 0% | - | - | ScaMaha alternative - professional-grade tools |
 | 1.4 Tool Capability Matrix | 🔴 **NOT STARTED** | 0% | - | - | Depends on 1.1-1.3 |
 
 ### **Phase 2: Integration Phase**
@@ -68,9 +68,10 @@
 ## 🚨 **Risk Status**
 
 ### **High Risk Items** 🔴 **ACTIVE**
-- **Tool Compatibility**: Partially Known - PyCG has import issues, pyRegurgitator works, ScaMaha unavailable
+- **Tool Compatibility**: Partially Known - pyan (untested), pyRegurgitator works, Understand/SonarQube (untested)
 - **Performance Issues**: Unknown - AST analysis could be too slow for large files
 - **Accuracy Problems**: Unknown - Extracted models may not reflect actual code behavior
+- **Tool Availability**: Understand/SonarQube may require licensing or have access restrictions
 
 ### **Medium Risk Items** 🟡 **MONITORING**
 - **Integration Complexity**: Unknown - Combining multiple tools may create maintenance burden
@@ -93,7 +94,7 @@
 - **Completion Rate**: 10%
 
 ### **Phase Progress**
-- **Phase 1 (Discovery)**: 50% Complete (1/4 tasks)
+- **Phase 1 (Discovery)**: 25% Complete (1/4 tasks)
 - **Phase 2 (Integration)**: 0% Complete (0/3 tasks)
 - **Phase 3 (Production)**: 0% Complete (0/3 tasks)
 
@@ -115,6 +116,8 @@
 - 🟡 **Task 1.1 Started**: PyCG Discovery - Tool installs but has internal import issues
 - ✅ **Task 1.2 Completed**: pyRegurgitator Discovery - Successfully installed and working
 - ❌ **Task 1.3 Failed**: ScaMaha Discovery - Package not available on PyPI
+- 🔄 **Plan Updated**: Replaced PyCG with pyan, ScaMaha with Understand/SonarQube
+- 🎯 **New Strategy**: Integration-first approach with actively maintained tools
 
 ---
 

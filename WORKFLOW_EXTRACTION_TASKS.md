@@ -15,10 +15,10 @@ This document tracks the execution of our workflow extraction integration plan. 
 
 ## 🚀 **Phase 1: Discovery Phase (Week 1)**
 
-### **Task 1.1: PyCG Discovery & Installation**
-- **Objective**: Test PyCG installation and basic functionality
+### **Task 1.1: pyan Discovery & Installation**
+- **Objective**: Test pyan installation and basic functionality
 - **Success Criteria**: 
-  - [ ] PyCG installs successfully
+  - [ ] pyan installs successfully
   - [ ] Basic call graph generation works
   - [ ] Analysis completes in <5 seconds for simple files
 - **Failure Conditions**:
@@ -29,6 +29,7 @@ This document tracks the execution of our workflow extraction integration plan. 
 - **Assignee**: TBD
 - **Estimated Effort**: 2 hours
 - **Dependencies**: None
+- **Notes**: PyCG replacement - actively maintained tool
 
 ### **Task 1.2: pyRegurgitator Discovery & Installation**
 - **Objective**: Test pyRegurgitator AST analysis capabilities
@@ -45,20 +46,21 @@ This document tracks the execution of our workflow extraction integration plan. 
 - **Estimated Effort**: 2 hours
 - **Dependencies**: None
 
-### **Task 1.3: ScaMaha Discovery & Installation**
-- **Objective**: Test ScaMaha workflow extraction capabilities
+### **Task 1.3: Understand/SonarQube Discovery & Installation**
+- **Objective**: Test Understand or SonarQube workflow extraction capabilities
 - **Success Criteria**:
-  - [ ] ScaMaha installs successfully
+  - [ ] Tool installs successfully or is accessible
   - [ ] Workflow pattern recognition works
   - [ ] Analysis completes in <10 seconds for simple files
 - **Failure Conditions**:
-  - [ ] Installation fails
+  - [ ] Installation fails or access denied
   - [ ] Tool crashes on basic usage
   - [ ] Performance >10 seconds for simple files
 - **Status**: 🔴 **NOT STARTED**
 - **Assignee**: TBD
 - **Estimated Effort**: 2 hours
 - **Dependencies**: None
+- **Notes**: ScaMaha alternative - professional-grade code analysis tools
 
 ### **Task 1.4: Tool Capability Matrix**
 - **Objective**: Create comprehensive matrix of tool capabilities
