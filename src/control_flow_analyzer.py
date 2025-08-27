@@ -408,6 +408,31 @@ class ControlFlowAnalyzer:
         """Generate control flow graph representation."""
         graph = {"nodes": [], "edges": [], "entry_points": [], "exit_points": []}
 
+        # Extract imports
+        imports = []
+        for node in ast.walk(ast_tree):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    imports.append(
+                        {
+                            "type": "import",
+                            "module": alias.name,
+                            "asname": alias.asname,
+                            "lineno": getattr(node, "lineno", 0),
+                        }
+                    )
+            elif isinstance(node, ast.ImportFrom):
+                imports.append(
+                    {
+                        "type": "import_from",
+                        "module": node.module,
+                        "names": [alias.name for alias in node.names],
+                        "lineno": getattr(node, "lineno", 0),
+                    }
+                )
+
+        graph["imports"] = imports
+
         # Extract function definitions as entry points
         for node in ast.walk(ast_tree):
             if isinstance(node, ast.FunctionDef):
@@ -415,18 +440,117 @@ class ControlFlowAnalyzer:
                     {"name": node.name, "lineno": node.lineno, "type": "function"}
                 )
 
-                # Add function body as nodes
+                # Add function body as nodes with detailed analysis
                 for stmt in node.body:
-                    graph["nodes"].append(
+                    node_info = {
+                        "id": f"{node.name}_{stmt.lineno}",
+                        "type": type(stmt).__name__,
+                        "lineno": getattr(stmt, "lineno", 0),
+                        "function": node.name,
+                    }
+
+                    # Analyze what this statement actually does
+                    if isinstance(stmt, ast.Expr):
+                        # Check if this expression contains a function call
+                        call_info = self._extract_call_info(stmt.value)
+                        if call_info:
+                            node_info.update(call_info)
+
+                    graph["nodes"].append(node_info)
+
+        # Extract control flow statements (if __name__ == "__main__":, etc.)
+        control_flow = []
+        for node in ast.walk(ast_tree):
+            if isinstance(node, ast.If):
+                # Check if this is the main guard
+                if (
+                    isinstance(node.test, ast.Compare)
+                    and isinstance(node.test.left, ast.Name)
+                    and node.test.left.id == "__name__"
+                    and isinstance(node.test.ops[0], ast.Eq)
+                    and isinstance(node.test.comparators[0], ast.Constant)
+                    and node.test.comparators[0].value == "__main__"
+                ):
+                    control_flow.append(
                         {
-                            "id": f"{node.name}_{stmt.lineno}",
-                            "type": type(stmt).__name__,
-                            "lineno": getattr(stmt, "lineno", 0),
-                            "function": node.name,
+                            "type": "main_guard",
+                            "lineno": getattr(node, "lineno", 0),
+                            "body_statements": len(node.body),
+                            "has_else": len(node.orelse) > 0,
                         }
                     )
 
+                    # Add main block statements to nodes
+                    for stmt in node.body:
+                        node_info = {
+                            "id": f"main_{stmt.lineno}",
+                            "type": type(stmt).__name__,
+                            "lineno": getattr(stmt, "lineno", 0),
+                            "function": "main",
+                        }
+
+                        # Analyze what this statement actually does
+                        if isinstance(stmt, ast.Expr):
+                            call_info = self._extract_call_info(stmt.value)
+                            if call_info:
+                                node_info.update(call_info)
+
+                        graph["nodes"].append(node_info)
+
+        graph["control_flow"] = control_flow
+
         return graph
+
+    def _extract_call_info(self, expr: ast.expr) -> Optional[Dict[str, Any]]:
+        """Extract function call information from an expression."""
+        if isinstance(expr, ast.Call):
+            # This is a direct function call
+            func_name = self._get_function_name(expr.func)
+            return {
+                "call_type": "function_call",
+                "function_called": func_name,
+                "args_count": len(expr.args),
+                "keywords_count": len(expr.keywords),
+            }
+        elif isinstance(expr, ast.Attribute):
+            # This might be a method call like obj.method()
+            if isinstance(expr.value, ast.Name):
+                return {
+                    "call_type": "method_call",
+                    "object": expr.value.id,
+                    "method": expr.attr,
+                }
+        elif isinstance(expr, ast.BinOp):
+            # Check if binary operation involves function calls
+            left_call = (
+                self._extract_call_info(expr.left) if hasattr(expr, "left") else None
+            )
+            right_call = (
+                self._extract_call_info(expr.right) if hasattr(expr, "right") else None
+            )
+
+            if left_call or right_call:
+                return {
+                    "call_type": "binary_operation",
+                    "left_call": left_call,
+                    "right_call": right_call,
+                    "operator": type(expr.op).__name__,
+                }
+
+        return None
+
+    def _get_function_name(self, func: ast.expr) -> str:
+        """Get the name of a function being called."""
+        if isinstance(func, ast.Name):
+            return func.id
+        elif isinstance(func, ast.Attribute):
+            # Handle cases like module.function
+            if isinstance(func.value, ast.Name):
+                return f"{func.value.id}.{func.attr}"
+            else:
+                return func.attr
+        else:
+            return str(func)
 
     def _recognize_patterns(self, patterns: Dict[str, Any]) -> Dict[str, Any]:
         """Recognize common control flow patterns."""

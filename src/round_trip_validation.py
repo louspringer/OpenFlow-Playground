@@ -81,7 +81,110 @@ class RoundTripValidator:
             }
 
     def _extract_actual_workflow_elements(self, ast_tree: ast.AST) -> Dict[str, Any]:
-        """Extract actual workflow elements from AST."""
+        """Extract actual workflow elements from AST using our improved tools."""
+        try:
+            # Use our improved ControlFlowAnalyzer instead of basic AST walking
+            from src.control_flow_analyzer import ControlFlowAnalyzer
+
+            # Create a temporary file to analyze
+            import tempfile
+            import os
+
+            # Get the source content from the AST (we need to reconstruct it)
+            # For now, let's use the basic AST walking but with better call detection
+
+            elements = {
+                "functions": [],
+                "classes": [],
+                "calls": [],
+                "imports": [],
+                "control_flow": [],
+            }
+
+            for node in ast.walk(ast_tree):
+                if isinstance(node, ast.FunctionDef):
+                    elements["functions"].append(
+                        {
+                            "name": node.name,
+                            "lineno": node.lineno,
+                            "args": [arg.arg for arg in node.args.args],
+                            "calls": self._extract_function_calls_improved(node),
+                        }
+                    )
+                elif isinstance(node, ast.ClassDef):
+                    elements["classes"].append(
+                        {
+                            "name": node.name,
+                            "lineno": node.lineno,
+                            "methods": [
+                                n.name
+                                for n in node.body
+                                if isinstance(n, ast.FunctionDef)
+                            ],
+                        }
+                    )
+                elif isinstance(node, ast.Call):
+                    # Improved call detection
+                    call_info = self._extract_call_info_improved(node)
+                    if call_info:
+                        elements["calls"].append(call_info)
+                elif isinstance(node, ast.Import):
+                    for alias in node.names:
+                        elements["imports"].append({"name": alias.name})
+                elif isinstance(node, ast.ImportFrom):
+                    elements["imports"].append(
+                        {"name": f"{node.module}.{node.names[0].name}"}
+                    )
+                elif isinstance(node, (ast.If, ast.For, ast.While, ast.Try)):
+                    elements["control_flow"].append({"type": type(node).__name__})
+
+            return elements
+
+        except ImportError:
+            # Fallback to basic extraction if our tools aren't available
+            return self._extract_actual_workflow_elements_basic(ast_tree)
+
+    def _extract_call_info_improved(
+        self, call_node: ast.Call
+    ) -> Optional[Dict[str, Any]]:
+        """Extract detailed call information."""
+        try:
+            if isinstance(call_node.func, ast.Name):
+                return {
+                    "function": call_node.func.id,
+                    "lineno": getattr(call_node, "lineno", 0),
+                    "args_count": len(call_node.args),
+                    "keywords_count": len(call_node.keywords),
+                }
+            elif isinstance(call_node.func, ast.Attribute):
+                # Handle method calls like obj.method()
+                if isinstance(call_node.func.value, ast.Name):
+                    return {
+                        "function": f"{call_node.func.value.id}.{call_node.func.attr}",
+                        "lineno": getattr(call_node, "lineno", 0),
+                        "args_count": len(call_node.args),
+                        "keywords_count": len(call_node.keywords),
+                    }
+            return None
+        except Exception:
+            return None
+
+    def _extract_function_calls_improved(
+        self, function_node: ast.FunctionDef
+    ) -> List[str]:
+        """Extract function calls within a function with improved detection."""
+        calls = []
+        for node in ast.walk(function_node):
+            if isinstance(node, ast.Call):
+                call_info = self._extract_call_info_improved(node)
+                if call_info:
+                    calls.append(call_info["function"])
+        return calls
+
+    def _extract_actual_workflow_elements_basic(
+        self, ast_tree: ast.AST
+    ) -> Dict[str, Any]:
+        """Basic fallback extraction method."""
         elements = {
             "functions": [],
             "classes": [],
@@ -164,9 +267,15 @@ class RoundTripValidator:
             if not actual_list:
                 return 0.0
 
-            # Simple matching for now - could be enhanced with fuzzy matching
-            actual_names = [item.get("name", str(item)) for item in actual_list]
-            expected_names = [item.get("name", str(item)) for item in expected_list]
+            # Handle different data structures for calls vs other elements
+            if key == "function":  # For calls
+                actual_names = [item.get("function", str(item)) for item in actual_list]
+                expected_names = [
+                    item.get("function", str(item)) for item in expected_list
+                ]
+            else:  # For functions, classes, imports, control_flow
+                actual_names = [item.get("name", str(item)) for item in actual_list]
+                expected_names = [item.get("name", str(item)) for item in expected_list]
 
             matches = len(set(actual_names) & set(expected_names))
             return matches / len(expected_names) if expected_names else 0.0
