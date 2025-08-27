@@ -18,15 +18,15 @@ def test_requirement_1_cloudformation_detection() -> None:
 
     # Implementation check
     cloudformation_config = model.domains["cloudformation"]
-    assert (
-        "!Sub" in cloudformation_config.content_indicators
-    ), "Content indicator missing"
+    assert "!Sub" in cloudformation_config.content_indicators, (
+        "Content indicator missing"
+    )
     assert "cfn-lint" in cloudformation_config.linter, "Wrong linter selected"
 
     # Test result
-    assert (
-        result.detected_domain == "cloudformation"
-    ), f"Wrong domain: {result.detected_domain}"
+    assert result.detected_domain == "cloudformation", (
+        f"Wrong domain: {result.detected_domain}"
+    )
     assert result.confidence > 0.5, f"Low confidence: {result.confidence}"
     assert "cfn-lint" in result.recommended_tools, "Wrong tool recommended"
 
@@ -105,15 +105,15 @@ def test_requirement_5_confidence_scoring() -> None:
 
     # Test CloudFormation file
     cf_result = model.analyze_file("models/Openflow-Playground.yaml")
-    assert (
-        cf_result.confidence > 0.6
-    ), f"Low confidence for CloudFormation: {cf_result.confidence}"
+    assert cf_result.confidence > 0.6, (
+        f"Low confidence for CloudFormation: {cf_result.confidence}"
+    )
 
     # Test Python file
     py_result = model.analyze_file("project_model.py")
-    assert (
-        py_result.confidence > 0.6
-    ), f"Low confidence for Python: {py_result.confidence}"
+    assert py_result.confidence > 0.6, (
+        f"Low confidence for Python: {py_result.confidence}"
+    )
 
     print(f"✅ CloudFormation confidence: {cf_result.confidence}")
     print(f"✅ Python confidence: {py_result.confidence}")

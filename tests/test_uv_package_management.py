@@ -36,9 +36,9 @@ def test_pyproject_toml_structure():
 
     # Test that it contains required sections
     assert "[project]" in content, "Should have [project] section"
-    assert (
-        "[project.optional-dependencies]" in content
-    ), "Should have optional dependencies"
+    assert "[project.optional-dependencies]" in content, (
+        "Should have optional dependencies"
+    )
 
     print("✅ pyproject.toml has correct structure")
 

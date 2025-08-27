@@ -50,3 +50,22 @@ test-gui: ## Test GUI functionality
 quick-gui: ## Quick GUI launch using launcher script
 	@echo "🚀 Quick GUI launch..."
 	python launch_gui.py
+
+# GUI Navigation Testing with Screenshots
+.PHONY: test-gui-navigation
+test-gui-navigation: ## Run comprehensive GUI navigation tests with screenshots
+	@echo "🧪 Running GUI Navigation Tests with Screenshots..."
+	@echo "📸 Screenshots will be saved to: test_screenshots/"
+	$(UV) run python tests/test_gui_navigation.py
+
+# GUI Test with Playwright
+.PHONY: test-gui-playwright
+test-gui-playwright: ## Run GUI tests using Playwright
+	@echo "🧪 Running GUI tests with Playwright..."
+	$(UV) run pytest tests/test_gui_navigation.py -v --tb=short
+
+# Install Playwright Browsers
+.PHONY: install-playwright
+install-playwright: ## Install Playwright browsers for testing
+	@echo "🌐 Installing Playwright browsers..."
+	$(UV) run playwright install chromium

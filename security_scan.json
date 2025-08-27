@@ -1,17 +1,17 @@
 {
   "errors": [],
-  "generated_at": "2025-08-25T23:14:28Z",
+  "generated_at": "2025-08-27T16:44:01Z",
   "metrics": {
     "_totals": {
-      "CONFIDENCE.HIGH": 305,
+      "CONFIDENCE.HIGH": 344,
       "CONFIDENCE.LOW": 2,
       "CONFIDENCE.MEDIUM": 3,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 2,
-      "SEVERITY.LOW": 301,
+      "SEVERITY.LOW": 340,
       "SEVERITY.MEDIUM": 7,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 41335,
+      "loc": 45149,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -470,6 +470,32 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "src/complexity_metrics_analyzer.py": {
+      "CONFIDENCE.HIGH": 3,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 3,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 389,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/control_flow_analyzer.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 369,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "src/documentation/mermaid_validator.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -493,6 +519,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 37,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/enhanced_activity_generator.py": {
+      "CONFIDENCE.HIGH": 8,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 8,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 453,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -974,6 +1013,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 166,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/lightweight_activity_generator.py": {
+      "CONFIDENCE.HIGH": 7,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 7,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 349,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1718,6 +1770,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "src/multi_file_workflow_analyzer.py": {
+      "CONFIDENCE.HIGH": 5,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 5,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 424,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "src/mypy_enhanced_ast_parser.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -1806,6 +1871,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 352,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/performance_optimizer.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 440,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2225,6 +2303,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "src/round_trip_validation.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 199,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "src/scaled_complex_model_generator.py": {
       "CONFIDENCE.HIGH": 8,
       "CONFIDENCE.LOW": 0,
@@ -2641,6 +2732,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "src/simple_enhanced_generator.py": {
+      "CONFIDENCE.HIGH": 4,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 4,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 213,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "src/streamlit/__init__.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -2690,6 +2794,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 197,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/uml_activity_generator.py": {
+      "CONFIDENCE.HIGH": 5,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 5,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 317,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2755,6 +2872,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 302,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "src/workflow_visualization_gui.py": {
+      "CONFIDENCE.HIGH": 7,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 7,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 661,
       "nosec": 0,
       "skipped_tests": 0
     }
@@ -3512,6 +3642,271 @@
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
+      "code": "12 from pathlib import Path\n13 import subprocess\n14 import statistics\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/complexity_metrics_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 13,
+      "line_range": [
+        13
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "82             # Run Radon complexity analysis\n83             result = subprocess.run(\n84                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n85                 capture_output=True,\n86                 text=True\n87             )\n88             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/complexity_metrics_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 83,
+      "line_range": [
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "82             # Run Radon complexity analysis\n83             result = subprocess.run(\n84                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n85                 capture_output=True,\n86                 text=True\n87             )\n88             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/complexity_metrics_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 83,
+      "line_range": [
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "15 import ast\n16 import subprocess\n17 import tempfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 16,
+      "line_range": [
+        16
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "56         try:\n57             subprocess.run([\"java\", \"-version\"], capture_output=True, check=True)\n58             return True\n",
+      "col_offset": 12,
+      "end_col_offset": 81,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 57,
+      "line_range": [
+        57
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "56         try:\n57             subprocess.run([\"java\", \"-version\"], capture_output=True, check=True)\n58             return True\n",
+      "col_offset": 12,
+      "end_col_offset": 81,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 57,
+      "line_range": [
+        57
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "65             # Use the StarUML extension's AST parser\n66             result = subprocess.run(\n67                 [sys.executable, self.ast_parser_path, file_path],\n68                 capture_output=True,\n69                 text=True,\n70                 check=True,\n71             )\n72 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 66,
+      "line_range": [
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "168             # Run PlantUML JAR\n169             result = subprocess.run(\n170                 [\n171                     \"java\",\n172                     \"-jar\",\n173                     self.plantuml_jar,\n174                     \"-tsvg\",\n175                     temp_file,\n176                     \"-o\",\n177                     os.path.dirname(output_path),\n178                 ],\n179                 capture_output=True,\n180                 text=True,\n181             )\n182 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 169,
+      "line_range": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "168             # Run PlantUML JAR\n169             result = subprocess.run(\n170                 [\n171                     \"java\",\n172                     \"-jar\",\n173                     self.plantuml_jar,\n174                     \"-tsvg\",\n175                     temp_file,\n176                     \"-o\",\n177                     os.path.dirname(output_path),\n178                 ],\n179                 capture_output=True,\n180                 text=True,\n181             )\n182 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 169,
+      "line_range": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "234             # Use Graphviz to generate SVG\n235             result = subprocess.run(\n236                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n237                 capture_output=True,\n238                 text=True,\n239             )\n240 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 235,
+      "line_range": [
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "234             # Use Graphviz to generate SVG\n235             result = subprocess.run(\n236                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n237                 capture_output=True,\n238                 text=True,\n239             )\n240 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/enhanced_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 235,
+      "line_range": [
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
       "code": "117 \n118         except Exception:\n119             # Skip files that can't be read\n120             pass\n121 \n",
       "col_offset": 8,
       "end_col_offset": 16,
@@ -3842,6 +4237,178 @@
         218,
         219,
         220
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "13 import ast\n14 import subprocess\n15 import tempfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 14,
+      "line_range": [
+        14
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "45         try:\n46             subprocess.run([\"java\", \"-version\"], capture_output=True, check=True)\n47             return True\n",
+      "col_offset": 12,
+      "end_col_offset": 81,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 46,
+      "line_range": [
+        46
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "45         try:\n46             subprocess.run([\"java\", \"-version\"], capture_output=True, check=True)\n47             return True\n",
+      "col_offset": 12,
+      "end_col_offset": 81,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 46,
+      "line_range": [
+        46
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "146             # Run PlantUML JAR\n147             result = subprocess.run(\n148                 [\n149                     \"java\",\n150                     \"-jar\",\n151                     self.plantuml_jar,\n152                     \"-tsvg\",\n153                     temp_file,\n154                     \"-o\",\n155                     os.path.dirname(output_path),\n156                 ],\n157                 capture_output=True,\n158                 text=True,\n159             )\n160 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 147,
+      "line_range": [
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "146             # Run PlantUML JAR\n147             result = subprocess.run(\n148                 [\n149                     \"java\",\n150                     \"-jar\",\n151                     self.plantuml_jar,\n152                     \"-tsvg\",\n153                     temp_file,\n154                     \"-o\",\n155                     os.path.dirname(output_path),\n156                 ],\n157                 capture_output=True,\n158                 text=True,\n159             )\n160 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 147,
+      "line_range": [
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "212             # Use Graphviz to generate SVG\n213             result = subprocess.run(\n214                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n215                 capture_output=True,\n216                 text=True,\n217             )\n218 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 213,
+      "line_range": [
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "212             # Use Graphviz to generate SVG\n213             result = subprocess.run(\n214                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n215                 capture_output=True,\n216                 text=True,\n217             )\n218 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/lightweight_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 213,
+      "line_range": [
+        213,
+        214,
+        215,
+        216,
+        217
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -6665,6 +7232,118 @@
       "test_name": "assert_used"
     },
     {
+      "code": "14 from pathlib import Path\n15 import subprocess\n16 import networkx as nx\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/multi_file_workflow_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 15,
+      "line_range": [
+        15
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "92             # Run pydeps on the source directory\n93             result = subprocess.run(\n94                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n95                 capture_output=True,\n96                 text=True,\n97                 cwd=self.project_root\n98             )\n99             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/multi_file_workflow_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 93,
+      "line_range": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "92             # Run pydeps on the source directory\n93             result = subprocess.run(\n94                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n95                 capture_output=True,\n96                 text=True,\n97                 cwd=self.project_root\n98             )\n99             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/multi_file_workflow_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 93,
+      "line_range": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "339                     \n340             except Exception as e:\n341                 continue\n342         \n",
+      "col_offset": 12,
+      "end_col_offset": 24,
+      "filename": "src/multi_file_workflow_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Try, Except, Continue detected.",
+      "line_number": 340,
+      "line_range": [
+        340,
+        341
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
+      "test_id": "B112",
+      "test_name": "try_except_continue"
+    },
+    {
+      "code": "367                             \n368             except Exception as e:\n369                 continue\n370         \n",
+      "col_offset": 12,
+      "end_col_offset": 24,
+      "filename": "src/multi_file_workflow_analyzer.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Try, Except, Continue detected.",
+      "line_number": 368,
+      "line_range": [
+        368,
+        369
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
+      "test_id": "B112",
+      "test_name": "try_except_continue"
+    },
+    {
       "code": "229 \n230     import subprocess\n231 \n",
       "col_offset": 4,
       "end_col_offset": 21,
@@ -9161,6 +9840,99 @@
       "test_name": "hardcoded_password_funcarg"
     },
     {
+      "code": "8 \n9 import subprocess\n10 import tempfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/simple_enhanced_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 9,
+      "line_range": [
+        9
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "34             # Use the StarUML extension's AST parser\n35             result = subprocess.run(\n36                 [sys.executable, self.ast_parser_path, file_path],\n37                 capture_output=True,\n38                 text=True,\n39                 check=True,\n40             )\n41 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/simple_enhanced_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 35,
+      "line_range": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "190             # Use Graphviz to generate SVG\n191             result = subprocess.run(\n192                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n193                 capture_output=True,\n194                 text=True,\n195             )\n196 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/simple_enhanced_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 191,
+      "line_range": [
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "190             # Use Graphviz to generate SVG\n191             result = subprocess.run(\n192                 [\"dot\", \"-Tsvg\", temp_file, \"-o\", output_path],\n193                 capture_output=True,\n194                 text=True,\n195             )\n196 \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/simple_enhanced_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 191,
+      "line_range": [
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
       "code": "250 \n251     import subprocess\n252 \n",
       "col_offset": 4,
       "end_col_offset": 21,
@@ -9231,6 +10003,118 @@
         259,
         260,
         261
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "12 from pathlib import Path\n13 import subprocess\n14 import tempfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/uml_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 13,
+      "line_range": [
+        13
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "293             # Check if PlantUML is available\n294             result = subprocess.run(\n295                 [\"plantuml\", \"-version\"],\n296                 capture_output=True,\n297                 text=True\n298             )\n299             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/uml_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 294,
+      "line_range": [
+        294,
+        295,
+        296,
+        297,
+        298
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "293             # Check if PlantUML is available\n294             result = subprocess.run(\n295                 [\"plantuml\", \"-version\"],\n296                 capture_output=True,\n297                 text=True\n298             )\n299             \n",
+      "col_offset": 21,
+      "end_col_offset": 13,
+      "filename": "src/uml_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 294,
+      "line_range": [
+        294,
+        295,
+        296,
+        297,
+        298
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "311                     # Generate PNG\n312                     subprocess.run([\n313                         \"plantuml\", \"-tpng\", temp_file\n314                     ], cwd=os.path.dirname(temp_file))\n315                     \n",
+      "col_offset": 20,
+      "end_col_offset": 54,
+      "filename": "src/uml_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 312,
+      "line_range": [
+        312,
+        313,
+        314
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "311                     # Generate PNG\n312                     subprocess.run([\n313                         \"plantuml\", \"-tpng\", temp_file\n314                     ], cwd=os.path.dirname(temp_file))\n315                     \n",
+      "col_offset": 20,
+      "end_col_offset": 54,
+      "filename": "src/uml_activity_generator.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 312,
+      "line_range": [
+        312,
+        313,
+        314
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -9401,6 +10285,162 @@
         176,
         177,
         178
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "14 from typing import Dict, List, Any, Optional\n15 import subprocess\n16 import tempfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 15,
+      "line_range": [
+        15
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "291                     # Run pydeps analysis\n292                     result = subprocess.run(\n293                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n294                         capture_output=True, text=True, cwd=self.project_root\n295                     )\n296                     \n",
+      "col_offset": 29,
+      "end_col_offset": 21,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 292,
+      "line_range": [
+        292,
+        293,
+        294,
+        295
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "291                     # Run pydeps analysis\n292                     result = subprocess.run(\n293                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n294                         capture_output=True, text=True, cwd=self.project_root\n295                     )\n296                     \n",
+      "col_offset": 29,
+      "end_col_offset": 21,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 292,
+      "line_range": [
+        292,
+        293,
+        294,
+        295
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "350                     # Use ast2json for extraction\n351                     result = subprocess.run(\n352                         [\"uv\", \"run\", \"python\", \"-c\", \n353                          f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\"],\n354                         capture_output=True, text=True, cwd=self.project_root\n355                     )\n356                     \n",
+      "col_offset": 29,
+      "end_col_offset": 21,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 351,
+      "line_range": [
+        351,
+        352,
+        353,
+        354,
+        355
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "350                     # Use ast2json for extraction\n351                     result = subprocess.run(\n352                         [\"uv\", \"run\", \"python\", \"-c\", \n353                          f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\"],\n354                         capture_output=True, text=True, cwd=self.project_root\n355                     )\n356                     \n",
+      "col_offset": 29,
+      "end_col_offset": 21,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 351,
+      "line_range": [
+        351,
+        352,
+        353,
+        354,
+        355
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "520                     # Check if pydeps is available\n521                     result = subprocess.run([\"uv\", \"run\", \"pydeps\", \"--help\"], \n522                                           capture_output=True, text=True)\n523                     components_status[component_name] = result.returncode == 0\n",
+      "col_offset": 29,
+      "end_col_offset": 73,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 521,
+      "line_range": [
+        521,
+        522
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "520                     # Check if pydeps is available\n521                     result = subprocess.run([\"uv\", \"run\", \"pydeps\", \"--help\"], \n522                                           capture_output=True, text=True)\n523                     components_status[component_name] = result.returncode == 0\n",
+      "col_offset": 29,
+      "end_col_offset": 73,
+      "filename": "src/workflow_visualization_gui.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 521,
+      "line_range": [
+        521,
+        522
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",

@@ -467,7 +467,9 @@ def main():
     ]
 
     validation = ontology.validate_transformation(test_data, FormatType.DICT)
-    print(f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}")
+    print(
+        f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}"
+    )
     if not validation["valid"]:
         print(f"    Errors: {validation['errors']}")
 

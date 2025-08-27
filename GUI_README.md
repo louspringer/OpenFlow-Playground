@@ -60,25 +60,30 @@ The GUI integrates with all 8 tested workflow extraction components:
 ## 🎯 Key Features
 
 ### 1. **Dashboard Overview**
+
 - **System Status**: Real-time component availability monitoring
 - **Metrics Dashboard**: Overview of components, artifacts, and formats
 - **Quick Actions**: Refresh artifacts, generate demo data
 - **Recent Artifacts**: Latest generated files with previews
 
 ### 2. **Component-Specific Pages**
+
 Each component has a dedicated page with:
+
 - **File Selection**: Choose source files for analysis
 - **Analysis Controls**: Run specific analysis types
 - **Results Display**: Tabbed view of different result aspects
 - **Artifact Generation**: Create new visualizations
 
 ### 3. **Multi-Format Visualization**
+
 - **PlantUML**: Professional UML diagrams
 - **Mermaid**: Web-friendly flowcharts
 - **Graphviz DOT**: Vector graphics
 - **PNG**: Raster images for sharing
 
 ### 4. **Interactive Analysis**
+
 - **Real-time Processing**: Live analysis with progress indicators
 - **Error Handling**: Comprehensive error reporting and recovery
 - **Result Export**: Download and share analysis results
@@ -87,18 +92,21 @@ Each component has a dedicated page with:
 ## 📱 User Interface
 
 ### Sidebar Navigation
+
 - **Component Selection**: Dropdown to choose specific components
 - **Quick Actions**: Refresh artifacts, generate demo data
 - **System Status**: Real-time health monitoring
 - **Navigation History**: Easy return to dashboard
 
 ### Main Content Area
+
 - **Responsive Layout**: Adapts to different screen sizes
 - **Tabbed Results**: Organized information display
 - **Interactive Elements**: Buttons, forms, and controls
 - **Progress Indicators**: Visual feedback during processing
 
 ### Custom Styling
+
 - **Modern Design**: Gradient backgrounds and card layouts
 - **Color Coding**: Status indicators and visual hierarchy
 - **Responsive Grid**: Flexible column layouts
@@ -107,6 +115,7 @@ Each component has a dedicated page with:
 ## 🔧 Configuration
 
 ### Environment Variables
+
 ```bash
 # Streamlit configuration
 export STREAMLIT_SERVER_PORT=8501
@@ -119,6 +128,7 @@ export ARTIFACTS_DIR=generated_activity_models
 ```
 
 ### Customization Options
+
 - **Port Configuration**: Change default port (8501)
 - **Theme Customization**: Modify CSS styling
 - **Component Selection**: Enable/disable specific components
@@ -127,6 +137,7 @@ export ARTIFACTS_DIR=generated_activity_models
 ## 📊 Artifact Management
 
 ### Generated Artifacts
+
 The GUI automatically manages artifacts in the `generated_activity_models/` directory:
 
 ```
@@ -147,6 +158,7 @@ generated_activity_models/
 ```
 
 ### Artifact Lifecycle
+
 1. **Generation**: Run analysis to create artifacts
 2. **Storage**: Automatic organization by type and component
 3. **Retrieval**: Browse and view existing artifacts
@@ -156,13 +168,16 @@ generated_activity_models/
 ## 🧪 Testing and Validation
 
 ### Component Testing
+
 Each component is tested for:
+
 - **Functionality**: Core analysis capabilities
 - **Integration**: Interaction with other components
 - **Error Handling**: Graceful failure and recovery
 - **Performance**: Response time and resource usage
 
 ### Validation Framework
+
 - **Round-trip Validation**: Verify model accuracy
 - **Cross-component Testing**: Ensure compatibility
 - **Performance Benchmarking**: Monitor system health
@@ -171,6 +186,7 @@ Each component is tested for:
 ## 🚀 Advanced Usage
 
 ### Custom Analysis
+
 ```python
 # Programmatic access to components
 from src.workflow_visualization_gui import WorkflowVisualizationGUI
@@ -180,12 +196,14 @@ result = gui.control_flow_analyzer.analyze_control_flow("my_file.py")
 ```
 
 ### API Integration
+
 - **REST Endpoints**: Expose analysis capabilities
 - **Webhook Support**: Trigger analysis from external systems
 - **Batch Processing**: Analyze multiple files simultaneously
 - **Scheduled Analysis**: Automated workflow extraction
 
 ### Extensibility
+
 - **Plugin System**: Add new analysis components
 - **Custom Visualizations**: Create new diagram types
 - **Integration Hooks**: Connect with external tools
@@ -196,6 +214,7 @@ result = gui.control_flow_analyzer.analyze_control_flow("my_file.py")
 ### Common Issues
 
 #### 1. **Streamlit Not Starting**
+
 ```bash
 # Check dependencies
 uv sync
@@ -208,6 +227,7 @@ netstat -tulpn | grep :8501
 ```
 
 #### 2. **Component Import Errors**
+
 ```bash
 # Verify component availability
 uv run python -c "from src.control_flow_analyzer import ControlFlowAnalyzer"
@@ -220,6 +240,7 @@ uv sync --upgrade
 ```
 
 #### 3. **Artifact Generation Failures**
+
 ```bash
 # Check file permissions
 ls -la generated_activity_models/
@@ -232,6 +253,7 @@ df -h .
 ```
 
 #### 4. **Performance Issues**
+
 ```bash
 # Monitor system resources
 htop
@@ -244,6 +266,7 @@ uv run python src/performance_optimizer.py
 ```
 
 ### Debug Mode
+
 ```bash
 # Enable debug logging
 export STREAMLIT_LOGGER_LEVEL=debug
@@ -255,17 +278,20 @@ uv run streamlit run src/workflow_visualization_gui.py --logger.level=debug
 ## 📈 Performance Optimization
 
 ### System Requirements
+
 - **Minimum**: 4GB RAM, 2 CPU cores
 - **Recommended**: 8GB RAM, 4 CPU cores
 - **Optimal**: 16GB RAM, 8 CPU cores
 
 ### Optimization Strategies
+
 1. **Caching**: Cache analysis results for repeated queries
 2. **Lazy Loading**: Load components on demand
 3. **Background Processing**: Run heavy analysis asynchronously
 4. **Resource Management**: Monitor and optimize memory usage
 
 ### Benchmarking
+
 ```bash
 # Run performance benchmarks
 uv run python src/performance_optimizer.py
@@ -277,12 +303,14 @@ uv run python src/performance_optimizer.py --report
 ## 🔒 Security Considerations
 
 ### Access Control
+
 - **Local Access**: Default configuration for local development
 - **Network Security**: Configure firewall rules appropriately
 - **Authentication**: Implement user authentication if needed
 - **Authorization**: Control access to sensitive analysis data
 
 ### Data Protection
+
 - **Input Validation**: Sanitize all user inputs
 - **Output Sanitization**: Prevent XSS and injection attacks
 - **Secure Storage**: Protect generated artifacts
@@ -291,6 +319,7 @@ uv run python src/performance_optimizer.py --report
 ## 🚀 Future Enhancements
 
 ### Planned Features
+
 - **Web-based Collaboration**: Multi-user workflow editing
 - **Version Control Integration**: Track workflow changes over time
 - **Advanced Visualizations**: 3D diagrams, interactive graphs
@@ -298,6 +327,7 @@ uv run python src/performance_optimizer.py --report
 - **Cloud Integration**: Deploy analysis to cloud platforms
 
 ### Extension Points
+
 - **Plugin Architecture**: Third-party analysis components
 - **API Ecosystem**: RESTful services for integration
 - **Workflow Templates**: Pre-built analysis patterns
@@ -306,18 +336,21 @@ uv run python src/performance_optimizer.py --report
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [Workflow Extraction System](WORKFLOW_EXTRACTION_PLAN.md)
 - [Component Architecture](src/README.md)
 - [API Reference](API_REFERENCE.md)
 
 ### Examples
+
 - [Sample Workflows](examples/)
 - [Tutorial Videos](tutorials/)
 - [Best Practices](BEST_PRACTICES.md)
 - [Case Studies](case_studies/)
 
 ### Support
+
 - [Issue Tracker](https://github.com/your-repo/issues)
 - [Discussion Forum](https://github.com/your-repo/discussions)
 - [Contributing Guide](CONTRIBUTING.md)
@@ -326,13 +359,16 @@ uv run python src/performance_optimizer.py --report
 ## 🎯 Getting Help
 
 ### Quick Support
+
 1. **Check Documentation**: Review this README and related docs
 2. **Search Issues**: Look for similar problems in the issue tracker
 3. **Run Diagnostics**: Use the built-in troubleshooting tools
 4. **Community Support**: Ask questions in the discussion forum
 
 ### Reporting Issues
+
 When reporting issues, please include:
+
 - **Environment**: OS, Python version, dependencies
 - **Steps to Reproduce**: Detailed reproduction steps
 - **Expected vs Actual**: What you expected vs what happened
