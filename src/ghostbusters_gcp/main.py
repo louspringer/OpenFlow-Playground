@@ -87,9 +87,9 @@ class GCPGhostbustersOrchestrator:
             )
 
             # Calculate overall metrics
-            investigation_results["deployment_quality"] = (
-                self._calculate_deployment_quality(investigation_results)
-            )
+            investigation_results[
+                "deployment_quality"
+            ] = self._calculate_deployment_quality(investigation_results)
             investigation_results["security_posture"] = self._assess_security_posture(
                 investigation_results
             )

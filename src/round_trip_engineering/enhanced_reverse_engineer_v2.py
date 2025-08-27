@@ -158,9 +158,9 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info["pattern_summary"] = (
-                            self.pattern_detector.get_pattern_summary(detected_patterns)
-                        )
+                        method_info[
+                            "pattern_summary"
+                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
                         method_info["best_practice_recommendations"] = [
@@ -273,9 +273,9 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info["pattern_summary"] = (
-                            self.pattern_detector.get_pattern_summary(detected_patterns)
-                        )
+                        method_info[
+                            "pattern_summary"
+                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
                         method_info["best_practice_recommendations"] = [

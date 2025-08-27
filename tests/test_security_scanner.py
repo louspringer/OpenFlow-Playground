@@ -112,9 +112,9 @@ normal_var = "safe_value"  # This should not be detected
 
             # Success rate should be reasonable (0-100%)
             success_rate = performance["success_rate"]
-            assert 0 <= success_rate <= 100, (
-                f"Success rate {success_rate}% is not reasonable"
-            )
+            assert (
+                0 <= success_rate <= 100
+            ), f"Success rate {success_rate}% is not reasonable"
 
             # Get scan duration from either field
             scan_duration = performance.get(

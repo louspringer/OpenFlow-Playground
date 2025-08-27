@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-08-27T16:44:01Z",
+  "generated_at": "2025-08-27T17:47:47Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 344,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 340,
       "SEVERITY.MEDIUM": 7,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 45149,
+      "loc": 45574,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -479,7 +479,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 389,
+      "loc": 426,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -492,7 +492,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 369,
+      "loc": 390,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -804,7 +804,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 700,
+      "loc": 704,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1402,7 +1402,7 @@
       "SEVERITY.LOW": 14,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 1366,
+      "loc": 1376,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1480,7 +1480,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 809,
+      "loc": 811,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1532,7 +1532,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 887,
+      "loc": 891,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1779,7 +1779,7 @@
       "SEVERITY.LOW": 5,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 424,
+      "loc": 457,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1805,7 +1805,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 373,
+      "loc": 375,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1818,7 +1818,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 287,
+      "loc": 289,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1844,7 +1844,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 447,
+      "loc": 449,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1883,7 +1883,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 440,
+      "loc": 537,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2312,7 +2312,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 199,
+      "loc": 241,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2663,7 +2663,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 347,
+      "loc": 349,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2806,7 +2806,7 @@
       "SEVERITY.LOW": 5,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 317,
+      "loc": 333,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2884,7 +2884,7 @@
       "SEVERITY.LOW": 7,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 661,
+      "loc": 812,
       "nosec": 0,
       "skipped_tests": 0
     }
@@ -3662,7 +3662,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "82             # Run Radon complexity analysis\n83             result = subprocess.run(\n84                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n85                 capture_output=True,\n86                 text=True\n87             )\n88             \n",
+      "code": "84             # Run Radon complexity analysis\n85             result = subprocess.run(\n86                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n87                 capture_output=True,\n88                 text=True,\n89             )\n90 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/complexity_metrics_analyzer.py",
@@ -3673,20 +3673,20 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 83,
+      "line_number": 85,
       "line_range": [
-        83,
-        84,
         85,
         86,
-        87
+        87,
+        88,
+        89
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "82             # Run Radon complexity analysis\n83             result = subprocess.run(\n84                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n85                 capture_output=True,\n86                 text=True\n87             )\n88             \n",
+      "code": "84             # Run Radon complexity analysis\n85             result = subprocess.run(\n86                 [\"uv\", \"run\", \"radon\", \"cc\", source_file, \"-j\"],\n87                 capture_output=True,\n88                 text=True,\n89             )\n90 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/complexity_metrics_analyzer.py",
@@ -3697,13 +3697,13 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 83,
+      "line_number": 85,
       "line_range": [
-        83,
-        84,
         85,
         86,
-        87
+        87,
+        88,
+        89
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -5523,7 +5523,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "530         try:\n531             result = subprocess.run(\n532                 [\n533                     \"python3\",\n534                     \"-m\",\n535                     \"black\",\n536                     str(self.target_directory),\n537                     \"--line-length\",\n538                     \"88\",\n539                 ],\n540                 capture_output=True,\n541                 text=True,\n542                 cwd=self.target_directory,\n543             )\n544 \n",
+      "code": "534         try:\n535             result = subprocess.run(\n536                 [\n537                     \"python3\",\n538                     \"-m\",\n539                     \"black\",\n540                     str(self.target_directory),\n541                     \"--line-length\",\n542                     \"88\",\n543                 ],\n544                 capture_output=True,\n545                 text=True,\n546                 cwd=self.target_directory,\n547             )\n548 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5534,12 +5534,8 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 531,
+      "line_number": 535,
       "line_range": [
-        531,
-        532,
-        533,
-        534,
         535,
         536,
         537,
@@ -5548,14 +5544,18 @@
         540,
         541,
         542,
-        543
+        543,
+        544,
+        545,
+        546,
+        547
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "530         try:\n531             result = subprocess.run(\n532                 [\n533                     \"python3\",\n534                     \"-m\",\n535                     \"black\",\n536                     str(self.target_directory),\n537                     \"--line-length\",\n538                     \"88\",\n539                 ],\n540                 capture_output=True,\n541                 text=True,\n542                 cwd=self.target_directory,\n543             )\n544 \n",
+      "code": "534         try:\n535             result = subprocess.run(\n536                 [\n537                     \"python3\",\n538                     \"-m\",\n539                     \"black\",\n540                     str(self.target_directory),\n541                     \"--line-length\",\n542                     \"88\",\n543                 ],\n544                 capture_output=True,\n545                 text=True,\n546                 cwd=self.target_directory,\n547             )\n548 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5566,12 +5566,8 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 531,
+      "line_number": 535,
       "line_range": [
-        531,
-        532,
-        533,
-        534,
         535,
         536,
         537,
@@ -5580,14 +5576,18 @@
         540,
         541,
         542,
-        543
+        543,
+        544,
+        545,
+        546,
+        547
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "569             # First run: check and fix what we can\n570             result = subprocess.run(\n571                 [\n572                     \"python3\",\n573                     \"-m\",\n574                     \"ruff\",\n575                     \"check\",\n576                     str(self.target_directory),\n577                     \"--fix\",\n578                     \"--unsafe-fixes\",\n579                 ],\n580                 capture_output=True,\n581                 text=True,\n582                 cwd=self.target_directory,\n583             )\n584 \n",
+      "code": "573             # First run: check and fix what we can\n574             result = subprocess.run(\n575                 [\n576                     \"python3\",\n577                     \"-m\",\n578                     \"ruff\",\n579                     \"check\",\n580                     str(self.target_directory),\n581                     \"--fix\",\n582                     \"--unsafe-fixes\",\n583                 ],\n584                 capture_output=True,\n585                 text=True,\n586                 cwd=self.target_directory,\n587             )\n588 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5598,12 +5598,8 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 570,
+      "line_number": 574,
       "line_range": [
-        570,
-        571,
-        572,
-        573,
         574,
         575,
         576,
@@ -5613,14 +5609,18 @@
         580,
         581,
         582,
-        583
+        583,
+        584,
+        585,
+        586,
+        587
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "569             # First run: check and fix what we can\n570             result = subprocess.run(\n571                 [\n572                     \"python3\",\n573                     \"-m\",\n574                     \"ruff\",\n575                     \"check\",\n576                     str(self.target_directory),\n577                     \"--fix\",\n578                     \"--unsafe-fixes\",\n579                 ],\n580                 capture_output=True,\n581                 text=True,\n582                 cwd=self.target_directory,\n583             )\n584 \n",
+      "code": "573             # First run: check and fix what we can\n574             result = subprocess.run(\n575                 [\n576                     \"python3\",\n577                     \"-m\",\n578                     \"ruff\",\n579                     \"check\",\n580                     str(self.target_directory),\n581                     \"--fix\",\n582                     \"--unsafe-fixes\",\n583                 ],\n584                 capture_output=True,\n585                 text=True,\n586                 cwd=self.target_directory,\n587             )\n588 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5631,12 +5631,8 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 570,
+      "line_number": 574,
       "line_range": [
-        570,
-        571,
-        572,
-        573,
         574,
         575,
         576,
@@ -5646,14 +5642,18 @@
         580,
         581,
         582,
-        583
+        583,
+        584,
+        585,
+        586,
+        587
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "585             # Second run: check what remains\n586             check_result = subprocess.run(\n587                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n588                 capture_output=True,\n589                 text=True,\n590                 cwd=self.target_directory,\n591             )\n592 \n",
+      "code": "589             # Second run: check what remains\n590             check_result = subprocess.run(\n591                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n592                 capture_output=True,\n593                 text=True,\n594                 cwd=self.target_directory,\n595             )\n596 \n",
       "col_offset": 27,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5664,21 +5664,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 586,
+      "line_number": 590,
       "line_range": [
-        586,
-        587,
-        588,
-        589,
         590,
-        591
+        591,
+        592,
+        593,
+        594,
+        595
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "585             # Second run: check what remains\n586             check_result = subprocess.run(\n587                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n588                 capture_output=True,\n589                 text=True,\n590                 cwd=self.target_directory,\n591             )\n592 \n",
+      "code": "589             # Second run: check what remains\n590             check_result = subprocess.run(\n591                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n592                 capture_output=True,\n593                 text=True,\n594                 cwd=self.target_directory,\n595             )\n596 \n",
       "col_offset": 27,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5689,21 +5689,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 586,
+      "line_number": 590,
       "line_range": [
-        586,
-        587,
-        588,
-        589,
         590,
-        591
+        591,
+        592,
+        593,
+        594,
+        595
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "630             # Run the subproject scrubber\n631             result = subprocess.run(\n632                 [\"python3\", str(scrubber_script)],\n633                 capture_output=True,\n634                 text=True,\n635                 cwd=self.target_directory,\n636                 timeout=300,  # 5 minutes timeout\n637             )\n638 \n",
+      "code": "634             # Run the subproject scrubber\n635             result = subprocess.run(\n636                 [\"python3\", str(scrubber_script)],\n637                 capture_output=True,\n638                 text=True,\n639                 cwd=self.target_directory,\n640                 timeout=300,  # 5 minutes timeout\n641             )\n642 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5714,22 +5714,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 631,
+      "line_number": 635,
       "line_range": [
-        631,
-        632,
-        633,
-        634,
         635,
         636,
-        637
+        637,
+        638,
+        639,
+        640,
+        641
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "630             # Run the subproject scrubber\n631             result = subprocess.run(\n632                 [\"python3\", str(scrubber_script)],\n633                 capture_output=True,\n634                 text=True,\n635                 cwd=self.target_directory,\n636                 timeout=300,  # 5 minutes timeout\n637             )\n638 \n",
+      "code": "634             # Run the subproject scrubber\n635             result = subprocess.run(\n636                 [\"python3\", str(scrubber_script)],\n637                 capture_output=True,\n638                 text=True,\n639                 cwd=self.target_directory,\n640                 timeout=300,  # 5 minutes timeout\n641             )\n642 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5740,22 +5740,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 631,
+      "line_number": 635,
       "line_range": [
-        631,
-        632,
-        633,
-        634,
         635,
         636,
-        637
+        637,
+        638,
+        639,
+        640,
+        641
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "667             # Get ONLY staged Python files (what git actually cares about)\n668             result = subprocess.run(\n669                 [\"git\", \"diff\", \"--cached\", \"--name-only\"],\n670                 capture_output=True,\n671                 text=True,\n672                 cwd=self.target_directory,\n673                 timeout=30,\n674             )\n675 \n",
+      "code": "671             # Get ONLY staged Python files (what git actually cares about)\n672             result = subprocess.run(\n673                 [\"git\", \"diff\", \"--cached\", \"--name-only\"],\n674                 capture_output=True,\n675                 text=True,\n676                 cwd=self.target_directory,\n677                 timeout=30,\n678             )\n679 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5766,22 +5766,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 668,
+      "line_number": 672,
       "line_range": [
-        668,
-        669,
-        670,
-        671,
         672,
         673,
-        674
+        674,
+        675,
+        676,
+        677,
+        678
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "667             # Get ONLY staged Python files (what git actually cares about)\n668             result = subprocess.run(\n669                 [\"git\", \"diff\", \"--cached\", \"--name-only\"],\n670                 capture_output=True,\n671                 text=True,\n672                 cwd=self.target_directory,\n673                 timeout=30,\n674             )\n675 \n",
+      "code": "671             # Get ONLY staged Python files (what git actually cares about)\n672             result = subprocess.run(\n673                 [\"git\", \"diff\", \"--cached\", \"--name-only\"],\n674                 capture_output=True,\n675                 text=True,\n676                 cwd=self.target_directory,\n677                 timeout=30,\n678             )\n679 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5792,22 +5792,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 668,
+      "line_number": 672,
       "line_range": [
-        668,
-        669,
-        670,
-        671,
         672,
         673,
-        674
+        674,
+        675,
+        676,
+        677,
+        678
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "700             print(\"   \ud83d\udd04 Executing pre-commit hooks on staged files...\")\n701             result = subprocess.run(\n702                 [\"python3\", \"-m\", \"pre_commit\", \"run\", \"--files\"] + python_files,\n703                 capture_output=True,\n704                 text=True,\n705                 cwd=self.target_directory,\n706                 timeout=60,  # 1 minute timeout (should be fast for staged files)\n707             )\n708 \n",
+      "code": "704             print(\"   \ud83d\udd04 Executing pre-commit hooks on staged files...\")\n705             result = subprocess.run(\n706                 [\"python3\", \"-m\", \"pre_commit\", \"run\", \"--files\"] + python_files,\n707                 capture_output=True,\n708                 text=True,\n709                 cwd=self.target_directory,\n710                 timeout=60,  # 1 minute timeout (should be fast for staged files)\n711             )\n712 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5818,22 +5818,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 701,
+      "line_number": 705,
       "line_range": [
-        701,
-        702,
-        703,
-        704,
         705,
         706,
-        707
+        707,
+        708,
+        709,
+        710,
+        711
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "1228         try:\n1229             ruff_check = subprocess.run(\n1230                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n1231                 capture_output=True,\n1232                 text=True,\n1233                 cwd=self.target_directory,\n1234             )\n1235             remaining_ruff_issues = self._parse_ruff_output(ruff_check.stdout)\n",
+      "code": "1236         try:\n1237             ruff_check = subprocess.run(\n1238                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n1239                 capture_output=True,\n1240                 text=True,\n1241                 cwd=self.target_directory,\n1242             )\n1243             remaining_ruff_issues = self._parse_ruff_output(ruff_check.stdout)\n",
       "col_offset": 25,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5844,21 +5844,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 1229,
+      "line_number": 1237,
       "line_range": [
-        1229,
-        1230,
-        1231,
-        1232,
-        1233,
-        1234
+        1237,
+        1238,
+        1239,
+        1240,
+        1241,
+        1242
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "1228         try:\n1229             ruff_check = subprocess.run(\n1230                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n1231                 capture_output=True,\n1232                 text=True,\n1233                 cwd=self.target_directory,\n1234             )\n1235             remaining_ruff_issues = self._parse_ruff_output(ruff_check.stdout)\n",
+      "code": "1236         try:\n1237             ruff_check = subprocess.run(\n1238                 [\"python3\", \"-m\", \"ruff\", \"check\", str(self.target_directory)],\n1239                 capture_output=True,\n1240                 text=True,\n1241                 cwd=self.target_directory,\n1242             )\n1243             remaining_ruff_issues = self._parse_ruff_output(ruff_check.stdout)\n",
       "col_offset": 25,
       "end_col_offset": 13,
       "filename": "src/multi_agent_testing/code_quality_automation_orchestrator.py",
@@ -5869,21 +5869,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 1229,
+      "line_number": 1237,
       "line_range": [
-        1229,
-        1230,
-        1231,
-        1232,
-        1233,
-        1234
+        1237,
+        1238,
+        1239,
+        1240,
+        1241,
+        1242
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "472                     ]\n473             except Exception:\n474                 pass\n475 \n",
+      "code": "474                     ]\n475             except Exception:\n476                 pass\n477 \n",
       "col_offset": 12,
       "end_col_offset": 20,
       "filename": "src/multi_agent_testing/multi_dimensional_smoke_test.py",
@@ -5894,10 +5894,10 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 473,
+      "line_number": 475,
       "line_range": [
-        473,
-        474
+        475,
+        476
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
@@ -6544,9 +6544,9 @@
       "test_name": "blacklist"
     },
     {
-      "code": "20     cloudformation_config = model.domains[\"cloudformation\"]\n21     assert (\n22         \"!Sub\" in cloudformation_config.content_indicators\n23     ), \"Content indicator missing\"\n24     assert \"cfn-lint\" in cloudformation_config.linter, \"Wrong linter selected\"\n",
+      "code": "20     cloudformation_config = model.domains[\"cloudformation\"]\n21     assert \"!Sub\" in cloudformation_config.content_indicators, (\n22         \"Content indicator missing\"\n23     )\n24     assert \"cfn-lint\" in cloudformation_config.linter, \"Wrong linter selected\"\n",
       "col_offset": 4,
-      "end_col_offset": 34,
+      "end_col_offset": 5,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -6566,7 +6566,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "23     ), \"Content indicator missing\"\n24     assert \"cfn-lint\" in cloudformation_config.linter, \"Wrong linter selected\"\n25 \n",
+      "code": "23     )\n24     assert \"cfn-lint\" in cloudformation_config.linter, \"Wrong linter selected\"\n25 \n",
       "col_offset": 4,
       "end_col_offset": 78,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
@@ -6586,9 +6586,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "26     # Test result\n27     assert (\n28         result.detected_domain == \"cloudformation\"\n29     ), f\"Wrong domain: {result.detected_domain}\"\n30     assert result.confidence > 0.5, f\"Low confidence: {result.confidence}\"\n",
+      "code": "26     # Test result\n27     assert result.detected_domain == \"cloudformation\", (\n28         f\"Wrong domain: {result.detected_domain}\"\n29     )\n30     assert result.confidence > 0.5, f\"Low confidence: {result.confidence}\"\n",
       "col_offset": 4,
-      "end_col_offset": 48,
+      "end_col_offset": 5,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -6608,7 +6608,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "29     ), f\"Wrong domain: {result.detected_domain}\"\n30     assert result.confidence > 0.5, f\"Low confidence: {result.confidence}\"\n31     assert \"cfn-lint\" in result.recommended_tools, \"Wrong tool recommended\"\n",
+      "code": "29     )\n30     assert result.confidence > 0.5, f\"Low confidence: {result.confidence}\"\n31     assert \"cfn-lint\" in result.recommended_tools, \"Wrong tool recommended\"\n",
       "col_offset": 4,
       "end_col_offset": 74,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
@@ -6768,9 +6768,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "107     cf_result = model.analyze_file(\"models/Openflow-Playground.yaml\")\n108     assert (\n109         cf_result.confidence > 0.6\n110     ), f\"Low confidence for CloudFormation: {cf_result.confidence}\"\n111 \n",
+      "code": "107     cf_result = model.analyze_file(\"models/Openflow-Playground.yaml\")\n108     assert cf_result.confidence > 0.6, (\n109         f\"Low confidence for CloudFormation: {cf_result.confidence}\"\n110     )\n111 \n",
       "col_offset": 4,
-      "end_col_offset": 67,
+      "end_col_offset": 5,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -6790,9 +6790,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "113     py_result = model.analyze_file(\"project_model.py\")\n114     assert (\n115         py_result.confidence > 0.6\n116     ), f\"Low confidence for Python: {py_result.confidence}\"\n117 \n",
+      "code": "113     py_result = model.analyze_file(\"project_model.py\")\n114     assert py_result.confidence > 0.6, (\n115         f\"Low confidence for Python: {py_result.confidence}\"\n116     )\n117 \n",
       "col_offset": 4,
-      "end_col_offset": 59,
+      "end_col_offset": 5,
       "filename": "src/multi_agent_testing/test_model_traceability.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -7252,7 +7252,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "92             # Run pydeps on the source directory\n93             result = subprocess.run(\n94                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n95                 capture_output=True,\n96                 text=True,\n97                 cwd=self.project_root\n98             )\n99             \n",
+      "code": "91             # Run pydeps on the source directory\n92             result = subprocess.run(\n93                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n94                 capture_output=True,\n95                 text=True,\n96                 cwd=self.project_root,\n97             )\n98 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_file_workflow_analyzer.py",
@@ -7263,21 +7263,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 93,
+      "line_number": 92,
       "line_range": [
+        92,
         93,
         94,
         95,
         96,
-        97,
-        98
+        97
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "92             # Run pydeps on the source directory\n93             result = subprocess.run(\n94                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n95                 capture_output=True,\n96                 text=True,\n97                 cwd=self.project_root\n98             )\n99             \n",
+      "code": "91             # Run pydeps on the source directory\n92             result = subprocess.run(\n93                 [\"uv\", \"run\", \"pydeps\", str(source_dir), \"--show-dot\"],\n94                 capture_output=True,\n95                 text=True,\n96                 cwd=self.project_root,\n97             )\n98 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/multi_file_workflow_analyzer.py",
@@ -7288,21 +7288,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 93,
+      "line_number": 92,
       "line_range": [
+        92,
         93,
         94,
         95,
         96,
-        97,
-        98
+        97
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "339                     \n340             except Exception as e:\n341                 continue\n342         \n",
+      "code": "354 \n355             except Exception as e:\n356                 continue\n357 \n",
       "col_offset": 12,
       "end_col_offset": 24,
       "filename": "src/multi_file_workflow_analyzer.py",
@@ -7313,17 +7313,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Continue detected.",
-      "line_number": 340,
+      "line_number": 355,
       "line_range": [
-        340,
-        341
+        355,
+        356
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
       "test_id": "B112",
       "test_name": "try_except_continue"
     },
     {
-      "code": "367                             \n368             except Exception as e:\n369                 continue\n370         \n",
+      "code": "383 \n384             except Exception as e:\n385                 continue\n386 \n",
       "col_offset": 12,
       "end_col_offset": 24,
       "filename": "src/multi_file_workflow_analyzer.py",
@@ -7334,10 +7334,10 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Continue detected.",
-      "line_number": 368,
+      "line_number": 384,
       "line_range": [
-        368,
-        369
+        384,
+        385
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
       "test_id": "B112",
@@ -7766,7 +7766,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "201         assert original.name == loaded.name, f\"Component name mismatch: {name}\"\n202         assert original.type == loaded.type, f\"Component type mismatch: {name}\"\n203         assert (\n",
+      "code": "201         assert original.name == loaded.name, f\"Component name mismatch: {name}\"\n202         assert original.type == loaded.type, f\"Component type mismatch: {name}\"\n203         assert original.description == loaded.description, (\n",
       "col_offset": 8,
       "end_col_offset": 79,
       "filename": "src/prove_round_trip.py",
@@ -7786,9 +7786,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "202         assert original.type == loaded.type, f\"Component type mismatch: {name}\"\n203         assert (\n204             original.description == loaded.description\n205         ), f\"Component description mismatch: {name}\"\n206         assert (\n",
+      "code": "202         assert original.type == loaded.type, f\"Component type mismatch: {name}\"\n203         assert original.description == loaded.description, (\n204             f\"Component description mismatch: {name}\"\n205         )\n206         assert original.requirements == loaded.requirements, (\n",
       "col_offset": 8,
-      "end_col_offset": 52,
+      "end_col_offset": 9,
       "filename": "src/prove_round_trip.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -7808,9 +7808,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "205         ), f\"Component description mismatch: {name}\"\n206         assert (\n207             original.requirements == loaded.requirements\n208         ), f\"Component requirements mismatch: {name}\"\n209         assert (\n",
+      "code": "205         )\n206         assert original.requirements == loaded.requirements, (\n207             f\"Component requirements mismatch: {name}\"\n208         )\n209         assert original.dependencies == loaded.dependencies, (\n",
       "col_offset": 8,
-      "end_col_offset": 53,
+      "end_col_offset": 9,
       "filename": "src/prove_round_trip.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -7830,9 +7830,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "208         ), f\"Component requirements mismatch: {name}\"\n209         assert (\n210             original.dependencies == loaded.dependencies\n211         ), f\"Component dependencies mismatch: {name}\"\n212 \n",
+      "code": "208         )\n209         assert original.dependencies == loaded.dependencies, (\n210             f\"Component dependencies mismatch: {name}\"\n211         )\n212 \n",
       "col_offset": 8,
-      "end_col_offset": 53,
+      "end_col_offset": 9,
       "filename": "src/prove_round_trip.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8831,9 +8831,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "50             # Check that it uses placeholder patterns\n51             assert (\n52                 \"YOUR_\" in content or \"${\" in content\n53             ), f\"{config_file} should use placeholders\"\n54 \n",
+      "code": "50             # Check that it uses placeholder patterns\n51             assert \"YOUR_\" in content or \"${\" in content, (\n52                 f\"{config_file} should use placeholders\"\n53             )\n54 \n",
       "col_offset": 12,
-      "end_col_offset": 55,
+      "end_col_offset": 13,
       "filename": "src/security_first/test_security_model.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -10029,7 +10029,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "293             # Check if PlantUML is available\n294             result = subprocess.run(\n295                 [\"plantuml\", \"-version\"],\n296                 capture_output=True,\n297                 text=True\n298             )\n299             \n",
+      "code": "311             # Check if PlantUML is available\n312             result = subprocess.run(\n313                 [\"plantuml\", \"-version\"], capture_output=True, text=True\n314             )\n315 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/uml_activity_generator.py",
@@ -10040,20 +10040,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 294,
+      "line_number": 312,
       "line_range": [
-        294,
-        295,
-        296,
-        297,
-        298
+        312,
+        313,
+        314
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "293             # Check if PlantUML is available\n294             result = subprocess.run(\n295                 [\"plantuml\", \"-version\"],\n296                 capture_output=True,\n297                 text=True\n298             )\n299             \n",
+      "code": "311             # Check if PlantUML is available\n312             result = subprocess.run(\n313                 [\"plantuml\", \"-version\"], capture_output=True, text=True\n314             )\n315 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/uml_activity_generator.py",
@@ -10064,22 +10062,20 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 294,
+      "line_number": 312,
       "line_range": [
-        294,
-        295,
-        296,
-        297,
-        298
+        312,
+        313,
+        314
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "311                     # Generate PNG\n312                     subprocess.run([\n313                         \"plantuml\", \"-tpng\", temp_file\n314                     ], cwd=os.path.dirname(temp_file))\n315                     \n",
+      "code": "329                     # Generate PNG\n330                     subprocess.run(\n331                         [\"plantuml\", \"-tpng\", temp_file], cwd=os.path.dirname(temp_file)\n332                     )\n333 \n",
       "col_offset": 20,
-      "end_col_offset": 54,
+      "end_col_offset": 21,
       "filename": "src/uml_activity_generator.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -10088,20 +10084,20 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 312,
+      "line_number": 330,
       "line_range": [
-        312,
-        313,
-        314
+        330,
+        331,
+        332
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "311                     # Generate PNG\n312                     subprocess.run([\n313                         \"plantuml\", \"-tpng\", temp_file\n314                     ], cwd=os.path.dirname(temp_file))\n315                     \n",
+      "code": "329                     # Generate PNG\n330                     subprocess.run(\n331                         [\"plantuml\", \"-tpng\", temp_file], cwd=os.path.dirname(temp_file)\n332                     )\n333 \n",
       "col_offset": 20,
-      "end_col_offset": 54,
+      "end_col_offset": 21,
       "filename": "src/uml_activity_generator.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -10110,11 +10106,11 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 312,
+      "line_number": 330,
       "line_range": [
-        312,
-        313,
-        314
+        330,
+        331,
+        332
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -10311,7 +10307,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "291                     # Run pydeps analysis\n292                     result = subprocess.run(\n293                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n294                         capture_output=True, text=True, cwd=self.project_root\n295                     )\n296                     \n",
+      "code": "305                     # Run pydeps analysis\n306                     result = subprocess.run(\n307                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n308                         capture_output=True,\n309                         text=True,\n310                         cwd=self.project_root,\n311                     )\n312 \n",
       "col_offset": 29,
       "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
@@ -10322,19 +10318,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 292,
+      "line_number": 306,
       "line_range": [
-        292,
-        293,
-        294,
-        295
+        306,
+        307,
+        308,
+        309,
+        310,
+        311
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "291                     # Run pydeps analysis\n292                     result = subprocess.run(\n293                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n294                         capture_output=True, text=True, cwd=self.project_root\n295                     )\n296                     \n",
+      "code": "305                     # Run pydeps analysis\n306                     result = subprocess.run(\n307                         [\"uv\", \"run\", \"pydeps\", \"--show-dot\", selected_file],\n308                         capture_output=True,\n309                         text=True,\n310                         cwd=self.project_root,\n311                     )\n312 \n",
       "col_offset": 29,
       "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
@@ -10345,19 +10343,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 292,
+      "line_number": 306,
       "line_range": [
-        292,
-        293,
-        294,
-        295
+        306,
+        307,
+        308,
+        309,
+        310,
+        311
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "350                     # Use ast2json for extraction\n351                     result = subprocess.run(\n352                         [\"uv\", \"run\", \"python\", \"-c\", \n353                          f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\"],\n354                         capture_output=True, text=True, cwd=self.project_root\n355                     )\n356                     \n",
+      "code": "374                     # Use ast2json for extraction\n375                     result = subprocess.run(\n376                         [\n377                             \"uv\",\n378                             \"run\",\n379                             \"python\",\n380                             \"-c\",\n381                             f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\",\n382                         ],\n383                         capture_output=True,\n384                         text=True,\n385                         cwd=self.project_root,\n386                     )\n387 \n",
       "col_offset": 29,
       "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
@@ -10368,20 +10368,27 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 351,
+      "line_number": 375,
       "line_range": [
-        351,
-        352,
-        353,
-        354,
-        355
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "350                     # Use ast2json for extraction\n351                     result = subprocess.run(\n352                         [\"uv\", \"run\", \"python\", \"-c\", \n353                          f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\"],\n354                         capture_output=True, text=True, cwd=self.project_root\n355                     )\n356                     \n",
+      "code": "374                     # Use ast2json for extraction\n375                     result = subprocess.run(\n376                         [\n377                             \"uv\",\n378                             \"run\",\n379                             \"python\",\n380                             \"-c\",\n381                             f\"import ast2json; import ast; print(ast2json.str2json(open('{selected_file}').read()))\",\n382                         ],\n383                         capture_output=True,\n384                         text=True,\n385                         cwd=self.project_root,\n386                     )\n387 \n",
       "col_offset": 29,
       "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
@@ -10392,22 +10399,29 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 351,
+      "line_number": 375,
       "line_range": [
-        351,
-        352,
-        353,
-        354,
-        355
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "520                     # Check if pydeps is available\n521                     result = subprocess.run([\"uv\", \"run\", \"pydeps\", \"--help\"], \n522                                           capture_output=True, text=True)\n523                     components_status[component_name] = result.returncode == 0\n",
+      "code": "575                     # Check if pydeps is available\n576                     result = subprocess.run(\n577                         [\"uv\", \"run\", \"pydeps\", \"--help\"],\n578                         capture_output=True,\n579                         text=True,\n580                     )\n581                     components_status[component_name] = result.returncode == 0\n",
       "col_offset": 29,
-      "end_col_offset": 73,
+      "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -10416,19 +10430,22 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 521,
+      "line_number": 576,
       "line_range": [
-        521,
-        522
+        576,
+        577,
+        578,
+        579,
+        580
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "520                     # Check if pydeps is available\n521                     result = subprocess.run([\"uv\", \"run\", \"pydeps\", \"--help\"], \n522                                           capture_output=True, text=True)\n523                     components_status[component_name] = result.returncode == 0\n",
+      "code": "575                     # Check if pydeps is available\n576                     result = subprocess.run(\n577                         [\"uv\", \"run\", \"pydeps\", \"--help\"],\n578                         capture_output=True,\n579                         text=True,\n580                     )\n581                     components_status[component_name] = result.returncode == 0\n",
       "col_offset": 29,
-      "end_col_offset": 73,
+      "end_col_offset": 21,
       "filename": "src/workflow_visualization_gui.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -10437,10 +10454,13 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 521,
+      "line_number": 576,
       "line_range": [
-        521,
-        522
+        576,
+        577,
+        578,
+        579,
+        580
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",

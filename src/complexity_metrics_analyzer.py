@@ -159,9 +159,9 @@ class ComplexityMetricsAnalyzer:
         complexity_metrics["overall_metrics"]["total_lines"] = self._count_lines(
             ast_tree
         )
-        complexity_metrics["overall_metrics"]["max_nesting"] = (
-            self._calculate_max_nesting(ast_tree)
-        )
+        complexity_metrics["overall_metrics"][
+            "max_nesting"
+        ] = self._calculate_max_nesting(ast_tree)
 
         return complexity_metrics
 

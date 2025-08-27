@@ -315,9 +315,7 @@ class SecurityQualityGate:
         if gate_passed:
             recommendations.append("✅ Security quality gate passed")
             if metrics.security_score < 90.0:
-                recommendations.append(
-                    "📈 Consider improving security score above 90.0"
-                )
+                recommendations.append("📈 Consider improving security score above 90.0")
         else:
             recommendations.append("❌ Security quality gate failed")
 

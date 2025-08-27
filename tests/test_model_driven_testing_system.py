@@ -81,9 +81,9 @@ class TestModelDrivenTestingSystem:
                 main_test_file = test_file
                 break
 
-        assert main_test_file is not None, (
-            "Should generate a test for GhostbustersOrchestrator"
-        )
+        assert (
+            main_test_file is not None
+        ), "Should generate a test for GhostbustersOrchestrator"
 
         # Test that the generated test can be imported (SAFE - no execution)
         try:

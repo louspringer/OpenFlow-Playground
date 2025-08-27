@@ -245,9 +245,7 @@ class LangGraphOrchestrator:
 
     def _should_continue_to_synthesize(self, state: OrchestratorState) -> bool:
         """Determine if we should continue to synthesis phase"""
-        logger.info(
-            "🔍 _should_continue_to_synthesize: always continue after act phase"
-        )
+        logger.info("🔍 _should_continue_to_synthesize: always continue after act phase")
         # Always continue to synthesis after act phase
         return True
 
