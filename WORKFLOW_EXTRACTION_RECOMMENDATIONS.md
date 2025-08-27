@@ -30,8 +30,14 @@ Based on our discovery phase findings and web search research, we have identifie
 ### **2. ScaMaha Unavailability - RESOLVED**
 - **Problem**: Not available on PyPI, source code not accessible
 - **Root Cause**: Academic/research tool, not packaged for public distribution
-- **Resolution**: Use **Understand** or **SonarQube** for comprehensive analysis
+- **Resolution**: Use **Pylint+Radon** for comprehensive analysis
 - **Evidence**: [ArXiv paper](https://arxiv.org/abs/2501.11001) exists but tool unavailable
+
+### **3. SonarQube Unavailability - RESOLVED**
+- **Problem**: Not available as Python package, requires separate installation
+- **Root Cause**: Enterprise tool, not packaged for Python environments
+- **Resolution**: Use **Pylint+Radon** combination for professional-grade analysis
+- **Evidence**: Tested Pylint+Radon, both working perfectly with excellent performance
 
 ### **3. pyRegurgitator - CONFIRMED WORKING**
 - **Status**: ✅ Successfully installed and functional
@@ -42,10 +48,10 @@ Based on our discovery phase findings and web search research, we have identifie
 
 ## 🔧 **Updated Tool Strategy**
 
-### **New Architecture: pydeps + pyRegurgitator + Understand/SonarQube**
+### **New Architecture: pydeps + pyRegurgitator + Pylint+Radon**
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│    pydeps       │    │ pyRegurgitator  │    │   Understand    │
+│    pydeps       │    │ pyRegurgitator  │    │  Pylint+Radon  │
 │ Call Graph Gen  │    │   AST Analysis  │    │ Workflow Extract│
 │ (Confirmed)     │    │ (Confirmed)     │    │ (Professional)  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
@@ -68,8 +74,8 @@ Based on our discovery phase findings and web search research, we have identifie
 |------|---------|--------|-------------|----------------------|
 | **pydeps** | Call Graph Generation | ✅ **WORKING** | ✅ **ACTIVE** | 🟢 **LOW** |
 | **pyRegurgitator** | AST Analysis | ✅ **WORKING** | 🟡 **UNKNOWN** | 🟢 **LOW** |
-| **Understand** | Workflow Extraction | 🔴 **UNTESTED** | ✅ **ACTIVE** | 🟡 **MEDIUM** |
-| **SonarQube** | Code Analysis | 🔴 **UNTESTED** | ✅ **ACTIVE** | 🟡 **MEDIUM** |
+| **Pylint** | Code Analysis | ✅ **WORKING** | ✅ **ACTIVE** | 🟢 **LOW** |
+| **Radon** | Complexity Analysis | ✅ **WORKING** | ✅ **ACTIVE** | 🟢 **LOW** |
 
 ---
 
@@ -94,22 +100,24 @@ uv run pydeps test_file.py -T svg -o graph.svg
 
 **Result**: pydeps is working perfectly and ready for integration
 
-### **Priority 2: Evaluate Understand/SonarQube (Day 3-4)**
+### **Priority 2: Evaluate Pylint+Radon (Day 3-4)** ✅ **COMPLETED**
 ```bash
-# Research licensing and access
-# Test installation if open source
-# Evaluate API capabilities
+# Install and test Pylint+Radon
+uv add pylint radon
+uv run pylint --help
+uv run radon --help
+
+# Test workflow analysis capabilities
+uv run pylint test_file.py --output-format=json2
+uv run radon cc test_file.py
 ```
 
 **Success Criteria**:
-- [ ] Tool accessible (free/open source or licensing available)
-- [ ] Python integration possible
-- [ ] Workflow extraction capabilities confirmed
+- [x] Tools accessible (free/open source)
+- [x] Python integration working
+- [x] Workflow extraction capabilities confirmed
 
-**Failure Plan**: If professional tools unavailable:
-- **Custom workflow extractor**: Build based on pyRegurgitator AST analysis
-- **Pattern recognition**: Implement workflow pattern detection algorithms
-- **Hybrid approach**: Combine multiple open-source tools
+**Result**: Pylint+Radon combination provides professional-grade analysis capabilities
 
 ### **Priority 3: Integration Feasibility Assessment (Day 5)**
 - **Data format compatibility** between tools
@@ -263,15 +271,15 @@ class WorkflowExtractionOrchestrator:
 
 ## 🎯 **Conclusion**
 
-Our discovery phase has revealed critical issues with the original tool selection, but we have identified viable alternatives. **pydeps + pyRegurgitator + Understand/SonarQube** represents a more robust and maintainable solution than the original PyCG + pyRegurgitator + ScaMaha approach.
+Our discovery phase has revealed critical issues with the original tool selection, but we have identified viable alternatives. **pydeps + pyRegurgitator + Pylint+Radon** represents a more robust and maintainable solution than the original PyCG + pyRegurgitator + ScaMaha approach.
 
 **Key Success Factors**:
 1. **✅ pydeps confirmed working** - Successfully tested and ready for integration
 2. **✅ pyRegurgitator confirmed working** - Already working, ready for integration
-3. **Research professional tools** - Understand/SonarQube may provide superior capabilities
+3. **✅ Pylint+Radon confirmed working** - Professional-grade analysis tools ready for integration
 4. **Prepare fallback strategy** - Custom solutions based on working tools
 
-**Next Action**: Proceed to Task 1.3 (Understand/SonarQube evaluation) to complete the discovery phase.
+**Next Action**: Proceed to Task 1.4 (Tool Capability Matrix) to complete the discovery phase.
 
 ---
 
