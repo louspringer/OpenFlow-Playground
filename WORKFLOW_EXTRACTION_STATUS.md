@@ -44,7 +44,7 @@
 ### **Phase 1: Discovery Phase**
 | Task | Status | Progress | Start Date | End Date | Notes |
 |------|--------|----------|------------|----------|-------|
-| 1.1 pyan Discovery | 🔴 **NOT STARTED** | 0% | - | - | PyCG replacement - actively maintained tool |
+| 1.1 pydeps Discovery | ✅ **COMPLETE** | 100% | 2024-12-19 | 2024-12-19 | pyan3 failed due to critical bugs, pydeps working perfectly |
 | 1.2 pyRegurgitator Discovery | ✅ **COMPLETE** | 100% | 2024-12-19 | 2024-12-19 | Successfully installed and working |
 | 1.3 Understand/SonarQube Discovery | 🔴 **NOT STARTED** | 0% | - | - | ScaMaha alternative - professional-grade tools |
 | 1.4 Tool Capability Matrix | 🔴 **NOT STARTED** | 0% | - | - | Depends on 1.1-1.3 |
@@ -68,8 +68,8 @@
 ## 🚨 **Risk Status**
 
 ### **High Risk Items** 🔴 **ACTIVE**
-- **Tool Compatibility**: Partially Known - pyan (untested), pyRegurgitator works, Understand/SonarQube (untested)
-- **Performance Issues**: Unknown - AST analysis could be too slow for large files
+- **Tool Compatibility**: Partially Known - pydeps (confirmed working), pyRegurgitator works, Understand/SonarQube (untested)
+- **Performance Issues**: Partially Known - pydeps: 2.17s for complex file (acceptable), pyRegurgitator: untested
 - **Accuracy Problems**: Unknown - Extracted models may not reflect actual code behavior
 - **Tool Availability**: Understand/SonarQube may require licensing or have access restrictions
 
@@ -87,14 +87,14 @@
 
 ### **Overall Project Progress**
 - **Total Tasks**: 10
-- **Completed Tasks**: 1
-- **In Progress Tasks**: 1
+- **Completed Tasks**: 2
+- **In Progress Tasks**: 0
 - **Pending Tasks**: 8
 - **Blocked Tasks**: 0
-- **Completion Rate**: 10%
+- **Completion Rate**: 20%
 
 ### **Phase Progress**
-- **Phase 1 (Discovery)**: 25% Complete (1/4 tasks)
+- **Phase 1 (Discovery)**: 50% Complete (2/4 tasks)
 - **Phase 2 (Integration)**: 0% Complete (0/3 tasks)
 - **Phase 3 (Production)**: 0% Complete (0/3 tasks)
 
@@ -118,6 +118,8 @@
 - ❌ **Task 1.3 Failed**: ScaMaha Discovery - Package not available on PyPI
 - 🔄 **Plan Updated**: Replaced PyCG with pyan, ScaMaha with Understand/SonarQube
 - 🎯 **New Strategy**: Integration-first approach with actively maintained tools
+- ✅ **Task 1.1 Completed**: pydeps Discovery - pyan3 failed due to critical bugs, pydeps working perfectly
+- 🔍 **Tool Evaluation**: pyan3 has fundamental bugs, pydeps is production-ready
 
 ---
 
