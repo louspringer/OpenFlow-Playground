@@ -1,3 +1,6 @@
 [submodule "subprojects/ontology-framework"]
 	path = subprojects/ontology-framework
 	url = https://github.com/louspringer/ontology-framework.git
+[submodule "awesome-cursor-rules-mdc"]
+	path = awesome-cursor-rules-mdc
+	url = https://github.com/louspringer/awesome-cursor-rules-mdc.git
