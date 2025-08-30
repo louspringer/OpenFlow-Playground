@@ -4,3 +4,6 @@
 [submodule "awesome-cursor-rules-mdc"]
 	path = awesome-cursor-rules-mdc
 	url = https://github.com/louspringer/awesome-cursor-rules-mdc.git
+[submodule "external/staruml-python"]
+	path = external/staruml-python
+	url = https://github.com/niklauslee/staruml-python.git
