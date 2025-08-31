@@ -7,3 +7,6 @@
 [submodule "external/staruml-python"]
 	path = external/staruml-python
 	url = https://github.com/niklauslee/staruml-python.git
+[submodule "external/voice-mode"]
+	path = external/voice-mode
+	url = https://github.com/mbailey/voicemode.git
