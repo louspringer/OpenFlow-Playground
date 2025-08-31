@@ -23,13 +23,13 @@ streamlit-demo-app: ## Streamlit demo app operations
 	@echo "  Status: Available for app management"
 
 # Demo Tools Domains
-.PHONY: demo-tools ghostbusters intelligent-linter code-quality multi-agent-testing model-driven-testing
+.PHONY: demo-tools ghostbusters intelligent-linter code-quality multi-agent-testing model-driven-testing round-trip-engineering
 
-demo-tools: ghostbusters intelligent-linter code-quality multi-agent-testing model-driven-testing ## Demo tools functionality
+demo-tools: ghostbusters intelligent-linter code-quality multi-agent-testing model-driven-testing round-trip-engineering ## Demo tools functionality
 
 ghostbusters: ## Ghostbusters paranormal investigation system
 	@echo "$(BLUE)👻 Ghostbusters Operations$(NC)"
-	@echo "  Status: Multi-agent delusion detection available"
+	@uv run python -c "from src.ghostbusters.availability_test import GhostbustersAvailabilityTest; import asyncio; tester = GhostbustersAvailabilityTest(); results = asyncio.run(tester.run_comprehensive_test()); print('  ' + tester.get_status_message())" 2>/dev/null || echo "  Status: Multi-agent system status unknown - run availability test for details"
 
 intelligent-linter: ## Intelligent linter system
 	@echo "$(BLUE)🧹 Intelligent Linter System$(NC)"
@@ -47,10 +47,31 @@ model-driven-testing: ## Model-driven testing system
 	@echo "$(BLUE)📊 Model-Driven Testing$(NC)"
 	@echo "  Status: Model-based validation available"
 
+# Round-Trip Engineering Domain
+.PHONY: round-trip-engineering json-model-manager voice-mode-integration round-trip-cli
+
+round-trip-engineering: json-model-manager voice-mode-integration round-trip-cli ## Round-trip engineering system
+
+json-model-manager: ## JSON Model Manager for project model updates
+	@echo "$(BLUE)🔧 JSON Model Manager$(NC)"
+	@uv run python -c "from src.round_trip_engineering.tools.json_model_manager import JSONModelManager; manager = JSONModelManager(); print('  Status: ' + ('Available' if manager.is_healthy() else 'Unavailable')); print('  Capabilities: ' + ', '.join(manager.get_module_capabilities()['json_operations']))" 2>/dev/null || echo "  Status: JSON Model Manager not available"
+
+voice-mode-integration: ## Voice Mode MCP integration for round-trip engineering
+	@echo "$(BLUE)🎤 Voice Mode MCP Integration$(NC)"
+	@uvx voice-mode --version >/dev/null 2>&1 && echo "  Status: ✅ Available" || echo "  Status: ❌ Not available"
+	@echo "  MCP Configuration: $(shell test -f .cursor/mcp.json && echo '✅ Configured' || echo '❌ Not configured')"
+	@echo "  Voice Commands: 10 commands available for round-trip engineering"
+
+round-trip-cli: ## Round-trip engineering command-line interface
+	@echo "$(BLUE)🔧 Round-Trip Engineering CLI$(NC)"
+	@test -f scripts/round_trip_cli.py && echo "  Status: ✅ Available" || echo "  Status: ❌ Not available"
+	@echo "  Commands: reverse, forward, round-trip, compare, status"
+	@echo "  Interface: Documented public interfaces only"
+
 # Demo Infrastructure Domains
 .PHONY: demo-infrastructure model-driven-projection mdc-generator security-first healthcare-cdc
 
-demo-infrastructure: model-driven-projection mdc-generator security-first healthcare-cdc ## Demo infrastructure
+demo-infrastructure: model-driven-projection mdc-generator security-first healthcare-cdc model-management ## Demo infrastructure
 
 model-driven-projection: ## Model-driven projection system
 	@echo "$(BLUE)🎯 Model-Driven Projection$(NC)"
@@ -94,10 +115,30 @@ distributed-security: ## Distributed security scanning
 
 demo-utilities: bash-utils documentation-utils data-utils cloudformation-utils go-utils secure-shell-utils ## Demo utilities
 
+# Model Management Domain
+.PHONY: model-management validate-model
+
+model-management: validate-model ## Model management and validation
+
 # Backlog Management Domain
 .PHONY: backlog-suite backlog-display backlog-create backlog-update backlog-complete backlog-health backlog-search
 
 backlog-suite: backlog-display backlog-health backlog-search ## Comprehensive backlog management
+
+# Model Validation Domain
+.PHONY: validate-model validate-project-model
+
+validate-model: validate-project-model ## Validate project model registry
+
+validate-project-model: ## Validate project model registry against schema
+	@echo "$(BLUE)🔍 Project Model Validation$(NC)"
+	@echo "  Validating JSON syntax..."
+	@jq -e . project_model_registry.json > /dev/null
+	@echo "  Validating against schema..."
+	@jsonschema -i project_model_registry.json project_model_registry.schema.json
+	@echo "  Running Python validation script..."
+	@uv run python scripts/validate_project_model.py
+	@echo "  ✅ Project model validation passed!"
 
 backlog-display: ## Display current backlog items by priority
 	@echo "$(CYAN)📋 OpenFlow Playground - Backlog Status$(NC)"

@@ -56,6 +56,7 @@ class ImportGenerator:
             "pydantic": set(),
             "enum": set(),
             "standard": set(),
+            "reflective_modules": set(),
         }
 
         components = extracted_model.get("components", {})
@@ -75,6 +76,14 @@ class ImportGenerator:
                     needed_imports["pydantic"].add("BaseModel")
                 if "Enum" in base:
                     needed_imports["enum"].add("Enum")
+                if "ReflectiveModule" in base:
+                    needed_imports["reflective_modules"].add("ReflectiveModule")
+                    needed_imports["reflective_modules"].add("ModuleStatus")
+                    needed_imports["reflective_modules"].add("ModuleHealth")
+                    needed_imports["reflective_modules"].add("ModuleCapability")
+                    needed_imports["typing"].add("List")
+                    needed_imports["typing"].add("Dict")
+                    needed_imports["typing"].add("Any")
 
             # Check methods for typing needs
             methods = class_info.get("methods", [])
@@ -91,6 +100,41 @@ class ImportGenerator:
                         needed_imports["typing"].add("Any")
                     if "Union" in return_type:
                         needed_imports["typing"].add("Union")
+                    if "BaseModel" in return_type:
+                        needed_imports["pydantic"].add("BaseModel")
+
+            # Check for Reflective Module interface needs
+            # Look for methods that suggest operational monitoring
+            operational_methods = [
+                "get_status",
+                "get_health",
+                "get_capabilities",
+                "is_healthy",
+                "get_module_status",
+                "get_module_health",
+                "get_module_capabilities",
+                "get_graceful_degradation_info",
+            ]
+            for method in methods:
+                method_name = method.get("name", "")
+                if any(
+                    op_method in method_name.lower()
+                    for op_method in operational_methods
+                ):
+                    needed_imports["reflective_modules"].add("ReflectiveModule")
+                    needed_imports["reflective_modules"].add("ModuleStatus")
+                    needed_imports["reflective_modules"].add("ModuleHealth")
+                    needed_imports["reflective_modules"].add("ModuleCapability")
+                    needed_imports["typing"].add("List")
+                    needed_imports["typing"].add("Dict")
+                    needed_imports["typing"].add("Any")
+                    break
+
+        # Always include Pydantic for modern Python development
+        if not needed_imports["pydantic"]:
+            needed_imports["pydantic"].add("BaseModel")
+            needed_imports["pydantic"].add("Field")
+            needed_imports["pydantic"].add("validator")
 
         return needed_imports
 
@@ -116,6 +160,13 @@ class ImportGenerator:
         if needed_imports["enum"]:
             enum_imports = sorted(needed_imports["enum"])
             import_lines.append(f"from enum import {', '.join(enum_imports)}")
+
+        # Add Reflective Module imports
+        if needed_imports["reflective_modules"]:
+            reflective_imports = sorted(needed_imports["reflective_modules"])
+            import_lines.append(
+                f"from src.reflective_modules import {', '.join(reflective_imports)}"
+            )
 
         # Add standard imports
         if needed_imports["standard"]:

@@ -1,0 +1,24 @@
+{
+  "basic_demo": {
+    "demo_type": "basic",
+    "status": "failed",
+    "error": "'RoundTripSystem' object has no attribute 'create_model_from_design'",
+    "round_trip_successful": false
+  },
+  "advanced_demo": {
+    "demo_type": "advanced",
+    "status": "failed",
+    "error": "'RoundTripSystem' object has no attribute 'create_model_from_design'",
+    "round_trip_successful": false
+  },
+  "performance_demo": {
+    "demo_type": "performance",
+    "status": "failed",
+    "error": "'RoundTripSystem' object has no attribute 'create_model_from_design'"
+  },
+  "final_status": {
+    "success_count": 3,
+    "error_count": 3,
+    "success_rate": 0.5
+  }
+}

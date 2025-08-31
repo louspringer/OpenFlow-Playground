@@ -56,6 +56,7 @@ help: ## Show this help message
 	@echo "$(PURPLE)Domains:$(NC)"
 	@echo "  demo-core              - Demo core functionality"
 	@echo "  demo-tools             - Demo tools functionality"
+	@echo "  round-trip-engineering - Round-trip engineering system"
 	@echo "  ghostbusters           - Ghostbusters operations"
 	@echo "  security-first         - Security-first development"
 	@echo "  backlog-suite          - Comprehensive backlog management"
@@ -65,6 +66,7 @@ help: ## Show this help message
 	@echo "  make test              - Run all tests"
 	@echo "  make install           - Install all dependencies"
 	@echo "  make ghostbusters      - Test Ghostbusters system"
+	@echo "  make round-trip-engineering - Test round-trip engineering system"
 
 status: ## Show comprehensive project status
 	@echo "$(CYAN)🚀 OpenFlow Playground - Comprehensive Status Report$(NC)"

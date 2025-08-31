@@ -37,7 +37,29 @@ class MethodGenerator:
             decorators = method_info.get("decorators", [])
             return_type = method_info.get("return_type", "Any")
             is_async = method_info.get("is_async", False)
+
+            # Handle both enhanced parser format (arguments) and legacy format (parameters)
             parameters = method_info.get("parameters", [])
+            if not parameters and "arguments" in method_info:
+                # Convert enhanced parser format to method generator format
+                enhanced_args = method_info.get("arguments", [])
+                parameters = []
+                for arg in enhanced_args:
+                    # Skip 'self' parameter as it's added automatically by the method generator
+                    if arg.get("name") == "self":
+                        continue
+                    param = {
+                        "name": arg.get("name", "param"),
+                        "type": arg.get("type", "Any"),
+                        "default": arg.get("default"),
+                    }
+                    parameters.append(param)
+
+            # Ensure return_type is a string
+            if hasattr(return_type, "__str__"):
+                return_type = str(return_type)
+            else:
+                return_type = "Any"
 
             # Build method signature
             method_sig = self._build_method_signature(

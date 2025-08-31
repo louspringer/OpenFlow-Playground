@@ -143,6 +143,8 @@ dev-dependencies = [
     "safety>=3.6.0",
     "detect-secrets>=1.5.0",
     "semgrep>=1.79.0",
+    "snakeviz>=2.2.2",
+    "viztracer>=1.0.4",
 ]
 
 # Security tools are now in [project.optional-dependencies.security]

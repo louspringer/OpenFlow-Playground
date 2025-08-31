@@ -197,6 +197,34 @@
           }
         }
       }
+    },
+    "requirements_traceability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "implementation": {
+            "type": "string"
+          },
+          "test": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requirement",
+          "domain",
+          "test"
+        ]
+      }
     }
   },
   "required": [

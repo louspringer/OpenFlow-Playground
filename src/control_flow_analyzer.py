@@ -496,6 +496,45 @@ class ControlFlowAnalyzer:
                                 node_info.update(call_info)
 
                         graph["nodes"].append(node_info)
+                else:
+                    # Regular if statement
+                    control_flow.append(
+                        {
+                            "type": "If",
+                            "lineno": getattr(node, "lineno", 0),
+                            "body_statements": len(node.body),
+                            "has_else": len(node.orelse) > 0,
+                        }
+                    )
+            elif isinstance(node, ast.For):
+                control_flow.append(
+                    {
+                        "type": "For",
+                        "lineno": getattr(node, "lineno", 0),
+                        "body_statements": len(node.body),
+                        "has_else": len(node.orelse) > 0,
+                    }
+                )
+            elif isinstance(node, ast.While):
+                control_flow.append(
+                    {
+                        "type": "While",
+                        "lineno": getattr(node, "lineno", 0),
+                        "body_statements": len(node.body),
+                        "has_else": len(node.orelse) > 0,
+                    }
+                )
+            elif isinstance(node, ast.Try):
+                control_flow.append(
+                    {
+                        "type": "Try",
+                        "lineno": getattr(node, "lineno", 0),
+                        "body_statements": len(node.body),
+                        "handlers": len(node.handlers),
+                        "has_else": len(node.orelse) > 0,
+                        "has_finally": len(node.finalbody) > 0,
+                    }
+                )
 
         graph["control_flow"] = control_flow
 

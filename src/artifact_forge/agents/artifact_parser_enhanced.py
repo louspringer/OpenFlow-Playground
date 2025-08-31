@@ -95,7 +95,7 @@ class EnhancedArtifactParser:
             parsed_data = {
                 "imports": self._extract_imports(tree),
                 "functions": self._extract_functions(tree),
-                "classes": self._extract_classes(tree),
+                "classes": self._extract_classes(tree, content),
                 "variables": self._extract_variables(tree),
                 "complexity": self._calculate_complexity(tree),
                 "line_count": len(lines),
@@ -523,20 +523,64 @@ class EnhancedArtifactParser:
                 )
         return functions
 
-    def _extract_classes(self, tree: ast.AST) -> list[dict[str, Any]]:
-        """Extract class definitions"""
+    def _extract_classes(self, tree: ast.AST, source: str) -> list[dict[str, Any]]:
+        """Extract class definitions with full method implementations and inheritance using built-in AST capabilities"""
         classes = []
+
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
+                # Extract inheritance relationships using ast.unparse
+                bases = [
+                    ast.unparse(base) if hasattr(ast, "unparse") else str(base)
+                    for base in node.bases
+                ]
+
+                # Extract methods with full implementations
+                methods = []
+                for child in node.body:
+                    if isinstance(child, ast.FunctionDef):
+                        method_info = self._extract_method_details(child, source)
+                        if method_info:
+                            methods.append(method_info)
+
+                # Extract class variables
+                class_vars = []
+                for child in node.body:
+                    if isinstance(child, ast.Assign):
+                        for target in child.targets:
+                            if isinstance(target, ast.Name):
+                                class_vars.append(
+                                    {
+                                        "name": target.id,
+                                        "line_number": child.lineno,
+                                        "value": (
+                                            ast.unparse(child)
+                                            if hasattr(ast, "unparse")
+                                            else str(child)
+                                        ),
+                                    }
+                                )
+
+                # Get full class source code using ast.get_source_segment
+                class_source = (
+                    ast.get_source_segment(source, node)
+                    if hasattr(ast, "get_source_segment")
+                    else self._extract_node_source_fallback(node, source)
+                )
+
                 classes.append(
                     {
                         "name": node.name,
                         "line_number": node.lineno,
-                        "methods": len(
-                            [n for n in node.body if isinstance(n, ast.FunctionDef)],
-                        ),
-                    },
+                        "bases": bases,
+                        "methods": methods,
+                        "class_variables": class_vars,
+                        "docstring": ast.get_docstring(node),
+                        "source_code": class_source,
+                        "method_count": len(methods),
+                    }
                 )
+
         return classes
 
     def _extract_variables(self, tree: ast.AST) -> list[str]:
@@ -612,6 +656,177 @@ class EnhancedArtifactParser:
                 max(self._calculate_depth(item, current_depth + 1) for item in obj),
             )
         return current_depth
+
+    def _extract_method_details(
+        self, method_node: ast.FunctionDef, source: str
+    ) -> dict[str, Any]:
+        """Extract detailed method information using built-in AST capabilities"""
+        # Extract arguments with types and defaults using ast.unparse
+        args = []
+        for arg in method_node.args.args:
+            arg_info = {
+                "name": arg.arg,
+                "type": self._get_annotation_name(arg.annotation),
+                "default": self._get_default_value(getattr(arg, "default", None)),
+                "position": len(args),
+                "full_signature": (
+                    ast.unparse(arg)
+                    if hasattr(ast, "unparse")
+                    else f"{arg.arg}: {self._get_annotation_name(arg.annotation)}"
+                ),
+            }
+            args.append(arg_info)
+
+        # Extract return type using ast.unparse
+        return_type = (
+            self._get_annotation_name(method_node.returns)
+            if method_node.returns
+            else "Any"
+        )
+
+        # Extract decorators using ast.unparse
+        decorators = []
+        for decorator in method_node.decorator_list:
+            decorator_info = {
+                "name": self._get_decorator_name(decorator),
+                "arguments": self._get_decorator_arguments(decorator),
+                "full_decorator": (
+                    ast.unparse(decorator)
+                    if hasattr(ast, "unparse")
+                    else str(decorator)
+                ),
+            }
+            decorators.append(decorator_info)
+
+        # Get full method source code using ast.get_source_segment
+        method_source = (
+            ast.get_source_segment(source, method_node)
+            if hasattr(ast, "get_source_segment")
+            else self._extract_node_source_fallback(method_node, source)
+        )
+
+        return {
+            "name": method_node.name,
+            "line_number": method_node.lineno,
+            "end_line": getattr(method_node, "end_lineno", method_node.lineno),
+            "arguments": args,
+            "return_type": return_type,
+            "decorators": decorators,
+            "docstring": ast.get_docstring(method_node),
+            "source_code": method_source,
+            "is_async": isinstance(method_node, ast.AsyncFunctionDef),
+            "arg_count": len(args),
+            "full_signature": (
+                ast.unparse(method_node)
+                if hasattr(ast, "unparse")
+                else f"def {method_node.name}(...)"
+            ),
+        }
+
+    def _get_annotation_name(self, annotation: ast.expr) -> str:
+        """Extract type annotation name from AST node using ast.unparse for consistent string conversion"""
+        if annotation is None:
+            return "Any"
+        elif hasattr(ast, "unparse"):
+            # Use ast.unparse for consistent, readable output
+            try:
+                return ast.unparse(annotation)
+            except:
+                # Fallback to string representation if unparse fails
+                return str(annotation)
+        else:
+            # Fallback for older Python versions
+            if isinstance(annotation, ast.Name):
+                return annotation.id
+            elif isinstance(annotation, ast.Attribute):
+                return (
+                    f"{self._get_annotation_name(annotation.value)}.{annotation.attr}"
+                )
+            elif isinstance(annotation, ast.Subscript):
+                return self._get_base_name(annotation.value)
+            else:
+                return str(annotation)
+
+    def _get_default_value(self, default: ast.expr) -> Any:
+        """Extract default value from AST node using ast.unparse for consistent string conversion"""
+        if default is None:
+            return None
+        elif hasattr(ast, "unparse"):
+            # Use ast.unparse for consistent, readable output
+            try:
+                return ast.unparse(default)
+            except:
+                # Fallback to string representation if unparse fails
+                return str(default)
+        else:
+            # Fallback for older Python versions
+            if isinstance(default, ast.Constant):
+                return default.value
+            elif isinstance(default, ast.Name):
+                return default.id
+            elif isinstance(default, ast.Str):
+                return default.s
+            else:
+                return str(default)
+
+    def _get_decorator_name(self, decorator: ast.expr) -> str:
+        """Extract decorator name from AST node"""
+        if isinstance(decorator, ast.Name):
+            return decorator.id
+        elif isinstance(decorator, ast.Attribute):
+            return decorator.attr
+        elif isinstance(decorator, ast.Call):
+            return self._get_decorator_name(decorator.func)
+        else:
+            return str(decorator)
+
+    def _get_decorator_arguments(self, decorator: ast.expr) -> list[Any]:
+        """Extract decorator arguments from AST node"""
+        if isinstance(decorator, ast.Call):
+            args = []
+            for arg in decorator.args:
+                args.append(self._get_literal_value(arg))
+            return args
+        return []
+
+    def _get_literal_value(self, value: ast.expr) -> Any:
+        """Extract literal value from AST node"""
+        if isinstance(value, ast.Constant):
+            return value.value
+        elif isinstance(value, ast.Str):
+            return value.s
+        elif isinstance(value, ast.Num):
+            return value.n
+        elif isinstance(value, ast.Name):
+            return value.id
+        else:
+            return str(value)
+
+    def _get_base_name(self, base: ast.expr) -> str:
+        """Extract base class name from AST node"""
+        if isinstance(base, ast.Name):
+            return base.id
+        elif isinstance(base, ast.Attribute):
+            return f"{self._get_base_name(base.value)}.{base.attr}"
+        elif isinstance(base, ast.Subscript):
+            return self._get_base_name(base.value)
+        else:
+            return str(base)
+
+    def _extract_node_source_fallback(self, node: ast.AST, source: str) -> str:
+        """Fallback source extraction when ast.get_source_segment is not available"""
+        try:
+            lines = source.splitlines()
+            start_line = node.lineno - 1  # Convert to 0-based index
+            end_line = getattr(node, "end_lineno", node.lineno) - 1
+
+            if start_line >= 0 and end_line < len(lines):
+                source_lines = lines[start_line : end_line + 1]
+                return "\n".join(source_lines)
+            else:
+                return f"# Source code for {getattr(node, 'name', 'node')} at line {node.lineno}"
+        except Exception:
+            return f"# Source code for {getattr(node, 'name', 'node')} at line {node.lineno}"
 
 
 def main() -> None:

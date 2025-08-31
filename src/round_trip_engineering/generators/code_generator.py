@@ -111,6 +111,21 @@ class CodeGenerator:
         complete_class.setdefault("bases", [])
         complete_class.setdefault("class_decorators", [])
 
+        # Ensure data models inherit from Pydantic BaseModel for modern Python development
+        if (
+            not complete_class.get("bases")
+            and "data" in complete_class.get("type", "").lower()
+        ):
+            complete_class["bases"] = ["BaseModel"]
+        elif (
+            not complete_class.get("bases")
+            and "model" in complete_class.get("description", "").lower()
+        ):
+            complete_class["bases"] = ["BaseModel"]
+        elif not complete_class.get("bases"):
+            # Default to ReflectiveModule for operational classes
+            complete_class["bases"] = ["ReflectiveModule"]
+
         # Build complete method structures
         methods = complete_class.get("methods", [])
         complete_methods = []

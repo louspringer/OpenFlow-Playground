@@ -6,7 +6,7 @@
 
 test: test-all ## Run all tests (alias for test-all)
 
-test-all: test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell ## Run all tests across all domains
+test-all: test-python test-bash test-cloudformation test-docs test-security test-streamlit test-healthcare test-go test-secure-shell test-round-trip test-activity-model-validation test-complete-round-trip test-enhanced-round-trip ## Run all tests across all domains
 
 # Python Testing
 test-python: ## Run Python tests
@@ -55,7 +55,7 @@ test-secure-shell: ## Run secure shell tests
 	@find src/secure_shell_service/ -name "*.sh" -exec shellcheck {} \; 2>/dev/null || echo "  ℹ️ No secure shell files found"
 
 # Specialized Testing Targets
-.PHONY: test-model-driven test-ghostbusters test-multi-agent test-round-trip
+.PHONY: test-model-driven test-ghostbusters test-multi-agent test-round-trip test-complete-round-trip test-enhanced-round-trip
 
 test-model-driven: ## Test model-driven development
 	@echo "$(BLUE)📊 Testing Model-Driven Development...$(NC)"
@@ -73,6 +73,20 @@ test-multi-agent: ## Test multi-agent testing system
 test-round-trip: ## Test round-trip engineering system
 	@echo "$(BLUE)🔄 Testing Round-Trip Engineering...$(NC)"
 	@$(UV) run python -c "from src.round_trip_engineering import RoundTripSystem; print('✅ Round-trip system available')" || echo "  ❌ Round-trip system not available"
+
+test-activity-model-validation: ## Test activity model validation for round-trip engineering
+	@echo "$(BLUE)🔍 Testing Activity Model Validation...$(NC)"
+	@$(UV) run python test_activity_model_validation.py
+
+test-complete-round-trip: ## Test complete round-trip engineering workflow
+	@echo "$(BLUE)🔄 Testing Complete Round-Trip Engineering Workflow...$(NC)"
+	@$(UV) run python tests/test_complete_round_trip_workflow.py
+
+test-enhanced-round-trip: ## Test enhanced round-trip requirements (Pydantic/MyPy/Reflective Modules)
+	@echo "$(BLUE)🔄 Testing Enhanced Round-Trip Requirements...$(NC)"
+	@$(UV) run python tests/test_round_trip_enhanced_requirements.py
+
+
 
 # Testing Utilities
 .PHONY: test-coverage test-performance test-integration test-unit
