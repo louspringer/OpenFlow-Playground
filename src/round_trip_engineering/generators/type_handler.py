@@ -44,15 +44,15 @@ class TypeHandler(BaseReflectiveModule):
 
         # Basic pattern matching for method signatures
         # Example: "def method_name(self, param1: str, param2: int = 10) -> bool:"
-        
+
         # Extract method name
-        name_match = re.search(r'def\s+(\w+)', method_signature)
+        name_match = re.search(r"def\s+(\w+)", method_signature)
         method_name = name_match.group(1) if name_match else "unknown_method"
 
         # Extract parameters
-        params_match = re.search(r'\((.*?)\)', method_signature)
+        params_match = re.search(r"\((.*?)\)", method_signature)
         params_str = params_match.group(1) if params_match else ""
-        
+
         parameters = []
         if params_str:
             # Split by comma, but be careful about nested parentheses
@@ -63,7 +63,7 @@ class TypeHandler(BaseReflectiveModule):
                     parameters.append(param_info)
 
         # Extract return type
-        return_match = re.search(r'->\s*([^:]+)', method_signature)
+        return_match = re.search(r"->\s*([^:]+)", method_signature)
         return_type = return_match.group(1).strip() if return_match else "Any"
 
         return {
@@ -78,23 +78,23 @@ class TypeHandler(BaseReflectiveModule):
         params = []
         current_param = ""
         paren_count = 0
-        
+
         for char in params_str:
-            if char == '(':
+            if char == "(":
                 paren_count += 1
-            elif char == ')':
+            elif char == ")":
                 paren_count -= 1
-            elif char == ',' and paren_count == 0:
+            elif char == "," and paren_count == 0:
                 if current_param.strip():
                     params.append(current_param.strip())
                 current_param = ""
                 continue
-            
+
             current_param += char
-        
+
         if current_param.strip():
             params.append(current_param.strip())
-        
+
         return params
 
     def _parse_parameter(self, param_str: str) -> Optional[Dict[str, Any]]:
@@ -113,21 +113,21 @@ class TypeHandler(BaseReflectiveModule):
 
         # Parse parameter with type annotation and default value
         # Format: name: type = default
-        param_pattern = r'(\w+)(?:\s*:\s*([^=]+))?(?:\s*=\s*(.+))?'
+        param_pattern = r"(\w+)(?:\s*:\s*([^=]+))?(?:\s*=\s*(.+))?"
         match = re.match(param_pattern, param_str)
-        
+
         if match:
             name = match.group(1)
             param_type = match.group(2).strip() if match.group(2) else "Any"
             default_value = match.group(3).strip() if match.group(3) else None
-            
+
             return {
                 "name": name,
                 "type": param_type,
                 "default": default_value,
                 "is_self": False,
             }
-        
+
         # Simple parameter without type annotation
         return {
             "name": param_str,
@@ -143,17 +143,17 @@ class TypeHandler(BaseReflectiveModule):
         return_type = parsed_method.get("return_type", "Any")
 
         code_lines = []
-        
+
         # Method signature
         param_str = ", ".join([f"{p['name']}: {p['type']}" for p in parameters])
         code_lines.append(f"def {method_name}({param_str}) -> {return_type}:")
-        
+
         # Method docstring
         code_lines.append(f'    """Generated method {method_name}"""')
-        
+
         # Method body
         code_lines.append("    pass")
-        
+
         return "\n".join(code_lines)
 
     def generate_method_from_dict(self, method: Dict[str, Any]) -> str:
@@ -164,20 +164,22 @@ class TypeHandler(BaseReflectiveModule):
         docstring = method.get("docstring", f"Generated method {method_name}")
 
         code_lines = []
-        
+
         # Method signature
         if arguments:
-            param_str = ", ".join([f"{arg['name']}: {arg.get('type', 'Any')}" for arg in arguments])
+            param_str = ", ".join(
+                [f"{arg['name']}: {arg.get('type', 'Any')}" for arg in arguments]
+            )
             code_lines.append(f"def {method_name}({param_str}) -> {return_type}:")
         else:
             code_lines.append(f"def {method_name}(self) -> {return_type}:")
-        
+
         # Method docstring
         code_lines.append(f'    """{docstring}"""')
-        
+
         # Method body
         code_lines.append("    pass")
-        
+
         return "\n".join(code_lines)
 
     def clean_complex_type(self, type_annotation: str) -> str:
@@ -187,32 +189,32 @@ class TypeHandler(BaseReflectiveModule):
 
         # Remove extra whitespace
         cleaned = type_annotation.strip()
-        
+
         # Handle common complex types
         # Union types: Union[str, int] -> str | int
-        cleaned = re.sub(r'Union\[([^\]]+)\]', r'\1', cleaned)
-        
+        cleaned = re.sub(r"Union\[([^\]]+)\]", r"\1", cleaned)
+
         # Optional types: Optional[str] -> str | None
-        cleaned = re.sub(r'Optional\[([^\]]+)\]', r'\1 | None', cleaned)
-        
+        cleaned = re.sub(r"Optional\[([^\]]+)\]", r"\1 | None", cleaned)
+
         # List types: List[str] -> list[str]
-        cleaned = re.sub(r'List\[([^\]]+)\]', r'list[\1]', cleaned)
-        
+        cleaned = re.sub(r"List\[([^\]]+)\]", r"list[\1]", cleaned)
+
         # Dict types: Dict[str, int] -> dict[str, int]
-        cleaned = re.sub(r'Dict\[([^\]]+)\]', r'dict[\1]', cleaned)
-        
+        cleaned = re.sub(r"Dict\[([^\]]+)\]", r"dict[\1]", cleaned)
+
         # Tuple types: Tuple[str, int] -> tuple[str, int]
-        cleaned = re.sub(r'Tuple\[([^\]]+)\]', r'tuple[\1]', cleaned)
-        
+        cleaned = re.sub(r"Tuple\[([^\]]+)\]", r"tuple[\1]", cleaned)
+
         # Set types: Set[str] -> set[str]
-        cleaned = re.sub(r'Set\[([^\]]+)\]', r'set[\1]', cleaned)
-        
+        cleaned = re.sub(r"Set\[([^\]]+)\]", r"set[\1]", cleaned)
+
         return cleaned
 
     def get_default_value(self, type_name: str) -> str:
         """Get appropriate default value for a given type"""
         type_name = type_name.lower().strip()
-        
+
         # Handle basic types
         if type_name in ["str", "string"]:
             return '""'
@@ -241,10 +243,10 @@ class TypeHandler(BaseReflectiveModule):
         """Normalize type annotation to standard format"""
         if not type_annotation:
             return "Any"
-        
+
         # Clean the type annotation
         normalized = self.clean_complex_type(type_annotation)
-        
+
         # Handle common aliases
         type_mapping = {
             "string": "str",
@@ -255,21 +257,25 @@ class TypeHandler(BaseReflectiveModule):
             "dictionary": "dict",
             "null": "None",
         }
-        
+
         for alias, standard in type_mapping.items():
-            normalized = re.sub(rf'\b{alias}\b', standard, normalized, flags=re.IGNORECASE)
-        
+            normalized = re.sub(
+                rf"\b{alias}\b", standard, normalized, flags=re.IGNORECASE
+            )
+
         return normalized
 
     def extract_type_info(self, type_annotation: str) -> Dict[str, Any]:
         """Extract detailed information about a type annotation"""
         normalized = self.normalize_type_annotation(type_annotation)
-        
+
         return {
             "original": type_annotation,
             "normalized": normalized,
             "is_optional": "None" in normalized or "|" in normalized,
-            "is_collection": any(t in normalized for t in ["list", "dict", "set", "tuple"]),
+            "is_collection": any(
+                t in normalized for t in ["list", "dict", "set", "tuple"]
+            ),
             "is_union": "|" in normalized,
             "default_value": self.get_default_value(normalized),
         }
@@ -278,16 +284,16 @@ class TypeHandler(BaseReflectiveModule):
         """Validate if a type annotation is syntactically correct"""
         if not type_annotation:
             return False
-        
+
         # Basic validation - check for common patterns
         valid_patterns = [
-            r'^[A-Za-z_][A-Za-z0-9_]*$',  # Simple type names
-            r'^[A-Za-z_][A-Za-z0-9_]*\[.*\]$',  # Generic types
-            r'^[A-Za-z_][A-Za-z0-9_]* \| [A-Za-z_][A-Za-z0-9_]*$',  # Union types
+            r"^[A-Za-z_][A-Za-z0-9_]*$",  # Simple type names
+            r"^[A-Za-z_][A-Za-z0-9_]*\[.*\]$",  # Generic types
+            r"^[A-Za-z_][A-Za-z0-9_]* \| [A-Za-z_][A-Za-z0-9_]*$",  # Union types
         ]
-        
+
         for pattern in valid_patterns:
             if re.match(pattern, type_annotation):
                 return True
-        
+
         return False

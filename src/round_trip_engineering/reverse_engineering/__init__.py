@@ -6,9 +6,7 @@ Contains modules for reverse engineering code to models
 
 from .enhanced_reverse_engineer import EnhancedReverseEngineer
 
-__all__ = [
-    "EnhancedReverseEngineer"
-]
+__all__ = ["EnhancedReverseEngineer"]
 
 __version__ = "0.1.0"
 __author__ = "OpenFlow Playground"

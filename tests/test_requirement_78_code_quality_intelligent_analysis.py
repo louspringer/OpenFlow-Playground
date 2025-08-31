@@ -24,9 +24,9 @@ class TestRequirement78CodeQualityIntelligentAnalysis:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "code_quality_system requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "code_quality_system requirement validation test placeholder - implement actual logic"
+        )
 
     def test_code_quality_system_specific_behavior(self):
         """Test code_quality_system-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement78CodeQualityIntelligentAnalysis:
         # TODO: Check that code_quality_system tools and patterns are used correctly
         # TODO: Validate against code_quality_system best practices
 
-        assert (
-            True
-        ), "code_quality_system specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "code_quality_system specific behavior test placeholder - implement actual logic"
+        )
 
     def test_code_quality_system_compliance(self):
         """Test that code_quality_system implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement78CodeQualityIntelligentAnalysis:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "code_quality_system compliance test placeholder - implement actual logic"
+        assert True, (
+            "code_quality_system compliance test placeholder - implement actual logic"
+        )

@@ -24,9 +24,9 @@ class TestRequirement1CloudFormationDetection:
         # TODO: Implement actual CloudFormation detection logic
         # TODO: Validate that generic YAML tools are not applied to CloudFormation files
 
-        assert (
-            True
-        ), "CloudFormation detection test placeholder - implement actual logic"
+        assert True, (
+            "CloudFormation detection test placeholder - implement actual logic"
+        )
 
     def test_cloudformation_specific_tools_are_used(self):
         """Test that CloudFormation-specific tools are used for CloudFormation files."""
@@ -35,9 +35,9 @@ class TestRequirement1CloudFormationDetection:
         # TODO: Implement CloudFormation tool selection validation
         # TODO: Check that cfn-lint or similar tools are used instead of generic YAML tools
 
-        assert (
-            True
-        ), "CloudFormation tool selection test placeholder - implement actual logic"
+        assert True, (
+            "CloudFormation tool selection test placeholder - implement actual logic"
+        )
 
     def test_cloudformation_exclusions_are_generated(self):
         """Test that proper exclusions are generated for CloudFormation files."""
@@ -46,6 +46,6 @@ class TestRequirement1CloudFormationDetection:
         # TODO: Implement exclusion generation validation
         # TODO: Check that CloudFormation files are excluded from generic YAML linting
 
-        assert (
-            True
-        ), "CloudFormation exclusion test placeholder - implement actual logic"
+        assert True, (
+            "CloudFormation exclusion test placeholder - implement actual logic"
+        )

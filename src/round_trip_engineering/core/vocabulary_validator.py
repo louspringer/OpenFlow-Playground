@@ -98,9 +98,9 @@ class VocabularyValidator:
         if "components" in aligned_model:
             components = aligned_model["components"]
             if isinstance(components, list):
-                aligned_model[
-                    "components"
-                ] = self._basic_convert_components_list_to_dict(components)
+                aligned_model["components"] = (
+                    self._basic_convert_components_list_to_dict(components)
+                )
 
         # Basic workflow enhancement
         if "workflow_analysis" in aligned_model:

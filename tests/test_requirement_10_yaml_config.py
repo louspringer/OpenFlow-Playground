@@ -24,9 +24,9 @@ class TestRequirement10YamlConfig:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "yaml_config requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "yaml_config requirement validation test placeholder - implement actual logic"
+        )
 
     def test_yaml_config_specific_behavior(self):
         """Test yaml_config-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement10YamlConfig:
         # TODO: Check that yaml_config tools and patterns are used correctly
         # TODO: Validate against yaml_config best practices
 
-        assert (
-            True
-        ), "yaml_config specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "yaml_config specific behavior test placeholder - implement actual logic"
+        )
 
     def test_yaml_config_compliance(self):
         """Test that yaml_config implementation complies with requirements."""

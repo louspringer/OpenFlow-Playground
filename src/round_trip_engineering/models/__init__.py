@@ -17,7 +17,7 @@ __all__ = [
     "ModelPersistence",
     "ComponentManager",
     "TypeNormalizer",
-    "DataCleaner"
+    "DataCleaner",
 ]
 
 __version__ = "0.1.0"

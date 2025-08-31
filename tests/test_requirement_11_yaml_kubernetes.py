@@ -24,9 +24,9 @@ class TestRequirement11YamlKubernetes:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "yaml_kubernetes requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "yaml_kubernetes requirement validation test placeholder - implement actual logic"
+        )
 
     def test_yaml_kubernetes_specific_behavior(self):
         """Test yaml_kubernetes-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement11YamlKubernetes:
         # TODO: Check that yaml_kubernetes tools and patterns are used correctly
         # TODO: Validate against yaml_kubernetes best practices
 
-        assert (
-            True
-        ), "yaml_kubernetes specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "yaml_kubernetes specific behavior test placeholder - implement actual logic"
+        )
 
     def test_yaml_kubernetes_compliance(self):
         """Test that yaml_kubernetes implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement11YamlKubernetes:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "yaml_kubernetes compliance test placeholder - implement actual logic"
+        assert True, (
+            "yaml_kubernetes compliance test placeholder - implement actual logic"
+        )

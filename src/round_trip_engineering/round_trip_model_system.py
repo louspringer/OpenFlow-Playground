@@ -16,7 +16,7 @@ import os
 from pathlib import Path
 
 # Add the ontology bridge to the path
-ontology_bridge_path = Path(__file__).parent.parent.parent / "scripts"
+ontology_bridge_path = Path(__file__).parent.parent.parent.parent / "scripts"
 sys.path.insert(0, str(ontology_bridge_path))
 
 try:
@@ -1503,10 +1503,10 @@ class {component.name}Domain:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model["components"] = (
-                            self.ontology_bridge.resolve_vocabulary_mismatch(
-                                extracted_model["components"], "dict"
-                            )
+                        extracted_model[
+                            "components"
+                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
+                            extracted_model["components"], "dict"
                         )
                         break
 
@@ -1770,10 +1770,10 @@ def main() -> None:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model["components"] = (
-                            self.ontology_bridge.resolve_vocabulary_mismatch(
-                                extracted_model["components"], "dict"
-                            )
+                        extracted_model[
+                            "components"
+                        ] = self.ontology_bridge.resolve_vocabulary_mismatch(
+                            extracted_model["components"], "dict"
                         )
                         break
 

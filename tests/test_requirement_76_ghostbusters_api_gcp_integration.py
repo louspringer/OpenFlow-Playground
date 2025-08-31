@@ -24,9 +24,9 @@ class TestRequirement76GhostbustersApiGcpIntegration:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "ghostbusters_api requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "ghostbusters_api requirement validation test placeholder - implement actual logic"
+        )
 
     def test_ghostbusters_api_specific_behavior(self):
         """Test ghostbusters_api-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement76GhostbustersApiGcpIntegration:
         # TODO: Check that ghostbusters_api tools and patterns are used correctly
         # TODO: Validate against ghostbusters_api best practices
 
-        assert (
-            True
-        ), "ghostbusters_api specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "ghostbusters_api specific behavior test placeholder - implement actual logic"
+        )
 
     def test_ghostbusters_api_compliance(self):
         """Test that ghostbusters_api implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement76GhostbustersApiGcpIntegration:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "ghostbusters_api compliance test placeholder - implement actual logic"
+        assert True, (
+            "ghostbusters_api compliance test placeholder - implement actual logic"
+        )

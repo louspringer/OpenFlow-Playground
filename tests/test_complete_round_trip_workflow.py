@@ -430,9 +430,9 @@ class TestCompleteRoundTripWorkflow:
                 validation_result = (
                     self.activity_validator.validate_method_activity_model(first_method)
                 )
-                assert (
-                    validation_result is not None
-                ), "Activity model validation component failed"
+                assert validation_result is not None, (
+                    "Activity model validation component failed"
+                )
 
         # Test code generation
         dummy_model = {

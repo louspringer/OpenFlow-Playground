@@ -24,9 +24,9 @@ class TestRequirement39SecurityBestPractices:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "security_best_practices requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "security_best_practices requirement validation test placeholder - implement actual logic"
+        )
 
     def test_security_best_practices_specific_behavior(self):
         """Test security_best_practices-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement39SecurityBestPractices:
         # TODO: Check that security_best_practices tools and patterns are used correctly
         # TODO: Validate against security_best_practices best practices
 
-        assert (
-            True
-        ), "security_best_practices specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "security_best_practices specific behavior test placeholder - implement actual logic"
+        )
 
     def test_security_best_practices_compliance(self):
         """Test that security_best_practices implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement39SecurityBestPractices:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "security_best_practices compliance test placeholder - implement actual logic"
+        assert True, (
+            "security_best_practices compliance test placeholder - implement actual logic"
+        )

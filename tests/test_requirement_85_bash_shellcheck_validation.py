@@ -24,9 +24,9 @@ class TestRequirement85BashShellcheckValidation:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "bash requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "bash requirement validation test placeholder - implement actual logic"
+        )
 
     def test_bash_specific_behavior(self):
         """Test bash-specific behavior and functionality."""

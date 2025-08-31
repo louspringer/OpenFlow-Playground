@@ -116,9 +116,9 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         if isinstance(components, dict):
             for class_name, class_info in components.items():
                 # Enhance class info with activity model guidance
-                complete_model["components"][
-                    class_name
-                ] = self._build_activity_aware_class(class_info, activity_models)
+                complete_model["components"][class_name] = (
+                    self._build_activity_aware_class(class_info, activity_models)
+                )
 
         logger.info(
             f"✅ Activity-aware model built with {len(complete_model.get('components', {}))} components"
@@ -140,17 +140,17 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         validation_results = activity_models.get("validation_results", {})
         for method_name, result in validation_results.items():
             if hasattr(result, "expected_activities"):
-                constraints["activity_patterns"][
-                    method_name
-                ] = result.expected_activities
+                constraints["activity_patterns"][method_name] = (
+                    result.expected_activities
+                )
             if hasattr(result, "expected_complexity_range"):
-                constraints["complexity_ranges"][
-                    method_name
-                ] = result.expected_complexity_range
+                constraints["complexity_ranges"][method_name] = (
+                    result.expected_complexity_range
+                )
             if hasattr(result, "expected_nesting_depth"):
-                constraints["nesting_depth_limits"][
-                    method_name
-                ] = result.expected_nesting_depth
+                constraints["nesting_depth_limits"][method_name] = (
+                    result.expected_nesting_depth
+                )
 
         return constraints
 
@@ -170,9 +170,9 @@ class ActivityAwareCodeGenerator(CodeGenerator):
                 )
                 if activity_model:
                     # Enhance method info with activity guidance
-                    enhanced_class["methods"][
-                        method_name
-                    ] = self._enhance_method_with_activity(method_info, activity_model)
+                    enhanced_class["methods"][method_name] = (
+                        self._enhance_method_with_activity(method_info, activity_model)
+                    )
 
         return enhanced_class
 
@@ -287,7 +287,9 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         self, complete_model: Dict[str, Any], target_language: str
     ) -> str:
         """Generate code from an activity-aware model."""
-        logger.info(f"🔍 Generating {target_language} code from activity-aware model...")
+        logger.info(
+            f"🔍 Generating {target_language} code from activity-aware model..."
+        )
 
         # Extract model information
         system_name = complete_model.get("system_name", "Unknown System")

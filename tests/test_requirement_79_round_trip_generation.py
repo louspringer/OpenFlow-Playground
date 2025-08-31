@@ -45,9 +45,9 @@ class TestRequirement79RoundTripGeneration:
         # TODO: Check that generated classes inherit from ReflectiveModule
         # TODO: Check that operational monitoring methods are present
 
-        assert (
-            True
-        ), "Reflective Module interface test placeholder - implement actual logic"
+        assert True, (
+            "Reflective Module interface test placeholder - implement actual logic"
+        )
 
     def test_generated_code_uses_pydantic_v2(self):
         """Test that generated code uses Pydantic v2 BaseModel classes."""

@@ -24,9 +24,9 @@ class TestRequirement18ConfigurationValidation:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "configuration requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "configuration requirement validation test placeholder - implement actual logic"
+        )
 
     def test_configuration_specific_behavior(self):
         """Test configuration-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement18ConfigurationValidation:
         # TODO: Check that configuration tools and patterns are used correctly
         # TODO: Validate against configuration best practices
 
-        assert (
-            True
-        ), "configuration specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "configuration specific behavior test placeholder - implement actual logic"
+        )
 
     def test_configuration_compliance(self):
         """Test that configuration implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement18ConfigurationValidation:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "configuration compliance test placeholder - implement actual logic"
+        assert True, (
+            "configuration compliance test placeholder - implement actual logic"
+        )

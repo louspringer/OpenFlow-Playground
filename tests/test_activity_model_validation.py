@@ -110,9 +110,9 @@ class TestActivityModelValidation:
 
         # Performance validation
         total_time = generation_time + save_time + validation_time
-        assert (
-            total_time < 5.0
-        ), f"Total workflow time {total_time:.3f}s exceeds 5s limit"
+        assert total_time < 5.0, (
+            f"Total workflow time {total_time:.3f}s exceeds 5s limit"
+        )
 
         self.logger.info(f"✅ Complete workflow completed in {total_time:.3f}s")
         self.logger.info("✅ Activity Model 1 validation passed")
@@ -170,9 +170,9 @@ class TestActivityModelValidation:
         assert "parameters" in method
         assert "decorators" in method
 
-        assert (
-            build_time < 0.1
-        ), f"Model building time {build_time:.3f}s exceeds 100ms limit"
+        assert build_time < 0.1, (
+            f"Model building time {build_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Complete model building completed in {build_time:.3f}s")
 
         # Test model validation
@@ -181,9 +181,9 @@ class TestActivityModelValidation:
         self.system.code_generator._validate_complete_model(complete_model)
         validation_time = time.time() - start_time
 
-        assert (
-            validation_time < 0.1
-        ), f"Validation time {validation_time:.3f}s exceeds 100ms limit"
+        assert validation_time < 0.1, (
+            f"Validation time {validation_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Model validation completed in {validation_time:.3f}s")
 
         # Test code generation from complete model
@@ -199,9 +199,9 @@ class TestActivityModelValidation:
         assert "def test_method" in generated_code
         # Note: We don't automatically add __init__ methods - only what's in the model
 
-        assert (
-            generation_time < 0.5
-        ), f"Code generation time {generation_time:.3f}s exceeds 500ms limit"
+        assert generation_time < 0.5, (
+            f"Code generation time {generation_time:.3f}s exceeds 500ms limit"
+        )
         self.logger.info(f"✅ Code generation completed in {generation_time:.3f}s")
 
         # Save generated code for inspection
@@ -249,9 +249,9 @@ class TestActivityModelValidation:
         assert test_component["type"] == "class"
         assert test_component["description"] == "A test component"
 
-        assert (
-            alignment_time < 0.05
-        ), f"Alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        assert alignment_time < 0.05, (
+            f"Alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        )
         self.logger.info(f"✅ List → dict alignment completed in {alignment_time:.3f}s")
 
         # Test data with existing dict format
@@ -276,9 +276,9 @@ class TestActivityModelValidation:
         # Validate no change occurred
         assert aligned_dict_data["components"] == dict_format_data["components"]
 
-        assert (
-            dict_alignment_time < 0.05
-        ), f"Dict alignment time {dict_alignment_time:.3f}s exceeds 50ms limit"
+        assert dict_alignment_time < 0.05, (
+            f"Dict alignment time {dict_alignment_time:.3f}s exceeds 50ms limit"
+        )
         self.logger.info(
             f"✅ Dict → dict alignment completed in {dict_alignment_time:.3f}s"
         )
@@ -320,23 +320,23 @@ class TestActivityModelValidation:
 
         # Should have only one occurrence of duplicate_method
         duplicate_method_count = cleaned_code.count("def duplicate_method")
-        assert (
-            duplicate_method_count == 1
-        ), f"Should have only one duplicate_method, got {duplicate_method_count}"
+        assert duplicate_method_count == 1, (
+            f"Should have only one duplicate_method, got {duplicate_method_count}"
+        )
 
         # Should have no unreachable returns
         return_count = cleaned_code.count("return")
-        assert (
-            return_count == 3
-        ), f"Should have 3 returns (one per method), got {return_count}"
+        assert return_count == 3, (
+            f"Should have 3 returns (one per method), got {return_count}"
+        )
 
         # Should preserve unique method
         assert "def unique_method" in cleaned_code
         assert "def another_method" in cleaned_code
 
-        assert (
-            cleaning_time < 1.0
-        ), f"Cleaning time {cleaning_time:.3f}s exceeds 1s limit"
+        assert cleaning_time < 1.0, (
+            f"Cleaning time {cleaning_time:.3f}s exceeds 1s limit"
+        )
         self.logger.info(f"✅ Duplication cleaning completed in {cleaning_time:.3f}s")
 
         # Save cleaned code for inspection
@@ -370,9 +370,9 @@ class TestActivityModelValidation:
             assert profiling_stats is not None
 
             error_handling_time = time.time() - start_time
-            assert (
-                error_handling_time < 0.5
-            ), f"Error handling time {error_handling_time:.3f}s exceeds 500ms limit"
+            assert error_handling_time < 0.5, (
+                f"Error handling time {error_handling_time:.3f}s exceeds 500ms limit"
+            )
             self.logger.info(
                 f"✅ Error handling completed in {error_handling_time:.3f}s"
             )
@@ -392,9 +392,9 @@ class TestActivityModelValidation:
         assert profiling_stats is not None
 
         profiling_time = time.time() - start_time
-        assert (
-            profiling_time < 1.0
-        ), f"Profiling time {profiling_time:.3f}s exceeds 1s limit"
+        assert profiling_time < 1.0, (
+            f"Profiling time {profiling_time:.3f}s exceeds 1s limit"
+        )
         self.logger.info(f"✅ Performance profiling completed in {profiling_time:.3f}s")
 
         # Test logging system
@@ -442,9 +442,9 @@ class TestActivityModelValidation:
         )
         build_time = time.time() - start_time
 
-        assert (
-            build_time < 0.1
-        ), f"Large model building time {build_time:.3f}s exceeds 100ms limit"
+        assert build_time < 0.1, (
+            f"Large model building time {build_time:.3f}s exceeds 100ms limit"
+        )
         self.logger.info(f"✅ Large model building completed in {build_time:.3f}s")
 
         # Test code generation performance
@@ -455,10 +455,12 @@ class TestActivityModelValidation:
         )
         generation_time = time.time() - start_time
 
-        assert (
-            generation_time < 0.5
-        ), f"Large code generation time {generation_time:.3f}s exceeds 500ms limit"
-        self.logger.info(f"✅ Large code generation completed in {generation_time:.3f}s")
+        assert generation_time < 0.5, (
+            f"Large code generation time {generation_time:.3f}s exceeds 500ms limit"
+        )
+        self.logger.info(
+            f"✅ Large code generation completed in {generation_time:.3f}s"
+        )
 
         # Test vocabulary alignment performance
         self.logger.info("🔄 Testing vocabulary alignment performance (20 components)")
@@ -466,9 +468,9 @@ class TestActivityModelValidation:
         aligned_data = self.system.vocabulary_aligner.align_vocabulary(large_test_data)
         alignment_time = time.time() - start_time
 
-        assert (
-            alignment_time < 0.05
-        ), f"Large vocabulary alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        assert alignment_time < 0.05, (
+            f"Large vocabulary alignment time {alignment_time:.3f}s exceeds 50ms limit"
+        )
         self.logger.info(
             f"✅ Large vocabulary alignment completed in {alignment_time:.3f}s"
         )
@@ -600,9 +602,9 @@ class TestActivityModelValidation:
         self.logger.info(f"💾 Integration test code saved to: {code_file}")
 
         integration_time = time.time() - start_time
-        assert (
-            integration_time < 5.0
-        ), f"Integration test time {integration_time:.3f}s exceeds 5s limit"
+        assert integration_time < 5.0, (
+            f"Integration test time {integration_time:.3f}s exceeds 5s limit"
+        )
         self.logger.info(
             f"✅ Complete integration test completed in {integration_time:.3f}s"
         )

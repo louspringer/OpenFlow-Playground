@@ -24,9 +24,9 @@ class TestRequirementBacklogMaintenanceFormat:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "backlog_maintenance requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "backlog_maintenance requirement validation test placeholder - implement actual logic"
+        )
 
     def test_backlog_maintenance_specific_behavior(self):
         """Test backlog_maintenance-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirementBacklogMaintenanceFormat:
         # TODO: Check that backlog_maintenance tools and patterns are used correctly
         # TODO: Validate against backlog_maintenance best practices
 
-        assert (
-            True
-        ), "backlog_maintenance specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "backlog_maintenance specific behavior test placeholder - implement actual logic"
+        )
 
     def test_backlog_maintenance_compliance(self):
         """Test that backlog_maintenance implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirementBacklogMaintenanceFormat:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "backlog_maintenance compliance test placeholder - implement actual logic"
+        assert True, (
+            "backlog_maintenance compliance test placeholder - implement actual logic"
+        )

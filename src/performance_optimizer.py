@@ -73,24 +73,24 @@ class PerformanceOptimizer:
 
         # Benchmark each component
         print("🔍 Benchmarking Control Flow Analysis...")
-        benchmark_results["component_benchmarks"]["control_flow"] = (
-            self._benchmark_control_flow(test_files)
-        )
+        benchmark_results["component_benchmarks"][
+            "control_flow"
+        ] = self._benchmark_control_flow(test_files)
 
         print("🔍 Benchmarking Multi-File Analysis...")
-        benchmark_results["component_benchmarks"]["multi_file"] = (
-            self._benchmark_multi_file_analysis(test_files)
-        )
+        benchmark_results["component_benchmarks"][
+            "multi_file"
+        ] = self._benchmark_multi_file_analysis(test_files)
 
         print("🔍 Benchmarking UML Generation...")
-        benchmark_results["component_benchmarks"]["uml_generation"] = (
-            self._benchmark_uml_generation(test_files)
-        )
+        benchmark_results["component_benchmarks"][
+            "uml_generation"
+        ] = self._benchmark_uml_generation(test_files)
 
         print("🔍 Benchmarking Complexity Analysis...")
-        benchmark_results["component_benchmarks"]["complexity"] = (
-            self._benchmark_complexity_analysis(test_files)
-        )
+        benchmark_results["component_benchmarks"][
+            "complexity"
+        ] = self._benchmark_complexity_analysis(test_files)
 
         # Calculate overall performance metrics
         benchmark_results["overall_performance"] = self._calculate_overall_performance(
@@ -103,11 +103,11 @@ class PerformanceOptimizer:
         )
 
         # Generate optimization recommendations
-        benchmark_results["optimization_recommendations"] = (
-            self._generate_optimization_recommendations(
-                benchmark_results["bottlenecks"],
-                benchmark_results["overall_performance"],
-            )
+        benchmark_results[
+            "optimization_recommendations"
+        ] = self._generate_optimization_recommendations(
+            benchmark_results["bottlenecks"],
+            benchmark_results["overall_performance"],
         )
 
         return benchmark_results

@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class ModelComponent:
     """A component in our design model"""
+
     name: str
     type: str  # 'function', 'class', 'module', 'domain'
     description: str
@@ -30,6 +31,7 @@ class ModelComponent:
 @dataclass
 class DesignModel:
     """A complete design model that can be converted to/from code"""
+
     name: str
     description: str
     components: List[ModelComponent] = field(default_factory=list)
@@ -53,18 +55,20 @@ class DesignModelManager(BaseReflectiveModule):
                 "create_model_from_design",
                 "load_model",
                 "save_model",
-                "validate_model"
+                "validate_model",
             ],
             "component_processing": [
                 "add_component",
                 "remove_component",
-                "update_component"
-            ]
+                "update_component",
+            ],
         }
 
     def create_model_from_design(self, design_spec: Dict[str, Any]) -> DesignModel:
         """Create a model directly from design specification (NO reverse engineering)"""
-        logger.info(f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}")
+        logger.info(
+            f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}"
+        )
 
         # Extract design components
         components = []
@@ -111,14 +115,18 @@ class DesignModelManager(BaseReflectiveModule):
         model = self.design_models[model_name]
         return self.component_manager.remove_component(model.components, component_name)
 
-    def update_component(self, model_name: str, component_name: str, updates: Dict[str, Any]) -> bool:
+    def update_component(
+        self, model_name: str, component_name: str, updates: Dict[str, Any]
+    ) -> bool:
         """Update a component in an existing model"""
         if model_name not in self.design_models:
             logger.error(f"Model {model_name} not found")
             return False
 
         model = self.design_models[model_name]
-        return self.component_manager.update_component(model.components, component_name, updates)
+        return self.component_manager.update_component(
+            model.components, component_name, updates
+        )
 
     def get_model(self, model_name: str) -> Optional[DesignModel]:
         """Get a design model by name"""
@@ -128,8 +136,6 @@ class DesignModelManager(BaseReflectiveModule):
         """List all available model names"""
         return list(self.design_models.keys())
 
-
-
     def save_model(self, model_name: str, file_path: Optional[str] = None) -> bool:
         """Save a design model to file"""
         if model_name not in self.design_models:
@@ -137,7 +143,7 @@ class DesignModelManager(BaseReflectiveModule):
             return False
 
         model = self.design_models[model_name]
-        
+
         # Convert model to dictionary
         model_dict = {
             "name": model.name,

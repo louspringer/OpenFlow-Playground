@@ -11,7 +11,7 @@ from typing import Dict, Any, List
 from pathlib import Path
 
 # Add the ontology bridge to the path
-ontology_bridge_path = Path(__file__).parent.parent.parent / "scripts"
+ontology_bridge_path = Path(__file__).parent.parent.parent.parent / "scripts"
 sys.path.insert(0, str(ontology_bridge_path))
 
 try:

@@ -52,7 +52,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
 
         # Generate module code
         code_lines = []
-        
+
         # Add module docstring
         code_lines.append('"""')
         code_lines.append(f"Generated module: {module_name}")
@@ -82,7 +82,9 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         code = "\n".join(code_lines).strip()
         code = self.ensure_clean_generation(code)
 
-        self.logger.info(f"✅ Generated module with {len(classes)} classes and {len(functions)} functions")
+        self.logger.info(
+            f"✅ Generated module with {len(classes)} classes and {len(functions)} functions"
+        )
         return code
 
     def generate_class_from_extracted_model(self, class_data: Dict[str, Any]) -> str:
@@ -93,7 +95,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         docstring = class_data.get("docstring", f"Generated class {class_name}")
 
         code_lines = []
-        
+
         # Class definition
         if bases:
             base_classes = ", ".join(bases)
@@ -109,7 +111,9 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         for method_data in methods:
             method_code = self.generate_method_from_extracted_model(method_data)
             # Indent method code
-            indented_method = "\n".join(f"    {line}" for line in method_code.split("\n"))
+            indented_method = "\n".join(
+                f"    {line}" for line in method_code.split("\n")
+            )
             code_lines.append(indented_method)
             code_lines.append("")
 
@@ -124,7 +128,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         body = method_data.get("body", "pass")
 
         code_lines = []
-        
+
         # Method signature
         if parameters:
             param_str = ", ".join(parameters)
@@ -134,7 +138,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
 
         # Method docstring
         code_lines.append(f'        """{docstring}"""')
-        
+
         # Method body
         if body and body != "pass":
             code_lines.append(f"        {body}")
@@ -152,7 +156,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         body = func_data.get("body", "pass")
 
         code_lines = []
-        
+
         # Function signature
         if parameters:
             param_str = ", ".join(parameters)
@@ -162,7 +166,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
 
         # Function docstring
         code_lines.append(f'    """{docstring}"""')
-        
+
         # Function body
         if body and body != "pass":
             code_lines.append(f"    {body}")
@@ -174,38 +178,40 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
     def clean_generated_code(self, code: str) -> str:
         """Clean up generated code by removing redundant patterns"""
         # Remove multiple consecutive empty lines
-        code = re.sub(r'\n\s*\n\s*\n', '\n\n', code)
-        
+        code = re.sub(r"\n\s*\n\s*\n", "\n\n", code)
+
         # Remove trailing whitespace
-        code = re.sub(r'[ \t]+\n', '\n', code)
-        
+        code = re.sub(r"[ \t]+\n", "\n", code)
+
         # Ensure proper spacing around class/function definitions
-        code = re.sub(r'(\n)(class|def)', r'\1\n\2', code)
-        
+        code = re.sub(r"(\n)(class|def)", r"\1\n\2", code)
+
         return code.strip()
 
     def ensure_clean_generation(self, code: str) -> str:
         """Ensure the generated code is clean and properly formatted"""
         # Apply basic cleaning
         code = self.clean_generated_code(code)
-        
+
         # Ensure proper line endings
-        code = code.replace('\r\n', '\n').replace('\r', '\n')
-        
+        code = code.replace("\r\n", "\n").replace("\r", "\n")
+
         # Remove any completely empty lines at the end
-        code = code.rstrip('\n')
-        
+        code = code.rstrip("\n")
+
         return code
 
     def record_formatting_patterns(self, code: str) -> Dict[str, Any]:
         """Record formatting patterns in the generated code for analysis"""
         patterns = {
-            "total_lines": len(code.split('\n')),
-            "empty_lines": len([line for line in code.split('\n') if line.strip() == '']),
-            "class_definitions": len(re.findall(r'^class\s+\w+', code, re.MULTILINE)),
-            "function_definitions": len(re.findall(r'^def\s+\w+', code, re.MULTILINE)),
+            "total_lines": len(code.split("\n")),
+            "empty_lines": len(
+                [line for line in code.split("\n") if line.strip() == ""]
+            ),
+            "class_definitions": len(re.findall(r"^class\s+\w+", code, re.MULTILINE)),
+            "function_definitions": len(re.findall(r"^def\s+\w+", code, re.MULTILINE)),
             "docstrings": len(re.findall(r'""".*?"""', code, re.DOTALL)),
-            "imports": len(re.findall(r'^import\s+|^from\s+', code, re.MULTILINE)),
+            "imports": len(re.findall(r"^import\s+|^from\s+", code, re.MULTILINE)),
         }
-        
+
         return patterns

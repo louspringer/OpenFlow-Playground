@@ -24,9 +24,9 @@ class TestRequirement69IntelligentLinterApiIntegration:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "intelligent_linter_system requirement validation test placeholder - implement actual logic"
+        assert True, (
+            "intelligent_linter_system requirement validation test placeholder - implement actual logic"
+        )
 
     def test_intelligent_linter_system_specific_behavior(self):
         """Test intelligent_linter_system-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement69IntelligentLinterApiIntegration:
         # TODO: Check that intelligent_linter_system tools and patterns are used correctly
         # TODO: Validate against intelligent_linter_system best practices
 
-        assert (
-            True
-        ), "intelligent_linter_system specific behavior test placeholder - implement actual logic"
+        assert True, (
+            "intelligent_linter_system specific behavior test placeholder - implement actual logic"
+        )
 
     def test_intelligent_linter_system_compliance(self):
         """Test that intelligent_linter_system implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement69IntelligentLinterApiIntegration:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "intelligent_linter_system compliance test placeholder - implement actual logic"
+        assert True, (
+            "intelligent_linter_system compliance test placeholder - implement actual logic"
+        )
