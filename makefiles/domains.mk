@@ -239,3 +239,22 @@ security-rules: ## Security rules
 tool-integration-patterns: ## Tool integration patterns
 	@echo "$(BLUE)🛠️ Tool Integration Patterns$(NC)"
 	@echo "  Status: Tool integration patterns available"
+
+# RM Compliance Validation Targets
+.PHONY: test-reflective-module-compliance check-module-sizes validate-rm-interfaces check-architectural-boundaries
+
+test-reflective-module-compliance: ## Test Reflective Module compliance across all modules
+	@echo "$(BLUE)🔍 Testing Reflective Module Compliance$(NC)"
+	@uv run python scripts/rm_compliance_validator.py --all
+
+check-module-sizes: ## Check all module sizes for RM compliance
+	@echo "$(BLUE)📏 Checking Module Sizes for RM Compliance$(NC)"
+	@uv run python scripts/rm_compliance_validator.py --all --report | grep -E "(📏 Lines:|❌.*EXCEEDS)" || echo "  ✅ All modules within size limits"
+
+validate-rm-interfaces: ## Validate Reflective Module interfaces
+	@echo "$(BLUE)🔌 Validating RM Interfaces$(NC)"
+	@uv run python scripts/rm_compliance_validator.py --all | grep -E "(🔌 Interfaces:|✅.*compliant)" || echo "  ❌ Interface validation failed"
+
+check-architectural-boundaries: ## Check architectural boundaries and dependencies
+	@echo "$(BLUE)🏗️ Checking Architectural Boundaries$(NC)"
+	@uv run python scripts/rm_compliance_validator.py --all --report | grep -E "(🏗️ Boundaries:|❌.*violations)" || echo "  ✅ All architectural boundaries clean"

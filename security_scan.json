@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-08-31T15:45:22Z",
+  "generated_at": "2025-08-31T16:15:20Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 349,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 344,
       "SEVERITY.MEDIUM": 7,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 52099,
+      "loc": 52369,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -154,7 +154,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 653,
+      "loc": 692,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2182,7 +2182,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 132,
+      "loc": 145,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2195,7 +2195,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 70,
+      "loc": 76,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2273,7 +2273,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 13,
+      "loc": 11,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2286,7 +2286,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 419,
+      "loc": 433,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2299,7 +2299,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 358,
+      "loc": 393,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2312,7 +2312,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 879,
+      "loc": 957,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2364,7 +2364,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 317,
+      "loc": 315,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2390,7 +2390,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 133,
+      "loc": 174,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2416,7 +2416,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 209,
+      "loc": 215,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2429,7 +2429,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 125,
+      "loc": 135,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2650,7 +2650,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 164,
+      "loc": 174,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -2702,7 +2702,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 254,
+      "loc": 276,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -8281,7 +8281,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "65         # Clear screen (works on most terminals)\n66         os.system('clear' if os.name == 'posix' else 'cls')\n67         \n",
+      "code": "67         # Clear screen (works on most terminals)\n68         os.system(\"clear\" if os.name == \"posix\" else \"cls\")\n69 \n",
       "col_offset": 8,
       "end_col_offset": 59,
       "filename": "src/round_trip_engineering/enhanced_reverse_engineer.py",
@@ -8292,9 +8292,9 @@
       },
       "issue_severity": "HIGH",
       "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
-      "line_number": 66,
+      "line_number": 68,
       "line_range": [
-        66
+        68
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b605_start_process_with_a_shell.html",
       "test_id": "B605",
@@ -8321,7 +8321,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "42         try:\n43             result = subprocess.run(\n44                 [\"uvx\", \"voice-mode\", \"--version\"],\n45                 capture_output=True,\n46                 text=True,\n47                 timeout=10\n48             )\n49             return result.returncode == 0\n",
+      "code": "44         try:\n45             result = subprocess.run(\n46                 [\"uvx\", \"voice-mode\", \"--version\"],\n47                 capture_output=True,\n48                 text=True,\n49                 timeout=10,\n50             )\n51             return result.returncode == 0\n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/round_trip_engineering/voice_integration/voice_control.py",
@@ -8332,21 +8332,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 43,
+      "line_number": 45,
       "line_range": [
-        43,
-        44,
         45,
         46,
         47,
-        48
+        48,
+        49,
+        50
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "42         try:\n43             result = subprocess.run(\n44                 [\"uvx\", \"voice-mode\", \"--version\"],\n45                 capture_output=True,\n46                 text=True,\n47                 timeout=10\n48             )\n49             return result.returncode == 0\n",
+      "code": "44         try:\n45             result = subprocess.run(\n46                 [\"uvx\", \"voice-mode\", \"--version\"],\n47                 capture_output=True,\n48                 text=True,\n49                 timeout=10,\n50             )\n51             return result.returncode == 0\n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "src/round_trip_engineering/voice_integration/voice_control.py",
@@ -8357,21 +8357,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 43,
+      "line_number": 45,
       "line_range": [
-        43,
-        44,
         45,
         46,
         47,
-        48
+        48,
+        49,
+        50
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "276                 pass\n277         except Exception:\n278             pass\n279         round_trip_response_time = time.time() - start_time\n",
+      "code": "292                 pass\n293         except Exception:\n294             pass\n295         round_trip_response_time = time.time() - start_time\n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "src/round_trip_engineering/voice_integration/voice_demo.py",
@@ -8382,10 +8382,10 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 277,
+      "line_number": 293,
       "line_range": [
-        277,
-        278
+        293,
+        294
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",

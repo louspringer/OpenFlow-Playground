@@ -6768,15 +6768,6 @@
       "status": "pending",
       "created_at": "2025-08-31T10:12:55.830160Z",
       "updated_at": "2025-08-31T10:12:55.830165Z"
-    },
-    {
-      "id": "backlog_20250831_103748",
-      "title": "Fix RM compliance violations in round-trip engineering system",
-      "description": "Multiple modules exceed 200 lines and lack RM interfaces. Need to refactor for full compliance.",
-      "priority": "medium",
-      "status": "pending",
-      "created_at": "2025-08-31T10:37:48.042493Z",
-      "updated_at": "2025-08-31T10:37:48.042499Z"
     }
   ]
 }

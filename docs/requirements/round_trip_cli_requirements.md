@@ -13,9 +13,11 @@
 ## 🏗️ **Architectural Requirements**
 
 ### **AR-001: Reflective Module Compliance**
+
 **Requirement**: The CLI must follow Reflective Module principles and not expose internal system architecture.
 
 **Acceptance Criteria**:
+
 - [x] CLI uses only documented public interfaces
 - [x] CLI does not reach into internal system guts
 - [x] CLI respects module boundaries
@@ -24,9 +26,11 @@
 **Implementation**: CLI uses `RoundTripSystem.get_system_status()`, `get_workflow_analysis()`, and `analyze_and_generate_code()` methods only.
 
 ### **AR-002: Documented Interface Usage**
+
 **Requirement**: All CLI operations must use documented public interfaces of the RoundTripSystem.
 
 **Acceptance Criteria**:
+
 - [x] CLI uses `get_system_status()` for system information
 - [x] CLI uses `get_workflow_analysis()` for reverse engineering
 - [x] CLI uses `analyze_and_generate_code()` for forward engineering
@@ -39,9 +43,11 @@
 ## 🔧 **Functional Requirements**
 
 ### **FR-001: System Status Command**
+
 **Requirement**: CLI must provide a `status` command to show system health and capabilities.
 
 **Acceptance Criteria**:
+
 - [x] `status` command displays overall system status
 - [x] `status` command shows code generation status
 - [x] `status` command shows ArtifactForge integration status
@@ -51,9 +57,11 @@
 **Implementation**: `show_system_status()` function calls `rts.get_system_status()` and formats the response.
 
 ### **FR-002: Reverse Engineering Command**
+
 **Requirement**: CLI must provide a `reverse` command to extract models from Python files.
 
 **Acceptance Criteria**:
+
 - [x] `reverse` command accepts source file path
 - [x] `reverse` command uses `get_workflow_analysis()`
 - [x] `reverse` command displays extracted model
@@ -63,9 +71,11 @@
 **Implementation**: `reverse_engineer()` function calls `rts.get_workflow_analysis(source_file)`.
 
 ### **FR-003: Forward Engineering Command**
+
 **Requirement**: CLI must provide a `forward` command to generate Python code from source analysis.
 
 **Acceptance Criteria**:
+
 - [x] `forward` command accepts source file and output file paths
 - [x] `forward` command uses `analyze_and_generate_code()`
 - [x] `forward` command writes generated code to output file
@@ -75,9 +85,11 @@
 **Implementation**: `forward_engineer()` function calls `rts.analyze_and_generate_code(source_file)`.
 
 ### **FR-004: Round-Trip Workflow Command**
+
 **Requirement**: CLI must provide a `round-trip` command for complete workflow execution.
 
 **Acceptance Criteria**:
+
 - [x] `round-trip` command executes reverse engineering step
 - [x] `round-trip` command executes forward engineering step
 - [x] `round-trip` command executes file comparison step
@@ -87,9 +99,11 @@
 **Implementation**: `round-trip` command orchestrates all three steps in sequence.
 
 ### **FR-005: File Comparison Command**
+
 **Requirement**: CLI must provide a `compare` command to analyze functional equivalence.
 
 **Acceptance Criteria**:
+
 - [x] `compare` command accepts two file paths
 - [x] `compare` command analyzes file sizes and line counts
 - [x] `compare` command provides heuristic equivalence assessment
@@ -103,9 +117,11 @@
 ## 🎨 **User Experience Requirements**
 
 ### **UX-001: Clear Command Structure**
+
 **Requirement**: CLI must have a clear, intuitive command structure.
 
 **Acceptance Criteria**:
+
 - [x] Commands are logically grouped and named
 - [x] Help text is comprehensive and clear
 - [x] Examples are provided for each command
@@ -114,9 +130,11 @@
 **Implementation**: Uses `argparse` with subparsers and comprehensive help text.
 
 ### **UX-002: Consistent Output Format**
+
 **Requirement**: CLI must provide consistent, well-formatted output.
 
 **Acceptance Criteria**:
+
 - [x] All commands use consistent emoji indicators
 - [x] Output is properly formatted and readable
 - [x] JSON output is properly indented
@@ -125,9 +143,11 @@
 **Implementation**: Consistent formatting functions and emoji usage throughout.
 
 ### **UX-003: Error Handling**
+
 **Requirement**: CLI must handle errors gracefully and provide useful feedback.
 
 **Acceptance Criteria**:
+
 - [x] File not found errors are handled gracefully
 - [x] System errors provide clear error messages
 - [x] Keyboard interrupts are handled properly
@@ -140,9 +160,11 @@
 ## 📚 **Documentation Requirements**
 
 ### **DOC-001: Command Help**
+
 **Requirement**: CLI must provide comprehensive help for all commands.
 
 **Acceptance Criteria**:
+
 - [x] Main help shows all available commands
 - [x] Each command has detailed help text
 - [x] Examples are provided for each command
@@ -151,9 +173,11 @@
 **Implementation**: Comprehensive help text with examples and interface documentation.
 
 ### **DOC-002: Interface Documentation**
+
 **Requirement**: CLI must document the interfaces it uses.
 
 **Acceptance Criteria**:
+
 - [x] Help text shows which RoundTripSystem methods are used
 - [x] Interface usage is clearly documented
 - [x] No internal implementation details are exposed
@@ -166,9 +190,11 @@
 ## 🧪 **Testing Requirements**
 
 ### **TEST-001: Command Validation**
+
 **Requirement**: All CLI commands must be tested and validated.
 
 **Acceptance Criteria**:
+
 - [x] `status` command returns proper system information
 - [x] `reverse` command extracts models correctly
 - [x] `forward` command generates code successfully
@@ -178,9 +204,11 @@
 **Implementation**: CLI has been tested with actual round-trip engineering system.
 
 ### **TEST-002: Error Handling Validation**
+
 **Requirement**: CLI error handling must be tested and validated.
 
 **Acceptance Criteria**:
+
 - [x] File not found errors are handled correctly
 - [x] Invalid arguments are rejected with helpful messages
 - [x] System errors are caught and reported
@@ -193,6 +221,7 @@
 ## 🎯 **Success Criteria**
 
 ### **Technical Success**: ✅ ALL ACHIEVED
+
 - [x] CLI follows Reflective Module principles
 - [x] CLI uses only documented public interfaces
 - [x] CLI provides all required commands
@@ -200,12 +229,14 @@
 - [x] CLI provides comprehensive help
 
 ### **User Experience Success**: ✅ ALL ACHIEVED
+
 - [x] Commands are intuitive and well-structured
 - [x] Output is clear and well-formatted
 - [x] Help text is comprehensive and useful
 - [x] Error messages are informative
 
 ### **Architectural Success**: ✅ ALL ACHIEVED
+
 - [x] No violation of module boundaries
 - [x] No exposure of internal system guts
 - [x] Proper use of documented interfaces
@@ -216,27 +247,32 @@
 ## 🚀 **Usage Examples**
 
 ### **System Status**
+
 ```bash
 uv run python scripts/round_trip_cli.py status
 ```
 
 ### **Reverse Engineering**
+
 ```bash
 uv run python scripts/round_trip_cli.py reverse test_file.py
 uv run python scripts/round_trip_cli.py reverse test_file.py -o model.json
 ```
 
 ### **Forward Engineering**
+
 ```bash
 uv run python scripts/round_trip_cli.py forward test_file.py output.py
 ```
 
 ### **Complete Round-Trip Workflow**
+
 ```bash
 uv run python scripts/round_trip_cli.py round-trip test_file.py output.py
 ```
 
 ### **File Comparison**
+
 ```bash
 uv run python scripts/round_trip_cli.py compare file1.py file2.py
 ```
@@ -247,7 +283,8 @@ uv run python scripts/round_trip_cli.py compare file1.py file2.py
 
 **The Round-Trip Engineering CLI has been successfully implemented following all Reflective Module principles!**
 
-### **Key Achievements**:
+### **Key Achievements**
+
 - ✅ **Reflective Module Compliance**: 100% achieved
 - ✅ **Documented Interface Usage**: 100% achieved
 - ✅ **All Required Commands**: Implemented and tested
