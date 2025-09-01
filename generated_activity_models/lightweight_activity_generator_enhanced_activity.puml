@@ -1,0 +1,76 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor lightyellow
+skinparam activityStartColor lightgreen
+skinparam activityEndColor lightcoral
+
+title Activity Diagram - lightweight_activity_generator.py
+
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+start
+stop
+if (__name__ == __main__) then (yes)
+else (no)
+endif
+
+func_start___init__ --> func_end___init__
+func_start__find_plantuml_jar --> func_end__find_plantuml_jar
+func_start__check_java --> func_end__check_java
+func_start_analyze_python_file --> func_end_analyze_python_file
+func_start_generate_plantuml_activity --> func_end_generate_plantuml_activity
+func_start_generate_svg --> func_end_generate_svg
+func_start__generate_svg_plantuml_jar --> func_end__generate_svg_plantuml_jar
+func_start__generate_svg_plantuml_server --> func_end__generate_svg_plantuml_server
+func_start__generate_svg_graphviz --> func_end__generate_svg_graphviz
+func_start__plantuml_to_dot --> func_end__plantuml_to_dot
+func_start_generate_activity_diagram --> func_end_generate_activity_diagram
+func_start_analyze_workflow --> func_end_analyze_workflow
+func_start___init__ --> func_end___init__
+func_start__add_node --> func_end__add_node
+func_start_visit_FunctionDef --> func_end_visit_FunctionDef
+func_start_visit_If --> func_end_visit_If
+func_start_visit_While --> func_end_visit_While
+func_start_visit_For --> func_end_visit_For
+func_start_visit_Expr --> func_end_visit_Expr
+func_start_main --> func_end_main
+@enduml

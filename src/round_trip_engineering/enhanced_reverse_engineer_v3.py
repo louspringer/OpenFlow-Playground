@@ -59,9 +59,7 @@ class EnhancedReverseEngineerV3:
             "is_test_file": any("test_" in line for line in lines),
             "line_count": len(lines),
             "file_size": len(content),
-            "has_docstring": any(
-                line.strip().startswith(('"""', "'''")) for line in lines
-            ),
+            "has_docstring": any(line.strip().startswith(('"""', "'''")) for line in lines),
         }
 
     def _extract_imports(self, lines: list[str]) -> list[str]:
@@ -97,9 +95,7 @@ class EnhancedReverseEngineerV3:
                 bases = []
                 if "(" in class_def and ")" in class_def:
                     base_part = class_def.split("(")[1].split(")")[0]
-                    bases = [
-                        base.strip() for base in base_part.split(",") if base.strip()
-                    ]
+                    bases = [base.strip() for base in base_part.split(",") if base.strip()]
 
                 current_class = {
                     "name": class_name,
@@ -119,32 +115,15 @@ class EnhancedReverseEngineerV3:
                     current_class["decorators"].insert(0, lines[j].strip())
                     j -= 1
 
-            elif (
-                in_class
-                and current_class
-                and stripped.startswith("def ")
-                and indent > class_indent
-            ):
+            elif in_class and current_class and stripped.startswith("def ") and indent > class_indent:
                 # This is a method (indented more than class)
                 method_name = stripped.split("def ")[1].split("(")[0].strip()
-                current_class["methods"].append(
-                    {"name": method_name, "line": i, "signature": stripped}
-                )
-            elif (
-                in_class
-                and current_class
-                and stripped.startswith(('"""', "'''"))
-                and indent > class_indent
-            ):
+                current_class["methods"].append({"name": method_name, "line": i, "signature": stripped})
+            elif in_class and current_class and stripped.startswith(('"""', "'''")) and indent > class_indent:
                 # Extract docstring (indented more than class)
                 if not current_class["docstring"]:
                     current_class["docstring"] = stripped.strip("\"'")
-            elif (
-                in_class
-                and indent <= class_indent
-                and stripped
-                and not stripped.startswith("#")
-            ):
+            elif in_class and indent <= class_indent and stripped and not stripped.startswith("#"):
                 # We've left the class (same or less indentation, not empty, not comment)
                 in_class = False
                 current_class = None
@@ -186,9 +165,7 @@ class EnhancedReverseEngineerV3:
                     current_function["decorators"].insert(0, lines[j].strip())
                     j -= 1
 
-            elif (
-                current_function and stripped.startswith(('"""', "'''")) and indent == 0
-            ):
+            elif current_function and stripped.startswith(('"""', "'''")) and indent == 0:
                 # Extract docstring (only for top-level functions)
                 if not current_function["docstring"]:
                     current_function["docstring"] = stripped.strip("\"'")
@@ -197,13 +174,7 @@ class EnhancedReverseEngineerV3:
 
     def _analyze_structure(self, lines: list[str]) -> dict[str, Any]:
         """Analyze overall file structure"""
-        code_lines = len(
-            [
-                line
-                for line in lines
-                if line.strip() and not line.strip().startswith("#")
-            ]
-        )
+        code_lines = len([line for line in lines if line.strip() and not line.strip().startswith("#")])
         comment_lines = len([line for line in lines if line.strip().startswith("#")])
         blank_lines = len([line for line in lines if not line.strip()])
 
@@ -212,8 +183,7 @@ class EnhancedReverseEngineerV3:
             "code_lines": code_lines,
             "comment_lines": comment_lines,
             "blank_lines": blank_lines,
-            "complexity_score": code_lines
-            + (comment_lines // 2),  # Simple complexity metric
+            "complexity_score": code_lines + (comment_lines // 2),  # Simple complexity metric
         }
 
 

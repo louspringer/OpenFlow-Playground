@@ -80,9 +80,7 @@ class OrchestratorState(TypedDict, total=False):
 class LangGraphOrchestrator:
     """LangGraph-based workflow orchestrator with proper state management"""
 
-    def __init__(
-        self, target_directory: str = ".", storage_dir: str = "agent_sessions"
-    ):
+    def __init__(self, target_directory: str = ".", storage_dir: str = "agent_sessions"):
         self.target_directory = Path(target_directory).resolve()
         self.agent_session_manager = AgentSessionManager(storage_dir)
         self.workflow = self._create_workflow()
@@ -122,9 +120,7 @@ class LangGraphOrchestrator:
                         print("✅ Using OpenAI GPT-4 for multi-agent analysis")
 
                     if self.working_models:
-                        print(
-                            f"🚀 Multi-LLM setup: {len(self.working_models)} models available"
-                        )
+                        print(f"🚀 Multi-LLM setup: {len(self.working_models)} models available")
                     else:
                         print("⚠️ No working API endpoints found")
                 else:
@@ -166,9 +162,7 @@ class LangGraphOrchestrator:
         )
         logger.info("✅ Added initialize → plan/complete conditional edge")
 
-        workflow.add_conditional_edges(
-            "plan", self._should_continue_to_do, {True: "do", False: "complete"}
-        )
+        workflow.add_conditional_edges("plan", self._should_continue_to_do, {True: "do", False: "complete"})
         logger.info("✅ Added plan → do/complete conditional edge")
 
         workflow.add_edge("do", "check")
@@ -199,15 +193,11 @@ class LangGraphOrchestrator:
         """Determine if we should continue to plan phase"""
         iteration_number = state.get("iteration_number", 0)
         max_iterations = state.get("max_iterations", 5)
-        logger.info(
-            f"🔍 _should_continue_to_plan: iteration={iteration_number}, max_iterations={max_iterations}"
-        )
+        logger.info(f"🔍 _should_continue_to_plan: iteration={iteration_number}, max_iterations={max_iterations}")
 
         # Check if we have an error
         if state.get("error_message"):
-            logger.info(
-                f"❌ Error detected: {state.get('error_message')}, going to complete"
-            )
+            logger.info(f"❌ Error detected: {state.get('error_message')}, going to complete")
             return False
 
         # Check if we should continue
@@ -253,9 +243,7 @@ class LangGraphOrchestrator:
         """Determine if we should continue to the next iteration"""
         iteration_number = state.get("iteration_number", 0)
         max_iterations = state.get("max_iterations", 5)
-        logger.info(
-            f"🔍 _should_continue_to_next_iteration: iteration={iteration_number}, max_iterations={max_iterations}"
-        )
+        logger.info(f"🔍 _should_continue_to_next_iteration: iteration={iteration_number}, max_iterations={max_iterations}")
 
         # Check if we've reached max iterations
         if iteration_number >= max_iterations:
@@ -272,9 +260,7 @@ class LangGraphOrchestrator:
         agent_findings = state.get("agent_findings", {})
         total_findings = sum(len(findings) for findings in agent_findings.values())
         if total_findings > 0:
-            logger.info(
-                f"✅ Agent findings found: {total_findings}, continuing to next iteration"
-            )
+            logger.info(f"✅ Agent findings found: {total_findings}, continuing to next iteration")
             return True
 
         # If no issues and no findings, we're done
@@ -304,9 +290,7 @@ class LangGraphOrchestrator:
                 "messages": [],
             }
 
-            logger.info(
-                f"📊 State updated: iteration={iteration_number}, stage={WorkflowStage.INITIALIZE.value}"
-            )
+            logger.info(f"📊 State updated: iteration={iteration_number}, stage={WorkflowStage.INITIALIZE.value}")
             return updates
 
         except Exception as e:
@@ -324,9 +308,7 @@ class LangGraphOrchestrator:
             # Generate quality report
             quality_report = await self._generate_quality_report()
 
-            logger.info(
-                f"✅ Plan phase completed: {quality_report.get('total_issues', 0)} issues found"
-            )
+            logger.info(f"✅ Plan phase completed: {quality_report.get('total_issues', 0)} issues found")
             return {
                 "current_stage": WorkflowStage.PLAN.value,
                 "quality_report": quality_report,
@@ -376,15 +358,9 @@ class LangGraphOrchestrator:
 
             # Add validation message
             messages = state.get("messages", [])
-            messages.append(
-                HumanMessage(
-                    content=f"Pre-commit validation: {pre_commit_result.get('success', False)}"
-                )
-            )
+            messages.append(HumanMessage(content=f"Pre-commit validation: {pre_commit_result.get('success', False)}"))
 
-            print(
-                f"✅ Validation complete: pre-commit {'passed' if pre_commit_result.get('success') else 'failed'}"
-            )
+            print(f"✅ Validation complete: pre-commit {'passed' if pre_commit_result.get('success') else 'failed'}")
 
             return {
                 "current_stage": WorkflowStage.CHECK.value,
@@ -402,9 +378,7 @@ class LangGraphOrchestrator:
 
     async def _act_phase(self, state: OrchestratorState) -> dict[str, Any]:
         """Act phase: Run multi-agent analysis"""
-        print(
-            f"🤖 Multi-agent analysis phase for iteration {state.get('iteration_number', 0)}"
-        )
+        print(f"🤖 Multi-agent analysis phase for iteration {state.get('iteration_number', 0)}")
 
         try:
             # Run multi-agent analysis
@@ -413,11 +387,7 @@ class LangGraphOrchestrator:
             # Add analysis message
             total_findings = sum(len(findings) for findings in agent_results.values())
             messages = state.get("messages", [])
-            messages.append(
-                HumanMessage(
-                    content=f"Multi-agent analysis complete: {total_findings} findings across {len(agent_results)} agents"
-                )
-            )
+            messages.append(HumanMessage(content=f"Multi-agent analysis complete: {total_findings} findings across {len(agent_results)} agents"))
 
             print(f"✅ Multi-agent analysis complete: {total_findings} findings")
 
@@ -452,24 +422,13 @@ class LangGraphOrchestrator:
             quality_report = state.get("quality_report")
             pre_commit_results = state.get("pre_commit_results", {})
 
-            should_continue = (
-                iteration_number < max_iterations
-                and quality_report
-                and quality_report.get("total_issues", 0) > 0
-                and not pre_commit_results.get("success", False)
-            )
+            should_continue = iteration_number < max_iterations and quality_report and quality_report.get("total_issues", 0) > 0 and not pre_commit_results.get("success", False)
 
             # Add synthesis message
             messages = state.get("messages", [])
-            messages.append(
-                AIMessage(
-                    content=f"Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations, continue={should_continue}"
-                )
-            )
+            messages.append(AIMessage(content=f"Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations, continue={should_continue}"))
 
-            print(
-                f"✅ Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations"
-            )
+            print(f"✅ Synthesis complete: {len(synthesis.get('recommendations', []))} recommendations")
 
             return {
                 "current_stage": WorkflowStage.SYNTHESIZE.value,
@@ -530,16 +489,12 @@ class LangGraphOrchestrator:
             )
 
             # Create a temporary orchestrator to generate the report
-            temp_orchestrator = CodeQualityAutomationOrchestrator(
-                str(self.target_directory)
-            )
+            temp_orchestrator = CodeQualityAutomationOrchestrator(str(self.target_directory))
             quality_report = temp_orchestrator.generate_quality_report()
 
             # Convert to dictionary format
             report_dict = quality_report.to_dict()
-            print(
-                f"  ✅ Quality report generated: {report_dict.get('total_issues', 0)} issues found"
-            )
+            print(f"  ✅ Quality report generated: {report_dict.get('total_issues', 0)} issues found")
 
             return report_dict
 
@@ -568,14 +523,10 @@ class LangGraphOrchestrator:
                 CodeQualityAutomationOrchestrator,
             )
 
-            temp_orchestrator = CodeQualityAutomationOrchestrator(
-                str(self.target_directory)
-            )
+            temp_orchestrator = CodeQualityAutomationOrchestrator(str(self.target_directory))
             result = temp_orchestrator.run_subproject_scrubbing()
 
-            print(
-                f"  ✅ Subproject scrubbing: {'success' if result.get('success') else 'failed'}"
-            )
+            print(f"  ✅ Subproject scrubbing: {'success' if result.get('success') else 'failed'}")
             return result
 
         except Exception as e:
@@ -591,14 +542,10 @@ class LangGraphOrchestrator:
                 CodeQualityAutomationOrchestrator,
             )
 
-            temp_orchestrator = CodeQualityAutomationOrchestrator(
-                str(self.target_directory)
-            )
+            temp_orchestrator = CodeQualityAutomationOrchestrator(str(self.target_directory))
             result = temp_orchestrator.run_black_formatting()
 
-            print(
-                f"  ✅ Code formatting: {'success' if result.get('success') else 'failed'}"
-            )
+            print(f"  ✅ Code formatting: {'success' if result.get('success') else 'failed'}")
             return result
 
         except Exception as e:
@@ -614,14 +561,10 @@ class LangGraphOrchestrator:
                 CodeQualityAutomationOrchestrator,
             )
 
-            temp_orchestrator = CodeQualityAutomationOrchestrator(
-                str(self.target_directory)
-            )
+            temp_orchestrator = CodeQualityAutomationOrchestrator(str(self.target_directory))
             result = temp_orchestrator.run_ruff_linting()
 
-            print(
-                f"  ✅ Code linting: {'success' if result.get('success') else 'failed'}"
-            )
+            print(f"  ✅ Code linting: {'success' if result.get('success') else 'failed'}")
             return result
 
         except Exception as e:
@@ -637,14 +580,10 @@ class LangGraphOrchestrator:
                 CodeQualityAutomationOrchestrator,
             )
 
-            temp_orchestrator = CodeQualityAutomationOrchestrator(
-                str(self.target_directory)
-            )
+            temp_orchestrator = CodeQualityAutomationOrchestrator(str(self.target_directory))
             result = temp_orchestrator.run_pre_commit_check()
 
-            print(
-                f"  ✅ Pre-commit checks: {'passed' if result.get('success') else 'failed'}"
-            )
+            print(f"  ✅ Pre-commit checks: {'passed' if result.get('success') else 'failed'}")
             return result
 
         except Exception as e:
@@ -677,17 +616,13 @@ class LangGraphOrchestrator:
 
         return agent_results
 
-    async def _run_agent_with_context(
-        self, agent_type: AgentType
-    ) -> list[dict[str, Any]]:
+    async def _run_agent_with_context(self, agent_type: AgentType) -> list[dict[str, Any]]:
         """Run a single agent with cross-agent context"""
         print(f"  🔍 Running {agent_type.value}...")
 
         try:
             # Get cross-agent context for this agent
-            cross_context = self.agent_session_manager.get_cross_agent_context(
-                agent_type
-            )
+            cross_context = self.agent_session_manager.get_cross_agent_context(agent_type)
 
             # Update agent context with cross-agent information
             self.agent_session_manager.update_agent_context(
@@ -725,9 +660,7 @@ class LangGraphOrchestrator:
             print(f"  ❌ {agent_type.value} failed: {e}")
             return []
 
-    async def _run_agent_analysis(
-        self, agent_type: AgentType, cross_context: dict[str, Any]
-    ) -> list[dict[str, Any]]:
+    async def _run_agent_analysis(self, agent_type: AgentType, cross_context: dict[str, Any]) -> list[dict[str, Any]]:
         """Run analysis for a specific agent type using real tools"""
         print(f"    🤖 Running {agent_type.value} analysis...")
 
@@ -744,9 +677,7 @@ class LangGraphOrchestrator:
                     "role": "security_expert",
                     "prompt_structure": "direct_questions",
                     "response_format": "json",
-                    "model": (
-                        self.working_models[0] if self.working_models else "claude"
-                    ),
+                    "model": (self.working_models[0] if self.working_models else "claude"),
                     "temperature": 0.7,
                 }
                 scenario = "security_audit"
@@ -756,9 +687,7 @@ class LangGraphOrchestrator:
                     "role": "code_quality_expert",
                     "prompt_structure": "direct_questions",
                     "response_format": "json",
-                    "model": (
-                        self.working_models[0] if self.working_models else "claude"
-                    ),
+                    "model": (self.working_models[0] if self.working_models else "claude"),
                     "temperature": 0.7,
                 }
                 scenario = "code_quality_assessment"
@@ -768,9 +697,7 @@ class LangGraphOrchestrator:
                     "role": "devops_expert",
                     "prompt_structure": "direct_questions",
                     "response_format": "json",
-                    "model": (
-                        self.working_models[0] if self.working_models else "claude"
-                    ),
+                    "model": (self.working_models[0] if self.working_models else "claude"),
                     "temperature": 0.7,
                 }
                 scenario = "devops_pipeline_review"
@@ -783,33 +710,23 @@ class LangGraphOrchestrator:
             config["cross_agent_context"] = cross_context
             config["iteration_context"] = {
                 "iteration_number": self.agent_session_manager.current_iteration,
-                "previous_findings": len(
-                    self.agent_session_manager.get_agent_previous_findings(
-                        agent_type, self.agent_session_manager.current_iteration
-                    )
-                ),
+                "previous_findings": len(self.agent_session_manager.get_agent_previous_findings(agent_type, self.agent_session_manager.current_iteration)),
             }
 
             # Run the analysis
             result = test_system.run_test(config, scenario)
 
             # Convert the result to our finding format
-            findings = self._convert_result_to_findings(
-                result, agent_type, cross_context
-            )
+            findings = self._convert_result_to_findings(result, agent_type, cross_context)
 
-            print(
-                f"    ✅ {agent_type.value} analysis complete: {len(findings)} findings"
-            )
+            print(f"    ✅ {agent_type.value} analysis complete: {len(findings)} findings")
             return findings
 
         except Exception as e:
             print(f"    ❌ {agent_type.value} analysis failed: {e}")
             return []
 
-    def _convert_result_to_findings(
-        self, result: Any, agent_type: AgentType, cross_context: dict[str, Any]
-    ) -> list[dict[str, Any]]:
+    def _convert_result_to_findings(self, result: Any, agent_type: AgentType, cross_context: dict[str, Any]) -> list[dict[str, Any]]:
         """Convert analysis result to our finding format"""
         findings = []
 
@@ -822,12 +739,10 @@ class LangGraphOrchestrator:
                     if isinstance(delusions, list):
                         for i, delusion in enumerate(delusions):
                             finding = {
-                                "finding_id": f"{agent_type.value}_{i+1:03d}",
+                                "finding_id": f"{agent_type.value}_{i + 1:03d}",
                                 "category": delusion.get("category", "unknown"),
                                 "severity": self._determine_severity(delusion),
-                                "description": delusion.get(
-                                    "description", str(delusion)
-                                ),
+                                "description": delusion.get("description", str(delusion)),
                                 "recommendations": delusion.get("recommendations", []),
                                 "confidence": delusion.get("confidence", 0.8),
                                 "metadata": {
@@ -843,12 +758,10 @@ class LangGraphOrchestrator:
                     # Handle findings format
                     for i, finding_data in enumerate(result["findings"]):
                         finding = {
-                            "finding_id": f"{agent_type.value}_{i+1:03d}",
+                            "finding_id": f"{agent_type.value}_{i + 1:03d}",
                             "category": finding_data.get("category", "unknown"),
                             "severity": self._determine_severity(finding_data),
-                            "description": finding_data.get(
-                                "description", str(finding_data)
-                            ),
+                            "description": finding_data.get("description", str(finding_data)),
                             "recommendations": finding_data.get("recommendations", []),
                             "confidence": finding_data.get("confidence", 0.8),
                             "metadata": {
@@ -867,9 +780,7 @@ class LangGraphOrchestrator:
                         "category": "analysis",
                         "severity": "medium",
                         "description": f"Analysis result from {agent_type.value}: {str(result)[:200]}...",
-                        "recommendations": [
-                            "Review analysis results for actionable insights"
-                        ],
+                        "recommendations": ["Review analysis results for actionable insights"],
                         "confidence": 0.7,
                         "metadata": {
                             "cross_context_used": bool(cross_context),
@@ -887,9 +798,7 @@ class LangGraphOrchestrator:
                     "category": "analysis",
                     "severity": "medium",
                     "description": f"Analysis result from {agent_type.value}: {result[:200]}...",
-                    "recommendations": [
-                        "Review analysis results for actionable insights"
-                    ],
+                    "recommendations": ["Review analysis results for actionable insights"],
                     "confidence": 0.7,
                     "metadata": {
                         "cross_context_used": bool(cross_context),
@@ -907,9 +816,7 @@ class LangGraphOrchestrator:
                     "category": "analysis",
                     "severity": "medium",
                     "description": f"Analysis result from {agent_type.value}: {type(result).__name__}",
-                    "recommendations": [
-                        "Review analysis results for actionable insights"
-                    ],
+                    "recommendations": ["Review analysis results for actionable insights"],
                     "confidence": 0.7,
                     "metadata": {
                         "cross_context_used": bool(cross_context),
@@ -990,16 +897,12 @@ class LangGraphOrchestrator:
                 "next_actions": [],
                 "messages": [],
             }
-            logger.info(
-                f"📊 Initial state: iteration={initial_state['iteration_number']}, max_iterations={initial_state['max_iterations']}"
-            )
+            logger.info(f"📊 Initial state: iteration={initial_state['iteration_number']}, max_iterations={initial_state['max_iterations']}")
 
             # Run the workflow
             logger.info("🔄 Executing workflow...")
             final_state_dict = await self.workflow.ainvoke(initial_state)
-            logger.info(
-                f"✅ Workflow execution completed. Final state type: {type(final_state_dict)}"
-            )
+            logger.info(f"✅ Workflow execution completed. Final state type: {type(final_state_dict)}")
 
             # LangGraph returns dictionaries, so we always expect dict format
             final_state = final_state_dict
@@ -1007,23 +910,17 @@ class LangGraphOrchestrator:
 
             # Extract results from dictionary format
             results = {
-                "workflow_success": final_state.get("current_stage")
-                == WorkflowStage.COMPLETE.value,
+                "workflow_success": final_state.get("current_stage") == WorkflowStage.COMPLETE.value,
                 "iterations_completed": final_state.get("iteration_number", 0),
                 "final_stage": final_state.get("current_stage", "unknown"),
-                "total_agent_findings": sum(
-                    len(findings)
-                    for findings in final_state.get("agent_findings", {}).values()
-                ),
+                "total_agent_findings": sum(len(findings) for findings in final_state.get("agent_findings", {}).values()),
                 "synthesis": final_state.get("synthesis"),
                 "learning_outcomes": final_state.get("learning_outcomes", []),
                 "error_message": final_state.get("error_message"),
                 "quality_report": final_state.get("quality_report"),
             }
 
-            logger.info(
-                f"📋 Workflow results: success={results['workflow_success']}, iterations={results['iterations_completed']}"
-            )
+            logger.info(f"📋 Workflow results: success={results['workflow_success']}, iterations={results['iterations_completed']}")
             return results
 
         except Exception as e:

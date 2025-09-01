@@ -6,9 +6,7 @@ import sys
 from pathlib import Path
 
 
-def run_command_safe(
-    cmd_list: list[str], description: str, cwd: Path | None = None
-) -> bool:
+def run_command_safe(cmd_list: list[str], description: str, cwd: Path | None = None) -> bool:
     """Run a command safely without shell=True"""
     print(f"\n🔄 {description}...")
     try:
@@ -40,17 +38,13 @@ def main() -> int:
 
     # Step 2: Ruff linting with auto-fixes
     ruff_cmd = ["python3", "-m", "ruff", "check", ".", "--fix", "--unsafe-fixes"]
-    ruff_success = run_command_safe(
-        ruff_cmd, "Ruff linting with auto-fixes", cwd=target_path
-    )
+    ruff_success = run_command_safe(ruff_cmd, "Ruff linting with auto-fixes", cwd=target_path)
 
     # Step 3: Check remaining issues
     check_cmd = ["python3", "-m", "ruff", "check", ".", "--output-format", "concise"]
     print("\n🔍 Checking remaining issues...")
     try:
-        result = subprocess.run(
-            check_cmd, capture_output=True, text=True, cwd=target_path
-        )
+        result = subprocess.run(check_cmd, capture_output=True, text=True, cwd=target_path)
         if result.returncode == 0:
             print("✅ No remaining linting issues!")
         else:
@@ -65,9 +59,7 @@ def main() -> int:
     if python_files:
         file_paths = [str(f.relative_to(target_path)) for f in python_files]
         precommit_cmd = ["python3", "-m", "pre_commit", "run", "--files"] + file_paths
-        precommit_success = run_command_safe(
-            precommit_cmd, "Pre-commit checks", cwd=target_path
-        )
+        precommit_success = run_command_safe(precommit_cmd, "Pre-commit checks", cwd=target_path)
     else:
         print("\n⚠️ No Python files found for pre-commit checks")
         precommit_success = True

@@ -114,9 +114,7 @@ class StatusManager:
                 return key.get("status")
         return None
 
-    def update_credential_status(
-        self, item_id: str, new_status: str, reason: str = None
-    ) -> bool:
+    def update_credential_status(self, item_id: str, new_status: str, reason: str = None) -> bool:
         """
         Update the status of a credential.
 
@@ -146,9 +144,7 @@ class StatusManager:
             return False
 
         # Record the status update
-        status_update = StatusUpdate(
-            item_id=item_id, old_status=old_status, new_status=new_status, reason=reason
-        )
+        status_update = StatusUpdate(item_id=item_id, old_status=old_status, new_status=new_status, reason=reason)
         self._status_history.append(status_update)
 
         print(f"✅ Status updated: {item_id} {old_status} → {new_status}")
@@ -157,9 +153,7 @@ class StatusManager:
 
         return True
 
-    def archive_credential(
-        self, item_id: str, reason: str = "Not suitable for API usage"
-    ) -> bool:
+    def archive_credential(self, item_id: str, reason: str = "Not suitable for API usage") -> bool:
         """
         Archive a credential in both cache and 1Password.
 
@@ -172,9 +166,7 @@ class StatusManager:
         """
         try:
             # Update cache status first
-            if not self.update_credential_status(
-                item_id, CredentialStatus.ARCHIVED.value, reason
-            ):
+            if not self.update_credential_status(item_id, CredentialStatus.ARCHIVED.value, reason):
                 return False
 
             # Archive in 1Password

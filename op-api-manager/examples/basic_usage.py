@@ -59,7 +59,7 @@ def main():
         if result.credential_pairs:
             print("\n🔗 Credential pairs:")
             for i, pair in enumerate(result.credential_pairs[:3]):  # Show first 3
-                print(f"  {i+1}. {pair.pair_type}: {pair.primary.title}")
+                print(f"  {i + 1}. {pair.pair_type}: {pair.primary.title}")
                 if pair.secondary:
                     print(f"     Secondary: {pair.secondary.title}")
                 print(f"     Description: {pair.description}")

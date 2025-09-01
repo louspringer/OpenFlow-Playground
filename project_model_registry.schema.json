@@ -118,17 +118,36 @@
       "items": {
         "type": "object",
         "properties": {
-          "requirement": { "type": "string" },
-          "domain": { "type": "string" },
-          "enforcement": { "type": "string" },
-          "validation": { "type": "string" },
-          "threshold": { "type": "string" },
-          "prevention": { "type": "string" },
-          "description": { "type": "string" }
+          "requirement": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "enforcement": {
+            "type": "string"
+          },
+          "validation": {
+            "type": "string"
+          },
+          "threshold": {
+            "type": "string"
+          },
+          "prevention": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
         },
-        "required": ["requirement", "domain", "enforcement"]
+        "required": [
+          "requirement",
+          "domain",
+          "enforcement"
+        ]
       }
-    },    "implementation_plan": {
+    },
+    "implementation_plan": {
       "type": "object",
       "properties": {
         "backlogged": {
@@ -177,6 +196,34 @@
             ]
           }
         }
+      }
+    },
+    "requirements_traceability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "implementation": {
+            "type": "string"
+          },
+          "test": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requirement",
+          "domain",
+          "test"
+        ]
       }
     }
   },

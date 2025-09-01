@@ -33,9 +33,7 @@ class PreCommitIntegration:
         try:
             # Check if we're in a git repository
             if not self._is_git_repository():
-                self.logger.warning(
-                    "Not in a git repository, skipping pre-commit check"
-                )
+                self.logger.warning("Not in a git repository, skipping pre-commit check")
                 return True
 
             # Get staged files
@@ -106,9 +104,7 @@ class PreCommitIntegration:
 
     def _run_full_quality_check(self, staged_files: list[Path]) -> dict[str, Any]:
         """Run full quality check on staged files"""
-        self.logger.info(
-            f"Running full quality check on {len(staged_files)} staged files"
-        )
+        self.logger.info(f"Running full quality check on {len(staged_files)} staged files")
 
         # Analyze staged files for quality issues
         analysis_results = self._analyze_staged_files(staged_files)

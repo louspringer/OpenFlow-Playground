@@ -62,9 +62,7 @@ normal_var = "safe_value"  # This should not be detected
             assert "findings_count" in summary
             assert "status" in summary
 
-            print(
-                f"✅ Security scan completed: {summary['files_scanned']} files, {summary['findings_count']} findings"
-            )
+            print(f"✅ Security scan completed: {summary['files_scanned']} files, {summary['findings_count']} findings")
 
             # Check that security issues were detected (either as findings or false positives)
             all_findings = results["all_findings"]
@@ -75,19 +73,13 @@ normal_var = "safe_value"  # This should not be detected
             assert total_detections > 0, "Should detect security issues in test file"
 
             # Check for specific patterns in either findings or false positives
-            api_key_found = any(
-                "api_key" in str(finding) for finding in all_findings + false_positives
-            )
-            password_found = any(
-                "password" in str(finding) for finding in all_findings + false_positives
-            )
+            api_key_found = any("api_key" in str(finding) for finding in all_findings + false_positives)
+            password_found = any("password" in str(finding) for finding in all_findings + false_positives)
 
             assert api_key_found, "Should detect API key in test file"
             assert password_found, "Should detect password in test file"
 
-            print(
-                f"✅ Detected {total_detections} security issues (including false positives)"
-            )
+            print(f"✅ Detected {total_detections} security issues (including false positives)")
 
     def test_security_scanner_performance_metrics(self):
         """Test that performance metrics are reasonable"""
@@ -112,21 +104,13 @@ normal_var = "safe_value"  # This should not be detected
 
             # Success rate should be reasonable (0-100%)
             success_rate = performance["success_rate"]
-            assert (
-                0 <= success_rate <= 100
-            ), f"Success rate {success_rate}% is not reasonable"
+            assert 0 <= success_rate <= 100, f"Success rate {success_rate}% is not reasonable"
 
             # Get scan duration from either field
-            scan_duration = performance.get(
-                "scan_duration", performance.get("elapsed_time", 0)
-            )
+            scan_duration = performance.get("scan_duration", performance.get("elapsed_time", 0))
             throughput = performance["throughput"]
 
-            print(
-                f"✅ Performance metrics: duration={scan_duration:.2f}s, "
-                f"throughput={throughput:.1f} files/s, "
-                f"success_rate={success_rate:.1f}%"
-            )
+            print(f"✅ Performance metrics: duration={scan_duration:.2f}s, throughput={throughput:.1f} files/s, success_rate={success_rate:.1f}%")
 
     def test_security_scanner_exclusion_patterns(self):
         """Test that exclusion patterns work correctly"""
@@ -152,27 +136,19 @@ normal_var = "safe_value"  # This should not be detected
             false_positives = results["false_positives"]
 
             # Check findings in normal files
-            normal_file_findings = [
-                f for f in all_findings + false_positives if "normal.py" in str(f)
-            ]
-            cache_file_findings = [
-                f for f in all_findings + false_positives if "cache_file.json" in str(f)
-            ]
+            normal_file_findings = [f for f in all_findings + false_positives if "normal.py" in str(f)]
+            cache_file_findings = [f for f in all_findings + false_positives if "cache_file.json" in str(f)]
 
             # Normal file should have findings
             assert len(normal_file_findings) > 0, "Should detect issues in normal files"
 
             # Cache file should ideally be excluded, but if not, findings should be minimal
             if len(cache_file_findings) > 0:
-                print(
-                    f"⚠️ Cache file findings: {len(cache_file_findings)} (may need exclusion pattern tuning)"
-                )
+                print(f"⚠️ Cache file findings: {len(cache_file_findings)} (may need exclusion pattern tuning)")
             else:
                 print("✅ Cache files properly excluded")
 
-            print(
-                f"✅ Exclusion test: {len(normal_file_findings)} findings in normal files"
-            )
+            print(f"✅ Exclusion test: {len(normal_file_findings)} findings in normal files")
 
 
 def main():

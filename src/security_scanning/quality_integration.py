@@ -80,11 +80,7 @@ class SecurityQualityIntegrator:
         medium_weight = 5.0
         low_weight = 1.0
 
-        total_weighted_issues = (
-            scan_result.high_severity * high_weight
-            + scan_result.medium_severity * medium_weight
-            + scan_result.low_severity * low_weight
-        )
+        total_weighted_issues = scan_result.high_severity * high_weight + scan_result.medium_severity * medium_weight + scan_result.low_severity * low_weight
 
         # Calculate score (higher is better)
         max_possible_issues = 100  # Arbitrary maximum for scoring
@@ -98,9 +94,7 @@ class SecurityQualityIntegrator:
 
         # High severity issues are always critical
         if scan_result.high_severity > 0:
-            critical_issues.append(
-                f"{scan_result.high_severity} high severity security issues detected"
-            )
+            critical_issues.append(f"{scan_result.high_severity} high severity security issues detected")
 
         # Check for specific critical patterns
         for issue in scan_result.issues:
@@ -110,15 +104,11 @@ class SecurityQualityIntegrator:
                 "company_email_password",
             ]:
                 if issue.severity == "high":
-                    critical_issues.append(
-                        f"Critical: {issue.detector_display_name} in {issue.filepath}"
-                    )
+                    critical_issues.append(f"Critical: {issue.detector_display_name} in {issue.filepath}")
 
         # Add general critical warnings
         if scan_result.total_issues > 10:
-            critical_issues.append(
-                "High volume of security issues - review security practices"
-            )
+            critical_issues.append("High volume of security issues - review security practices")
 
         return critical_issues
 
@@ -139,9 +129,7 @@ class SecurityQualityIntegrator:
             with open(self.quality_metrics_file, "w") as f:
                 json.dump(metrics_dict, f, indent=2)
 
-            logger.info(
-                f"Security quality metrics saved to {self.quality_metrics_file}"
-            )
+            logger.info(f"Security quality metrics saved to {self.quality_metrics_file}")
         except Exception as e:
             logger.error(f"Failed to save quality metrics: {e}")
 
@@ -226,19 +214,13 @@ class SecurityQualityIntegrator:
 
         # Issue-specific recommendations
         if metrics.high_severity_issues > 0:
-            recommendations.append(
-                f"🔴 Fix {metrics.high_severity_issues} high-severity issues immediately"
-            )
+            recommendations.append(f"🔴 Fix {metrics.high_severity_issues} high-severity issues immediately")
 
         if metrics.medium_severity_issues > 5:
-            recommendations.append(
-                f"🟡 Address {metrics.medium_severity_issues} medium-severity issues"
-            )
+            recommendations.append(f"🟡 Address {metrics.medium_severity_issues} medium-severity issues")
 
         if metrics.total_security_issues > 20:
-            recommendations.append(
-                "📊 High volume of issues - review security practices and policies"
-            )
+            recommendations.append("📊 High volume of issues - review security practices and policies")
 
         # General recommendations
         recommendations.append("🔒 Implement pre-commit security scanning")
@@ -271,9 +253,7 @@ class SecurityQualityGate:
         score_passed = metrics.security_score >= self.minimum_security_score
 
         # Check high severity issues
-        high_severity_passed = (
-            metrics.high_severity_issues <= self.max_high_severity_issues
-        )
+        high_severity_passed = metrics.high_severity_issues <= self.max_high_severity_issues
 
         # Check total issues
         total_issues_passed = metrics.total_security_issues <= self.max_total_issues
@@ -301,14 +281,10 @@ class SecurityQualityGate:
             },
             "critical_issues": metrics.critical_issues,
             "actionable_items": metrics.actionable_items,
-            "recommendations": self._generate_gate_recommendations(
-                metrics, gate_passed
-            ),
+            "recommendations": self._generate_gate_recommendations(metrics, gate_passed),
         }
 
-    def _generate_gate_recommendations(
-        self, metrics: SecurityQualityMetrics, gate_passed: bool
-    ) -> list[str]:
+    def _generate_gate_recommendations(self, metrics: SecurityQualityMetrics, gate_passed: bool) -> list[str]:
         """Generate recommendations based on gate evaluation"""
         recommendations = []
 
@@ -320,19 +296,13 @@ class SecurityQualityGate:
             recommendations.append("❌ Security quality gate failed")
 
             if metrics.security_score < self.minimum_security_score:
-                recommendations.append(
-                    f"📊 Improve security score from {metrics.security_score} to {self.minimum_security_score}+"
-                )
+                recommendations.append(f"📊 Improve security score from {metrics.security_score} to {self.minimum_security_score}+")
 
             if metrics.high_severity_issues > self.max_high_severity_issues:
-                recommendations.append(
-                    f"🔴 Fix {metrics.high_severity_issues} high-severity issues (max allowed: {self.max_high_severity_issues})"
-                )
+                recommendations.append(f"🔴 Fix {metrics.high_severity_issues} high-severity issues (max allowed: {self.max_high_severity_issues})")
 
             if metrics.total_security_issues > self.max_total_issues:
-                recommendations.append(
-                    f"📋 Reduce total issues from {metrics.total_security_issues} to {self.max_total_issues} or fewer"
-                )
+                recommendations.append(f"📋 Reduce total issues from {metrics.total_security_issues} to {self.max_total_issues} or fewer")
 
         # Add specific actionable items
         recommendations.extend(metrics.actionable_items[:3])  # Top 3 actionable items
@@ -346,12 +316,8 @@ def main():
 
     parser = argparse.ArgumentParser(description="Security Quality Integration")
     parser.add_argument("--api-token", help="GitGuardian API token (or use 1Password)")
-    parser.add_argument(
-        "--days-back", type=int, default=30, help="Number of days to look back"
-    )
-    parser.add_argument(
-        "--quality-gate", action="store_true", help="Run quality gate evaluation"
-    )
+    parser.add_argument("--days-back", type=int, default=30, help="Number of days to look back")
+    parser.add_argument("--quality-gate", action="store_true", help="Run quality gate evaluation")
     parser.add_argument("--output", help="Output file for results")
 
     args = parser.parse_args()
@@ -386,15 +352,9 @@ def main():
         print("SECURITY QUALITY GATE EVALUATION")
         print("=" * 60)
         print(f"Gate Status: {'✅ PASSED' if result['gate_passed'] else '❌ FAILED'}")
-        print(
-            f"Security Score: {result['security_score']['value']}/{result['security_score']['required']}"
-        )
-        print(
-            f"High Severity Issues: {result['high_severity_issues']['value']}/{result['high_severity_issues']['max_allowed']}"
-        )
-        print(
-            f"Total Issues: {result['total_issues']['value']}/{result['total_issues']['max_allowed']}"
-        )
+        print(f"Security Score: {result['security_score']['value']}/{result['security_score']['required']}")
+        print(f"High Severity Issues: {result['high_severity_issues']['value']}/{result['high_severity_issues']['max_allowed']}")
+        print(f"Total Issues: {result['total_issues']['value']}/{result['total_issues']['max_allowed']}")
 
         if result["critical_issues"]:
             print("\n🚨 Critical Issues:")

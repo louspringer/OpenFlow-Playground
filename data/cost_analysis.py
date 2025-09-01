@@ -181,10 +181,7 @@ def analyze_synthesis_costs():
     findings_text = ""
     for analysis in data.get("analyses", []):
         for finding in analysis.get("findings", []):
-            findings_text += (
-                f"• {finding.get('agent', 'Unknown')} ({finding.get('category', 'unknown')}): "
-                f"{finding.get('question', '')} - {finding.get('recommendation', '')}\n"
-            )
+            findings_text += f"• {finding.get('agent', 'Unknown')} ({finding.get('category', 'unknown')}): " f"{finding.get('question', '')} - {finding.get('recommendation', '')}\n"
 
     user_message = f"""
 You are a senior technical architect tasked with synthesizing diverse findings into prioritized, actionable fixes.
@@ -266,26 +263,10 @@ def main():
     langgraph = analyze_langgraph_costs()
     synthesis = analyze_synthesis_costs()
     # Calculate totals
-    total_calls = (
-        multi_dimensional.get("calls", 0)
-        + langgraph.get("calls", 0)
-        + synthesis.get("calls", 0)
-    )
-    total_input_tokens = (
-        multi_dimensional.get("input_tokens", 0)
-        + langgraph.get("input_tokens", 0)
-        + synthesis.get("input_tokens", 0)
-    )
-    total_output_tokens = (
-        multi_dimensional.get("output_tokens", 0)
-        + langgraph.get("output_tokens", 0)
-        + synthesis.get("output_tokens", 0)
-    )
-    total_cost = (
-        multi_dimensional.get("total_cost", 0)
-        + langgraph.get("total_cost", 0)
-        + synthesis.get("total_cost", 0)
-    )
+    total_calls = multi_dimensional.get("calls", 0) + langgraph.get("calls", 0) + synthesis.get("calls", 0)
+    total_input_tokens = multi_dimensional.get("input_tokens", 0) + langgraph.get("input_tokens", 0) + synthesis.get("input_tokens", 0)
+    total_output_tokens = multi_dimensional.get("output_tokens", 0) + langgraph.get("output_tokens", 0) + synthesis.get("output_tokens", 0)
+    total_cost = multi_dimensional.get("total_cost", 0) + langgraph.get("total_cost", 0) + synthesis.get("total_cost", 0)
     print("\n" + "=" * 50)
     print("💰 TOTAL COST SUMMARY")
     print("=" * 50)
@@ -301,9 +282,7 @@ def main():
     print(f"\n📈 COST EFFICIENCY:")
     print(f"   Cost per finding: ${cost_per_finding:.4f}")
     print(f"   Cost per API call: ${total_cost/total_calls:.4f}")
-    print(
-        f"   Cost per 1K tokens: ${(total_cost/(total_input_tokens + total_output_tokens)*1000):.4f}"
-    )
+    print(f"   Cost per 1K tokens: ${(total_cost/(total_input_tokens + total_output_tokens)*1000):.4f}")
     # ROI analysis
     print(f"\n🎯 ROI ANALYSIS:")
     print(f"   We discovered 25 unique blind spots")

@@ -246,7 +246,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Suggestion:** Use environment variables or secret management instead of hardcoded values
 **Context:** `[ $? -ne 0 ] && echo "Unable to obtain OAuth access token: "$(echo $oauth_resp | jq -r '.message') && exit 1`
 
-## ⚠️  Warnings
+## ⚠️ Warnings
 
 ### projected_verify_ide_linting_hypothesis.py:259
 
@@ -295,7 +295,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** one_line_commit
 **Description:** One-line commit message detected
 **Suggestion:** Use multi-line commit messages with proper descriptions
-**Context:** `- **Git one-liners**:`git commit -m "message"``
+**Context:** `- **Git one-liners**:`git commit -m "message"\`\`
 
 ### cloudbuild_webhook_trigger.py:124
 
@@ -393,7 +393,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** one_line_commit
 **Description:** One-line commit message detected
 **Suggestion:** Use multi-line commit messages with proper descriptions
-**Context:** `2. **Pre-commit Integration**:`python -m src.code_quality_system.cli install-hook``
+**Context:** `2. **Pre-commit Integration**:`python -m src.code_quality_system.cli install-hook\`\`
 
 ### test_orchestrator_quality_integration.py:48
 
@@ -792,21 +792,21 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** one_line_commit
 **Description:** One-line commit message detected
 **Suggestion:** Use multi-line commit messages with proper descriptions
-**Context:** `- **Configuration Generation**: Creates`.pre-commit-config.yaml` and `.ruff.toml``
+**Context:** `- **Configuration Generation**: Creates`.pre-commit-config.yaml`and`.ruff.toml\`\`
 
 ### docs/INTELLIGENT_LINTER_SYSTEM_SUMMARY.md:173
 
 **Type:** one_line_commit
 **Description:** One-line commit message detected
 **Suggestion:** Use multi-line commit messages with proper descriptions
-**Context:** `2. **Setup Pre-commit**:`pre-commit install``
+**Context:** `2. **Setup Pre-commit**:`pre-commit install\`\`
 
 ### docs/BRANCH_SEPARATION_SUMMARY.md:56
 
 **Type:** one_line_commit
 **Description:** One-line commit message detected
 **Suggestion:** Use multi-line commit messages with proper descriptions
-**Context:** `- **Files:**`.flake8`,`.pre-commit-config.yaml`,`.ruff.toml`,`scripts/`,`tests/``
+**Context:** `- **Files:**`.flake8`,`.pre-commit-config.yaml`,`.ruff.toml`,`scripts/`,`tests/\`\`
 
 ### docs/GIT_ENHANCED_AST_LEVEL_UP.md:30
 
@@ -5125,7 +5125,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 94 characters long (max 88)
 **Suggestion:** Break long line into multiple lines
-**Context:** `'git_oneliner': r'^[^#]*\bgit\s+(commit|push|pull|checkout|branch)\s+-m\s+["\'`].*[`"\']\s*$',`
+**Context:** `'git_oneliner': r'^[^#]*\bgit\s+(commit|push|pull|checkout|branch)\s+-m\s+["\'`\].\*\[`"\']\s*$',`
 
 ### scripts/one_liner_linter.py:186
 
@@ -6476,7 +6476,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 141 characters long (max 120)
 **Suggestion:** Break long line or restructure YAML
-**Context:** `body:`## 🤖 Copilot Diversity Hypothesis Validation\n\n${report}\n\n*This validation was performed automatically by our multi-agent system.*``
+**Context:** `body:`## 🤖 Copilot Diversity Hypothesis Validation\\n\\n${report}\\n\\n*This validation was performed automatically by our multi-agent system.*\`\`
 
 ### clewcrew-common/src/clewcrew_common/confidence.py:5
 
@@ -6786,7 +6786,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 211 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `Need to create automatic Cloud Build triggers for GitHub repository using **CLI only** - no web console allowed. The repository is`louspringer/OpenFlow-Playground` and we need triggers for the `develop`branch.`
+**Context:** `Need to create automatic Cloud Build triggers for GitHub repository using **CLI only** - no web console allowed. The repository is`louspringer/OpenFlow-Playground`and we need triggers for the`develop`branch.`
 
 ### GITHUB_CLOUD_BUILD_SETUP.md:30
 
@@ -6814,7 +6814,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 120 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `After setup, pushing to`develop` branch should automatically trigger Cloud Build using `cloudbuild.yaml`configuration.`
+**Context:** `After setup, pushing to`develop`branch should automatically trigger Cloud Build using`cloudbuild.yaml`configuration.`
 
 ### README.md:3
 
@@ -6842,7 +6842,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 198 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `Need to create automatic Cloud Build triggers for GitHub repository`louspringer/OpenFlow-Playground` using **CLI only** - no web console allowed. Triggers should fire on pushes to `develop`branch.`
+**Context:** `Need to create automatic Cloud Build triggers for GitHub repository`louspringer/OpenFlow-Playground`using **CLI only** - no web console allowed. Triggers should fire on pushes to`develop`branch.`
 
 ### CLOUDBUILD_GITHUB_PROBLEM_SPORE.md:37
 
@@ -6863,14 +6863,14 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 105 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `1.`ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument``
+**Context:** `1.`ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument\`\`
 
 ### CLOUDBUILD_GITHUB_PROBLEM_SPORE.md:108
 
 **Type:** line_too_long
 **Description:** Line is 131 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `After successful setup, pushing to`develop` branch should automatically trigger Cloud Build using `cloudbuild.yaml`configuration.`
+**Context:** `After successful setup, pushing to`develop`branch should automatically trigger Cloud Build using`cloudbuild.yaml`configuration.`
 
 ### GHOSTBUSTERS_ANALYSIS_REQUEST.md:98
 
@@ -6947,7 +6947,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 108 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **Location**:`tests/test_ghostbusters.py::TestGhostbustersOrchestrator::test_orchestrator_initialization``
+**Context:** `- **Location**:`tests/test_ghostbusters.py::TestGhostbustersOrchestrator::test_orchestrator_initialization\`\`
 
 ### CURRENT_STATE_SUMMARY.md:8
 
@@ -6996,7 +6996,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 108 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `**Result**: Added`roles/cloudbuild.builds.editor` but trigger creation still fails with `INVALID_ARGUMENT`.`
+**Context:** `**Result**: Added`roles/cloudbuild.builds.editor`but trigger creation still fails with`INVALID_ARGUMENT`.`
 
 ### CLOUDBUILD_GITHUB_FINAL_DIAGNOSTIC.md:109
 
@@ -7157,7 +7157,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 105 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `1.`ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument``
+**Context:** `1.`ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument\`\`
 
 ### CLOUDBUILD_GITHUB_LLM_WRAPPER.md:160
 
@@ -7185,7 +7185,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 131 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `After successful setup, pushing to`develop` branch should automatically trigger Cloud Build using `cloudbuild.yaml`configuration.`
+**Context:** `After successful setup, pushing to`develop`branch should automatically trigger Cloud Build using`cloudbuild.yaml`configuration.`
 
 ### CLOUDBUILD_GITHUB_LLM_WRAPPER.md:217
 
@@ -7458,7 +7458,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 107 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **Topics**:`clewcrew`,`validation`,`schema-validation`,`rule-validation`,`python`,`data-validation``
+**Context:** `- **Topics**:`clewcrew`,`validation`,`schema-validation`,`rule-validation`,`python`,`data-validation\`\`
 
 ### clewcrew-validators/NEXT_STEPS_SPORE.md:673
 
@@ -8116,21 +8116,21 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 107 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-analyze-embedded``>
+**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-analyze-embedded%60%60>
 
 ### docs/REAL_GHOSTBUSTERS_SUCCESS.md:20
 
 **Type:** line_too_long
 **Description:** Line is 108 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-progress-embedded``>
+**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-progress-embedded%60%60>
 
 ### docs/REAL_GHOSTBUSTERS_SUCCESS.md:26
 
 **Type:** line_too_long
 **Description:** Line is 113 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-user-analyses-embedded``>
+**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-user-analyses-embedded%60%60>
 
 ### docs/REAL_GHOSTBUSTERS_SUCCESS.md:35
 
@@ -8942,7 +8942,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 143 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **Files:**`MODEL_DRIVEN_PROJECTION_COMPONENT_COMPLETE.md`,`src/model_driven_projection/`,`project_model_registry.json`,`project_model.py``
+**Context:** `- **Files:**`MODEL_DRIVEN_PROJECTION_COMPONENT_COMPLETE.md`,`src/model_driven_projection/`,`project_model_registry.json`,`project_model.py\`\`
 
 ### docs/BRANCH_SEPARATION_SUMMARY.md:78
 
@@ -9530,14 +9530,14 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 107 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-analyze-enhanced``>
+**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-analyze-enhanced%60%60>
 
 ### docs/PHASE_2_COMPLETION_SUMMARY.md:26
 
 **Type:** line_too_long
 **Description:** Line is 104 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-user-analyses``>
+**Context:** `- **URL**:`<https://us-central1-aardvark-linkedin-grepper.cloudfunctions.net/ghostbusters-user-analyses%60%60>
 
 ### docs/PHASE_2_COMPLETION_SUMMARY.md:57
 
@@ -10510,7 +10510,7 @@ Workspace: /home/lou/Documents/OpenFlow-Playground
 **Type:** line_too_long
 **Description:** Line is 172 characters long (max 100)
 **Suggestion:** Break long line for better readability
-**Context:** `**⚠️ CRITICAL REQUIREMENT:** The`/.kiro` directory MUST be at the root of this project and MUST NOT be added to `.gitignore`- this is required for submission eligibility.`
+**Context:** `**⚠️ CRITICAL REQUIREMENT:** The`/.kiro`directory MUST be at the root of this project and MUST NOT be added to`.gitignore`- this is required for submission eligibility.`
 
 ### kiro-ai-development-hackathon/README.md:191
 

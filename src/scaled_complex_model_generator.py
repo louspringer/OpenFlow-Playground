@@ -177,10 +177,7 @@ class ScaledComplexModelGenerator:
             if flake8_result.returncode != 0:
                 error_lines = flake8_result.stdout.split("\n")
                 for line in error_lines:
-                    if ":" in line and any(
-                        code in line
-                        for code in ["E402", "E302", "E305", "W291", "W292"]
-                    ):
+                    if ":" in line and any(code in line for code in ["E402", "E302", "E305", "W291", "W292"]):
                         parts = line.split(":", 3)
                         if len(parts) >= 4:
                             file_path = parts[0]
@@ -428,10 +425,7 @@ class ScaledComplexModelGenerator:
                 flake8_errors = []
 
                 for line in error_lines:
-                    if ":" in line and any(
-                        code in line
-                        for code in ["E402", "E302", "E305", "W291", "W292"]
-                    ):
+                    if ":" in line and any(code in line for code in ["E402", "E302", "E305", "W291", "W292"]):
                         parts = line.split(":", 3)
                         if len(parts) >= 4:
                             file_path = parts[0]

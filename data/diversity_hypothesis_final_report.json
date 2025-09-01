@@ -183,11 +183,11 @@
     "hypothesis_proven": "Diversity IS the only free lunch - when enhanced with web search",
     "key_success_factors": [
       "Real analysis over fake confidence",
-      "Web search over vague recommendations", 
+      "Web search over vague recommendations",
       "Multi-agent quorum over single decisions",
       "Tool discovery over tool building",
       "Systematic PDCA over ad-hoc fixes"
     ],
     "final_quote": "The system now knows what tools exist, what tools work, and what tools to recommend - no more 'Consider using automated tools'!"
   }
-} 
+}

@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\udcb0 GKE Cost Monitor",
+  "system_name": "💰 GKE Cost Monitor",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -179,7 +179,7 @@
     "from typing import Dict",
     "from typing import List"
   ],
-  "module_docstring": "\n\ud83d\udcb0 GKE Cost Monitor\n\nMonitor and control costs for GKE hackathon implementation.\nIntegrates with existing GCP cost control system.\n",
+  "module_docstring": "\n💰 GKE Cost Monitor\n\nMonitor and control costs for GKE hackathon implementation.\nIntegrates with existing GCP cost control system.\n",
   "file_structure": {
     "total_lines": 615,
     "code_lines": 450,

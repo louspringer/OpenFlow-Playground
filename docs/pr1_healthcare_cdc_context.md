@@ -132,8 +132,8 @@ source sql/healthcare-cdc-schema.sql
 ### 3. Configure Openflow Pipeline
 
 1. Access Openflow Console
-2. Create New Pipeline: `HealthcareCDC`
-3. Add required processors (Kinesis Consumer, JSON Parser, etc.)
+1. Create New Pipeline: `HealthcareCDC`
+1. Add required processors (Kinesis Consumer, JSON Parser, etc.)
 
 ### 4. Monitor System
 
@@ -196,13 +196,14 @@ ORDER BY total_charge DESC;
    - Copilot suggested adding specific pip install commands for each provider
    - Example: `pip install langchain-openai` for OpenAI dependencies
 
-2. **Potential Credential Exposure via Subprocess**
+1. **Potential Credential Exposure via Subprocess**
 
    - Copilot flagged security concerns with 1Password CLI usage
    - Suggested using 1Password SDK instead of subprocess
    - Warned about credential exposure in process lists or logs
 
-3. **Unnecessary Input Sanitization**
+1. **Unnecessary Input Sanitization**
+
    - Copilot noted that hardcoded item names made sanitization unnecessary
    - Suggested removing unnecessary sanitization for controlled inputs
 
@@ -213,26 +214,26 @@ This Healthcare CDC implementation is the **perfect real-world scenario** for te
 ### Multiple Stakeholder Perspectives
 
 1. **Security Team** - HIPAA compliance, data privacy, credential management
-2. **DevOps Team** - Infrastructure automation, monitoring, deployment
-3. **Development Team** - Code quality, testing, maintainability
-4. **Product Team** - User experience, business value, requirements
-5. **Business Stakeholders** - Cost management, timeline, ROI
+1. **DevOps Team** - Infrastructure automation, monitoring, deployment
+1. **Development Team** - Code quality, testing, maintainability
+1. **Product Team** - User experience, business value, requirements
+1. **Business Stakeholders** - Cost management, timeline, ROI
 
 ### Complex Technical Challenges
 
 1. **Real-time Data Processing** - CDC operations with high throughput
-2. **Healthcare Compliance** - HIPAA, PHI protection, audit trails
-3. **Multi-Cloud Integration** - AWS DynamoDB + Snowflake
-4. **Production Infrastructure** - Scalability, monitoring, disaster recovery
-5. **Data Quality** - Validation, transformation, error handling
+1. **Healthcare Compliance** - HIPAA, PHI protection, audit trails
+1. **Multi-Cloud Integration** - AWS DynamoDB + Snowflake
+1. **Production Infrastructure** - Scalability, monitoring, disaster recovery
+1. **Data Quality** - Validation, transformation, error handling
 
 ### Potential Blind Spots
 
 1. **Security Vulnerabilities** - Credential exposure, data breaches
-2. **Performance Issues** - Scalability bottlenecks, latency problems
-3. **Compliance Gaps** - HIPAA violations, audit failures
-4. **Operational Risks** - Monitoring gaps, failure scenarios
-5. **Cost Overruns** - Resource optimization, budget management
+1. **Performance Issues** - Scalability bottlenecks, latency problems
+1. **Compliance Gaps** - HIPAA violations, audit failures
+1. **Operational Risks** - Monitoring gaps, failure scenarios
+1. **Cost Overruns** - Resource optimization, budget management
 
 ## 🚀 Ready for Diversity Analysis
 

@@ -111,16 +111,16 @@ pie title Security Risk Reduction
 ### For Existing Deployments
 
 1. **Backup** current configuration
-2. **Run** `./deploy.sh setup`
-3. **Enter** your Snowflake credentials
-4. **Deploy** with new secure configuration
+1. **Run** `./deploy.sh setup`
+1. **Enter** your Snowflake credentials
+1. **Deploy** with new secure configuration
 
 ### For New Deployments
 
 1. **Clone** repository
-2. **Run** `./deploy.sh setup`
-3. **Follow** interactive prompts
-4. **Deploy** securely
+1. **Run** `./deploy.sh setup`
+1. **Follow** interactive prompts
+1. **Deploy** securely
 
 ## 🎨 Interactive Demo
 
@@ -166,6 +166,6 @@ console.log("Configuration Flow:", configFlow);
 - ✅ **Interactive setup** prevents configuration errors
 - ✅ **Comprehensive documentation** for secure usage
 
----
+______________________________________________________________________
 
 **🎉 This PR transforms the project from a security risk to a secure, user-friendly deployment system!**

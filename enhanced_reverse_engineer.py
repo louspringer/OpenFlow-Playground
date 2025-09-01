@@ -53,9 +53,7 @@ class EnhancedReverseEngineer:
                 nodes_list = list(walk_result)
                 print(f"🔍 Debug: list(ast.walk(tree)) type: {type(nodes_list)}")
                 print(f"🔍 Debug: list(ast.walk(tree)) length: {len(nodes_list)}")
-                print(
-                    f"🔍 Debug: First few nodes: {[type(n).__name__ for n in nodes_list[:5]]}"
-                )
+                print(f"🔍 Debug: First few nodes: {[type(n).__name__ for n in nodes_list[:5]]}")
 
                 # Cache the nodes
                 self._cached_nodes = nodes_list
@@ -125,9 +123,7 @@ class EnhancedReverseEngineer:
         """Extract comprehensive module docstring"""
         try:
             print(f"🔍 _extract_module_docstring: content type: {type(content)}")
-            print(
-                f"🔍 _extract_module_docstring: content length: {len(content) if isinstance(content, str) else 'Not a string'}"
-            )
+            print(f"🔍 _extract_module_docstring: content length: {len(content) if isinstance(content, str) else 'Not a string'}")
 
             # Use cached nodes instead of calling ast.walk again
             all_nodes = self._get_cached_nodes()
@@ -137,12 +133,8 @@ class EnhancedReverseEngineer:
                     if node.body and isinstance(node.body[0], ast.Expr):
                         if isinstance(node.body[0].value, ast.Constant):
                             docstring = node.body[0].value.value
-                            print(
-                                f"🔍 _extract_module_docstring: docstring type: {type(docstring)}"
-                            )
-                            print(
-                                f"🔍 _extract_module_docstring: docstring content: {repr(docstring)}"
-                            )
+                            print(f"🔍 _extract_module_docstring: docstring type: {type(docstring)}")
+                            print(f"🔍 _extract_module_docstring: docstring content: {repr(docstring)}")
 
                             if isinstance(docstring, str):
                                 self.model_data["module_docstring"] = docstring
@@ -170,10 +162,7 @@ class EnhancedReverseEngineer:
                 if len(lines) > 1:
                     # Skip empty lines to find the first non-empty description
                     description_line = 1
-                    while (
-                        description_line < len(lines)
-                        and not lines[description_line].strip()
-                    ):
+                    while description_line < len(lines) and not lines[description_line].strip():
                         description_line += 1
                     if description_line < len(lines):
                         self.model_data["description"] = lines[description_line].strip()
@@ -184,12 +173,7 @@ class EnhancedReverseEngineer:
                     # Look for additional description lines (skip empty lines)
                     for i in range(2, len(lines)):
                         line = lines[i].strip()
-                        if (
-                            line
-                            and not line.startswith("Purpose:")
-                            and not line.startswith("Graph API Level:")
-                            and not line.startswith("Projection System:")
-                        ):
+                        if line and not line.startswith("Purpose:") and not line.startswith("Graph API Level:") and not line.startswith("Projection System:"):
                             # Skip if this is the same as the description
                             if line != self.model_data.get("description", ""):
                                 self.model_data["purpose"] = line
@@ -197,9 +181,7 @@ class EnhancedReverseEngineer:
 
                 for line in lines:
                     if line.startswith("Purpose:"):
-                        self.model_data["purpose"] = line.replace(
-                            "Purpose:", ""
-                        ).strip()
+                        self.model_data["purpose"] = line.replace("Purpose:", "").strip()
                     elif line.startswith("Graph API Level:"):
                         try:
                             level = int(line.split(":")[1].strip())
@@ -207,9 +189,7 @@ class EnhancedReverseEngineer:
                         except (ValueError, IndexError):
                             pass
                     elif line.startswith("Projection System:"):
-                        self.model_data["projection_system"] = line.split(":")[
-                            1
-                        ].strip()
+                        self.model_data["projection_system"] = line.split(":")[1].strip()
 
             print("✅ Successfully parsed module docstring")
 
@@ -217,9 +197,7 @@ class EnhancedReverseEngineer:
             print(f"🚨 ERROR in _parse_module_docstring: {type(e).__name__}: {e}")
             print(f"🚨 Docstring type: {type(docstring)}")
             print(f"🚨 Docstring content: {docstring}")
-            print(
-                f"🚨 Lines type: {type(lines) if 'lines' in locals() else 'Not defined'}"
-            )
+            print(f"🚨 Lines type: {type(lines) if 'lines' in locals() else 'Not defined'}")
             print(f"🚨 Lines content: {lines if 'lines' in locals() else 'Not defined'}")
 
     def _extract_file_metadata(self, tree: ast.AST, content: str) -> None:
@@ -227,9 +205,7 @@ class EnhancedReverseEngineer:
         try:
             # Check if file has shebang (executable)
             source_lines = content.split("\n")
-            has_shebang = (
-                source_lines[0].strip().startswith("#!") if source_lines else False
-            )
+            has_shebang = source_lines[0].strip().startswith("#!") if source_lines else False
 
             # Check if file contains test code
             all_nodes = self._get_cached_nodes()
@@ -245,10 +221,7 @@ class EnhancedReverseEngineer:
             # Check for main block
             for node in all_nodes:
                 if isinstance(node, ast.If) and isinstance(node.test, ast.Compare):
-                    if (
-                        isinstance(node.test.left, ast.Name)
-                        and node.test.left.id == "__name__"
-                    ):
+                    if isinstance(node.test.left, ast.Name) and node.test.left.id == "__name__":
                         has_main_block = True
                         break
 
@@ -318,9 +291,7 @@ class EnhancedReverseEngineer:
                 elif import_type == "from":
                     for alias in node.names:
                         if alias.asname:
-                            imports.append(
-                                f"from {module} import {alias.name} as {alias.asname}"
-                            )
+                            imports.append(f"from {module} import {alias.name} as {alias.asname}")
                         else:
                             imports.append(f"from {module} import {alias.name}")
 
@@ -330,12 +301,8 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_imports: {type(e).__name__}: {e}")
             print(f"🚨 Node type: {type(node) if 'node' in locals() else 'Not defined'}")
-            print(
-                f"🚨 Node names type: {type(node.names) if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}"
-            )
-            print(
-                f"🚨 Node names content: {node.names if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}"
-            )
+            print(f"🚨 Node names type: {type(node.names) if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}")
+            print(f"🚨 Node names content: {node.names if 'node' in locals() and hasattr(node, 'names') else 'Not defined'}")
             print(f"⚠️  Error extracting imports: {e}")
 
     def _extract_module_assignments(self, tree: ast.AST) -> None:
@@ -388,17 +355,11 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"⚠️  Error extracting classes: {e}")
 
-    def _extract_class_info_enhanced(
-        self, class_node: ast.ClassDef
-    ) -> Optional[dict[str, Any]]:
+    def _extract_class_info_enhanced(self, class_node: ast.ClassDef) -> Optional[dict[str, Any]]:
         """Extract comprehensive class information"""
         try:
-            print(
-                f"🔍 _extract_class_info_enhanced: class_node.body type: {type(class_node.body)}"
-            )
-            print(
-                f"🔍 _extract_class_info_enhanced: class_node.body content: {class_node.body}"
-            )
+            print(f"🔍 _extract_class_info_enhanced: class_node.body type: {type(class_node.body)}")
+            print(f"🔍 _extract_class_info_enhanced: class_node.body content: {class_node.body}")
 
             class_info = {
                 "responsibility": "",
@@ -448,39 +409,23 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_class_info_enhanced: {type(e).__name__}: {e}")
             print(f"🚨 Class node type: {type(class_node)}")
-            print(
-                f"🚨 Class node body type: {type(class_node.body) if hasattr(class_node, 'body') else 'No body attribute'}"
-            )
-            print(
-                f"🚨 Class node body content: {class_node.body if hasattr(class_node, 'body') else 'No body attribute'}"
-            )
+            print(f"🚨 Class node body type: {type(class_node.body) if hasattr(class_node, 'body') else 'No body attribute'}")
+            print(f"🚨 Class node body content: {class_node.body if hasattr(class_node, 'body') else 'No body attribute'}")
             return None
 
-    def _extract_method_info_enhanced(
-        self, func_node: ast.FunctionDef
-    ) -> Optional[dict[str, Any]]:
+    def _extract_method_info_enhanced(self, func_node: ast.FunctionDef) -> Optional[dict[str, Any]]:
         """Extract comprehensive method information"""
         try:
-            print(
-                f"🔍 _extract_method_info_enhanced: func_node.body type: {type(func_node.body)}"
-            )
-            print(
-                f"🔍 _extract_method_info_enhanced: func_node.body content: {func_node.body}"
-            )
+            print(f"🔍 _extract_method_info_enhanced: func_node.body type: {type(func_node.body)}")
+            print(f"🔍 _extract_method_info_enhanced: func_node.body content: {func_node.body}")
 
             # Include __init__ methods for complete round-trip functionality
             # if func_node.name == "__init__":
             #     return None  # Skip __init__ methods
 
             # Detect test methods and set appropriate return type
-            is_test_method = (
-                func_node.name.startswith("test_") or "test" in func_node.name.lower()
-            )
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            is_test_method = func_node.name.startswith("test_") or "test" in func_node.name.lower()
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info = {
                 "name": func_node.name,
@@ -510,42 +455,24 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_method_info_enhanced: {type(e).__name__}: {e}")
             print(f"🚨 Func node type: {type(func_node)}")
-            print(
-                f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}"
-            )
-            print(
-                f"🚨 Func node body type: {type(func_node.body) if hasattr(func_node, 'body') else 'No body attribute'}"
-            )
-            print(
-                f"🚨 Func node body content: {func_node.body if hasattr(func_node, 'body') else 'No body attribute'}"
-            )
+            print(f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}")
+            print(f"🚨 Func node body type: {type(func_node.body) if hasattr(func_node, 'body') else 'No body attribute'}")
+            print(f"🚨 Func node body content: {func_node.body if hasattr(func_node, 'body') else 'No body attribute'}")
             return None
 
-    def _extract_async_method_info_enhanced(
-        self, func_node: ast.AsyncFunctionDef
-    ) -> Optional[dict[str, Any]]:
+    def _extract_async_method_info_enhanced(self, func_node: ast.AsyncFunctionDef) -> Optional[dict[str, Any]]:
         """Extract comprehensive async method information"""
         try:
-            print(
-                f"🔍 _extract_async_method_info_enhanced: func_node.body type: {type(func_node.body)}"
-            )
-            print(
-                f"🔍 _extract_async_method_info_enhanced: func_node.body content: {func_node.body}"
-            )
+            print(f"🔍 _extract_async_method_info_enhanced: func_node.body type: {type(func_node.body)}")
+            print(f"🔍 _extract_async_method_info_enhanced: func_node.body content: {func_node.body}")
 
             # Include __init__ methods for complete round-trip functionality
             # if func_node.name == "__init__":
             #     return None  # Skip __init__ methods
 
             # Detect test methods and set appropriate return type
-            is_test_method = (
-                func_node.name.startswith("test_") or "test" in func_node.name.lower()
-            )
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            is_test_method = func_node.name.startswith("test_") or "test" in func_node.name.lower()
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info = {
                 "name": func_node.name,
@@ -574,19 +501,11 @@ class EnhancedReverseEngineer:
             return method_info
 
         except Exception as e:
-            print(
-                f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}"
-            )
+            print(f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}")
             print(f"🚨 Func node type: {type(func_node)}")
-            print(
-                f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}"
-            )
-            print(
-                f"🚨 Func node body type: {type(func_node.body) if hasattr(func_node, 'body') else 'No body attribute'}"
-            )
-            print(
-                f"🚨 Func node body content: {func_node.body if hasattr(func_node, 'body') else 'No body attribute'}"
-            )
+            print(f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}")
+            print(f"🚨 Func node body type: {type(func_node.body) if hasattr(func_node, 'body') else 'No body attribute'}")
+            print(f"🚨 Func node body content: {func_node.body if hasattr(func_node, 'body') else 'No body attribute'}")
             return None
 
     def _build_method_signature(self, func_node: ast.FunctionDef) -> str:
@@ -631,12 +550,8 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _extract_parameters: {type(e).__name__}: {e}")
             print(f"🚨 Args type: {type(args)}")
-            print(
-                f"🚨 Args args type: {type(args.args) if hasattr(args, 'args') else 'No args attribute'}"
-            )
-            print(
-                f"🚨 Args args content: {args.args if hasattr(args, 'args') else 'No args attribute'}"
-            )
+            print(f"🚨 Args args type: {type(args.args) if hasattr(args, 'args') else 'No args attribute'}")
+            print(f"🚨 Args args content: {args.args if hasattr(args, 'args') else 'No args attribute'}")
             return []
 
     def _extract_type_annotation(self, annotation) -> str:
@@ -718,14 +633,10 @@ class EnhancedReverseEngineer:
         except Exception as e:
             print(f"🚨 ERROR in _is_inside_class: {type(e).__name__}: {e}")
             print(f"🚨 Func node type: {type(func_node)}")
-            print(
-                f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}"
-            )
+            print(f"🚨 Func node name: {func_node.name if hasattr(func_node, 'name') else 'No name'}")
             return False
 
-    def _extract_function_info_enhanced(
-        self, func_node: ast.FunctionDef
-    ) -> Optional[dict[str, Any]]:
+    def _extract_function_info_enhanced(self, func_node: ast.FunctionDef) -> Optional[dict[str, Any]]:
         """Extract comprehensive function information"""
         func_info = {
             "name": func_node.name,
@@ -781,54 +692,24 @@ class EnhancedReverseEngineer:
 
             self.model_data["file_structure"] = {
                 "total_lines": len(lines),
-                "code_lines": len(
-                    [
-                        line
-                        for line in lines
-                        if line.strip() and not line.strip().startswith("#")
-                    ]
-                ),
-                "comment_lines": len(
-                    [line for line in lines if line.strip().startswith("#")]
-                ),
+                "code_lines": len([line for line in lines if line.strip() and not line.strip().startswith("#")]),
+                "comment_lines": len([line for line in lines if line.strip().startswith("#")]),
                 "blank_lines": len([line for line in lines if not line.strip()]),
                 "total_nodes": len(all_nodes),
-                "class_nodes": len(
-                    [node for node in all_nodes if isinstance(node, ast.ClassDef)]
-                ),
-                "function_nodes": len(
-                    [node for node in all_nodes if isinstance(node, ast.FunctionDef)]
-                ),
-                "import_nodes": len(
-                    [
-                        node
-                        for node in all_nodes
-                        if isinstance(node, (ast.Import, ast.ImportFrom))
-                    ]
-                ),
-                "expression_nodes": len(
-                    [node for node in all_nodes if isinstance(node, ast.Expr)]
-                ),
-                "assignment_nodes": len(
-                    [node for node in all_nodes if isinstance(node, ast.Assign)]
-                ),
-                "return_nodes": len(
-                    [node for node in all_nodes if isinstance(node, ast.Return)]
-                ),
+                "class_nodes": len([node for node in all_nodes if isinstance(node, ast.ClassDef)]),
+                "function_nodes": len([node for node in all_nodes if isinstance(node, ast.FunctionDef)]),
+                "import_nodes": len([node for node in all_nodes if isinstance(node, (ast.Import, ast.ImportFrom))]),
+                "expression_nodes": len([node for node in all_nodes if isinstance(node, ast.Expr)]),
+                "assignment_nodes": len([node for node in all_nodes if isinstance(node, ast.Assign)]),
+                "return_nodes": len([node for node in all_nodes if isinstance(node, ast.Return)]),
             }
 
-            print(
-                f"✅ Successfully extracted file structure with {len(all_nodes)} nodes"
-            )
+            print(f"✅ Successfully extracted file structure with {len(all_nodes)} nodes")
 
         except Exception as e:
             print(f"🚨 ERROR in _extract_file_structure: {type(e).__name__}: {e}")
-            print(
-                f"🔍 _extract_file_structure: all_nodes type: {type(all_nodes) if 'all_nodes' in locals() else 'Not defined'}"
-            )
-            print(
-                f"🔍 _extract_file_structure: all_nodes content: {all_nodes if 'all_nodes' in locals() else 'Not defined'}"
-            )
+            print(f"🔍 _extract_file_structure: all_nodes type: {type(all_nodes) if 'all_nodes' in locals() else 'Not defined'}")
+            print(f"🔍 _extract_file_structure: all_nodes content: {all_nodes if 'all_nodes' in locals() else 'Not defined'}")
             print(f"⚠️  Error extracting file structure: {e}")
 
     def _clean_model_data(self) -> None:
@@ -840,30 +721,16 @@ class EnhancedReverseEngineer:
                     self.model_data[key] = self.model_data[key].strip()
 
             # Clean module docstring
-            if "module_docstring" in self.model_data and isinstance(
-                self.model_data["module_docstring"], str
-            ):
-                self.model_data["module_docstring"] = self.model_data[
-                    "module_docstring"
-                ].strip()
+            if "module_docstring" in self.model_data and isinstance(self.model_data["module_docstring"], str):
+                self.model_data["module_docstring"] = self.model_data["module_docstring"].strip()
 
             # Clean imports list
-            if "imports" in self.model_data and isinstance(
-                self.model_data["imports"], list
-            ):
-                self.model_data["imports"] = [
-                    imp.strip() for imp in self.model_data["imports"] if imp.strip()
-                ]
+            if "imports" in self.model_data and isinstance(self.model_data["imports"], list):
+                self.model_data["imports"] = [imp.strip() for imp in self.model_data["imports"] if imp.strip()]
 
             # Clean used_names list
-            if "used_names" in self.model_data and isinstance(
-                self.model_data["used_names"], list
-            ):
-                self.model_data["used_names"] = [
-                    name.strip()
-                    for name in self.model_data["used_names"]
-                    if name.strip()
-                ]
+            if "used_names" in self.model_data and isinstance(self.model_data["used_names"], list):
+                self.model_data["used_names"] = [name.strip() for name in self.model_data["used_names"] if name.strip()]
 
             print("✅ Model data cleaned successfully")
 
@@ -917,9 +784,7 @@ def main() -> None:
 
         # Show module functions
         for func in model.get("module_functions", []):
-            print(
-                f"   ⚙️  {func.get('name', 'Unknown')}: {func.get('signature', 'No signature')}"
-            )
+            print(f"   ⚙️  {func.get('name', 'Unknown')}: {func.get('signature', 'No signature')}")
 
         # Show file structure
         structure = model.get("file_structure", {})

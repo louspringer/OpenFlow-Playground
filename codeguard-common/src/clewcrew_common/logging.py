@@ -27,9 +27,7 @@ class ClewcrewLogger:
         # TODO: Implement info
         return None
 
-    def warning(
-        self, message: str, severity: str, context: Optional[dict[str, Any]]
-    ) -> None:
+    def warning(self, message: str, severity: str, context: Optional[dict[str, Any]]) -> None:
         """
         Log warning message with severity and optional context
         """

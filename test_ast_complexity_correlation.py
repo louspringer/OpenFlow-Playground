@@ -31,9 +31,7 @@ def generate_simple_function(length: int) -> str:
     # Add comments to reach target length
     extra = length - len(base)
     if extra > 4:
-        comments = "\n    # " + "".join(
-            random.choices(string.ascii_letters, k=extra - 4)
-        )
+        comments = "\n    # " + "".join(random.choices(string.ascii_letters, k=extra - 4))
         return base + comments
     return base
 
@@ -142,9 +140,7 @@ def test_correlation():
     # Interpret results
     print("\n🎯 Interpretation:")
     if overall_correlation > 0.8:
-        print(
-            "✅ STRONG correlation: AST complexity is directly proportional to code length"
-        )
+        print("✅ STRONG correlation: AST complexity is directly proportional to code length")
     elif overall_correlation > 0.6:
         print("⚠️ MODERATE correlation: Some relationship exists")
     else:
@@ -225,9 +221,7 @@ def generate_simple_function(length: int) -> str:
     # Add comments to reach target length
     extra = length - len(base)
     if extra > 4:
-        comments = "\n    # " + "".join(
-            random.choices(string.ascii_letters, k=extra - 4)
-        )
+        comments = "\n    # " + "".join(random.choices(string.ascii_letters, k=extra - 4))
         return base + comments
     return base
 
@@ -336,9 +330,7 @@ def test_correlation():
     # Interpret results
     print("\n🎯 Interpretation:")
     if overall_correlation > 0.8:
-        print(
-            "✅ STRONG correlation: AST complexity is directly proportional to code length"
-        )
+        print("✅ STRONG correlation: AST complexity is directly proportional to code length")
     elif overall_correlation > 0.6:
         print("⚠️ MODERATE correlation: Some relationship exists")
     else:

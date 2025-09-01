@@ -62,9 +62,7 @@ class ReportGenerator:
         findings_by_severity = self._group_findings_by_severity(real_issues)
 
         # Generate recommendations
-        recommendations = self._generate_recommendations(
-            real_issues, performance_metrics
-        )
+        recommendations = self._generate_recommendations(real_issues, performance_metrics)
 
         # Create comprehensive report
         return {
@@ -89,15 +87,11 @@ class ReportGenerator:
                 "generator_version": "1.0.0",
                 "scan_timestamp": self._get_timestamp(),
                 "total_files_processed": performance_metrics.get("tasks_completed", 0),
-                "scan_efficiency": self._calculate_scan_efficiency(
-                    performance_metrics, scan_duration
-                ),
+                "scan_efficiency": self._calculate_scan_efficiency(performance_metrics, scan_duration),
             },
         }
 
-    def _group_findings_by_severity(
-        self, findings: list[dict[str, Any]]
-    ) -> dict[str, list[dict[str, Any]]]:
+    def _group_findings_by_severity(self, findings: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
         """
         Group findings by severity level
 
@@ -117,9 +111,7 @@ class ReportGenerator:
 
         return grouped
 
-    def _generate_recommendations(
-        self, findings: list[dict[str, Any]], performance_metrics: dict[str, Any]
-    ) -> list[str]:
+    def _generate_recommendations(self, findings: list[dict[str, Any]], performance_metrics: dict[str, Any]) -> list[str]:
         """
         Generate actionable recommendations based on findings
 
@@ -138,17 +130,11 @@ class ReportGenerator:
 
         # Critical issues
         if critical_count > 0:
-            recommendations.append(
-                f"🚨 IMMEDIATE ACTION REQUIRED: {critical_count} critical security issues found. "
-                "Review and fix these immediately before any deployment."
-            )
+            recommendations.append(f"🚨 IMMEDIATE ACTION REQUIRED: {critical_count} critical security issues found. Review and fix these immediately before any deployment.")
 
         # High priority issues
         if high_count > 0:
-            recommendations.append(
-                f"⚠️ HIGH PRIORITY: {high_count} high-severity security issues found. "
-                "Address these before production deployment."
-            )
+            recommendations.append(f"⚠️ HIGH PRIORITY: {high_count} high-severity security issues found. Address these before production deployment.")
 
         # Performance recommendations
         if performance_metrics:
@@ -156,16 +142,10 @@ class ReportGenerator:
             throughput = performance_metrics.get("throughput", 0)
 
             if throughput < 100:  # Less than 100 files/second
-                recommendations.append(
-                    "🔧 PERFORMANCE: Consider increasing worker count or optimizing file processing "
-                    f"for better throughput (current: {throughput:.1f} files/second)"
-                )
+                recommendations.append(f"🔧 PERFORMANCE: Consider increasing worker count or optimizing file processing for better throughput (current: {throughput:.1f} files/second)")
 
             if worker_count < 4:
-                recommendations.append(
-                    "🔧 PERFORMANCE: Consider increasing worker count for better parallel processing "
-                    f"(current: {worker_count} workers)"
-                )
+                recommendations.append(f"🔧 PERFORMANCE: Consider increasing worker count for better parallel processing (current: {worker_count} workers)")
 
         # Pattern-specific recommendations
         pattern_counts = {}
@@ -175,26 +155,17 @@ class ReportGenerator:
 
         for pattern, count in pattern_counts.items():
             if count > 5:
-                recommendations.append(
-                    f"🔍 PATTERN ALERT: {count} instances of '{pattern}' found. "
-                    "Consider implementing automated detection for this pattern."
-                )
+                recommendations.append(f"🔍 PATTERN ALERT: {count} instances of '{pattern}' found. Consider implementing automated detection for this pattern.")
 
         # General recommendations
         if not findings:
-            recommendations.append(
-                "✅ No immediate security issues detected. Continue with regular security practices."
-            )
+            recommendations.append("✅ No immediate security issues detected. Continue with regular security practices.")
         else:
-            recommendations.append(
-                "🔍 Review all findings and implement fixes based on severity and business impact."
-            )
+            recommendations.append("🔍 Review all findings and implement fixes based on severity and business impact.")
 
         return recommendations
 
-    def _calculate_scan_efficiency(
-        self, performance_metrics: dict[str, Any], scan_duration: float
-    ) -> dict[str, Any]:
+    def _calculate_scan_efficiency(self, performance_metrics: dict[str, Any], scan_duration: float) -> dict[str, Any]:
         """
         Calculate scan efficiency metrics
 
@@ -237,9 +208,7 @@ class ReportGenerator:
 
         return datetime.now().isoformat()
 
-    def export_json(
-        self, report: dict[str, Any], output_file: str = "security_report.json"
-    ) -> str:
+    def export_json(self, report: dict[str, Any], output_file: str = "security_report.json") -> str:
         """
         Export report to JSON file
 
@@ -286,28 +255,18 @@ class ReportGenerator:
         for severity in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
             if severity in findings_by_severity:
                 count = len(findings_by_severity[severity])
-                icon = (
-                    "🚨"
-                    if severity == "CRITICAL"
-                    else "⚠️"
-                    if severity == "HIGH"
-                    else "🔍"
-                )
+                icon = "🚨" if severity == "CRITICAL" else "⚠️" if severity == "HIGH" else "🔍"
                 print(f"  {icon} {severity}: {count}")
 
         print(f"\n🎯 Critical Findings: {summary['critical_issues']}")
         if summary["critical_issues"] > 0:
             critical_findings = findings_by_severity.get("CRITICAL", [])
             for finding in critical_findings[:3]:  # Show first 3
-                print(
-                    f"  🚨 {finding['pattern_name']} in {finding['file_path']}:{finding['line_number']}"
-                )
+                print(f"  🚨 {finding['pattern_name']} in {finding['file_path']}:{finding['line_number']}")
                 print(f"     {finding['matched_text'][:50]}...")
 
             if summary["critical_issues"] > 3:
-                print(
-                    f"  ... and {summary['critical_issues'] - 3} more critical findings"
-                )
+                print(f"  ... and {summary['critical_issues'] - 3} more critical findings")
 
         print(f"\n💡 Recommendations:")
         for rec in recommendations:

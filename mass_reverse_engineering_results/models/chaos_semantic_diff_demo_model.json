@@ -190,7 +190,7 @@
     "from glacier_spore_models import SporeType",
     "from semantic_diff_engine import SemanticDiffEngine"
   ],
-  "module_docstring": "\nChaos Semantic Diff Demo - Maximum Chaos Testing Across File Types\n\nThis script creates MAXIMUM CHAOS by:\n1. Creating different file types (Python, TOML, JSON, Shell)\n2. Converting them to GlacierSpores\n3. Attempting semantic diffing between completely different types\n4. Seeing what chaos ensues!\n\nBecause we <3 chaos! \ud83c\udfaa\ud83d\udd25\n",
+  "module_docstring": "\nChaos Semantic Diff Demo - Maximum Chaos Testing Across File Types\n\nThis script creates MAXIMUM CHAOS by:\n1. Creating different file types (Python, TOML, JSON, Shell)\n2. Converting them to GlacierSpores\n3. Attempting semantic diffing between completely different types\n4. Seeing what chaos ensues!\n\nBecause we <3 chaos! 🎪🔥\n",
   "file_structure": {
     "total_lines": 500,
     "code_lines": 392,

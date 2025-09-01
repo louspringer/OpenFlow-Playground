@@ -1,0 +1,2074 @@
+flowchart TD
+    %% Workflow Analysis Generated from Python Code
+
+    Start([Module Entry Point])
+    Process_EnhancedReverseEngineerV2[Process class: EnhancedReverseEngineerV2]
+    __init___entry[Enter __init__]
+    __init___try_7[try block]
+    __init___except_45[except Exception as e]
+    __init___try_53[try block]
+    __init___if_58{if is_test_method}
+    __init___if_74{if func_node.body and isinstance(func_node.body...}
+    __init___if_75{if isinstance(func_node.body(0).value, ast.Cons...}
+    __init___if_77{if isinstance(docstring, str)}
+    __init___if_81{if func_node.body}
+    __init___for_85[for stmt in collection]
+    __init___if_86{if isinstance(stmt, ast.Expr) and isinstance(}
+    __init___try_99[try block]
+    __init___for_105[for line in collection]
+    __init___if_106{if line.strip():  # Skip empty lines}
+    __init___except_108[except ImportError]
+    __init___try_110[try block]
+    __init___for_114[for line in collection]
+    __init___if_115{if line.strip():  # Skip empty lines}
+    __init___except_117[except AttributeError]
+    __init___if_120{if body_line}
+    __init___if_123{if method_body}
+    __init___if_128{if detected_patterns}
+    __init___for_138[for p in collection]
+    __init___for_147[for p in collection]
+    __init___else_149{else}
+    __init___for_153[for decorator in collection]
+    __init___if_154{if isinstance(decorator, ast.Name)}
+    __init___except_159[except Exception as e]
+    __init___try_167[try block]
+    __init___if_172{if is_test_method}
+    __init___if_189{if func_node.body and isinstance(func_node.body...}
+    __init___if_190{if isinstance(func_node.body(0).value, ast.Cons...}
+    __init___if_192{if isinstance(docstring, str)}
+    __init___if_196{if func_node.body}
+    __init___for_200[for stmt in collection]
+    __init___if_201{if isinstance(stmt, ast.Expr) and isinstance(}
+    __init___try_214[try block]
+    __init___for_220[for line in collection]
+    __init___if_221{if line.strip():  # Skip empty lines}
+    __init___except_223[except ImportError]
+    __init___try_225[try block]
+    __init___for_229[for line in collection]
+    __init___if_230{if line.strip():  # Skip empty lines}
+    __init___except_232[except AttributeError]
+    __init___if_235{if body_line}
+    __init___if_238{if method_body}
+    __init___if_243{if detected_patterns}
+    __init___for_253[for p in collection]
+    __init___for_262[for p in collection]
+    __init___else_264{else}
+    __init___for_268[for decorator in collection]
+    __init___if_269{if isinstance(decorator, ast.Name)}
+    __init___except_274[except Exception as e]
+    __init___for_283[for arg in collection]
+    __init___if_284{if arg.arg != self:  # Skip self parameter}
+    __init___if_294{if param_str}
+    __init___for_301[for arg in collection]
+    __init___if_302{if arg.arg != self:  # Skip self parameter}
+    __init___if_312{if param_str}
+    __init___for_319[for arg in collection]
+    __init___if_320{if arg.arg != self}
+    __init___if_331{if annotation is None}
+    __init___if_333{if isinstance(annotation, ast.Name)}
+    __init___if_335{if isinstance(annotation, ast.Constant)}
+    __init___if_337{if isinstance(annotation, ast.Subscript)}
+    __init___if_338{if isinstance(annotation.value, ast.Name)}
+    __init___if_340{if hasattr(annotation, slice)}
+    __init___if_342{if isinstance(slice_value, ast.Name)}
+    __init___if_344{if isinstance(slice_value, ast.Tuple)}
+    __init___for_346[for elt in collection]
+    __init___if_347{if isinstance(elt, ast.Name)}
+    __init___elif_349{elif sinstance(elt, ast.Constant)}
+    __init___try_356[try block]
+    __init___if_357{if tree.body and isinstance(tree.body(0), ast.E...}
+    __init___if_358{if isinstance(tree.body(0).value, ast.Constant)}
+    __init___if_360{if isinstance(docstring, str)}
+    __init___except_364[except Exception as e]
+    __init___try_370[try block]
+    __init___except_382[except Exception as e]
+    __init___try_387[try block]
+    __init___for_389[for node in collection]
+    __init___if_390{if isinstance(node, ast.Import)}
+    __init___for_391[for alias in collection]
+    __init___elif_393{elif sinstance(node, ast.ImportFrom)}
+    __init___except_399[except Exception as e]
+    __init___try_404[try block]
+    __init___for_406[for node in collection]
+    __init___if_407{if isinstance(node, ast.Name)}
+    __init___elif_409{elif sinstance(node, ast.Attribute)}
+    __init___if_410{if isinstance(node.value, ast.Name)}
+    __init___if_412{if isinstance(node.attr, str)}
+    __init___except_416[except Exception as e]
+    __init___try_421[try block]
+    __init___for_423[for node in collection]
+    __init___if_424{if isinstance(node, ast.Assign)}
+    __init___for_425[for target in collection]
+    __init___if_426{if isinstance(target, ast.Name)}
+    __init___except_430[except Exception as e]
+    __init___try_435[try block]
+    __init___for_437[for node in collection]
+    __init___if_438{if isinstance(node, ast.ClassDef)}
+    __init___for_452[for item in collection]
+    __init___if_453{if isinstance(item, ast.FunctionDef)}
+    __init___if_457{if method_info}
+    __init___elif_459{elif sinstance(item, ast.AsyncFunctionDef)}
+    __init___if_463{if method_info}
+    __init___except_469[except Exception as e]
+    __init___try_474[try block]
+    __init___for_476[for node in collection]
+    __init___if_477{if isinstance(node, ast.FunctionDef)}
+    __init___if_479{if method_info}
+    __init___elif_481{elif sinstance(node, ast.AsyncFunctionDef)}
+    __init___if_485{if method_info}
+    __init___except_489[except Exception as e]
+    __init___try_494[try block]
+    __init___for_499[for line in collection]
+    __init___if_500{if line.strip() and not line.strip().startswith(#)}
+    __init___for_520[for n in collection]
+    __init___if_521{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    __init___for_527[for n in collection]
+    __init___if_528{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    __init___except_538[except Exception as e]
+    __init___exit[Exit __init__]
+    reverse_engineer_file_entry[Enter reverse_engineer_file]
+    reverse_engineer_file_try_2[try block]
+    reverse_engineer_file_except_40[except Exception as e]
+    reverse_engineer_file_try_48[try block]
+    reverse_engineer_file_if_53{if is_test_method}
+    reverse_engineer_file_if_69{if func_node.body and isinstance(func_node.body...}
+    reverse_engineer_file_if_70{if isinstance(func_node.body(0).value, ast.Cons...}
+    reverse_engineer_file_if_72{if isinstance(docstring, str)}
+    reverse_engineer_file_if_76{if func_node.body}
+    reverse_engineer_file_for_80[for stmt in collection]
+    reverse_engineer_file_if_81{if isinstance(stmt, ast.Expr) and isinstance(}
+    reverse_engineer_file_try_94[try block]
+    reverse_engineer_file_for_100[for line in collection]
+    reverse_engineer_file_if_101{if line.strip():  # Skip empty lines}
+    reverse_engineer_file_except_103[except ImportError]
+    reverse_engineer_file_try_105[try block]
+    reverse_engineer_file_for_109[for line in collection]
+    reverse_engineer_file_if_110{if line.strip():  # Skip empty lines}
+    reverse_engineer_file_except_112[except AttributeError]
+    reverse_engineer_file_if_115{if body_line}
+    reverse_engineer_file_if_118{if method_body}
+    reverse_engineer_file_if_123{if detected_patterns}
+    reverse_engineer_file_for_133[for p in collection]
+    reverse_engineer_file_for_142[for p in collection]
+    reverse_engineer_file_else_144{else}
+    reverse_engineer_file_for_148[for decorator in collection]
+    reverse_engineer_file_if_149{if isinstance(decorator, ast.Name)}
+    reverse_engineer_file_except_154[except Exception as e]
+    reverse_engineer_file_try_162[try block]
+    reverse_engineer_file_if_167{if is_test_method}
+    reverse_engineer_file_if_184{if func_node.body and isinstance(func_node.body...}
+    reverse_engineer_file_if_185{if isinstance(func_node.body(0).value, ast.Cons...}
+    reverse_engineer_file_if_187{if isinstance(docstring, str)}
+    reverse_engineer_file_if_191{if func_node.body}
+    reverse_engineer_file_for_195[for stmt in collection]
+    reverse_engineer_file_if_196{if isinstance(stmt, ast.Expr) and isinstance(}
+    reverse_engineer_file_try_209[try block]
+    reverse_engineer_file_for_215[for line in collection]
+    reverse_engineer_file_if_216{if line.strip():  # Skip empty lines}
+    reverse_engineer_file_except_218[except ImportError]
+    reverse_engineer_file_try_220[try block]
+    reverse_engineer_file_for_224[for line in collection]
+    reverse_engineer_file_if_225{if line.strip():  # Skip empty lines}
+    reverse_engineer_file_except_227[except AttributeError]
+    reverse_engineer_file_if_230{if body_line}
+    reverse_engineer_file_if_233{if method_body}
+    reverse_engineer_file_if_238{if detected_patterns}
+    reverse_engineer_file_for_248[for p in collection]
+    reverse_engineer_file_for_257[for p in collection]
+    reverse_engineer_file_else_259{else}
+    reverse_engineer_file_for_263[for decorator in collection]
+    reverse_engineer_file_if_264{if isinstance(decorator, ast.Name)}
+    reverse_engineer_file_except_269[except Exception as e]
+    reverse_engineer_file_for_278[for arg in collection]
+    reverse_engineer_file_if_279{if arg.arg != self:  # Skip self parameter}
+    reverse_engineer_file_if_289{if param_str}
+    reverse_engineer_file_for_296[for arg in collection]
+    reverse_engineer_file_if_297{if arg.arg != self:  # Skip self parameter}
+    reverse_engineer_file_if_307{if param_str}
+    reverse_engineer_file_for_314[for arg in collection]
+    reverse_engineer_file_if_315{if arg.arg != self}
+    reverse_engineer_file_if_326{if annotation is None}
+    reverse_engineer_file_if_328{if isinstance(annotation, ast.Name)}
+    reverse_engineer_file_if_330{if isinstance(annotation, ast.Constant)}
+    reverse_engineer_file_if_332{if isinstance(annotation, ast.Subscript)}
+    reverse_engineer_file_if_333{if isinstance(annotation.value, ast.Name)}
+    reverse_engineer_file_if_335{if hasattr(annotation, slice)}
+    reverse_engineer_file_if_337{if isinstance(slice_value, ast.Name)}
+    reverse_engineer_file_if_339{if isinstance(slice_value, ast.Tuple)}
+    reverse_engineer_file_for_341[for elt in collection]
+    reverse_engineer_file_if_342{if isinstance(elt, ast.Name)}
+    reverse_engineer_file_elif_344{elif sinstance(elt, ast.Constant)}
+    reverse_engineer_file_try_351[try block]
+    reverse_engineer_file_if_352{if tree.body and isinstance(tree.body(0), ast.E...}
+    reverse_engineer_file_if_353{if isinstance(tree.body(0).value, ast.Constant)}
+    reverse_engineer_file_if_355{if isinstance(docstring, str)}
+    reverse_engineer_file_except_359[except Exception as e]
+    reverse_engineer_file_try_365[try block]
+    reverse_engineer_file_except_377[except Exception as e]
+    reverse_engineer_file_try_382[try block]
+    reverse_engineer_file_for_384[for node in collection]
+    reverse_engineer_file_if_385{if isinstance(node, ast.Import)}
+    reverse_engineer_file_for_386[for alias in collection]
+    reverse_engineer_file_elif_388{elif sinstance(node, ast.ImportFrom)}
+    reverse_engineer_file_except_394[except Exception as e]
+    reverse_engineer_file_try_399[try block]
+    reverse_engineer_file_for_401[for node in collection]
+    reverse_engineer_file_if_402{if isinstance(node, ast.Name)}
+    reverse_engineer_file_elif_404{elif sinstance(node, ast.Attribute)}
+    reverse_engineer_file_if_405{if isinstance(node.value, ast.Name)}
+    reverse_engineer_file_if_407{if isinstance(node.attr, str)}
+    reverse_engineer_file_except_411[except Exception as e]
+    reverse_engineer_file_try_416[try block]
+    reverse_engineer_file_for_418[for node in collection]
+    reverse_engineer_file_if_419{if isinstance(node, ast.Assign)}
+    reverse_engineer_file_for_420[for target in collection]
+    reverse_engineer_file_if_421{if isinstance(target, ast.Name)}
+    reverse_engineer_file_except_425[except Exception as e]
+    reverse_engineer_file_try_430[try block]
+    reverse_engineer_file_for_432[for node in collection]
+    reverse_engineer_file_if_433{if isinstance(node, ast.ClassDef)}
+    reverse_engineer_file_for_447[for item in collection]
+    reverse_engineer_file_if_448{if isinstance(item, ast.FunctionDef)}
+    reverse_engineer_file_if_452{if method_info}
+    reverse_engineer_file_elif_454{elif sinstance(item, ast.AsyncFunctionDef)}
+    reverse_engineer_file_if_458{if method_info}
+    reverse_engineer_file_except_464[except Exception as e]
+    reverse_engineer_file_try_469[try block]
+    reverse_engineer_file_for_471[for node in collection]
+    reverse_engineer_file_if_472{if isinstance(node, ast.FunctionDef)}
+    reverse_engineer_file_if_474{if method_info}
+    reverse_engineer_file_elif_476{elif sinstance(node, ast.AsyncFunctionDef)}
+    reverse_engineer_file_if_480{if method_info}
+    reverse_engineer_file_except_484[except Exception as e]
+    reverse_engineer_file_try_489[try block]
+    reverse_engineer_file_for_494[for line in collection]
+    reverse_engineer_file_if_495{if line.strip() and not line.strip().startswith(#)}
+    reverse_engineer_file_for_515[for n in collection]
+    reverse_engineer_file_if_516{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    reverse_engineer_file_for_522[for n in collection]
+    reverse_engineer_file_if_523{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    reverse_engineer_file_except_533[except Exception as e]
+    reverse_engineer_file_exit[Exit reverse_engineer_file]
+    _extract_method_info_enhanced_entry[Enter _extract_method_info_enhanced]
+    _extract_method_info_enhanced_try_4[try block]
+    _extract_method_info_enhanced_if_9{if is_test_method}
+    _extract_method_info_enhanced_if_25{if func_node.body and isinstance(func_node.body...}
+    _extract_method_info_enhanced_if_26{if isinstance(func_node.body(0).value, ast.Cons...}
+    _extract_method_info_enhanced_if_28{if isinstance(docstring, str)}
+    _extract_method_info_enhanced_if_32{if func_node.body}
+    _extract_method_info_enhanced_for_36[for stmt in collection]
+    _extract_method_info_enhanced_if_37{if isinstance(stmt, ast.Expr) and isinstance(}
+    _extract_method_info_enhanced_try_50[try block]
+    _extract_method_info_enhanced_for_56[for line in collection]
+    _extract_method_info_enhanced_if_57{if line.strip():  # Skip empty lines}
+    _extract_method_info_enhanced_except_59[except ImportError]
+    _extract_method_info_enhanced_try_61[try block]
+    _extract_method_info_enhanced_for_65[for line in collection]
+    _extract_method_info_enhanced_if_66{if line.strip():  # Skip empty lines}
+    _extract_method_info_enhanced_except_68[except AttributeError]
+    _extract_method_info_enhanced_if_71{if body_line}
+    _extract_method_info_enhanced_if_74{if method_body}
+    _extract_method_info_enhanced_if_79{if detected_patterns}
+    _extract_method_info_enhanced_for_89[for p in collection]
+    _extract_method_info_enhanced_for_98[for p in collection]
+    _extract_method_info_enhanced_else_100{else}
+    _extract_method_info_enhanced_for_104[for decorator in collection]
+    _extract_method_info_enhanced_if_105{if isinstance(decorator, ast.Name)}
+    _extract_method_info_enhanced_except_110[except Exception as e]
+    _extract_method_info_enhanced_try_118[try block]
+    _extract_method_info_enhanced_if_123{if is_test_method}
+    _extract_method_info_enhanced_if_140{if func_node.body and isinstance(func_node.body...}
+    _extract_method_info_enhanced_if_141{if isinstance(func_node.body(0).value, ast.Cons...}
+    _extract_method_info_enhanced_if_143{if isinstance(docstring, str)}
+    _extract_method_info_enhanced_if_147{if func_node.body}
+    _extract_method_info_enhanced_for_151[for stmt in collection]
+    _extract_method_info_enhanced_if_152{if isinstance(stmt, ast.Expr) and isinstance(}
+    _extract_method_info_enhanced_try_165[try block]
+    _extract_method_info_enhanced_for_171[for line in collection]
+    _extract_method_info_enhanced_if_172{if line.strip():  # Skip empty lines}
+    _extract_method_info_enhanced_except_174[except ImportError]
+    _extract_method_info_enhanced_try_176[try block]
+    _extract_method_info_enhanced_for_180[for line in collection]
+    _extract_method_info_enhanced_if_181{if line.strip():  # Skip empty lines}
+    _extract_method_info_enhanced_except_183[except AttributeError]
+    _extract_method_info_enhanced_if_186{if body_line}
+    _extract_method_info_enhanced_if_189{if method_body}
+    _extract_method_info_enhanced_if_194{if detected_patterns}
+    _extract_method_info_enhanced_for_204[for p in collection]
+    _extract_method_info_enhanced_for_213[for p in collection]
+    _extract_method_info_enhanced_else_215{else}
+    _extract_method_info_enhanced_for_219[for decorator in collection]
+    _extract_method_info_enhanced_if_220{if isinstance(decorator, ast.Name)}
+    _extract_method_info_enhanced_except_225[except Exception as e]
+    _extract_method_info_enhanced_for_234[for arg in collection]
+    _extract_method_info_enhanced_if_235{if arg.arg != self:  # Skip self parameter}
+    _extract_method_info_enhanced_if_245{if param_str}
+    _extract_method_info_enhanced_for_252[for arg in collection]
+    _extract_method_info_enhanced_if_253{if arg.arg != self:  # Skip self parameter}
+    _extract_method_info_enhanced_if_263{if param_str}
+    _extract_method_info_enhanced_for_270[for arg in collection]
+    _extract_method_info_enhanced_if_271{if arg.arg != self}
+    _extract_method_info_enhanced_if_282{if annotation is None}
+    _extract_method_info_enhanced_if_284{if isinstance(annotation, ast.Name)}
+    _extract_method_info_enhanced_if_286{if isinstance(annotation, ast.Constant)}
+    _extract_method_info_enhanced_if_288{if isinstance(annotation, ast.Subscript)}
+    _extract_method_info_enhanced_if_289{if isinstance(annotation.value, ast.Name)}
+    _extract_method_info_enhanced_if_291{if hasattr(annotation, slice)}
+    _extract_method_info_enhanced_if_293{if isinstance(slice_value, ast.Name)}
+    _extract_method_info_enhanced_if_295{if isinstance(slice_value, ast.Tuple)}
+    _extract_method_info_enhanced_for_297[for elt in collection]
+    _extract_method_info_enhanced_if_298{if isinstance(elt, ast.Name)}
+    _extract_method_info_enhanced_elif_300{elif sinstance(elt, ast.Constant)}
+    _extract_method_info_enhanced_try_307[try block]
+    _extract_method_info_enhanced_if_308{if tree.body and isinstance(tree.body(0), ast.E...}
+    _extract_method_info_enhanced_if_309{if isinstance(tree.body(0).value, ast.Constant)}
+    _extract_method_info_enhanced_if_311{if isinstance(docstring, str)}
+    _extract_method_info_enhanced_except_315[except Exception as e]
+    _extract_method_info_enhanced_try_321[try block]
+    _extract_method_info_enhanced_except_333[except Exception as e]
+    _extract_method_info_enhanced_try_338[try block]
+    _extract_method_info_enhanced_for_340[for node in collection]
+    _extract_method_info_enhanced_if_341{if isinstance(node, ast.Import)}
+    _extract_method_info_enhanced_for_342[for alias in collection]
+    _extract_method_info_enhanced_elif_344{elif sinstance(node, ast.ImportFrom)}
+    _extract_method_info_enhanced_except_350[except Exception as e]
+    _extract_method_info_enhanced_try_355[try block]
+    _extract_method_info_enhanced_for_357[for node in collection]
+    _extract_method_info_enhanced_if_358{if isinstance(node, ast.Name)}
+    _extract_method_info_enhanced_elif_360{elif sinstance(node, ast.Attribute)}
+    _extract_method_info_enhanced_if_361{if isinstance(node.value, ast.Name)}
+    _extract_method_info_enhanced_if_363{if isinstance(node.attr, str)}
+    _extract_method_info_enhanced_except_367[except Exception as e]
+    _extract_method_info_enhanced_try_372[try block]
+    _extract_method_info_enhanced_for_374[for node in collection]
+    _extract_method_info_enhanced_if_375{if isinstance(node, ast.Assign)}
+    _extract_method_info_enhanced_for_376[for target in collection]
+    _extract_method_info_enhanced_if_377{if isinstance(target, ast.Name)}
+    _extract_method_info_enhanced_except_381[except Exception as e]
+    _extract_method_info_enhanced_try_386[try block]
+    _extract_method_info_enhanced_for_388[for node in collection]
+    _extract_method_info_enhanced_if_389{if isinstance(node, ast.ClassDef)}
+    _extract_method_info_enhanced_for_403[for item in collection]
+    _extract_method_info_enhanced_if_404{if isinstance(item, ast.FunctionDef)}
+    _extract_method_info_enhanced_if_408{if method_info}
+    _extract_method_info_enhanced_elif_410{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_method_info_enhanced_if_414{if method_info}
+    _extract_method_info_enhanced_except_420[except Exception as e]
+    _extract_method_info_enhanced_try_425[try block]
+    _extract_method_info_enhanced_for_427[for node in collection]
+    _extract_method_info_enhanced_if_428{if isinstance(node, ast.FunctionDef)}
+    _extract_method_info_enhanced_if_430{if method_info}
+    _extract_method_info_enhanced_elif_432{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_method_info_enhanced_if_436{if method_info}
+    _extract_method_info_enhanced_except_440[except Exception as e]
+    _extract_method_info_enhanced_try_445[try block]
+    _extract_method_info_enhanced_for_450[for line in collection]
+    _extract_method_info_enhanced_if_451{if line.strip() and not line.strip().startswith(#)}
+    _extract_method_info_enhanced_for_471[for n in collection]
+    _extract_method_info_enhanced_if_472{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_method_info_enhanced_for_478[for n in collection]
+    _extract_method_info_enhanced_if_479{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_method_info_enhanced_except_489[except Exception as e]
+    _extract_method_info_enhanced_exit[Exit _extract_method_info_enhanced]
+    _extract_async_method_info_enhanced_entry[Enter _extract_async_method_info_enhanced]
+    _extract_async_method_info_enhanced_try_4[try block]
+    _extract_async_method_info_enhanced_if_9{if is_test_method}
+    _extract_async_method_info_enhanced_if_26{if func_node.body and isinstance(func_node.body...}
+    _extract_async_method_info_enhanced_if_27{if isinstance(func_node.body(0).value, ast.Cons...}
+    _extract_async_method_info_enhanced_if_29{if isinstance(docstring, str)}
+    _extract_async_method_info_enhanced_if_33{if func_node.body}
+    _extract_async_method_info_enhanced_for_37[for stmt in collection]
+    _extract_async_method_info_enhanced_if_38{if isinstance(stmt, ast.Expr) and isinstance(}
+    _extract_async_method_info_enhanced_try_51[try block]
+    _extract_async_method_info_enhanced_for_57[for line in collection]
+    _extract_async_method_info_enhanced_if_58{if line.strip():  # Skip empty lines}
+    _extract_async_method_info_enhanced_except_60[except ImportError]
+    _extract_async_method_info_enhanced_try_62[try block]
+    _extract_async_method_info_enhanced_for_66[for line in collection]
+    _extract_async_method_info_enhanced_if_67{if line.strip():  # Skip empty lines}
+    _extract_async_method_info_enhanced_except_69[except AttributeError]
+    _extract_async_method_info_enhanced_if_72{if body_line}
+    _extract_async_method_info_enhanced_if_75{if method_body}
+    _extract_async_method_info_enhanced_if_80{if detected_patterns}
+    _extract_async_method_info_enhanced_for_90[for p in collection]
+    _extract_async_method_info_enhanced_for_99[for p in collection]
+    _extract_async_method_info_enhanced_else_101{else}
+    _extract_async_method_info_enhanced_for_105[for decorator in collection]
+    _extract_async_method_info_enhanced_if_106{if isinstance(decorator, ast.Name)}
+    _extract_async_method_info_enhanced_except_111[except Exception as e]
+    _extract_async_method_info_enhanced_for_120[for arg in collection]
+    _extract_async_method_info_enhanced_if_121{if arg.arg != self:  # Skip self parameter}
+    _extract_async_method_info_enhanced_if_131{if param_str}
+    _extract_async_method_info_enhanced_for_138[for arg in collection]
+    _extract_async_method_info_enhanced_if_139{if arg.arg != self:  # Skip self parameter}
+    _extract_async_method_info_enhanced_if_149{if param_str}
+    _extract_async_method_info_enhanced_for_156[for arg in collection]
+    _extract_async_method_info_enhanced_if_157{if arg.arg != self}
+    _extract_async_method_info_enhanced_if_168{if annotation is None}
+    _extract_async_method_info_enhanced_if_170{if isinstance(annotation, ast.Name)}
+    _extract_async_method_info_enhanced_if_172{if isinstance(annotation, ast.Constant)}
+    _extract_async_method_info_enhanced_if_174{if isinstance(annotation, ast.Subscript)}
+    _extract_async_method_info_enhanced_if_175{if isinstance(annotation.value, ast.Name)}
+    _extract_async_method_info_enhanced_if_177{if hasattr(annotation, slice)}
+    _extract_async_method_info_enhanced_if_179{if isinstance(slice_value, ast.Name)}
+    _extract_async_method_info_enhanced_if_181{if isinstance(slice_value, ast.Tuple)}
+    _extract_async_method_info_enhanced_for_183[for elt in collection]
+    _extract_async_method_info_enhanced_if_184{if isinstance(elt, ast.Name)}
+    _extract_async_method_info_enhanced_elif_186{elif sinstance(elt, ast.Constant)}
+    _extract_async_method_info_enhanced_try_193[try block]
+    _extract_async_method_info_enhanced_if_194{if tree.body and isinstance(tree.body(0), ast.E...}
+    _extract_async_method_info_enhanced_if_195{if isinstance(tree.body(0).value, ast.Constant)}
+    _extract_async_method_info_enhanced_if_197{if isinstance(docstring, str)}
+    _extract_async_method_info_enhanced_except_201[except Exception as e]
+    _extract_async_method_info_enhanced_try_207[try block]
+    _extract_async_method_info_enhanced_except_219[except Exception as e]
+    _extract_async_method_info_enhanced_try_224[try block]
+    _extract_async_method_info_enhanced_for_226[for node in collection]
+    _extract_async_method_info_enhanced_if_227{if isinstance(node, ast.Import)}
+    _extract_async_method_info_enhanced_for_228[for alias in collection]
+    _extract_async_method_info_enhanced_elif_230{elif sinstance(node, ast.ImportFrom)}
+    _extract_async_method_info_enhanced_except_236[except Exception as e]
+    _extract_async_method_info_enhanced_try_241[try block]
+    _extract_async_method_info_enhanced_for_243[for node in collection]
+    _extract_async_method_info_enhanced_if_244{if isinstance(node, ast.Name)}
+    _extract_async_method_info_enhanced_elif_246{elif sinstance(node, ast.Attribute)}
+    _extract_async_method_info_enhanced_if_247{if isinstance(node.value, ast.Name)}
+    _extract_async_method_info_enhanced_if_249{if isinstance(node.attr, str)}
+    _extract_async_method_info_enhanced_except_253[except Exception as e]
+    _extract_async_method_info_enhanced_try_258[try block]
+    _extract_async_method_info_enhanced_for_260[for node in collection]
+    _extract_async_method_info_enhanced_if_261{if isinstance(node, ast.Assign)}
+    _extract_async_method_info_enhanced_for_262[for target in collection]
+    _extract_async_method_info_enhanced_if_263{if isinstance(target, ast.Name)}
+    _extract_async_method_info_enhanced_except_267[except Exception as e]
+    _extract_async_method_info_enhanced_try_272[try block]
+    _extract_async_method_info_enhanced_for_274[for node in collection]
+    _extract_async_method_info_enhanced_if_275{if isinstance(node, ast.ClassDef)}
+    _extract_async_method_info_enhanced_for_289[for item in collection]
+    _extract_async_method_info_enhanced_if_290{if isinstance(item, ast.FunctionDef)}
+    _extract_async_method_info_enhanced_if_294{if method_info}
+    _extract_async_method_info_enhanced_elif_296{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_async_method_info_enhanced_if_300{if method_info}
+    _extract_async_method_info_enhanced_except_306[except Exception as e]
+    _extract_async_method_info_enhanced_try_311[try block]
+    _extract_async_method_info_enhanced_for_313[for node in collection]
+    _extract_async_method_info_enhanced_if_314{if isinstance(node, ast.FunctionDef)}
+    _extract_async_method_info_enhanced_if_316{if method_info}
+    _extract_async_method_info_enhanced_elif_318{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_async_method_info_enhanced_if_322{if method_info}
+    _extract_async_method_info_enhanced_except_326[except Exception as e]
+    _extract_async_method_info_enhanced_try_331[try block]
+    _extract_async_method_info_enhanced_for_336[for line in collection]
+    _extract_async_method_info_enhanced_if_337{if line.strip() and not line.strip().startswith(#)}
+    _extract_async_method_info_enhanced_for_357[for n in collection]
+    _extract_async_method_info_enhanced_if_358{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_async_method_info_enhanced_for_364[for n in collection]
+    _extract_async_method_info_enhanced_if_365{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_async_method_info_enhanced_except_375[except Exception as e]
+    _extract_async_method_info_enhanced_exit[Exit _extract_async_method_info_enhanced]
+    _build_method_signature_entry[Enter _build_method_signature]
+    _build_method_signature_for_3[for arg in collection]
+    _build_method_signature_if_4{if arg.arg != self:  # Skip self parameter}
+    _build_method_signature_if_14{if param_str}
+    _build_method_signature_for_21[for arg in collection]
+    _build_method_signature_if_22{if arg.arg != self:  # Skip self parameter}
+    _build_method_signature_if_32{if param_str}
+    _build_method_signature_for_39[for arg in collection]
+    _build_method_signature_if_40{if arg.arg != self}
+    _build_method_signature_if_51{if annotation is None}
+    _build_method_signature_if_53{if isinstance(annotation, ast.Name)}
+    _build_method_signature_if_55{if isinstance(annotation, ast.Constant)}
+    _build_method_signature_if_57{if isinstance(annotation, ast.Subscript)}
+    _build_method_signature_if_58{if isinstance(annotation.value, ast.Name)}
+    _build_method_signature_if_60{if hasattr(annotation, slice)}
+    _build_method_signature_if_62{if isinstance(slice_value, ast.Name)}
+    _build_method_signature_if_64{if isinstance(slice_value, ast.Tuple)}
+    _build_method_signature_for_66[for elt in collection]
+    _build_method_signature_if_67{if isinstance(elt, ast.Name)}
+    _build_method_signature_elif_69{elif sinstance(elt, ast.Constant)}
+    _build_method_signature_try_76[try block]
+    _build_method_signature_if_77{if tree.body and isinstance(tree.body(0), ast.E...}
+    _build_method_signature_if_78{if isinstance(tree.body(0).value, ast.Constant)}
+    _build_method_signature_if_80{if isinstance(docstring, str)}
+    _build_method_signature_except_84[except Exception as e]
+    _build_method_signature_try_90[try block]
+    _build_method_signature_except_102[except Exception as e]
+    _build_method_signature_try_107[try block]
+    _build_method_signature_for_109[for node in collection]
+    _build_method_signature_if_110{if isinstance(node, ast.Import)}
+    _build_method_signature_for_111[for alias in collection]
+    _build_method_signature_elif_113{elif sinstance(node, ast.ImportFrom)}
+    _build_method_signature_except_119[except Exception as e]
+    _build_method_signature_try_124[try block]
+    _build_method_signature_for_126[for node in collection]
+    _build_method_signature_if_127{if isinstance(node, ast.Name)}
+    _build_method_signature_elif_129{elif sinstance(node, ast.Attribute)}
+    _build_method_signature_if_130{if isinstance(node.value, ast.Name)}
+    _build_method_signature_if_132{if isinstance(node.attr, str)}
+    _build_method_signature_except_136[except Exception as e]
+    _build_method_signature_try_141[try block]
+    _build_method_signature_for_143[for node in collection]
+    _build_method_signature_if_144{if isinstance(node, ast.Assign)}
+    _build_method_signature_for_145[for target in collection]
+    _build_method_signature_if_146{if isinstance(target, ast.Name)}
+    _build_method_signature_except_150[except Exception as e]
+    _build_method_signature_try_155[try block]
+    _build_method_signature_for_157[for node in collection]
+    _build_method_signature_if_158{if isinstance(node, ast.ClassDef)}
+    _build_method_signature_for_172[for item in collection]
+    _build_method_signature_if_173{if isinstance(item, ast.FunctionDef)}
+    _build_method_signature_if_177{if method_info}
+    _build_method_signature_elif_179{elif sinstance(item, ast.AsyncFunctionDef)}
+    _build_method_signature_if_183{if method_info}
+    _build_method_signature_except_189[except Exception as e]
+    _build_method_signature_try_194[try block]
+    _build_method_signature_for_196[for node in collection]
+    _build_method_signature_if_197{if isinstance(node, ast.FunctionDef)}
+    _build_method_signature_if_199{if method_info}
+    _build_method_signature_elif_201{elif sinstance(node, ast.AsyncFunctionDef)}
+    _build_method_signature_if_205{if method_info}
+    _build_method_signature_except_209[except Exception as e]
+    _build_method_signature_try_214[try block]
+    _build_method_signature_for_219[for line in collection]
+    _build_method_signature_if_220{if line.strip() and not line.strip().startswith(#)}
+    _build_method_signature_for_240[for n in collection]
+    _build_method_signature_if_241{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _build_method_signature_for_247[for n in collection]
+    _build_method_signature_if_248{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _build_method_signature_except_258[except Exception as e]
+    _build_method_signature_exit[Exit _build_method_signature]
+    _build_async_method_signature_entry[Enter _build_async_method_signature]
+    _build_async_method_signature_for_3[for arg in collection]
+    _build_async_method_signature_if_4{if arg.arg != self:  # Skip self parameter}
+    _build_async_method_signature_if_14{if param_str}
+    _build_async_method_signature_for_21[for arg in collection]
+    _build_async_method_signature_if_22{if arg.arg != self}
+    _build_async_method_signature_if_33{if annotation is None}
+    _build_async_method_signature_if_35{if isinstance(annotation, ast.Name)}
+    _build_async_method_signature_if_37{if isinstance(annotation, ast.Constant)}
+    _build_async_method_signature_if_39{if isinstance(annotation, ast.Subscript)}
+    _build_async_method_signature_if_40{if isinstance(annotation.value, ast.Name)}
+    _build_async_method_signature_if_42{if hasattr(annotation, slice)}
+    _build_async_method_signature_if_44{if isinstance(slice_value, ast.Name)}
+    _build_async_method_signature_if_46{if isinstance(slice_value, ast.Tuple)}
+    _build_async_method_signature_for_48[for elt in collection]
+    _build_async_method_signature_if_49{if isinstance(elt, ast.Name)}
+    _build_async_method_signature_elif_51{elif sinstance(elt, ast.Constant)}
+    _build_async_method_signature_try_58[try block]
+    _build_async_method_signature_if_59{if tree.body and isinstance(tree.body(0), ast.E...}
+    _build_async_method_signature_if_60{if isinstance(tree.body(0).value, ast.Constant)}
+    _build_async_method_signature_if_62{if isinstance(docstring, str)}
+    _build_async_method_signature_except_66[except Exception as e]
+    _build_async_method_signature_try_72[try block]
+    _build_async_method_signature_except_84[except Exception as e]
+    _build_async_method_signature_try_89[try block]
+    _build_async_method_signature_for_91[for node in collection]
+    _build_async_method_signature_if_92{if isinstance(node, ast.Import)}
+    _build_async_method_signature_for_93[for alias in collection]
+    _build_async_method_signature_elif_95{elif sinstance(node, ast.ImportFrom)}
+    _build_async_method_signature_except_101[except Exception as e]
+    _build_async_method_signature_try_106[try block]
+    _build_async_method_signature_for_108[for node in collection]
+    _build_async_method_signature_if_109{if isinstance(node, ast.Name)}
+    _build_async_method_signature_elif_111{elif sinstance(node, ast.Attribute)}
+    _build_async_method_signature_if_112{if isinstance(node.value, ast.Name)}
+    _build_async_method_signature_if_114{if isinstance(node.attr, str)}
+    _build_async_method_signature_except_118[except Exception as e]
+    _build_async_method_signature_try_123[try block]
+    _build_async_method_signature_for_125[for node in collection]
+    _build_async_method_signature_if_126{if isinstance(node, ast.Assign)}
+    _build_async_method_signature_for_127[for target in collection]
+    _build_async_method_signature_if_128{if isinstance(target, ast.Name)}
+    _build_async_method_signature_except_132[except Exception as e]
+    _build_async_method_signature_try_137[try block]
+    _build_async_method_signature_for_139[for node in collection]
+    _build_async_method_signature_if_140{if isinstance(node, ast.ClassDef)}
+    _build_async_method_signature_for_154[for item in collection]
+    _build_async_method_signature_if_155{if isinstance(item, ast.FunctionDef)}
+    _build_async_method_signature_if_159{if method_info}
+    _build_async_method_signature_elif_161{elif sinstance(item, ast.AsyncFunctionDef)}
+    _build_async_method_signature_if_165{if method_info}
+    _build_async_method_signature_except_171[except Exception as e]
+    _build_async_method_signature_try_176[try block]
+    _build_async_method_signature_for_178[for node in collection]
+    _build_async_method_signature_if_179{if isinstance(node, ast.FunctionDef)}
+    _build_async_method_signature_if_181{if method_info}
+    _build_async_method_signature_elif_183{elif sinstance(node, ast.AsyncFunctionDef)}
+    _build_async_method_signature_if_187{if method_info}
+    _build_async_method_signature_except_191[except Exception as e]
+    _build_async_method_signature_try_196[try block]
+    _build_async_method_signature_for_201[for line in collection]
+    _build_async_method_signature_if_202{if line.strip() and not line.strip().startswith(#)}
+    _build_async_method_signature_for_222[for n in collection]
+    _build_async_method_signature_if_223{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _build_async_method_signature_for_229[for n in collection]
+    _build_async_method_signature_if_230{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _build_async_method_signature_except_240[except Exception as e]
+    _build_async_method_signature_exit[Exit _build_async_method_signature]
+    _extract_parameters_entry[Enter _extract_parameters]
+    _extract_parameters_for_3[for arg in collection]
+    _extract_parameters_if_4{if arg.arg != self}
+    _extract_parameters_if_15{if annotation is None}
+    _extract_parameters_if_17{if isinstance(annotation, ast.Name)}
+    _extract_parameters_if_19{if isinstance(annotation, ast.Constant)}
+    _extract_parameters_if_21{if isinstance(annotation, ast.Subscript)}
+    _extract_parameters_if_22{if isinstance(annotation.value, ast.Name)}
+    _extract_parameters_if_24{if hasattr(annotation, slice)}
+    _extract_parameters_if_26{if isinstance(slice_value, ast.Name)}
+    _extract_parameters_if_28{if isinstance(slice_value, ast.Tuple)}
+    _extract_parameters_for_30[for elt in collection]
+    _extract_parameters_if_31{if isinstance(elt, ast.Name)}
+    _extract_parameters_elif_33{elif sinstance(elt, ast.Constant)}
+    _extract_parameters_try_40[try block]
+    _extract_parameters_if_41{if tree.body and isinstance(tree.body(0), ast.E...}
+    _extract_parameters_if_42{if isinstance(tree.body(0).value, ast.Constant)}
+    _extract_parameters_if_44{if isinstance(docstring, str)}
+    _extract_parameters_except_48[except Exception as e]
+    _extract_parameters_try_54[try block]
+    _extract_parameters_except_66[except Exception as e]
+    _extract_parameters_try_71[try block]
+    _extract_parameters_for_73[for node in collection]
+    _extract_parameters_if_74{if isinstance(node, ast.Import)}
+    _extract_parameters_for_75[for alias in collection]
+    _extract_parameters_elif_77{elif sinstance(node, ast.ImportFrom)}
+    _extract_parameters_except_83[except Exception as e]
+    _extract_parameters_try_88[try block]
+    _extract_parameters_for_90[for node in collection]
+    _extract_parameters_if_91{if isinstance(node, ast.Name)}
+    _extract_parameters_elif_93{elif sinstance(node, ast.Attribute)}
+    _extract_parameters_if_94{if isinstance(node.value, ast.Name)}
+    _extract_parameters_if_96{if isinstance(node.attr, str)}
+    _extract_parameters_except_100[except Exception as e]
+    _extract_parameters_try_105[try block]
+    _extract_parameters_for_107[for node in collection]
+    _extract_parameters_if_108{if isinstance(node, ast.Assign)}
+    _extract_parameters_for_109[for target in collection]
+    _extract_parameters_if_110{if isinstance(target, ast.Name)}
+    _extract_parameters_except_114[except Exception as e]
+    _extract_parameters_try_119[try block]
+    _extract_parameters_for_121[for node in collection]
+    _extract_parameters_if_122{if isinstance(node, ast.ClassDef)}
+    _extract_parameters_for_136[for item in collection]
+    _extract_parameters_if_137{if isinstance(item, ast.FunctionDef)}
+    _extract_parameters_if_141{if method_info}
+    _extract_parameters_elif_143{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_parameters_if_147{if method_info}
+    _extract_parameters_except_153[except Exception as e]
+    _extract_parameters_try_158[try block]
+    _extract_parameters_for_160[for node in collection]
+    _extract_parameters_if_161{if isinstance(node, ast.FunctionDef)}
+    _extract_parameters_if_163{if method_info}
+    _extract_parameters_elif_165{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_parameters_if_169{if method_info}
+    _extract_parameters_except_173[except Exception as e]
+    _extract_parameters_try_178[try block]
+    _extract_parameters_for_183[for line in collection]
+    _extract_parameters_if_184{if line.strip() and not line.strip().startswith(#)}
+    _extract_parameters_for_204[for n in collection]
+    _extract_parameters_if_205{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_parameters_for_211[for n in collection]
+    _extract_parameters_if_212{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_parameters_except_222[except Exception as e]
+    _extract_parameters_exit[Exit _extract_parameters]
+    _extract_type_annotation_entry[Enter _extract_type_annotation]
+    _extract_type_annotation_if_2{if annotation is None}
+    _extract_type_annotation_if_4{if isinstance(annotation, ast.Name)}
+    _extract_type_annotation_if_6{if isinstance(annotation, ast.Constant)}
+    _extract_type_annotation_if_8{if isinstance(annotation, ast.Subscript)}
+    _extract_type_annotation_if_9{if isinstance(annotation.value, ast.Name)}
+    _extract_type_annotation_if_11{if hasattr(annotation, slice)}
+    _extract_type_annotation_if_13{if isinstance(slice_value, ast.Name)}
+    _extract_type_annotation_if_15{if isinstance(slice_value, ast.Tuple)}
+    _extract_type_annotation_for_17[for elt in collection]
+    _extract_type_annotation_if_18{if isinstance(elt, ast.Name)}
+    _extract_type_annotation_elif_20{elif sinstance(elt, ast.Constant)}
+    _extract_type_annotation_try_27[try block]
+    _extract_type_annotation_if_28{if tree.body and isinstance(tree.body(0), ast.E...}
+    _extract_type_annotation_if_29{if isinstance(tree.body(0).value, ast.Constant)}
+    _extract_type_annotation_if_31{if isinstance(docstring, str)}
+    _extract_type_annotation_except_35[except Exception as e]
+    _extract_type_annotation_try_41[try block]
+    _extract_type_annotation_except_53[except Exception as e]
+    _extract_type_annotation_try_58[try block]
+    _extract_type_annotation_for_60[for node in collection]
+    _extract_type_annotation_if_61{if isinstance(node, ast.Import)}
+    _extract_type_annotation_for_62[for alias in collection]
+    _extract_type_annotation_elif_64{elif sinstance(node, ast.ImportFrom)}
+    _extract_type_annotation_except_70[except Exception as e]
+    _extract_type_annotation_try_75[try block]
+    _extract_type_annotation_for_77[for node in collection]
+    _extract_type_annotation_if_78{if isinstance(node, ast.Name)}
+    _extract_type_annotation_elif_80{elif sinstance(node, ast.Attribute)}
+    _extract_type_annotation_if_81{if isinstance(node.value, ast.Name)}
+    _extract_type_annotation_if_83{if isinstance(node.attr, str)}
+    _extract_type_annotation_except_87[except Exception as e]
+    _extract_type_annotation_try_92[try block]
+    _extract_type_annotation_for_94[for node in collection]
+    _extract_type_annotation_if_95{if isinstance(node, ast.Assign)}
+    _extract_type_annotation_for_96[for target in collection]
+    _extract_type_annotation_if_97{if isinstance(target, ast.Name)}
+    _extract_type_annotation_except_101[except Exception as e]
+    _extract_type_annotation_try_106[try block]
+    _extract_type_annotation_for_108[for node in collection]
+    _extract_type_annotation_if_109{if isinstance(node, ast.ClassDef)}
+    _extract_type_annotation_for_123[for item in collection]
+    _extract_type_annotation_if_124{if isinstance(item, ast.FunctionDef)}
+    _extract_type_annotation_if_128{if method_info}
+    _extract_type_annotation_elif_130{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_type_annotation_if_134{if method_info}
+    _extract_type_annotation_except_140[except Exception as e]
+    _extract_type_annotation_try_145[try block]
+    _extract_type_annotation_for_147[for node in collection]
+    _extract_type_annotation_if_148{if isinstance(node, ast.FunctionDef)}
+    _extract_type_annotation_if_150{if method_info}
+    _extract_type_annotation_elif_152{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_type_annotation_if_156{if method_info}
+    _extract_type_annotation_except_160[except Exception as e]
+    _extract_type_annotation_try_165[try block]
+    _extract_type_annotation_for_170[for line in collection]
+    _extract_type_annotation_if_171{if line.strip() and not line.strip().startswith(#)}
+    _extract_type_annotation_for_191[for n in collection]
+    _extract_type_annotation_if_192{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_type_annotation_for_198[for n in collection]
+    _extract_type_annotation_if_199{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_type_annotation_except_209[except Exception as e]
+    _extract_type_annotation_exit[Exit _extract_type_annotation]
+    _extract_module_docstring_entry[Enter _extract_module_docstring]
+    _extract_module_docstring_try_2[try block]
+    _extract_module_docstring_if_3{if tree.body and isinstance(tree.body(0), ast.E...}
+    _extract_module_docstring_if_4{if isinstance(tree.body(0).value, ast.Constant)}
+    _extract_module_docstring_if_6{if isinstance(docstring, str)}
+    _extract_module_docstring_except_10[except Exception as e]
+    _extract_module_docstring_try_16[try block]
+    _extract_module_docstring_except_28[except Exception as e]
+    _extract_module_docstring_try_33[try block]
+    _extract_module_docstring_for_35[for node in collection]
+    _extract_module_docstring_if_36{if isinstance(node, ast.Import)}
+    _extract_module_docstring_for_37[for alias in collection]
+    _extract_module_docstring_elif_39{elif sinstance(node, ast.ImportFrom)}
+    _extract_module_docstring_except_45[except Exception as e]
+    _extract_module_docstring_try_50[try block]
+    _extract_module_docstring_for_52[for node in collection]
+    _extract_module_docstring_if_53{if isinstance(node, ast.Name)}
+    _extract_module_docstring_elif_55{elif sinstance(node, ast.Attribute)}
+    _extract_module_docstring_if_56{if isinstance(node.value, ast.Name)}
+    _extract_module_docstring_if_58{if isinstance(node.attr, str)}
+    _extract_module_docstring_except_62[except Exception as e]
+    _extract_module_docstring_try_67[try block]
+    _extract_module_docstring_for_69[for node in collection]
+    _extract_module_docstring_if_70{if isinstance(node, ast.Assign)}
+    _extract_module_docstring_for_71[for target in collection]
+    _extract_module_docstring_if_72{if isinstance(target, ast.Name)}
+    _extract_module_docstring_except_76[except Exception as e]
+    _extract_module_docstring_try_81[try block]
+    _extract_module_docstring_for_83[for node in collection]
+    _extract_module_docstring_if_84{if isinstance(node, ast.ClassDef)}
+    _extract_module_docstring_for_98[for item in collection]
+    _extract_module_docstring_if_99{if isinstance(item, ast.FunctionDef)}
+    _extract_module_docstring_if_103{if method_info}
+    _extract_module_docstring_elif_105{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_module_docstring_if_109{if method_info}
+    _extract_module_docstring_except_115[except Exception as e]
+    _extract_module_docstring_try_120[try block]
+    _extract_module_docstring_for_122[for node in collection]
+    _extract_module_docstring_if_123{if isinstance(node, ast.FunctionDef)}
+    _extract_module_docstring_if_125{if method_info}
+    _extract_module_docstring_elif_127{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_module_docstring_if_131{if method_info}
+    _extract_module_docstring_except_135[except Exception as e]
+    _extract_module_docstring_try_140[try block]
+    _extract_module_docstring_for_145[for line in collection]
+    _extract_module_docstring_if_146{if line.strip() and not line.strip().startswith(#)}
+    _extract_module_docstring_for_166[for n in collection]
+    _extract_module_docstring_if_167{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_module_docstring_for_173[for n in collection]
+    _extract_module_docstring_if_174{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_module_docstring_except_184[except Exception as e]
+    _extract_module_docstring_exit[Exit _extract_module_docstring]
+    _extract_file_metadata_entry[Enter _extract_file_metadata]
+    _extract_file_metadata_try_2[try block]
+    _extract_file_metadata_except_14[except Exception as e]
+    _extract_file_metadata_try_19[try block]
+    _extract_file_metadata_for_21[for node in collection]
+    _extract_file_metadata_if_22{if isinstance(node, ast.Import)}
+    _extract_file_metadata_for_23[for alias in collection]
+    _extract_file_metadata_elif_25{elif sinstance(node, ast.ImportFrom)}
+    _extract_file_metadata_except_31[except Exception as e]
+    _extract_file_metadata_try_36[try block]
+    _extract_file_metadata_for_38[for node in collection]
+    _extract_file_metadata_if_39{if isinstance(node, ast.Name)}
+    _extract_file_metadata_elif_41{elif sinstance(node, ast.Attribute)}
+    _extract_file_metadata_if_42{if isinstance(node.value, ast.Name)}
+    _extract_file_metadata_if_44{if isinstance(node.attr, str)}
+    _extract_file_metadata_except_48[except Exception as e]
+    _extract_file_metadata_try_53[try block]
+    _extract_file_metadata_for_55[for node in collection]
+    _extract_file_metadata_if_56{if isinstance(node, ast.Assign)}
+    _extract_file_metadata_for_57[for target in collection]
+    _extract_file_metadata_if_58{if isinstance(target, ast.Name)}
+    _extract_file_metadata_except_62[except Exception as e]
+    _extract_file_metadata_try_67[try block]
+    _extract_file_metadata_for_69[for node in collection]
+    _extract_file_metadata_if_70{if isinstance(node, ast.ClassDef)}
+    _extract_file_metadata_for_84[for item in collection]
+    _extract_file_metadata_if_85{if isinstance(item, ast.FunctionDef)}
+    _extract_file_metadata_if_89{if method_info}
+    _extract_file_metadata_elif_91{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_file_metadata_if_95{if method_info}
+    _extract_file_metadata_except_101[except Exception as e]
+    _extract_file_metadata_try_106[try block]
+    _extract_file_metadata_for_108[for node in collection]
+    _extract_file_metadata_if_109{if isinstance(node, ast.FunctionDef)}
+    _extract_file_metadata_if_111{if method_info}
+    _extract_file_metadata_elif_113{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_file_metadata_if_117{if method_info}
+    _extract_file_metadata_except_121[except Exception as e]
+    _extract_file_metadata_try_126[try block]
+    _extract_file_metadata_for_131[for line in collection]
+    _extract_file_metadata_if_132{if line.strip() and not line.strip().startswith(#)}
+    _extract_file_metadata_for_152[for n in collection]
+    _extract_file_metadata_if_153{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_file_metadata_for_159[for n in collection]
+    _extract_file_metadata_if_160{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_file_metadata_except_170[except Exception as e]
+    _extract_file_metadata_exit[Exit _extract_file_metadata]
+    _extract_imports_entry[Enter _extract_imports]
+    _extract_imports_try_2[try block]
+    _extract_imports_for_4[for node in collection]
+    _extract_imports_if_5{if isinstance(node, ast.Import)}
+    _extract_imports_for_6[for alias in collection]
+    _extract_imports_elif_8{elif sinstance(node, ast.ImportFrom)}
+    _extract_imports_except_14[except Exception as e]
+    _extract_imports_try_19[try block]
+    _extract_imports_for_21[for node in collection]
+    _extract_imports_if_22{if isinstance(node, ast.Name)}
+    _extract_imports_elif_24{elif sinstance(node, ast.Attribute)}
+    _extract_imports_if_25{if isinstance(node.value, ast.Name)}
+    _extract_imports_if_27{if isinstance(node.attr, str)}
+    _extract_imports_except_31[except Exception as e]
+    _extract_imports_try_36[try block]
+    _extract_imports_for_38[for node in collection]
+    _extract_imports_if_39{if isinstance(node, ast.Assign)}
+    _extract_imports_for_40[for target in collection]
+    _extract_imports_if_41{if isinstance(target, ast.Name)}
+    _extract_imports_except_45[except Exception as e]
+    _extract_imports_try_50[try block]
+    _extract_imports_for_52[for node in collection]
+    _extract_imports_if_53{if isinstance(node, ast.ClassDef)}
+    _extract_imports_for_67[for item in collection]
+    _extract_imports_if_68{if isinstance(item, ast.FunctionDef)}
+    _extract_imports_if_72{if method_info}
+    _extract_imports_elif_74{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_imports_if_78{if method_info}
+    _extract_imports_except_84[except Exception as e]
+    _extract_imports_try_89[try block]
+    _extract_imports_for_91[for node in collection]
+    _extract_imports_if_92{if isinstance(node, ast.FunctionDef)}
+    _extract_imports_if_94{if method_info}
+    _extract_imports_elif_96{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_imports_if_100{if method_info}
+    _extract_imports_except_104[except Exception as e]
+    _extract_imports_try_109[try block]
+    _extract_imports_for_114[for line in collection]
+    _extract_imports_if_115{if line.strip() and not line.strip().startswith(#)}
+    _extract_imports_for_135[for n in collection]
+    _extract_imports_if_136{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_imports_for_142[for n in collection]
+    _extract_imports_if_143{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_imports_except_153[except Exception as e]
+    _extract_imports_exit[Exit _extract_imports]
+    _extract_used_names_entry[Enter _extract_used_names]
+    _extract_used_names_try_2[try block]
+    _extract_used_names_for_4[for node in collection]
+    _extract_used_names_if_5{if isinstance(node, ast.Name)}
+    _extract_used_names_elif_7{elif sinstance(node, ast.Attribute)}
+    _extract_used_names_if_8{if isinstance(node.value, ast.Name)}
+    _extract_used_names_if_10{if isinstance(node.attr, str)}
+    _extract_used_names_except_14[except Exception as e]
+    _extract_used_names_try_19[try block]
+    _extract_used_names_for_21[for node in collection]
+    _extract_used_names_if_22{if isinstance(node, ast.Assign)}
+    _extract_used_names_for_23[for target in collection]
+    _extract_used_names_if_24{if isinstance(target, ast.Name)}
+    _extract_used_names_except_28[except Exception as e]
+    _extract_used_names_try_33[try block]
+    _extract_used_names_for_35[for node in collection]
+    _extract_used_names_if_36{if isinstance(node, ast.ClassDef)}
+    _extract_used_names_for_50[for item in collection]
+    _extract_used_names_if_51{if isinstance(item, ast.FunctionDef)}
+    _extract_used_names_if_55{if method_info}
+    _extract_used_names_elif_57{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_used_names_if_61{if method_info}
+    _extract_used_names_except_67[except Exception as e]
+    _extract_used_names_try_72[try block]
+    _extract_used_names_for_74[for node in collection]
+    _extract_used_names_if_75{if isinstance(node, ast.FunctionDef)}
+    _extract_used_names_if_77{if method_info}
+    _extract_used_names_elif_79{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_used_names_if_83{if method_info}
+    _extract_used_names_except_87[except Exception as e]
+    _extract_used_names_try_92[try block]
+    _extract_used_names_for_97[for line in collection]
+    _extract_used_names_if_98{if line.strip() and not line.strip().startswith(#)}
+    _extract_used_names_for_118[for n in collection]
+    _extract_used_names_if_119{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_used_names_for_125[for n in collection]
+    _extract_used_names_if_126{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_used_names_except_136[except Exception as e]
+    _extract_used_names_exit[Exit _extract_used_names]
+    _extract_module_assignments_entry[Enter _extract_module_assignments]
+    _extract_module_assignments_try_2[try block]
+    _extract_module_assignments_for_4[for node in collection]
+    _extract_module_assignments_if_5{if isinstance(node, ast.Assign)}
+    _extract_module_assignments_for_6[for target in collection]
+    _extract_module_assignments_if_7{if isinstance(target, ast.Name)}
+    _extract_module_assignments_except_11[except Exception as e]
+    _extract_module_assignments_try_16[try block]
+    _extract_module_assignments_for_18[for node in collection]
+    _extract_module_assignments_if_19{if isinstance(node, ast.ClassDef)}
+    _extract_module_assignments_for_33[for item in collection]
+    _extract_module_assignments_if_34{if isinstance(item, ast.FunctionDef)}
+    _extract_module_assignments_if_38{if method_info}
+    _extract_module_assignments_elif_40{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_module_assignments_if_44{if method_info}
+    _extract_module_assignments_except_50[except Exception as e]
+    _extract_module_assignments_try_55[try block]
+    _extract_module_assignments_for_57[for node in collection]
+    _extract_module_assignments_if_58{if isinstance(node, ast.FunctionDef)}
+    _extract_module_assignments_if_60{if method_info}
+    _extract_module_assignments_elif_62{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_module_assignments_if_66{if method_info}
+    _extract_module_assignments_except_70[except Exception as e]
+    _extract_module_assignments_try_75[try block]
+    _extract_module_assignments_for_80[for line in collection]
+    _extract_module_assignments_if_81{if line.strip() and not line.strip().startswith(#)}
+    _extract_module_assignments_for_101[for n in collection]
+    _extract_module_assignments_if_102{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_module_assignments_for_108[for n in collection]
+    _extract_module_assignments_if_109{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_module_assignments_except_119[except Exception as e]
+    _extract_module_assignments_exit[Exit _extract_module_assignments]
+    _extract_classes_entry[Enter _extract_classes]
+    _extract_classes_try_2[try block]
+    _extract_classes_for_4[for node in collection]
+    _extract_classes_if_5{if isinstance(node, ast.ClassDef)}
+    _extract_classes_for_19[for item in collection]
+    _extract_classes_if_20{if isinstance(item, ast.FunctionDef)}
+    _extract_classes_if_24{if method_info}
+    _extract_classes_elif_26{elif sinstance(item, ast.AsyncFunctionDef)}
+    _extract_classes_if_30{if method_info}
+    _extract_classes_except_36[except Exception as e]
+    _extract_classes_try_41[try block]
+    _extract_classes_for_43[for node in collection]
+    _extract_classes_if_44{if isinstance(node, ast.FunctionDef)}
+    _extract_classes_if_46{if method_info}
+    _extract_classes_elif_48{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_classes_if_52{if method_info}
+    _extract_classes_except_56[except Exception as e]
+    _extract_classes_try_61[try block]
+    _extract_classes_for_66[for line in collection]
+    _extract_classes_if_67{if line.strip() and not line.strip().startswith(#)}
+    _extract_classes_for_87[for n in collection]
+    _extract_classes_if_88{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_classes_for_94[for n in collection]
+    _extract_classes_if_95{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_classes_except_105[except Exception as e]
+    _extract_classes_exit[Exit _extract_classes]
+    _extract_module_functions_entry[Enter _extract_module_functions]
+    _extract_module_functions_try_2[try block]
+    _extract_module_functions_for_4[for node in collection]
+    _extract_module_functions_if_5{if isinstance(node, ast.FunctionDef)}
+    _extract_module_functions_if_7{if method_info}
+    _extract_module_functions_elif_9{elif sinstance(node, ast.AsyncFunctionDef)}
+    _extract_module_functions_if_13{if method_info}
+    _extract_module_functions_except_17[except Exception as e]
+    _extract_module_functions_try_22[try block]
+    _extract_module_functions_for_27[for line in collection]
+    _extract_module_functions_if_28{if line.strip() and not line.strip().startswith(#)}
+    _extract_module_functions_for_48[for n in collection]
+    _extract_module_functions_if_49{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_module_functions_for_55[for n in collection]
+    _extract_module_functions_if_56{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_module_functions_except_66[except Exception as e]
+    _extract_module_functions_exit[Exit _extract_module_functions]
+    _extract_file_structure_entry[Enter _extract_file_structure]
+    _extract_file_structure_try_2[try block]
+    _extract_file_structure_for_7[for line in collection]
+    _extract_file_structure_if_8{if line.strip() and not line.strip().startswith(#)}
+    _extract_file_structure_for_28[for n in collection]
+    _extract_file_structure_if_29{if isinstance(n, (ast.FunctionDef, ast.AsyncFun...}
+    _extract_file_structure_for_35[for n in collection]
+    _extract_file_structure_if_36{if isinstance(n, (ast.Import, ast.ImportFrom))}
+    _extract_file_structure_except_46[except Exception as e]
+    _extract_file_structure_exit[Exit _extract_file_structure]
+    main_entry[Enter main]
+    main_if_2{if len(sys.argv) != 2}
+    main_if_7{if not Path(file_path).exists()}
+    main_for_26[for component in collection]
+    main_for_27[for method in collection]
+    main_if_28{if detected_patterns in method}
+    main_for_31[for func in collection]
+    main_if_32{if detected_patterns in func}
+    main_exit[Exit main]
+    Execute_main[Execute function: main]
+    Execute___init__[Execute function: __init__]
+    Execute_reverse_engineer_file[Execute function: reverse_engineer_file]
+    Execute__extract_method_info_enhanced[Execute function: _extract_method_info_enhanced]
+    Execute__extract_async_method_info_enhanced[Execute function: _extract_async_method_info_en...]
+    Execute__build_method_signature[Execute function: _build_method_signature]
+    Execute__build_async_method_signature[Execute function: _build_async_method_signature]
+    Execute__extract_parameters[Execute function: _extract_parameters]
+    Execute__extract_type_annotation[Execute function: _extract_type_annotation]
+    Execute__extract_module_docstring[Execute function: _extract_module_docstring]
+    Execute__extract_file_metadata[Execute function: _extract_file_metadata]
+    Execute__extract_imports[Execute function: _extract_imports]
+    Execute__extract_used_names[Execute function: _extract_used_names]
+    Execute__extract_module_assignments[Execute function: _extract_module_assignments]
+    Execute__extract_classes[Execute function: _extract_classes]
+    Execute__extract_module_functions[Execute function: _extract_module_functions]
+    Execute__extract_file_structure[Execute function: _extract_file_structure]
+    End([Module Complete])
+
+    Start -->|Initialize| Process_EnhancedReverseEngineerV2
+    Process_EnhancedReverseEngineerV2 -->|Execute Methods| __init___entry
+    Start -->|Call Function| Execute_main
+    Start -->|Call Function| Execute___init__
+    Start -->|Call Function| Execute_reverse_engineer_file
+    Start -->|Call Function| Execute__extract_method_info_enhanced
+    Start -->|Call Function| Execute__extract_async_method_info_enhanced
+    Start -->|Call Function| Execute__build_method_signature
+    Start -->|Call Function| Execute__build_async_method_signature
+    Start -->|Call Function| Execute__extract_parameters
+    Start -->|Call Function| Execute__extract_type_annotation
+    Start -->|Call Function| Execute__extract_module_docstring
+    Start -->|Call Function| Execute__extract_file_metadata
+    Start -->|Call Function| Execute__extract_imports
+    Start -->|Call Function| Execute__extract_used_names
+    Start -->|Call Function| Execute__extract_module_assignments
+    Start -->|Call Function| Execute__extract_classes
+    Start -->|Call Function| Execute__extract_module_functions
+    Start -->|Call Function| Execute__extract_file_structure
+    __init___entry -->|Complete| End
+    __init___try_7 -->|Complete| End
+    __init___except_45 -->|Complete| End
+    __init___try_53 -->|Complete| End
+    __init___if_58 -->|Complete| End
+    __init___if_74 -->|Complete| End
+    __init___if_75 -->|Complete| End
+    __init___if_77 -->|Complete| End
+    __init___if_81 -->|Complete| End
+    __init___for_85 -->|Complete| End
+    __init___if_86 -->|Complete| End
+    __init___try_99 -->|Complete| End
+    __init___for_105 -->|Complete| End
+    __init___if_106 -->|Complete| End
+    __init___except_108 -->|Complete| End
+    __init___try_110 -->|Complete| End
+    __init___for_114 -->|Complete| End
+    __init___if_115 -->|Complete| End
+    __init___except_117 -->|Complete| End
+    __init___if_120 -->|Complete| End
+    __init___if_123 -->|Complete| End
+    __init___if_128 -->|Complete| End
+    __init___for_138 -->|Complete| End
+    __init___for_147 -->|Complete| End
+    __init___else_149 -->|Complete| End
+    __init___for_153 -->|Complete| End
+    __init___if_154 -->|Complete| End
+    __init___except_159 -->|Complete| End
+    __init___try_167 -->|Complete| End
+    __init___if_172 -->|Complete| End
+    __init___if_189 -->|Complete| End
+    __init___if_190 -->|Complete| End
+    __init___if_192 -->|Complete| End
+    __init___if_196 -->|Complete| End
+    __init___for_200 -->|Complete| End
+    __init___if_201 -->|Complete| End
+    __init___try_214 -->|Complete| End
+    __init___for_220 -->|Complete| End
+    __init___if_221 -->|Complete| End
+    __init___except_223 -->|Complete| End
+    __init___try_225 -->|Complete| End
+    __init___for_229 -->|Complete| End
+    __init___if_230 -->|Complete| End
+    __init___except_232 -->|Complete| End
+    __init___if_235 -->|Complete| End
+    __init___if_238 -->|Complete| End
+    __init___if_243 -->|Complete| End
+    __init___for_253 -->|Complete| End
+    __init___for_262 -->|Complete| End
+    __init___else_264 -->|Complete| End
+    __init___for_268 -->|Complete| End
+    __init___if_269 -->|Complete| End
+    __init___except_274 -->|Complete| End
+    __init___for_283 -->|Complete| End
+    __init___if_284 -->|Complete| End
+    __init___if_294 -->|Complete| End
+    __init___for_301 -->|Complete| End
+    __init___if_302 -->|Complete| End
+    __init___if_312 -->|Complete| End
+    __init___for_319 -->|Complete| End
+    __init___if_320 -->|Complete| End
+    __init___if_331 -->|Complete| End
+    __init___if_333 -->|Complete| End
+    __init___if_335 -->|Complete| End
+    __init___if_337 -->|Complete| End
+    __init___if_338 -->|Complete| End
+    __init___if_340 -->|Complete| End
+    __init___if_342 -->|Complete| End
+    __init___if_344 -->|Complete| End
+    __init___for_346 -->|Complete| End
+    __init___if_347 -->|Complete| End
+    __init___elif_349 -->|Complete| End
+    __init___try_356 -->|Complete| End
+    __init___if_357 -->|Complete| End
+    __init___if_358 -->|Complete| End
+    __init___if_360 -->|Complete| End
+    __init___except_364 -->|Complete| End
+    __init___try_370 -->|Complete| End
+    __init___except_382 -->|Complete| End
+    __init___try_387 -->|Complete| End
+    __init___for_389 -->|Complete| End
+    __init___if_390 -->|Complete| End
+    __init___for_391 -->|Complete| End
+    __init___elif_393 -->|Complete| End
+    __init___except_399 -->|Complete| End
+    __init___try_404 -->|Complete| End
+    __init___for_406 -->|Complete| End
+    __init___if_407 -->|Complete| End
+    __init___elif_409 -->|Complete| End
+    __init___if_410 -->|Complete| End
+    __init___if_412 -->|Complete| End
+    __init___except_416 -->|Complete| End
+    __init___try_421 -->|Complete| End
+    __init___for_423 -->|Complete| End
+    __init___if_424 -->|Complete| End
+    __init___for_425 -->|Complete| End
+    __init___if_426 -->|Complete| End
+    __init___except_430 -->|Complete| End
+    __init___try_435 -->|Complete| End
+    __init___for_437 -->|Complete| End
+    __init___if_438 -->|Complete| End
+    __init___for_452 -->|Complete| End
+    __init___if_453 -->|Complete| End
+    __init___if_457 -->|Complete| End
+    __init___elif_459 -->|Complete| End
+    __init___if_463 -->|Complete| End
+    __init___except_469 -->|Complete| End
+    __init___try_474 -->|Complete| End
+    __init___for_476 -->|Complete| End
+    __init___if_477 -->|Complete| End
+    __init___if_479 -->|Complete| End
+    __init___elif_481 -->|Complete| End
+    __init___if_485 -->|Complete| End
+    __init___except_489 -->|Complete| End
+    __init___try_494 -->|Complete| End
+    __init___for_499 -->|Complete| End
+    __init___if_500 -->|Complete| End
+    __init___for_520 -->|Complete| End
+    __init___if_521 -->|Complete| End
+    __init___for_527 -->|Complete| End
+    __init___if_528 -->|Complete| End
+    __init___except_538 -->|Complete| End
+    __init___exit -->|Complete| End
+    reverse_engineer_file_entry -->|Complete| End
+    reverse_engineer_file_try_2 -->|Complete| End
+    reverse_engineer_file_except_40 -->|Complete| End
+    reverse_engineer_file_try_48 -->|Complete| End
+    reverse_engineer_file_if_53 -->|Complete| End
+    reverse_engineer_file_if_69 -->|Complete| End
+    reverse_engineer_file_if_70 -->|Complete| End
+    reverse_engineer_file_if_72 -->|Complete| End
+    reverse_engineer_file_if_76 -->|Complete| End
+    reverse_engineer_file_for_80 -->|Complete| End
+    reverse_engineer_file_if_81 -->|Complete| End
+    reverse_engineer_file_try_94 -->|Complete| End
+    reverse_engineer_file_for_100 -->|Complete| End
+    reverse_engineer_file_if_101 -->|Complete| End
+    reverse_engineer_file_except_103 -->|Complete| End
+    reverse_engineer_file_try_105 -->|Complete| End
+    reverse_engineer_file_for_109 -->|Complete| End
+    reverse_engineer_file_if_110 -->|Complete| End
+    reverse_engineer_file_except_112 -->|Complete| End
+    reverse_engineer_file_if_115 -->|Complete| End
+    reverse_engineer_file_if_118 -->|Complete| End
+    reverse_engineer_file_if_123 -->|Complete| End
+    reverse_engineer_file_for_133 -->|Complete| End
+    reverse_engineer_file_for_142 -->|Complete| End
+    reverse_engineer_file_else_144 -->|Complete| End
+    reverse_engineer_file_for_148 -->|Complete| End
+    reverse_engineer_file_if_149 -->|Complete| End
+    reverse_engineer_file_except_154 -->|Complete| End
+    reverse_engineer_file_try_162 -->|Complete| End
+    reverse_engineer_file_if_167 -->|Complete| End
+    reverse_engineer_file_if_184 -->|Complete| End
+    reverse_engineer_file_if_185 -->|Complete| End
+    reverse_engineer_file_if_187 -->|Complete| End
+    reverse_engineer_file_if_191 -->|Complete| End
+    reverse_engineer_file_for_195 -->|Complete| End
+    reverse_engineer_file_if_196 -->|Complete| End
+    reverse_engineer_file_try_209 -->|Complete| End
+    reverse_engineer_file_for_215 -->|Complete| End
+    reverse_engineer_file_if_216 -->|Complete| End
+    reverse_engineer_file_except_218 -->|Complete| End
+    reverse_engineer_file_try_220 -->|Complete| End
+    reverse_engineer_file_for_224 -->|Complete| End
+    reverse_engineer_file_if_225 -->|Complete| End
+    reverse_engineer_file_except_227 -->|Complete| End
+    reverse_engineer_file_if_230 -->|Complete| End
+    reverse_engineer_file_if_233 -->|Complete| End
+    reverse_engineer_file_if_238 -->|Complete| End
+    reverse_engineer_file_for_248 -->|Complete| End
+    reverse_engineer_file_for_257 -->|Complete| End
+    reverse_engineer_file_else_259 -->|Complete| End
+    reverse_engineer_file_for_263 -->|Complete| End
+    reverse_engineer_file_if_264 -->|Complete| End
+    reverse_engineer_file_except_269 -->|Complete| End
+    reverse_engineer_file_for_278 -->|Complete| End
+    reverse_engineer_file_if_279 -->|Complete| End
+    reverse_engineer_file_if_289 -->|Complete| End
+    reverse_engineer_file_for_296 -->|Complete| End
+    reverse_engineer_file_if_297 -->|Complete| End
+    reverse_engineer_file_if_307 -->|Complete| End
+    reverse_engineer_file_for_314 -->|Complete| End
+    reverse_engineer_file_if_315 -->|Complete| End
+    reverse_engineer_file_if_326 -->|Complete| End
+    reverse_engineer_file_if_328 -->|Complete| End
+    reverse_engineer_file_if_330 -->|Complete| End
+    reverse_engineer_file_if_332 -->|Complete| End
+    reverse_engineer_file_if_333 -->|Complete| End
+    reverse_engineer_file_if_335 -->|Complete| End
+    reverse_engineer_file_if_337 -->|Complete| End
+    reverse_engineer_file_if_339 -->|Complete| End
+    reverse_engineer_file_for_341 -->|Complete| End
+    reverse_engineer_file_if_342 -->|Complete| End
+    reverse_engineer_file_elif_344 -->|Complete| End
+    reverse_engineer_file_try_351 -->|Complete| End
+    reverse_engineer_file_if_352 -->|Complete| End
+    reverse_engineer_file_if_353 -->|Complete| End
+    reverse_engineer_file_if_355 -->|Complete| End
+    reverse_engineer_file_except_359 -->|Complete| End
+    reverse_engineer_file_try_365 -->|Complete| End
+    reverse_engineer_file_except_377 -->|Complete| End
+    reverse_engineer_file_try_382 -->|Complete| End
+    reverse_engineer_file_for_384 -->|Complete| End
+    reverse_engineer_file_if_385 -->|Complete| End
+    reverse_engineer_file_for_386 -->|Complete| End
+    reverse_engineer_file_elif_388 -->|Complete| End
+    reverse_engineer_file_except_394 -->|Complete| End
+    reverse_engineer_file_try_399 -->|Complete| End
+    reverse_engineer_file_for_401 -->|Complete| End
+    reverse_engineer_file_if_402 -->|Complete| End
+    reverse_engineer_file_elif_404 -->|Complete| End
+    reverse_engineer_file_if_405 -->|Complete| End
+    reverse_engineer_file_if_407 -->|Complete| End
+    reverse_engineer_file_except_411 -->|Complete| End
+    reverse_engineer_file_try_416 -->|Complete| End
+    reverse_engineer_file_for_418 -->|Complete| End
+    reverse_engineer_file_if_419 -->|Complete| End
+    reverse_engineer_file_for_420 -->|Complete| End
+    reverse_engineer_file_if_421 -->|Complete| End
+    reverse_engineer_file_except_425 -->|Complete| End
+    reverse_engineer_file_try_430 -->|Complete| End
+    reverse_engineer_file_for_432 -->|Complete| End
+    reverse_engineer_file_if_433 -->|Complete| End
+    reverse_engineer_file_for_447 -->|Complete| End
+    reverse_engineer_file_if_448 -->|Complete| End
+    reverse_engineer_file_if_452 -->|Complete| End
+    reverse_engineer_file_elif_454 -->|Complete| End
+    reverse_engineer_file_if_458 -->|Complete| End
+    reverse_engineer_file_except_464 -->|Complete| End
+    reverse_engineer_file_try_469 -->|Complete| End
+    reverse_engineer_file_for_471 -->|Complete| End
+    reverse_engineer_file_if_472 -->|Complete| End
+    reverse_engineer_file_if_474 -->|Complete| End
+    reverse_engineer_file_elif_476 -->|Complete| End
+    reverse_engineer_file_if_480 -->|Complete| End
+    reverse_engineer_file_except_484 -->|Complete| End
+    reverse_engineer_file_try_489 -->|Complete| End
+    reverse_engineer_file_for_494 -->|Complete| End
+    reverse_engineer_file_if_495 -->|Complete| End
+    reverse_engineer_file_for_515 -->|Complete| End
+    reverse_engineer_file_if_516 -->|Complete| End
+    reverse_engineer_file_for_522 -->|Complete| End
+    reverse_engineer_file_if_523 -->|Complete| End
+    reverse_engineer_file_except_533 -->|Complete| End
+    reverse_engineer_file_exit -->|Complete| End
+    _extract_method_info_enhanced_entry -->|Complete| End
+    _extract_method_info_enhanced_try_4 -->|Complete| End
+    _extract_method_info_enhanced_if_9 -->|Complete| End
+    _extract_method_info_enhanced_if_25 -->|Complete| End
+    _extract_method_info_enhanced_if_26 -->|Complete| End
+    _extract_method_info_enhanced_if_28 -->|Complete| End
+    _extract_method_info_enhanced_if_32 -->|Complete| End
+    _extract_method_info_enhanced_for_36 -->|Complete| End
+    _extract_method_info_enhanced_if_37 -->|Complete| End
+    _extract_method_info_enhanced_try_50 -->|Complete| End
+    _extract_method_info_enhanced_for_56 -->|Complete| End
+    _extract_method_info_enhanced_if_57 -->|Complete| End
+    _extract_method_info_enhanced_except_59 -->|Complete| End
+    _extract_method_info_enhanced_try_61 -->|Complete| End
+    _extract_method_info_enhanced_for_65 -->|Complete| End
+    _extract_method_info_enhanced_if_66 -->|Complete| End
+    _extract_method_info_enhanced_except_68 -->|Complete| End
+    _extract_method_info_enhanced_if_71 -->|Complete| End
+    _extract_method_info_enhanced_if_74 -->|Complete| End
+    _extract_method_info_enhanced_if_79 -->|Complete| End
+    _extract_method_info_enhanced_for_89 -->|Complete| End
+    _extract_method_info_enhanced_for_98 -->|Complete| End
+    _extract_method_info_enhanced_else_100 -->|Complete| End
+    _extract_method_info_enhanced_for_104 -->|Complete| End
+    _extract_method_info_enhanced_if_105 -->|Complete| End
+    _extract_method_info_enhanced_except_110 -->|Complete| End
+    _extract_method_info_enhanced_try_118 -->|Complete| End
+    _extract_method_info_enhanced_if_123 -->|Complete| End
+    _extract_method_info_enhanced_if_140 -->|Complete| End
+    _extract_method_info_enhanced_if_141 -->|Complete| End
+    _extract_method_info_enhanced_if_143 -->|Complete| End
+    _extract_method_info_enhanced_if_147 -->|Complete| End
+    _extract_method_info_enhanced_for_151 -->|Complete| End
+    _extract_method_info_enhanced_if_152 -->|Complete| End
+    _extract_method_info_enhanced_try_165 -->|Complete| End
+    _extract_method_info_enhanced_for_171 -->|Complete| End
+    _extract_method_info_enhanced_if_172 -->|Complete| End
+    _extract_method_info_enhanced_except_174 -->|Complete| End
+    _extract_method_info_enhanced_try_176 -->|Complete| End
+    _extract_method_info_enhanced_for_180 -->|Complete| End
+    _extract_method_info_enhanced_if_181 -->|Complete| End
+    _extract_method_info_enhanced_except_183 -->|Complete| End
+    _extract_method_info_enhanced_if_186 -->|Complete| End
+    _extract_method_info_enhanced_if_189 -->|Complete| End
+    _extract_method_info_enhanced_if_194 -->|Complete| End
+    _extract_method_info_enhanced_for_204 -->|Complete| End
+    _extract_method_info_enhanced_for_213 -->|Complete| End
+    _extract_method_info_enhanced_else_215 -->|Complete| End
+    _extract_method_info_enhanced_for_219 -->|Complete| End
+    _extract_method_info_enhanced_if_220 -->|Complete| End
+    _extract_method_info_enhanced_except_225 -->|Complete| End
+    _extract_method_info_enhanced_for_234 -->|Complete| End
+    _extract_method_info_enhanced_if_235 -->|Complete| End
+    _extract_method_info_enhanced_if_245 -->|Complete| End
+    _extract_method_info_enhanced_for_252 -->|Complete| End
+    _extract_method_info_enhanced_if_253 -->|Complete| End
+    _extract_method_info_enhanced_if_263 -->|Complete| End
+    _extract_method_info_enhanced_for_270 -->|Complete| End
+    _extract_method_info_enhanced_if_271 -->|Complete| End
+    _extract_method_info_enhanced_if_282 -->|Complete| End
+    _extract_method_info_enhanced_if_284 -->|Complete| End
+    _extract_method_info_enhanced_if_286 -->|Complete| End
+    _extract_method_info_enhanced_if_288 -->|Complete| End
+    _extract_method_info_enhanced_if_289 -->|Complete| End
+    _extract_method_info_enhanced_if_291 -->|Complete| End
+    _extract_method_info_enhanced_if_293 -->|Complete| End
+    _extract_method_info_enhanced_if_295 -->|Complete| End
+    _extract_method_info_enhanced_for_297 -->|Complete| End
+    _extract_method_info_enhanced_if_298 -->|Complete| End
+    _extract_method_info_enhanced_elif_300 -->|Complete| End
+    _extract_method_info_enhanced_try_307 -->|Complete| End
+    _extract_method_info_enhanced_if_308 -->|Complete| End
+    _extract_method_info_enhanced_if_309 -->|Complete| End
+    _extract_method_info_enhanced_if_311 -->|Complete| End
+    _extract_method_info_enhanced_except_315 -->|Complete| End
+    _extract_method_info_enhanced_try_321 -->|Complete| End
+    _extract_method_info_enhanced_except_333 -->|Complete| End
+    _extract_method_info_enhanced_try_338 -->|Complete| End
+    _extract_method_info_enhanced_for_340 -->|Complete| End
+    _extract_method_info_enhanced_if_341 -->|Complete| End
+    _extract_method_info_enhanced_for_342 -->|Complete| End
+    _extract_method_info_enhanced_elif_344 -->|Complete| End
+    _extract_method_info_enhanced_except_350 -->|Complete| End
+    _extract_method_info_enhanced_try_355 -->|Complete| End
+    _extract_method_info_enhanced_for_357 -->|Complete| End
+    _extract_method_info_enhanced_if_358 -->|Complete| End
+    _extract_method_info_enhanced_elif_360 -->|Complete| End
+    _extract_method_info_enhanced_if_361 -->|Complete| End
+    _extract_method_info_enhanced_if_363 -->|Complete| End
+    _extract_method_info_enhanced_except_367 -->|Complete| End
+    _extract_method_info_enhanced_try_372 -->|Complete| End
+    _extract_method_info_enhanced_for_374 -->|Complete| End
+    _extract_method_info_enhanced_if_375 -->|Complete| End
+    _extract_method_info_enhanced_for_376 -->|Complete| End
+    _extract_method_info_enhanced_if_377 -->|Complete| End
+    _extract_method_info_enhanced_except_381 -->|Complete| End
+    _extract_method_info_enhanced_try_386 -->|Complete| End
+    _extract_method_info_enhanced_for_388 -->|Complete| End
+    _extract_method_info_enhanced_if_389 -->|Complete| End
+    _extract_method_info_enhanced_for_403 -->|Complete| End
+    _extract_method_info_enhanced_if_404 -->|Complete| End
+    _extract_method_info_enhanced_if_408 -->|Complete| End
+    _extract_method_info_enhanced_elif_410 -->|Complete| End
+    _extract_method_info_enhanced_if_414 -->|Complete| End
+    _extract_method_info_enhanced_except_420 -->|Complete| End
+    _extract_method_info_enhanced_try_425 -->|Complete| End
+    _extract_method_info_enhanced_for_427 -->|Complete| End
+    _extract_method_info_enhanced_if_428 -->|Complete| End
+    _extract_method_info_enhanced_if_430 -->|Complete| End
+    _extract_method_info_enhanced_elif_432 -->|Complete| End
+    _extract_method_info_enhanced_if_436 -->|Complete| End
+    _extract_method_info_enhanced_except_440 -->|Complete| End
+    _extract_method_info_enhanced_try_445 -->|Complete| End
+    _extract_method_info_enhanced_for_450 -->|Complete| End
+    _extract_method_info_enhanced_if_451 -->|Complete| End
+    _extract_method_info_enhanced_for_471 -->|Complete| End
+    _extract_method_info_enhanced_if_472 -->|Complete| End
+    _extract_method_info_enhanced_for_478 -->|Complete| End
+    _extract_method_info_enhanced_if_479 -->|Complete| End
+    _extract_method_info_enhanced_except_489 -->|Complete| End
+    _extract_method_info_enhanced_exit -->|Complete| End
+    _extract_async_method_info_enhanced_entry -->|Complete| End
+    _extract_async_method_info_enhanced_try_4 -->|Complete| End
+    _extract_async_method_info_enhanced_if_9 -->|Complete| End
+    _extract_async_method_info_enhanced_if_26 -->|Complete| End
+    _extract_async_method_info_enhanced_if_27 -->|Complete| End
+    _extract_async_method_info_enhanced_if_29 -->|Complete| End
+    _extract_async_method_info_enhanced_if_33 -->|Complete| End
+    _extract_async_method_info_enhanced_for_37 -->|Complete| End
+    _extract_async_method_info_enhanced_if_38 -->|Complete| End
+    _extract_async_method_info_enhanced_try_51 -->|Complete| End
+    _extract_async_method_info_enhanced_for_57 -->|Complete| End
+    _extract_async_method_info_enhanced_if_58 -->|Complete| End
+    _extract_async_method_info_enhanced_except_60 -->|Complete| End
+    _extract_async_method_info_enhanced_try_62 -->|Complete| End
+    _extract_async_method_info_enhanced_for_66 -->|Complete| End
+    _extract_async_method_info_enhanced_if_67 -->|Complete| End
+    _extract_async_method_info_enhanced_except_69 -->|Complete| End
+    _extract_async_method_info_enhanced_if_72 -->|Complete| End
+    _extract_async_method_info_enhanced_if_75 -->|Complete| End
+    _extract_async_method_info_enhanced_if_80 -->|Complete| End
+    _extract_async_method_info_enhanced_for_90 -->|Complete| End
+    _extract_async_method_info_enhanced_for_99 -->|Complete| End
+    _extract_async_method_info_enhanced_else_101 -->|Complete| End
+    _extract_async_method_info_enhanced_for_105 -->|Complete| End
+    _extract_async_method_info_enhanced_if_106 -->|Complete| End
+    _extract_async_method_info_enhanced_except_111 -->|Complete| End
+    _extract_async_method_info_enhanced_for_120 -->|Complete| End
+    _extract_async_method_info_enhanced_if_121 -->|Complete| End
+    _extract_async_method_info_enhanced_if_131 -->|Complete| End
+    _extract_async_method_info_enhanced_for_138 -->|Complete| End
+    _extract_async_method_info_enhanced_if_139 -->|Complete| End
+    _extract_async_method_info_enhanced_if_149 -->|Complete| End
+    _extract_async_method_info_enhanced_for_156 -->|Complete| End
+    _extract_async_method_info_enhanced_if_157 -->|Complete| End
+    _extract_async_method_info_enhanced_if_168 -->|Complete| End
+    _extract_async_method_info_enhanced_if_170 -->|Complete| End
+    _extract_async_method_info_enhanced_if_172 -->|Complete| End
+    _extract_async_method_info_enhanced_if_174 -->|Complete| End
+    _extract_async_method_info_enhanced_if_175 -->|Complete| End
+    _extract_async_method_info_enhanced_if_177 -->|Complete| End
+    _extract_async_method_info_enhanced_if_179 -->|Complete| End
+    _extract_async_method_info_enhanced_if_181 -->|Complete| End
+    _extract_async_method_info_enhanced_for_183 -->|Complete| End
+    _extract_async_method_info_enhanced_if_184 -->|Complete| End
+    _extract_async_method_info_enhanced_elif_186 -->|Complete| End
+    _extract_async_method_info_enhanced_try_193 -->|Complete| End
+    _extract_async_method_info_enhanced_if_194 -->|Complete| End
+    _extract_async_method_info_enhanced_if_195 -->|Complete| End
+    _extract_async_method_info_enhanced_if_197 -->|Complete| End
+    _extract_async_method_info_enhanced_except_201 -->|Complete| End
+    _extract_async_method_info_enhanced_try_207 -->|Complete| End
+    _extract_async_method_info_enhanced_except_219 -->|Complete| End
+    _extract_async_method_info_enhanced_try_224 -->|Complete| End
+    _extract_async_method_info_enhanced_for_226 -->|Complete| End
+    _extract_async_method_info_enhanced_if_227 -->|Complete| End
+    _extract_async_method_info_enhanced_for_228 -->|Complete| End
+    _extract_async_method_info_enhanced_elif_230 -->|Complete| End
+    _extract_async_method_info_enhanced_except_236 -->|Complete| End
+    _extract_async_method_info_enhanced_try_241 -->|Complete| End
+    _extract_async_method_info_enhanced_for_243 -->|Complete| End
+    _extract_async_method_info_enhanced_if_244 -->|Complete| End
+    _extract_async_method_info_enhanced_elif_246 -->|Complete| End
+    _extract_async_method_info_enhanced_if_247 -->|Complete| End
+    _extract_async_method_info_enhanced_if_249 -->|Complete| End
+    _extract_async_method_info_enhanced_except_253 -->|Complete| End
+    _extract_async_method_info_enhanced_try_258 -->|Complete| End
+    _extract_async_method_info_enhanced_for_260 -->|Complete| End
+    _extract_async_method_info_enhanced_if_261 -->|Complete| End
+    _extract_async_method_info_enhanced_for_262 -->|Complete| End
+    _extract_async_method_info_enhanced_if_263 -->|Complete| End
+    _extract_async_method_info_enhanced_except_267 -->|Complete| End
+    _extract_async_method_info_enhanced_try_272 -->|Complete| End
+    _extract_async_method_info_enhanced_for_274 -->|Complete| End
+    _extract_async_method_info_enhanced_if_275 -->|Complete| End
+    _extract_async_method_info_enhanced_for_289 -->|Complete| End
+    _extract_async_method_info_enhanced_if_290 -->|Complete| End
+    _extract_async_method_info_enhanced_if_294 -->|Complete| End
+    _extract_async_method_info_enhanced_elif_296 -->|Complete| End
+    _extract_async_method_info_enhanced_if_300 -->|Complete| End
+    _extract_async_method_info_enhanced_except_306 -->|Complete| End
+    _extract_async_method_info_enhanced_try_311 -->|Complete| End
+    _extract_async_method_info_enhanced_for_313 -->|Complete| End
+    _extract_async_method_info_enhanced_if_314 -->|Complete| End
+    _extract_async_method_info_enhanced_if_316 -->|Complete| End
+    _extract_async_method_info_enhanced_elif_318 -->|Complete| End
+    _extract_async_method_info_enhanced_if_322 -->|Complete| End
+    _extract_async_method_info_enhanced_except_326 -->|Complete| End
+    _extract_async_method_info_enhanced_try_331 -->|Complete| End
+    _extract_async_method_info_enhanced_for_336 -->|Complete| End
+    _extract_async_method_info_enhanced_if_337 -->|Complete| End
+    _extract_async_method_info_enhanced_for_357 -->|Complete| End
+    _extract_async_method_info_enhanced_if_358 -->|Complete| End
+    _extract_async_method_info_enhanced_for_364 -->|Complete| End
+    _extract_async_method_info_enhanced_if_365 -->|Complete| End
+    _extract_async_method_info_enhanced_except_375 -->|Complete| End
+    _extract_async_method_info_enhanced_exit -->|Complete| End
+    _build_method_signature_entry -->|Complete| End
+    _build_method_signature_for_3 -->|Complete| End
+    _build_method_signature_if_4 -->|Complete| End
+    _build_method_signature_if_14 -->|Complete| End
+    _build_method_signature_for_21 -->|Complete| End
+    _build_method_signature_if_22 -->|Complete| End
+    _build_method_signature_if_32 -->|Complete| End
+    _build_method_signature_for_39 -->|Complete| End
+    _build_method_signature_if_40 -->|Complete| End
+    _build_method_signature_if_51 -->|Complete| End
+    _build_method_signature_if_53 -->|Complete| End
+    _build_method_signature_if_55 -->|Complete| End
+    _build_method_signature_if_57 -->|Complete| End
+    _build_method_signature_if_58 -->|Complete| End
+    _build_method_signature_if_60 -->|Complete| End
+    _build_method_signature_if_62 -->|Complete| End
+    _build_method_signature_if_64 -->|Complete| End
+    _build_method_signature_for_66 -->|Complete| End
+    _build_method_signature_if_67 -->|Complete| End
+    _build_method_signature_elif_69 -->|Complete| End
+    _build_method_signature_try_76 -->|Complete| End
+    _build_method_signature_if_77 -->|Complete| End
+    _build_method_signature_if_78 -->|Complete| End
+    _build_method_signature_if_80 -->|Complete| End
+    _build_method_signature_except_84 -->|Complete| End
+    _build_method_signature_try_90 -->|Complete| End
+    _build_method_signature_except_102 -->|Complete| End
+    _build_method_signature_try_107 -->|Complete| End
+    _build_method_signature_for_109 -->|Complete| End
+    _build_method_signature_if_110 -->|Complete| End
+    _build_method_signature_for_111 -->|Complete| End
+    _build_method_signature_elif_113 -->|Complete| End
+    _build_method_signature_except_119 -->|Complete| End
+    _build_method_signature_try_124 -->|Complete| End
+    _build_method_signature_for_126 -->|Complete| End
+    _build_method_signature_if_127 -->|Complete| End
+    _build_method_signature_elif_129 -->|Complete| End
+    _build_method_signature_if_130 -->|Complete| End
+    _build_method_signature_if_132 -->|Complete| End
+    _build_method_signature_except_136 -->|Complete| End
+    _build_method_signature_try_141 -->|Complete| End
+    _build_method_signature_for_143 -->|Complete| End
+    _build_method_signature_if_144 -->|Complete| End
+    _build_method_signature_for_145 -->|Complete| End
+    _build_method_signature_if_146 -->|Complete| End
+    _build_method_signature_except_150 -->|Complete| End
+    _build_method_signature_try_155 -->|Complete| End
+    _build_method_signature_for_157 -->|Complete| End
+    _build_method_signature_if_158 -->|Complete| End
+    _build_method_signature_for_172 -->|Complete| End
+    _build_method_signature_if_173 -->|Complete| End
+    _build_method_signature_if_177 -->|Complete| End
+    _build_method_signature_elif_179 -->|Complete| End
+    _build_method_signature_if_183 -->|Complete| End
+    _build_method_signature_except_189 -->|Complete| End
+    _build_method_signature_try_194 -->|Complete| End
+    _build_method_signature_for_196 -->|Complete| End
+    _build_method_signature_if_197 -->|Complete| End
+    _build_method_signature_if_199 -->|Complete| End
+    _build_method_signature_elif_201 -->|Complete| End
+    _build_method_signature_if_205 -->|Complete| End
+    _build_method_signature_except_209 -->|Complete| End
+    _build_method_signature_try_214 -->|Complete| End
+    _build_method_signature_for_219 -->|Complete| End
+    _build_method_signature_if_220 -->|Complete| End
+    _build_method_signature_for_240 -->|Complete| End
+    _build_method_signature_if_241 -->|Complete| End
+    _build_method_signature_for_247 -->|Complete| End
+    _build_method_signature_if_248 -->|Complete| End
+    _build_method_signature_except_258 -->|Complete| End
+    _build_method_signature_exit -->|Complete| End
+    _build_async_method_signature_entry -->|Complete| End
+    _build_async_method_signature_for_3 -->|Complete| End
+    _build_async_method_signature_if_4 -->|Complete| End
+    _build_async_method_signature_if_14 -->|Complete| End
+    _build_async_method_signature_for_21 -->|Complete| End
+    _build_async_method_signature_if_22 -->|Complete| End
+    _build_async_method_signature_if_33 -->|Complete| End
+    _build_async_method_signature_if_35 -->|Complete| End
+    _build_async_method_signature_if_37 -->|Complete| End
+    _build_async_method_signature_if_39 -->|Complete| End
+    _build_async_method_signature_if_40 -->|Complete| End
+    _build_async_method_signature_if_42 -->|Complete| End
+    _build_async_method_signature_if_44 -->|Complete| End
+    _build_async_method_signature_if_46 -->|Complete| End
+    _build_async_method_signature_for_48 -->|Complete| End
+    _build_async_method_signature_if_49 -->|Complete| End
+    _build_async_method_signature_elif_51 -->|Complete| End
+    _build_async_method_signature_try_58 -->|Complete| End
+    _build_async_method_signature_if_59 -->|Complete| End
+    _build_async_method_signature_if_60 -->|Complete| End
+    _build_async_method_signature_if_62 -->|Complete| End
+    _build_async_method_signature_except_66 -->|Complete| End
+    _build_async_method_signature_try_72 -->|Complete| End
+    _build_async_method_signature_except_84 -->|Complete| End
+    _build_async_method_signature_try_89 -->|Complete| End
+    _build_async_method_signature_for_91 -->|Complete| End
+    _build_async_method_signature_if_92 -->|Complete| End
+    _build_async_method_signature_for_93 -->|Complete| End
+    _build_async_method_signature_elif_95 -->|Complete| End
+    _build_async_method_signature_except_101 -->|Complete| End
+    _build_async_method_signature_try_106 -->|Complete| End
+    _build_async_method_signature_for_108 -->|Complete| End
+    _build_async_method_signature_if_109 -->|Complete| End
+    _build_async_method_signature_elif_111 -->|Complete| End
+    _build_async_method_signature_if_112 -->|Complete| End
+    _build_async_method_signature_if_114 -->|Complete| End
+    _build_async_method_signature_except_118 -->|Complete| End
+    _build_async_method_signature_try_123 -->|Complete| End
+    _build_async_method_signature_for_125 -->|Complete| End
+    _build_async_method_signature_if_126 -->|Complete| End
+    _build_async_method_signature_for_127 -->|Complete| End
+    _build_async_method_signature_if_128 -->|Complete| End
+    _build_async_method_signature_except_132 -->|Complete| End
+    _build_async_method_signature_try_137 -->|Complete| End
+    _build_async_method_signature_for_139 -->|Complete| End
+    _build_async_method_signature_if_140 -->|Complete| End
+    _build_async_method_signature_for_154 -->|Complete| End
+    _build_async_method_signature_if_155 -->|Complete| End
+    _build_async_method_signature_if_159 -->|Complete| End
+    _build_async_method_signature_elif_161 -->|Complete| End
+    _build_async_method_signature_if_165 -->|Complete| End
+    _build_async_method_signature_except_171 -->|Complete| End
+    _build_async_method_signature_try_176 -->|Complete| End
+    _build_async_method_signature_for_178 -->|Complete| End
+    _build_async_method_signature_if_179 -->|Complete| End
+    _build_async_method_signature_if_181 -->|Complete| End
+    _build_async_method_signature_elif_183 -->|Complete| End
+    _build_async_method_signature_if_187 -->|Complete| End
+    _build_async_method_signature_except_191 -->|Complete| End
+    _build_async_method_signature_try_196 -->|Complete| End
+    _build_async_method_signature_for_201 -->|Complete| End
+    _build_async_method_signature_if_202 -->|Complete| End
+    _build_async_method_signature_for_222 -->|Complete| End
+    _build_async_method_signature_if_223 -->|Complete| End
+    _build_async_method_signature_for_229 -->|Complete| End
+    _build_async_method_signature_if_230 -->|Complete| End
+    _build_async_method_signature_except_240 -->|Complete| End
+    _build_async_method_signature_exit -->|Complete| End
+    _extract_parameters_entry -->|Complete| End
+    _extract_parameters_for_3 -->|Complete| End
+    _extract_parameters_if_4 -->|Complete| End
+    _extract_parameters_if_15 -->|Complete| End
+    _extract_parameters_if_17 -->|Complete| End
+    _extract_parameters_if_19 -->|Complete| End
+    _extract_parameters_if_21 -->|Complete| End
+    _extract_parameters_if_22 -->|Complete| End
+    _extract_parameters_if_24 -->|Complete| End
+    _extract_parameters_if_26 -->|Complete| End
+    _extract_parameters_if_28 -->|Complete| End
+    _extract_parameters_for_30 -->|Complete| End
+    _extract_parameters_if_31 -->|Complete| End
+    _extract_parameters_elif_33 -->|Complete| End
+    _extract_parameters_try_40 -->|Complete| End
+    _extract_parameters_if_41 -->|Complete| End
+    _extract_parameters_if_42 -->|Complete| End
+    _extract_parameters_if_44 -->|Complete| End
+    _extract_parameters_except_48 -->|Complete| End
+    _extract_parameters_try_54 -->|Complete| End
+    _extract_parameters_except_66 -->|Complete| End
+    _extract_parameters_try_71 -->|Complete| End
+    _extract_parameters_for_73 -->|Complete| End
+    _extract_parameters_if_74 -->|Complete| End
+    _extract_parameters_for_75 -->|Complete| End
+    _extract_parameters_elif_77 -->|Complete| End
+    _extract_parameters_except_83 -->|Complete| End
+    _extract_parameters_try_88 -->|Complete| End
+    _extract_parameters_for_90 -->|Complete| End
+    _extract_parameters_if_91 -->|Complete| End
+    _extract_parameters_elif_93 -->|Complete| End
+    _extract_parameters_if_94 -->|Complete| End
+    _extract_parameters_if_96 -->|Complete| End
+    _extract_parameters_except_100 -->|Complete| End
+    _extract_parameters_try_105 -->|Complete| End
+    _extract_parameters_for_107 -->|Complete| End
+    _extract_parameters_if_108 -->|Complete| End
+    _extract_parameters_for_109 -->|Complete| End
+    _extract_parameters_if_110 -->|Complete| End
+    _extract_parameters_except_114 -->|Complete| End
+    _extract_parameters_try_119 -->|Complete| End
+    _extract_parameters_for_121 -->|Complete| End
+    _extract_parameters_if_122 -->|Complete| End
+    _extract_parameters_for_136 -->|Complete| End
+    _extract_parameters_if_137 -->|Complete| End
+    _extract_parameters_if_141 -->|Complete| End
+    _extract_parameters_elif_143 -->|Complete| End
+    _extract_parameters_if_147 -->|Complete| End
+    _extract_parameters_except_153 -->|Complete| End
+    _extract_parameters_try_158 -->|Complete| End
+    _extract_parameters_for_160 -->|Complete| End
+    _extract_parameters_if_161 -->|Complete| End
+    _extract_parameters_if_163 -->|Complete| End
+    _extract_parameters_elif_165 -->|Complete| End
+    _extract_parameters_if_169 -->|Complete| End
+    _extract_parameters_except_173 -->|Complete| End
+    _extract_parameters_try_178 -->|Complete| End
+    _extract_parameters_for_183 -->|Complete| End
+    _extract_parameters_if_184 -->|Complete| End
+    _extract_parameters_for_204 -->|Complete| End
+    _extract_parameters_if_205 -->|Complete| End
+    _extract_parameters_for_211 -->|Complete| End
+    _extract_parameters_if_212 -->|Complete| End
+    _extract_parameters_except_222 -->|Complete| End
+    _extract_parameters_exit -->|Complete| End
+    _extract_type_annotation_entry -->|Complete| End
+    _extract_type_annotation_if_2 -->|Complete| End
+    _extract_type_annotation_if_4 -->|Complete| End
+    _extract_type_annotation_if_6 -->|Complete| End
+    _extract_type_annotation_if_8 -->|Complete| End
+    _extract_type_annotation_if_9 -->|Complete| End
+    _extract_type_annotation_if_11 -->|Complete| End
+    _extract_type_annotation_if_13 -->|Complete| End
+    _extract_type_annotation_if_15 -->|Complete| End
+    _extract_type_annotation_for_17 -->|Complete| End
+    _extract_type_annotation_if_18 -->|Complete| End
+    _extract_type_annotation_elif_20 -->|Complete| End
+    _extract_type_annotation_try_27 -->|Complete| End
+    _extract_type_annotation_if_28 -->|Complete| End
+    _extract_type_annotation_if_29 -->|Complete| End
+    _extract_type_annotation_if_31 -->|Complete| End
+    _extract_type_annotation_except_35 -->|Complete| End
+    _extract_type_annotation_try_41 -->|Complete| End
+    _extract_type_annotation_except_53 -->|Complete| End
+    _extract_type_annotation_try_58 -->|Complete| End
+    _extract_type_annotation_for_60 -->|Complete| End
+    _extract_type_annotation_if_61 -->|Complete| End
+    _extract_type_annotation_for_62 -->|Complete| End
+    _extract_type_annotation_elif_64 -->|Complete| End
+    _extract_type_annotation_except_70 -->|Complete| End
+    _extract_type_annotation_try_75 -->|Complete| End
+    _extract_type_annotation_for_77 -->|Complete| End
+    _extract_type_annotation_if_78 -->|Complete| End
+    _extract_type_annotation_elif_80 -->|Complete| End
+    _extract_type_annotation_if_81 -->|Complete| End
+    _extract_type_annotation_if_83 -->|Complete| End
+    _extract_type_annotation_except_87 -->|Complete| End
+    _extract_type_annotation_try_92 -->|Complete| End
+    _extract_type_annotation_for_94 -->|Complete| End
+    _extract_type_annotation_if_95 -->|Complete| End
+    _extract_type_annotation_for_96 -->|Complete| End
+    _extract_type_annotation_if_97 -->|Complete| End
+    _extract_type_annotation_except_101 -->|Complete| End
+    _extract_type_annotation_try_106 -->|Complete| End
+    _extract_type_annotation_for_108 -->|Complete| End
+    _extract_type_annotation_if_109 -->|Complete| End
+    _extract_type_annotation_for_123 -->|Complete| End
+    _extract_type_annotation_if_124 -->|Complete| End
+    _extract_type_annotation_if_128 -->|Complete| End
+    _extract_type_annotation_elif_130 -->|Complete| End
+    _extract_type_annotation_if_134 -->|Complete| End
+    _extract_type_annotation_except_140 -->|Complete| End
+    _extract_type_annotation_try_145 -->|Complete| End
+    _extract_type_annotation_for_147 -->|Complete| End
+    _extract_type_annotation_if_148 -->|Complete| End
+    _extract_type_annotation_if_150 -->|Complete| End
+    _extract_type_annotation_elif_152 -->|Complete| End
+    _extract_type_annotation_if_156 -->|Complete| End
+    _extract_type_annotation_except_160 -->|Complete| End
+    _extract_type_annotation_try_165 -->|Complete| End
+    _extract_type_annotation_for_170 -->|Complete| End
+    _extract_type_annotation_if_171 -->|Complete| End
+    _extract_type_annotation_for_191 -->|Complete| End
+    _extract_type_annotation_if_192 -->|Complete| End
+    _extract_type_annotation_for_198 -->|Complete| End
+    _extract_type_annotation_if_199 -->|Complete| End
+    _extract_type_annotation_except_209 -->|Complete| End
+    _extract_type_annotation_exit -->|Complete| End
+    _extract_module_docstring_entry -->|Complete| End
+    _extract_module_docstring_try_2 -->|Complete| End
+    _extract_module_docstring_if_3 -->|Complete| End
+    _extract_module_docstring_if_4 -->|Complete| End
+    _extract_module_docstring_if_6 -->|Complete| End
+    _extract_module_docstring_except_10 -->|Complete| End
+    _extract_module_docstring_try_16 -->|Complete| End
+    _extract_module_docstring_except_28 -->|Complete| End
+    _extract_module_docstring_try_33 -->|Complete| End
+    _extract_module_docstring_for_35 -->|Complete| End
+    _extract_module_docstring_if_36 -->|Complete| End
+    _extract_module_docstring_for_37 -->|Complete| End
+    _extract_module_docstring_elif_39 -->|Complete| End
+    _extract_module_docstring_except_45 -->|Complete| End
+    _extract_module_docstring_try_50 -->|Complete| End
+    _extract_module_docstring_for_52 -->|Complete| End
+    _extract_module_docstring_if_53 -->|Complete| End
+    _extract_module_docstring_elif_55 -->|Complete| End
+    _extract_module_docstring_if_56 -->|Complete| End
+    _extract_module_docstring_if_58 -->|Complete| End
+    _extract_module_docstring_except_62 -->|Complete| End
+    _extract_module_docstring_try_67 -->|Complete| End
+    _extract_module_docstring_for_69 -->|Complete| End
+    _extract_module_docstring_if_70 -->|Complete| End
+    _extract_module_docstring_for_71 -->|Complete| End
+    _extract_module_docstring_if_72 -->|Complete| End
+    _extract_module_docstring_except_76 -->|Complete| End
+    _extract_module_docstring_try_81 -->|Complete| End
+    _extract_module_docstring_for_83 -->|Complete| End
+    _extract_module_docstring_if_84 -->|Complete| End
+    _extract_module_docstring_for_98 -->|Complete| End
+    _extract_module_docstring_if_99 -->|Complete| End
+    _extract_module_docstring_if_103 -->|Complete| End
+    _extract_module_docstring_elif_105 -->|Complete| End
+    _extract_module_docstring_if_109 -->|Complete| End
+    _extract_module_docstring_except_115 -->|Complete| End
+    _extract_module_docstring_try_120 -->|Complete| End
+    _extract_module_docstring_for_122 -->|Complete| End
+    _extract_module_docstring_if_123 -->|Complete| End
+    _extract_module_docstring_if_125 -->|Complete| End
+    _extract_module_docstring_elif_127 -->|Complete| End
+    _extract_module_docstring_if_131 -->|Complete| End
+    _extract_module_docstring_except_135 -->|Complete| End
+    _extract_module_docstring_try_140 -->|Complete| End
+    _extract_module_docstring_for_145 -->|Complete| End
+    _extract_module_docstring_if_146 -->|Complete| End
+    _extract_module_docstring_for_166 -->|Complete| End
+    _extract_module_docstring_if_167 -->|Complete| End
+    _extract_module_docstring_for_173 -->|Complete| End
+    _extract_module_docstring_if_174 -->|Complete| End
+    _extract_module_docstring_except_184 -->|Complete| End
+    _extract_module_docstring_exit -->|Complete| End
+    _extract_file_metadata_entry -->|Complete| End
+    _extract_file_metadata_try_2 -->|Complete| End
+    _extract_file_metadata_except_14 -->|Complete| End
+    _extract_file_metadata_try_19 -->|Complete| End
+    _extract_file_metadata_for_21 -->|Complete| End
+    _extract_file_metadata_if_22 -->|Complete| End
+    _extract_file_metadata_for_23 -->|Complete| End
+    _extract_file_metadata_elif_25 -->|Complete| End
+    _extract_file_metadata_except_31 -->|Complete| End
+    _extract_file_metadata_try_36 -->|Complete| End
+    _extract_file_metadata_for_38 -->|Complete| End
+    _extract_file_metadata_if_39 -->|Complete| End
+    _extract_file_metadata_elif_41 -->|Complete| End
+    _extract_file_metadata_if_42 -->|Complete| End
+    _extract_file_metadata_if_44 -->|Complete| End
+    _extract_file_metadata_except_48 -->|Complete| End
+    _extract_file_metadata_try_53 -->|Complete| End
+    _extract_file_metadata_for_55 -->|Complete| End
+    _extract_file_metadata_if_56 -->|Complete| End
+    _extract_file_metadata_for_57 -->|Complete| End
+    _extract_file_metadata_if_58 -->|Complete| End
+    _extract_file_metadata_except_62 -->|Complete| End
+    _extract_file_metadata_try_67 -->|Complete| End
+    _extract_file_metadata_for_69 -->|Complete| End
+    _extract_file_metadata_if_70 -->|Complete| End
+    _extract_file_metadata_for_84 -->|Complete| End
+    _extract_file_metadata_if_85 -->|Complete| End
+    _extract_file_metadata_if_89 -->|Complete| End
+    _extract_file_metadata_elif_91 -->|Complete| End
+    _extract_file_metadata_if_95 -->|Complete| End
+    _extract_file_metadata_except_101 -->|Complete| End
+    _extract_file_metadata_try_106 -->|Complete| End
+    _extract_file_metadata_for_108 -->|Complete| End
+    _extract_file_metadata_if_109 -->|Complete| End
+    _extract_file_metadata_if_111 -->|Complete| End
+    _extract_file_metadata_elif_113 -->|Complete| End
+    _extract_file_metadata_if_117 -->|Complete| End
+    _extract_file_metadata_except_121 -->|Complete| End
+    _extract_file_metadata_try_126 -->|Complete| End
+    _extract_file_metadata_for_131 -->|Complete| End
+    _extract_file_metadata_if_132 -->|Complete| End
+    _extract_file_metadata_for_152 -->|Complete| End
+    _extract_file_metadata_if_153 -->|Complete| End
+    _extract_file_metadata_for_159 -->|Complete| End
+    _extract_file_metadata_if_160 -->|Complete| End
+    _extract_file_metadata_except_170 -->|Complete| End
+    _extract_file_metadata_exit -->|Complete| End
+    _extract_imports_entry -->|Complete| End
+    _extract_imports_try_2 -->|Complete| End
+    _extract_imports_for_4 -->|Complete| End
+    _extract_imports_if_5 -->|Complete| End
+    _extract_imports_for_6 -->|Complete| End
+    _extract_imports_elif_8 -->|Complete| End
+    _extract_imports_except_14 -->|Complete| End
+    _extract_imports_try_19 -->|Complete| End
+    _extract_imports_for_21 -->|Complete| End
+    _extract_imports_if_22 -->|Complete| End
+    _extract_imports_elif_24 -->|Complete| End
+    _extract_imports_if_25 -->|Complete| End
+    _extract_imports_if_27 -->|Complete| End
+    _extract_imports_except_31 -->|Complete| End
+    _extract_imports_try_36 -->|Complete| End
+    _extract_imports_for_38 -->|Complete| End
+    _extract_imports_if_39 -->|Complete| End
+    _extract_imports_for_40 -->|Complete| End
+    _extract_imports_if_41 -->|Complete| End
+    _extract_imports_except_45 -->|Complete| End
+    _extract_imports_try_50 -->|Complete| End
+    _extract_imports_for_52 -->|Complete| End
+    _extract_imports_if_53 -->|Complete| End
+    _extract_imports_for_67 -->|Complete| End
+    _extract_imports_if_68 -->|Complete| End
+    _extract_imports_if_72 -->|Complete| End
+    _extract_imports_elif_74 -->|Complete| End
+    _extract_imports_if_78 -->|Complete| End
+    _extract_imports_except_84 -->|Complete| End
+    _extract_imports_try_89 -->|Complete| End
+    _extract_imports_for_91 -->|Complete| End
+    _extract_imports_if_92 -->|Complete| End
+    _extract_imports_if_94 -->|Complete| End
+    _extract_imports_elif_96 -->|Complete| End
+    _extract_imports_if_100 -->|Complete| End
+    _extract_imports_except_104 -->|Complete| End
+    _extract_imports_try_109 -->|Complete| End
+    _extract_imports_for_114 -->|Complete| End
+    _extract_imports_if_115 -->|Complete| End
+    _extract_imports_for_135 -->|Complete| End
+    _extract_imports_if_136 -->|Complete| End
+    _extract_imports_for_142 -->|Complete| End
+    _extract_imports_if_143 -->|Complete| End
+    _extract_imports_except_153 -->|Complete| End
+    _extract_imports_exit -->|Complete| End
+    _extract_used_names_entry -->|Complete| End
+    _extract_used_names_try_2 -->|Complete| End
+    _extract_used_names_for_4 -->|Complete| End
+    _extract_used_names_if_5 -->|Complete| End
+    _extract_used_names_elif_7 -->|Complete| End
+    _extract_used_names_if_8 -->|Complete| End
+    _extract_used_names_if_10 -->|Complete| End
+    _extract_used_names_except_14 -->|Complete| End
+    _extract_used_names_try_19 -->|Complete| End
+    _extract_used_names_for_21 -->|Complete| End
+    _extract_used_names_if_22 -->|Complete| End
+    _extract_used_names_for_23 -->|Complete| End
+    _extract_used_names_if_24 -->|Complete| End
+    _extract_used_names_except_28 -->|Complete| End
+    _extract_used_names_try_33 -->|Complete| End
+    _extract_used_names_for_35 -->|Complete| End
+    _extract_used_names_if_36 -->|Complete| End
+    _extract_used_names_for_50 -->|Complete| End
+    _extract_used_names_if_51 -->|Complete| End
+    _extract_used_names_if_55 -->|Complete| End
+    _extract_used_names_elif_57 -->|Complete| End
+    _extract_used_names_if_61 -->|Complete| End
+    _extract_used_names_except_67 -->|Complete| End
+    _extract_used_names_try_72 -->|Complete| End
+    _extract_used_names_for_74 -->|Complete| End
+    _extract_used_names_if_75 -->|Complete| End
+    _extract_used_names_if_77 -->|Complete| End
+    _extract_used_names_elif_79 -->|Complete| End
+    _extract_used_names_if_83 -->|Complete| End
+    _extract_used_names_except_87 -->|Complete| End
+    _extract_used_names_try_92 -->|Complete| End
+    _extract_used_names_for_97 -->|Complete| End
+    _extract_used_names_if_98 -->|Complete| End
+    _extract_used_names_for_118 -->|Complete| End
+    _extract_used_names_if_119 -->|Complete| End
+    _extract_used_names_for_125 -->|Complete| End
+    _extract_used_names_if_126 -->|Complete| End
+    _extract_used_names_except_136 -->|Complete| End
+    _extract_used_names_exit -->|Complete| End
+    _extract_module_assignments_entry -->|Complete| End
+    _extract_module_assignments_try_2 -->|Complete| End
+    _extract_module_assignments_for_4 -->|Complete| End
+    _extract_module_assignments_if_5 -->|Complete| End
+    _extract_module_assignments_for_6 -->|Complete| End
+    _extract_module_assignments_if_7 -->|Complete| End
+    _extract_module_assignments_except_11 -->|Complete| End
+    _extract_module_assignments_try_16 -->|Complete| End
+    _extract_module_assignments_for_18 -->|Complete| End
+    _extract_module_assignments_if_19 -->|Complete| End
+    _extract_module_assignments_for_33 -->|Complete| End
+    _extract_module_assignments_if_34 -->|Complete| End
+    _extract_module_assignments_if_38 -->|Complete| End
+    _extract_module_assignments_elif_40 -->|Complete| End
+    _extract_module_assignments_if_44 -->|Complete| End
+    _extract_module_assignments_except_50 -->|Complete| End
+    _extract_module_assignments_try_55 -->|Complete| End
+    _extract_module_assignments_for_57 -->|Complete| End
+    _extract_module_assignments_if_58 -->|Complete| End
+    _extract_module_assignments_if_60 -->|Complete| End
+    _extract_module_assignments_elif_62 -->|Complete| End
+    _extract_module_assignments_if_66 -->|Complete| End
+    _extract_module_assignments_except_70 -->|Complete| End
+    _extract_module_assignments_try_75 -->|Complete| End
+    _extract_module_assignments_for_80 -->|Complete| End
+    _extract_module_assignments_if_81 -->|Complete| End
+    _extract_module_assignments_for_101 -->|Complete| End
+    _extract_module_assignments_if_102 -->|Complete| End
+    _extract_module_assignments_for_108 -->|Complete| End
+    _extract_module_assignments_if_109 -->|Complete| End
+    _extract_module_assignments_except_119 -->|Complete| End
+    _extract_module_assignments_exit -->|Complete| End
+    _extract_classes_entry -->|Complete| End
+    _extract_classes_try_2 -->|Complete| End
+    _extract_classes_for_4 -->|Complete| End
+    _extract_classes_if_5 -->|Complete| End
+    _extract_classes_for_19 -->|Complete| End
+    _extract_classes_if_20 -->|Complete| End
+    _extract_classes_if_24 -->|Complete| End
+    _extract_classes_elif_26 -->|Complete| End
+    _extract_classes_if_30 -->|Complete| End
+    _extract_classes_except_36 -->|Complete| End
+    _extract_classes_try_41 -->|Complete| End
+    _extract_classes_for_43 -->|Complete| End
+    _extract_classes_if_44 -->|Complete| End
+    _extract_classes_if_46 -->|Complete| End
+    _extract_classes_elif_48 -->|Complete| End
+    _extract_classes_if_52 -->|Complete| End
+    _extract_classes_except_56 -->|Complete| End
+    _extract_classes_try_61 -->|Complete| End
+    _extract_classes_for_66 -->|Complete| End
+    _extract_classes_if_67 -->|Complete| End
+    _extract_classes_for_87 -->|Complete| End
+    _extract_classes_if_88 -->|Complete| End
+    _extract_classes_for_94 -->|Complete| End
+    _extract_classes_if_95 -->|Complete| End
+    _extract_classes_except_105 -->|Complete| End
+    _extract_classes_exit -->|Complete| End
+    _extract_module_functions_entry -->|Complete| End
+    _extract_module_functions_try_2 -->|Complete| End
+    _extract_module_functions_for_4 -->|Complete| End
+    _extract_module_functions_if_5 -->|Complete| End
+    _extract_module_functions_if_7 -->|Complete| End
+    _extract_module_functions_elif_9 -->|Complete| End
+    _extract_module_functions_if_13 -->|Complete| End
+    _extract_module_functions_except_17 -->|Complete| End
+    _extract_module_functions_try_22 -->|Complete| End
+    _extract_module_functions_for_27 -->|Complete| End
+    _extract_module_functions_if_28 -->|Complete| End
+    _extract_module_functions_for_48 -->|Complete| End
+    _extract_module_functions_if_49 -->|Complete| End
+    _extract_module_functions_for_55 -->|Complete| End
+    _extract_module_functions_if_56 -->|Complete| End
+    _extract_module_functions_except_66 -->|Complete| End
+    _extract_module_functions_exit -->|Complete| End
+    _extract_file_structure_entry -->|Complete| End
+    _extract_file_structure_try_2 -->|Complete| End
+    _extract_file_structure_for_7 -->|Complete| End
+    _extract_file_structure_if_8 -->|Complete| End
+    _extract_file_structure_for_28 -->|Complete| End
+    _extract_file_structure_if_29 -->|Complete| End
+    _extract_file_structure_for_35 -->|Complete| End
+    _extract_file_structure_if_36 -->|Complete| End
+    _extract_file_structure_except_46 -->|Complete| End
+    _extract_file_structure_exit -->|Complete| End
+    main_entry -->|Complete| End
+    main_if_2 -->|Complete| End
+    main_if_7 -->|Complete| End
+    main_for_26 -->|Complete| End
+    main_for_27 -->|Complete| End
+    main_if_28 -->|Complete| End
+    main_for_31 -->|Complete| End
+    main_if_32 -->|Complete| End
+    main_exit -->|Complete| End
+    Execute_main -->|Complete| End
+    Execute___init__ -->|Complete| End
+    Execute_reverse_engineer_file -->|Complete| End
+    Execute__extract_method_info_enhanced -->|Complete| End
+    Execute__extract_async_method_info_enhanced -->|Complete| End
+    Execute__build_method_signature -->|Complete| End
+    Execute__build_async_method_signature -->|Complete| End
+    Execute__extract_parameters -->|Complete| End
+    Execute__extract_type_annotation -->|Complete| End
+    Execute__extract_module_docstring -->|Complete| End
+    Execute__extract_file_metadata -->|Complete| End
+    Execute__extract_imports -->|Complete| End
+    Execute__extract_used_names -->|Complete| End
+    Execute__extract_module_assignments -->|Complete| End
+    Execute__extract_classes -->|Complete| End
+    Execute__extract_module_functions -->|Complete| End
+    Execute__extract_file_structure -->|Complete| End

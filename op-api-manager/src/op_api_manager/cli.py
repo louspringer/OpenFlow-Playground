@@ -35,16 +35,10 @@ def main():
 
 
 @main.command()
-@click.option(
-    "--force-refresh", "-f", is_flag=True, help="Force refresh even if cache is valid"
-)
-@click.option(
-    "--output", "-o", type=click.Path(), help="Output file for discovery results"
-)
+@click.option("--force-refresh", "-f", is_flag=True, help="Force refresh even if cache is valid")
+@click.option("--output", "-o", type=click.Path(), help="Output file for discovery results")
 @click.option("--cache-file", type=click.Path(), help="Custom cache file location")
-@click.option(
-    "--verbose", "-v", is_flag=True, help="Show detailed progress during discovery"
-)
+@click.option("--verbose", "-v", is_flag=True, help="Show detailed progress during discovery")
 @click.option(
     "--provider",
     "-p",
@@ -58,9 +52,7 @@ def main():
     type=int,
     help="Limit number of items to process (useful for testing)",
 )
-@click.option(
-    "--dry-run", "-n", is_flag=True, help="Show what would be done without executing"
-)
+@click.option("--dry-run", "-n", is_flag=True, help="Show what would be done without executing")
 @click.option(
     "--force",
     "--force-bypass-cache",
@@ -99,9 +91,7 @@ def discover(
             console.print(f"[blue]📊 Processing limit: {limit} items[/blue]")
 
         if force:
-            console.print(
-                "[yellow]⚡ Force mode enabled - bypassing all caches[/yellow]"
-            )
+            console.print("[yellow]⚡ Force mode enabled - bypassing all caches[/yellow]")
 
         console.print()
 
@@ -120,37 +110,23 @@ def discover(
             # Get cached results for preview
             cached_results = manager._get_cached_discovery_results()
             if cached_results:
-                console.print(
-                    f"[green]📊 Would process {len(cached_results)} cached items[/green]"
-                )
+                console.print(f"[green]📊 Would process {len(cached_results)} cached items[/green]")
                 if provider != "all":
-                    filtered = [
-                        item
-                        for item in cached_results
-                        if item.get("provider") == provider
-                    ]
-                    console.print(
-                        f"[green]📊 Would filter to {len(filtered)} {provider} items[/green]"
-                    )
+                    filtered = [item for item in cached_results if item.get("provider") == provider]
+                    console.print(f"[green]📊 Would filter to {len(filtered)} {provider} items[/green]")
                 if limit:
                     console.print(f"[green]📊 Would limit to {limit} items[/green]")
             else:
-                console.print(
-                    "[yellow]📊 No cached results available for dry run preview[/yellow]"
-                )
+                console.print("[yellow]📊 No cached results available for dry run preview[/yellow]")
             return
 
         # Perform discovery with enhanced options
         console.print("[bold blue]Discovering API keys...[/bold blue]")
-        result = manager.discover_api_keys(
-            force_refresh=force_refresh or force, verbose=verbose
-        )
+        result = manager.discover_api_keys(force_refresh=force_refresh or force, verbose=verbose)
 
         # Apply filters after discovery
         if provider != "all":
-            result.api_keys = [
-                k for k in result.api_keys if k.provider.value == provider
-            ]
+            result.api_keys = [k for k in result.api_keys if k.provider.value == provider]
 
         if limit:
             result.api_keys = result.api_keys[:limit]
@@ -182,21 +158,13 @@ def discover(
 @click.option(
     "--status",
     "-s",
-    type=click.Choice(
-        ["discovered", "tested", "working", "failed", "expired", "archived"]
-    ),
+    type=click.Choice(["discovered", "tested", "working", "failed", "expired", "archived"]),
     help="Filter by status",
 )
-@click.option(
-    "--limit", "-l", type=int, help="Limit number of items to test (useful for testing)"
-)
+@click.option("--limit", "-l", type=int, help="Limit number of items to test (useful for testing)")
 @click.option("--force", "-f", is_flag=True, help="Force retest even if already tested")
-@click.option(
-    "--dry-run", "-n", is_flag=True, help="Show what would be tested without executing"
-)
-@click.option(
-    "--verbose", "-v", is_flag=True, help="Show detailed progress during testing"
-)
+@click.option("--dry-run", "-n", is_flag=True, help="Show what would be tested without executing")
+@click.option("--verbose", "-v", is_flag=True, help="Show detailed progress during testing")
 @click.option("--cache-file", type=click.Path(), help="Custom cache file location")
 def test(
     cache_file: Optional[str],
@@ -229,9 +197,7 @@ def test(
             console.print(f"[blue]📊 Testing limit: {limit} items[/blue]")
 
         if force:
-            console.print(
-                "[yellow]⚡ Force mode enabled - will retest all items[/yellow]"
-            )
+            console.print("[yellow]⚡ Force mode enabled - will retest all items[/yellow]")
 
         console.print()
 
@@ -250,28 +216,16 @@ def test(
             cached_keys = manager._get_cached_api_keys()
             if cached_keys:
                 # Apply filters for preview
-                filtered_keys = manager._apply_test_filters(
-                    cached_keys, provider, status, limit, force
-                )
+                filtered_keys = manager._apply_test_filters(cached_keys, provider, status, limit, force)
                 console.print(f"[green]📊 Would test {len(filtered_keys)} items[/green]")
                 if provider != "all":
-                    provider_count = len(
-                        [k for k in filtered_keys if k.get("provider") == provider]
-                    )
-                    console.print(
-                        f"[green]📊 Would test {provider_count} {provider} items[/green]"
-                    )
+                    provider_count = len([k for k in filtered_keys if k.get("provider") == provider])
+                    console.print(f"[green]📊 Would test {provider_count} {provider} items[/green]")
                 if status:
-                    status_count = len(
-                        [k for k in filtered_keys if k.get("status") == status]
-                    )
-                    console.print(
-                        f"[green]📊 Would test {status_count} {status} items[/green]"
-                    )
+                    status_count = len([k for k in filtered_keys if k.get("status") == status])
+                    console.print(f"[green]📊 Would test {status_count} {status} items[/green]")
             else:
-                console.print(
-                    "[yellow]📊 No cached keys available for dry run preview[/yellow]"
-                )
+                console.print("[yellow]📊 No cached keys available for dry run preview[/yellow]")
             return
 
         # Perform testing with enhanced options
@@ -303,9 +257,7 @@ def test(
 
 
 @main.command()
-@click.option(
-    "--refresh", "-r", is_flag=True, help="Force refresh by re-testing all keys"
-)
+@click.option("--refresh", "-r", is_flag=True, help="Force refresh by re-testing all keys")
 @click.option(
     "--provider",
     "-p",
@@ -351,17 +303,13 @@ def working(
         console.print("[bold green]✅ Displaying working API keys...[/bold green]")
 
         if refresh:
-            console.print(
-                "[yellow]🔄 Refresh mode enabled - re-testing all keys[/yellow]"
-            )
+            console.print("[yellow]🔄 Refresh mode enabled - re-testing all keys[/yellow]")
 
         if provider != "all":
             console.print(f"[blue]🎯 Provider filter: {provider}[/blue]")
 
         if verbose:
-            console.print(
-                "[blue]📊 Verbose mode enabled - showing detailed information[/blue]"
-            )
+            console.print("[blue]📊 Verbose mode enabled - showing detailed information[/blue]")
 
         if export != "table":
             console.print(f"[blue]📤 Export format: {export}[/blue]")
@@ -390,17 +338,11 @@ def working(
         # Apply filters after getting credentials
         if provider != "all":
             # Filter by provider
-            working_credentials = {
-                k: v
-                for k, v in working_credentials.items()
-                if k.lower() == provider.lower()
-            }
+            working_credentials = {k: v for k, v in working_credentials.items() if k.lower() == provider.lower()}
 
         # Display or export results
         if export == "table":
-            _display_working_apis(
-                working_credentials, provider if provider != "all" else None
-            )
+            _display_working_apis(working_credentials, provider if provider != "all" else None)
         else:
             _export_working_apis(working_credentials, export, output, verbose)
 
@@ -423,9 +365,7 @@ def working(
 @click.option(
     "--status",
     "-s",
-    type=click.Choice(
-        ["discovered", "tested", "working", "failed", "expired", "archived"]
-    ),
+    type=click.Choice(["discovered", "tested", "working", "failed", "expired", "archived"]),
     help="Filter by status",
 )
 @click.option("--limit", "-l", type=int, help="Limit number of items to display")
@@ -486,9 +426,7 @@ def summary(
 
         # Apply filters
         if provider != "all":
-            result.api_keys = [
-                k for k in result.api_keys if k.provider.value == provider
-            ]
+            result.api_keys = [k for k in result.api_keys if k.provider.value == provider]
 
         if status:
             result.api_keys = [k for k in result.api_keys if k.status.value == status]
@@ -598,9 +536,7 @@ def ids(provider: Optional[str], cache_file: Optional[str]):
 
 @main.command()
 @click.option("--cache-file", type=click.Path(), help="Custom cache file location")
-@click.option(
-    "--backup", "-b", is_flag=True, help="Create backup of existing .env file"
-)
+@click.option("--backup", "-b", is_flag=True, help="Create backup of existing .env file")
 @click.option("--verify", "-v", is_flag=True, help="Verify .env file after update")
 @click.option(
     "--cached-only",
@@ -608,9 +544,7 @@ def ids(provider: Optional[str], cache_file: Optional[str]):
     is_flag=True,
     help="Use cached values only, don't try 1Password retrieval",
 )
-def env_update(
-    cache_file: Optional[str], backup: bool, verify: bool, cached_only: bool
-):
+def env_update(cache_file: Optional[str], backup: bool, verify: bool, cached_only: bool):
     """
     Update .env file with working API keys from cache.
 
@@ -618,12 +552,8 @@ def env_update(
     the ~/.env file, completely bypassing 1Password for multi-agent systems.
     """
     try:
-        console.print(
-            "[bold green]🔓 Updating .env file with working API keys...[/bold green]"
-        )
-        console.print(
-            "[yellow]This will extract working keys from cache and update ~/.env[/yellow]"
-        )
+        console.print("[bold green]🔓 Updating .env file with working API keys...[/bold green]")
+        console.print("[yellow]This will extract working keys from cache and update ~/.env[/yellow]")
         console.print()
 
         # Configure cache
@@ -636,27 +566,19 @@ def env_update(
             manager = OnePasswordAPIKeyManager(cache_config)
 
         # Get working credentials from cache
-        console.print(
-            "[bold blue]Extracting working API keys from cache...[/bold blue]"
-        )
+        console.print("[bold blue]Extracting working API keys from cache...[/bold blue]")
         working_credentials = manager.get_working_credentials_all(force_test=False)
 
         if not working_credentials:
             console.print("[red]❌ No working API keys found in cache![/red]")
-            console.print(
-                "[yellow]Run 'working --force-test' first to test and cache working keys[/yellow]"
-            )
+            console.print("[yellow]Run 'working --force-test' first to test and cache working keys[/yellow]")
             return
 
         # Update .env file
         console.print("[bold blue]Updating .env file...[/bold blue]")
         if cached_only:
-            console.print(
-                "[yellow]🔒 Using cached values only - no 1Password retrieval[/yellow]"
-            )
-        success = manager.update_env_file(
-            working_credentials, backup=backup, use_cached_only=cached_only
-        )
+            console.print("[yellow]🔒 Using cached values only - no 1Password retrieval[/yellow]")
+        success = manager.update_env_file(working_credentials, backup=backup, use_cached_only=cached_only)
 
         if success:
             console.print("[green]✅ .env file updated successfully![/green]")
@@ -785,9 +707,7 @@ def health_check(cache_file: Optional[str], verbose: bool):
     type=click.Path(),
     help="Backup directory (default: ./backups)",
 )
-@click.option(
-    "--timestamp", "-t", is_flag=True, help="Add timestamp to backup filename"
-)
+@click.option("--timestamp", "-t", is_flag=True, help="Add timestamp to backup filename")
 def backup(cache_file: Optional[str], backup_dir: Optional[str], timestamp: bool):
     """
     Create backup of the current cache and configuration.
@@ -811,9 +731,7 @@ def backup(cache_file: Optional[str], backup_dir: Optional[str], timestamp: bool
         backup_path = manager.create_backup(backup_dir=backup_dir, timestamp=timestamp)
 
         if backup_path:
-            console.print(
-                f"[green]✅ Backup created successfully: {backup_path}[/green]"
-            )
+            console.print(f"[green]✅ Backup created successfully: {backup_path}[/green]")
         else:
             console.print("[red]❌ Backup creation failed[/red]")
 
@@ -841,9 +759,7 @@ def restore(backup_file: str, cache_file: Optional[str], force: bool, verify: bo
         console.print(f"[blue]📁 Backup file: {backup_file}[/blue]")
 
         if force:
-            console.print(
-                "[yellow]⚡ Force mode enabled - will overwrite existing cache[/yellow]"
-            )
+            console.print("[yellow]⚡ Force mode enabled - will overwrite existing cache[/yellow]")
 
         if verify:
             console.print("[blue]🔍 Verification will be performed after restore[/blue]")
@@ -860,9 +776,7 @@ def restore(backup_file: str, cache_file: Optional[str], force: bool, verify: bo
             manager = OnePasswordAPIKeyManager(cache_config)
 
         # Perform restore
-        restore_success = manager.restore_from_backup(
-            backup_file=backup_file, force=force
-        )
+        restore_success = manager.restore_from_backup(backup_file=backup_file, force=force)
 
         if restore_success:
             console.print("[green]✅ System restored successfully![/green]")
@@ -886,9 +800,7 @@ def restore(backup_file: str, cache_file: Optional[str], force: bool, verify: bo
 
 @main.command()
 @click.argument("item_id", required=True)
-@click.option(
-    "--reason", "-r", default="Not suitable for API usage", help="Reason for archiving"
-)
+@click.option("--reason", "-r", default="Not suitable for API usage", help="Reason for archiving")
 @click.option("--cache-file", type=click.Path(), help="Custom cache file location")
 def archive(item_id: str, reason: str, cache_file: Optional[str]):
     """
@@ -968,9 +880,7 @@ def _display_discovery_results(result):
     summary_text = Text()
     summary_text.append(f"Total Items: {result.total_items}\n", style="bold")
     summary_text.append(f"API Keys Found: {len(result.api_keys)}\n", style="bold")
-    summary_text.append(
-        f"Credential Pairs: {len(result.credential_pairs)}\n", style="bold"
-    )
+    summary_text.append(f"Credential Pairs: {len(result.credential_pairs)}\n", style="bold")
     summary_text.append(f"Discovery Time: {result.discovery_timestamp}\n", style="bold")
 
     summary_panel = Panel(summary_text, title="Summary", border_style="blue")
@@ -1007,25 +917,11 @@ def _display_discovery_results(result):
         pairs_table.add_column("Description", style="white")
 
         for pair in result.credential_pairs:
-            primary_title = (
-                pair.primary.title[:30] + "..."
-                if len(pair.primary.title) > 30
-                else pair.primary.title
-            )
-            secondary_title = (
-                pair.secondary.title[:30] + "..."
-                if pair.secondary and len(pair.secondary.title) > 30
-                else (pair.secondary.title if pair.secondary else "None")
-            )
-            description = (
-                pair.description[:40] + "..."
-                if pair.description and len(pair.description) > 40
-                else (pair.description or "")
-            )
+            primary_title = pair.primary.title[:30] + "..." if len(pair.primary.title) > 30 else pair.primary.title
+            secondary_title = pair.secondary.title[:30] + "..." if pair.secondary and len(pair.secondary.title) > 30 else (pair.secondary.title if pair.secondary else "None")
+            description = pair.description[:40] + "..." if pair.description and len(pair.description) > 40 else (pair.description or "")
 
-            pairs_table.add_row(
-                pair.pair_type, primary_title, secondary_title, description
-            )
+            pairs_table.add_row(pair.pair_type, primary_title, secondary_title, description)
 
         console.print(pairs_table)
 
@@ -1072,21 +968,13 @@ def _display_cache_status(cache_status):
     elif cache_status["status"] == "valid":
         status_text.append("Cache is valid\n", style="green")
         status_text.append(f"Age: {cache_status['age_hours']} hours\n", style="white")
-        status_text.append(
-            f"Max Age: {cache_status['max_age_hours']} hours\n", style="white"
-        )
-        status_text.append(
-            f"Last Discovery: {cache_status['last_discovery']}\n", style="white"
-        )
+        status_text.append(f"Max Age: {cache_status['max_age_hours']} hours\n", style="white")
+        status_text.append(f"Last Discovery: {cache_status['last_discovery']}\n", style="white")
     elif cache_status["status"] == "expired":
         status_text.append("Cache is expired\n", style="red")
         status_text.append(f"Age: {cache_status['age_hours']} hours\n", style="white")
-        status_text.append(
-            f"Max Age: {cache_status['max_age_hours']} hours\n", style="white"
-        )
-        status_text.append(
-            f"Last Discovery: {cache_status['last_discovery']}\n", style="white"
-        )
+        status_text.append(f"Max Age: {cache_status['max_age_hours']} hours\n", style="white")
+        status_text.append(f"Last Discovery: {cache_status['last_discovery']}\n", style="white")
     else:
         status_text.append("Cache status unknown\n", style="yellow")
 
@@ -1127,11 +1015,7 @@ def _display_full_ids(result, provider_filter: Optional[str] = None):
     # Filter by provider if specified
     keys_to_show = result.api_keys
     if provider_filter:
-        keys_to_show = [
-            k
-            for k in result.api_keys
-            if k.provider and k.provider.value == provider_filter
-        ]
+        keys_to_show = [k for k in result.api_keys if k.provider and k.provider.value == provider_filter]
         console.print(f"[yellow]Filtered by provider: {provider_filter}[/yellow]")
 
     if not keys_to_show:
@@ -1162,9 +1046,7 @@ def _display_full_ids(result, provider_filter: Optional[str] = None):
     console.print(table)
 
 
-def _display_working_apis(
-    working_credentials: dict, provider_filter: Optional[str] = None
-):
+def _display_working_apis(working_credentials: dict, provider_filter: Optional[str] = None):
     """Display working API keys."""
     console.print("\n" + "=" * 80)
     console.print("[bold green]Working API Keys[/bold green]")
@@ -1176,13 +1058,9 @@ def _display_working_apis(
 
     # Filter by provider if specified
     if provider_filter:
-        filtered_creds = {
-            k: v for k, v in working_credentials.items() if k == provider_filter
-        }
+        filtered_creds = {k: v for k, v in working_credentials.items() if k == provider_filter}
         if not filtered_creds:
-            console.print(
-                f"[yellow]No working APIs found for provider: {provider_filter}[/yellow]"
-            )
+            console.print(f"[yellow]No working APIs found for provider: {provider_filter}[/yellow]")
             return
         working_credentials = filtered_creds
         console.print(f"[yellow]Filtered by provider: {provider_filter}[/yellow]")
@@ -1241,14 +1119,10 @@ def _display_working_apis(
             total_apis += 1
 
     console.print(table)
-    console.print(
-        f"\n[bold green]Total Working APIs: {len(working_credentials)}[/bold green]"
-    )
+    console.print(f"\n[bold green]Total Working APIs: {len(working_credentials)}[/bold green]")
 
 
-def _export_working_apis(
-    working_credentials, export_format: str, output_file: Optional[str], verbose: bool
-):
+def _export_working_apis(working_credentials, export_format: str, output_file: Optional[str], verbose: bool):
     """Export working APIs in various formats."""
     if export_format == "json":
         _export_json(working_credentials, output_file, verbose)
@@ -1378,12 +1252,8 @@ def _display_statistics(stats_data):
         return
 
     # Overall counts
-    console.print(
-        f"[bold green]📊 Total Items: {stats_data.get('total_items', 0)}[/bold green]"
-    )
-    console.print(
-        f"[bold green]🏢 Total Providers: {stats_data.get('total_providers', 0)}[/bold green]"
-    )
+    console.print(f"[bold green]📊 Total Items: {stats_data.get('total_items', 0)}[/bold green]")
+    console.print(f"[bold green]🏢 Total Providers: {stats_data.get('total_providers', 0)}[/bold green]")
     console.print()
 
     # Provider breakdown
@@ -1397,9 +1267,7 @@ def _display_statistics(stats_data):
     if "statuses" in stats_data:
         console.print("[bold cyan]Status Distribution:[/bold cyan]")
         for status, count in stats_data["statuses"].items():
-            status_icon = (
-                "✅" if status == "working" else "❌" if status == "failed" else "🔄"
-            )
+            status_icon = "✅" if status == "working" else "❌" if status == "failed" else "🔄"
             console.print(f"  {status_icon} {status.title()}: {count}")
         console.print()
 
@@ -1424,16 +1292,8 @@ def _display_health_status(health_status):
 
     # Overall health
     overall_health = health_status.get("overall_health", "unknown")
-    health_icon = (
-        "✅"
-        if overall_health == "healthy"
-        else "❌"
-        if overall_health == "unhealthy"
-        else "⚠️"
-    )
-    console.print(
-        f"[bold {overall_health}]Overall Health: {health_icon} {overall_health.title()}[/bold {overall_health}]"
-    )
+    health_icon = "✅" if overall_health == "healthy" else "❌" if overall_health == "unhealthy" else "⚠️"
+    console.print(f"[bold {overall_health}]Overall Health: {health_icon} {overall_health.title()}[/bold {overall_health}]")
     console.print()
 
     # Component health
@@ -1471,14 +1331,10 @@ def _display_test_results(test_results):
 
     # Display results by provider
     for provider, apis in test_results.items():
-        console.print(
-            f"[bold cyan]{provider.upper()}:[/bold cyan] {len(apis)} working APIs"
-        )
+        console.print(f"[bold cyan]{provider.upper()}:[/bold cyan] {len(apis)} working APIs")
 
         for api in apis[:3]:  # Show first 3 for each provider
-            title = (
-                api["title"][:50] + "..." if len(api["title"]) > 50 else api["title"]
-            )
+            title = api["title"][:50] + "..." if len(api["title"]) > 50 else api["title"]
             console.print(f"  🔑 {title}")
 
         if len(apis) > 3:

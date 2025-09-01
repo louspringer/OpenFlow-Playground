@@ -44,9 +44,7 @@ class SimpleFileAnalyzer:
                 "structure": self._analyze_structure(lines),
             }
 
-            print(
-                f"✅ Analysis complete: {len(lines)} lines, {len(self.model_data['classes'])} classes"
-            )
+            print(f"✅ Analysis complete: {len(lines)} lines, {len(self.model_data['classes'])} classes")
             return self.model_data
 
         except Exception as e:
@@ -57,16 +55,8 @@ class SimpleFileAnalyzer:
         """Analyze basic file statistics"""
         return {
             "total_lines": len(lines),
-            "code_lines": len(
-                [
-                    line
-                    for line in lines
-                    if line.strip() and not line.strip().startswith("#")
-                ]
-            ),
-            "comment_lines": len(
-                [line for line in lines if line.strip().startswith("#")]
-            ),
+            "code_lines": len([line for line in lines if line.strip() and not line.strip().startswith("#")]),
+            "comment_lines": len([line for line in lines if line.strip().startswith("#")]),
             "blank_lines": len([line for line in lines if not line.strip()]),
             "file_size": len(content),
         }
@@ -89,9 +79,7 @@ class SimpleFileAnalyzer:
             stripped = line.strip()
             if stripped.startswith("class "):
                 # Extract class name
-                class_name = (
-                    stripped.split("class ")[1].split("(")[0].split(":")[0].strip()
-                )
+                class_name = stripped.split("class ")[1].split("(")[0].split(":")[0].strip()
                 current_class = {
                     "name": class_name,
                     "line": i,
@@ -117,9 +105,7 @@ class SimpleFileAnalyzer:
 
         for i, line in enumerate(lines, 1):
             stripped = line.strip()
-            if stripped.startswith("def ") and not any(
-                c in stripped for c in ["class ", "    "]
-            ):
+            if stripped.startswith("def ") and not any(c in stripped for c in ["class ", "    "]):
                 # Top-level function (not indented)
                 func_name = stripped.split("def ")[1].split("(")[0].strip()
                 current_function = {"name": func_name, "line": i, "docstring": ""}
@@ -136,13 +122,8 @@ class SimpleFileAnalyzer:
         return {
             "has_main": any("if __name__ == '__main__'" in line for line in lines),
             "is_test_file": any("test_" in line for line in lines),
-            "has_docstring": any(
-                line.strip().startswith(('"""', "'''")) for line in lines
-            ),
-            "indentation_levels": max(
-                len(line) - len(line.lstrip()) for line in lines if line.strip()
-            )
-            // 4,
+            "has_docstring": any(line.strip().startswith(('"""', "'''")) for line in lines),
+            "indentation_levels": max(len(line) - len(line.lstrip()) for line in lines if line.strip()) // 4,
         }
 
 
@@ -167,9 +148,7 @@ def main() -> None:
         json.dump(result, f, indent=2)
 
     print(f"✅ Analysis saved to: {output_file}")
-    print(
-        f"📊 File stats: {result['file_stats']['total_lines']} lines, {result['file_stats']['code_lines']} code lines"
-    )
+    print(f"📊 File stats: {result['file_stats']['total_lines']} lines, {result['file_stats']['code_lines']} code lines")
 
 
 if __name__ == "__main__":

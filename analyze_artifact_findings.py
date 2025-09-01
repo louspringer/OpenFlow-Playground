@@ -28,9 +28,7 @@ def analyze_untraced_artifacts(report: dict[str, Any]) -> list[str]:
     """Analyze untraced artifacts to identify patterns"""
     untraced = []
 
-    for domain, artifacts in (
-        report.get("domain_analysis", {}).get("artifacts_by_domain", {}).items()
-    ):
+    for domain, artifacts in report.get("domain_analysis", {}).get("artifacts_by_domain", {}).items():
         if domain == "untraced":
             for artifact in artifacts:
                 untraced.append(artifact["path"])
@@ -81,10 +79,7 @@ def generate_action_plan(report: dict[str, Any]) -> dict[str, list[str]]:
     missing_requirements = analyze_missing_requirements(report)
     if missing_requirements:
         action_plan["requirements_implementation"].extend(
-            [
-                f"📋 Implement requirement: {req}"
-                for req in missing_requirements[:10]  # Limit to first 10
-            ],
+            [f"📋 Implement requirement: {req}" for req in missing_requirements[:10]],  # Limit to first 10
         )
 
     # Python fixes

@@ -18,7 +18,7 @@ find . -name ".coverage" -delete 2>/dev/null || true
 
 # 2. Optimize Cursor Settings
 echo "⚙️  Optimizing Cursor settings..."
-cat > ~/.config/Cursor/User/settings.json << 'EOF'
+cat >~/.config/Cursor/User/settings.json <<'EOF'
 {
     "files.watcherExclude": {
         "**/__pycache__/**": true,
@@ -87,4 +87,4 @@ echo "   ✅ IDE history cleared"
 echo "   ✅ Background processes killed"
 echo ""
 echo "💡 Restart Cursor for best results!"
-echo "🎯 If still slow, run: ./fix_ide_performance_severe.sh" 
+echo "🎯 If still slow, run: ./fix_ide_performance_severe.sh"

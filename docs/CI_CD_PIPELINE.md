@@ -8,19 +8,19 @@ We've successfully set up a comprehensive CI/CD pipeline using Google Cloud Buil
 
 ### **Deployment Time Comparison**
 
-| **Method**                 | **Total Time**          | **Features**                            |
+| **Method** | **Total Time** | **Features** |
 | -------------------------- | ----------------------- | --------------------------------------- |
-| **Manual Container Build** | **1 minute 16 seconds** | Build + Push                            |
-| **Cloud Build CI/CD**      | **1 minute 14 seconds** | Build + Test + Security + Push + Deploy |
+| **Manual Container Build** | **1 minute 16 seconds** | Build + Push |
+| **Cloud Build CI/CD** | **1 minute 14 seconds** | Build + Test + Security + Push + Deploy |
 
 ### **Pipeline Steps**
 
 1. **🔨 Build Container** - 1 minute 10 seconds
-2. **🧪 Run Tests** - 2 seconds
-3. **🔒 Security Scan** - 2 seconds
-4. **📤 Push to Registry** - 5 seconds
-5. **🚀 Deploy to Cloud Run** - 10 seconds
-6. **✅ Test API** - 2 seconds
+1. **🧪 Run Tests** - 2 seconds
+1. **🔒 Security Scan** - 2 seconds
+1. **📤 Push to Registry** - 5 seconds
+1. **🚀 Deploy to Cloud Run** - 10 seconds
+1. **✅ Test API** - 2 seconds
 
 ## 🏗️ Architecture
 
@@ -206,14 +206,14 @@ gcloud iam service-accounts keys create ~/github-actions-key.json \
 ### **For Developers**
 
 1. **Push to branch**: `git push origin ghostbusters-gcp-implementation`
-2. **Watch deployment**: Check GitHub Actions or Cloud Build console
-3. **Test API**: `curl https://ghostbusters-api-container-1077539189076.us-central1.run.app/health`
+1. **Watch deployment**: Check GitHub Actions or Cloud Build console
+1. **Test API**: `curl https://ghostbusters-api-container-1077539189076.us-central1.run.app/health`
 
 ### **For Operations**
 
 1. **Monitor builds**: <https://console.cloud.google.com/cloud-build/builds>
-2. **View logs**: `gcloud builds log [BUILD_ID]`
-3. **Manual trigger**: `./scripts/trigger-build.sh`
+1. **View logs**: `gcloud builds log [BUILD_ID]`
+1. **Manual trigger**: `./scripts/trigger-build.sh`
 
 ## 🔍 Monitoring
 

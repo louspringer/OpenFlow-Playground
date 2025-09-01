@@ -1,6 +1,6 @@
 {
   "system_name": "Generalized Code Generator",
-  "description": "Model-driven workflow: JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code",
+  "description": "Model-driven workflow: JSON model → Python generator → auto-format → test → fix model → regenerate code",
   "purpose": "",
   "graph_api_level": 1,
   "projection_system": "default",
@@ -467,7 +467,7 @@
     "from typing import List",
     "import ast"
   ],
-  "module_docstring": "\nGeneralized Code Generator\nModel-driven workflow: JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code\n\nCore Principle: NEVER patch generated code - always fix the model and regenerate\n",
+  "module_docstring": "\nGeneralized Code Generator\nModel-driven workflow: JSON model → Python generator → auto-format → test → fix model → regenerate code\n\nCore Principle: NEVER patch generated code - always fix the model and regenerate\n",
   "file_structure": {
     "total_lines": 441,
     "code_lines": 321,

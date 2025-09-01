@@ -7,9 +7,9 @@
 The op-api-manager serves as a **convenience function** for:
 
 1. **Retrieving** API keys from 1Password
-2. **Testing** API endpoints for functionality
-3. **Persisting** working keys to environment files
-4. **Managing** API key lifecycle (discovery → testing → working → archived)
+1. **Testing** API endpoints for functionality
+1. **Persisting** working keys to environment files
+1. **Managing** API key lifecycle (discovery → testing → working → archived)
 
 ## 🏗️ **Architecture Principles**
 
@@ -412,6 +412,6 @@ DISCOVERED → TESTED → WORKING → ARCHIVED
 - **Audit coverage**: Complete operation logging
 - **Compliance**: Meeting security requirements
 
----
+______________________________________________________________________
 
 **This domain model ensures comprehensive CRUD coverage while maintaining clear separation of concerns and security best practices.**

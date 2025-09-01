@@ -38,9 +38,7 @@ class TiDBServerlessClient:
         # TODO: Implement execute_query
         return {}
 
-    async def vector_search(
-        self, vector: list[Any], table: str, limit: int
-    ) -> dict[str, Any]:
+    async def vector_search(self, vector: list[Any], table: str, limit: int) -> dict[str, Any]:
         """
         Perform vector search in TiDB
         """

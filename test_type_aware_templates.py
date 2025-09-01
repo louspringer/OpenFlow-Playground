@@ -93,9 +93,7 @@ class TypeAwareTemplateEngine:
             "optional": "Optional[Any]",
         }
 
-    def generate_function(
-        self, name: str, params: list[dict[str, str]], return_type: str, body: str
-    ) -> str:
+    def generate_function(self, name: str, params: list[dict[str, str]], return_type: str, body: str) -> str:
         """Generate typed function"""
         param_str = ", ".join([f"{p['name']}: {p['type']}" for p in params])
         return f"""def {name}({param_str}) -> {return_type}:
@@ -110,12 +108,10 @@ class TypeAwareTemplateEngine:
 """
 
         for method in methods:
-            param_str = ", ".join(
-                [f"{p['name']}: {p['type']}" for p in method["params"]]
-            )
+            param_str = ", ".join([f"{p['name']}: {p['type']}" for p in method["params"]])
             class_code += f"""
-    def {method['name']}(self, {param_str}) -> {method['return_type']}:
-        {method['body']}"""
+    def {method["name"]}(self, {param_str}) -> {method["return_type"]}:
+        {method["body"]}"""
 
         return class_code
 
@@ -215,9 +211,7 @@ def main():
         print("🎉 SUCCESS: Type-aware templates generate linting-compliant code!")
         print("✅ Hypothesis 1 CONFIRMED: Types eliminate linting errors!")
     else:
-        print(
-            f"⚠️ WARNING: Type-aware templates still produce {total_errors} linting issues"
-        )
+        print(f"⚠️ WARNING: Type-aware templates still produce {total_errors} linting issues")
         print("   Hypothesis 1 REJECTED: Types don't eliminate all errors")
 
 
@@ -318,9 +312,7 @@ class TypeAwareTemplateEngine:
             "optional": "Optional[Any]",
         }
 
-    def generate_function(
-        self, name: str, params: list[dict[str, str]], return_type: str, body: str
-    ) -> str:
+    def generate_function(self, name: str, params: list[dict[str, str]], return_type: str, body: str) -> str:
         """Generate typed function"""
         param_str = ", ".join([f"{p['name']}: {p['type']}" for p in params])
         return f"""def {name}({param_str}) -> {return_type}:
@@ -335,12 +327,10 @@ class TypeAwareTemplateEngine:
 """
 
         for method in methods:
-            param_str = ", ".join(
-                [f"{p['name']}: {p['type']}" for p in method["params"]]
-            )
+            param_str = ", ".join([f"{p['name']}: {p['type']}" for p in method["params"]])
             class_code += f"""
-    def {method['name']}(self, {param_str}) -> {method['return_type']}:
-        {method['body']}"""
+    def {method["name"]}(self, {param_str}) -> {method["return_type"]}:
+        {method["body"]}"""
 
         return class_code
 
@@ -440,9 +430,7 @@ def main():
         print("🎉 SUCCESS: Type-aware templates generate linting-compliant code!")
         print("✅ Hypothesis 1 CONFIRMED: Types eliminate linting errors!")
     else:
-        print(
-            f"⚠️ WARNING: Type-aware templates still produce {total_errors} linting issues"
-        )
+        print(f"⚠️ WARNING: Type-aware templates still produce {total_errors} linting issues")
         print("   Hypothesis 1 REJECTED: Types don't eliminate all errors")
 
 

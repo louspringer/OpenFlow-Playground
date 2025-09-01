@@ -52,14 +52,10 @@ class IssueDetector:
             detection_results["issues_detected"] = issues
 
             # Generate severity summary
-            detection_results["severity_summary"] = self._generate_severity_summary(
-                issues
-            )
+            detection_results["severity_summary"] = self._generate_severity_summary(issues)
 
             # Generate recommendations
-            detection_results["recommendations"] = self._generate_issue_recommendations(
-                issues
-            )
+            detection_results["recommendations"] = self._generate_issue_recommendations(issues)
 
             logger.info(f"✅ Issue detection complete. Found {len(issues)} issues")
 
@@ -145,12 +141,8 @@ class IssueDetector:
             )
 
         # Check for hardcoded credentials
-        if re.search(
-            self.detection_patterns["hardcoded"], stripped_line, re.IGNORECASE
-        ):
-            if "=" in stripped_line and not any(
-                var in stripped_line for var in ["os.getenv", "config.get"]
-            ):
+        if re.search(self.detection_patterns["hardcoded"], stripped_line, re.IGNORECASE):
+            if "=" in stripped_line and not any(var in stripped_line for var in ["os.getenv", "config.get"]):
                 issues.append(
                     {
                         "type": "hardcoded_credential",
@@ -187,9 +179,7 @@ class IssueDetector:
 
         return issues
 
-    def _generate_severity_summary(
-        self, issues: list[dict[str, Any]]
-    ) -> dict[str, int]:
+    def _generate_severity_summary(self, issues: list[dict[str, Any]]) -> dict[str, int]:
         """Generate summary of issues by severity"""
         summary = {"low": 0, "medium": 0, "high": 0, "critical": 0}
 
@@ -200,9 +190,7 @@ class IssueDetector:
 
         return summary
 
-    def _generate_issue_recommendations(
-        self, issues: list[dict[str, Any]]
-    ) -> list[str]:
+    def _generate_issue_recommendations(self, issues: list[dict[str, Any]]) -> list[str]:
         """Generate recommendations based on detected issues"""
         recommendations = []
 
@@ -218,31 +206,21 @@ class IssueDetector:
 
         # Generate specific recommendations
         if issue_types.get("todo_comment", 0) > 0:
-            recommendations.append(
-                "📝 Address TODO/FIXME comments to improve code clarity"
-            )
+            recommendations.append("📝 Address TODO/FIXME comments to improve code clarity")
 
         if issue_types.get("hardcoded_credential", 0) > 0:
-            recommendations.append(
-                "🔒 Remove hardcoded credentials and use environment variables"
-            )
+            recommendations.append("🔒 Remove hardcoded credentials and use environment variables")
 
         if issue_types.get("security_risk", 0) > 0:
-            recommendations.append(
-                "🛡️ Review security practices and implement safer alternatives"
-            )
+            recommendations.append("🛡️ Review security practices and implement safer alternatives")
 
         if issue_types.get("complexity", 0) > 0:
-            recommendations.append(
-                "🔧 Simplify complex code structures for better maintainability"
-            )
+            recommendations.append("🔧 Simplify complex code structures for better maintainability")
 
         # General recommendations
         total_issues = len(issues)
         if total_issues > 20:
-            recommendations.append(
-                "⚠️ High number of issues detected - consider comprehensive code review"
-            )
+            recommendations.append("⚠️ High number of issues detected - consider comprehensive code review")
 
         recommendations.append("🧪 Run automated tests to validate fixes")
         recommendations.append("📚 Update documentation for any API changes")

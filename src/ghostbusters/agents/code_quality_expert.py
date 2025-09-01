@@ -27,9 +27,7 @@ class CodeQualityExpert(BaseExpert):
             delusions.extend(systemic_issues)
 
             # Generate smart recommendations based on patterns
-            recommendations.extend(
-                await self._generate_systemic_recommendations(linting_issues)
-            )
+            recommendations.extend(await self._generate_systemic_recommendations(linting_issues))
         else:
             # No existing linting output - recommend setting up quality tools
             delusions.append(
@@ -58,9 +56,7 @@ class CodeQualityExpert(BaseExpert):
             agent_name=self.name,
         )
 
-    async def _analyze_existing_lint_output(
-        self, project_path: Path
-    ) -> list[dict[str, Any]]:
+    async def _analyze_existing_lint_output(self, project_path: Path) -> list[dict[str, Any]]:
         """Analyze existing linting tool output without running tools."""
         linting_issues = []
 
@@ -126,9 +122,7 @@ class CodeQualityExpert(BaseExpert):
 
         return linting_issues
 
-    async def _identify_systemic_problems(
-        self, linting_issues: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    async def _identify_systemic_problems(self, linting_issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Identify systemic patterns in linting issues."""
         systemic_issues = []
 
@@ -140,12 +134,8 @@ class CodeQualityExpert(BaseExpert):
         files_affected = {issue["file"] for issue in linting_issues if "file" in issue}
 
         # Pattern 1: Widespread import issues
-        import_errors = [
-            code for code in error_codes if code in ["E402", "E302", "E305"]
-        ]
-        if (
-            len(import_errors) > len(linting_issues) * 0.3
-        ):  # More than 30% are import issues
+        import_errors = [code for code in error_codes if code in ["E402", "E302", "E305"]]
+        if len(import_errors) > len(linting_issues) * 0.3:  # More than 30% are import issues
             systemic_issues.append(
                 self._create_delusion(
                     "systemic_import_issues",
@@ -158,12 +148,8 @@ class CodeQualityExpert(BaseExpert):
             )
 
         # Pattern 2: Widespread formatting issues
-        formatting_errors = [
-            code for code in error_codes if code in ["W291", "W292", "E501"]
-        ]
-        if (
-            len(formatting_errors) > len(linting_issues) * 0.4
-        ):  # More than 40% are formatting issues
+        formatting_errors = [code for code in error_codes if code in ["W291", "W292", "E501"]]
+        if len(formatting_errors) > len(linting_issues) * 0.4:  # More than 40% are formatting issues
             systemic_issues.append(
                 self._create_delusion(
                     "systemic_formatting_issues",
@@ -177,9 +163,7 @@ class CodeQualityExpert(BaseExpert):
 
         # Pattern 3: Missing type hints across many files
         type_errors = [code for code in error_codes if code in ["F821", "F822", "F823"]]
-        if (
-            len(type_errors) > len(linting_issues) * 0.2
-        ):  # More than 20% are type issues
+        if len(type_errors) > len(linting_issues) * 0.2:  # More than 20% are type issues
             systemic_issues.append(
                 self._create_delusion(
                     "systemic_type_issues",
@@ -192,9 +176,7 @@ class CodeQualityExpert(BaseExpert):
             )
 
         # Pattern 4: Many files affected (indicates systemic issue)
-        if (
-            len(files_affected) > len(linting_issues) * 0.1
-        ):  # Issues spread across many files
+        if len(files_affected) > len(linting_issues) * 0.1:  # Issues spread across many files
             systemic_issues.append(
                 self._create_delusion(
                     "widespread_quality_issues",
@@ -208,9 +190,7 @@ class CodeQualityExpert(BaseExpert):
 
         return systemic_issues
 
-    async def _generate_systemic_recommendations(
-        self, linting_issues: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    async def _generate_systemic_recommendations(self, linting_issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Generate smart recommendations based on systemic patterns."""
         recommendations = []
 
@@ -221,9 +201,7 @@ class CodeQualityExpert(BaseExpert):
         files_affected = {issue["file"] for issue in linting_issues if "file" in issue}
 
         # Recommendation 1: Import organization
-        import_errors = [
-            code for code in error_codes if code in ["E402", "E302", "E305"]
-        ]
+        import_errors = [code for code in error_codes if code in ["E402", "E302", "E305"]]
         if import_errors:
             recommendations.append(
                 self._create_recommendation(
@@ -239,9 +217,7 @@ class CodeQualityExpert(BaseExpert):
             )
 
         # Recommendation 2: Code formatting
-        formatting_errors = [
-            code for code in error_codes if code in ["W291", "W292", "E501"]
-        ]
+        formatting_errors = [code for code in error_codes if code in ["W291", "W292", "E501"]]
         if formatting_errors:
             recommendations.append(
                 self._create_recommendation(

@@ -188,8 +188,9 @@ class TestExpert(BaseExpert):
                 {
                     "type": "test_coverage_issue",
                     "priority": "medium",
-                    "description": f"Low test coverage: {len( \
-    test_files)} test files vs {len(source_files)} source files",
+                    "description": f"Low test coverage: {
+                        len(test_files)
+                    } test files vs {len(source_files)} source files",
                 },
             )
 

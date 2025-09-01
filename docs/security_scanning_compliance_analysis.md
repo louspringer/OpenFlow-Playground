@@ -248,10 +248,10 @@ This document analyzes the current security scanning implementation against the 
 #### **Priority Actions Required**
 
 1. **🚨 CRITICAL**: Implement multi-threaded processing
-2. **🚨 CRITICAL**: Fix CPU bottleneck and performance issues
-3. **⚠️ HIGH**: Implement proper file exclusion patterns
-4. **⚠️ HIGH**: Create extensible pattern system
-5. **🔍 MEDIUM**: Add performance monitoring and metrics
+1. **🚨 CRITICAL**: Fix CPU bottleneck and performance issues
+1. **⚠️ HIGH**: Implement proper file exclusion patterns
+1. **⚠️ HIGH**: Create extensible pattern system
+1. **🔍 MEDIUM**: Add performance monitoring and metrics
 
 ## 🚀 Implementation Roadmap
 
@@ -287,15 +287,15 @@ This document analyzes the current security scanning implementation against the 
 
 ### **Performance Targets**
 
-- **Scan Time**: Reduce from current to <30 seconds for 10,000 files
+- **Scan Time**: Reduce from current to \<30 seconds for 10,000 files
 - **CPU Utilization**: Distribute across all cores (not single-threaded)
-- **Memory Usage**: <500MB for large projects
+- **Memory Usage**: \<500MB for large projects
 - **Throughput**: >1000 files/second
 
 ### **Quality Targets**
 
 - **Detection Rate**: Maintain >95% for known security patterns
-- **False Positive Rate**: Reduce to <5%
+- **False Positive Rate**: Reduce to \<5%
 - **Coverage**: 100% of scannable text files
 - **Reliability**: Achieve 99.9% successful scans
 

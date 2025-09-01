@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: VocabularyAligner;
+
+:__init__;
+:align_vocabulary;
+:_align_vocabulary_ontologically;
+:_align_vocabulary_manually;
+
+:Process Standalone Functions;
+
+:__init__;
+:align_vocabulary;
+:_align_vocabulary_ontologically;
+:_align_vocabulary_manually;
+
+:Module Complete;
+stop
+
+@enduml

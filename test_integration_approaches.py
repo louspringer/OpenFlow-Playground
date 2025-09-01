@@ -46,9 +46,7 @@ def test_plugin_integration() -> str:
 def test_service_layer_integration() -> str:
     """Test service layer integration"""
     pattern_generator = PatternBasedGenerator()
-    method = SimpleTemplateEngine.generate_function(
-        "process", ["item"], "return str(item)"
-    )
+    method = SimpleTemplateEngine.generate_function("process", ["item"], "return str(item)")
     return pattern_generator.generate_simple_class("Processor", [method])
 
 
@@ -143,9 +141,7 @@ def test_plugin_integration() -> str:
 def test_service_layer_integration() -> str:
     """Test service layer integration"""
     pattern_generator = PatternBasedGenerator()
-    method = SimpleTemplateEngine.generate_function(
-        "process", ["item"], "return str(item)"
-    )
+    method = SimpleTemplateEngine.generate_function("process", ["item"], "return str(item)")
     return pattern_generator.generate_simple_class("Processor", [method])
 
 

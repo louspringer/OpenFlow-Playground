@@ -1,0 +1,78 @@
+{
+  "demo_type": "voice_mode_round_trip_integration",
+  "status": "completed",
+  "duration": 0.0016160011291503906,
+  "phases": {
+    "voice_control_validation": {
+      "success": true,
+      "voice_mode_available": true,
+      "module_healthy": true,
+      "command_count": 10,
+      "basic_functionality": true
+    },
+    "round_trip_system_status": {
+      "success": false,
+      "system_status": {
+        "error": "'coroutine' object has no attribute 'get'"
+      },
+      "capabilities": {},
+      "basic_demo_success": false
+    },
+    "voice_commands_testing": {
+      "success": true,
+      "total_commands": 5,
+      "successful_commands": 5,
+      "command_results": {
+        "explain_workflow": {
+          "success": true,
+          "result": "Workflow explanation provided"
+        },
+        "generate_python_from_ast": {
+          "success": true,
+          "result": "Python code generation from AST completed"
+        },
+        "validate_round_trip": {
+          "success": true,
+          "result": "Round-trip validation completed"
+        },
+        "explain_code": {
+          "success": true,
+          "result": "Code explanation provided"
+        },
+        "generate_tests": {
+          "success": true,
+          "result": "Unit test generation completed"
+        }
+      }
+    },
+    "integration_testing": {
+      "success": true,
+      "voice_command_result": {
+        "success": true,
+        "command": "generate_python_from_ast",
+        "result": "Python code generation from AST completed",
+        "context": {
+          "source_file": "demo_integration_test.py",
+          "analysis_type": "round_trip",
+          "target_language": "python"
+        },
+        "next_steps": [
+          "Review generated code",
+          "Validate syntax",
+          "Run tests"
+        ]
+      },
+      "context_handling": true
+    },
+    "performance_assessment": {
+      "success": true,
+      "voice_performance": true,
+      "round_trip_performance": true,
+      "metrics": {
+        "voice_response_time": 1.6689300537109375e-06,
+        "round_trip_response_time": 9.5367431640625e-07
+      }
+    }
+  },
+  "overall_success": false
+}

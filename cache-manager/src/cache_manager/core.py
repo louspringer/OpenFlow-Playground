@@ -88,9 +88,7 @@ class CacheManager:
 
             # Update stats
             duration_ms = (time.time() - start_time) * 1000
-            self._stats.avg_load_time_ms = (
-                self._stats.avg_load_time_ms + duration_ms
-            ) / 2
+            self._stats.avg_load_time_ms = (self._stats.avg_load_time_ms + duration_ms) / 2
 
             return data
 
@@ -98,9 +96,7 @@ class CacheManager:
             self._record_operation(cache_key, "load", False, str(e))
             return None
 
-    def save_cache(
-        self, cache_key: str, data: Any, cache_file: Optional[Path] = None
-    ) -> bool:
+    def save_cache(self, cache_key: str, data: Any, cache_file: Optional[Path] = None) -> bool:
         """
         Save data to cache.
 
@@ -128,9 +124,7 @@ class CacheManager:
 
                 # Update stats
                 duration_ms = (time.time() - start_time) * 1000
-                self._stats.avg_save_time_ms = (
-                    self._stats.avg_save_time_ms + duration_ms
-                ) / 2
+                self._stats.avg_save_time_ms = (self._stats.avg_save_time_ms + duration_ms) / 2
 
                 self._record_operation(cache_key, "save", True)
                 return True
@@ -385,9 +379,7 @@ class CacheManager:
     def _update_metadata(self, cache_key: str, operation: str):
         """Update cache metadata."""
         if cache_key not in self._metadata:
-            self._metadata[cache_key] = CacheMetadata(
-                key=cache_key, value=self._cache_data[cache_key]
-            )
+            self._metadata[cache_key] = CacheMetadata(key=cache_key, value=self._cache_data[cache_key])
 
         metadata = self._metadata[cache_key]
         metadata.updated_at = datetime.now()
@@ -395,9 +387,7 @@ class CacheManager:
 
         # Set expiration
         if self.config.ttl_hours > 0:
-            metadata.expires_at = datetime.now() + timedelta(
-                hours=self.config.ttl_hours
-            )
+            metadata.expires_at = datetime.now() + timedelta(hours=self.config.ttl_hours)
 
     def _record_operation(
         self,

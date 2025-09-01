@@ -157,7 +157,9 @@ class GhostbustersOrchestrator:
     ) -> GhostbustersState:
         """Detect delusions using agents"""
         self.logger.info("🔍 [WORKFLOW_NODE] Detecting delusions...")
-        self.logger.info("🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__)
+        self.logger.info(
+            "🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__
+        )
 
         # Convert dict to GhostbustersState if needed
         if isinstance(state, dict):
@@ -193,7 +195,9 @@ class GhostbustersOrchestrator:
     ) -> GhostbustersState:
         """Validate findings using validators - FIXED ITERATION BUG"""
         self.logger.info("🔍 [WORKFLOW_NODE] Validating findings...")
-        self.logger.info("🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__)
+        self.logger.info(
+            "🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__
+        )
 
         # Convert dict to GhostbustersState if needed
         if isinstance(state, dict):
@@ -403,9 +407,7 @@ class GhostbustersOrchestrator:
                 self.logger.warning(
                     "⚠️ [CONFIDENCE] %s has no confidence attribute", validator_name
                 )
-                print(
-                    f"⚠️ [CONFIDENCE_DEBUG] {validator_name}: NO CONFIDENCE ATTRIBUTE"
-                )
+                print(f"⚠️ [CONFIDENCE_DEBUG] {validator_name}: NO CONFIDENCE ATTRIBUTE")
                 print(
                     f"⚠️ [CONFIDENCE_DEBUG] {validator_name} result type: {type(result)}"
                 )
@@ -549,7 +551,9 @@ class GhostbustersOrchestrator:
     async def _detect_delusions(self, state: GhostbustersState) -> GhostbustersState:
         """Detect delusions using all agents - FIXED DATA STRUCTURE"""
         self.logger.info("🔍 [DETECTION] Starting _detect_delusions method")
-        self.logger.info("🔍 [DETECTION] Agents available: %s", list(self.agents.keys()))
+        self.logger.info(
+            "🔍 [DETECTION] Agents available: %s", list(self.agents.keys())
+        )
 
         delusions_detected = []
         for agent_count, (agent_name, agent) in enumerate(self.agents.items(), 1):
@@ -599,9 +603,9 @@ class GhostbustersOrchestrator:
 
                     # Store metadata
                     state.metadata[f"{agent_name}_confidence"] = result.confidence
-                    state.metadata[
-                        f"{agent_name}_recommendations"
-                    ] = result.recommendations
+                    state.metadata[f"{agent_name}_recommendations"] = (
+                        result.recommendations
+                    )
 
                     self.logger.info(
                         "🔍 [DETECTION] %s confidence: %s, recommendations: %d",
@@ -785,8 +789,11 @@ class GhostbustersOrchestrator:
         engine_name = engine_mapping.get(delusion_type)
         if engine_name and engine_name in self.recovery_engines:
             return {
-                "id": f"recovery_{len( \
-    self.recovery_actions) if hasattr(self, 'recovery_actions') else 0}",
+                "id": f"recovery_{
+                    len(self.recovery_actions)
+                    if hasattr(self, 'recovery_actions')
+                    else 0
+                }",
                 "engine": engine_name,
                 "delusion": delusion,
                 "priority": delusion.get("priority", "medium"),

@@ -154,9 +154,7 @@ class RoundTripQualityValidator:
             )
 
             # Test passing metrics
-            passing_result = self.quality_enforcer.check_quality_gates(
-                test_metrics, gate_config
-            )
+            passing_result = self.quality_enforcer.check_quality_gates(test_metrics, gate_config)
             self._assert_gate_result(passing_result, should_pass=True)
 
             # Test failing metrics
@@ -168,9 +166,7 @@ class RoundTripQualityValidator:
                 performance=88.0,
             )
 
-            failing_result = self.quality_enforcer.check_quality_gates(
-                failing_metrics, gate_config
-            )
+            failing_result = self.quality_enforcer.check_quality_gates(failing_metrics, gate_config)
             self._assert_gate_result(failing_result, should_pass=False)
 
             return {
@@ -209,11 +205,7 @@ class RoundTripQualityValidator:
             }
 
             # Test multi-agent quality analysis
-            analysis_result = (
-                await self.quality_adapter.run_multi_agent_quality_analysis(
-                    mock_agent_results
-                )
-            )
+            analysis_result = await self.quality_adapter.run_multi_agent_quality_analysis(mock_agent_results)
 
             # Validate analysis results
             self._assert_valid_analysis_result(analysis_result)
@@ -225,9 +217,7 @@ class RoundTripQualityValidator:
             }
 
         except Exception as e:
-            self.validation_errors.append(
-                f"Multi-agent integration validation failed: {e}"
-            )
+            self.validation_errors.append(f"Multi-agent integration validation failed: {e}")
             return {"success": False, "error": str(e)}
 
     async def _validate_cicd_integration(self) -> dict[str, Any]:
@@ -279,17 +269,13 @@ class RoundTripQualityValidator:
                 workflow_results[step] = await self._test_workflow_step(step)
 
             # Validate all steps completed successfully
-            all_steps_successful = all(
-                result["success"] for result in workflow_results.values()
-            )
+            all_steps_successful = all(result["success"] for result in workflow_results.values())
 
             return {
                 "success": all_steps_successful,
                 "workflow_steps": workflow_results,
                 "total_steps": len(workflow_steps),
-                "successful_steps": sum(
-                    1 for result in workflow_results.values() if result["success"]
-                ),
+                "successful_steps": sum(1 for result in workflow_results.values() if result["success"]),
             }
 
         except Exception as e:
@@ -335,9 +321,7 @@ class RoundTripQualityValidator:
                 "test_coverage": {"threshold": 60.0, "blocking": False},
             }
 
-            result = self.quality_enforcer.check_quality_gates(
-                dev_metrics, dev_thresholds
-            )
+            result = self.quality_enforcer.check_quality_gates(dev_metrics, dev_thresholds)
 
             return {
                 "success": result["can_proceed"],
@@ -388,9 +372,7 @@ class RoundTripQualityValidator:
                 "test_coverage": {"threshold": 70.0, "blocking": True},
             }
 
-            result = self.quality_enforcer.check_quality_gates(
-                cicd_metrics, cicd_thresholds
-            )
+            result = self.quality_enforcer.check_quality_gates(cicd_metrics, cicd_thresholds)
 
             return {
                 "success": result["can_proceed"],
@@ -421,9 +403,7 @@ class RoundTripQualityValidator:
                 "test_coverage": {"threshold": 75.0, "blocking": True},
             }
 
-            result = self.quality_enforcer.check_quality_gates(
-                deployment_metrics, deployment_thresholds
-            )
+            result = self.quality_enforcer.check_quality_gates(deployment_metrics, deployment_thresholds)
 
             return {
                 "success": result["can_proceed"],
@@ -465,47 +445,31 @@ class RoundTripQualityValidator:
         recommendations = []
 
         if not self.validation_results.get("overall_success", False):
-            recommendations.append(
-                "Address validation errors to ensure quality system reliability"
-            )
+            recommendations.append("Address validation errors to ensure quality system reliability")
 
         if self.validation_results.get("total_errors", 0) > 0:
-            recommendations.append(
-                "Review and fix validation errors for system stability"
-            )
+            recommendations.append("Review and fix validation errors for system stability")
 
         # Add specific recommendations based on component results
         components = self.validation_results.get("validation_components", {})
 
         if not components.get("quality_metrics", {}).get("success", False):
-            recommendations.append(
-                "Verify quality metrics calculation and storage mechanisms"
-            )
+            recommendations.append("Verify quality metrics calculation and storage mechanisms")
 
         if not components.get("quality_gates", {}).get("success", False):
-            recommendations.append(
-                "Validate quality gates configuration and enforcement"
-            )
+            recommendations.append("Validate quality gates configuration and enforcement")
 
         if not components.get("multi_agent_integration", {}).get("success", False):
-            recommendations.append(
-                "Ensure multi-agent integration is properly configured"
-            )
+            recommendations.append("Ensure multi-agent integration is properly configured")
 
         if not components.get("cicd_integration", {}).get("success", False):
-            recommendations.append(
-                "Verify CI/CD integration and environment configuration"
-            )
+            recommendations.append("Verify CI/CD integration and environment configuration")
 
         if not components.get("end_to_end_workflow", {}).get("success", False):
-            recommendations.append(
-                "Complete end-to-end workflow testing and validation"
-            )
+            recommendations.append("Complete end-to-end workflow testing and validation")
 
         if not recommendations:
-            recommendations.append(
-                "Quality system is fully validated and ready for production use"
-            )
+            recommendations.append("Quality system is fully validated and ready for production use")
 
         return recommendations
 
@@ -518,9 +482,7 @@ class RoundTripQualityValidator:
             msg = f"{context} failed JSON serialization: {e}"
             raise AssertionError(msg)
 
-    def _assert_metrics_equal(
-        self, metrics1: QualityMetrics, metrics2: QualityMetrics
-    ) -> None:
+    def _assert_metrics_equal(self, metrics1: QualityMetrics, metrics2: QualityMetrics) -> None:
         """Assert that two QualityMetrics objects are equal"""
         if metrics1.to_dict() != metrics2.to_dict():
             msg = "QualityMetrics serialization/deserialization mismatch"

@@ -33,7 +33,7 @@ def main() -> None:
     """Main test runner"""
     print("🧪 Running Gemini Billing Analyzer Tests...")
     analyzer = GeminiBillingAnalyzer()
-    print(f'🤖 Gemini LLM: {"✅ Available" if analyzer.llm else "❌ Not available"}')
+    print(f"🤖 Gemini LLM: {'✅ Available' if analyzer.llm else '❌ Not available'}")
 
     # Run tests
     for test_func in [
@@ -43,7 +43,7 @@ def main() -> None:
     ]:
         try:
             result = await test_func(analyzer)
-            print(f'✅ {test_func.__name__}: {"PASS" if result else "FAIL"}')
+            print(f"✅ {test_func.__name__}: {'PASS' if result else 'FAIL'}")
         except Exception as e:
             print(f"❌ {test_func.__name__}: {e}")
 

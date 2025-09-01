@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\uddea Multi-Agent Blind Spot Detection Test for Streamlit App",
+  "system_name": "🧪 Multi-Agent Blind Spot Detection Test for Streamlit App",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -340,7 +340,7 @@
     "from streamlit_app import SecurityManager",
     "import asyncio"
   ],
-  "module_docstring": "\n\ud83e\uddea Multi-Agent Blind Spot Detection Test for Streamlit App\n\nThis test applies the diversity hypothesis framework to validate that\nthe Streamlit app implementation addresses all identified blind spots\nfrom the multi-agent analysis.\n\nTests cover:\n- Security Expert blind spots\n- DevOps Engineer blind spots\n- Code Quality Expert blind spots\n- User Experience Advocate blind spots\n- Performance Engineer blind spots\n",
+  "module_docstring": "\n🧪 Multi-Agent Blind Spot Detection Test for Streamlit App\n\nThis test applies the diversity hypothesis framework to validate that\nthe Streamlit app implementation addresses all identified blind spots\nfrom the multi-agent analysis.\n\nTests cover:\n- Security Expert blind spots\n- DevOps Engineer blind spots\n- Code Quality Expert blind spots\n- User Experience Advocate blind spots\n- Performance Engineer blind spots\n",
   "file_structure": {
     "total_lines": 564,
     "code_lines": 410,

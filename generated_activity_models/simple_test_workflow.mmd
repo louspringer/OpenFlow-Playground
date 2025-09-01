@@ -1,0 +1,12 @@
+flowchart TD
+    %% Simple Workflow Analysis
+
+    start([Start])
+    functiontestsecuritymanagerinitialization[Function: test_security_manager_initialization()]
+    functiontestinputvalidatormethods[Function: test_input_validator_methods()]
+    end([End])
+
+    start -->|Call| functiontestsecuritymanagerinitialization
+    start -->|Call| functiontestinputvalidatormethods
+    functiontestsecuritymanagerinitialization -->|Complete| end
+    functiontestinputvalidatormethods -->|Complete| end

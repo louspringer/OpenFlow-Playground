@@ -85,14 +85,8 @@ class ArtifactSynthesizer:
             type_counts[artifact_type] = type_counts.get(artifact_type, 0) + 1
 
         # Analyze error distribution
-        error_opportunities = [
-            opp
-            for opp in opportunities
-            if opp.get("opportunity_type") == "syntax_error"
-        ]
-        critical_errors = [
-            opp for opp in error_opportunities if opp.get("severity") == "critical"
-        ]
+        error_opportunities = [opp for opp in opportunities if opp.get("opportunity_type") == "syntax_error"]
+        critical_errors = [opp for opp in error_opportunities if opp.get("severity") == "critical"]
 
         if critical_errors:
             insights.append(
@@ -101,9 +95,7 @@ class ArtifactSynthesizer:
                     title="Critical Syntax Errors Detected",
                     description=f"Found {len(critical_errors)} critical syntax errors affecting codebase health",
                     severity="critical",
-                    affected_artifacts=[
-                        opp.get("artifact_path", "") for opp in critical_errors
-                    ],
+                    affected_artifacts=[opp.get("artifact_path", "") for opp in critical_errors],
                     recommendations=[
                         "Fix critical syntax errors immediately",
                         "Implement automated syntax checking in CI/CD",
@@ -166,11 +158,7 @@ class ArtifactSynthesizer:
                         title="High Average Complexity",
                         description=f"Average cyclomatic complexity is {avg_complexity:.1f} (recommended < 8)",
                         severity="medium",
-                        affected_artifacts=[
-                            a.get("path", "")
-                            for a in artifacts
-                            if a.get("artifact_type") == "python"
-                        ],
+                        affected_artifacts=[a.get("path", "") for a in artifacts if a.get("artifact_type") == "python"],
                         recommendations=[
                             "Refactor complex functions into smaller, simpler functions",
                             "Add unit tests for complex logic",
@@ -188,11 +176,7 @@ class ArtifactSynthesizer:
                         title="Multiple High-Complexity Files",
                         description=f"{high_complexity_count} files have complexity > 10",
                         severity="high",
-                        affected_artifacts=[
-                            a.get("path", "")
-                            for a in artifacts
-                            if a.get("artifact_type") == "python"
-                        ],
+                        affected_artifacts=[a.get("path", "") for a in artifacts if a.get("artifact_type") == "python"],
                         recommendations=[
                             "Prioritize refactoring of high-complexity files",
                             "Implement complexity monitoring in CI/CD",
@@ -215,9 +199,7 @@ class ArtifactSynthesizer:
         insights = []
 
         # Analyze quality opportunities
-        quality_opportunities = [
-            opp for opp in opportunities if opp.get("opportunity_type") == "quality"
-        ]
+        quality_opportunities = [opp for opp in opportunities if opp.get("opportunity_type") == "quality"]
 
         if quality_opportunities:
             insights.append(
@@ -226,9 +208,7 @@ class ArtifactSynthesizer:
                     title="Code Quality Issues Detected",
                     description=f"Found {len(quality_opportunities)} quality improvement opportunities",
                     severity="medium",
-                    affected_artifacts=[
-                        opp.get("artifact_path", "") for opp in quality_opportunities
-                    ],
+                    affected_artifacts=[opp.get("artifact_path", "") for opp in quality_opportunities],
                     recommendations=[
                         "Implement automated code quality checks",
                         "Add linting rules to CI/CD pipeline",
@@ -241,9 +221,7 @@ class ArtifactSynthesizer:
 
         # Analyze documentation coverage
         python_artifacts = [a for a in artifacts if a.get("artifact_type") == "python"]
-        markdown_artifacts = [
-            a for a in artifacts if a.get("artifact_type") == "markdown"
-        ]
+        markdown_artifacts = [a for a in artifacts if a.get("artifact_type") == "markdown"]
 
         if python_artifacts and markdown_artifacts:
             doc_ratio = len(markdown_artifacts) / len(python_artifacts)
@@ -254,9 +232,7 @@ class ArtifactSynthesizer:
                         title="Low Documentation Coverage",
                         description=f"Documentation ratio is {doc_ratio:.1%} (recommended > 30%)",
                         severity="medium",
-                        affected_artifacts=[
-                            a.get("path", "") for a in python_artifacts
-                        ],
+                        affected_artifacts=[a.get("path", "") for a in python_artifacts],
                         recommendations=[
                             "Increase documentation coverage",
                             "Add docstrings to all functions and classes",
@@ -279,16 +255,10 @@ class ArtifactSynthesizer:
         insights = []
 
         # Analyze security opportunities
-        security_opportunities = [
-            opp for opp in opportunities if opp.get("opportunity_type") == "security"
-        ]
+        security_opportunities = [opp for opp in opportunities if opp.get("opportunity_type") == "security"]
 
         if security_opportunities:
-            critical_security = [
-                opp
-                for opp in security_opportunities
-                if opp.get("severity") in ["critical", "high"]
-            ]
+            critical_security = [opp for opp in security_opportunities if opp.get("severity") in ["critical", "high"]]
 
             if critical_security:
                 insights.append(
@@ -297,9 +267,7 @@ class ArtifactSynthesizer:
                         title="Critical Security Issues Detected",
                         description=f"Found {len(critical_security)} critical/high security issues",
                         severity="critical",
-                        affected_artifacts=[
-                            opp.get("artifact_path", "") for opp in critical_security
-                        ],
+                        affected_artifacts=[opp.get("artifact_path", "") for opp in critical_security],
                         recommendations=[
                             "Address security issues immediately",
                             "Implement automated security scanning",
@@ -322,9 +290,7 @@ class ArtifactSynthesizer:
         insights = []
 
         # Analyze performance opportunities
-        performance_opportunities = [
-            opp for opp in opportunities if opp.get("opportunity_type") == "performance"
-        ]
+        performance_opportunities = [opp for opp in opportunities if opp.get("opportunity_type") == "performance"]
 
         if performance_opportunities:
             insights.append(
@@ -333,10 +299,7 @@ class ArtifactSynthesizer:
                     title="Performance Optimization Opportunities",
                     description=f"Found {len(performance_opportunities)} performance improvement opportunities",
                     severity="medium",
-                    affected_artifacts=[
-                        opp.get("artifact_path", "")
-                        for opp in performance_opportunities
-                    ],
+                    affected_artifacts=[opp.get("artifact_path", "") for opp in performance_opportunities],
                     recommendations=[
                         "Profile code to identify bottlenecks",
                         "Optimize algorithms and data structures",
@@ -349,11 +312,7 @@ class ArtifactSynthesizer:
 
         # Analyze relationship patterns
         if relationships:
-            import_relationships = [
-                rel
-                for rel in relationships
-                if rel.get("relationship_type") == "imports"
-            ]
+            import_relationships = [rel for rel in relationships if rel.get("relationship_type") == "imports"]
             if len(import_relationships) > 50:
                 insights.append(
                     ArtifactInsight(
@@ -361,10 +320,7 @@ class ArtifactSynthesizer:
                         title="High Import Complexity",
                         description=f"Found {len(import_relationships)} import relationships indicating complex dependencies",
                         severity="low",
-                        affected_artifacts=[
-                            rel.get("source_artifact", "")
-                            for rel in import_relationships
-                        ],
+                        affected_artifacts=[rel.get("source_artifact", "") for rel in import_relationships],
                         recommendations=[
                             "Review and simplify import dependencies",
                             "Consider using dependency injection",

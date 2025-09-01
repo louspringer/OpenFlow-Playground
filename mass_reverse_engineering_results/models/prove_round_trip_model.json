@@ -1,6 +1,6 @@
 {
   "system_name": "PROOF: Round-Trip Model System",
-  "description": "Demonstrates complete cycle: Design \u2192 Model \u2192 Code \u2192 Model",
+  "description": "Demonstrates complete cycle: Design → Model → Code → Model",
   "purpose": "",
   "graph_api_level": 1,
   "projection_system": "default",
@@ -29,7 +29,7 @@
     "import json",
     "from round_trip_model_system import RoundTripModelSystem"
   ],
-  "module_docstring": "\nPROOF: Round-Trip Model System\nDemonstrates complete cycle: Design \u2192 Model \u2192 Code \u2192 Model\n",
+  "module_docstring": "\nPROOF: Round-Trip Model System\nDemonstrates complete cycle: Design → Model → Code → Model\n",
   "file_structure": {
     "total_lines": 256,
     "code_lines": 217,

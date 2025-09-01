@@ -1,0 +1,68 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - test_simple_workflow.py
+
+:Expression;
+start
+:Expression;
+if (not data) then (yes)
+else (no)
+endif
+while (For: item in data) is (continue)
+endwhile (exit)
+if (item > 0) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+if (isinstance(value, (int, float))) then (yes)
+else (no)
+endif
+stop
+start
+:Expression;
+if (not all((validate_input(x) for x in data))) then (yes)
+else (no)
+endif
+:Call: print();
+if (result) then (yes)
+else (no)
+endif
+:Call: print();
+:Call: print();
+stop
+if (__name__ == '__main__') then (yes)
+else (no)
+endif
+:Call: main();
+
+node_1 --> node_2
+node_2 --> node_3
+node_3 --> node_4
+node_4 --> node_5
+node_5 --> node_6
+node_6 --> node_7
+node_6 --> node_8
+node_5 --> node_9
+node_9 --> node_10
+node_10 --> node_11
+node_11 --> node_12
+node_12 --> node_13
+node_13 --> node_14
+node_14 --> node_15
+node_15 --> node_16
+node_16 --> node_17
+node_16 --> node_18
+node_18 --> node_19
+node_18 --> node_20
+node_18 --> node_21
+node_21 --> node_22
+node_22 --> node_23
+@enduml

@@ -76,9 +76,7 @@ class GeminiBillingAnalyzer:
                 text=True,
                 check=True,
             )
-            billing_account = (
-                result.stdout.strip().split("\n")[0] if result.stdout.strip() else None
-            )
+            billing_account = result.stdout.strip().split("\n")[0] if result.stdout.strip() else None
 
             # Get enabled services
             result = subprocess.run(
@@ -87,9 +85,7 @@ class GeminiBillingAnalyzer:
                 text=True,
                 check=True,
             )
-            enabled_services = (
-                result.stdout.strip().split("\n") if result.stdout.strip() else []
-            )
+            enabled_services = result.stdout.strip().split("\n") if result.stdout.strip() else []
 
             # Get resource usage
             resources = {}
@@ -102,9 +98,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                functions = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                functions = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["cloud_functions"] = len(functions)
             except Exception:
                 resources["cloud_functions"] = 0
@@ -117,9 +111,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                run_services = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                run_services = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["cloud_run"] = len(run_services)
             except Exception:
                 resources["cloud_run"] = 0
@@ -138,9 +130,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                databases = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                databases = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["firestore"] = len(databases)
             except Exception:
                 resources["firestore"] = 0
@@ -168,17 +158,17 @@ class GeminiBillingAnalyzer:
             You are a GCP cost optimization expert. Analyze this billing data and provide insights:
 
             📊 PROJECT INFO:
-            - Project ID: {billing_data.get('project_id', 'Unknown')}
-            - Billing Account: {billing_data.get('billing_account', 'Unknown')}
-            - Enabled Services: {len(billing_data.get('enabled_services', []))} services
-            - Analysis Time: {billing_data.get('timestamp', 'Unknown')}
+            - Project ID: {billing_data.get("project_id", "Unknown")}
+            - Billing Account: {billing_data.get("billing_account", "Unknown")}
+            - Enabled Services: {len(billing_data.get("enabled_services", []))} services
+            - Analysis Time: {billing_data.get("timestamp", "Unknown")}
 
             🔧 RESOURCE USAGE:
-            {json.dumps(billing_data.get('resources', {}), indent=2)}
+            {json.dumps(billing_data.get("resources", {}), indent=2)}
 
             📋 ENABLED SERVICES:
-            {json.dumps(billing_data.get('enabled_services', [])[:10], indent=2)}
-            {'...' if len(billing_data.get('enabled_services', [])) > 10 else ''}
+            {json.dumps(billing_data.get("enabled_services", [])[:10], indent=2)}
+            {"..." if len(billing_data.get("enabled_services", [])) > 10 else ""}
 
             💰 COST ANALYSIS REQUEST:
             1. **Cost Drivers**: What are the biggest potential cost drivers in this setup?
@@ -299,39 +289,35 @@ async def main() -> None:
 
     print("🚀 Starting Gemini-Integrated Ghostbusters Billing Analysis...")
     print("📊 Project: elmo-fuzzy-giggle")
-    print(f'🤖 Gemini LLM: {"✅ Available" if analyzer.llm else "❌ Not available"}')
+    print(f"🤖 Gemini LLM: {'✅ Available' if analyzer.llm else '❌ Not available'}")
 
     result = await analyzer.analyze_project(".")
 
     print("\n" + "=" * 60)
     print("📋 ANALYSIS RESULTS")
     print("=" * 60)
-    print(f'Status: {result["status"]}')
-    print(f'Analysis ID: {result["analysis_id"]}')
+    print(f"Status: {result['status']}")
+    print(f"Analysis ID: {result['analysis_id']}")
     print(
-        f'Billing Analysis: {"✅ Available" if result["billing_analysis_available"] else "❌ Not available"}',
+        f"Billing Analysis: {'✅ Available' if result['billing_analysis_available'] else '❌ Not available'}",
     )
     print(
-        f'Ghostbusters Analysis: {"✅ Available" if result["ghostbusters_analysis_available"] else "❌ Not available"}',
+        f"Ghostbusters Analysis: {'✅ Available' if result['ghostbusters_analysis_available'] else '❌ Not available'}",
     )
 
     if result["summary"]:
         print("\n📊 Summary:")
-        print(f'  Project ID: {result["summary"]["project_id"]}')
-        print(f'  Enabled Services: {result["summary"]["enabled_services"]}')
-        print(f'  Resources: {result["summary"]["resources"]}')
+        print(f"  Project ID: {result['summary']['project_id']}")
+        print(f"  Enabled Services: {result['summary']['enabled_services']}")
+        print(f"  Resources: {result['summary']['resources']}")
         print(
-            f'  Ghostbusters Delusions: {result["summary"]["ghostbusters_delusions"]}',
+            f"  Ghostbusters Delusions: {result['summary']['ghostbusters_delusions']}",
         )
         print(
-            f'  Ghostbusters Confidence: {result["summary"]["ghostbusters_confidence"]}',
+            f"  Ghostbusters Confidence: {result['summary']['ghostbusters_confidence']}",
         )
 
-    if (
-        result.get("full_analysis", {})
-        .get("billing_analysis", {})
-        .get("gemini_analysis")
-    ):
+    if result.get("full_analysis", {}).get("billing_analysis", {}).get("gemini_analysis"):
         print("\n🤖 Gemini Analysis:")
         print("-" * 40)
         print(result["full_analysis"]["billing_analysis"]["gemini_analysis"])

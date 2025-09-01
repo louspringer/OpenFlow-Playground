@@ -63,9 +63,7 @@ async def test_multi_agent_analysis():
         if "anthropic" in working_apis:
             logger.info("🔍 Testing Claude (Anthropic)...")
             claude_result = await smoke_test.test_anthropic_claude()
-            logger.info(
-                f"✅ Claude test completed: {claude_result.get('status', 'unknown')}"
-            )
+            logger.info(f"✅ Claude test completed: {claude_result.get('status', 'unknown')}")
             if "cost" in claude_result:
                 logger.info(f"💰 Claude cost: ${claude_result['cost']:.6f}")
 
@@ -73,9 +71,7 @@ async def test_multi_agent_analysis():
         if "openai" in working_apis:
             logger.info("🔍 Testing OpenAI...")
             openai_result = await smoke_test.test_openai()
-            logger.info(
-                f"✅ OpenAI test completed: {openai_result.get('status', 'unknown')}"
-            )
+            logger.info(f"✅ OpenAI test completed: {openai_result.get('status', 'unknown')}")
             if "cost" in openai_result:
                 logger.info(f"💰 OpenAI cost: ${openai_result['cost']:.6f}")
 
@@ -84,22 +80,14 @@ async def test_multi_agent_analysis():
         analysis_result = await smoke_test.run_multi_agent_analysis()
 
         logger.info("📊 Multi-Agent Analysis Results:")
-        logger.info(
-            f"  Security findings: {len(analysis_result.get('security_findings', []))}"
-        )
-        logger.info(
-            f"  Quality findings: {len(analysis_result.get('quality_findings', []))}"
-        )
-        logger.info(
-            f"  DevOps findings: {len(analysis_result.get('devops_findings', []))}"
-        )
+        logger.info(f"  Security findings: {len(analysis_result.get('security_findings', []))}")
+        logger.info(f"  Quality findings: {len(analysis_result.get('quality_findings', []))}")
+        logger.info(f"  DevOps findings: {len(analysis_result.get('devops_findings', []))}")
         logger.info(f"  Total cost: ${analysis_result.get('total_cost', 0):.6f}")
 
         # Test the full LangGraph workflow
         logger.info("🔄 Testing Full LangGraph Workflow...")
-        orchestrator = LangGraphOrchestrator(
-            target_directory=".", storage_dir="agent_sessions"
-        )
+        orchestrator = LangGraphOrchestrator(target_directory=".", storage_dir="agent_sessions")
 
         # Run the workflow
         start_time = time.time()
@@ -110,9 +98,7 @@ async def test_multi_agent_analysis():
         logger.info(f"  Success: {workflow_results.get('workflow_success', False)}")
         logger.info(f"  Iterations: {workflow_results.get('iterations_completed', 0)}")
         logger.info(f"  Final stage: {workflow_results.get('final_stage', 'unknown')}")
-        logger.info(
-            f"  Agent findings: {workflow_results.get('total_agent_findings', 0)}"
-        )
+        logger.info(f"  Agent findings: {workflow_results.get('total_agent_findings', 0)}")
         logger.info(f"  Execution time: {execution_time:.2f} seconds")
 
         # Show cost summary
@@ -175,9 +161,7 @@ async def test_agent_collaboration():
             category="quality",
             severity="Medium",
             description="Code complexity exceeds threshold",
-            recommendations=[
-                "Function has cyclomatic complexity of 15 (threshold: 10)"
-            ],
+            recommendations=["Function has cyclomatic complexity of 15 (threshold: 10)"],
             confidence=0.8,
             timestamp=datetime.now().isoformat(),
             metadata={"source": "test", "complexity": 15, "threshold": 10},
@@ -202,18 +186,12 @@ async def test_agent_collaboration():
         logger.info("🔍 Testing Cross-Agent Context...")
         for agent_type in [AgentType.SECURITY, AgentType.QUALITY, AgentType.DEVOPS]:
             agent_session_manager.get_cross_agent_context(agent_type)
-            other_findings = agent_session_manager.get_agent_previous_findings(
-                agent_type, iteration
-            )
-            logger.info(
-                f"  {agent_type.value}: {len(other_findings)} other agents' findings available"
-            )
+            other_findings = agent_session_manager.get_agent_previous_findings(agent_type, iteration)
+            logger.info(f"  {agent_type.value}: {len(other_findings)} other agents' findings available")
 
         # Generate synthesis
         synthesis = agent_session_manager.synthesize_iteration_results()
-        logger.info(
-            f"🧠 Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations"
-        )
+        logger.info(f"🧠 Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations")
 
         logger.info("✅ Agent Collaboration Test Passed!")
         return True

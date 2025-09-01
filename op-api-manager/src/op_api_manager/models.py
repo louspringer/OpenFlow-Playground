@@ -47,17 +47,13 @@ class APIKeyItem(BaseModel):
     category: str = Field(..., description="1Password category")
     guid: UUID = Field(default_factory=uuid4, description="Unique identifier")
     provider: Optional[ProviderType] = Field(None, description="Detected provider type")
-    status: APIKeyStatus = Field(
-        default=APIKeyStatus.DISCOVERED, description="Current status"
-    )
+    status: APIKeyStatus = Field(default=APIKeyStatus.DISCOVERED, description="Current status")
     url: Optional[str] = Field(None, description="Associated URL")
     notes: Optional[str] = Field(None, description="Item notes")
     tags: list[str] = Field(default_factory=list, description="Item tags")
     created_at: Optional[str] = Field(None, description="Creation timestamp")
     updated_at: Optional[str] = Field(None, description="Last update timestamp")
-    metadata: dict[str, Any] = Field(
-        default_factory=dict, description="Additional metadata"
-    )
+    metadata: dict[str, Any] = Field(default_factory=dict, description="Additional metadata")
 
     @property
     def detected_provider(self) -> ProviderType:
@@ -86,15 +82,9 @@ class DiscoveryResult(BaseModel):
 
     total_items: int = Field(..., description="Total items discovered")
     api_keys: list[APIKeyItem] = Field(..., description="Discovered API keys")
-    credential_pairs: list[CredentialPair] = Field(
-        ..., description="Organized credential pairs"
-    )
-    providers: Optional[dict[ProviderType, int]] = Field(
-        None, description="Count by provider"
-    )
-    status_summary: Optional[dict[APIKeyStatus, int]] = Field(
-        None, description="Count by status"
-    )
+    credential_pairs: list[CredentialPair] = Field(..., description="Organized credential pairs")
+    providers: Optional[dict[ProviderType, int]] = Field(None, description="Count by provider")
+    status_summary: Optional[dict[APIKeyStatus, int]] = Field(None, description="Count by status")
     discovery_timestamp: str = Field(..., description="When discovery was performed")
     cache_file: Optional[str] = Field(None, description="Cache file location")
 
@@ -148,8 +138,6 @@ class CacheConfig(BaseModel):
     """Configuration for caching operations."""
 
     enabled: bool = Field(default=True, description="Enable caching")
-    cache_file: str = Field(
-        default="api_discovery_cache.json", description="Cache file path"
-    )
+    cache_file: str = Field(default="api_discovery_cache.json", description="Cache file path")
     max_age_hours: int = Field(default=24, description="Maximum cache age in hours")
     auto_refresh: bool = Field(default=False, description="Auto-refresh expired cache")

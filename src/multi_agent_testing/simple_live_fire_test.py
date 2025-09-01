@@ -29,9 +29,7 @@ def main():
     parser.add_argument("--google-key", help="Google API key (overrides .env)")
     parser.add_argument("--openrouter-key", help="OpenRouter API key (overrides .env)")
     parser.add_argument("--aws-access-key", help="AWS Access Key ID (overrides .env)")
-    parser.add_argument(
-        "--aws-secret-key", help="AWS Secret Access Key (overrides .env)"
-    )
+    parser.add_argument("--aws-secret-key", help="AWS Secret Access Key (overrides .env)")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
     parser.add_argument(
         "--test-model",
@@ -93,12 +91,8 @@ def main():
         required_env = "AWS_ACCESS_KEY_ID"
 
     if required_env and not os.getenv(required_env):
-        print(
-            f"❌ ERROR: {required_env} environment variable is required for {args.test_model}"
-        )
-        print(
-            f"💡 Use --{required_env.lower().replace('_', '-')} to specify the API key"
-        )
+        print(f"❌ ERROR: {required_env} environment variable is required for {args.test_model}")
+        print(f"💡 Use --{required_env.lower().replace('_', '-')} to specify the API key")
         return 1
 
     print(f"🧪 Testing model: {args.test_model}")
@@ -120,14 +114,10 @@ def main():
 
         print("\n🎯 TEST RESULTS:")
         print(f"   Model: {args.test_model}")
-        print(
-            f"   Status: {'✅ SUCCESS' if result.get('real_llm_result') else '❌ FAILED'}"
-        )
+        print(f"   Status: {'✅ SUCCESS' if result.get('real_llm_result') else '❌ FAILED'}")
 
         if result.get("real_llm_result"):
-            print(
-                f"   Response received: {len(str(result['real_llm_result']))} characters"
-            )
+            print(f"   Response received: {len(str(result['real_llm_result']))} characters")
             if args.verbose:
                 print(f"   Full response: {result['real_llm_result']}")
         else:

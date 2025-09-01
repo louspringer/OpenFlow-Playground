@@ -5,7 +5,6 @@ Test script for the Quality System
 This script tests the basic functionality of the quality system components.
 """
 
-
 import sys
 from pathlib import Path
 

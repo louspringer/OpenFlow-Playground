@@ -15,9 +15,7 @@ def test_actual_broken_fstring():
     print("=" * 60)
 
     # This is the exact f-string that was causing the error
-    broken_fstring = (
-        'f"Widespread import organization issues: {len( \\\n    import_errors)}"'
-    )
+    broken_fstring = 'f"Widespread import organization issues: {len( \\\n    import_errors)}"'
 
     print(f"Broken f-string: {repr(broken_fstring)}")
     print(f"Length: {len(broken_fstring)}")
@@ -61,9 +59,7 @@ def test_actual_broken_fstring():
     print("This suggests Python DOES detect this during some parsing stage")
 
     # Maybe it's a different Python version or parser?
-    print(
-        f"\nPython version: {ast.__version__ if hasattr(ast, '__version__') else 'Unknown'}"
-    )
+    print(f"\nPython version: {ast.__version__ if hasattr(ast, '__version__') else 'Unknown'}")
 
     # Let's try to understand why this specific case fails
     print("\n🧪 Why This Case Fails:")

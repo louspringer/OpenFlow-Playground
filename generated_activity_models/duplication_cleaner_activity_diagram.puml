@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: DuplicationCleaner;
+
+:__init__;
+:clean_code;
+:clean_method_duplications;
+:clean_return_duplications;
+
+:Process Standalone Functions;
+
+:__init__;
+:clean_code;
+:clean_method_duplications;
+:clean_return_duplications;
+
+:Module Complete;
+stop
+
+@enduml

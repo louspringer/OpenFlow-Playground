@@ -149,18 +149,18 @@ cp config.env.example config.env
 ## **Next Steps for Users**
 
 1. **Contact Snowflake** to get your specific values
-2. **Copy and configure** `config.env.example`
-3. **Validate configuration** with `./deploy.sh validate`
-4. **Deploy securely** with `./deploy.sh deploy`
+1. **Copy and configure** `config.env.example`
+1. **Validate configuration** with `./deploy.sh validate`
+1. **Deploy securely** with `./deploy.sh deploy`
 
 ## **Security Best Practices**
 
 1. **Never commit `config.env`** - it contains sensitive data
-2. **Use environment variables** for production deployments
-3. **Rotate OAuth credentials** regularly
-4. **Use AWS Secrets Manager** for sensitive values in production
-5. **Validate configuration** before deployment
+1. **Use environment variables** for production deployments
+1. **Rotate OAuth credentials** regularly
+1. **Use AWS Secrets Manager** for sensitive values in production
+1. **Validate configuration** before deployment
 
----
+______________________________________________________________________
 
 **Note**: This template is now secure and reusable. All hardcoded credentials and account-specific data have been removed. Users must provide their own Snowflake-specific values obtained from Snowflake support.

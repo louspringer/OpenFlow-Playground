@@ -4,31 +4,26 @@
   "purpose": "Demonstrate JSON model → Python generator → auto-format → test → fix model → regenerate code workflow",
   "graph_api_level": 1,
   "projection_system": "test_system",
-  
   "design_patterns": {
     "separation_of_concerns": "Calculator handles math, UI handles interaction",
     "single_responsibility": "Each class has one clear purpose",
     "dependency_inversion": "UI depends on Calculator interface, not implementation"
   },
-  
   "error_handling": {
     "division_by_zero": "Return None or raise ValueError for division by zero",
     "invalid_input": "Validate numeric input before processing",
     "user_cancellation": "Handle Ctrl+C gracefully"
   },
-  
   "testing_strategy": {
     "unit_tests": "Test each Calculator method independently",
     "integration_tests": "Test Calculator + UI interaction",
     "edge_cases": "Test division by zero, negative numbers, very large numbers"
   },
-  
   "performance_considerations": {
     "memory": "Minimal memory footprint for simple operations",
     "speed": "Fast calculation for real-time user interaction",
     "scalability": "Easy to extend with new operations"
   },
-  
   "components": {
     "Calculator": {
       "responsibility": "Perform basic mathematical operations",
@@ -72,14 +67,12 @@
       }
     }
   },
-  
   "future_enhancements": {
     "scientific_functions": "Add sin, cos, log, power functions",
     "memory_features": "Store and recall previous results",
     "history_tracking": "Keep calculation history",
     "unit_conversion": "Convert between different units"
   },
-  
   "deployment_notes": {
     "requirements": "Python 3.8+, no external dependencies",
     "installation": "Copy file and run directly",

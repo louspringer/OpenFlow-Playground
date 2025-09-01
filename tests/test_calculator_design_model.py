@@ -161,14 +161,10 @@ class TestCalculatorDesignModel:
         assert len(classes) == 2  # Calculator and CalculatorUI
 
         # Check for functions
-        functions = [
-            node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)
-        ]
+        functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
         assert len(functions) >= 8  # 6 methods + main + any other functions
 
-    def test_design_model_round_trip(
-        self, calculator_design_spec, simple_calculator_file
-    ):
+    def test_design_model_round_trip(self, calculator_design_spec, simple_calculator_file):
         """Test that the design model can be used for round-trip engineering"""
         # This test validates that the design model can be used to generate code
         # and that the generated code can be reverse engineered back to a model
@@ -190,9 +186,7 @@ class TestCalculatorDesignModel:
             pytest.skip("EnhancedReverseEngineer not available")
 
         # Step 1: Reverse engineer the generated code
-        generated_model = reverse_engineer.reverse_engineer_file(
-            str(simple_calculator_file)
-        )
+        generated_model = reverse_engineer.reverse_engineer_file(str(simple_calculator_file))
         assert generated_model is not None
 
         # Step 2: Check that the reverse engineered model has the expected components
@@ -206,9 +200,7 @@ class TestCalculatorDesignModel:
 
         expected_methods = ["__init__", "add", "subtract", "multiply", "divide"]
         for expected_method in expected_methods:
-            assert (
-                expected_method in method_names
-            ), f"Method {expected_method} not found in reverse engineered model"
+            assert expected_method in method_names, f"Method {expected_method} not found in reverse engineered model"
 
     def test_design_model_validation(self, calculator_design_spec):
         """Test that the design model follows proper validation rules"""
@@ -222,9 +214,7 @@ class TestCalculatorDesignModel:
                 "metadata",
             ]
             for field in required_fields:
-                assert (
-                    field in comp
-                ), f"Component {comp['name']} missing required field: {field}"
+                assert field in comp, f"Component {comp['name']} missing required field: {field}"
 
             # Check metadata structure
             metadata = comp["metadata"]
@@ -238,20 +228,14 @@ class TestCalculatorDesignModel:
     def test_design_model_consistency(self, calculator_design_spec):
         """Test that the design model is internally consistent"""
         # Check that component names are unique
-        component_names = [
-            comp["name"] for comp in calculator_design_spec["components"]
-        ]
-        assert len(component_names) == len(
-            set(component_names)
-        ), "Duplicate component names found"
+        component_names = [comp["name"] for comp in calculator_design_spec["components"]]
+        assert len(component_names) == len(set(component_names)), "Duplicate component names found"
 
         # Check that dependencies are valid (if any)
         for comp in calculator_design_spec["components"]:
             dependencies = comp.get("dependencies", [])
             for dep in dependencies:
-                assert (
-                    dep in component_names
-                ), f"Dependency {dep} not found in components"
+                assert dep in component_names, f"Dependency {dep} not found in components"
 
 
 if __name__ == "__main__":

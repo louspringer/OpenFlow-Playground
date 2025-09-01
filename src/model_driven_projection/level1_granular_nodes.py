@@ -173,9 +173,7 @@ class NodeProjector:
         file_content.append(self._generate_file_header(context))
 
         # Add imports first
-        import_nodes = [
-            n for n in ordered_nodes if self.resolver.nodes[n].type == "import"
-        ]
+        import_nodes = [n for n in ordered_nodes if self.resolver.nodes[n].type == "import"]
         for node_id in import_nodes:
             content = self.project_node(node_id, context)
             file_content.append(content)

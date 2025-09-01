@@ -7,7 +7,7 @@ Need to create automatic Cloud Build triggers for GitHub repository `louspringer
 ## Current Status
 
 - ✅ Cloud Build API enabled
-- ✅ Secret Manager API enabled  
+- ✅ Secret Manager API enabled
 - ✅ Manual builds working (`gcloud builds submit` succeeds)
 - ✅ GitHub connection created (2nd-gen)
 - ✅ Repository linked (2nd-gen)
@@ -17,12 +17,12 @@ Need to create automatic Cloud Build triggers for GitHub repository `louspringer
 ## Failed Attempts Summary
 
 1. **CLI Approach**: `gcloud builds triggers create github` fails with "INVALID_ARGUMENT"
-2. **Python Approach**: Google Cloud client libraries import errors
-3. **2nd-Gen Approach**: GitHub connection created, trigger creation fails
-4. **Auto-Install Python**: Packages install but import structure wrong
-5. **Corrected Package Installation**: Still fails with import errors
-6. **REST API Approach**: Connection works, trigger creation fails
-7. **1st-Gen REST API**: Also fails with "INVALID_ARGUMENT"
+1. **Python Approach**: Google Cloud client libraries import errors
+1. **2nd-Gen Approach**: GitHub connection created, trigger creation fails
+1. **Auto-Install Python**: Packages install but import structure wrong
+1. **Corrected Package Installation**: Still fails with import errors
+1. **REST API Approach**: Connection works, trigger creation fails
+1. **1st-Gen REST API**: Also fails with "INVALID_ARGUMENT"
 
 ## Root Cause Analysis
 
@@ -160,12 +160,12 @@ def create_trigger(repository_name: str, token: str) -> None:
 ## Error Messages Encountered
 
 1. `ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument`
-2. `ModuleNotFoundError: No module named 'google.cloud'`
-3. `ImportError: cannot import name 'cloudbuild_v1' from 'google.cloud'`
-4. `CalledProcessError: Command returned non-zero exit status 1` (pip install)
-5. `ModuleNotFoundError: No module named 'google.cloud.build'` (after correct package install)
-6. `{'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}` (REST API)
-7. `{'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}` (1st-gen REST API)
+1. `ModuleNotFoundError: No module named 'google.cloud'`
+1. `ImportError: cannot import name 'cloudbuild_v1' from 'google.cloud'`
+1. `CalledProcessError: Command returned non-zero exit status 1` (pip install)
+1. `ModuleNotFoundError: No module named 'google.cloud.build'` (after correct package install)
+1. `{'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}` (REST API)
+1. `{'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}` (1st-gen REST API)
 
 ## Failed CLI Commands
 
@@ -206,10 +206,10 @@ After successful setup, pushing to `develop` branch should automatically trigger
 ## Next Steps for LLM
 
 1. **Research GitHub App installation** - Understand why repository authorization fails
-2. **Use webhook triggers** - Alternative to GitHub integration
-3. **Use manual triggers** - Fallback to manual trigger creation
-4. **Check GitHub App permissions** - Ensure proper repository access
-5. **Test integration** - Verify triggers work on push
+1. **Use webhook triggers** - Alternative to GitHub integration
+1. **Use manual triggers** - Fallback to manual trigger creation
+1. **Check GitHub App permissions** - Ensure proper repository access
+1. **Test integration** - Verify triggers work on push
 
 ## Available Files
 
@@ -232,13 +232,13 @@ After successful setup, pushing to `develop` branch should automatically trigger
 **All approaches fail at trigger creation due to missing GitHub repository authorization.** The REST API approach successfully creates the GitHub connection and links the repository, but all trigger creation attempts fail with "INVALID_ARGUMENT". This suggests:
 
 1. **GitHub App not installed** on the repository
-2. **Repository permissions missing** for Cloud Build
-3. **Webhook not configured** properly
-4. **Alternative approach needed** - webhook triggers or manual triggers
+1. **Repository permissions missing** for Cloud Build
+1. **Webhook not configured** properly
+1. **Alternative approach needed** - webhook triggers or manual triggers
 
 The next LLM needs to:
 
 1. **Install GitHub App** on the repository
-2. **Configure repository permissions** for Cloud Build
-3. **Use webhook triggers** as alternative
-4. **Use manual triggers** as fallback
+1. **Configure repository permissions** for Cloud Build
+1. **Use webhook triggers** as alternative
+1. **Use manual triggers** as fallback

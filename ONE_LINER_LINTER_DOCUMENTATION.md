@@ -430,6 +430,6 @@ python scripts/one_liner_linter.py --check-file path/to/file --verbose
 - **Language support** for additional file types
 - **Integration examples** with popular tools
 
----
+______________________________________________________________________
 
 **This tool provides a comprehensive solution for maintaining code quality and eliminating problematic one-liner patterns across your entire codebase. Use it regularly to ensure your code remains readable, maintainable, and follows best practices.** 🚀

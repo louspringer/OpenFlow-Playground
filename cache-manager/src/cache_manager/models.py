@@ -37,12 +37,8 @@ class CacheMetadata(BaseModel):
 
     key: str = Field(..., description="Cache key")
     value: Any = Field(..., description="Cached value")
-    created_at: datetime = Field(
-        default_factory=datetime.now, description="Creation timestamp"
-    )
-    updated_at: datetime = Field(
-        default_factory=datetime.now, description="Last update timestamp"
-    )
+    created_at: datetime = Field(default_factory=datetime.now, description="Creation timestamp")
+    updated_at: datetime = Field(default_factory=datetime.now, description="Last update timestamp")
     expires_at: Optional[datetime] = Field(None, description="Expiration timestamp")
     size_bytes: int = Field(0, description="Size in bytes")
     checksum: Optional[str] = Field(None, description="Data integrity checksum")
@@ -71,12 +67,8 @@ class CacheStats(BaseModel):
     hit_count: int = Field(0, description="Cache hit count")
     miss_count: int = Field(0, description="Cache miss count")
     hit_rate: float = Field(0.0, description="Cache hit rate (0.0 to 1.0)")
-    avg_load_time_ms: float = Field(
-        0.0, description="Average load time in milliseconds"
-    )
-    avg_save_time_ms: float = Field(
-        0.0, description="Average save time in milliseconds"
-    )
+    avg_load_time_ms: float = Field(0.0, description="Average load time in milliseconds")
+    avg_save_time_ms: float = Field(0.0, description="Average save time in milliseconds")
     last_cleanup: Optional[datetime] = Field(None, description="Last cleanup timestamp")
     corruption_count: int = Field(0, description="Number of corruption events")
 
@@ -87,29 +79,19 @@ class CacheOperation(BaseModel):
     success: bool = Field(..., description="Whether operation succeeded")
     operation: str = Field(..., description="Type of operation performed")
     cache_key: str = Field(..., description="Cache key involved")
-    timestamp: datetime = Field(
-        default_factory=datetime.now, description="Operation timestamp"
-    )
+    timestamp: datetime = Field(default_factory=datetime.now, description="Operation timestamp")
     duration_ms: float = Field(0.0, description="Operation duration in milliseconds")
     error_message: Optional[str] = Field(None, description="Error message if failed")
-    metadata: dict[str, Any] = Field(
-        default_factory=dict, description="Additional metadata"
-    )
+    metadata: dict[str, Any] = Field(default_factory=dict, description="Additional metadata")
 
 
 class CacheHealth(BaseModel):
     """Health status of the cache system."""
 
     status: CacheStatus = Field(..., description="Overall cache health")
-    last_check: datetime = Field(
-        default_factory=datetime.now, description="Last health check"
-    )
-    issues: list[str] = Field(
-        default_factory=list, description="List of identified issues"
-    )
-    recommendations: list[str] = Field(
-        default_factory=list, description="Recommendations for improvement"
-    )
+    last_check: datetime = Field(default_factory=datetime.now, description="Last health check")
+    issues: list[str] = Field(default_factory=list, description="List of identified issues")
+    recommendations: list[str] = Field(default_factory=list, description="Recommendations for improvement")
     performance_score: float = Field(0.0, description="Performance score (0.0 to 1.0)")
     integrity_score: float = Field(0.0, description="Data integrity score (0.0 to 1.0)")
     maintenance_needed: bool = Field(False, description="Whether maintenance is needed")

@@ -31,9 +31,7 @@ def main():
 
     # Check if we're in the right directory
     if not Path("pyproject.toml").exists():
-        print(
-            "❌ pyproject.toml not found. Make sure you're in the op-api-manager directory."
-        )
+        print("❌ pyproject.toml not found. Make sure you're in the op-api-manager directory.")
         return 1
 
     # Install in development mode

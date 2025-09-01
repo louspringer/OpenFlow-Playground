@@ -50,36 +50,28 @@ class CostAnalysis:
         # TODO: Implement __init__
         return
 
-    def add_cost_metric(
-        self, metric_name: str, value: float, unit: str, context: str
-    ) -> Any:
+    def add_cost_metric(self, metric_name: str, value: float, unit: str, context: str) -> Any:
         """
         Add a cost metric
         """
         # TODO: Implement add_cost_metric
         return None
 
-    def calculate_model_costs(
-        self, models: list[Any], requests_per_hour: int
-    ) -> list[Any]:
+    def calculate_model_costs(self, models: list[Any], requests_per_hour: int) -> list[Any]:
         """
         Calculate costs for different AI models
         """
         # TODO: Implement calculate_model_costs
         return []
 
-    def calculate_diversity_benefits(
-        self, diversity_score: float, base_cost: float
-    ) -> dict[str, Any]:
+    def calculate_diversity_benefits(self, diversity_score: float, base_cost: float) -> dict[str, Any]:
         """
         Calculate cost-benefit of diversity improvements
         """
         # TODO: Implement calculate_diversity_benefits
         return {}
 
-    def optimize_diversity_cost(
-        self, target_diversity: float, budget: float
-    ) -> dict[str, Any]:
+    def optimize_diversity_cost(self, target_diversity: float, budget: float) -> dict[str, Any]:
         """
         Optimize diversity system for cost and performance
         """

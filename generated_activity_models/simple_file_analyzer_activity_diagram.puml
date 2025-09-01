@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+skinparam activityDiamondBackgroundColor #fff3e0
+skinparam activityDiamondBorderColor #f57c00
+
+title Python Module Activity Model
+
+start
+
+:Initialize Module;
+
+:Process Class: SimpleFileAnalyzer;
+
+:__init__;
+:analyze_file;
+:_analyze_file_stats;
+:_extract_imports;
+:_extract_classes;
+:_extract_functions;
+:_analyze_structure;
+
+:Process Standalone Functions;
+
+:main;
+:__init__;
+:analyze_file;
+:_analyze_file_stats;
+:_extract_imports;
+:... and 3 more;
+
+:Module Complete;
+stop
+
+@enduml

@@ -89,13 +89,13 @@ Our project integrates [Bandit](https://github.com/PyCQA/bandit) for automated s
 ### **Usage:**
 ```bash
 # Scan single file
-python scripts/bandit_integration.py --path <file> --report
+uv run python scripts/bandit_integration.py --path <file> --report
 
 # Scan entire project
-python scripts/bandit_integration.py --project --report
+uv run python scripts/bandit_integration.py --project --report
 
 # Export results to JSON
-python scripts/bandit_integration.py --project --output security_scan.json
+uv run python scripts/bandit_integration.py --project --output security_scan.json
 ```
 
 ### **Security Issue Categories:**

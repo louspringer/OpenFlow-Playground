@@ -189,9 +189,7 @@ class PatternManager:
                 }
             ]
 
-    def _scan_line(
-        self, line: str, line_num: int, file_path: Path
-    ) -> list[dict[str, Any]]:
+    def _scan_line(self, line: str, line_num: int, file_path: Path) -> list[dict[str, Any]]:
         """
         Scan a single line for security patterns
 
@@ -213,9 +211,7 @@ class PatternManager:
                     matched_text = match.group(0)
 
                     # Check if this is a false positive
-                    is_false_positive = self._is_false_positive(
-                        pattern, matched_text, line, file_path
-                    )
+                    is_false_positive = self._is_false_positive(pattern, matched_text, line, file_path)
 
                     # Create finding
                     finding = {
@@ -237,9 +233,7 @@ class PatternManager:
 
         return findings
 
-    def _is_false_positive(
-        self, pattern: dict[str, Any], matched_text: str, line: str, file_path: Path
-    ) -> bool:
+    def _is_false_positive(self, pattern: dict[str, Any], matched_text: str, line: str, file_path: Path) -> bool:
         """
         Check if a pattern match is a false positive
 
@@ -281,16 +275,9 @@ class PatternManager:
                 return True
 
         # Check file path for test/example indicators
-        return bool(
-            any(
-                indicator in str(file_path).lower()
-                for indicator in ["test", "example", "demo", "template", "sample"]
-            )
-        )
+        return bool(any(indicator in str(file_path).lower() for indicator in ["test", "example", "demo", "template", "sample"]))
 
-    def _deduplicate_findings(
-        self, findings: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _deduplicate_findings(self, findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """
         Remove duplicate findings
 
@@ -313,9 +300,7 @@ class PatternManager:
 
         return unique_findings
 
-    def _sort_findings_by_severity(
-        self, findings: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _sort_findings_by_severity(self, findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """
         Sort findings by severity level
 

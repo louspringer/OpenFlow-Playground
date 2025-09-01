@@ -1,0 +1,188 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - simple_workflow_analyzer.py
+
+:Expression;
+:Function Call;
+:Expression;
+start
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+while (For: node in ast.walk(tree)) is (continue)
+endwhile (exit)
+if (isinstance(node, ast.ClassDef)) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+while (For: item in node.body) is (continue)
+endwhile (exit)
+if (isinstance(item, ast.FunctionDef)) then (yes)
+else (no)
+endif
+if (method_count <= 3) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+if (method_count > 0) then (yes)
+else (no)
+endif
+:Function Call;
+if (method_count <= 3) then (yes)
+else (no)
+endif
+while (For: item in node.body) is (continue)
+endwhile (exit)
+if (isinstance(item, ast.FunctionDef)) then (yes)
+else (no)
+endif
+if (last_method) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+while (For: node in ast.walk(tree)) is (continue)
+endwhile (exit)
+if (isinstance(node, ast.FunctionDef)) then (yes)
+else (no)
+endif
+if (function_count <= 2) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+:Function Call;
+while (For: workflow_node in nodes) is (continue)
+endwhile (exit)
+if (workflow_node['type'] in ['activity', 'decision']) then (yes)
+else (no)
+endif
+if (not has_outgoing) then (yes)
+else (no)
+endif
+:Function Call;
+stop
+start
+:Expression;
+stop
+start
+:Expression;
+if (not workflow_data.get('workflow_analysis_successful', False)) then (yes)
+else (no)
+endif
+while (For: node in nodes) is (continue)
+endwhile (exit)
+if (node_type == 'start') then (yes)
+else (no)
+endif
+:Function Call;
+if (node_type == 'end') then (yes)
+else (no)
+endif
+:Function Call;
+if (node_type == 'decision') then (yes)
+else (no)
+endif
+:Function Call;
+if (node_type == 'activity') then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+while (For: edge in edges) is (continue)
+endwhile (exit)
+if (label) then (yes)
+else (no)
+endif
+:Function Call;
+:Function Call;
+stop
+start
+:Expression;
+:Function Call;
+:Function Call;
+stop
+
+node_1 --> node_2
+node_2 --> node_3
+node_3 --> node_4
+node_4 --> node_5
+node_5 --> node_6
+node_6 --> node_7
+node_7 --> node_8
+node_8 --> node_9
+node_9 --> node_10
+node_10 --> node_11
+node_11 --> node_12
+node_12 --> node_13
+node_13 --> node_14
+node_14 --> node_15
+node_15 --> node_16
+node_16 --> node_17
+node_17 --> node_18
+node_18 --> node_19
+node_19 --> node_20
+node_20 --> node_21
+node_21 --> node_22
+node_22 --> node_23
+node_23 --> node_24
+node_20 --> node_25
+node_25 --> node_26
+node_26 --> node_27
+node_27 --> node_28
+node_28 --> node_29
+node_28 --> node_30
+node_30 --> node_31
+node_27 --> node_32
+node_16 --> node_33
+node_33 --> node_34
+node_34 --> node_35
+node_35 --> node_36
+node_36 --> node_37
+node_33 --> node_38
+node_38 --> node_39
+node_39 --> node_40
+node_40 --> node_41
+node_41 --> node_42
+node_39 --> node_43
+node_43 --> node_44
+node_44 --> node_45
+node_45 --> node_46
+node_46 --> node_47
+node_47 --> node_48
+node_48 --> node_49
+node_49 --> node_50
+node_50 --> node_51
+node_51 --> node_52
+node_51 --> node_53
+node_53 --> node_54
+node_53 --> node_55
+node_55 --> node_56
+node_55 --> node_57
+node_57 --> node_58
+node_50 --> node_59
+node_59 --> node_60
+node_60 --> node_61
+node_61 --> node_62
+node_61 --> node_63
+node_60 --> node_64
+node_64 --> node_65
+node_65 --> node_66
+node_66 --> node_67
+node_67 --> node_68
+node_68 --> node_69
+@enduml

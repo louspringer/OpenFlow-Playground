@@ -1,0 +1,20 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam activityFontSize 12
+skinparam activityFontName Arial
+
+title Activity Diagram - test_simple_workflow.py
+
+start
+:validate_input();
+:process_data();
+:save_results();
+:main();
+if (success?) then (yes)
+  :Generate activity diagram;
+else (no)
+  :Handle error;
+endif
+stop
+@enduml

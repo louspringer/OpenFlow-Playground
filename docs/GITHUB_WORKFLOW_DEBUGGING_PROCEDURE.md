@@ -466,8 +466,8 @@ git commit -m "fix: Fix workflow issue - [Specific description]"
 This debugging procedure provides a systematic approach to resolving GitHub Actions workflow issues. By following these steps, you can:
 
 1. **Quickly identify** what's causing workflow failures
-2. **Efficiently fix** common issues like deprecated actions and CLI errors
-3. **Prevent future failures** by understanding common patterns
-4. **Maintain reliable CI/CD** pipelines for the project
+1. **Efficiently fix** common issues like deprecated actions and CLI errors
+1. **Prevent future failures** by understanding common patterns
+1. **Maintain reliable CI/CD** pipelines for the project
 
 Remember: **Always check the logs first, don't guess!** The actual error messages will tell you exactly what's wrong and how to fix it.

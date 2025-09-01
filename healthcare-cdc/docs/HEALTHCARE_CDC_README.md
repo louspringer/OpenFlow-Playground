@@ -93,8 +93,8 @@ source sql/healthcare-cdc-schema.sql
 ### 3. Configure Openflow Pipeline
 
 1. **Access Openflow Console**
-2. **Create New Pipeline**: `HealthcareCDC`
-3. **Add Processors**:
+1. **Create New Pipeline**: `HealthcareCDC`
+1. **Add Processors**:
    - Kinesis Consumer
    - JSON Parser
    - Flat JSON
@@ -245,19 +245,20 @@ ORDER BY start_time DESC;
    aws dynamodb describe-table --table-name InsuranceClaims
    ```
 
-2. **Kinesis Stream Errors**
+1. **Kinesis Stream Errors**
 
    ```bash
    # Verify stream exists
    aws kinesis describe-stream --stream-name InsuranceClaimsStream
    ```
 
-3. **Openflow Pipeline Issues**
+1. **Openflow Pipeline Issues**
+
    - Check processor status in Openflow console
    - Verify Snowflake connection
    - Review error logs
 
-4. **Snowflake Connection Problems**
+1. **Snowflake Connection Problems**
 
    ```sql
    -- Test connection
@@ -288,6 +289,6 @@ Any unauthorized reproduction, distribution, modification, or use is strictly pr
 For issues and questions:
 
 1. Check the troubleshooting section above
-2. Review CloudWatch logs and metrics
-3. Consult Snowflake documentation
-4. Open an issue in this repository
+1. Review CloudWatch logs and metrics
+1. Consult Snowflake documentation
+1. Open an issue in this repository

@@ -1,0 +1,161 @@
+flowchart TD
+    %% Workflow Analysis Generated from Python Code
+
+    Start([Module Entry Point])
+    Process_VocabularyAligner[Process class: VocabularyAligner]
+    __init___entry[Enter __init__]
+    __init___try_15[try block]
+    __init___if_17{if self.ontology_bridge and components in extra...}
+    __init___else_19{else}
+    __init___except_23[except Exception as e]
+    __init___try_40[try block]
+    __init___if_49{if not analysis(valid)}
+    __init___for_51[for mismatch in collection]
+    __init___for_55[for transform in collection]
+    __init___if_56{if transform(type) == list_to_dict}
+    __init___if_66{if components in extracted_model and isinstance(}
+    __init___if_77{if not validation(valid)}
+    __init___for_79[for issue in collection]
+    __init___else_81{else}
+    __init___except_88[except Exception as e]
+    __init___if_107{if components in extracted_model}
+    __init___if_111{if isinstance(components, list)}
+    __init___for_114[for component in collection]
+    __init___if_115{if isinstance(component, dict) and name in comp...}
+    __init___else_117{else}
+    __init___elif_126{elif sinstance(components, dict)}
+    __init___exit[Exit __init__]
+    align_vocabulary_entry[Enter align_vocabulary]
+    align_vocabulary_try_10[try block]
+    align_vocabulary_if_12{if self.ontology_bridge and components in extra...}
+    align_vocabulary_else_14{else}
+    align_vocabulary_except_18[except Exception as e]
+    align_vocabulary_try_35[try block]
+    align_vocabulary_if_44{if not analysis(valid)}
+    align_vocabulary_for_46[for mismatch in collection]
+    align_vocabulary_for_50[for transform in collection]
+    align_vocabulary_if_51{if transform(type) == list_to_dict}
+    align_vocabulary_if_61{if components in extracted_model and isinstance(}
+    align_vocabulary_if_72{if not validation(valid)}
+    align_vocabulary_for_74[for issue in collection]
+    align_vocabulary_else_76{else}
+    align_vocabulary_except_83[except Exception as e]
+    align_vocabulary_if_102{if components in extracted_model}
+    align_vocabulary_if_106{if isinstance(components, list)}
+    align_vocabulary_for_109[for component in collection]
+    align_vocabulary_if_110{if isinstance(component, dict) and name in comp...}
+    align_vocabulary_else_112{else}
+    align_vocabulary_elif_121{elif sinstance(components, dict)}
+    align_vocabulary_exit[Exit align_vocabulary]
+    _align_vocabulary_ontologically_entry[Enter _align_vocabulary_ontologically]
+    _align_vocabulary_ontologically_try_12[try block]
+    _align_vocabulary_ontologically_if_21{if not analysis(valid)}
+    _align_vocabulary_ontologically_for_23[for mismatch in collection]
+    _align_vocabulary_ontologically_for_27[for transform in collection]
+    _align_vocabulary_ontologically_if_28{if transform(type) == list_to_dict}
+    _align_vocabulary_ontologically_if_38{if components in extracted_model and isinstance(}
+    _align_vocabulary_ontologically_if_49{if not validation(valid)}
+    _align_vocabulary_ontologically_for_51[for issue in collection]
+    _align_vocabulary_ontologically_else_53{else}
+    _align_vocabulary_ontologically_except_60[except Exception as e]
+    _align_vocabulary_ontologically_if_79{if components in extracted_model}
+    _align_vocabulary_ontologically_if_83{if isinstance(components, list)}
+    _align_vocabulary_ontologically_for_86[for component in collection]
+    _align_vocabulary_ontologically_if_87{if isinstance(component, dict) and name in comp...}
+    _align_vocabulary_ontologically_else_89{else}
+    _align_vocabulary_ontologically_elif_98{elif sinstance(components, dict)}
+    _align_vocabulary_ontologically_exit[Exit _align_vocabulary_ontologically]
+    _align_vocabulary_manually_entry[Enter _align_vocabulary_manually]
+    _align_vocabulary_manually_if_15{if components in extracted_model}
+    _align_vocabulary_manually_if_19{if isinstance(components, list)}
+    _align_vocabulary_manually_for_22[for component in collection]
+    _align_vocabulary_manually_if_23{if isinstance(component, dict) and name in comp...}
+    _align_vocabulary_manually_else_25{else}
+    _align_vocabulary_manually_elif_34{elif sinstance(components, dict)}
+    _align_vocabulary_manually_exit[Exit _align_vocabulary_manually]
+    Execute___init__[Execute function: __init__]
+    Execute_align_vocabulary[Execute function: align_vocabulary]
+    Execute__align_vocabulary_ontologically[Execute function: _align_vocabulary_ontologically]
+    Execute__align_vocabulary_manually[Execute function: _align_vocabulary_manually]
+    End([Module Complete])
+
+    Start -->|Initialize| Process_VocabularyAligner
+    Process_VocabularyAligner -->|Execute Methods| __init___entry
+    Start -->|Call Function| Execute___init__
+    Start -->|Call Function| Execute_align_vocabulary
+    Start -->|Call Function| Execute__align_vocabulary_ontologically
+    Start -->|Call Function| Execute__align_vocabulary_manually
+    __init___entry -->|Complete| End
+    __init___try_15 -->|Complete| End
+    __init___if_17 -->|Complete| End
+    __init___else_19 -->|Complete| End
+    __init___except_23 -->|Complete| End
+    __init___try_40 -->|Complete| End
+    __init___if_49 -->|Complete| End
+    __init___for_51 -->|Complete| End
+    __init___for_55 -->|Complete| End
+    __init___if_56 -->|Complete| End
+    __init___if_66 -->|Complete| End
+    __init___if_77 -->|Complete| End
+    __init___for_79 -->|Complete| End
+    __init___else_81 -->|Complete| End
+    __init___except_88 -->|Complete| End
+    __init___if_107 -->|Complete| End
+    __init___if_111 -->|Complete| End
+    __init___for_114 -->|Complete| End
+    __init___if_115 -->|Complete| End
+    __init___else_117 -->|Complete| End
+    __init___elif_126 -->|Complete| End
+    __init___exit -->|Complete| End
+    align_vocabulary_entry -->|Complete| End
+    align_vocabulary_try_10 -->|Complete| End
+    align_vocabulary_if_12 -->|Complete| End
+    align_vocabulary_else_14 -->|Complete| End
+    align_vocabulary_except_18 -->|Complete| End
+    align_vocabulary_try_35 -->|Complete| End
+    align_vocabulary_if_44 -->|Complete| End
+    align_vocabulary_for_46 -->|Complete| End
+    align_vocabulary_for_50 -->|Complete| End
+    align_vocabulary_if_51 -->|Complete| End
+    align_vocabulary_if_61 -->|Complete| End
+    align_vocabulary_if_72 -->|Complete| End
+    align_vocabulary_for_74 -->|Complete| End
+    align_vocabulary_else_76 -->|Complete| End
+    align_vocabulary_except_83 -->|Complete| End
+    align_vocabulary_if_102 -->|Complete| End
+    align_vocabulary_if_106 -->|Complete| End
+    align_vocabulary_for_109 -->|Complete| End
+    align_vocabulary_if_110 -->|Complete| End
+    align_vocabulary_else_112 -->|Complete| End
+    align_vocabulary_elif_121 -->|Complete| End
+    align_vocabulary_exit -->|Complete| End
+    _align_vocabulary_ontologically_entry -->|Complete| End
+    _align_vocabulary_ontologically_try_12 -->|Complete| End
+    _align_vocabulary_ontologically_if_21 -->|Complete| End
+    _align_vocabulary_ontologically_for_23 -->|Complete| End
+    _align_vocabulary_ontologically_for_27 -->|Complete| End
+    _align_vocabulary_ontologically_if_28 -->|Complete| End
+    _align_vocabulary_ontologically_if_38 -->|Complete| End
+    _align_vocabulary_ontologically_if_49 -->|Complete| End
+    _align_vocabulary_ontologically_for_51 -->|Complete| End
+    _align_vocabulary_ontologically_else_53 -->|Complete| End
+    _align_vocabulary_ontologically_except_60 -->|Complete| End
+    _align_vocabulary_ontologically_if_79 -->|Complete| End
+    _align_vocabulary_ontologically_if_83 -->|Complete| End
+    _align_vocabulary_ontologically_for_86 -->|Complete| End
+    _align_vocabulary_ontologically_if_87 -->|Complete| End
+    _align_vocabulary_ontologically_else_89 -->|Complete| End
+    _align_vocabulary_ontologically_elif_98 -->|Complete| End
+    _align_vocabulary_ontologically_exit -->|Complete| End
+    _align_vocabulary_manually_entry -->|Complete| End
+    _align_vocabulary_manually_if_15 -->|Complete| End
+    _align_vocabulary_manually_if_19 -->|Complete| End
+    _align_vocabulary_manually_for_22 -->|Complete| End
+    _align_vocabulary_manually_if_23 -->|Complete| End
+    _align_vocabulary_manually_else_25 -->|Complete| End
+    _align_vocabulary_manually_elif_34 -->|Complete| End
+    _align_vocabulary_manually_exit -->|Complete| End
+    Execute___init__ -->|Complete| End
+    Execute_align_vocabulary -->|Complete| End
+    Execute__align_vocabulary_ontologically -->|Complete| End
+    Execute__align_vocabulary_manually -->|Complete| End

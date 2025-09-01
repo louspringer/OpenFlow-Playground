@@ -25,9 +25,9 @@ def main():
 
     # Show generated code
     for filename, content in generated_files.items():
-        print(f"\n{'='*50}")
+        print(f"\n{'=' * 50}")
         print(f"📄 {filename}")
-        print(f"{'='*50}")
+        print(f"{'=' * 50}")
         print(content[:1000] + "..." if len(content) > 1000 else content)
 
 

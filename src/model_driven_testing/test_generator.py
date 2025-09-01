@@ -15,9 +15,7 @@ from pathlib import Path
 from typing import Any, Optional, Protocol
 
 # Safety guard: prevent automatic test generation in CI/CD or testing environments
-AUTO_GENERATION_DISABLED = (
-    os.getenv("DISABLE_TEST_GENERATION", "false").lower() == "true"
-)
+AUTO_GENERATION_DISABLED = os.getenv("DISABLE_TEST_GENERATION", "false").lower() == "true"
 
 
 class ArtifactModel(Protocol):
@@ -170,14 +168,8 @@ class ClassModelExtractor(ArtifactModelExtractor):
                             {
                                 "name": item.name,
                                 "is_public": not item.name.startswith("_"),
-                                "args": [
-                                    arg.arg for arg in item.args.args[1:]
-                                ],  # Skip self
-                                "decorators": [
-                                    d.id
-                                    for d in item.decorator_list
-                                    if isinstance(d, ast.Name)
-                                ],
+                                "args": [arg.arg for arg in item.args.args[1:]],  # Skip self
+                                "decorators": [d.id for d in item.decorator_list if isinstance(d, ast.Name)],
                             }
                         )
 
@@ -196,11 +188,7 @@ class ClassModelExtractor(ArtifactModelExtractor):
         for item in init_method.body:
             if isinstance(item, ast.Assign):
                 for target in item.targets:
-                    if (
-                        isinstance(target, ast.Attribute)
-                        and isinstance(target.value, ast.Name)
-                        and target.value.id == "self"
-                    ):
+                    if isinstance(target, ast.Attribute) and isinstance(target.value, ast.Name) and target.value.id == "self":
                         attributes.append(target.attr)
                     elif isinstance(target, ast.Name):
                         attributes.append(target.id)
@@ -214,11 +202,7 @@ class ClassModelExtractor(ArtifactModelExtractor):
         for item in class_node.body:
             if isinstance(item, ast.Assign):
                 for target in item.targets:
-                    if (
-                        isinstance(target, ast.Attribute)
-                        and isinstance(target.value, ast.Name)
-                        and target.value.id == "self"
-                    ):
+                    if isinstance(target, ast.Attribute) and isinstance(target.value, ast.Name) and target.value.id == "self":
                         # Look for class instantiations
                         if isinstance(item.value, ast.Call):
                             if isinstance(item.value.func, ast.Name):
@@ -259,9 +243,7 @@ class FunctionModelExtractor(ArtifactModelExtractor):
                 function_model.parameters = [arg.arg for arg in node.args.args]
 
                 # Extract decorators
-                function_model.decorators = [
-                    d.id for d in node.decorator_list if isinstance(d, ast.Name)
-                ]
+                function_model.decorators = [d.id for d in node.decorator_list if isinstance(d, ast.Name)]
 
                 # Extract return type annotation
                 if node.returns:
@@ -420,9 +402,7 @@ class ClassTestModelGenerator(TestModelGenerator):
         """Generate test data requirements"""
         return {
             "required_attributes": self.artifact_model.attributes,
-            "required_methods": [
-                m["name"] for m in self.artifact_model.methods if m["is_public"]
-            ],
+            "required_methods": [m["name"] for m in self.artifact_model.methods if m["is_public"]],
             "dependencies": self.artifact_model.dependencies,
             "inheritance": self.artifact_model.inheritance,
             "file_path": str(self.artifact_model.file_path),
@@ -658,9 +638,7 @@ class PytestCodeGenerator(TestCodeGenerator):
             file_path = artifact_model.file_path
             if file_path.suffix == ".py":
                 # Convert src/ghostbusters/ghostbusters_orchestrator.py to src.ghostbusters.ghostbusters_orchestrator
-                return (
-                    str(file_path.with_suffix("")).replace("/", ".").replace("\\", ".")
-                )
+                return str(file_path.with_suffix("")).replace("/", ".").replace("\\", ".")
         # Fallback for backward compatibility
         return "src.ghostbusters.ghostbusters_orchestrator"
 
@@ -682,7 +660,7 @@ class PytestCodeGenerator(TestCodeGenerator):
             return [
                 "    @pytest.fixture",
                 f"    def {fixture['name']}(self):",
-                f"        \"\"\"{fixture['description']}\"\"\"",
+                f'        """{fixture["description"]}"""',
                 f"        return {self._get_artifact_name()}()",
             ]
         return []
@@ -691,7 +669,7 @@ class PytestCodeGenerator(TestCodeGenerator):
         """Generate a test method"""
         lines = [
             f"    def {method['name']}(self, {self._get_fixture_params(method)}):",
-            f"        \"\"\"{method['description']}\"\"\"",
+            f'        """{method["description"]}"""',
         ]
 
         # Use artifact_type from __init__
@@ -794,15 +772,11 @@ class PythonUnitTestGenerator:
         # Register code generators
         self.code_generators = {"pytest": PytestCodeGenerator}
 
-    def generate_tests_for_file(
-        self, source_file: Path, artifact_types: list[str] = None
-    ) -> list[Path]:
+    def generate_tests_for_file(self, source_file: Path, artifact_types: list[str] = None) -> list[Path]:
         """Generate tests for all artifacts in a source file"""
         # Safety check: prevent automatic generation in CI/CD or testing environments
         if AUTO_GENERATION_DISABLED:
-            print(
-                "Test generation disabled by DISABLE_TEST_GENERATION environment variable"
-            )
+            print("Test generation disabled by DISABLE_TEST_GENERATION environment variable")
             return []
 
         if artifact_types is None:
@@ -822,9 +796,7 @@ class PythonUnitTestGenerator:
                         if test_file:
                             generated_files.append(test_file)
                 except Exception as e:
-                    print(
-                        f"Failed to extract {artifact_type} models from {source_file}: {e}"
-                    )
+                    print(f"Failed to extract {artifact_type} models from {source_file}: {e}")
 
         return generated_files
 
@@ -852,10 +824,7 @@ class PythonUnitTestGenerator:
                 test_code = code_generator.generate_test_code()
 
                 # Write test file
-                test_file = (
-                    self.test_output_dir
-                    / f"test_{model.name.lower()}_{model.artifact_type}_generated.py"
-                )
+                test_file = self.test_output_dir / f"test_{model.name.lower()}_{model.artifact_type}_generated.py"
                 test_file.write_text(test_code)
 
                 return test_file
@@ -868,9 +837,7 @@ class PythonUnitTestGenerator:
         """Generate tests for all artifacts defined in project model"""
         # Safety check: prevent automatic generation in CI/CD or testing environments
         if AUTO_GENERATION_DISABLED:
-            print(
-                "Test generation disabled by DISABLE_TEST_GENERATION environment variable"
-            )
+            print("Test generation disabled by DISABLE_TEST_GENERATION environment variable")
             return []
 
         generated_files = []
@@ -890,14 +857,10 @@ class PythonUnitTestGenerator:
                         for source_file in source_files:
                             if source_file.is_file() and source_file.suffix == ".py":
                                 try:
-                                    test_files = self.generate_tests_for_file(
-                                        source_file
-                                    )
+                                    test_files = self.generate_tests_for_file(source_file)
                                     generated_files.extend(test_files)
                                 except Exception as e:
-                                    print(
-                                        f"Failed to generate tests for {source_file}: {e}"
-                                    )
+                                    print(f"Failed to generate tests for {source_file}: {e}")
 
         return generated_files
 

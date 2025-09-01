@@ -296,9 +296,7 @@ class ArchitectureExpert(BaseExpert):
             )
 
         # Check for __init__.py files
-        py_dirs = [
-            d for d in project_path.rglob("*") if d.is_dir() and any(d.glob("*.py"))
-        ]
+        py_dirs = [d for d in project_path.rglob("*") if d.is_dir() and any(d.glob("*.py"))]
         for py_dir in py_dirs:
             if not (py_dir / "__init__.py").exists():
                 delusions.append(

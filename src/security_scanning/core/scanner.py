@@ -81,9 +81,7 @@ class SecurityScanner:
 
         try:
             # 1. Identify scannable files
-            scannable_files = self._identify_scannable_files(
-                project_path, exclude_patterns, include_patterns
-            )
+            scannable_files = self._identify_scannable_files(project_path, exclude_patterns, include_patterns)
 
             if not scannable_files:
                 logger.warning("No scannable files found")
@@ -92,13 +90,9 @@ class SecurityScanner:
             logger.info(f"Found {len(scannable_files)} scannable files")
 
             # 2. Initialize worker pool
-            with WorkerPool(
-                max_workers=max_workers, enable_monitoring=True
-            ) as worker_pool:
+            with WorkerPool(max_workers=max_workers, enable_monitoring=True) as worker_pool:
                 # 3. Process files using worker pool
-                worker_results = worker_pool.process_files(
-                    scannable_files, self._scan_single_file, show_progress=show_progress
-                )
+                worker_results = worker_pool.process_files(scannable_files, self._scan_single_file, show_progress=show_progress)
 
                 # 4. Collect and process results
                 all_findings = self._process_worker_results(worker_results)
@@ -107,20 +101,14 @@ class SecurityScanner:
                 performance_summary = worker_pool.get_performance_summary()
 
                 # 6. Generate comprehensive report
-                report = self._generate_scan_report(
-                    all_findings, performance_summary, project_path
-                )
+                report = self._generate_scan_report(all_findings, performance_summary, project_path)
 
                 self.scan_end_time = time.time()
                 self.files_scanned = len(scannable_files)
                 self.findings_count = len(all_findings)
 
-                logger.info(
-                    f"Security scan completed in {self.scan_end_time - self.scan_start_time:.2f}s"
-                )
-                logger.info(
-                    f"Scanned {self.files_scanned} files, found {self.findings_count} issues"
-                )
+                logger.info(f"Security scan completed in {self.scan_end_time - self.scan_start_time:.2f}s")
+                logger.info(f"Scanned {self.files_scanned} files, found {self.findings_count} issues")
 
                 return report
 
@@ -166,16 +154,12 @@ class SecurityScanner:
 
         # Use the same scanning logic as project scan
         with WorkerPool(max_workers=max_workers, enable_monitoring=True) as worker_pool:
-            worker_results = worker_pool.process_files(
-                valid_files, self._scan_single_file, show_progress=show_progress
-            )
+            worker_results = worker_pool.process_files(valid_files, self._scan_single_file, show_progress=show_progress)
 
             all_findings = self._process_worker_results(worker_results)
             performance_summary = worker_pool.get_performance_summary()
 
-            return self._generate_scan_report(
-                all_findings, performance_summary, Path.cwd()
-            )
+            return self._generate_scan_report(all_findings, performance_summary, Path.cwd())
 
     def _identify_scannable_files(
         self,
@@ -195,9 +179,7 @@ class SecurityScanner:
             List of scannable file paths
         """
         # Use file utilities to identify scannable files
-        scannable_files = self.file_utils.find_scannable_files(
-            project_path, exclude_patterns, include_patterns
-        )
+        scannable_files = self.file_utils.find_scannable_files(project_path, exclude_patterns, include_patterns)
 
         # Sort files for consistent processing order
         scannable_files.sort()
@@ -236,9 +218,7 @@ class SecurityScanner:
                 }
             ]
 
-    def _process_worker_results(
-        self, worker_results: list[Any]
-    ) -> list[dict[str, Any]]:
+    def _process_worker_results(self, worker_results: list[Any]) -> list[dict[str, Any]]:
         """
         Process results from worker threads
 
@@ -264,9 +244,7 @@ class SecurityScanner:
                         # Direct result
                         all_findings.append(result)
                 else:
-                    logger.warning(
-                        f"Worker failed for {result.get('file_path', 'unknown')}: {result.get('error', 'unknown error')}"
-                    )
+                    logger.warning(f"Worker failed for {result.get('file_path', 'unknown')}: {result.get('error', 'unknown error')}")
             else:
                 # Direct result
                 all_findings.append(result)
@@ -275,9 +253,7 @@ class SecurityScanner:
         unique_findings = self._deduplicate_findings(all_findings)
         return self._sort_findings_by_severity(unique_findings)
 
-    def _deduplicate_findings(
-        self, findings: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _deduplicate_findings(self, findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """
         Remove duplicate findings based on content and location
 
@@ -303,9 +279,7 @@ class SecurityScanner:
 
         return unique_findings
 
-    def _sort_findings_by_severity(
-        self, findings: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _sort_findings_by_severity(self, findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """
         Sort findings by severity level
 
@@ -345,9 +319,7 @@ class SecurityScanner:
             findings=findings,
             performance_metrics=performance_summary,
             project_path=str(project_path),
-            scan_duration=(
-                self.scan_end_time - self.scan_start_time if self.scan_end_time else 0
-            ),
+            scan_duration=(self.scan_end_time - self.scan_start_time if self.scan_end_time else 0),
         )
 
     def _create_empty_report(self) -> dict[str, Any]:
@@ -371,11 +343,7 @@ class SecurityScanner:
             "summary": {
                 "files_scanned": self.files_scanned,
                 "findings_count": self.findings_count,
-                "scan_duration": (
-                    self.scan_end_time - self.scan_start_time
-                    if self.scan_end_time
-                    else 0
-                ),
+                "scan_duration": (self.scan_end_time - self.scan_start_time if self.scan_end_time else 0),
                 "status": "failed",
                 "error": error_message,
             },
@@ -389,20 +357,14 @@ class SecurityScanner:
         if not self.scan_start_time:
             return {"status": "no_scan_performed"}
 
-        duration = (
-            self.scan_end_time - self.scan_start_time if self.scan_end_time else 0
-        )
+        duration = self.scan_end_time - self.scan_start_time if self.scan_end_time else 0
 
         return {
             "files_scanned": self.files_scanned,
             "findings_count": self.findings_count,
             "scan_duration": duration,
             "files_per_second": self.files_scanned / duration if duration > 0 else 0,
-            "findings_per_file": (
-                self.findings_count / self.files_scanned
-                if self.files_scanned > 0
-                else 0
-            ),
+            "findings_per_file": (self.findings_count / self.files_scanned if self.files_scanned > 0 else 0),
         }
 
     def __enter__(self):

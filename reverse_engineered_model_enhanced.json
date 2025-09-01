@@ -1,7 +1,7 @@
 {
   "system_name": "simple_calculator",
   "description": "A simple calculator system for demonstrating the model-driven workflow",
-  "purpose": "Demonstrate JSON model \u2192 Python generator \u2192 auto-format \u2192 test \u2192 fix model \u2192 regenerate code workflow",
+  "purpose": "Demonstrate JSON model → Python generator → auto-format → test → fix model → regenerate code workflow",
   "graph_api_level": 1,
   "projection_system": "test_system",
   "components": {

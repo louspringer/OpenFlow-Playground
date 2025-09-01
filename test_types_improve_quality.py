@@ -182,9 +182,7 @@ def main():
     # Calculate quality improvement
     print(f"\n📈 Quality Improvement:")
     if untyped_mypy_errors > 0:
-        error_reduction = (
-            (untyped_mypy_errors - typed_mypy_errors) / untyped_mypy_errors
-        ) * 100
+        error_reduction = ((untyped_mypy_errors - typed_mypy_errors) / untyped_mypy_errors) * 100
         print(f"Error reduction: {error_reduction:.1f}%")
     else:
         print("No errors to reduce")
@@ -204,9 +202,7 @@ def main():
     print(f"\n👨‍💻 Developer Experience:")
     print(f"Untyped code: {len(untyped_mypy_errors)} potential runtime errors")
     print(f"Typed code: {len(typed_mypy_errors)} potential runtime errors")
-    print(
-        f"Debugging time saved: {len(untyped_mypy_errors) - len(typed_mypy_errors)} errors caught early"
-    )
+    print(f"Debugging time saved: {len(untyped_mypy_errors) - len(typed_mypy_errors)} errors caught early")
 
 
 if __name__ == "__main__":
@@ -395,9 +391,7 @@ def main():
     # Calculate quality improvement
     print(f"\n📈 Quality Improvement:")
     if untyped_mypy_errors > 0:
-        error_reduction = (
-            (untyped_mypy_errors - typed_mypy_errors) / untyped_mypy_errors
-        ) * 100
+        error_reduction = ((untyped_mypy_errors - typed_mypy_errors) / untyped_mypy_errors) * 100
         print(f"Error reduction: {error_reduction:.1f}%")
     else:
         print("No errors to reduce")
@@ -417,9 +411,7 @@ def main():
     print(f"\n👨‍💻 Developer Experience:")
     print(f"Untyped code: {len(untyped_mypy_errors)} potential runtime errors")
     print(f"Typed code: {len(typed_mypy_errors)} potential runtime errors")
-    print(
-        f"Debugging time saved: {len(untyped_mypy_errors) - len(typed_mypy_errors)} errors caught early"
-    )
+    print(f"Debugging time saved: {len(untyped_mypy_errors) - len(typed_mypy_errors)} errors caught early")
 
 
 if __name__ == "__main__":

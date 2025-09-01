@@ -1,116 +1,113 @@
+---
 # Quality System Configuration
 # Environment-specific quality thresholds and rules
-
 environments:
   development:
-    description: "Development environment - rapid iteration with lenient quality gates"
+    description: Development environment - rapid iteration with lenient gates
     quality_threshold: 50.0
     fail_on_quality: false
-    gate_severity: "medium"
+    gate_severity: medium
     auto_fix_enabled: true
-    quality_reporting: "basic"
-    allowed_quality_statuses: ["excellent", "good", "acceptable", "needs_improvement", "critical"]
-    
+    quality_reporting: basic
+    allowed_quality_statuses:
+      - excellent
+      - good
+      - acceptable
+      - needs_improvement
+      - critical
   staging:
-    description: "Staging environment - validation with moderate quality gates"
+    description: Staging environment - validation with moderate quality gates
     quality_threshold: 70.0
     fail_on_quality: true
-    gate_severity: "high"
+    gate_severity: high
     auto_fix_enabled: false
-    quality_reporting: "detailed"
-    allowed_quality_statuses: ["excellent", "good", "acceptable"]
-    
+    quality_reporting: detailed
+    allowed_quality_statuses: [excellent, good, acceptable]
   production:
-    description: "Production environment - strict quality assurance"
+    description: Production environment - strict quality assurance
     quality_threshold: 85.0
     fail_on_quality: true
-    gate_severity: "critical"
+    gate_severity: critical
     auto_fix_enabled: false
-    quality_reporting: "comprehensive"
-    allowed_quality_statuses: ["excellent", "good"]
-
+    quality_reporting: comprehensive
+    allowed_quality_statuses: [excellent, good]
 # Quality Gate Definitions
 quality_gates:
   overall_quality:
-    description: "Overall project quality score"
+    description: Overall project quality score
     environments:
       development:
         threshold: 50.0
-        severity: "medium"
+        severity: medium
         blocking: false
       staging:
         threshold: 70.0
-        severity: "high"
+        severity: high
         blocking: true
       production:
         threshold: 85.0
-        severity: "critical"
+        severity: critical
         blocking: true
-        
   security_quality:
-    description: "Security analysis quality score"
+    description: Security analysis quality score
     environments:
       development:
         threshold: 60.0
-        severity: "medium"
+        severity: medium
         blocking: false
       staging:
         threshold: 80.0
-        severity: "high"
+        severity: high
         blocking: true
       production:
         threshold: 90.0
-        severity: "critical"
+        severity: critical
         blocking: true
-        
   code_quality:
-    description: "Code quality and style score"
+    description: Code quality and style score
     environments:
       development:
         threshold: 70.0
-        severity: "medium"
+        severity: medium
         blocking: false
       staging:
         threshold: 85.0
-        severity: "high"
+        severity: high
         blocking: true
       production:
         threshold: 90.0
-        severity: "critical"
+        severity: critical
         blocking: true
-        
   test_coverage:
-    description: "Test coverage percentage"
+    description: Test coverage percentage
     environments:
       development:
         threshold: 60.0
-        severity: "medium"
+        severity: medium
         blocking: false
       staging:
         threshold: 80.0
-        severity: "high"
+        severity: high
         blocking: true
       production:
         threshold: 85.0
-        severity: "critical"
+        severity: critical
         blocking: true
-        
   operational_quality:
-    description: "DevOps and operational quality score"
+    description: DevOps and operational quality score
     environments:
       development:
         threshold: 50.0
-        severity: "medium"
+        severity: medium
         blocking: false
       staging:
         threshold: 70.0
-        severity: "high"
+        severity: high
         blocking: true
       production:
         threshold: 80.0
-        severity: "critical"
+        severity: critical
         blocking: true
-
 # Multi-Agent Configuration
 multi_agent:
   enabled: true
@@ -123,40 +120,33 @@ multi_agent:
     - build_expert
     - model_expert
     - mcp_expert
-    
-  analysis_mode: "comprehensive"  # quick, standard, comprehensive
+  analysis_mode: comprehensive  # quick, standard, comprehensive
   cache_results: true
   cache_ttl: 3600  # seconds
-  
 # CI/CD Integration
 ci_cd:
   github_actions:
     enabled: true
-    workflow_file: ".github/workflows/quality-gates.yml"
-    
+    workflow_file: .github/workflows/quality-gates.yml
   gitlab_ci:
     enabled: true
-    config_file: ".gitlab-ci.yml"
-    
+    config_file: .gitlab-ci.yml
   jenkins:
     enabled: false
-    pipeline_file: "Jenkinsfile"
-    
+    pipeline_file: Jenkinsfile
   azure_devops:
     enabled: false
-    pipeline_file: "azure-pipelines.yml"
-
+    pipeline_file: azure-pipelines.yml
 # Quality Reporting
 reporting:
-  formats: ["json", "html", "markdown"]
-  output_directory: "quality-reports"
+  formats: [json, html, markdown]
+  output_directory: quality-reports
   include_agent_details: true
   include_recommendations: true
   include_trends: true
-  
 # Quality Metrics Storage
 metrics_storage:
-  directory: ".quality_metrics"
+  directory: .quality_metrics
   retention_days: 90
   compression: true
   backup_enabled: true

@@ -7,7 +7,7 @@
       "name": "LLM Assistant",
       "strengths": [
         "Context understanding",
-        "Pattern recognition", 
+        "Pattern recognition",
         "Judgment calls",
         "Strategic thinking"
       ],
@@ -24,7 +24,7 @@
         "Automated delusion detection",
         "Systematic recovery engines",
         "SyntaxRecoveryEngine",
-        "IndentationFixer", 
+        "IndentationFixer",
         "ImportResolver",
         "TypeAnnotationFixer"
       ],
@@ -81,7 +81,7 @@
   "hypothesis_validation": {
     "diversity_benefits": [
       "Better problem identification through multiple perspectives",
-      "More comprehensive solutions through diverse capabilities", 
+      "More comprehensive solutions through diverse capabilities",
       "Prevention of local optima through different approaches",
       "Escalation mechanism prevents getting stuck in loops"
     ],
@@ -105,4 +105,4 @@
     "measure_effectiveness": "Track success rates of diverse vs single agent approaches",
     "document_patterns": "Create more rules based on diversity hypothesis"
   }
-} 
+}

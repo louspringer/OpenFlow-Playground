@@ -244,9 +244,7 @@ class StepModelBuilder:
         ]
 
         # Define parallel execution groups
-        parallel_groups = [
-            ["do"]  # The "do" step itself can run its sub-operations in parallel
-        ]
+        parallel_groups = [["do"]]  # The "do" step itself can run its sub-operations in parallel
 
         # Define error handling
         error_handling = {
@@ -285,17 +283,13 @@ class StepModelBuilder:
         # Check that all steps in step_order exist in steps
         for step_name in model.step_order:
             if step_name not in model.steps:
-                errors.append(
-                    f"Step '{step_name}' in step_order but not defined in steps"
-                )
+                errors.append(f"Step '{step_name}' in step_order but not defined in steps")
 
         # Check that all steps have dependencies that exist
         for step_name, step in model.steps.items():
             for dep in step.dependencies:
                 if dep not in model.steps:
-                    errors.append(
-                        f"Step '{step_name}' depends on undefined step '{dep}'"
-                    )
+                    errors.append(f"Step '{step_name}' depends on undefined step '{dep}'")
 
         # Check for circular dependencies
         for step_name, step in model.steps.items():
@@ -306,9 +300,7 @@ class StepModelBuilder:
         for group in model.parallel_groups:
             for step_name in group:
                 if step_name not in model.steps:
-                    errors.append(
-                        f"Parallel group contains undefined step '{step_name}'"
-                    )
+                    errors.append(f"Parallel group contains undefined step '{step_name}'")
 
         return errors
 
@@ -386,20 +378,18 @@ def validate_and_show_workflow():
     print("\n🔄 Step Flow:")
     for i, step_name in enumerate(CODE_QUALITY_WORKFLOW.step_order):
         step = CODE_QUALITY_WORKFLOW.steps[step_name]
-        print(f"  {i+1}. {step.name} ({step.step_type.value})")
-        print(
-            f"     Dependencies: {', '.join(step.dependencies) if step.dependencies else 'None'}"
-        )
+        print(f"  {i + 1}. {step.name} ({step.step_type.value})")
+        print(f"     Dependencies: {', '.join(step.dependencies) if step.dependencies else 'None'}")
         print(f"     Parallel: {'Yes' if step.parallel_executable else 'No'}")
         print(f"     Timeout: {step.timeout_seconds}s")
 
     print("\n⚡ Parallel Execution Groups:")
     for i, group in enumerate(CODE_QUALITY_WORKFLOW.parallel_groups):
-        print(f"  Group {i+1}: {', '.join(group)}")
+        print(f"  Group {i + 1}: {', '.join(group)}")
 
     print("\n🎯 Success Criteria:")
     for i, criterion in enumerate(CODE_QUALITY_WORKFLOW.success_criteria):
-        print(f"  {i+1}. {criterion}")
+        print(f"  {i + 1}. {criterion}")
 
     return True
 

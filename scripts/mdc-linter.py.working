@@ -106,9 +106,7 @@ class MDCLinter:
                 return False
 
             # Check for proper markdown structure
-            has_headers: Any = any(
-                line.startswith("#") for line in content_after_frontmatter
-            )
+            has_headers: Any = any(line.startswith("#") for line in content_after_frontmatter)
             if not has_headers:
                 self.log_warning(file_path, "No markdown headers found in content")
 

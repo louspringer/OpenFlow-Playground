@@ -72,9 +72,7 @@ def validate_cache_data(data: dict) -> bool:
 
     # Show API key details
     for i, key in enumerate(api_keys):
-        print(
-            f"   🔑 Key {i+1}: {key.get('title', 'Unknown')} ({key.get('provider', 'unknown')})"
-        )
+        print(f"   🔑 Key {i + 1}: {key.get('title', 'Unknown')} ({key.get('provider', 'unknown')})")
 
     return True
 
@@ -88,9 +86,7 @@ def fix_cache_file(cache_file: str = "api_discovery_cache.json"):
         # Fix total_items if it doesn't match actual count
         actual_count = len(data.get("api_keys", []))
         if data.get("total_items", 0) != actual_count:
-            print(
-                f"🔧 Fixing total_items: {data.get('total_items', 0)} → {actual_count}"
-            )
+            print(f"🔧 Fixing total_items: {data.get('total_items', 0)} → {actual_count}")
             data["total_items"] = actual_count
 
         # Ensure all API keys have required fields

@@ -54,9 +54,7 @@ class Load_Model:
             if "domains" in cursor_rules:
                 self.dimensions["cursor_rules_domains"] = set(cursor_rules["domains"])
             if "emoji_prefixes" in cursor_rules:
-                self.dimensions["cursor_rules_emoji"] = set(
-                    cursor_rules["emoji_prefixes"].keys()
-                )
+                self.dimensions["cursor_rules_emoji"] = set(cursor_rules["emoji_prefixes"].keys())
 
         # Neo4j integration dimensions
         if "neo4j_integration" in self.model_data:
@@ -64,13 +62,9 @@ class Load_Model:
             if "domains" in neo4j:
                 self.dimensions["neo4j_domains"] = set(neo4j["domains"])
             if "requirements" in neo4j:
-                self.dimensions["neo4j_requirements"] = {
-                    str(i) for i in range(len(neo4j["requirements"]))
-                }
+                self.dimensions["neo4j_requirements"] = {str(i) for i in range(len(neo4j["requirements"]))}
             if "completed_tasks" in neo4j:
-                self.dimensions["neo4j_completed_tasks"] = {
-                    str(i) for i in range(len(neo4j["completed_tasks"]))
-                }
+                self.dimensions["neo4j_completed_tasks"] = {str(i) for i in range(len(neo4j["completed_tasks"]))}
 
         # Analyze domain structures
         self._analyze_domain_structures()
@@ -90,17 +84,11 @@ class Load_Model:
 
                 # Patterns and content indicators
                 if "patterns" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_patterns"] = {
-                        str(i) for i in range(len(domain_data["patterns"]))
-                    }
+                    self.dimensions[f"domain_{domain_name}_patterns"] = {str(i) for i in range(len(domain_data["patterns"]))}
                 if "content_indicators" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_indicators"] = {
-                        str(i) for i in range(len(domain_data["content_indicators"]))
-                    }
+                    self.dimensions[f"domain_{domain_name}_indicators"] = {str(i) for i in range(len(domain_data["content_indicators"]))}
                 if "requirements" in domain_data:
-                    self.dimensions[f"domain_{domain_name}_requirements"] = {
-                        str(i) for i in range(len(domain_data["requirements"]))
-                    }
+                    self.dimensions[f"domain_{domain_name}_requirements"] = {str(i) for i in range(len(domain_data["requirements"]))}
 
                 # Package potential if exists
                 if "package_potential" in domain_data:
@@ -170,14 +158,10 @@ RETURN m.model_type as model_type,
             "meta_model_discovery": {
                 "top_level_dimensions": list(self.dimensions.get("top_level", [])),
                 "domain_count": len(self.dimensions.get("domains", [])),
-                "cursor_rules_count": len(
-                    self.dimensions.get("cursor_rules_domains", [])
-                ),
+                "cursor_rules_count": len(self.dimensions.get("cursor_rules_domains", [])),
                 "meta_dimensions": list(self.dimensions.get("meta", [])),
                 "total_dimensions": sum(len(dims) for dims in self.dimensions.values()),
-                "dimension_breakdown": {
-                    name: list(dims) for name, dims in self.dimensions.items()
-                },
+                "dimension_breakdown": {name: list(dims) for name, dims in self.dimensions.items()},
             }
         }
 
@@ -202,9 +186,7 @@ RETURN m.model_type as model_type,
                     for dim in sorted(dims):
                         print(f"    - {dim}")
                 else:
-                    print(
-                        f"    - {', '.join(sorted(list(dims)[:5]))}... and {len(dims) - 5} more"
-                    )
+                    print(f"    - {', '.join(sorted(list(dims)[:5]))}... and {len(dims) - 5} more")
 
         print("\n🚀 NEXT STEPS:")
         print("  1. Run Neo4j meta-query to discover database dimensions")

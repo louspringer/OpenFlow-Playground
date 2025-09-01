@@ -65,9 +65,7 @@ class FunctionalEquivalenceTester:
 
             # Step 2: Generate code from the model
             print("  📤 Step 2: Generating code from model...")
-            generated_code = self.code_generator.generate_code_from_extracted_model(
-                original_model
-            )
+            generated_code = self.code_generator.generate_code_from_extracted_model(original_model)
 
             if not generated_code:
                 return {
@@ -85,9 +83,7 @@ class FunctionalEquivalenceTester:
             try:
                 # Step 4: Perform comprehensive equivalence testing
                 print("  🔍 Step 4: Testing equivalence...")
-                equivalence_result = self.comprehensive_equivalence_test(
-                    file_path, temp_file
-                )
+                equivalence_result = self.comprehensive_equivalence_test(file_path, temp_file)
 
                 # Step 5: Clean up
                 os.unlink(temp_file)
@@ -109,9 +105,7 @@ class FunctionalEquivalenceTester:
         except Exception as e:
             return {"success": False, "error": str(e), "file": file_path}
 
-    def comprehensive_equivalence_test(
-        self, original_file: str, generated_file: str
-    ) -> dict:
+    def comprehensive_equivalence_test(self, original_file: str, generated_file: str) -> dict:
         """Perform comprehensive functional equivalence testing"""
         results = {}
 
@@ -147,12 +141,8 @@ class FunctionalEquivalenceTester:
                 "original_parses": original_ast is not None,
                 "generated_parses": generated_ast is not None,
                 "both_parse": original_ast is not None and generated_ast is not None,
-                "ast_nodes_original": (
-                    self.count_ast_nodes(original_ast) if original_ast else 0
-                ),
-                "ast_nodes_generated": (
-                    self.count_ast_nodes(generated_ast) if generated_ast else 0
-                ),
+                "ast_nodes_original": (self.count_ast_nodes(original_ast) if original_ast else 0),
+                "ast_nodes_generated": (self.count_ast_nodes(generated_ast) if generated_ast else 0),
             }
         except Exception as e:
             return {
@@ -199,18 +189,8 @@ class FunctionalEquivalenceTester:
                 "original_structure": original_structure,
                 "generated_structure": generated_structure,
                 "structure_match": original_structure == generated_structure,
-                "class_count_match": len(original_structure["classes"])
-                == len(generated_structure["classes"]),
-                "method_count_match": (
-                    sum(
-                        len(methods)
-                        for methods in original_structure["classes"].values()
-                    )
-                    == sum(
-                        len(methods)
-                        for methods in generated_structure["classes"].values()
-                    )
-                ),
+                "class_count_match": len(original_structure["classes"]) == len(generated_structure["classes"]),
+                "method_count_match": (sum(len(methods) for methods in original_structure["classes"].values()) == sum(len(methods) for methods in generated_structure["classes"].values())),
             }
         except Exception as e:
             return {
@@ -250,14 +230,8 @@ class FunctionalEquivalenceTester:
             return {
                 "original_length": len(original_content),
                 "generated_length": len(generated_content),
-                "length_ratio": (
-                    len(generated_content) / len(original_content)
-                    if original_content
-                    else 0
-                ),
-                "content_similarity": self.calculate_content_similarity(
-                    original_content, generated_content
-                ),
+                "length_ratio": (len(generated_content) / len(original_content) if original_content else 0),
+                "content_similarity": self.calculate_content_similarity(original_content, generated_content),
                 "has_todo_comments": "TODO" in generated_content,
                 "has_placeholder_comments": "placeholder" in generated_content.lower(),
             }
@@ -315,11 +289,7 @@ class FunctionalEquivalenceTester:
 
             for node in ast.walk(tree):
                 if isinstance(node, ast.ClassDef):
-                    structure["classes"][node.name] = [
-                        n.name
-                        for n in node.body
-                        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-                    ]
+                    structure["classes"][node.name] = [n.name for n in node.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]
                 elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                     structure["functions"].append(node.name)
 
@@ -383,9 +353,7 @@ def main():
                 text=True,
                 check=True,
             )
-            python_files = [
-                f for f in result.stdout.strip().split("\n") if f.endswith(".py") and f
-            ]
+            python_files = [f for f in result.stdout.strip().split("\n") if f.endswith(".py") and f]
 
             if not python_files:
                 print("✅ No Python files to check")
@@ -406,9 +374,7 @@ def main():
 
             sys.exit(0 if all_success else 1)
         except subprocess.CalledProcessError:
-            print(
-                "⚠️  Could not determine staged files, skipping functional equivalence test"
-            )
+            print("⚠️  Could not determine staged files, skipping functional equivalence test")
             sys.exit(0)
     elif len(sys.argv) != 2:
         print("Usage: python scripts/test_functional_equivalence.py <python_file>")
@@ -471,9 +437,7 @@ def main():
 
             # Content results
             content_result = equiv["content"]
-            print(
-                f"   📊 Content similarity: {content_result['content_similarity']:.1%}"
-            )
+            print(f"   📊 Content similarity: {content_result['content_similarity']:.1%}")
             if content_result["has_todo_comments"]:
                 print("   ⚠️  Generated code contains TODO comments")
             if content_result["has_placeholder_comments"]:

@@ -21,9 +21,7 @@ class SelfValidationProtocol:
         self.validation_history = []
         self.failed_validations = []
 
-    def validate_tool_effectiveness(
-        self, tool_path: str, expected_functionality: str
-    ) -> dict[str, Any]:
+    def validate_tool_effectiveness(self, tool_path: str, expected_functionality: str) -> dict[str, Any]:
         """Validate that a tool actually does what it claims"""
 
         print(f"🔍 Validating tool: {tool_path}")
@@ -33,9 +31,7 @@ class SelfValidationProtocol:
         ast_validation = self._test_ast_parsing(tool_path)
 
         # Test 2: Does it have the claimed methods?
-        method_validation = self._test_method_implementation(
-            tool_path, expected_functionality
-        )
+        method_validation = self._test_method_implementation(tool_path, expected_functionality)
 
         # Test 3: Does it actually work on a test case?
         functional_validation = self._test_functional_capability(tool_path)
@@ -90,9 +86,7 @@ class SelfValidationProtocol:
                 "error": str(e),
             }
 
-    def _test_method_implementation(
-        self, tool_path: str, expected_functionality: str
-    ) -> dict[str, Any]:
+    def _test_method_implementation(self, tool_path: str, expected_functionality: str) -> dict[str, Any]:
         """Test if the tool has the claimed methods implemented"""
         try:
             with open(tool_path) as f:
@@ -152,26 +146,16 @@ class SelfValidationProtocol:
                 return {
                     "passed": True,
                     "message": "Tool runs successfully and responds to --help",
-                    "output": (
-                        result.stdout[:200] + "..."
-                        if len(result.stdout) > 200
-                        else result.stdout
-                    ),
+                    "output": (result.stdout[:200] + "..." if len(result.stdout) > 200 else result.stdout),
                 }
             # Try running without arguments
-            result2 = subprocess.run(
-                ["python", tool_path], capture_output=True, text=True, timeout=10
-            )
+            result2 = subprocess.run(["python", tool_path], capture_output=True, text=True, timeout=10)
 
             if result2.returncode == 0:
                 return {
                     "passed": True,
                     "message": "Tool runs successfully without arguments",
-                    "output": (
-                        result2.stdout[:200] + "..."
-                        if len(result2.stdout) > 200
-                        else result2.stdout
-                    ),
+                    "output": (result2.stdout[:200] + "..." if len(result2.stdout) > 200 else result2.stdout),
                 }
             return {
                 "passed": False,
@@ -192,9 +176,7 @@ class SelfValidationProtocol:
                 "error": str(e),
             }
 
-    def validate_against_project_model(
-        self, work_item: str, domain: str
-    ) -> dict[str, Any]:
+    def validate_against_project_model(self, work_item: str, domain: str) -> dict[str, Any]:
         """Validate work against project model requirements"""
 
         print(f"🔍 Validating {work_item} against project model domain: {domain}")
@@ -269,9 +251,7 @@ class SelfValidationProtocol:
         except Exception:
             return False
 
-    def call_ghostbusters_on_work(
-        self, work_description: str, claims: list[str]
-    ) -> dict[str, Any]:
+    def call_ghostbusters_on_work(self, work_description: str, claims: list[str]) -> dict[str, Any]:
         """Use Ghostbusters to validate my own work"""
 
         print(f"👻 Calling Ghostbusters to validate: {work_description}")
@@ -296,9 +276,7 @@ class SelfValidationProtocol:
             }
 
             # Let Ghostbusters investigate
-            investigation = orchestrator.investigate_quality_issues(
-                str(validation_request)
-            )
+            investigation = orchestrator.investigate_quality_issues(str(validation_request))
 
             return {
                 "ghostbusters_available": True,
@@ -467,14 +445,10 @@ def main():
 
     # Example validation
     print("\n1. Validating f-string fixer...")
-    protocol.validate_tool_effectiveness(
-        "scripts/deterministic_fstring_fixer.py", "Fix broken f-strings in Python files"
-    )
+    protocol.validate_tool_effectiveness("scripts/deterministic_fstring_fixer.py", "Fix broken f-strings in Python files")
 
     print("\n2. Validating against project model...")
-    protocol.validate_against_project_model(
-        "scripts/deterministic_fstring_fixer.py", "code_quality"
-    )
+    protocol.validate_against_project_model("scripts/deterministic_fstring_fixer.py", "code_quality")
 
     print("\n3. Running completion checklist...")
     protocol.completion_validation_checklist("scripts/deterministic_fstring_fixer.py")

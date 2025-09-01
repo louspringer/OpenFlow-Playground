@@ -187,11 +187,11 @@ python test_make_only_enforcement.py
 
 ## 🎉 Success Metrics
 
-✅ **Direct tool execution blocked**: `pytest --version` fails with helpful message  
-✅ **Make targets work**: `make test` executes successfully  
-✅ **Model-driven approach enforced**: Project model consulted before execution  
-✅ **Virtual environment isolation**: Tools isolated in `.venv`  
-✅ **Easy restoration**: Can revert all changes with restore script  
+✅ **Direct tool execution blocked**: `pytest --version` fails with helpful message\
+✅ **Make targets work**: `make test` executes successfully\
+✅ **Model-driven approach enforced**: Project model consulted before execution\
+✅ **Virtual environment isolation**: Tools isolated in `.venv`\
+✅ **Easy restoration**: Can revert all changes with restore script\
 ✅ **Comprehensive testing**: All enforcement tests pass
 
 ## 🔍 Technical Details
@@ -223,9 +223,9 @@ def check_parent_process():
 ### Process Flow
 
 1. **User runs tool directly** → Wrapper checks parent process
-2. **Not called by make** → Error message with Make target suggestions
-3. **Called by make** → Original tool executed with full functionality
-4. **Model consultation** → Project model checked before execution
+1. **Not called by make** → Error message with Make target suggestions
+1. **Called by make** → Original tool executed with full functionality
+1. **Model consultation** → Project model checked before execution
 
 ## 🏆 Conclusion
 

@@ -17,9 +17,7 @@ def check_mermaid_blocks():
         content = f.read()
 
     # Find all Mermaid blocks
-    mermaid_blocks = re.findall(
-        r"```mermaid\s*\n(.*?)(?=\n```|\n---|\n##|\n###|\n$|\n\n)", content, re.DOTALL
-    )
+    mermaid_blocks = re.findall(r"```mermaid\s*\n(.*?)(?=\n```|\n---|\n##|\n###|\n$|\n\n)", content, re.DOTALL)
 
     print(f"🔍 Found {len(mermaid_blocks)} Mermaid blocks")
 

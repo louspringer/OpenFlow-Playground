@@ -299,9 +299,9 @@ print('StatusManager imported successfully')
 ### **From Old Implementation**
 
 1. **Replace direct cache operations** with `StatusManager` methods
-2. **Update status management** to use unified interface
-3. **Replace archive operations** with new atomic methods
-4. **Update error handling** to use transaction rollback
+1. **Update status management** to use unified interface
+1. **Replace archive operations** with new atomic methods
+1. **Update error handling** to use transaction rollback
 
 ### **Benefits of Migration**
 
@@ -315,9 +315,9 @@ print('StatusManager imported successfully')
 The new unified architecture provides:
 
 1. **Clean CRUD Interface**: Consistent patterns for all operations
-2. **Atomic Operations**: Transaction safety with rollback capability
-3. **State Consistency**: Proper synchronization between cache and 1Password
-4. **Error Handling**: Comprehensive error handling and validation
-5. **Maintainability**: Clear separation of concerns and modular design
+1. **Atomic Operations**: Transaction safety with rollback capability
+1. **State Consistency**: Proper synchronization between cache and 1Password
+1. **Error Handling**: Comprehensive error handling and validation
+1. **Maintainability**: Clear separation of concerns and modular design
 
 This architecture addresses the core issues of the previous implementation while providing a solid foundation for future enhancements.

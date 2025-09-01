@@ -187,9 +187,7 @@ class FileUtils:
 
             # Check file size limit
             if file_path.stat().st_size > self.max_file_size:
-                logger.debug(
-                    f"Skipping large file: {file_path} ({file_path.stat().st_size} bytes)"
-                )
+                logger.debug(f"Skipping large file: {file_path} ({file_path.stat().st_size} bytes)")
                 return False
 
             # Check if file is excluded
@@ -351,9 +349,7 @@ class FileUtils:
             List of scannable file paths
         """
         if not project_path.exists() or not project_path.is_dir():
-            logger.warning(
-                f"Project path does not exist or is not a directory: {project_path}"
-            )
+            logger.warning(f"Project path does not exist or is not a directory: {project_path}")
             return []
 
         # Add custom patterns to defaults
@@ -376,9 +372,7 @@ class FileUtils:
 
                 if file_path.is_file():
                     # Check if file should be scanned
-                    if self._is_scannable_with_patterns(
-                        file_path, all_exclusions, all_inclusions
-                    ):
+                    if self._is_scannable_with_patterns(file_path, all_exclusions, all_inclusions):
                         scannable_files.append(file_path)
                     else:
                         excluded_files += 1
@@ -389,10 +383,7 @@ class FileUtils:
                         elif excluded_files == 11:
                             logger.debug("... and more files excluded")
 
-            logger.info(
-                f"File discovery complete: {len(scannable_files)} scannable, "
-                f"{excluded_files} excluded, {total_files} total"
-            )
+            logger.info(f"File discovery complete: {len(scannable_files)} scannable, {excluded_files} excluded, {total_files} total")
 
             return scannable_files
 
@@ -400,9 +391,7 @@ class FileUtils:
             logger.error(f"Error discovering files in {project_path}: {e}")
             return []
 
-    def _is_scannable_with_patterns(
-        self, file_path: Path, exclusions: set[str], inclusions: set[str]
-    ) -> bool:
+    def _is_scannable_with_patterns(self, file_path: Path, exclusions: set[str], inclusions: set[str]) -> bool:
         """
         Check if file is scannable using custom patterns
 
@@ -475,9 +464,7 @@ class FileUtils:
 
                     # Count file types
                     extension = file_path.suffix.lower()
-                    stats["file_types"][extension] = (
-                        stats["file_types"].get(extension, 0) + 1
-                    )
+                    stats["file_types"][extension] = stats["file_types"].get(extension, 0) + 1
 
                     # Track largest files
                     stats["largest_files"].append((file_path, file_size))
@@ -494,9 +481,7 @@ class FileUtils:
             stats["largest_files"] = stats["largest_files"][:10]  # Top 10
 
             # Sort file types by count (descending)
-            stats["file_types"] = dict(
-                sorted(stats["file_types"].items(), key=lambda x: x[1], reverse=True)
-            )
+            stats["file_types"] = dict(sorted(stats["file_types"].items(), key=lambda x: x[1], reverse=True))
 
         except Exception as e:
             logger.error(f"Error calculating file statistics: {e}")

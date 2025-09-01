@@ -34,9 +34,7 @@ class EnhancedPythonQualityTester:
     def __init__(self):
         self.project_root = Path.cwd()
         self.model_registry_path = self.project_root / "project_model_registry.json"
-        self.model_driven_projection_path = (
-            self.project_root / "src" / "model_driven_projection"
-        )
+        self.model_driven_projection_path = self.project_root / "src" / "model_driven_projection"
 
     def test_python_file_quality(self, file_path: Path) -> dict[str, Any]:
         """Test a single Python file for quality compliance."""
@@ -171,9 +169,7 @@ class EnhancedPythonQualityTester:
         """Test for type annotations in functions and classes."""
         try:
             tree = ast.parse(content)
-            functions = [
-                node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)
-            ]
+            functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
             [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
 
             annotated_functions = 0
@@ -208,12 +204,8 @@ class EnhancedPythonQualityTester:
         """Test for docstrings in functions and classes."""
         try:
             tree = ast.parse(content)
-            functions = [
-                node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)
-            ]
-            classes = [
-                node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)
-            ]
+            functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+            classes = [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
 
             documented_items = 0
             total_items = len(functions) + len(classes)
@@ -276,11 +268,7 @@ class EnhancedPythonQualityTester:
 
     def _is_model_driven_file(self, file_path: Path) -> bool:
         """Check if file is part of model-driven projection system."""
-        return (
-            "model_driven_projection" in str(file_path)
-            or "projection" in str(file_path)
-            or "granular_nodes" in str(file_path)
-        )
+        return "model_driven_projection" in str(file_path) or "projection" in str(file_path) or "granular_nodes" in str(file_path)
 
     def _test_model_projection(self, file_path: Path) -> bool:
         """Test model projection functionality."""
@@ -307,8 +295,7 @@ class EnhancedPythonQualityTester:
                 [
                     "python",
                     str(
-                        self.model_driven_projection_path
-                        / "test_simple_equivalence.py",
+                        self.model_driven_projection_path / "test_simple_equivalence.py",
                     ),
                 ],
                 capture_output=True,
@@ -461,16 +448,11 @@ class EnhancedPythonQualityTester:
         for category, success_rate in summary["success_rate"].items():
             passed = summary["passed_tests"][category]
             total = summary["total_files"]
-            status = (
-                "✅" if success_rate >= 0.8 else "⚠️" if success_rate >= 0.5 else "❌"
-            )
+            status = "✅" if success_rate >= 0.8 else "⚠️" if success_rate >= 0.5 else "❌"
             logger.info(f"{status} {category}: {passed}/{total} ({success_rate:.1%})")
 
         # Overall success
-        overall_success = all(
-            summary["success_rate"][category] >= 0.8
-            for category in ["ast_parse", "black_format", "flake8_lint"]
-        )
+        overall_success = all(summary["success_rate"][category] >= 0.8 for category in ["ast_parse", "black_format", "flake8_lint"])
 
         if overall_success:
             logger.info("\n🎉 **ALL ENHANCED PYTHON QUALITY TESTS PASSED!**")

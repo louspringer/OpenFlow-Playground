@@ -410,29 +410,13 @@ def evaluate_approach(approach: Approach) -> dict[str, Any]:
     flake8_errors = test_flake8_compliance(approach.code)
 
     # Calculate scores (0-100, higher is better)
-    maintainability_score = max(
-        0, 100 - (lines / 5)
-    )  # Fewer lines = better maintainability
-    complexity_score = max(
-        0, 100 - (ast_nodes / 20)
-    )  # Fewer AST nodes = better complexity
-    quality_score = (
-        100
-        - (len(mypy_errors) * 10)
-        - (len(flake8_errors) * 5)
-        - (0 if black_passed else 20)
-    )
-    simplicity_score = max(
-        0, 100 - (ast_nodes / 10)
-    )  # Fewer AST nodes = better simplicity
+    maintainability_score = max(0, 100 - (lines / 5))  # Fewer lines = better maintainability
+    complexity_score = max(0, 100 - (ast_nodes / 20))  # Fewer AST nodes = better complexity
+    quality_score = 100 - (len(mypy_errors) * 10) - (len(flake8_errors) * 5) - (0 if black_passed else 20)
+    simplicity_score = max(0, 100 - (ast_nodes / 10))  # Fewer AST nodes = better simplicity
 
     # Overall score (weighted average)
-    overall_score = (
-        maintainability_score * 0.3
-        + complexity_score * 0.3
-        + quality_score * 0.2
-        + simplicity_score * 0.2
-    )
+    overall_score = maintainability_score * 0.3 + complexity_score * 0.3 + quality_score * 0.2 + simplicity_score * 0.2
 
     return {
         "name": approach.name,
@@ -513,9 +497,7 @@ def main():
 
     for i, result in enumerate(results, 1):
         print(f"\n{i}. {result['name']}: {result['overall_score']:.1f}/100")
-        print(
-            f"   Lines: {result['lines']}, AST: {result['ast_nodes']}, Chars: {result['characters']}"
-        )
+        print(f"   Lines: {result['lines']}, AST: {result['ast_nodes']}, Chars: {result['characters']}")
         print(f"   Maintainability: {result['maintainability_score']:.1f}/100")
         print(f"   Complexity: {result['complexity_score']:.1f}/100")
         print(f"   Quality: {result['quality_score']:.1f}/100")
@@ -545,12 +527,8 @@ def main():
 
     # The real question
     print(f"\n🎯 THE REAL QUESTION:")
-    print(
-        "  'Are we over-engineering our requirements when simple approaches work better?'"
-    )
-    print(
-        "  'Should we abandon complex model-driven systems for simple, working code?'"
-    )
+    print("  'Are we over-engineering our requirements when simple approaches work better?'")
+    print("  'Should we abandon complex model-driven systems for simple, working code?'")
     print("  'Are our core requirements actually counterproductive?'")
 
 
@@ -968,29 +946,13 @@ def evaluate_approach(approach: Approach) -> dict[str, Any]:
     flake8_errors = test_flake8_compliance(approach.code)
 
     # Calculate scores (0-100, higher is better)
-    maintainability_score = max(
-        0, 100 - (lines / 5)
-    )  # Fewer lines = better maintainability
-    complexity_score = max(
-        0, 100 - (ast_nodes / 20)
-    )  # Fewer AST nodes = better complexity
-    quality_score = (
-        100
-        - (len(mypy_errors) * 10)
-        - (len(flake8_errors) * 5)
-        - (0 if black_passed else 20)
-    )
-    simplicity_score = max(
-        0, 100 - (ast_nodes / 10)
-    )  # Fewer AST nodes = better simplicity
+    maintainability_score = max(0, 100 - (lines / 5))  # Fewer lines = better maintainability
+    complexity_score = max(0, 100 - (ast_nodes / 20))  # Fewer AST nodes = better complexity
+    quality_score = 100 - (len(mypy_errors) * 10) - (len(flake8_errors) * 5) - (0 if black_passed else 20)
+    simplicity_score = max(0, 100 - (ast_nodes / 10))  # Fewer AST nodes = better simplicity
 
     # Overall score (weighted average)
-    overall_score = (
-        maintainability_score * 0.3
-        + complexity_score * 0.3
-        + quality_score * 0.2
-        + simplicity_score * 0.2
-    )
+    overall_score = maintainability_score * 0.3 + complexity_score * 0.3 + quality_score * 0.2 + simplicity_score * 0.2
 
     return {
         "name": approach.name,
@@ -1071,9 +1033,7 @@ def main():
 
     for i, result in enumerate(results, 1):
         print(f"\n{i}. {result['name']}: {result['overall_score']:.1f}/100")
-        print(
-            f"   Lines: {result['lines']}, AST: {result['ast_nodes']}, Chars: {result['characters']}"
-        )
+        print(f"   Lines: {result['lines']}, AST: {result['ast_nodes']}, Chars: {result['characters']}")
         print(f"   Maintainability: {result['maintainability_score']:.1f}/100")
         print(f"   Complexity: {result['complexity_score']:.1f}/100")
         print(f"   Quality: {result['quality_score']:.1f}/100")
@@ -1103,12 +1063,8 @@ def main():
 
     # The real question
     print(f"\n🎯 THE REAL QUESTION:")
-    print(
-        "  'Are we over-engineering our requirements when simple approaches work better?'"
-    )
-    print(
-        "  'Should we abandon complex model-driven systems for simple, working code?'"
-    )
+    print("  'Are we over-engineering our requirements when simple approaches work better?'")
+    print("  'Should we abandon complex model-driven systems for simple, working code?'")
     print("  'Are our core requirements actually counterproductive?'")
 
 

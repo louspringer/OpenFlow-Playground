@@ -4672,7 +4672,7 @@
               },
               {
                 "line": 249,
-                "content": "print(f\"    \ud83c\udfaf New best match: {domain_name} with pattern '{pattern}' (score: {score})\")"
+                "content": "print(f\"    🎯 New best match: {domain_name} with pattern '{pattern}' (score: {score})\")"
               },
               {
                 "line": 251,
@@ -4684,7 +4684,7 @@
               },
               {
                 "line": 266,
-                "content": "print(f\"    \ud83c\udfaf Content indicator match: {domain_name} (score: {score})\")"
+                "content": "print(f\"    🎯 Content indicator match: {domain_name} (score: {score})\")"
               },
               {
                 "line": 279,
@@ -10888,7 +10888,7 @@
               },
               {
                 "line": 84,
-                "content": "## **\ud83d\udd27 Security Fixes Applied:**"
+                "content": "## **🔧 Security Fixes Applied:**"
               },
               {
                 "line": 86,
@@ -10904,19 +10904,19 @@
               },
               {
                 "line": 103,
-                "content": "## **\u2705 Validation:**"
+                "content": "## **✅ Validation:**"
               },
               {
                 "line": 109,
-                "content": "## **\ud83c\udfaf Ready for Merge:**"
+                "content": "## **🎯 Ready for Merge:**"
               },
               {
                 "line": 113,
-                "content": "## **\ud83d\udccb Files Changed:**"
+                "content": "## **📋 Files Changed:**"
               },
               {
                 "line": 116,
-                "content": "## **\ud83d\udd17 Related:**"
+                "content": "## **🔗 Related:**"
               },
               {
                 "line": 121,
@@ -49417,7 +49417,7 @@
                   "self"
                 ],
                 "decorators": [],
-                "docstring": "Ensure node is paragraph-sized (\u226450 lines)."
+                "docstring": "Ensure node is paragraph-sized (≤50 lines)."
               },
               {
                 "name": "to_dict",
@@ -49638,7 +49638,7 @@
                   "validate_granularity",
                   "to_dict"
                 ],
-                "docstring": "A granular code node (\u226450 lines)."
+                "docstring": "A granular code node (≤50 lines)."
               },
               {
                 "name": "DependencyResolver",
@@ -75186,7 +75186,7 @@
               },
               {
                 "line": 190,
-                "content": "Example usage - NO MORE SHELL COMMANDS! \ud83c\udf89"
+                "content": "Example usage - NO MORE SHELL COMMANDS! 🎉"
               },
               {
                 "line": 198,
@@ -76041,7 +76041,7 @@
                   "__init__",
                   "_create_mock_stub"
                 ],
-                "docstring": "Elegant secure shell client - NO MORE SHELL COMMANDS! \ud83c\udf89"
+                "docstring": "Elegant secure shell client - NO MORE SHELL COMMANDS! 🎉"
               },
               {
                 "name": "MockStub",
@@ -76202,7 +76202,7 @@
               },
               {
                 "line": 62,
-                "content": "\ud83d\ude31 TEMPORARY: Use subprocess for now, but with proper timeout"
+                "content": "😱 TEMPORARY: Use subprocess for now, but with proper timeout"
               },
               {
                 "line": 132,
@@ -76214,11 +76214,11 @@
               },
               {
                 "line": 189,
-                "content": "Elegant convenience function - NO MORE CRINGING! \ud83d\ude04"
+                "content": "Elegant convenience function - NO MORE CRINGING! 😄"
               },
               {
                 "line": 203,
-                "content": "Example usage - NO MORE SHELL COMMANDS! \ud83c\udf89"
+                "content": "Example usage - NO MORE SHELL COMMANDS! 🎉"
               },
               {
                 "line": 211,
@@ -76302,7 +76302,7 @@
                 "lineno": 14,
                 "args": [],
                 "decorators": [],
-                "docstring": "The old way - makes you cringe every time you see it \ud83d\ude31"
+                "docstring": "The old way - makes you cringe every time you see it 😱"
               }
             ],
             "classes": [],
@@ -76390,7 +76390,7 @@
               },
               {
                 "line": 13,
-                "content": "\ud83d\ude31 BEFORE: CRINGY subprocess calls"
+                "content": "😱 BEFORE: CRINGY subprocess calls"
               },
               {
                 "line": 16,
@@ -76398,35 +76398,35 @@
               },
               {
                 "line": 18,
-                "content": "\ud83d\ude31 CRINGY: Direct subprocess call"
+                "content": "😱 CRINGY: Direct subprocess call"
               },
               {
                 "line": 22,
-                "content": "\ud83d\ude31 CRINGY: No timeout, can hang forever"
+                "content": "😱 CRINGY: No timeout, can hang forever"
               },
               {
                 "line": 26,
-                "content": "\ud83d\ude31 CRINGY: Command injection risk"
+                "content": "😱 CRINGY: Command injection risk"
               },
               {
                 "line": 32,
-                "content": "\ud83c\udf89 AFTER: ELEGANT secure shell calls"
+                "content": "🎉 AFTER: ELEGANT secure shell calls"
               },
               {
                 "line": 36,
-                "content": "\ud83c\udf89 ELEGANT: Secure command execution"
+                "content": "🎉 ELEGANT: Secure command execution"
               },
               {
                 "line": 40,
-                "content": "\ud83c\udf89 ELEGANT: Built-in timeout protection"
+                "content": "🎉 ELEGANT: Built-in timeout protection"
               },
               {
                 "line": 44,
-                "content": "\ud83c\udf89 ELEGANT: Input validation and sanitization"
+                "content": "🎉 ELEGANT: Input validation and sanitization"
               },
               {
                 "line": 49,
-                "content": "\ud83c\udf89 ELEGANT: Proper error handling"
+                "content": "🎉 ELEGANT: Proper error handling"
               },
               {
                 "line": 55,
@@ -76458,7 +76458,7 @@
               },
               {
                 "line": 106,
-                "content": "\ud83d\ude31 OLD CODE (CRINGY!)"
+                "content": "😱 OLD CODE (CRINGY!)"
               },
               {
                 "line": 107,
@@ -76466,7 +76466,7 @@
               },
               {
                 "line": 120,
-                "content": "\ud83c\udf89 NEW CODE (ELEGANT!)"
+                "content": "🎉 NEW CODE (ELEGANT!)"
               },
               {
                 "line": 151,
@@ -76695,9 +76695,9 @@
     ]
   },
   "recommendations": [
-    "\ud83d\udd0d 207 artifacts are not traced to any domain. Consider adding domain patterns for these files.",
-    "\ud83d\udccb 10 requirements are not traced to any artifacts. Consider implementing these requirements.",
-    "\ud83d\udc0d 1 Python files failed AST parsing. Review these files for syntax issues.",
-    "\ud83d\udce6 3 files are larger than 1MB. Consider if these should be in version control."
+    "🔍 207 artifacts are not traced to any domain. Consider adding domain patterns for these files.",
+    "📋 10 requirements are not traced to any artifacts. Consider implementing these requirements.",
+    "🐍 1 Python files failed AST parsing. Review these files for syntax issues.",
+    "📦 3 files are larger than 1MB. Consider if these should be in version control."
   ]
 }

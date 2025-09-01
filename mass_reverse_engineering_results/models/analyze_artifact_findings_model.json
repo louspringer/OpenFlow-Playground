@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\udcca Artifact Analysis Findings Summary",
+  "system_name": "📊 Artifact Analysis Findings Summary",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -135,7 +135,7 @@
     "from pathlib import Path",
     "from typing import Any"
   ],
-  "module_docstring": "\n\ud83d\udcca Artifact Analysis Findings Summary\n\nThis script analyzes the comprehensive artifact analysis report and provides\nactionable insights for improving model coverage and requirements tracing.\n",
+  "module_docstring": "\n📊 Artifact Analysis Findings Summary\n\nThis script analyzes the comprehensive artifact analysis report and provides\nactionable insights for improving model coverage and requirements tracing.\n",
   "file_structure": {
     "total_lines": 197,
     "code_lines": 138,

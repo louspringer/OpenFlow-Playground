@@ -356,15 +356,9 @@ class SecurityBestPractices:
         # Reconstruct the domain model
         instance = cls()
         instance.core_principle = config.get("core_principle", instance.core_principle)
-        instance.configuration_file = config.get(
-            "configuration_file", instance.configuration_file
-        )
-        instance.exclude_patterns = config.get(
-            "exclude_patterns", instance.exclude_patterns
-        )
-        instance.include_patterns = config.get(
-            "include_patterns", instance.include_patterns
-        )
+        instance.configuration_file = config.get("configuration_file", instance.configuration_file)
+        instance.exclude_patterns = config.get("exclude_patterns", instance.exclude_patterns)
+        instance.include_patterns = config.get("include_patterns", instance.include_patterns)
 
         return instance
 

@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\uddea Streamlit App Security-First Test Suite",
+  "system_name": "🧪 Streamlit App Security-First Test Suite",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -575,7 +575,7 @@
     "from streamlit_app import SecurityManager",
     "from streamlit_app import SnowflakeConfig"
   ],
-  "module_docstring": "\n\ud83e\uddea Streamlit App Security-First Test Suite\n\nComprehensive test suite for OpenFlow Streamlit app based on multi-agent\nblind spot detection analysis.\n\nTests cover:\n- Security: Credential management, session security, input validation\n- Production: Multi-user support, error handling, monitoring\n- UX: Accessibility, mobile responsiveness, progressive disclosure\n- Performance: Caching, parallel processing, memory management\n",
+  "module_docstring": "\n🧪 Streamlit App Security-First Test Suite\n\nComprehensive test suite for OpenFlow Streamlit app based on multi-agent\nblind spot detection analysis.\n\nTests cover:\n- Security: Credential management, session security, input validation\n- Production: Multi-user support, error handling, monitoring\n- UX: Accessibility, mobile responsiveness, progressive disclosure\n- Performance: Caching, parallel processing, memory management\n",
   "file_structure": {
     "total_lines": 562,
     "code_lines": 391,

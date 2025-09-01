@@ -126,20 +126,12 @@ class CodeQualityModel:
             # Fix f-strings without placeholders
             content = re.sub(
                 r'"([^"]*)"',
-                lambda m: (
-                    f'"{m.group(1)}"'
-                    if "{" not in m.group(1) and "}" not in m.group(1)
-                    else m.group(0)
-                ),
+                lambda m: (f'"{m.group(1)}"' if "{" not in m.group(1) and "}" not in m.group(1) else m.group(0)),
                 content,
             )
             content = re.sub(
                 r"'([^']*)'",
-                lambda m: (
-                    f"'{m.group(1)}'"
-                    if "{" not in m.group(1) and "}" not in m.group(1)
-                    else m.group(0)
-                ),
+                lambda m: (f"'{m.group(1)}'" if "{" not in m.group(1) and "}" not in m.group(1) else m.group(0)),
                 content,
             )
 
@@ -255,9 +247,7 @@ class CodeQualityModel:
 
                     # Analyze before
                     before_analysis = self.analyze_file(py_file)
-                    all_results["total_issues_before"] += before_analysis[
-                        "total_issues"
-                    ]
+                    all_results["total_issues_before"] += before_analysis["total_issues"]
 
                     # Apply fixes
                     fix_result = self.fix_file(py_file)

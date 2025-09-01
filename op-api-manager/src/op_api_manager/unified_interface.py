@@ -41,14 +41,10 @@ class UnifiedOPInterface:
         """
         # This would integrate with the existing discovery logic
         # For now, return a placeholder
-        return DiscoveryResult(
-            total_items=0, api_keys=[], credential_pairs=[], discovery_timestamp=""
-        )
+        return DiscoveryResult(total_items=0, api_keys=[], credential_pairs=[], discovery_timestamp="")
 
     # READ Operations
-    def get_working_credentials(
-        self, force_test: bool = False
-    ) -> dict[str, list[dict[str, Any]]]:
+    def get_working_credentials(self, force_test: bool = False) -> dict[str, list[dict[str, Any]]]:
         """
         Get all working credentials organized by provider.
 
@@ -100,9 +96,7 @@ class UnifiedOPInterface:
         return self.status_manager.get_credential_status(item_id)
 
     # UPDATE Operations
-    def update_credential_status(
-        self, item_id: str, status: str, reason: str = None
-    ) -> bool:
+    def update_credential_status(self, item_id: str, status: str, reason: str = None) -> bool:
         """
         Update the status of a credential.
 
@@ -116,9 +110,7 @@ class UnifiedOPInterface:
         """
         return self.status_manager.update_credential_status(item_id, status, reason)
 
-    def mark_credential_working(
-        self, item_id: str, reason: str = "API test passed"
-    ) -> bool:
+    def mark_credential_working(self, item_id: str, reason: str = "API test passed") -> bool:
         """
         Mark a credential as working.
 
@@ -129,13 +121,9 @@ class UnifiedOPInterface:
         Returns:
             True if successful, False otherwise
         """
-        return self.status_manager.update_credential_status(
-            item_id, CredentialStatus.WORKING.value, reason
-        )
+        return self.status_manager.update_credential_status(item_id, CredentialStatus.WORKING.value, reason)
 
-    def mark_credential_error(
-        self, item_id: str, reason: str = "API test failed"
-    ) -> bool:
+    def mark_credential_error(self, item_id: str, reason: str = "API test failed") -> bool:
         """
         Mark a credential as having an error.
 
@@ -146,14 +134,10 @@ class UnifiedOPInterface:
         Returns:
             True if successful, False otherwise
         """
-        return self.status_manager.update_credential_status(
-            item_id, CredentialStatus.ERROR.value, reason
-        )
+        return self.status_manager.update_credential_status(item_id, CredentialStatus.ERROR.value, reason)
 
     # DELETE Operations
-    def archive_credential(
-        self, item_id: str, reason: str = "Not suitable for API usage"
-    ) -> bool:
+    def archive_credential(self, item_id: str, reason: str = "Not suitable for API usage") -> bool:
         """
         Archive a credential in both cache and 1Password.
 
@@ -219,9 +203,7 @@ class UnifiedOPInterface:
             required_fields = ["id", "title", "status"]
             missing_fields = [field for field in required_fields if not key.get(field)]
             if missing_fields:
-                validation_results["orphaned_entries"].append(
-                    {"id": key.get("id"), "missing_fields": missing_fields}
-                )
+                validation_results["orphaned_entries"].append({"id": key.get("id"), "missing_fields": missing_fields})
                 validation_results["validation_passed"] = False
 
         return validation_results

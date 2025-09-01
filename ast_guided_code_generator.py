@@ -135,9 +135,7 @@ class ASTGuidedCodeGenerator:
                     line_number=getattr(node, "lineno", 0),
                     metadata={
                         "name": getattr(node, "name", ""),
-                        "docstring": (
-                            ast.get_docstring(node) if hasattr(node, "body") else None
-                        ),
+                        "docstring": (ast.get_docstring(node) if hasattr(node, "body") else None),
                     },
                 )
                 nodes.append(ast_node)
@@ -223,15 +221,9 @@ class ASTGuidedCodeGenerator:
                 boundary = {
                     "type": type(node).__name__,
                     "start_line": getattr(node, "lineno", 0),
-                    "end_line": (
-                        getattr(node, "end_lineno", 0)
-                        if hasattr(node, "end_lineno")
-                        else 0
-                    ),
+                    "end_line": (getattr(node, "end_lineno", 0) if hasattr(node, "end_lineno") else 0),
                     "name": getattr(node, "name", ""),
-                    "content": (
-                        ast.unparse(node) if hasattr(ast, "unparse") else str(node)
-                    ),
+                    "content": (ast.unparse(node) if hasattr(ast, "unparse") else str(node)),
                 }
                 boundaries.append(boundary)
 
@@ -273,10 +265,10 @@ class ASTGuidedCodeGenerator:
 \"\"\"Generated using AST-guided code generation\"\"\"
 
 # AST Analysis Results:
-# - {len(analysis.get('ast_nodes', []))} AST nodes
-# - {len(analysis.get('linting_issues', []))} linting issues
-# - {len(analysis.get('fix_strategies', []))} fix strategies
-# - {len(analysis.get('syntactic_boundaries', []))} syntactic boundaries
+# - {len(analysis.get("ast_nodes", []))} AST nodes
+# - {len(analysis.get("linting_issues", []))} linting issues
+# - {len(analysis.get("fix_strategies", []))} fix strategies
+# - {len(analysis.get("syntactic_boundaries", []))} syntactic boundaries
 
 # TODO: Implement actual AST-guided code generation
 # This would respect syntactic boundaries and apply AST-aware fixes

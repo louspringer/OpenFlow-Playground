@@ -260,16 +260,11 @@ class IDELintingHypothesisVerifier:
         for source, points in data["analysis"]["sources"].items():
             report += f"\n{source.upper()}:\n"
             for point in points:
-                report += (
-                    f"  - {point.linter}: {point.error_count} errors ({point.method})\n"
-                )
+                report += f"  - {point.linter}: {point.error_count} errors ({point.method})\n"
         report += "\nCONCLUSIONS:\n"
         for conclusion in data["analysis"]["conclusions"]:
             report += f"  ✅ {conclusion}\n"
-        if (
-            data["analysis"]["fragmentation_score"] > 5
-            and data["analysis"]["reliability_score"] < 5
-        ):
+        if data["analysis"]["fragmentation_score"] > 5 and data["analysis"]["reliability_score"] < 5:
             report += "\n🎯 VERDICT: HYPOTHESIS CONFIRMED - IDE linting data IS fragmented and unreliable"
         else:
             report += "\n🎯 VERDICT: HYPOTHESIS INCONCLUSIVE - Need more data"

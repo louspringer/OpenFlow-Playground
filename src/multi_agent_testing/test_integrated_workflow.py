@@ -67,9 +67,7 @@ async def test_agent_session_manager():
         from multi_agent_testing.agent_session_manager import AgentType
 
         for agent_type in AgentType:
-            session_manager.update_agent_context(
-                agent_type, {"test_context": f"Test context for {agent_type.value}"}
-            )
+            session_manager.update_agent_context(agent_type, {"test_context": f"Test context for {agent_type.value}"})
             print(f"✅ Updated context for {agent_type.value}")
 
         # Test cross-agent context
@@ -80,9 +78,7 @@ async def test_agent_session_manager():
 
         # Test synthesis
         synthesis = session_manager.synthesize_iteration_results()
-        print(
-            f"✅ Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations"
-        )
+        print(f"✅ Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations")
 
         return True
 
@@ -148,12 +144,8 @@ async def test_workflow_execution():
 
         if results.get("synthesis"):
             synthesis = results["synthesis"]
-            print(
-                f"  Cross-agent patterns: {len(synthesis.get('cross_agent_patterns', []))}"
-            )
-            print(
-                f"  Collaborative insights: {len(synthesis.get('collaborative_insights', []))}"
-            )
+            print(f"  Cross-agent patterns: {len(synthesis.get('cross_agent_patterns', []))}")
+            print(f"  Collaborative insights: {len(synthesis.get('collaborative_insights', []))}")
             print(f"  Recommendations: {len(synthesis.get('recommendations', []))}")
 
         if results.get("learning_outcomes"):
@@ -260,27 +252,21 @@ async def test_agent_collaboration():
         for agent_type in AgentType:
             cross_context = session_manager.get_cross_agent_context(agent_type)
             other_agents = len(cross_context.get("other_agents_findings", {}))
-            print(
-                f"  {agent_type.value}: {other_agents} other agents' findings available"
-            )
+            print(f"  {agent_type.value}: {other_agents} other agents' findings available")
 
         # Test synthesis
         synthesis = session_manager.synthesize_iteration_results()
         print("\n🧠 Synthesis Results:")
         print(f"  Total findings: {synthesis.get('total_findings', 0)}")
-        print(
-            f"  Cross-agent patterns: {len(synthesis.get('cross_agent_patterns', []))}"
-        )
-        print(
-            f"  Collaborative insights: {len(synthesis.get('collaborative_insights', []))}"
-        )
+        print(f"  Cross-agent patterns: {len(synthesis.get('cross_agent_patterns', []))}")
+        print(f"  Collaborative insights: {len(synthesis.get('collaborative_insights', []))}")
         print(f"  Recommendations: {len(synthesis.get('recommendations', []))}")
 
         # Show some recommendations
         if synthesis.get("recommendations"):
             print("\n📋 Top Recommendations:")
             for i, rec in enumerate(synthesis["recommendations"][:3]):
-                print(f"  {i+1}. {rec}")
+                print(f"  {i + 1}. {rec}")
 
         return True
 
@@ -311,9 +297,9 @@ async def main():
         all_passed = True
 
         for test_name, test_func in tests:
-            print(f"\n{'='*60}")
+            print(f"\n{'=' * 60}")
             print(f"🧪 Running: {test_name}")
-            print(f"{'='*60}")
+            print(f"{'=' * 60}")
 
             try:
                 result = await test_func()
@@ -331,9 +317,9 @@ async def main():
                 all_passed = False
 
         # Summary
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print("📊 TEST SUMMARY")
-        print(f"{'='*60}")
+        print(f"{'=' * 60}")
 
         for test_name, result in results.items():
             status = "✅ PASSED" if result else "❌ FAILED"

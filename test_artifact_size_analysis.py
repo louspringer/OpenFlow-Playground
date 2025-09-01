@@ -44,9 +44,7 @@ def analyze_file_complexity(file_path: str) -> dict[str, Any]:
         return {"file_path": file_path, "error": str(e), "parseable": False}
 
 
-def find_large_artifacts(
-    directory: str = "src", min_lines: int = 100
-) -> list[dict[str, Any]]:
+def find_large_artifacts(directory: str = "src", min_lines: int = 100) -> list[dict[str, Any]]:
     """Find large artifacts in the codebase"""
     large_files = []
 
@@ -56,10 +54,7 @@ def find_large_artifacts(
                 file_path = os.path.join(root, file)
                 analysis = analyze_file_complexity(file_path)
 
-                if (
-                    analysis.get("parseable", False)
-                    and analysis.get("lines", 0) >= min_lines
-                ):
+                if analysis.get("parseable", False) and analysis.get("lines", 0) >= min_lines:
                     large_files.append(analysis)
 
     # Sort by complexity (AST nodes)
@@ -84,23 +79,13 @@ def analyze_complexity_patterns(files: list[dict[str, Any]]) -> dict[str, Any]:
 
     # Find outliers (files with complexity > 2x average)
     high_complexity_threshold = avg_ast_nodes * 2
-    high_complexity_files = [
-        f for f in files if f.get("ast_nodes", 0) > high_complexity_threshold
-    ]
+    high_complexity_files = [f for f in files if f.get("ast_nodes", 0) > high_complexity_threshold]
 
     # Categorize by complexity level
     complexity_levels = {
         "low": [f for f in files if f.get("ast_nodes", 0) <= avg_ast_nodes * 0.5],
-        "medium": [
-            f
-            for f in files
-            if avg_ast_nodes * 0.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 1.5
-        ],
-        "high": [
-            f
-            for f in files
-            if avg_ast_nodes * 1.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 2.5
-        ],
+        "medium": [f for f in files if avg_ast_nodes * 0.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 1.5],
+        "high": [f for f in files if avg_ast_nodes * 1.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 2.5],
         "extreme": [f for f in files if f.get("ast_nodes", 0) > avg_ast_nodes * 2.5],
     }
 
@@ -111,9 +96,7 @@ def analyze_complexity_patterns(files: list[dict[str, Any]]) -> dict[str, Any]:
         "average_lines": avg_lines,
         "high_complexity_threshold": high_complexity_threshold,
         "high_complexity_count": len(high_complexity_files),
-        "complexity_distribution": {
-            level: len(files) for level, files in complexity_levels.items()
-        },
+        "complexity_distribution": {level: len(files) for level, files in complexity_levels.items()},
         "top_complex_files": high_complexity_files[:5],
     }
 
@@ -128,21 +111,15 @@ def suggest_breakup_strategies(file_analysis: dict[str, Any]) -> list[str]:
 
     # Line count suggestions
     if lines > 500:
-        suggestions.append(
-            "File is extremely long (>500 lines) - break into multiple modules"
-        )
+        suggestions.append("File is extremely long (>500 lines) - break into multiple modules")
     elif lines > 300:
-        suggestions.append(
-            "File is very long (>300 lines) - consider extracting classes/functions"
-        )
+        suggestions.append("File is very long (>300 lines) - consider extracting classes/functions")
     elif lines > 200:
         suggestions.append("File is long (>200 lines) - extract related functionality")
 
     # AST complexity suggestions
     if ast_nodes > 1000:
-        suggestions.append(
-            "Extremely high AST complexity (>1000 nodes) - needs major refactoring"
-        )
+        suggestions.append("Extremely high AST complexity (>1000 nodes) - needs major refactoring")
     elif ast_nodes > 500:
         suggestions.append("High AST complexity (>500 nodes) - extract complex logic")
     elif ast_nodes > 200:
@@ -150,13 +127,9 @@ def suggest_breakup_strategies(file_analysis: dict[str, Any]) -> list[str]:
 
     # Complexity per line suggestions
     if nodes_per_line > 10:
-        suggestions.append(
-            "High complexity per line (>10 nodes/line) - simplify individual lines"
-        )
+        suggestions.append("High complexity per line (>10 nodes/line) - simplify individual lines")
     elif nodes_per_line > 5:
-        suggestions.append(
-            "Moderate complexity per line (>5 nodes/line) - review complex expressions"
-        )
+        suggestions.append("Moderate complexity per line (>5 nodes/line) - review complex expressions")
 
     # Specific strategies
     if ast_nodes > 500:
@@ -194,9 +167,7 @@ def main():
     print(f"Parseable files: {patterns.get('parseable_files', 0)}")
     print(f"Average AST nodes: {patterns.get('average_ast_nodes', 0):.1f}")
     print(f"Average lines: {patterns.get('average_lines', 0):.1f}")
-    print(
-        f"High complexity threshold: {patterns.get('high_complexity_threshold', 0):.1f}"
-    )
+    print(f"High complexity threshold: {patterns.get('high_complexity_threshold', 0):.1f}")
 
     # Show complexity distribution
     print("\n📈 Complexity Distribution:")
@@ -207,10 +178,7 @@ def main():
     print("\n🚨 Top Complex Files (Need Attention):")
     for i, file_info in enumerate(patterns.get("top_complex_files", [])[:5], 1):
         print(f"  {i}. {file_info['file_path']}")
-        print(
-            f"     Lines: {file_info['lines']}, AST: {file_info['ast_nodes']}, "
-            f"Complexity: {file_info['nodes_per_line']:.1f} nodes/line"
-        )
+        print(f"     Lines: {file_info['lines']}, AST: {file_info['ast_nodes']}, " f"Complexity: {file_info['nodes_per_line']:.1f} nodes/line")
 
         # Suggest breakup strategies
         suggestions = suggest_breakup_strategies(file_info)
@@ -226,9 +194,7 @@ def main():
     print(f"\n🎯 Hypothesis 3 Assessment:")
     if high_complexity_count > 0:
         percentage = (high_complexity_count / total_files) * 100
-        print(
-            f"❌ CONFIRMED: {high_complexity_count}/{total_files} files ({percentage:.1f}%) are too complex"
-        )
+        print(f"❌ CONFIRMED: {high_complexity_count}/{total_files} files ({percentage:.1f}%) are too complex")
         print("   These artifacts need internal modeling and breakup!")
 
         if high_complexity_count > total_files * 0.2:
@@ -288,9 +254,7 @@ def analyze_file_complexity(file_path: str) -> dict[str, Any]:
         return {"file_path": file_path, "error": str(e), "parseable": False}
 
 
-def find_large_artifacts(
-    directory: str = "src", min_lines: int = 100
-) -> list[dict[str, Any]]:
+def find_large_artifacts(directory: str = "src", min_lines: int = 100) -> list[dict[str, Any]]:
     """Find large artifacts in the codebase"""
     large_files = []
 
@@ -300,10 +264,7 @@ def find_large_artifacts(
                 file_path = os.path.join(root, file)
                 analysis = analyze_file_complexity(file_path)
 
-                if (
-                    analysis.get("parseable", False)
-                    and analysis.get("lines", 0) >= min_lines
-                ):
+                if analysis.get("parseable", False) and analysis.get("lines", 0) >= min_lines:
                     large_files.append(analysis)
 
     # Sort by complexity (AST nodes)
@@ -328,23 +289,13 @@ def analyze_complexity_patterns(files: list[dict[str, Any]]) -> dict[str, Any]:
 
     # Find outliers (files with complexity > 2x average)
     high_complexity_threshold = avg_ast_nodes * 2
-    high_complexity_files = [
-        f for f in files if f.get("ast_nodes", 0) > high_complexity_threshold
-    ]
+    high_complexity_files = [f for f in files if f.get("ast_nodes", 0) > high_complexity_threshold]
 
     # Categorize by complexity level
     complexity_levels = {
         "low": [f for f in files if f.get("ast_nodes", 0) <= avg_ast_nodes * 0.5],
-        "medium": [
-            f
-            for f in files
-            if avg_ast_nodes * 0.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 1.5
-        ],
-        "high": [
-            f
-            for f in files
-            if avg_ast_nodes * 1.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 2.5
-        ],
+        "medium": [f for f in files if avg_ast_nodes * 0.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 1.5],
+        "high": [f for f in files if avg_ast_nodes * 1.5 < f.get("ast_nodes", 0) <= avg_ast_nodes * 2.5],
         "extreme": [f for f in files if f.get("ast_nodes", 0) > avg_ast_nodes * 2.5],
     }
 
@@ -355,9 +306,7 @@ def analyze_complexity_patterns(files: list[dict[str, Any]]) -> dict[str, Any]:
         "average_lines": avg_lines,
         "high_complexity_threshold": high_complexity_threshold,
         "high_complexity_count": len(high_complexity_files),
-        "complexity_distribution": {
-            level: len(files) for level, files in complexity_levels.items()
-        },
+        "complexity_distribution": {level: len(files) for level, files in complexity_levels.items()},
         "top_complex_files": high_complexity_files[:5],
     }
 
@@ -372,21 +321,15 @@ def suggest_breakup_strategies(file_analysis: dict[str, Any]) -> list[str]:
 
     # Line count suggestions
     if lines > 500:
-        suggestions.append(
-            "File is extremely long (>500 lines) - break into multiple modules"
-        )
+        suggestions.append("File is extremely long (>500 lines) - break into multiple modules")
     elif lines > 300:
-        suggestions.append(
-            "File is very long (>300 lines) - consider extracting classes/functions"
-        )
+        suggestions.append("File is very long (>300 lines) - consider extracting classes/functions")
     elif lines > 200:
         suggestions.append("File is long (>200 lines) - extract related functionality")
 
     # AST complexity suggestions
     if ast_nodes > 1000:
-        suggestions.append(
-            "Extremely high AST complexity (>1000 nodes) - needs major refactoring"
-        )
+        suggestions.append("Extremely high AST complexity (>1000 nodes) - needs major refactoring")
     elif ast_nodes > 500:
         suggestions.append("High AST complexity (>500 nodes) - extract complex logic")
     elif ast_nodes > 200:
@@ -394,13 +337,9 @@ def suggest_breakup_strategies(file_analysis: dict[str, Any]) -> list[str]:
 
     # Complexity per line suggestions
     if nodes_per_line > 10:
-        suggestions.append(
-            "High complexity per line (>10 nodes/line) - simplify individual lines"
-        )
+        suggestions.append("High complexity per line (>10 nodes/line) - simplify individual lines")
     elif nodes_per_line > 5:
-        suggestions.append(
-            "Moderate complexity per line (>5 nodes/line) - review complex expressions"
-        )
+        suggestions.append("Moderate complexity per line (>5 nodes/line) - review complex expressions")
 
     # Specific strategies
     if ast_nodes > 500:
@@ -438,9 +377,7 @@ def main():
     print(f"Parseable files: {patterns.get('parseable_files', 0)}")
     print(f"Average AST nodes: {patterns.get('average_ast_nodes', 0):.1f}")
     print(f"Average lines: {patterns.get('average_lines', 0):.1f}")
-    print(
-        f"High complexity threshold: {patterns.get('high_complexity_threshold', 0):.1f}"
-    )
+    print(f"High complexity threshold: {patterns.get('high_complexity_threshold', 0):.1f}")
 
     # Show complexity distribution
     print("\n📈 Complexity Distribution:")
@@ -451,10 +388,7 @@ def main():
     print("\n🚨 Top Complex Files (Need Attention):")
     for i, file_info in enumerate(patterns.get("top_complex_files", [])[:5], 1):
         print(f"  {i}. {file_info['file_path']}")
-        print(
-            f"     Lines: {file_info['lines']}, AST: {file_info['ast_nodes']}, "
-            f"Complexity: {file_info['nodes_per_line']:.1f} nodes/line"
-        )
+        print(f"     Lines: {file_info['lines']}, AST: {file_info['ast_nodes']}, " f"Complexity: {file_info['nodes_per_line']:.1f} nodes/line")
 
         # Suggest breakup strategies
         suggestions = suggest_breakup_strategies(file_info)
@@ -470,9 +404,7 @@ def main():
     print(f"\n🎯 Hypothesis 3 Assessment:")
     if high_complexity_count > 0:
         percentage = (high_complexity_count / total_files) * 100
-        print(
-            f"❌ CONFIRMED: {high_complexity_count}/{total_files} files ({percentage:.1f}%) are too complex"
-        )
+        print(f"❌ CONFIRMED: {high_complexity_count}/{total_files} files ({percentage:.1f}%) are too complex")
         print("   These artifacts need internal modeling and breakup!")
 
         if high_complexity_count > total_files * 0.2:

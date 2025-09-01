@@ -26,9 +26,7 @@ def test_fixed_round_trip():
 
     if not os.path.exists(model_file):
         print(f"❌ Enhanced model file not found: {model_file}")
-        print(
-            "Please run: python enhanced_reverse_engineer_fixed.py src/ghostbusters/agents/code_quality_expert.py"
-        )
+        print("Please run: python enhanced_reverse_engineer_fixed.py src/ghostbusters/agents/code_quality_expert.py")
         return
 
     print(f"📁 Loading enhanced model: {model_file}")
@@ -39,9 +37,7 @@ def test_fixed_round_trip():
 
         print("✅ Enhanced model loaded successfully!")
         print(f"   📦 Components: {len(extracted_model.get('components', {}))}")
-        print(
-            f"   📏 Total Lines: {extracted_model.get('file_structure', {}).get('total_lines', 0)}"
-        )
+        print(f"   📏 Total Lines: {extracted_model.get('file_structure', {}).get('total_lines', 0)}")
 
         # Check if method bodies are extracted
         components = extracted_model.get("components", {})
@@ -56,20 +52,14 @@ def test_fixed_round_trip():
                 if method.get("body"):
                     methods_with_bodies += 1
 
-            print(
-                f"   🏗️  {class_name}: {implemented_methods}/{len(methods)} methods implemented"
-            )
-            print(
-                f"   📝 {class_name}: {methods_with_bodies}/{len(methods)} methods have body content"
-            )
+            print(f"   🏗️  {class_name}: {implemented_methods}/{len(methods)} methods implemented")
+            print(f"   📝 {class_name}: {methods_with_bodies}/{len(methods)} methods have body content")
 
         # Test the fixed round-trip system
         print("\n🔧 Testing Fixed Round-Trip System...")
 
         round_trip_system = RoundTripModelSystem()
-        generated_code = round_trip_system.generate_code_from_extracted_model(
-            extracted_model
-        )
+        generated_code = round_trip_system.generate_code_from_extracted_model(extracted_model)
 
         print("✅ Code generation successful!")
         print(f"   📝 Generated code length: {len(generated_code)} characters")
@@ -94,7 +84,7 @@ def test_fixed_round_trip():
 
             print(f"   📊 Original file: {original_lines} lines")
             print(f"   📊 Generated file: {generated_lines} lines")
-            print(f"   📊 Line count ratio: {generated_lines/original_lines:.1%}")
+            print(f"   📊 Line count ratio: {generated_lines / original_lines:.1%}")
 
             if generated_lines / original_lines > 0.8:
                 print("   ✅ Line count suggests good functional equivalence!")

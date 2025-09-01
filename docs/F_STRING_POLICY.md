@@ -60,8 +60,8 @@ The F541 rule is completely ignored in `.ruff.toml`:
 If you find old-style string formatting:
 
 1. **Convert to f-strings** immediately
-2. **Maintain consistency** with existing code
-3. **No exceptions** - f-strings are mandatory
+1. **Maintain consistency** with existing code
+1. **No exceptions** - f-strings are mandatory
 
 ## Benefits
 

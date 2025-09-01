@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\uddea COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS",
+  "system_name": "🧪 COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -386,7 +386,7 @@
     "from diversity_synthesis_orchestrator import FixSynthesis",
     "from cost_analysis import estimate_tokens"
   ],
-  "module_docstring": "\n\ud83e\uddea COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS\n\nUnit tests, integration tests, and performance tests for the diversity hypothesis.\n",
+  "module_docstring": "\n🧪 COMPREHENSIVE TEST SUITE FOR DIVERSITY HYPOTHESIS\n\nUnit tests, integration tests, and performance tests for the diversity hypothesis.\n",
   "file_structure": {
     "total_lines": 542,
     "code_lines": 407,

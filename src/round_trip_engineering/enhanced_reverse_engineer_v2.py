@@ -58,27 +58,19 @@ class EnhancedReverseEngineerV2:
             self._extract_module_functions(tree, source_lines)
             self._extract_file_structure(tree, content)
 
-            print(
-                f"🆔 Model {model_id} completed with {len(self.cached_nodes)} AST nodes"
-            )
+            print(f"🆔 Model {model_id} completed with {len(self.cached_nodes)} AST nodes")
             return self.model_data
 
         except Exception as e:
             print(f"❌ Error reverse engineering {file_path}: {e}")
             return {}
 
-    def _extract_method_info_enhanced(
-        self, func_node: ast.FunctionDef, source_lines: list[str]
-    ) -> dict[str, Any] | None:
+    def _extract_method_info_enhanced(self, func_node: ast.FunctionDef, source_lines: list[str]) -> dict[str, Any] | None:
         """Extract comprehensive method information with pattern detection"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
             is_test_method = func_node.name.startswith("test_")
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info: dict[str, Any] = {
                 "name": func_node.name,
@@ -104,16 +96,12 @@ class EnhancedReverseEngineerV2:
                 detected_patterns = []
 
                 for stmt in func_node.body:
-                    if isinstance(stmt, ast.Expr) and isinstance(
-                        stmt.value, ast.Constant
-                    ):
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
                         # Skip docstring lines
                         continue
 
                     # Detect patterns in this statement
-                    patterns = self.pattern_detector.detect_patterns_in_node(
-                        stmt, source_lines
-                    )
+                    patterns = self.pattern_detector.detect_patterns_in_node(stmt, source_lines)
                     detected_patterns.extend(patterns)
 
                     # Convert AST node back to source code with proper line structure
@@ -158,15 +146,10 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info[
-                            "pattern_summary"
-                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
+                        method_info["pattern_summary"] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
-                        method_info["best_practice_recommendations"] = [
-                            f"Line {p.line_number}: {p.best_practice}"
-                            for p in detected_patterns
-                        ]
+                        method_info["best_practice_recommendations"] = [f"Line {p.line_number}: {p.best_practice}" for p in detected_patterns]
                 else:
                     method_info["implementation_status"] = "skeleton"
 
@@ -181,18 +164,12 @@ class EnhancedReverseEngineerV2:
             print(f"🚨 ERROR in _extract_method_info_enhanced: {type(e).__name__}: {e}")
             return None
 
-    def _extract_async_method_info_enhanced(
-        self, func_node: ast.AsyncFunctionDef, source_lines: list[str]
-    ) -> dict[str, Any] | None:
+    def _extract_async_method_info_enhanced(self, func_node: ast.AsyncFunctionDef, source_lines: list[str]) -> dict[str, Any] | None:
         """Extract comprehensive async method information with pattern detection"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
             is_test_method = func_node.name.startswith("test_")
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info: dict[str, Any] = {
                 "name": func_node.name,
@@ -219,16 +196,12 @@ class EnhancedReverseEngineerV2:
                 detected_patterns = []
 
                 for stmt in func_node.body:
-                    if isinstance(stmt, ast.Expr) and isinstance(
-                        stmt.value, ast.Constant
-                    ):
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
                         # Skip docstring lines
                         continue
 
                     # Detect patterns in this statement
-                    patterns = self.pattern_detector.detect_patterns_in_node(
-                        stmt, source_lines
-                    )
+                    patterns = self.pattern_detector.detect_patterns_in_node(stmt, source_lines)
                     detected_patterns.extend(patterns)
 
                     # Convert AST node back to source code with proper line structure
@@ -273,15 +246,10 @@ class EnhancedReverseEngineerV2:
                             }
                             for p in detected_patterns
                         ]
-                        method_info[
-                            "pattern_summary"
-                        ] = self.pattern_detector.get_pattern_summary(detected_patterns)
+                        method_info["pattern_summary"] = self.pattern_detector.get_pattern_summary(detected_patterns)
 
                         # Add best practice recommendations
-                        method_info["best_practice_recommendations"] = [
-                            f"Line {p.line_number}: {p.best_practice}"
-                            for p in detected_patterns
-                        ]
+                        method_info["best_practice_recommendations"] = [f"Line {p.line_number}: {p.best_practice}" for p in detected_patterns]
                 else:
                     method_info["implementation_status"] = "skeleton"
 
@@ -293,9 +261,7 @@ class EnhancedReverseEngineerV2:
             return method_info
 
         except Exception as e:
-            print(
-                f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}"
-            )
+            print(f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}")
             return None
 
     def _build_method_signature(self, func_node: ast.FunctionDef) -> str:
@@ -462,9 +428,7 @@ class EnhancedReverseEngineerV2:
                         "description": "",
                         "status": "implemented",
                         "methods": [],
-                        "bases": [
-                            base.id for base in node.bases if isinstance(base, ast.Name)
-                        ],
+                        "bases": [base.id for base in node.bases if isinstance(base, ast.Name)],
                         "class_decorators": [],
                         "implementation_status": "implemented",
                     }
@@ -472,15 +436,11 @@ class EnhancedReverseEngineerV2:
                     # Extract methods
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
-                            method_info = self._extract_method_info_enhanced(
-                                item, source_lines
-                            )
+                            method_info = self._extract_method_info_enhanced(item, source_lines)
                             if method_info:
                                 class_info["methods"].append(method_info)
                         elif isinstance(item, ast.AsyncFunctionDef):
-                            method_info = self._extract_async_method_info_enhanced(
-                                item, source_lines
-                            )
+                            method_info = self._extract_async_method_info_enhanced(item, source_lines)
                             if method_info:
                                 class_info["methods"].append(method_info)
 
@@ -500,9 +460,7 @@ class EnhancedReverseEngineerV2:
                     if method_info:
                         module_functions.append(method_info)
                 elif isinstance(node, ast.AsyncFunctionDef):
-                    method_info = self._extract_async_method_info_enhanced(
-                        node, source_lines
-                    )
+                    method_info = self._extract_async_method_info_enhanced(node, source_lines)
                     if method_info:
                         module_functions.append(method_info)
 
@@ -514,16 +472,8 @@ class EnhancedReverseEngineerV2:
         """Extract file structure information"""
         try:
             lines = content.split("\n")
-            code_lines = len(
-                [
-                    line
-                    for line in lines
-                    if line.strip() and not line.strip().startswith("#")
-                ]
-            )
-            comment_lines = len(
-                [line for line in lines if line.strip().startswith("#")]
-            )
+            code_lines = len([line for line in lines if line.strip() and not line.strip().startswith("#")])
+            comment_lines = len([line for line in lines if line.strip().startswith("#")])
             blank_lines = len([line for line in lines if not line.strip()])
 
             self.model_data["file_structure"] = {
@@ -532,29 +482,11 @@ class EnhancedReverseEngineerV2:
                 "comment_lines": comment_lines,
                 "blank_lines": blank_lines,
                 "total_nodes": len(self.cached_nodes),
-                "class_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.ClassDef)]
-                ),
-                "function_nodes": len(
-                    [
-                        n
-                        for n in self.cached_nodes
-                        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-                    ]
-                ),
-                "import_nodes": len(
-                    [
-                        n
-                        for n in self.cached_nodes
-                        if isinstance(n, (ast.Import, ast.ImportFrom))
-                    ]
-                ),
-                "expression_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.Expr)]
-                ),
-                "assignment_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.Assign)]
-                ),
+                "class_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.ClassDef)]),
+                "function_nodes": len([n for n in self.cached_nodes if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]),
+                "import_nodes": len([n for n in self.cached_nodes if isinstance(n, (ast.Import, ast.ImportFrom))]),
+                "expression_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.Expr)]),
+                "assignment_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.Assign)]),
             }
         except Exception as e:
             print(f"🚨 ERROR in _extract_file_structure: {e}")

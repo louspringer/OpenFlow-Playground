@@ -473,27 +473,13 @@ def evaluate_architecture_alternative(code: str, name: str) -> EvaluationResult:
     flake8_errors = test_flake8_compliance(code)
 
     # Calculate scores (0-100, higher is better)
-    maintainability_score = max(
-        0, 100 - (lines / 10)
-    )  # Fewer lines = better maintainability
-    complexity_score = max(
-        0, 100 - (ast_nodes / 50)
-    )  # Fewer AST nodes = better complexity
-    quality_score = (
-        100
-        - (len(mypy_errors) * 10)
-        - (len(flake8_errors) * 5)
-        - (0 if black_passed else 20)
-    )
+    maintainability_score = max(0, 100 - (lines / 10))  # Fewer lines = better maintainability
+    complexity_score = max(0, 100 - (ast_nodes / 50))  # Fewer AST nodes = better complexity
+    quality_score = 100 - (len(mypy_errors) * 10) - (len(flake8_errors) * 5) - (0 if black_passed else 20)
     risk_score = max(0, 100 - (ast_nodes / 100))  # Fewer AST nodes = lower risk
 
     # Overall score (weighted average)
-    overall_score = (
-        maintainability_score * 0.3
-        + complexity_score * 0.3
-        + quality_score * 0.3
-        + risk_score * 0.1
-    )
+    overall_score = maintainability_score * 0.3 + complexity_score * 0.3 + quality_score * 0.3 + risk_score * 0.1
 
     # Generate recommendations
     recommendations = []
@@ -554,9 +540,7 @@ def main():
 
     print(f"\n📈 Monolithic Approach:")
     print(f"  Lines: {monolithic_result.alternative.quality_attributes['lines']}")
-    print(
-        f"  AST Nodes: {monolithic_result.alternative.quality_attributes['ast_nodes']}"
-    )
+    print(f"  AST Nodes: {monolithic_result.alternative.quality_attributes['ast_nodes']}")
     print(f"  Maintainability: {monolithic_result.maintainability_score:.1f}/100")
     print(f"  Complexity: {monolithic_result.complexity_score:.1f}/100")
     print(f"  Quality: {monolithic_result.quality_score:.1f}/100")
@@ -576,18 +560,12 @@ def main():
     print(f"\n🎯 WINNER:")
     if modular_result.overall_score > monolithic_result.overall_score:
         winner = "Modular Approach"
-        improvement = (
-            (modular_result.overall_score - monolithic_result.overall_score)
-            / monolithic_result.overall_score
-        ) * 100
+        improvement = ((modular_result.overall_score - monolithic_result.overall_score) / monolithic_result.overall_score) * 100
         print(f"  🏆 {winner} wins by {improvement:.1f}% improvement!")
         print(f"  ✅ Better maintainability, lower complexity, higher quality")
     else:
         winner = "Monolithic Approach"
-        improvement = (
-            (monolithic_result.overall_score - modular_result.overall_score)
-            / modular_result.overall_score
-        ) * 100
+        improvement = ((monolithic_result.overall_score - modular_result.overall_score) / modular_result.overall_score) * 100
         print(f"  🏆 {winner} wins by {improvement:.1f}% improvement!")
         print(f"  ✅ Better performance, simpler structure")
 
@@ -1086,27 +1064,13 @@ def evaluate_architecture_alternative(code: str, name: str) -> EvaluationResult:
     flake8_errors = test_flake8_compliance(code)
 
     # Calculate scores (0-100, higher is better)
-    maintainability_score = max(
-        0, 100 - (lines / 10)
-    )  # Fewer lines = better maintainability
-    complexity_score = max(
-        0, 100 - (ast_nodes / 50)
-    )  # Fewer AST nodes = better complexity
-    quality_score = (
-        100
-        - (len(mypy_errors) * 10)
-        - (len(flake8_errors) * 5)
-        - (0 if black_passed else 20)
-    )
+    maintainability_score = max(0, 100 - (lines / 10))  # Fewer lines = better maintainability
+    complexity_score = max(0, 100 - (ast_nodes / 50))  # Fewer AST nodes = better complexity
+    quality_score = 100 - (len(mypy_errors) * 10) - (len(flake8_errors) * 5) - (0 if black_passed else 20)
     risk_score = max(0, 100 - (ast_nodes / 100))  # Fewer AST nodes = lower risk
 
     # Overall score (weighted average)
-    overall_score = (
-        maintainability_score * 0.3
-        + complexity_score * 0.3
-        + quality_score * 0.3
-        + risk_score * 0.1
-    )
+    overall_score = maintainability_score * 0.3 + complexity_score * 0.3 + quality_score * 0.3 + risk_score * 0.1
 
     # Generate recommendations
     recommendations = []
@@ -1167,9 +1131,7 @@ def main():
 
     print(f"\n📈 Monolithic Approach:")
     print(f"  Lines: {monolithic_result.alternative.quality_attributes['lines']}")
-    print(
-        f"  AST Nodes: {monolithic_result.alternative.quality_attributes['ast_nodes']}"
-    )
+    print(f"  AST Nodes: {monolithic_result.alternative.quality_attributes['ast_nodes']}")
     print(f"  Maintainability: {monolithic_result.maintainability_score:.1f}/100")
     print(f"  Complexity: {monolithic_result.complexity_score:.1f}/100")
     print(f"  Quality: {monolithic_result.quality_score:.1f}/100")
@@ -1189,18 +1151,12 @@ def main():
     print(f"\n🎯 WINNER:")
     if modular_result.overall_score > monolithic_result.overall_score:
         winner = "Modular Approach"
-        improvement = (
-            (modular_result.overall_score - monolithic_result.overall_score)
-            / monolithic_result.overall_score
-        ) * 100
+        improvement = ((modular_result.overall_score - monolithic_result.overall_score) / monolithic_result.overall_score) * 100
         print(f"  🏆 {winner} wins by {improvement:.1f}% improvement!")
         print(f"  ✅ Better maintainability, lower complexity, higher quality")
     else:
         winner = "Monolithic Approach"
-        improvement = (
-            (monolithic_result.overall_score - modular_result.overall_score)
-            / modular_result.overall_score
-        ) * 100
+        improvement = ((monolithic_result.overall_score - modular_result.overall_score) / modular_result.overall_score) * 100
         print(f"  🏆 {winner} wins by {improvement:.1f}% improvement!")
         print(f"  ✅ Better performance, simpler structure")
 

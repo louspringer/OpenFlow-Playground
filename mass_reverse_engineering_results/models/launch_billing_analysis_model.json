@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\ude80 Launch Billing Analysis Jupyter Notebook",
+  "system_name": "🚀 Launch Billing Analysis Jupyter Notebook",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -30,7 +30,7 @@
     "import sys",
     "from pathlib import Path"
   ],
-  "module_docstring": "\n\ud83d\ude80 Launch Billing Analysis Jupyter Notebook\n\nLaunch Jupyter notebook with billing analysis data.\n",
+  "module_docstring": "\n🚀 Launch Billing Analysis Jupyter Notebook\n\nLaunch Jupyter notebook with billing analysis data.\n",
   "file_structure": {
     "total_lines": 81,
     "code_lines": 57,

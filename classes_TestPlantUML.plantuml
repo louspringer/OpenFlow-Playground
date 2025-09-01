@@ -1,0 +1,3 @@
+@startuml classes_TestPlantUML
+set namespaceSeparator none
+@enduml

@@ -67,9 +67,7 @@ async def test_quality_multi_agent_adapter():
             # Show quality scores breakdown
             print("\n📊 Quality Scores Breakdown:")
             for metric, score_data in results["quality_scores"].items():
-                print(
-                    f"   {metric}: {score_data['score']:.1f} (weight: {score_data['weight']})"
-                )
+                print(f"   {metric}: {score_data['score']:.1f} (weight: {score_data['weight']})")
 
             # Show agent summary
             print("\n🤖 Agent Analysis Summary:")
@@ -86,9 +84,7 @@ async def test_quality_multi_agent_adapter():
                     print(f"   • {rec}")
 
             return True
-        print(
-            f"❌ Multi-agent quality analysis failed: {results.get('error', 'Unknown error')}"
-        )
+        print(f"❌ Multi-agent quality analysis failed: {results.get('error', 'Unknown error')}")
         return False
 
     except Exception as e:
@@ -112,9 +108,7 @@ async def test_agent_mapping_management():
             }
         }
 
-        success = adapter.add_agent_quality_mapping(
-            "custom_expert", new_mapping["custom_expert"]
-        )
+        success = adapter.add_agent_quality_mapping("custom_expert", new_mapping["custom_expert"])
         if success:
             print("✅ Added new agent mapping")
 
@@ -186,9 +180,7 @@ async def test_quality_score_conversion():
             "complexity_issues": [],
         }
 
-        code_quality_score = adapter._convert_code_quality_result(
-            code_quality_result, 2.0
-        )
+        code_quality_score = adapter._convert_code_quality_result(code_quality_result, 2.0)
         if code_quality_score:
             print(f"✅ Code quality score conversion: {code_quality_score.score:.1f}")
         else:

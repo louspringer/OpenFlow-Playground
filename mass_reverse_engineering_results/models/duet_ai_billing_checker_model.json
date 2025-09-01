@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83e\udd16 Duet AI Billing Checker",
+  "system_name": "🤖 Duet AI Billing Checker",
   "description": "",
   "purpose": "",
   "graph_api_level": 1,
@@ -190,7 +190,7 @@
     "from pathlib import Path",
     "from typing import Any"
   ],
-  "module_docstring": "\n\ud83e\udd16 Duet AI Billing Checker\n\nFocused tool to check for Duet AI usage and actual GCP billing data.\nUses gcloud commands to get real billing information.\n",
+  "module_docstring": "\n🤖 Duet AI Billing Checker\n\nFocused tool to check for Duet AI usage and actual GCP billing data.\nUses gcloud commands to get real billing information.\n",
   "file_structure": {
     "total_lines": 487,
     "code_lines": 397,

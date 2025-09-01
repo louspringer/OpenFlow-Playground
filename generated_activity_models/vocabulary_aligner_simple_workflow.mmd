@@ -1,0 +1,26 @@
+flowchart TD
+    %% Simple Workflow Analysis
+
+    start([Start])
+    class_VocabularyAligner[Process VocabularyAligner]
+    method_VocabularyAligner___init__[__init__()]
+    method_VocabularyAligner_align_vocabulary[align_vocabulary()]
+    method_VocabularyAligner__align_vocabulary_ontologically[_align_vocabulary_ontologically()]
+    decision_VocabularyAligner{Methods Complete?}
+    function___init__[Function: __init__()]
+    function_align_vocabulary[Function: align_vocabulary()]
+    end([End])
+
+    start -->|Initialize| class_VocabularyAligner
+    class_VocabularyAligner -->|Execute| method_VocabularyAligner___init__
+    class_VocabularyAligner -->|Execute| method_VocabularyAligner_align_vocabulary
+    class_VocabularyAligner -->|Execute| method_VocabularyAligner__align_vocabulary_ontologically
+    class_VocabularyAligner -->|Process| decision_VocabularyAligner
+    start -->|Call| function___init__
+    start -->|Call| function_align_vocabulary
+    method_VocabularyAligner___init__ -->|Complete| end
+    method_VocabularyAligner_align_vocabulary -->|Complete| end
+    method_VocabularyAligner__align_vocabulary_ontologically -->|Complete| end
+    decision_VocabularyAligner -->|Complete| end
+    function___init__ -->|Complete| end
+    function_align_vocabulary -->|Complete| end

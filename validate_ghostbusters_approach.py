@@ -72,9 +72,7 @@ class ClewcrewApproachValidator:
             except Exception as e:
                 self.issues.append(f"Error reading {py_file}: {e}")
 
-        logger.info(
-            f"Found {len(python_files)} Python files with {total_lines} total lines"
-        )
+        logger.info(f"Found {len(python_files)} Python files with {total_lines} total lines")
 
         # Check for critical components
         critical_components = [
@@ -195,9 +193,7 @@ class ClewcrewApproachValidator:
         # Increase confidence for successful validations
         success_bonus = 0.1 if not self.issues else 0.0
 
-        self.confidence = max(
-            0.0, min(1.0, base_confidence - issue_penalty + success_bonus)
-        )
+        self.confidence = max(0.0, min(1.0, base_confidence - issue_penalty + success_bonus))
 
         logger.info(f"🎯 Confidence in extraction approach: {self.confidence:.2f}")
 
@@ -228,9 +224,7 @@ async def main():
     elif result["confidence"] >= 0.5:
         logger.warning("⚠️ Extraction approach has some issues - review and fix")
     else:
-        logger.error(
-            "❌ Extraction approach has significant issues - major revision needed"
-        )
+        logger.error("❌ Extraction approach has significant issues - major revision needed")
 
     return result
 

@@ -41,12 +41,8 @@ def _parse_method_signature(method_signature: str) -> dict[str, Any]:
                     print(f"    Processing param: '{param}'")
                     if ":" in param:
                         param_name, param_type = param.split(":", 1)
-                        params.append(
-                            {"name": param_name.strip(), "type": param_type.strip()}
-                        )
-                        print(
-                            f"      -> name: '{param_name.strip()}', type: '{param_type.strip()}'"
-                        )
+                        params.append({"name": param_name.strip(), "type": param_type.strip()})
+                        print(f"      -> name: '{param_name.strip()}', type: '{param_type.strip()}'")
                     else:
                         params.append({"name": param.strip(), "type": "Any"})
                         print(f"      -> name: '{param.strip()}', type: 'Any'")

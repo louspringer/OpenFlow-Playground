@@ -57,9 +57,7 @@ class TestMetaCognitiveOrchestrator(unittest.TestCase):
         # Should have questions from both PR and git contexts
         self.assertGreater(len(questions), 5)
         self.assertIn("What workflow were you following?", questions)
-        self.assertIn(
-            "What's the difference between git merge and GitHub PR?", questions
-        )
+        self.assertIn("What's the difference between git merge and GitHub PR?", questions)
 
     def test_blind_spot_identification(self):
         """Test blind spot identification from partner questions"""
@@ -84,21 +82,15 @@ class TestMetaCognitiveOrchestrator(unittest.TestCase):
         self.assertEqual(confidence, 1.0)
 
         # Assumptions should reduce confidence
-        confidence = self.orchestrator.calculate_confidence(
-            ["assumption1", "assumption2"], []
-        )
+        confidence = self.orchestrator.calculate_confidence(["assumption1", "assumption2"], [])
         self.assertEqual(confidence, 0.6)
 
         # Blind spots should reduce confidence more
-        confidence = self.orchestrator.calculate_confidence(
-            [], ["blind_spot1", "blind_spot2"]
-        )
+        confidence = self.orchestrator.calculate_confidence([], ["blind_spot1", "blind_spot2"])
         self.assertEqual(confidence, 0.4)
 
         # Combined issues should reduce confidence significantly
-        confidence = self.orchestrator.calculate_confidence(
-            ["assumption"], ["blind_spot"]
-        )
+        confidence = self.orchestrator.calculate_confidence(["assumption"], ["blind_spot"])
         self.assertEqual(confidence, 0.5)
 
     def test_decision_making(self):
@@ -117,9 +109,7 @@ class TestMetaCognitiveOrchestrator(unittest.TestCase):
 
     def test_full_orchestration(self):
         """Test complete orchestration workflow"""
-        context = (
-            "I think git merge is the same as creating a PR, I assume it's correct"
-        )
+        context = "I think git merge is the same as creating a PR, I assume it's correct"
         result = self.orchestrator.orchestrate(context)
 
         # Check all required keys
@@ -255,9 +245,7 @@ class TestMetaCognitiveOrchestratorIntegration(unittest.TestCase):
         """Test confidence threshold configuration"""
         # Test with different confidence thresholds
         low_threshold_orchestrator = MetaCognitiveOrchestrator(confidence_threshold=0.3)
-        high_threshold_orchestrator = MetaCognitiveOrchestrator(
-            confidence_threshold=0.9
-        )
+        high_threshold_orchestrator = MetaCognitiveOrchestrator(confidence_threshold=0.9)
 
         # Same context should give different decisions based on threshold
         context = "I think this might work"
@@ -296,9 +284,7 @@ def run_meta_testing_suite():
     loader = unittest.TestLoader()
     suite = loader.loadTestsFromTestCase(TestMetaCognitiveOrchestrator)
     suite.addTests(loader.loadTestsFromTestCase(TestMetaTestingCapabilities))
-    suite.addTests(
-        loader.loadTestsFromTestCase(TestMetaCognitiveOrchestratorIntegration)
-    )
+    suite.addTests(loader.loadTestsFromTestCase(TestMetaCognitiveOrchestratorIntegration))
 
     # Run tests
     runner = unittest.TextTestRunner(verbosity=2)
@@ -310,9 +296,7 @@ def run_meta_testing_suite():
     print(f"   Tests Run: {result.testsRun}")
     print(f"   Failures: {len(result.failures)}")
     print(f"   Errors: {len(result.errors)}")
-    print(
-        f"   Success Rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%"
-    )
+    print(f"   Success Rate: {((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100):.1f}%")
 
     if result.failures:
         print("\n❌ Failures:")

@@ -29,17 +29,13 @@ class MetaCognitiveOrchestrator:
         detected_assumptions: list[str] = []
         for indicator in self.uncertainty_indicators:
             if indicator.lower() in context.lower():
-                detected_assumptions.append(
-                    f"Using assumption indicator: '{indicator}'"
-                )
+                detected_assumptions.append(f"Using assumption indicator: '{indicator}'")
         return detected_assumptions
 
     def generate_jeopardy_question(self, context: str) -> str:
         """Generate Jeopardy-style question for partner LLM"""
         if "PR" in context or "pull request" in context:
-            return (
-                "What's the proper GitHub PR workflow? Question me about my approach."
-            )
+            return "What's the proper GitHub PR workflow? Question me about my approach."
         if "git" in context or "merge" in context:
             return "Am I following standard git workflow? Challenge my assumptions."
         return "Question me about this - I can't tell if I'm confused."
@@ -87,9 +83,7 @@ class MetaCognitiveOrchestrator:
 
         return blind_spots
 
-    def calculate_confidence(
-        self, assumptions: list[str], blind_spots: list[str]
-    ) -> float:
+    def calculate_confidence(self, assumptions: list[str], blind_spots: list[str]) -> float:
         """Calculate confidence based on detected issues"""
         confidence: float = 1.0
         confidence -= len(assumptions) * 0.2
@@ -131,11 +125,7 @@ class MetaCognitiveOrchestrator:
             "partner_questions": partner_questions,
             "confidence": confidence,
             "final_decision": final_decision,
-            "human_feedback": (
-                "Human decision needed"
-                if confidence < 0.7 or blind_spots
-                else "Confidence high enough to proceed"
-            ),
+            "human_feedback": ("Human decision needed" if confidence < 0.7 or blind_spots else "Confidence high enough to proceed"),
         }
 
 

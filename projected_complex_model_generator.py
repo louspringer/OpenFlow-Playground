@@ -339,9 +339,7 @@ class ComplexModel:
                 "line": issue["line"],
                 "description": issue["description"],
                 "fix_strategy": issue["fix_strategy"],
-                "priority": (
-                    "high" if "error" in issue.get("code", "").lower() else "medium"
-                ),
+                "priority": ("high" if "error" in issue.get("code", "").lower() else "medium"),
             }
             strategies.append(strategy)
         return strategies
@@ -378,8 +376,8 @@ class ComplexModel:
         """Apply MyPy fix to content"""
         if issue["code"] == "no-return":
             content = content.replace(
-                f"""def {issue['description'].split("'")[1]}(""",
-                f"""def {issue['description'].split("'")[1]}(self) -> Any:""",
+                f"""def {issue["description"].split("'")[1]}(""",
+                f"""def {issue["description"].split("'")[1]}(self) -> Any:""",
             )
         return content
 

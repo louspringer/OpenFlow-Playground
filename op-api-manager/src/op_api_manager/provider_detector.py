@@ -76,11 +76,7 @@ class ProviderDetector:
     def __init__(self):
         """Initialize the provider detector with predefined provider configurations."""
         self._provider_configs = self._build_provider_configs()
-        self._patterns = [
-            pattern
-            for config in self._provider_configs.values()
-            for pattern in config.patterns
-        ]
+        self._patterns = [pattern for config in self._provider_configs.values() for pattern in config.patterns]
 
     def _build_provider_configs(self) -> dict[str, ProviderConfig]:
         """Build provider configurations with proper service modeling."""
@@ -96,11 +92,7 @@ class ProviderDetector:
                     )
                 ],
                 endpoint="https://api.openai.com/v1/chat/completions",
-                credential_attributes=[
-                    CredentialAttribute(
-                        "api_key", "Bearer", "sk-", "API key starting with sk-"
-                    )
-                ],
+                credential_attributes=[CredentialAttribute("api_key", "Bearer", "sk-", "API key starting with sk-")],
                 env_vars=["OPENAI_API_KEY"],
                 models=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"],
             ),
@@ -135,11 +127,7 @@ class ProviderDetector:
                     )
                 ],
                 endpoint="https://generativelanguage.googleapis.com/v1beta/models",
-                credential_attributes=[
-                    CredentialAttribute(
-                        "api_key", "Authorization", "AIza", "API key starting with AIza"
-                    )
-                ],
+                credential_attributes=[CredentialAttribute("api_key", "Authorization", "AIza", "API key starting with AIza")],
                 env_vars=["GOOGLE_API_KEY"],
                 models=["gemini-1.5-pro", "gemini-1.5-flash", "gemini-pro"],
             ),
@@ -232,12 +220,8 @@ class ProviderDetector:
                 ],
                 endpoint="https://{resource}.openai.azure.com/openai/deployments/{deployment}",
                 credential_attributes=[
-                    CredentialAttribute(
-                        "api_key", "api-key", "", "Azure OpenAI API key"
-                    ),
-                    CredentialAttribute(
-                        "endpoint", "AZURE_OPENAI_ENDPOINT", "", "Azure OpenAI endpoint"
-                    ),
+                    CredentialAttribute("api_key", "api-key", "", "Azure OpenAI API key"),
+                    CredentialAttribute("endpoint", "AZURE_OPENAI_ENDPOINT", "", "Azure OpenAI endpoint"),
                 ],
                 env_vars=["AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT"],
                 models=["gpt-4", "gpt-35-turbo"],
@@ -253,11 +237,7 @@ class ProviderDetector:
                     )
                 ],
                 endpoint="https://api.cohere.ai/v1/chat",
-                credential_attributes=[
-                    CredentialAttribute(
-                        "api_key", "Authorization", "Bearer", "Bearer token for Cohere"
-                    )
-                ],
+                credential_attributes=[CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for Cohere")],
                 env_vars=["COHERE_API_KEY"],
                 models=["command-r-plus", "command-r", "command"],
             ),
@@ -271,11 +251,7 @@ class ProviderDetector:
                     )
                 ],
                 endpoint="https://api.mistral.ai/v1/chat/completions",
-                credential_attributes=[
-                    CredentialAttribute(
-                        "api_key", "Authorization", "Bearer", "Bearer token for Mistral"
-                    )
-                ],
+                credential_attributes=[CredentialAttribute("api_key", "Authorization", "Bearer", "Bearer token for Mistral")],
                 env_vars=["MISTRAL_API_KEY"],
                 models=[
                     "mistral-large-latest",
@@ -315,9 +291,7 @@ class ProviderDetector:
         """
         self._provider_configs[config.provider] = config
         # Update patterns list
-        self._patterns = [
-            config.detection_patterns for config in self._provider_configs.values()
-        ]
+        self._patterns = [config.detection_patterns for config in self._provider_configs.values()]
 
     def detect_from_title(self, title: str) -> ProviderType:
         """
@@ -420,9 +394,7 @@ class ProviderDetector:
         """
         config = self.get_provider_config(provider)
         if config:
-            return [
-                keyword for pattern in config.patterns for keyword in pattern.keywords
-            ]
+            return [keyword for pattern in config.patterns for keyword in pattern.keywords]
         return []
 
     def get_provider_env_vars(self, provider: ProviderType) -> list[str]:
@@ -440,9 +412,7 @@ class ProviderDetector:
             return config.get_env_vars()
         return []
 
-    def get_provider_credential_attributes(
-        self, provider: ProviderType
-    ) -> list[CredentialAttribute]:
+    def get_provider_credential_attributes(self, provider: ProviderType) -> list[CredentialAttribute]:
         """
         Get credential attributes required for a provider.
 
@@ -519,9 +489,7 @@ class ProviderDetector:
 
         return False
 
-    def detect_aws_credential_type(
-        self, title: str, field_labels: list[str] = None
-    ) -> str:
+    def detect_aws_credential_type(self, title: str, field_labels: list[str] = None) -> str:
         """
         Detect specific AWS credential type.
 
@@ -538,20 +506,14 @@ class ProviderDetector:
 
         if any(term in combined_text for term in ["access key", "access_key", "akid"]):
             return "access_key"
-        elif any(
-            term in combined_text for term in ["secret", "secret key", "secret_key"]
-        ):
+        elif any(term in combined_text for term in ["secret", "secret key", "secret_key"]):
             return "secret_key"
-        elif any(
-            term in combined_text for term in ["session", "token", "session_token"]
-        ):
+        elif any(term in combined_text for term in ["session", "token", "session_token"]):
             return "session_token"
         else:
             return "unknown"
 
-    def suggest_provider_from_partial_match(
-        self, text: str, min_confidence: float = 0.3
-    ) -> list[ProviderType]:
+    def suggest_provider_from_partial_match(self, text: str, min_confidence: float = 0.3) -> list[ProviderType]:
         """
         Suggest possible providers based on partial matches.
 

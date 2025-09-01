@@ -1,0 +1,12 @@
+[submodule "subprojects/ontology-framework"]
+	path = subprojects/ontology-framework
+	url = https://github.com/louspringer/ontology-framework.git
+[submodule "awesome-cursor-rules-mdc"]
+	path = awesome-cursor-rules-mdc
+	url = https://github.com/louspringer/awesome-cursor-rules-mdc.git
+[submodule "external/staruml-python"]
+	path = external/staruml-python
+	url = https://github.com/niklauslee/staruml-python.git
+[submodule "external/voice-mode"]
+	path = external/voice-mode
+	url = https://github.com/mbailey/voicemode.git

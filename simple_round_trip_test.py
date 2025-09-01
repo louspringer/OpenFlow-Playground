@@ -151,15 +151,9 @@ def run_round_trip_test() -> None:
         # Overall assessment
         print("\n🎯 Functional Equivalence Assessment:")
 
-        structure_match = (
-            original_classes == generated_classes
-            and abs(original_methods - generated_methods) <= 1
-        )
+        structure_match = original_classes == generated_classes and abs(original_methods - generated_methods) <= 1
 
-        functionality_match = (
-            original_has_calc == generated_has_calc
-            and original_types == generated_types
-        )
+        functionality_match = original_has_calc == generated_has_calc and original_types == generated_types
 
         if structure_match and functionality_match:
             print("   ✅ FUNCTIONALLY EQUIVALENT - Round-trip successful!")

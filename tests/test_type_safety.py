@@ -57,15 +57,13 @@ class TypeSafetyValidator:
                     for arg in node.args.args:
                         if arg.annotation is None and arg.arg != "self":
                             errors.append(
-                                f"Missing type annotation for parameter "
-                                f"'{arg.arg}' in {node.name}",
+                                f"Missing type annotation for parameter '{arg.arg}' in {node.name}",
                             )
 
                     # Check return type
                     if node.returns is None:
                         errors.append(
-                            f"Missing return type annotation for function "
-                            f"'{node.name}'",
+                            f"Missing return type annotation for function '{node.name}'",
                         )
 
         except Exception as e:
@@ -129,11 +127,7 @@ class TypeSafetyValidator:
             "files_with_errors": files_with_errors,
             "total_errors": total_errors,
             "errors_by_file": all_errors,
-            "compliance_rate": (
-                ((total_files - files_with_errors) / total_files) * 100
-                if total_files > 0
-                else 0
-            ),
+            "compliance_rate": (((total_files - files_with_errors) / total_files) * 100 if total_files > 0 else 0),
         }
 
 

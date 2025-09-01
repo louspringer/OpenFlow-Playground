@@ -53,20 +53,14 @@ class RecommendationEngine:
 
         try:
             # Generate priority recommendations
-            recommendations[
-                "priority_recommendations"
-            ] = self._generate_priority_recommendations(analysis_data)
+            recommendations["priority_recommendations"] = self._generate_priority_recommendations(analysis_data)
 
             # Generate category-specific recommendations
-            recommendations[
-                "category_recommendations"
-            ] = self._generate_category_recommendations(analysis_data)
+            recommendations["category_recommendations"] = self._generate_category_recommendations(analysis_data)
 
             # Create implementation plan
             priority_recs = list(recommendations["priority_recommendations"])
-            recommendations["implementation_plan"] = self._create_implementation_plan(
-                priority_recs
-            )
+            recommendations["implementation_plan"] = self._create_implementation_plan(priority_recs)
 
             # Estimate effort
             recommendations["estimated_effort"] = self._estimate_effort(priority_recs)
@@ -78,94 +72,64 @@ class RecommendationEngine:
 
         return recommendations
 
-    def _generate_priority_recommendations(
-        self, analysis_data: dict[str, Any]
-    ) -> list[str]:
+    def _generate_priority_recommendations(self, analysis_data: dict[str, Any]) -> list[str]:
         """Generate high-priority recommendations"""
         priority_recommendations = []
 
         # Check for critical issues
         if analysis_data.get("error"):
-            priority_recommendations.append(
-                "🚨 CRITICAL: Fix analysis errors before proceeding"
-            )
+            priority_recommendations.append("🚨 CRITICAL: Fix analysis errors before proceeding")
 
         # Check quality metrics
         quality_metrics = analysis_data.get("quality_metrics", {})
         if quality_metrics.get("overall_score", 100) < 70:
-            priority_recommendations.append(
-                "🔴 HIGH PRIORITY: Code quality needs immediate attention"
-            )
+            priority_recommendations.append("🔴 HIGH PRIORITY: Code quality needs immediate attention")
 
         # Check security issues
         issues = analysis_data.get("issues_found", [])
-        security_issues = [
-            i
-            for i in issues
-            if i.get("severity") == "high" and "security" in i.get("type", "")
-        ]
+        security_issues = [i for i in issues if i.get("severity") == "high" and "security" in i.get("type", "")]
         if security_issues:
-            priority_recommendations.append(
-                "🛡️ HIGH PRIORITY: Security vulnerabilities must be addressed immediately"
-            )
+            priority_recommendations.append("🛡️ HIGH PRIORITY: Security vulnerabilities must be addressed immediately")
 
         # Check for TODO/FIXME comments
         todo_issues = [i for i in issues if "todo" in i.get("type", "").lower()]
         if len(todo_issues) > 10:
-            priority_recommendations.append(
-                "📝 MEDIUM PRIORITY: Address technical debt from TODO comments"
-            )
+            priority_recommendations.append("📝 MEDIUM PRIORITY: Address technical debt from TODO comments")
 
         # Add general improvement recommendations
         if not priority_recommendations:
-            priority_recommendations.append(
-                "✅ Code quality is good - focus on incremental improvements"
-            )
+            priority_recommendations.append("✅ Code quality is good - focus on incremental improvements")
 
         return priority_recommendations
 
-    def _generate_category_recommendations(
-        self, analysis_data: dict[str, Any]
-    ) -> dict[str, list[str]]:
+    def _generate_category_recommendations(self, analysis_data: dict[str, Any]) -> dict[str, list[str]]:
         """Generate recommendations by category"""
         category_recommendations = {}
 
         # Quality recommendations
         quality_metrics = analysis_data.get("quality_metrics", {})
         if quality_metrics.get("overall_score", 100) < 80:
-            category_recommendations["quality"] = self.recommendation_templates[
-                "quality"
-            ]
+            category_recommendations["quality"] = self.recommendation_templates["quality"]
 
         # Security recommendations
         issues = analysis_data.get("issues_found", [])
         security_issues = [i for i in issues if "security" in i.get("type", "").lower()]
         if security_issues:
-            category_recommendations["security"] = self.recommendation_templates[
-                "security"
-            ]
+            category_recommendations["security"] = self.recommendation_templates["security"]
 
         # Maintainability recommendations
-        complexity_issues = [
-            i for i in issues if "complexity" in i.get("type", "").lower()
-        ]
+        complexity_issues = [i for i in issues if "complexity" in i.get("type", "").lower()]
         if complexity_issues:
-            category_recommendations["maintainability"] = self.recommendation_templates[
-                "maintainability"
-            ]
+            category_recommendations["maintainability"] = self.recommendation_templates["maintainability"]
 
         return category_recommendations
 
-    def _create_implementation_plan(
-        self, priority_recommendations: list[str]
-    ) -> list[str]:
+    def _create_implementation_plan(self, priority_recommendations: list[str]) -> list[str]:
         """Create a step-by-step implementation plan"""
         implementation_plan = []
 
         if not priority_recommendations:
-            implementation_plan.append(
-                "🎯 Phase 1: Code quality review and documentation"
-            )
+            implementation_plan.append("🎯 Phase 1: Code quality review and documentation")
             implementation_plan.append("🎯 Phase 2: Automated testing implementation")
             implementation_plan.append("🎯 Phase 3: Performance optimization")
             return implementation_plan
@@ -175,18 +139,12 @@ class RecommendationEngine:
             implementation_plan.append("🚨 Phase 1: Fix critical issues immediately")
 
         if any("HIGH PRIORITY" in rec for rec in priority_recommendations):
-            implementation_plan.append(
-                "🔴 Phase 2: Address high-priority security and quality issues"
-            )
+            implementation_plan.append("🔴 Phase 2: Address high-priority security and quality issues")
 
         if any("MEDIUM PRIORITY" in rec for rec in priority_recommendations):
-            implementation_plan.append(
-                "🟡 Phase 3: Address technical debt and maintainability"
-            )
+            implementation_plan.append("🟡 Phase 3: Address technical debt and maintainability")
 
-        implementation_plan.append(
-            "✅ Phase 4: Implement continuous improvement processes"
-        )
+        implementation_plan.append("✅ Phase 4: Implement continuous improvement processes")
 
         return implementation_plan
 

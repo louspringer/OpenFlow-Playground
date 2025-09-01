@@ -90,11 +90,7 @@ class MypyEnhancedASTParser:
             )
 
         # Check for return statements in functions marked as -> None
-        if (
-            node.returns
-            and isinstance(node.returns, ast.Constant)
-            and node.returns.value is None
-        ):
+        if node.returns and isinstance(node.returns, ast.Constant) and node.returns.value is None:
             self._check_for_unexpected_returns(node)
 
     def _analyze_async_function_def(self, node: ast.AsyncFunctionDef) -> None:

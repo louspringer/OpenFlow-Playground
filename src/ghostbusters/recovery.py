@@ -106,11 +106,7 @@ class IndentationFixer(BaseRecoveryEngine):
 
                     for line in lines:
                         # Basic indentation fix - in practice you'd use a proper formatter
-                        if (
-                            line.strip()
-                            and not line.startswith(" ")
-                            and len(fixed_lines) > 0
-                        ):
+                        if line.strip() and not line.startswith(" ") and len(fixed_lines) > 0:
                             prev_line = fixed_lines[-1]
                             if prev_line.strip() and prev_line.rstrip().endswith(":"):
                                 # Add proper indentation

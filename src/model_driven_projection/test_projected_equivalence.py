@@ -193,10 +193,7 @@ def test_syntax_equivalence() -> None:
             f"📊 Class count: Original {original_classes} vs Projected {projected_classes}",
         )
 
-        if (
-            original_functions == projected_functions
-            and original_classes == projected_classes
-        ):
+        if original_functions == projected_functions and original_classes == projected_classes:
             print("✅ Projected artifacts: Syntax structure matches original")
             # Removed return statement
         else:

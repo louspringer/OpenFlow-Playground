@@ -165,11 +165,7 @@ class GitHubMCPClient:
                 read_result = await secure_execute(
                     f"cat {full_path} 2>/dev/null || echo 'File not found'",
                 )
-                results[file_path] = (
-                    read_result["output"]
-                    if read_result["success"]
-                    else "Error reading file"
-                )
+                results[file_path] = read_result["output"] if read_result["success"] else "Error reading file"
 
             # Cleanup
             await secure_execute(f"rm -rf {temp_dir}")

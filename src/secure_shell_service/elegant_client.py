@@ -33,9 +33,7 @@ class ElegantSecureShellClient:
         # TODO: Implement _create_mock_stub
         return None
 
-    async def execute_command(
-        self, command: str, timeout: int, validate_input: bool
-    ) -> dict[str, Any]:
+    async def execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[str, Any]:
         """
         Execute command elegantly - NO MORE CRINGING! 😄
         """

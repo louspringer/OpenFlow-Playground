@@ -1,0 +1,444 @@
+#!/usr/bin/env python3
+"""
+Code Generation Domain Ontology
+Formal ontological model to eliminate vocabulary ambiguity between systems
+"""
+
+from dataclasses import dataclass, field
+from typing import Dict, List, Set, Optional, Any, Union
+from enum import Enum
+import json
+from pathlib import Path
+
+
+class ContextType(Enum):
+    """Context types for components and concepts"""
+
+    REVERSE_ENGINEERING = "reverse_engineering"
+    CODE_GENERATION = "code_generation"
+    PROJECT_MODEL = "project_model"
+    ARTIFACT_FORGE = "artifact_forge"
+    ROUND_TRIP = "round_trip"
+
+
+class FormatType(Enum):
+    """Data format types"""
+
+    LIST = "list"
+    DICT = "dict"
+    STRING = "string"
+    INTEGER = "integer"
+    BOOLEAN = "boolean"
+    OBJECT = "object"
+
+
+class RelationshipType(Enum):
+    """Types of relationships between concepts"""
+
+    IS_A = "is_a"
+    PART_OF = "part_of"
+    TRANSFORMS_TO = "transforms_to"
+    TRANSFORMS_FROM = "transforms_from"
+    DEPENDS_ON = "depends_on"
+    IMPLEMENTS = "implements"
+    EXTENDS = "extends"
+    COMPOSES = "composes"
+
+
+@dataclass
+class OntologicalConcept:
+    """Base class for all ontological concepts"""
+
+    name: str
+    description: str
+    context: ContextType
+    format: FormatType
+    constraints: Dict[str, Any] = field(default_factory=dict)
+    relationships: Dict[RelationshipType, List[str]] = field(default_factory=dict)
+
+    def add_relationship(self, rel_type: RelationshipType, target_concept: str):
+        """Add a relationship to another concept"""
+        if rel_type not in self.relationships:
+            self.relationships[rel_type] = []
+        if target_concept not in self.relationships[rel_type]:
+            self.relationships[rel_type].append(target_concept)
+
+    def get_relationships(self, rel_type: RelationshipType) -> List[str]:
+        """Get all concepts related by a specific relationship type"""
+        return self.relationships.get(rel_type, [])
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary representation"""
+        return {
+            "name": self.name,
+            "description": self.description,
+            "context": self.context.value,
+            "format": self.format.value,
+            "constraints": self.constraints,
+            "relationships": {k.value: v for k, v in self.relationships.items()},
+        }
+
+
+@dataclass
+class ComponentConcept(OntologicalConcept):
+    """Ontological concept for components"""
+
+    component_type: str = "class"  # class, function, module, etc.
+    methods: List[str] = field(default_factory=list)
+    properties: List[str] = field(default_factory=list)
+    dependencies: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary representation"""
+        base_dict = super().to_dict()
+        base_dict.update(
+            {
+                "component_type": self.component_type,
+                "methods": self.methods,
+                "properties": self.properties,
+                "dependencies": self.dependencies,
+            }
+        )
+        return base_dict
+
+
+@dataclass
+class MethodConcept(OntologicalConcept):
+    """Ontological concept for methods"""
+
+    return_type: Optional[str] = None
+    parameters: List[Dict[str, str]] = field(default_factory=list)
+    visibility: str = "public"  # public, private, protected
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary representation"""
+        base_dict = super().to_dict()
+        base_dict.update(
+            {
+                "return_type": self.return_type,
+                "parameters": self.parameters,
+                "visibility": self.visibility,
+            }
+        )
+        return base_dict
+
+
+class CodeGenerationOntology:
+    """Ontological model for the code generation domain"""
+
+    def __init__(self):
+        self.concepts: Dict[str, OntologicalConcept] = {}
+        self.contexts: Dict[ContextType, Set[str]] = {ctx: set() for ctx in ContextType}
+        self._initialize_ontology()
+
+    def _initialize_ontology(self):
+        """Initialize the core ontological concepts"""
+
+        # Core concepts for reverse engineering
+        reverse_components = ComponentConcept(
+            name="reverse_engineering_components",
+            description="Components discovered during reverse engineering",
+            context=ContextType.REVERSE_ENGINEERING,
+            format=FormatType.LIST,
+            constraints={
+                "structure": "list of component objects",
+                "naming": "each component must have a name",
+                "uniqueness": "component names must be unique within context",
+            },
+        )
+        reverse_components.add_relationship(RelationshipType.TRANSFORMS_TO, "code_generation_components")
+
+        # Core concepts for code generation
+        generation_components = ComponentConcept(
+            name="code_generation_components",
+            description="Components to be generated by the code generation system",
+            context=ContextType.CODE_GENERATION,
+            format=FormatType.DICT,
+            constraints={
+                "structure": "dict keyed by component name",
+                "naming": "keys must match component names",
+                "uniqueness": "component names must be unique",
+            },
+        )
+        generation_components.add_relationship(RelationshipType.TRANSFORMS_FROM, "reverse_engineering_components")
+
+        # Method concepts
+        reverse_methods = MethodConcept(
+            name="reverse_engineering_methods",
+            description="Methods discovered during reverse engineering",
+            context=ContextType.REVERSE_ENGINEERING,
+            format=FormatType.LIST,
+            constraints={
+                "structure": "list of method objects",
+                "naming": "each method must have a name",
+                "parent": "each method must belong to a component",
+            },
+        )
+
+        generation_methods = MethodConcept(
+            name="code_generation_methods",
+            description="Methods to be generated by the code generation system",
+            context=ContextType.CODE_GENERATION,
+            format=FormatType.DICT,
+            constraints={
+                "structure": "dict keyed by method name",
+                "naming": "keys must match method names",
+                "parent": "methods must be nested within components",
+            },
+        )
+
+        # Add concepts to ontology
+        self.add_concept(reverse_components)
+        self.add_concept(generation_components)
+        self.add_concept(reverse_methods)
+        self.add_concept(generation_methods)
+
+        # Add transformation rules
+        self._add_transformation_rules()
+
+    def _add_transformation_rules(self):
+        """Add transformation rules between contexts"""
+
+        # Transformation rule: LIST -> DICT
+        list_to_dict_rule = OntologicalConcept(
+            name="list_to_dict_transformation",
+            description="Transform list format to dict format for code generation",
+            context=ContextType.ROUND_TRIP,
+            format=FormatType.OBJECT,
+            constraints={
+                "input_format": "list of objects with 'name' property",
+                "output_format": "dict keyed by object names",
+                "preservation": "all object properties must be preserved",
+            },
+        )
+        list_to_dict_rule.add_relationship(RelationshipType.IMPLEMENTS, "reverse_engineering_components")
+        list_to_dict_rule.add_relationship(RelationshipType.IMPLEMENTS, "code_generation_components")
+
+        self.add_concept(list_to_dict_rule)
+
+    def add_concept(self, concept: OntologicalConcept):
+        """Add a concept to the ontology"""
+        self.concepts[concept.name] = concept
+        self.contexts[concept.context].add(concept.name)
+
+    def get_concept(self, name: str) -> Optional[OntologicalConcept]:
+        """Get a concept by name"""
+        return self.concepts.get(name)
+
+    def get_concepts_by_context(self, context: ContextType) -> List[OntologicalConcept]:
+        """Get all concepts in a specific context"""
+        concept_names = self.contexts[context]
+        return [self.concepts[name] for name in concept_names]
+
+    def get_transformation_path(self, from_concept: str, to_concept: str) -> List[str]:
+        """Get the transformation path between two concepts"""
+        if from_concept not in self.concepts or to_concept not in self.concepts:
+            return []
+
+        # Simple path finding for now - could be enhanced with proper graph algorithms
+        from_obj = self.concepts[from_concept]
+        to_obj = self.concepts[to_concept]
+
+        # Check direct relationships
+        if to_concept in from_obj.get_relationships(RelationshipType.TRANSFORMS_TO):
+            return [from_concept, to_concept]
+
+        # Check reverse relationships
+        if from_concept in to_obj.get_relationships(RelationshipType.TRANSFORMS_FROM):
+            return [from_concept, to_concept]
+
+        # Check if there's a transformation rule
+        for concept_name in self.contexts[ContextType.ROUND_TRIP]:
+            concept = self.concepts[concept_name]
+            if from_concept in concept.get_relationships(RelationshipType.IMPLEMENTS) and to_concept in concept.get_relationships(RelationshipType.IMPLEMENTS):
+                return [from_concept, concept_name, to_concept]
+
+        return []
+
+    def validate_transformation(self, from_data: Any, to_format: FormatType) -> Dict[str, Any]:
+        """Validate that data can be transformed to the target format"""
+        validation_result = {
+            "valid": False,
+            "errors": [],
+            "warnings": [],
+            "transformation_path": [],
+        }
+
+        # Determine source concept based on data structure
+        source_concept = self._identify_source_concept(from_data)
+        if not source_concept:
+            validation_result["errors"].append("Could not identify source concept")
+            return validation_result
+
+        # Find target concept with matching format
+        target_concept = self._find_target_concept(to_format)
+        if not target_concept:
+            validation_result["errors"].append(f"No target concept found for format: {to_format.value}")
+            return validation_result
+
+        # Get transformation path
+        path = self.get_transformation_path(source_concept.name, target_concept.name)
+        validation_result["transformation_path"] = path
+
+        if not path:
+            validation_result["errors"].append(f"No transformation path found from {source_concept.name} to {target_concept.name}")
+            return validation_result
+
+        # Validate constraints - but be more flexible about structure
+        constraint_validation = self._validate_constraints(from_data, source_concept)
+        validation_result["errors"].extend(constraint_validation["errors"])
+        validation_result["warnings"].extend(constraint_validation["warnings"])
+
+        # If no errors, transformation is valid
+        if not validation_result["errors"]:
+            validation_result["valid"] = True
+
+        return validation_result
+
+    def _identify_source_concept(self, data: Any) -> Optional[OntologicalConcept]:
+        """Identify which concept the data represents based on structure"""
+        if isinstance(data, dict):
+            # Check if it has components field
+            if "components" in data:
+                components = data["components"]
+                if isinstance(components, list):
+                    # This is reverse engineering output (list format)
+                    return self.get_concept("reverse_engineering_components")
+                elif isinstance(components, dict):
+                    # This is already in code generation format (dict format)
+                    return self.get_concept("code_generation_components")
+
+            # Check if it's a dict of components (no top-level components field)
+            if data and all(isinstance(v, dict) for v in data.values()):
+                return self.get_concept("code_generation_components")
+
+        elif isinstance(data, list):
+            # Check if it's a list of components
+            if data and isinstance(data[0], dict) and "name" in data[0]:
+                return self.get_concept("reverse_engineering_components")
+
+        return None
+
+    def _find_target_concept(self, target_format: FormatType) -> Optional[OntologicalConcept]:
+        """Find a concept that matches the target format"""
+        for concept in self.concepts.values():
+            if concept.format == target_format:
+                return concept
+        return None
+
+    def _validate_constraints(self, data: Any, concept: OntologicalConcept) -> Dict[str, List[str]]:
+        """Validate that data meets the concept's constraints"""
+        result = {"errors": [], "warnings": []}
+
+        constraints = concept.constraints
+
+        # For reverse engineering components, check the components field if it exists
+        if concept.name == "reverse_engineering_components":
+            if isinstance(data, dict) and "components" in data:
+                components_data = data["components"]
+                if isinstance(components_data, list):
+                    # Validate the components list
+                    if "naming" in constraints:
+                        if constraints["naming"] == "each component must have a name":
+                            for i, item in enumerate(components_data):
+                                if not isinstance(item, dict) or "name" not in item:
+                                    result["errors"].append(f"Component at index {i} missing 'name' property")
+
+                    if "uniqueness" in constraints:
+                        if constraints["uniqueness"] == "component names must be unique within context":
+                            names = [item.get("name") for item in components_data if isinstance(item, dict)]
+                            if len(names) != len(set(names)):
+                                result["warnings"].append("Duplicate component names detected")
+                else:
+                    result["errors"].append("Components field must be a list for reverse engineering format")
+            else:
+                result["errors"].append("Reverse engineering data must have a 'components' field")
+
+        # For code generation components, check structure
+        elif concept.name == "code_generation_components":
+            if isinstance(data, dict):
+                # Check if it's a dict of components
+                if data and all(isinstance(v, dict) for v in data.values()):
+                    pass  # Valid structure
+                else:
+                    result["warnings"].append("Some values in components dict are not objects")
+            else:
+                result["errors"].append(f"Expected dict structure for code generation, got {type(data).__name__}")
+
+        return result
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert ontology to dictionary representation"""
+        return {
+            "ontology": {
+                "name": "Code Generation Domain Ontology",
+                "description": "Formal ontological model for code generation domain",
+                "concepts": {name: concept.to_dict() for name, concept in self.concepts.items()},
+                "contexts": {ctx.value: list(names) for ctx, names in self.contexts.items()},
+            }
+        }
+
+    def save_to_file(self, filepath: str):
+        """Save ontology to JSON file"""
+        with open(filepath, "w") as f:
+            json.dump(self.to_dict(), f, indent=2)
+
+    @classmethod
+    def load_from_file(cls, filepath: str) -> "CodeGenerationOntology":
+        """Load ontology from JSON file"""
+        with open(filepath, "r") as f:
+            data = json.load(f)
+
+        ontology = cls()
+        # Reconstruct concepts from saved data
+        # (This is a simplified reconstruction - in practice, you'd want more robust loading)
+        return ontology
+
+
+def main():
+    """Test the ontology system"""
+    print("🏗️ Building Code Generation Domain Ontology")
+    print("=" * 60)
+
+    # Create ontology
+    ontology = CodeGenerationOntology()
+
+    # Test concept retrieval
+    print(f"\n📚 Ontology contains {len(ontology.concepts)} concepts:")
+    for name, concept in ontology.concepts.items():
+        print(f"  • {name}: {concept.description}")
+
+    # Test context-based retrieval
+    print(f"\n🔍 Concepts by context:")
+    for context in ContextType:
+        concepts = ontology.get_concepts_by_context(context)
+        print(f"  {context.value}: {len(concepts)} concepts")
+
+    # Test transformation validation
+    print(f"\n✅ Testing transformation validation...")
+
+    # Test valid transformation (list -> dict)
+    test_data = [
+        {"name": "QualityRule", "type": "class"},
+        {"name": "ASTAnalyzer", "type": "class"},
+    ]
+
+    validation = ontology.validate_transformation(test_data, FormatType.DICT)
+    print(f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}")
+    if not validation["valid"]:
+        print(f"    Errors: {validation['errors']}")
+
+    # Save ontology
+    output_file = "code_generation_ontology.json"
+    ontology.save_to_file(output_file)
+    print(f"\n💾 Ontology saved to: {output_file}")
+
+    print(f"\n🎉 Ontology system ready!")
+    print(f"📋 Next steps:")
+    print(f"  1. Use ontology to validate transformations")
+    print(f"  2. Apply ontological constraints to prevent ambiguity")
+    print(f"  3. Build transformation engines based on ontological rules")
+
+
+if __name__ == "__main__":
+    main()

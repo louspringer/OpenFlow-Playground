@@ -74,9 +74,7 @@ class TestGhostbustersOrchestrator:
         assert isinstance(orchestrator.validators["code_quality"], CodeQualityValidator)
         assert isinstance(orchestrator.validators["test"], TestValidator)
         assert isinstance(orchestrator.validators["build"], BuildValidator)
-        assert isinstance(
-            orchestrator.validators["architecture"], ArchitectureValidator
-        )
+        assert isinstance(orchestrator.validators["architecture"], ArchitectureValidator)
         assert isinstance(orchestrator.validators["model"], ModelValidator)
 
     def test_recovery_engines_initialization(self):
@@ -85,9 +83,7 @@ class TestGhostbustersOrchestrator:
 
         # Check that recovery engines are instances of the correct classes
         assert isinstance(orchestrator.recovery_engines["syntax"], SyntaxRecoveryEngine)
-        assert isinstance(
-            orchestrator.recovery_engines["indentation"], IndentationFixer
-        )
+        assert isinstance(orchestrator.recovery_engines["indentation"], IndentationFixer)
         assert isinstance(orchestrator.recovery_engines["imports"], ImportResolver)
         assert isinstance(orchestrator.recovery_engines["types"], TypeAnnotationFixer)
 
@@ -116,9 +112,7 @@ class TestRunGhostbusters:
     @pytest.mark.asyncio
     async def test_run_ghostbusters_default(self):
         """Test running ghostbusters with default path"""
-        with patch(
-            "src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator"
-        ) as mock_orchestrator:
+        with patch("src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator") as mock_orchestrator:
             mock_instance = Mock()
             # Create a mock state object
             mock_state = Mock(
@@ -141,9 +135,7 @@ class TestRunGhostbusters:
     @pytest.mark.asyncio
     async def test_run_ghostbusters_custom_path(self):
         """Test running ghostbusters with custom path"""
-        with patch(
-            "src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator"
-        ) as mock_orchestrator:
+        with patch("src.ghostbusters.ghostbusters_orchestrator.GhostbustersOrchestrator") as mock_orchestrator:
             mock_instance = Mock()
             # Create a mock state object
             mock_state = Mock(

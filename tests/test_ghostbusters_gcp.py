@@ -40,9 +40,7 @@ def test_ghostbusters_status_not_found(mock_firestore):
     mock_doc.exists = False  # Direct attribute, not method
     mock_doc.to_dict.return_value = {}
 
-    mock_firestore.collection.return_value.document.return_value.get.return_value = (
-        mock_doc
-    )
+    mock_firestore.collection.return_value.document.return_value.get.return_value = mock_doc
 
     request = MockRequest({"analysis_id": "non-existent-id"})
     result, status_code = ghostbusters_status(request)
@@ -76,9 +74,7 @@ def test_ghostbusters_status_success(mock_firestore):
         "timestamp": "2024-01-01T00:00:00Z",
     }
 
-    mock_firestore.collection.return_value.document.return_value.get.return_value = (
-        mock_doc
-    )
+    mock_firestore.collection.return_value.document.return_value.get.return_value = mock_doc
 
     request = MockRequest({"analysis_id": "test-id"})
     result, status_code = ghostbusters_status(request)
@@ -112,9 +108,7 @@ def test_ghostbusters_analyze_success(mock_firestore):
 def test_ghostbusters_history_success(mock_firestore):
     """Test history retrieval"""
     # Mock: return empty list for simplicity
-    mock_firestore.collection.return_value.order_by.return_value.limit.return_value.stream.return_value = (
-        []
-    )
+    mock_firestore.collection.return_value.order_by.return_value.limit.return_value.stream.return_value = []
 
     request = MockRequest({"limit": 5})
     result = ghostbusters_history(request)

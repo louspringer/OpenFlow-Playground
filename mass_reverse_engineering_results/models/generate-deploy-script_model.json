@@ -1,5 +1,5 @@
 {
-  "system_name": "\ud83d\ude80 Deploy Script Generator for GKE Project",
+  "system_name": "🚀 Deploy Script Generator for GKE Project",
   "description": "Generates deploy-ghostbusters.sh from the project model registry template",
   "purpose": "",
   "graph_api_level": 1,
@@ -102,7 +102,7 @@
     "import hashlib",
     "from pathlib import Path"
   ],
-  "module_docstring": "\n\ud83d\ude80 Deploy Script Generator for GKE Project\nGenerates deploy-ghostbusters.sh from the project model registry template\n",
+  "module_docstring": "\n🚀 Deploy Script Generator for GKE Project\nGenerates deploy-ghostbusters.sh from the project model registry template\n",
   "file_structure": {
     "total_lines": 193,
     "code_lines": 120,

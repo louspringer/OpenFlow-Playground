@@ -37,32 +37,20 @@ def test_cicd_integration():
         # Test development environment
         os.environ["DEPLOYMENT_ENVIRONMENT"] = "development"
         cicd_dev = CICDIntegration(Path())
-        print(
-            f"  ✅ Development Threshold: {cicd_dev.environment_rules['quality_threshold']}"
-        )
-        print(
-            f"  ✅ Development Fail on Quality: {cicd_dev.environment_rules['fail_on_quality']}"
-        )
+        print(f"  ✅ Development Threshold: {cicd_dev.environment_rules['quality_threshold']}")
+        print(f"  ✅ Development Fail on Quality: {cicd_dev.environment_rules['fail_on_quality']}")
 
         # Test staging environment
         os.environ["DEPLOYMENT_ENVIRONMENT"] = "staging"
         cicd_staging = CICDIntegration(Path())
-        print(
-            f"  ✅ Staging Threshold: {cicd_staging.environment_rules['quality_threshold']}"
-        )
-        print(
-            f"  ✅ Staging Fail on Quality: {cicd_staging.environment_rules['fail_on_quality']}"
-        )
+        print(f"  ✅ Staging Threshold: {cicd_staging.environment_rules['quality_threshold']}")
+        print(f"  ✅ Staging Fail on Quality: {cicd_staging.environment_rules['fail_on_quality']}")
 
         # Test production environment
         os.environ["DEPLOYMENT_ENVIRONMENT"] = "production"
         cicd_prod = CICDIntegration(Path())
-        print(
-            f"  ✅ Production Threshold: {cicd_prod.environment_rules['quality_threshold']}"
-        )
-        print(
-            f"  ✅ Production Fail on Quality: {cicd_prod.environment_rules['fail_on_quality']}"
-        )
+        print(f"  ✅ Production Threshold: {cicd_prod.environment_rules['quality_threshold']}")
+        print(f"  ✅ Production Fail on Quality: {cicd_prod.environment_rules['fail_on_quality']}")
 
     except Exception as e:
         print(f"  ❌ Environment-specific rules test failed: {e}")
@@ -96,9 +84,7 @@ def test_cicd_integration():
 
         # Test the fallback quality check
         fallback_result = cicd._run_fallback_quality_check()
-        print(
-            f"  ✅ Fallback Quality Check Result: {fallback_result.get('status', 'unknown')}"
-        )
+        print(f"  ✅ Fallback Quality Check Result: {fallback_result.get('status', 'unknown')}")
         if "overall_score" in fallback_result:
             print(f"  ✅ Overall Score: {fallback_result.get('overall_score', 'N/A')}")
 

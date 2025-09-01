@@ -108,12 +108,8 @@ class CodeQualityAutomationOrchestrator:
         self.api_manager = None
         self.working_models: list[str] = []
         self.working_openai_key: str | None = None  # Store the working OpenAI API key
-        self.working_huggingface_key: str | None = (
-            None  # Store the working HuggingFace API key
-        )
-        self.working_anthropic_key: str | None = (
-            None  # Store the working Anthropic API key
-        )
+        self.working_huggingface_key: str | None = None  # Store the working HuggingFace API key
+        self.working_anthropic_key: str | None = None  # Store the working Anthropic API key
         self.working_google_key: str | None = None  # Store the working Google API key
         self.working_aws_key: str | None = None  # Store the working AWS API key
         self.working_aws_secret: str | None = None  # Store the working AWS secret key
@@ -147,23 +143,17 @@ class CodeQualityAutomationOrchestrator:
 
                 # First, try to get working credentials from cache
                 print("  📦 Loading working credentials from cache...")
-                working_credentials = self.api_manager.get_working_credentials_all(
-                    force_test=False
-                )
+                working_credentials = self.api_manager.get_working_credentials_all(force_test=False)
 
                 if working_credentials:
-                    print(
-                        f"  ✅ Found {sum(len(apis) for apis in working_credentials.values())} working APIs in cache"
-                    )
+                    print(f"  ✅ Found {sum(len(apis) for apis in working_credentials.values())} working APIs in cache")
                     self._populate_working_models_from_cache(working_credentials)
                 else:
                     print("  🔄 No working credentials in cache, testing APIs...")
                     # Test API endpoints to discover working ones
                     test_results = self.api_manager.test_api_endpoints(verbose=True)
                     if test_results:
-                        print(
-                            f"  ✅ API testing completed, found {sum(len(apis) for apis in test_results.values())} working APIs"
-                        )
+                        print(f"  ✅ API testing completed, found {sum(len(apis) for apis in test_results.values())} working APIs")
                         self._populate_working_models_from_test_results(test_results)
                     else:
                         print("  ⚠️ No working APIs found during testing")
@@ -210,19 +200,13 @@ class CodeQualityAutomationOrchestrator:
                         )
                         self.working_openai_key = "cached"
                     elif provider == "anthropic":
-                        self.working_models.extend(
-                            ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
-                        )
+                        self.working_models.extend(["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"])
                         self.working_anthropic_key = "cached"
                     elif provider == "google" or provider == "gemini":
-                        self.working_models.extend(
-                            ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
-                        )
+                        self.working_models.extend(["gemini_pro", "gemini_flash", "gemini_pro_vision"])
                         self.working_google_key = "cached"
                     elif provider == "aws" or provider == "bedrock":
-                        self.working_models.extend(
-                            ["claude_bedrock", "titan_express", "llama2_bedrock"]
-                        )
+                        self.working_models.extend(["claude_bedrock", "titan_express", "llama2_bedrock"])
                         self.working_aws_key = "cached"
                     elif provider == "huggingface":
                         self.working_models.append("huggingface")
@@ -260,19 +244,13 @@ class CodeQualityAutomationOrchestrator:
                         )
                         self.working_openai_key = "tested"
                     elif provider == "anthropic":
-                        self.working_models.extend(
-                            ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
-                        )
+                        self.working_models.extend(["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"])
                         self.working_anthropic_key = "tested"
                     elif provider == "google" or provider == "gemini":
-                        self.working_models.extend(
-                            ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
-                        )
+                        self.working_models.extend(["gemini_pro", "gemini_flash", "gemini_pro_vision"])
                         self.working_google_key = "tested"
                     elif provider == "aws" or provider == "bedrock":
-                        self.working_models.extend(
-                            ["claude_bedrock", "titan_express", "llama2_bedrock"]
-                        )
+                        self.working_models.extend(["claude_bedrock", "titan_express", "llama2_bedrock"])
                         self.working_aws_key = "tested"
                     elif provider == "huggingface":
                         self.working_models.append("huggingface")
@@ -287,9 +265,7 @@ class CodeQualityAutomationOrchestrator:
                         self.working_models.append("openrouter")
                         self.working_openrouter_key = "tested"
 
-            print(
-                f"  📊 Populated {len(self.working_models)} working models from testing"
-            )
+            print(f"  📊 Populated {len(self.working_models)} working models from testing")
 
         except Exception as e:
             print(f"❌ Error populating models from test results: {e}")
@@ -299,30 +275,22 @@ class CodeQualityAutomationOrchestrator:
         try:
             # Use environment variables as fallback
             if os.getenv("OPENAI_API_KEY"):
-                self.working_models.extend(
-                    ["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"]
-                )
+                self.working_models.extend(["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"])
                 self.working_openai_key = "env"
                 print("  🔑 Using OpenAI API key from environment")
 
             if os.getenv("ANTHROPIC_API_KEY"):
-                self.working_models.extend(
-                    ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
-                )
+                self.working_models.extend(["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"])
                 self.working_anthropic_key = "env"
                 print("  🔑 Using Anthropic API key from environment")
 
             if os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY"):
-                self.working_models.extend(
-                    ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
-                )
+                self.working_models.extend(["gemini_pro", "gemini_flash", "gemini_pro_vision"])
                 self.working_google_key = "env"
                 print("  🔑 Using Google/Gemini API key from environment")
 
             if os.getenv("AWS_ACCESS_KEY_ID") and os.getenv("AWS_SECRET_ACCESS_KEY"):
-                self.working_models.extend(
-                    ["claude_bedrock", "titan_express", "llama2_bedrock"]
-                )
+                self.working_models.extend(["claude_bedrock", "titan_express", "llama2_bedrock"])
                 self.working_aws_key = "env"
                 print("  🔑 Using AWS credentials from environment")
 
@@ -346,9 +314,7 @@ class CodeQualityAutomationOrchestrator:
                 self.working_openrouter_key = "env"
                 print("  🔑 Using OpenRouter API key from environment")
 
-            print(
-                f"  📊 Populated {len(self.working_models)} fallback models from environment"
-            )
+            print(f"  📊 Populated {len(self.working_models)} fallback models from environment")
 
         except Exception as e:
             print(f"❌ Error populating fallback models: {e}")
@@ -393,9 +359,7 @@ class CodeQualityAutomationOrchestrator:
             "openrouter": {"vendor": "OpenRouter", "has_vendor_cost_api": True},
         }
 
-        return vendor_mapping.get(
-            model, {"vendor": "Unknown", "has_vendor_cost_api": False}
-        )
+        return vendor_mapping.get(model, {"vendor": "Unknown", "has_vendor_cost_api": False})
 
     def _test_specific_api(self, provider: str, api_key: str) -> bool:
         """
@@ -423,9 +387,7 @@ class CodeQualityAutomationOrchestrator:
 
                     client = openai.OpenAI(api_key=api_key)
                     models = client.models.list()
-                    print(
-                        f"    ✅ OpenAI API key is valid. Found {len(models.data)} models."
-                    )
+                    print(f"    ✅ OpenAI API key is valid. Found {len(models.data)} models.")
                     return {"working": True, "models_count": len(models.data)}
                 except Exception as e:
                     print(f"    ❌ OpenAI API key failed: {e}")
@@ -437,9 +399,7 @@ class CodeQualityAutomationOrchestrator:
 
                     client = anthropic.Anthropic(api_key=api_key)
                     models = client.models.list()
-                    print(
-                        f"    ✅ Anthropic API key is valid. Found {len(models.data)} models."
-                    )
+                    print(f"    ✅ Anthropic API key is valid. Found {len(models.data)} models.")
                     return {"working": True, "models_count": len(models.data)}
                 except Exception as e:
                     print(f"    ❌ Anthropic API key failed: {e}")
@@ -449,13 +409,9 @@ class CodeQualityAutomationOrchestrator:
                 try:
                     import openai
 
-                    client = openai.OpenAI(
-                        api_key=api_key, base_url="https://openrouter.ai/api/v1"
-                    )
+                    client = openai.OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
                     models = client.models.list()
-                    print(
-                        f"    ✅ OpenRouter API key is valid. Found {len(models.data)} models."
-                    )
+                    print(f"    ✅ OpenRouter API key is valid. Found {len(models.data)} models.")
                     return {"working": True, "models_count": len(models.data)}
                 except Exception as e:
                     print(f"    ❌ OpenRouter API key failed: {e}")
@@ -611,11 +567,7 @@ class CodeQualityAutomationOrchestrator:
 
         try:
             # Import and run the subproject scrubber
-            scrubber_script = (
-                Path(__file__).parent.parent.parent
-                / "scripts"
-                / "scrub_all_subprojects.py"
-            )
+            scrubber_script = Path(__file__).parent.parent.parent / "scripts" / "scrub_all_subprojects.py"
 
             print(f"   📁 Scrubber script: {scrubber_script}")
 
@@ -766,9 +718,7 @@ class CodeQualityAutomationOrchestrator:
 
             # Check for available APIs in environment
             if os.getenv("ANTHROPIC_API_KEY"):
-                api_test_results["anthropic"] = [
-                    {"id": "env_anthropic", "working": True}
-                ]
+                api_test_results["anthropic"] = [{"id": "env_anthropic", "working": True}]
                 working_models.append("claude")
                 print("✅ Using Anthropic Claude from environment variables")
 
@@ -798,10 +748,7 @@ class CodeQualityAutomationOrchestrator:
 
             # Check if we have working APIs for each provider
             # api_test_results[provider] is a list of working APIs
-            if (
-                api_test_results.get("anthropic")
-                and len(api_test_results["anthropic"]) > 0
-            ):
+            if api_test_results.get("anthropic") and len(api_test_results["anthropic"]) > 0:
                 working_models.append("claude")
                 print("✅ Using Anthropic Claude for multi-agent analysis")
 
@@ -810,10 +757,7 @@ class CodeQualityAutomationOrchestrator:
                 working_models.append("gpt5")  # Add GPT-5 as well
                 print("✅ Using OpenAI GPT-4 and GPT-5 for multi-agent analysis")
 
-            if (
-                api_test_results.get("huggingface")
-                and len(api_test_results["huggingface"]) > 0
-            ):
+            if api_test_results.get("huggingface") and len(api_test_results["huggingface"]) > 0:
                 working_models.append("huggingface")
                 print("✅ Using HuggingFace for multi-agent analysis")
 
@@ -838,9 +782,7 @@ class CodeQualityAutomationOrchestrator:
                             working_keys["claude"] = anthropic_key
                             # Set environment variable
                             os.environ["ANTHROPIC_API_KEY"] = anthropic_key
-                            print(
-                                "🔑 Updated ANTHROPIC_API_KEY environment with working key"
-                            )
+                            print("🔑 Updated ANTHROPIC_API_KEY environment with working key")
                         else:
                             working_keys["claude"] = os.getenv("ANTHROPIC_API_KEY")
                     elif model == "gpt4_vision" and self.working_openai_key:
@@ -857,43 +799,26 @@ class CodeQualityAutomationOrchestrator:
                         # Use the working OpenAI API key we validated for GPT-3.5-turbo
                         working_keys["gpt3_5_turbo"] = self.working_openai_key
                         print("🔑 Using working OpenAI API key for GPT-3.5-turbo")
-                    elif model == "huggingface" and hasattr(
-                        self, "working_huggingface_key"
-                    ):
+                    elif model == "huggingface" and hasattr(self, "working_huggingface_key"):
                         # Use the working HuggingFace API key we validated
                         working_keys["huggingface"] = self.working_huggingface_key
                         # Update environment variable with working key
                         os.environ["HUGGINGFACE_API_KEY"] = self.working_huggingface_key
-                        print(
-                            "🔑 Updated HUGGINGFACE_API_KEY environment with working key"
-                        )
-                    elif (
-                        model in ["claude_haiku", "claude_sonnet"]
-                        and self.working_anthropic_key
-                    ):
+                        print("🔑 Updated HUGGINGFACE_API_KEY environment with working key")
+                    elif model in ["claude_haiku", "claude_sonnet"] and self.working_anthropic_key:
                         # Use the working Anthropic API key for alternative models
                         working_keys[model] = self.working_anthropic_key
                         print(f"🔑 Using working Anthropic API key for {model}")
-                    elif (
-                        model in ["gemini_pro", "gemini_flash", "gemini_pro_vision"]
-                        and self.working_google_key
-                    ):
+                    elif model in ["gemini_pro", "gemini_flash", "gemini_pro_vision"] and self.working_google_key:
                         # Use the working Google API key
                         working_keys[model] = self.working_google_key
                         os.environ["GOOGLE_API_KEY"] = self.working_google_key
-                        print(
-                            f"🔑 Updated GOOGLE_API_KEY environment with working key for {model}"
-                        )
-                    elif (
-                        model in ["claude_bedrock", "titan_express", "llama2_bedrock"]
-                        and self.working_aws_key
-                    ):
+                        print(f"🔑 Updated GOOGLE_API_KEY environment with working key for {model}")
+                    elif model in ["claude_bedrock", "titan_express", "llama2_bedrock"] and self.working_aws_key:
                         # Use the working AWS API key
                         working_keys[model] = self.working_aws_key
                         os.environ["AWS_ACCESS_KEY_ID"] = self.working_aws_key
-                        print(
-                            f"🔑 Updated AWS_ACCESS_KEY_ID environment with working key for {model}"
-                        )
+                        print(f"🔑 Updated AWS_ACCESS_KEY_ID environment with working key for {model}")
 
                 test_system.set_working_api_keys(working_keys)
                 print(f"🔑 Set working API keys for {len(working_keys)} models")
@@ -920,25 +845,17 @@ class CodeQualityAutomationOrchestrator:
                 if self.api_manager:
                     try:
                         security_prompt = f"Role: {security_config.get('role', 'unknown')}, Structure: {security_config.get('prompt_structure', 'unknown')}, Format: {security_config.get('response_format', 'unknown')}"
-                        self.api_manager.track_api_call(
-                            model, security_prompt, "", "security_analysis"
-                        )
+                        self.api_manager.track_api_call(model, security_prompt, "", "security_analysis")
                     except Exception as e:
                         print(f"🔍 DEBUG: Error in security prompt creation: {e}")
                         print(f"🔍 DEBUG: security_config: {security_config}")
                         raise
 
-                print(
-                    f"🔍 DEBUG: About to call test_system.run_test with config: {security_config}"
-                )
+                print(f"🔍 DEBUG: About to call test_system.run_test with config: {security_config}")
                 print(f"🔍 DEBUG: Security config keys: {list(security_config.keys())}")
                 try:
-                    security_analysis = test_system.run_test(
-                        security_config, "security_audit"
-                    )
-                    print(
-                        f"🔍 DEBUG: run_test returned successfully, type: {type(security_analysis)}"
-                    )
+                    security_analysis = test_system.run_test(security_config, "security_audit")
+                    print(f"🔍 DEBUG: run_test returned successfully, type: {type(security_analysis)}")
                 except Exception as e:
                     print(f"🔍 DEBUG: run_test failed with exception: {e}")
                     print(f"🔍 DEBUG: Exception type: {type(e)}")
@@ -949,16 +866,9 @@ class CodeQualityAutomationOrchestrator:
 
                 if self.api_manager and security_analysis:
                     security_response = str(security_analysis)
-                    self.api_manager.track_response_tokens(
-                        model, security_response, "security_analysis"
-                    )
-                    if (
-                        isinstance(security_analysis, dict)
-                        and "usage" in security_analysis
-                    ):
-                        self.api_manager.update_with_vendor_costs(
-                            model, security_analysis, "security_analysis"
-                        )
+                    self.api_manager.track_response_tokens(model, security_response, "security_analysis")
+                    if isinstance(security_analysis, dict) and "usage" in security_analysis:
+                        self.api_manager.update_with_vendor_costs(model, security_analysis, "security_analysis")
 
                 # Code Quality Expert on this LLM
                 quality_config = {
@@ -972,10 +882,10 @@ class CodeQualityAutomationOrchestrator:
                 print(f"  🔍 Quality analysis with {model}")
                 if self.api_manager:
                     try:
-                        quality_prompt = f"Role: {quality_config.get('role', 'unknown')}, Structure: {quality_config.get('prompt_structure', 'unknown')}, Format: {quality_config.get('response_format', 'unknown')}"
-                        self.api_manager.track_api_call(
-                            model, quality_prompt, "", "quality_analysis"
+                        quality_prompt = (
+                            f"Role: {quality_config.get('role', 'unknown')}, Structure: {quality_config.get('prompt_structure', 'unknown')}, Format: {quality_config.get('response_format', 'unknown')}"
                         )
+                        self.api_manager.track_api_call(model, quality_prompt, "", "quality_analysis")
                     except Exception as e:
                         print(f"🔍 DEBUG: Error in quality prompt creation: {e}")
                         print(f"🔍 DEBUG: quality_config: {quality_config}")
@@ -985,16 +895,9 @@ class CodeQualityAutomationOrchestrator:
 
                 if self.api_manager and quality_analysis:
                     quality_response = str(quality_analysis)
-                    self.api_manager.track_response_tokens(
-                        model, quality_response, "quality_analysis"
-                    )
-                    if (
-                        isinstance(quality_analysis, dict)
-                        and "usage" in quality_analysis
-                    ):
-                        self.api_manager.update_with_vendor_costs(
-                            model, quality_analysis, "quality_analysis"
-                        )
+                    self.api_manager.track_response_tokens(model, quality_response, "quality_analysis")
+                    if isinstance(quality_analysis, dict) and "usage" in quality_analysis:
+                        self.api_manager.update_with_vendor_costs(model, quality_analysis, "quality_analysis")
 
                 # DevOps Expert on this LLM
                 devops_config = {
@@ -1008,10 +911,10 @@ class CodeQualityAutomationOrchestrator:
                 print(f"  ⚙️ DevOps analysis with {model}")
                 if self.api_manager:
                     try:
-                        devops_prompt = f"Role: {devops_config.get('role', 'unknown')}, Structure: {devops_config.get('prompt_structure', 'unknown')}, Format: {devops_config.get('response_format', 'unknown')}"
-                        self.api_manager.track_api_call(
-                            model, devops_prompt, "", "devops_analysis"
+                        devops_prompt = (
+                            f"Role: {devops_config.get('role', 'unknown')}, Structure: {devops_config.get('prompt_structure', 'unknown')}, Format: {devops_config.get('response_format', 'unknown')}"
                         )
+                        self.api_manager.track_api_call(model, devops_prompt, "", "devops_analysis")
                     except Exception as e:
                         print(f"🔍 DEBUG: Error in devops prompt creation: {e}")
                         print(f"🔍 DEBUG: devops_config: {devops_config}")
@@ -1021,13 +924,9 @@ class CodeQualityAutomationOrchestrator:
 
                 if self.api_manager and devops_analysis:
                     devops_response = str(devops_analysis)
-                    self.api_manager.track_response_tokens(
-                        model, devops_response, "devops_analysis"
-                    )
+                    self.api_manager.track_response_tokens(model, devops_response, "devops_analysis")
                     if isinstance(devops_analysis, dict) and "usage" in devops_analysis:
-                        self.api_manager.update_with_vendor_costs(
-                            model, devops_analysis, "devops_analysis"
-                        )
+                        self.api_manager.update_with_vendor_costs(model, devops_analysis, "devops_analysis")
 
                 # Store complete agent set results for this LLM
                 all_llm_results[model] = {
@@ -1042,31 +941,16 @@ class CodeQualityAutomationOrchestrator:
             print(f"\n🧠 Coalescing results from {len(working_models)} LLM providers...")
 
             # Coalesce security results across all LLMs
-            security_results = [
-                {"model": model, "analysis": results["security"]}
-                for model, results in all_llm_results.items()
-            ]
-            analysis_results["security"] = self._coalesce_llm_results(
-                security_results, "security"
-            )
+            security_results = [{"model": model, "analysis": results["security"]} for model, results in all_llm_results.items()]
+            analysis_results["security"] = self._coalesce_llm_results(security_results, "security")
 
             # Coalesce quality results across all LLMs
-            quality_results = [
-                {"model": model, "analysis": results["quality"]}
-                for model, results in all_llm_results.items()
-            ]
-            analysis_results["quality"] = self._coalesce_llm_results(
-                quality_results, "quality"
-            )
+            quality_results = [{"model": model, "analysis": results["quality"]} for model, results in all_llm_results.items()]
+            analysis_results["quality"] = self._coalesce_llm_results(quality_results, "quality")
 
             # Coalesce devops results across all LLMs
-            devops_results = [
-                {"model": model, "analysis": results["devops"]}
-                for model, results in all_llm_results.items()
-            ]
-            analysis_results["devops"] = self._coalesce_llm_results(
-                devops_results, "devops"
-            )
+            devops_results = [{"model": model, "analysis": results["devops"]} for model, results in all_llm_results.items()]
+            analysis_results["devops"] = self._coalesce_llm_results(devops_results, "devops")
 
             # Print cost summary after all API calls
             if self.api_manager:
@@ -1103,9 +987,7 @@ class CodeQualityAutomationOrchestrator:
             ],
         }
 
-    def _run_individual_analysis(
-        self, test_system, working_model: str
-    ) -> dict[str, Any]:
+    def _run_individual_analysis(self, test_system, working_model: str) -> dict[str, Any]:
         """Fallback to individual analysis if multi-shot fails"""
         analysis_results = {}
 
@@ -1184,9 +1066,7 @@ class CodeQualityAutomationOrchestrator:
 
         return issues
 
-    def _parse_pre_commit_output(
-        self, stdout: str, stderr: str
-    ) -> list[dict[str, Any]]:
+    def _parse_pre_commit_output(self, stdout: str, stderr: str) -> list[dict[str, Any]]:
         """Parse pre-commit output to extract issues"""
         issues = []
 
@@ -1198,19 +1078,13 @@ class CodeQualityAutomationOrchestrator:
             if "hook id:" in line:
                 current_hook = line.split("hook id:")[1].strip()
             elif "Failed" in line and current_hook:
-                issues.append(
-                    {"hook": current_hook, "status": "Failed", "details": line.strip()}
-                )
+                issues.append({"hook": current_hook, "status": "Failed", "details": line.strip()})
             elif "Passed" in line and current_hook:
-                issues.append(
-                    {"hook": current_hook, "status": "Passed", "details": line.strip()}
-                )
+                issues.append({"hook": current_hook, "status": "Passed", "details": line.strip()})
 
         # Parse stderr for errors
         if stderr:
-            issues.append(
-                {"hook": "general", "status": "Error", "details": stderr.strip()}
-            )
+            issues.append({"hook": "general", "status": "Error", "details": stderr.strip()})
 
         return issues
 
@@ -1312,11 +1186,7 @@ class CodeQualityAutomationOrchestrator:
         self.iteration_count += 1
 
         # Determine if we should continue
-        should_continue = (
-            self.iteration_count < self.max_iterations
-            and current_report.total_issues > 0
-            and not pre_commit_result.get("success", False)
-        )
+        should_continue = self.iteration_count < self.max_iterations and current_report.total_issues > 0 and not pre_commit_result.get("success", False)
 
         return {
             "iteration": self.iteration_count,
@@ -1340,9 +1210,7 @@ class CodeQualityAutomationOrchestrator:
         print("🔧 Phase 1: Subproject scrubbing...")
         subproject_result = self.run_subproject_scrubbing()
         if not subproject_result.get("success", False):
-            print(
-                f"⚠️ Subproject scrubbing had issues: {subproject_result.get('error', 'Unknown error')}"
-            )
+            print(f"⚠️ Subproject scrubbing had issues: {subproject_result.get('error', 'Unknown error')}")
         else:
             print("✅ Subproject scrubbing completed")
 
@@ -1474,8 +1342,7 @@ class CodeQualityAutomationOrchestrator:
             # Configure AWS client
             session = boto3.Session(
                 aws_access_key_id=api_key,
-                aws_secret_access_key=secret_key
-                or api_key,  # Fallback if no separate secret
+                aws_secret_access_key=secret_key or api_key,  # Fallback if no separate secret
                 region_name="us-east-1",
             )
             bedrock = session.client("bedrock-runtime")
@@ -1490,9 +1357,7 @@ class CodeQualityAutomationOrchestrator:
 
             for model_key, model_name in aws_models:
                 try:
-                    bedrock.invoke_model(
-                        modelId=model_name, body='{"prompt": "Hello", "max_tokens": 10}'
-                    )
+                    bedrock.invoke_model(modelId=model_name, body='{"prompt": "Hello", "max_tokens": 10}')
                     working_models.append(model_key)
                     print(f"        ✅ {model_name} works!")
                 except Exception as e:
@@ -1533,9 +1398,7 @@ class CodeQualityAutomationOrchestrator:
                 result = response.json()
                 print(f"    ✅ HuggingFace LLM call test successful: {result}")
                 return True
-            print(
-                f"    ❌ HuggingFace LLM call test failed: {response.status_code} - {response.text}"
-            )
+            print(f"    ❌ HuggingFace LLM call test failed: {response.status_code} - {response.text}")
             return False
 
         except Exception as e:
@@ -1556,18 +1419,14 @@ class CodeQualityAutomationOrchestrator:
             )
 
             # If we get here, the LLM call worked
-            print(
-                f"    ✅ OpenAI LLM call test successful: {response.choices[0].message.content}"
-            )
+            print(f"    ✅ OpenAI LLM call test successful: {response.choices[0].message.content}")
             return True
 
         except Exception as e:
             print(f"    ❌ OpenAI LLM call test failed: {e}")
             return False
 
-    def _coalesce_llm_results(
-        self, llm_results: list[dict[str, Any]], analysis_type: str
-    ) -> dict[str, Any]:
+    def _coalesce_llm_results(self, llm_results: list[dict[str, Any]], analysis_type: str) -> dict[str, Any]:
         """Coalesce results from multiple LLMs for comprehensive analysis"""
         print(f"  🧠 Coalescing {analysis_type} results from {len(llm_results)} LLMs...")
 
@@ -1624,9 +1483,7 @@ class CodeQualityAutomationOrchestrator:
             "coalescence_timestamp": datetime.now().isoformat(),
         }
 
-        print(
-            f"  ✅ Coalesced {analysis_type}: {len(all_findings)} findings, {len(all_recommendations)} recommendations"
-        )
+        print(f"  ✅ Coalesced {analysis_type}: {len(all_findings)} findings, {len(all_recommendations)} recommendations")
         return coalesced
 
 
@@ -1653,9 +1510,7 @@ Examples:
         default=".",
         help="Target directory to analyze (default: current directory)",
     )
-    parser.add_argument(
-        "--test", action="store_true", help="Test individual components only"
-    )
+    parser.add_argument("--test", action="store_true", help="Test individual components only")
 
     args = parser.parse_args()
     target_dir = args.target_dir
@@ -1669,9 +1524,7 @@ Examples:
         print("🎯 Usage: python3 orchestrator.py [directory] --test")
     else:
         print("🎯 Starting automated quality improvement...")
-        print(
-            "🎯 Workflow: Subproject Scrubbing → Black → Ruff → Pre-commit → Multi-agent Analysis"
-        )
+        print("🎯 Workflow: Subproject Scrubbing → Black → Ruff → Pre-commit → Multi-agent Analysis")
 
     orchestrator = CodeQualityAutomationOrchestrator(target_dir)
 

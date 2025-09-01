@@ -1,0 +1,14 @@
+flowchart TD
+    %% Simple Python Workflow Demo
+    
+    A([Start])
+    B[Process Class]
+    C[Execute Methods]
+    D{Complete?}
+    E([End])
+    
+    A --> B
+    B --> C
+    C --> D
+    D -->|Yes| E
+    D -->|No| C

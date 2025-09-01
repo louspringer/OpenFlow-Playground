@@ -17,9 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 from src.security_scanning import SecurityScanner, create_security_scanner
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 logger = logging.getLogger(__name__)
 
@@ -48,13 +46,9 @@ Examples:
         """,
     )
 
-    parser.add_argument(
-        "--path", default=".", help="Path to scan (default: current directory)"
-    )
+    parser.add_argument("--path", default=".", help="Path to scan (default: current directory)")
 
-    parser.add_argument(
-        "--files", nargs="+", help="Specific files to scan (overrides --path)"
-    )
+    parser.add_argument("--files", nargs="+", help="Specific files to scan (overrides --path)")
 
     parser.add_argument(
         "--workers",

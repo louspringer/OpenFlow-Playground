@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "id": "user1",
+      "title": "User Account",
+      "description": "John Doe",
+      "priority": "medium",
+      "status": "pending",
+      "created_at": 1756687611,
+      "data": {}
+    },
+    {
+      "id": "user2",
+      "title": "Admin User",
+      "description": "Jane Smith",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1756687616,
+      "data": {}
+    }
+  ],
+  "sections": {},
+  "users": {
+    "active": true,
+    "role": "admin"
+  }
+}

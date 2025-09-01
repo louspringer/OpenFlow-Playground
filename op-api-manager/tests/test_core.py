@@ -21,9 +21,7 @@ class TestOnePasswordAPIKeyManager:
 
     def test_init_with_custom_config(self):
         """Test initialization with custom cache config."""
-        custom_config = CacheConfig(
-            enabled=False, cache_file="custom.json", max_age_hours=12
-        )
+        custom_config = CacheConfig(enabled=False, cache_file="custom.json", max_age_hours=12)
         manager = OnePasswordAPIKeyManager(custom_config)
         assert manager.cache_config == custom_config
 

@@ -41,9 +41,7 @@ class TestTiDBAgentOrchestrator:
         assert True  # Placeholder assertion
         return None
 
-    async def test_create_workflow(
-        self, orchestrator: Any, sample_agent: Any, sample_workflow: Any
-    ) -> None:
+    async def test_create_workflow(self, orchestrator: Any, sample_agent: Any, sample_workflow: Any) -> None:
         """
         Test workflow creation
         """
@@ -51,9 +49,7 @@ class TestTiDBAgentOrchestrator:
         assert True  # Placeholder assertion
         return None
 
-    async def test_execute_workflow(
-        self, orchestrator: Any, sample_agent: Any, sample_workflow: Any
-    ) -> None:
+    async def test_execute_workflow(self, orchestrator: Any, sample_agent: Any, sample_workflow: Any) -> None:
         """
         Test workflow execution
         """
