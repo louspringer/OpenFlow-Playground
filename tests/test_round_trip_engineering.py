@@ -261,19 +261,13 @@ if __name__ == "__main__":
         # than other domains, focusing on tools and capabilities rather than file patterns
         assert "tools" in domain
         assert "capabilities" in domain
-        
+
         # Check that the domain has the expected capabilities
-        expected_capabilities = [
-            "code_generation",
-            "ast_parsing", 
-            "vocabulary_alignment",
-            "round_trip_validation",
-            "structural_preservation"
-        ]
-        
+        expected_capabilities = ["code_generation", "ast_parsing", "vocabulary_alignment", "round_trip_validation", "structural_preservation"]
+
         for capability in expected_capabilities:
             assert capability in domain["capabilities"], f"Missing capability: {capability}"
-        
+
         # Note: This domain doesn't follow the standard pattern-based configuration
         # It's designed for tool-based operations rather than file-based operations
 

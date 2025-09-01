@@ -28,6 +28,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
         self.design_model_manager = DesignModelManager()
         self.extracted_model_processor = ExtractedModelProcessor()
         self.enhanced_reverse_engineer = EnhancedReverseEngineer()
+        self.enhanced_reverse_engineer.enable_live_visualization(False)  # Disable live monitoring
         self.vocabulary_aligner = VocabularyAligner()
         self.design_model_generator = DesignModelGenerator()
 

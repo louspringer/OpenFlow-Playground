@@ -24,11 +24,7 @@ class TestModelCrudManager:
 
             # Create a temporary model file
             model_file = temp_project / "project_model_registry.json"
-            test_model = {
-                "domains": {"test_domain": {"requirements": ["existing requirement"]}},
-                "backlog": [],
-                "requirements_traceability": []
-            }
+            test_model = {"domains": {"test_domain": {"requirements": ["existing requirement"]}}, "backlog": [], "requirements_traceability": []}
 
             with open(model_file, "w") as f:
                 json.dump(test_model, f)
@@ -40,11 +36,12 @@ class TestModelCrudManager:
     def test_module_capabilities(self, temp_manager):
         """Test that module capabilities are properly defined."""
         import asyncio
+
         capabilities = asyncio.run(temp_manager.get_module_capabilities())
 
         # Check that capabilities are returned
         assert len(capabilities) > 0
-        
+
         # Check for expected capability names
         capability_names = [cap.get("name") if isinstance(cap, dict) else cap.name for cap in capabilities]
         assert "json_crud" in capability_names

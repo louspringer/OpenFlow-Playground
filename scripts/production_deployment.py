@@ -90,11 +90,14 @@ class ProjectModelConfig:
             }
 
     def _load_quality_gates(self) -> dict[str, Any]:
-        """Load quality gates configuration from project model"""
+        """Load quality gates configuration from project model using Model Registry tools"""
         try:
-            # Load project model registry for quality gates
-            with open("project_model_registry.json") as f:
-                model = json.load(f)
+            # Load project model registry for quality gates using Model Registry
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model = manager.load_model()
 
             # Extract quality gate configurations
             quality_gates = {}

@@ -137,8 +137,6 @@ dev-dependencies = [
     # Type Stubs
     "types-requests>=2.31.0",
     "pandas-stubs>=2.0.0",
-    # Documentation
-    "pymarkdown>=0.1.4",
     "bandit>=1.8.6",
     "safety>=3.6.0",
     "detect-secrets>=1.5.0",
@@ -148,6 +146,7 @@ dev-dependencies = [
     "pydantic>=2.9.2",
     "mdformat>=0.7.22",
     "yamlfix>=1.17.0",
+    "pre-commit>=4.3.0",
 ]
 
 # Security tools are now in [project.optional-dependencies.security]
@@ -194,7 +193,8 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
 asyncio_mode = "auto"
-norecursedirs = ["tests/generated"]
+# Generated tests are disabled until the generation system is fixed
+# norecursedirs = ["tests/generated"]
 
 [tool.bandit]
 exclude_dirs = ["tests", "venv", ".venv", ".mypy_cache", "__pycache__"]

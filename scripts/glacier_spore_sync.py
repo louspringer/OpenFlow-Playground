@@ -600,11 +600,14 @@ class GlacierSporeSyncSystem:
 
     def _initialize_current_version(self):
         """Initialize current model version"""
-        # Get current project model hash
+        # Get current project model hash using Model Registry tools
         try:
-            with open("project_model_registry.json") as f:
-                model_content = f.read()
-                model_hash = hashlib.sha256(model_content.encode()).hexdigest()
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model_content = json.dumps(manager.load_model(), sort_keys=True)
+            model_hash = hashlib.sha256(model_content.encode()).hexdigest()
 
             current_version = ModelVersion(
                 version_id=str(uuid.uuid4()),
@@ -622,10 +625,13 @@ class GlacierSporeSyncSystem:
     def create_model_version(self, changes: list[dict[str, Any]]) -> ModelVersion:
         """Create a new model version from changes"""
         try:
-            # Get current version
-            with open("project_model_registry.json") as f:
-                model_content = f.read()
-                model_hash = hashlib.sha256(model_content.encode()).hexdigest()
+            # Get current version using Model Registry tools
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model_content = json.dumps(manager.load_model(), sort_keys=True)
+            model_hash = hashlib.sha256(model_content.encode()).hexdigest()
 
             # Create new version
             new_version = ModelVersion(

@@ -37,27 +37,42 @@ class ArtifactRequirementMapper:
         self.test_requirements = self._load_test_requirements()
 
     def _load_project_model(self) -> dict[str, Any]:
-        """Load project model registry"""
+        """Load project model registry using Model Registry tools"""
         try:
-            with open("project_model_registry.json") as f:
-                return json.load(f)  # type: ignore
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            return manager.load_model()
         except Exception as e:
-            print(f"Error loading project model: {e}")
+            print(f"Error loading project model via Model Registry: {e}")
             return {}
 
     def _load_ast_models(self) -> dict[str, Any]:
-        """Load AST models"""
+        """Load AST models using proper error handling"""
         try:
-            with open("ast_models_focused.json") as f:
+            # Check if file exists before attempting to load
+            ast_models_path = Path("ast_models_focused.json")
+            if not ast_models_path.exists():
+                print(f"AST models file not found at {ast_models_path}")
+                return {}
+
+            with open(ast_models_path, "r") as f:
                 return json.load(f)  # type: ignore
         except Exception as e:
             print(f"Error loading AST models: {e}")
             return {}
 
     def _load_test_requirements(self) -> dict[str, Any]:
-        """Load test-driven requirements"""
+        """Load test-driven requirements using proper error handling"""
         try:
-            with open("test_driven_ast_models.json") as f:
+            # Check if file exists before attempting to load
+            test_requirements_path = Path("test_driven_ast_models.json")
+            if not test_requirements_path.exists():
+                print(f"Test requirements file not found at {test_requirements_path}")
+                return {}
+
+            with open(test_requirements_path, "r") as f:
                 return json.load(f)  # type: ignore
         except Exception as e:
             print(f"Error loading test requirements: {e}")
@@ -302,14 +317,16 @@ def main() -> None:
     # Generate comprehensive report
     report = mapper.generate_artifact_requirement_report()
 
-    # Save report
-    with open("artifact_requirement_mappings.json", "w") as f:
-        json.dump(report, f, indent=2, default=str)
-
-    print("✅ Generated artifact-requirement mapping report:")
-    print(f"   - Total mappings: {report['total_mappings']}")
-    print(f"   - Total artifacts: {report['total_artifacts']}")
-    print(f"   - Domains covered: {len(report['coverage_stats'])}")
+    # Save report using proper error handling
+    try:
+        with open("artifact_requirement_mappings.json", "w") as f:
+            json.dump(report, f, indent=2, default=str)
+        print("✅ Generated artifact-requirement mapping report:")
+        print(f"   - Total mappings: {report['total_mappings']}")
+        print(f"   - Total artifacts: {report['total_artifacts']}")
+        print(f"   - Domains covered: {len(report['coverage_stats'])}")
+    except Exception as e:
+        print(f"❌ Error saving report: {e}")
 
     # Example: Find requirements for a specific artifact
     example_artifact = ".cursor/plugins/rule-compliance-checker.py"

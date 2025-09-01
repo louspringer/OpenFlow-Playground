@@ -8,7 +8,4 @@ following Reflective Module principles for self-monitoring and self-correction.
 from .core.ast_parser import ASTParser
 from .api.ast_api import ASTAnalysisAPI
 
-__all__ = [
-    "ASTParser",
-    "ASTAnalysisAPI"
-]
+__all__ = ["ASTParser", "ASTAnalysisAPI"]

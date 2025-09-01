@@ -10,9 +10,12 @@ from pathlib import Path
 def debug_domain_detection():
     """Debug why domain detection isn't working"""
 
-    # Load the model
-    with open("project_model_registry.json") as f:
-        model_data = json.load(f)
+    # Load the model using Model Registry tools
+    from src.round_trip_engineering.tools import get_model_registry
+
+    registry = get_model_registry()
+    manager = registry.get_model("project")
+    model_data = manager.load_model()
 
     # Test specific files that should be detected
     test_files = [
