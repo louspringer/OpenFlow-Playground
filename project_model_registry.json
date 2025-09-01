@@ -77,6 +77,7 @@
         "cloudformation",
         "go",
         "secure_shell",
+        "ssh_key_management",
         "build_system"
       ],
       "purpose": "Provide utilities and support for demo development and deployment"
