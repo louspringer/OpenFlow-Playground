@@ -194,6 +194,7 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
 asyncio_mode = "auto"
+norecursedirs = ["tests/generated"]
 
 [tool.bandit]
 exclude_dirs = ["tests", "venv", ".venv", ".mypy_cache", "__pycache__"]
