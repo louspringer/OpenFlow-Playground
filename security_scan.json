@@ -1,14 +1,23 @@
 {
-  "errors": [],
-  "generated_at": "2025-09-01T16:08:21Z",
+  "errors": [
+    {
+      "filename": "src/plantuml_client_wrapper.py",
+      "reason": "syntax error while parsing AST from file"
+    },
+    {
+      "filename": "src/uml_activity_generator.py",
+      "reason": "syntax error while parsing AST from file"
+    }
+  ],
+  "generated_at": "2025-09-01T22:46:45Z",
   "metrics": {
     "_totals": {
-      "CONFIDENCE.HIGH": 349,
+      "CONFIDENCE.HIGH": 339,
       "CONFIDENCE.LOW": 2,
       "CONFIDENCE.MEDIUM": 4,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 3,
-      "SEVERITY.LOW": 345,
+      "SEVERITY.LOW": 335,
       "SEVERITY.MEDIUM": 7,
       "SEVERITY.UNDEFINED": 0,
       "loc": 54413,
@@ -1953,14 +1962,6 @@
       "skipped_tests": 0
     },
     "src/plantuml_client_wrapper.py": {
-      "CONFIDENCE.HIGH": 5,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 5,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
       "loc": 342,
       "nosec": 0,
       "skipped_tests": 0
@@ -3578,14 +3579,6 @@
       "skipped_tests": 0
     },
     "src/uml_activity_generator.py": {
-      "CONFIDENCE.HIGH": 5,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 5,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
       "loc": 300,
       "nosec": 0,
       "skipped_tests": 0
@@ -5208,8 +5201,8 @@
     },
     {
       "code": "125             # Clone repository temporarily\n126             temp_dir = f\"/tmp/repo_analysis_{hash(repo_url) % 10000}\"\n127 \n",
-      "col_offset": 25,
-      "end_col_offset": 44,
+      "col_offset": 23,
+      "end_col_offset": 69,
       "filename": "src/mcp_integration/github_mcp_client.py",
       "issue_confidence": "MEDIUM",
       "issue_cwe": {
@@ -5228,8 +5221,8 @@
     },
     {
       "code": "154         try:\n155             temp_dir = f\"/tmp/repo_files_{hash(repo_url) % 10000}\"\n156 \n",
-      "col_offset": 25,
-      "end_col_offset": 41,
+      "col_offset": 23,
+      "end_col_offset": 66,
       "filename": "src/mcp_integration/github_mcp_client.py",
       "issue_confidence": "MEDIUM",
       "issue_cwe": {
@@ -8352,116 +8345,6 @@
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "10 import logging\n11 import subprocess\n12 import tempfile\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "src/plantuml_client_wrapper.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 11,
-      "line_range": [
-        11
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "49         try:\n50             result = subprocess.run(\n51                 [\"node\", str(self.node_client_path)],\n52                 capture_output=True,\n53                 text=True,\n54                 timeout=30,\n55             )\n56 \n",
-      "col_offset": 21,
-      "end_col_offset": 13,
-      "filename": "src/plantuml_client_wrapper.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Starting a process with a partial executable path",
-      "line_number": 50,
-      "line_range": [
-        50,
-        51,
-        52,
-        53,
-        54,
-        55
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
-      "test_id": "B607",
-      "test_name": "start_process_with_partial_path"
-    },
-    {
-      "code": "49         try:\n50             result = subprocess.run(\n51                 [\"node\", str(self.node_client_path)],\n52                 capture_output=True,\n53                 text=True,\n54                 timeout=30,\n55             )\n56 \n",
-      "col_offset": 21,
-      "end_col_offset": 13,
-      "filename": "src/plantuml_client_wrapper.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 50,
-      "line_range": [
-        50,
-        51,
-        52,
-        53,
-        54,
-        55
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "204             # Execute the Node.js script\n205             result = subprocess.run([\"node\", temp_script_path], capture_output=True, text=True, timeout=60)\n206 \n",
-      "col_offset": 21,
-      "end_col_offset": 107,
-      "filename": "src/plantuml_client_wrapper.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Starting a process with a partial executable path",
-      "line_number": 205,
-      "line_range": [
-        205
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
-      "test_id": "B607",
-      "test_name": "start_process_with_partial_path"
-    },
-    {
-      "code": "204             # Execute the Node.js script\n205             result = subprocess.run([\"node\", temp_script_path], capture_output=True, text=True, timeout=60)\n206 \n",
-      "col_offset": 21,
-      "end_col_offset": 107,
-      "filename": "src/plantuml_client_wrapper.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 205,
-      "line_range": [
-        205
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
       "code": "187     # Check component count\n188     assert len(original_components) == len(\n189         loaded_components,\n190     ), \"Component count mismatch\"\n191 \n",
       "col_offset": 4,
       "end_col_offset": 33,
@@ -10891,106 +10774,6 @@
         259,
         260,
         261
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "12 from pathlib import Path\n13 import subprocess\n14 import tempfile\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "src/uml_activity_generator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 13,
-      "line_range": [
-        13
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "290             # Check if PlantUML is available\n291             result = subprocess.run([\"plantuml\", \"-version\"], capture_output=True, text=True)\n292 \n",
-      "col_offset": 21,
-      "end_col_offset": 93,
-      "filename": "src/uml_activity_generator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Starting a process with a partial executable path",
-      "line_number": 291,
-      "line_range": [
-        291
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
-      "test_id": "B607",
-      "test_name": "start_process_with_partial_path"
-    },
-    {
-      "code": "290             # Check if PlantUML is available\n291             result = subprocess.run([\"plantuml\", \"-version\"], capture_output=True, text=True)\n292 \n",
-      "col_offset": 21,
-      "end_col_offset": 93,
-      "filename": "src/uml_activity_generator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 291,
-      "line_range": [
-        291
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "304                     # Generate PNG\n305                     subprocess.run([\"plantuml\", \"-tpng\", temp_file], cwd=os.path.dirname(temp_file))\n306 \n",
-      "col_offset": 20,
-      "end_col_offset": 100,
-      "filename": "src/uml_activity_generator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Starting a process with a partial executable path",
-      "line_number": 305,
-      "line_range": [
-        305
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
-      "test_id": "B607",
-      "test_name": "start_process_with_partial_path"
-    },
-    {
-      "code": "304                     # Generate PNG\n305                     subprocess.run([\"plantuml\", \"-tpng\", temp_file], cwd=os.path.dirname(temp_file))\n306 \n",
-      "col_offset": 20,
-      "end_col_offset": 100,
-      "filename": "src/uml_activity_generator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 305,
-      "line_range": [
-        305
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
