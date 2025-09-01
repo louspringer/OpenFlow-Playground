@@ -13,9 +13,9 @@ from pathlib import Path
 import sys
 
 # Add src to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from ssh_key_manager import SSHKeyManager
+from ssh_key_management.ssh_key_manager import SSHKeyManager
 
 
 class TestSSHKeyManager:
