@@ -258,3 +258,36 @@ validate-rm-interfaces: ## Validate Reflective Module interfaces
 check-architectural-boundaries: ## Check architectural boundaries and dependencies
 	@echo "$(BLUE)🏗️ Checking Architectural Boundaries$(NC)"
 	@uv run python scripts/rm_compliance_validator.py --all --report | grep -E "(🏗️ Boundaries:|❌.*violations)" || echo "  ✅ All architectural boundaries clean"
+
+# SSH Management Domain
+.PHONY: ssh-management ssh-setup-host ssh-setup-vonnegut ssh-generate-key ssh-install-key ssh-test-connection ssh-config ssh-rm-status
+
+ssh-management: ssh-setup-host ssh-setup-vonnegut ssh-generate-key ssh-install-key ssh-test-connection ssh-config ## SSH key and configuration management
+
+ssh-setup-host: ## Complete SSH setup for any host (use HOST=hostname)
+	@echo "$(BLUE)🔑 SSH Setup for $(HOST)$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --setup-host --host $(HOST)
+
+ssh-setup-vonnegut: ## Complete vonnegut SSH setup (generate key, install, test)
+	@echo "$(BLUE)🔑 vonnegut SSH Setup$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --setup-vonnegut
+
+ssh-generate-key: ## Generate new SSH key pair
+	@echo "$(BLUE)🔑 Generate SSH Key$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --generate-key
+
+ssh-install-key: ## Install SSH key on remote host (use HOST=hostname)
+	@echo "$(BLUE)🔑 Install SSH Key$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --install-key --host $(HOST)
+
+ssh-test-connection: ## Test SSH connection to host (use HOST=hostname)
+	@echo "$(BLUE)🔑 Test SSH Connection$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --test-connection --host $(HOST)
+
+ssh-config: ## Update SSH configuration for host (use HOST=hostname)
+	@echo "$(BLUE)🔑 SSH Configuration$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --host $(HOST)
+
+ssh-rm-status: ## Show SSH Key Manager RM status
+	@echo "$(BLUE)🔍 SSH RM Status$(NC)"
+	@$(UV) run python scripts/ssh_key_manager_cli.py --rm-status

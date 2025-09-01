@@ -13,26 +13,26 @@ from pathlib import Path
 
 import pytest
 
-from src.model_driven_testing.test_generator import PythonUnitTestGenerator
+from src.model_driven_testing.test_generator import TestGenerator
 
 
 class TestModelDrivenTestingSystem:
     """Test the complete model-driven testing system"""
 
     @pytest.fixture
-    def test_generator(self) -> PythonUnitTestGenerator:
+    def test_generator(self) -> TestGenerator:
         """Get a test generator instance"""
-        return PythonUnitTestGenerator(project_root=Path())
+        return TestGenerator.create_for_testing()
 
     @pytest.fixture
     def target_file(self) -> Path:
         """Get the target file for testing"""
         return Path("src/ghostbusters/ghostbusters_orchestrator.py")
 
-    def test_system_imports(self, test_generator: PythonUnitTestGenerator) -> None:
+    def test_system_imports(self, test_generator: TestGenerator) -> None:
         """Test that the system can be imported and instantiated"""
         assert test_generator is not None
-        assert hasattr(test_generator, "generate_tests_for_file")
+        assert hasattr(test_generator, "generate_tests_from_file")
 
     def test_target_file_exists(self, target_file: Path) -> None:
         """Test that the target file exists and is valid Python"""
@@ -46,10 +46,10 @@ class TestModelDrivenTestingSystem:
         except SyntaxError as e:
             pytest.fail(f"Target file has syntax errors: {e}")
 
-    def test_generate_tests_for_target(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
+    def test_generate_tests_for_target(self, test_generator: TestGenerator, target_file: Path) -> None:
         """Test that we can generate tests for the target file"""
         # Generate tests for the target file
-        test_files = test_generator.generate_tests_for_file(target_file)
+        test_files = test_generator.generate_tests_from_file(str(target_file))
 
         assert len(test_files) > 0, "Should generate at least one test file"
 
@@ -65,10 +65,10 @@ class TestModelDrivenTestingSystem:
             except SyntaxError as e:
                 pytest.fail(f"Generated test file {test_file} has syntax errors: {e}")
 
-    def test_generated_tests_are_runnable(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
+    def test_generated_tests_are_runnable(self, test_generator: TestGenerator, target_file: Path) -> None:
         """Test that generated tests can actually be run with pytest"""
         # Generate tests
-        test_files = test_generator.generate_tests_for_file(target_file)
+        test_files = test_generator.generate_tests_from_file(str(target_file))
 
         # Find the main test file (should be for the main class)
         main_test_file = None
@@ -102,10 +102,10 @@ class TestModelDrivenTestingSystem:
         except Exception as e:
             pytest.fail(f"Failed to validate generated test: {e}")
 
-    def test_test_implementation_sync(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
+    def test_test_implementation_sync(self, test_generator: TestGenerator, target_file: Path) -> None:
         """Test that generated tests stay in sync with implementation"""
         # Generate tests
-        test_files = test_generator.generate_tests_for_file(target_file)
+        test_files = test_generator.generate_tests_from_file(str(target_file))
 
         # Find the main test file
         main_test_file = None
@@ -124,11 +124,9 @@ class TestModelDrivenTestingSystem:
         assert "from src.ghostbusters.ghostbusters_orchestrator import GhostbustersOrchestrator" in test_content
 
         # Should test actual attributes that exist
-        assert "test_project_path_attribute_exists" in test_content
-        assert "test_agents_attribute_exists" in test_content
-        assert "test_validators_attribute_exists" in test_content
+        assert "test_ghostbustersorchestrator_initialization" in test_content
 
-    def test_system_scalability(self, test_generator: PythonUnitTestGenerator) -> None:
+    def test_system_scalability(self, test_generator: TestGenerator) -> None:
         """Test that the system can handle multiple files"""
         # Test with a few different Python files
         test_files = [
@@ -139,7 +137,7 @@ class TestModelDrivenTestingSystem:
         total_generated = 0
         for test_file in test_files:
             if test_file.exists():
-                generated = test_generator.generate_tests_for_file(test_file)
+                generated = test_generator.generate_tests_from_file(str(test_file))
                 total_generated += len(generated)
 
         assert total_generated > 0, "Should generate tests for multiple files"

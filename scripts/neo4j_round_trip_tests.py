@@ -96,9 +96,12 @@ class Neo4jRoundTripTester:
         print("🔧 Test 1: Model → Database Population")
 
         try:
-            # Load the project model
-            with open("project_model_registry.json") as f:
-                model = json.load(f)
+            # Load the project model using Model Registry tools
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model = manager.load_model()
 
             # Generate Cypher queries
             from scripts.neo4j_poc import Neo4jPOC
@@ -217,9 +220,12 @@ class Neo4jRoundTripTester:
         print("\n🔄 Test 3: Results → Model Validation")
 
         try:
-            # Load model
-            with open("project_model_registry.json") as f:
-                model = json.load(f)
+            # Load model using Model Registry tools
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model = manager.load_model()
 
             expected_rules = model["domain_architecture"]["cursor_rules"]["emoji_prefixes"]
 

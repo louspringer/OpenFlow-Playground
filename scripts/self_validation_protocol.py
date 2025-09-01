@@ -182,9 +182,12 @@ class SelfValidationProtocol:
         print(f"🔍 Validating {work_item} against project model domain: {domain}")
 
         try:
-            # Load project model
-            with open("project_model_registry.json") as f:
-                model = json.load(f)
+            # Load project model using Model Registry tools
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            model = manager.load_model()
 
             # Get domain requirements
             domain_config = model["domains"].get(domain, {})

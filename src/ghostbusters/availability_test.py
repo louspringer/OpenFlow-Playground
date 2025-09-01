@@ -28,17 +28,15 @@ class GhostbustersAvailabilityTest:
         self.project_model = self._load_project_model()
 
     def _load_project_model(self) -> dict:
-        """Load the project model registry for capability discovery"""
+        """Load the project model registry for capability discovery using Model Registry tools"""
         try:
-            model_path = Path(self.project_path) / "project_model_registry.json"
-            if model_path.exists():
-                with open(model_path, "r") as f:
-                    return json.load(f)
-            else:
-                logger.warning(f"Project model not found at {model_path}")
-                return {}
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            return manager.load_model()
         except Exception as e:
-            logger.error(f"Error loading project model: {e}")
+            logger.error(f"Error loading project model via Model Registry: {e}")
             return {}
 
     async def test_project_model_availability(self) -> Dict[str, Any]:

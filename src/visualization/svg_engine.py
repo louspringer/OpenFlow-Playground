@@ -50,13 +50,16 @@ class SVGVisualizationEngine:
 
         data_sources = {}
 
-        # Load project model registry
+        # Load project model registry using Model Registry tools
         try:
-            with open("project_model_registry.json") as f:
-                data_sources["project_model"] = json.load(f)
-            logger.info("✓ Loaded project_model_registry.json")
-        except FileNotFoundError:
-            logger.warning("⚠ project_model_registry.json not found")
+            from src.round_trip_engineering.tools import get_model_registry
+
+            registry = get_model_registry()
+            manager = registry.get_model("project")
+            data_sources["project_model"] = manager.load_model()
+            logger.info("✓ Loaded project_model_registry.json via Model Registry")
+        except Exception as e:
+            logger.warning(f"⚠ Failed to load project model via Model Registry: {e}")
             data_sources["project_model"] = {}
 
         # Load comprehensive artifact analysis

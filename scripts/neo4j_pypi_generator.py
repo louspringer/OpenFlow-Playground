@@ -13,11 +13,14 @@ def main():
     print("📋 Purpose: Generate PyPI packages from Neo4j database")
     print("🔐 Using: 1Password item pointers for secure credentials")
 
-    # Load project model
+    # Load project model using Model Registry tools
     try:
-        with open("project_model_registry.json") as f:
-            model = json.load(f)
-        print("✅ Loaded project model")
+        from src.round_trip_engineering.tools import get_model_registry
+
+        registry = get_model_registry()
+        manager = registry.get_model("project")
+        model = manager.load_model()
+        print("✅ Loaded project model via Model Registry")
 
         # Check credential mappings
         credential_mappings = model.get("credential_mappings", {})

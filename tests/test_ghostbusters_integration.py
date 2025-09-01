@@ -9,9 +9,12 @@ from pathlib import Path
 
 def test_ghostbusters_domain_in_model() -> None:
     """Test that Ghostbusters domain is properly configured in project model"""
-    # Load project model
-    with open("project_model_registry.json") as f:
-        model_data = json.load(f)
+    # Load project model using Model Registry tools
+    from src.round_trip_engineering.tools import get_model_registry
+
+    registry = get_model_registry()
+    manager = registry.get_model("project")
+    model_data = manager.load_model()
 
     # Check that ghostbusters domain exists
     assert "ghostbusters" in model_data["domains"], "Ghostbusters domain should exist in project model"
@@ -69,9 +72,12 @@ def test_ghostbusters_domain_in_model() -> None:
 
 def test_ghostbusters_requirements_traceability() -> None:
     """Test that Ghostbusters requirements are properly traced"""
-    # Load project model
-    with open("project_model_registry.json") as f:
-        model_data = json.load(f)
+    # Load project model using Model Registry tools
+    from src.round_trip_engineering.tools import get_model_registry
+
+    registry = get_model_registry()
+    manager = registry.get_model("project")
+    model_data = manager.load_model()
 
     # Check requirements traceability
     requirements_traceability = model_data["requirements_traceability"]
@@ -150,9 +156,12 @@ def test_ghostbusters_component_structure() -> None:
 
 def test_ghostbusters_file_organization() -> None:
     """Test that Ghostbusters is properly included in file organization"""
-    # Load project model
-    with open("project_model_registry.json") as f:
-        model_data = json.load(f)
+    # Load project model using Model Registry tools
+    from src.round_trip_engineering.tools import get_model_registry
+
+    registry = get_model_registry()
+    manager = registry.get_model("project")
+    model_data = manager.load_model()
 
     # Check file organization
     file_organization = model_data["file_organization"]
