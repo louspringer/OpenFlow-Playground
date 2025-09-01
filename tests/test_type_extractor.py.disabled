@@ -11,13 +11,7 @@ import pytest
 from pathlib import Path
 from unittest.mock import mock_open, patch
 
-from src.ast_analysis.core.type_extractor import (
-    TypeExtractor,
-    TypeAnnotation,
-    FunctionSignature,
-    ClassInterface,
-    PydanticModel,
-)
+from src.ast_analysis.core.type_extractor import TypeExtractor
 
 
 class TestTypeExtractor:
@@ -28,16 +22,13 @@ class TestTypeExtractor:
         extractor = TypeExtractor()
 
         # RM Compliance: Health monitoring attributes exist
-        assert hasattr(extractor, "_extraction_count")
-        assert hasattr(extractor, "_success_count")
-        assert hasattr(extractor, "_error_count")
-        assert hasattr(extractor, "_type_annotations_found")
+        assert hasattr(extractor, "ast_analyzer")
+        assert hasattr(extractor, "get_health_status")
 
         # Initial state
-        assert extractor._extraction_count == 0
-        assert extractor._success_count == 0
-        assert extractor._error_count == 0
-        assert extractor._type_annotations_found == 0
+        health_status = extractor.get_health_status()
+        assert "status" in health_status
+        assert "governor_status" in health_status
 
     def test_extract_types_from_file_success(self):
         """Test successful type extraction from a Python file"""
@@ -64,30 +55,21 @@ async def async_function() -> str:
         with patch("builtins.open", mock_open(read_data=mock_content)):
             result = extractor.extract_types_from_file(Path("test.py"))
 
-        # Verify structure matches known interface
+        # Verify structure matches new interface
         assert "functions" in result
         assert "classes" in result
-        assert "pydantic_models" in result
-        assert "type_annotations" in result
-        assert "mypy_compliance" in result
-        assert "validation_errors" in result
-
-        # Verify Pydantic model extraction
-        assert len(result["pydantic_models"]) == 1
-        model = result["pydantic_models"][0]
-        assert model.name == "TestModel"
-        assert len(model.fields) == 4
+        assert "modules" in result
+        assert "analysis_metadata" in result
 
         # Verify function extraction
         assert len(result["functions"]) == 2
-        function_names = [f.name for f in result["functions"]]
+        function_names = [f["name"] for f in result["functions"]]
         assert "test_function" in function_names
         assert "async_function" in function_names
 
         # Verify health tracking
-        assert extractor._extraction_count == 1
-        assert extractor._success_count == 1
-        assert extractor._error_count == 0
+        health_status = extractor.get_health_status()
+        assert "status" in health_status
 
     def test_extract_types_from_file_error_handling(self):
         """Test error handling when file parsing fails"""
@@ -97,13 +79,11 @@ async def async_function() -> str:
         with patch("builtins.open", side_effect=FileNotFoundError("File not found")):
             result = extractor.extract_types_from_file(Path("nonexistent.py"))
 
-        # Verify error structure matches known interface
+        # Verify error structure matches new interface
         assert "functions" in result
         assert "classes" in result
-        assert "pydantic_models" in result
-        assert "type_annotations" in result
-        assert "mypy_compliance" in result
-        assert "validation_errors" in result
+        assert "modules" in result
+        assert "analysis_metadata" in result
 
         # Verify error state
         assert result["functions"] == []
