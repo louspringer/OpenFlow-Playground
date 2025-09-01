@@ -39,10 +39,10 @@ class VocabularyTransformer:
                 if field.startswith("components."):
                     component_name = field.split(".")[1]
                     if component_name in aligned_model["components"]:
-                        aligned_model["components"][component_name] = (
-                            self._ensure_component_structure(
-                                aligned_model["components"][component_name]
-                            )
+                        aligned_model["components"][
+                            component_name
+                        ] = self._ensure_component_structure(
+                            aligned_model["components"][component_name]
                         )
 
             elif transformation == "enhance_workflow_metrics":
@@ -53,10 +53,10 @@ class VocabularyTransformer:
 
             elif transformation == "convert_list_to_dict_by_id":
                 if field == "relationships":
-                    aligned_model["relationships"] = (
-                        self._convert_relationships_list_to_dict(
-                            aligned_model["relationships"]
-                        )
+                    aligned_model[
+                        "relationships"
+                    ] = self._convert_relationships_list_to_dict(
+                        aligned_model["relationships"]
                     )
 
             elif transformation == "ensure_class_structure":

@@ -24,9 +24,9 @@ class TestRequirement84MultiAgentBlindSpotDetection:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert True, (
-            "multi_agent_testing requirement validation test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "multi_agent_testing requirement validation test placeholder - implement actual logic"
 
     def test_multi_agent_testing_specific_behavior(self):
         """Test multi_agent_testing-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement84MultiAgentBlindSpotDetection:
         # TODO: Check that multi_agent_testing tools and patterns are used correctly
         # TODO: Validate against multi_agent_testing best practices
 
-        assert True, (
-            "multi_agent_testing specific behavior test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "multi_agent_testing specific behavior test placeholder - implement actual logic"
 
     def test_multi_agent_testing_compliance(self):
         """Test that multi_agent_testing implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement84MultiAgentBlindSpotDetection:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert True, (
-            "multi_agent_testing compliance test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "multi_agent_testing compliance test placeholder - implement actual logic"

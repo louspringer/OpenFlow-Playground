@@ -79,9 +79,9 @@ class TestEnhancedRoundTripRequirements:
             f.write(generated_code)
 
         # Test 1: Check for Pydantic v2 imports
-        assert "from pydantic import BaseModel" in generated_code, (
-            "Missing Pydantic v2 import"
-        )
+        assert (
+            "from pydantic import BaseModel" in generated_code
+        ), "Missing Pydantic v2 import"
         assert "from pydantic import" in generated_code, "Missing Pydantic imports"
 
         # Test 2: Check for BaseModel usage
@@ -138,9 +138,9 @@ class TestEnhancedRoundTripRequirements:
         type_annotation_ratio = (
             len(methods_with_return_types) / len(methods) if methods else 0
         )
-        assert type_annotation_ratio >= 0.8, (
-            f"Only {type_annotation_ratio:.1%} of methods have return type annotations"
-        )
+        assert (
+            type_annotation_ratio >= 0.8
+        ), f"Only {type_annotation_ratio:.1%} of methods have return type annotations"
 
         print(f"✅ Type annotation coverage: {type_annotation_ratio:.1%}")
 
@@ -158,9 +158,9 @@ class TestEnhancedRoundTripRequirements:
             else:
                 print(f"⚠️ MyPy validation warnings: {result.stderr}")
                 # For now, we'll allow warnings but not errors
-                assert "error:" not in result.stderr, (
-                    f"MyPy validation errors: {result.stderr}"
-                )
+                assert (
+                    "error:" not in result.stderr
+                ), f"MyPy validation errors: {result.stderr}"
 
         except (subprocess.TimeoutExpired, FileNotFoundError):
             print("ℹ️ MyPy not available, skipping MyPy validation")
@@ -202,9 +202,9 @@ class TestEnhancedRoundTripRequirements:
         ]
 
         for method in required_methods:
-            assert method in generated_code, (
-                f"Missing required Reflective Module method: {method}"
-            )
+            assert (
+                method in generated_code
+            ), f"Missing required Reflective Module method: {method}"
 
         print("✅ Required Reflective Module methods found")
 

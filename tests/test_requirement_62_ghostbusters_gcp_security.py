@@ -24,9 +24,9 @@ class TestRequirement62GhostbustersGcpSecurity:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert True, (
-            "ghostbusters_gcp requirement validation test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "ghostbusters_gcp requirement validation test placeholder - implement actual logic"
 
     def test_ghostbusters_gcp_specific_behavior(self):
         """Test ghostbusters_gcp-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement62GhostbustersGcpSecurity:
         # TODO: Check that ghostbusters_gcp tools and patterns are used correctly
         # TODO: Validate against ghostbusters_gcp best practices
 
-        assert True, (
-            "ghostbusters_gcp specific behavior test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "ghostbusters_gcp specific behavior test placeholder - implement actual logic"
 
     def test_ghostbusters_gcp_compliance(self):
         """Test that ghostbusters_gcp implementation complies with requirements."""
@@ -48,6 +48,6 @@ class TestRequirement62GhostbustersGcpSecurity:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert True, (
-            "ghostbusters_gcp compliance test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "ghostbusters_gcp compliance test placeholder - implement actual logic"

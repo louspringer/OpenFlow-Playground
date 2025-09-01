@@ -416,9 +416,9 @@ class TestDemoOrchestrator:
         ]
 
         for method_name in demo_methods:
-            assert hasattr(demo_orchestrator, method_name), (
-                f"Missing demo method: {method_name}"
-            )
+            assert hasattr(
+                demo_orchestrator, method_name
+            ), f"Missing demo method: {method_name}"
 
         # Should not have methods for other concerns
         non_demo_methods = [
@@ -429,9 +429,9 @@ class TestDemoOrchestrator:
         ]
 
         for method_name in non_demo_methods:
-            assert not hasattr(demo_orchestrator, method_name), (
-                f"Unexpected method: {method_name}"
-            )
+            assert not hasattr(
+                demo_orchestrator, method_name
+            ), f"Unexpected method: {method_name}"
 
 
 class TestDemoSystemIntegration:

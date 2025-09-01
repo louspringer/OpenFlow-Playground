@@ -177,7 +177,9 @@ class ComponentManager(BaseReflectiveModule):
                 if hasattr(comp, "type") and comp.type == component_type
             ]
         except Exception as e:
-            logger.error(f"❌ Failed to filter components by type {component_type}: {e}")
+            logger.error(
+                f"❌ Failed to filter components by type {component_type}: {e}"
+            )
             return []
 
     def sort_components_by_name(self, model_components: List[Any]) -> List[Any]:

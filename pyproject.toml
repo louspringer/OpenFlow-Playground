@@ -145,6 +145,7 @@ dev-dependencies = [
     "semgrep>=1.79.0",
     "snakeviz>=2.2.2",
     "viztracer>=1.0.4",
+    "pydantic>=2.9.2",
 ]
 
 # Security tools are now in [project.optional-dependencies.security]

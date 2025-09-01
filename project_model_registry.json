@@ -19,7 +19,6 @@
       "purpose": "Provide the actual demo functionality and user experience"
     },
     "demo_tools": {
-      "description": "Tool domains that support demo creation, testing, and management",
       "domains": [
         "ghostbusters",
         "intelligent_linter_system",
@@ -41,9 +40,9 @@
         "over_engineering_prevention",
         "op_api_manager",
         "cache_manager",
-        "f_string_policy"
-      ],
-      "purpose": "Enable developers to create, test, and maintain high-quality demos with paranormal investigation capabilities"
+        "f_string_policy",
+        "model_management"
+      ]
     },
     "demo_infrastructure": {
       "description": "Infrastructure and supporting domains for the demo ecosystem",
@@ -2863,193 +2862,14 @@
       }
     },
     "round_trip_engineering": {
-      "patterns": [
-        "src/round_trip_engineering/**/*.py",
-        "tests/test_round_trip_system.py",
-        "**/*round_trip*.py"
-      ],
-      "content_indicators": [
-        "round_trip",
-        "reverse_engineer",
-        "model_driven",
+      "tools": [],
+      "capabilities": [
         "code_generation",
-        "AST_parsing",
+        "ast_parsing",
         "vocabulary_alignment",
-        "duplication_cleaning",
-        "ontological_modeling"
-      ],
-      "linter": "flake8",
-      "formatter": "black",
-      "validator": "pytest",
-      "exclusions": [
-        "__pycache__/*",
-        "*.pyc",
-        "*.pyo",
-        "src/round_trip_generated/*.py"
-      ],
-      "requirements": [
-        "Provide canonical round-trip engineering system with modular architecture",
-        "Support AST-based reverse engineering via ArtifactForge integration",
-        "Generate code from models with zero duplication",
-        "Maintain functional equivalence through round-trip validation",
-        "Support model-driven development as foundation for code generation",
-        "Integrate ontological vocabulary alignment for domain consistency",
-        "Provide comprehensive logging and profiling with cProfile integration",
-        "Implement activity model validation for expected vs actual behavior",
-        "Support modular architecture: core, generators, cleaners, logging",
-        "All methods must have complete type annotations and pass MyPy validation",
-        "All imports must be validated before code generation",
-        "Error handling must be consistent across all methods",
-        "Code generation must produce lint-compliant output without duplications",
-        "Generated code must use Pydantic v2 BaseModel classes for data models",
-        "Generated code must pass MyPy validation with zero errors in strict mode",
-        "Generated code must implement Reflective Module interfaces for operational monitoring",
-        "All modules must expose operational status through clean interfaces (no internal probing)",
-        "Generated code must support graceful degradation reporting and self-monitoring",
-        "No use of hasattr(), getattr(), inspect, or __dict__ in generated code",
-        "Modules must expose capabilities through defined interfaces, not introspection",
-        "Generated code preserves structural information (class names, method names, basic types) - \u2705 COMPLETED via enhanced AST system - \u2705 COMPLETED via enhanced AST system",
-        "Generated code creates enhanced skeletons with Reflective Module interfaces",
-        "Generated code requires manual re-implementation of business logic",
-        "System is a structural code generator, not a code preservation system",
-        "Round-trip validation confirms structural consistency, not functional equivalence",
-        "System generates enhanced code skeletons with modern Python standards and interfaces",
-        "Method implementations are replaced with TODO placeholders requiring manual completion",
-        "Inheritance relationships and detailed method signatures preserved via enhanced AST extraction - \u2705 COMPLETED - \u2705 COMPLETED via enhanced AST system",
-        "Primary use case: Generate enhanced code templates from existing code structure",
-        "Future enhancement: Implement actual code preservation for method implementations",
-        "Future enhancement: Maintain inheritance relationships and detailed method signatures - \u2705 COMPLETED via enhanced AST system - \u2705 COMPLETED via enhanced AST system",
-        "Future enhancement: Preserve async/await patterns and complex method logic",
-        "Ontological vocabulary alignment implemented with domain-specific vocabularies",
-        "Comprehensive profiling with cProfile integration implemented",
-        "Implement forward engineering from design specifications for generating code (e.g., unit tests) when source code is not available",
-        "Implement forward engineering from design specifications for generating code (e.g., unit tests) when source code is not available",
-        "Integrate Voice Mode MCP for enhanced developer productivity with voice control for round-trip engineering tasks",
-        "Provide well-documented command-line interface for round-trip engineering operations without requiring users to understand internal system architecture",
-        "CRITICAL: Generated code must pass AST parsing validation before output",
-        "PDCA process must enforce Reflective Module principles at every loop"
-      ],
-      "todos": [
-        {
-          "id": "fix_code_generation_duplication",
-          "description": "Fix systematic code duplication in generated artifacts causing 524 MyPy errors",
-          "priority": "critical",
-          "status": "completed",
-          "details": {
-            "current_state": "Modular round-trip system implemented with duplication cleaning",
-            "root_cause": "Monolithic architecture causing code duplication issues",
-            "solution": "Refactored into modular components with dedicated duplication cleaner",
-            "next_steps": [
-              "Fix code generation to build complete model first instead of in-line generation",
-              "Validate activity models and expected behavior",
-              "Fix remaining MyPy errors after refactoring",
-              "Integrate with ontology framework subproject"
-            ],
-            "metrics": {
-              "architecture": "Modular (8 focused modules vs 1 monolithic file)",
-              "code_reduction": "48% (1932 \u2192 997 lines)",
-              "duplication_cleaning": "Implemented",
-              "logging_profiling": "Comprehensive system implemented"
-            }
-          },
-          "created": "2025-01-27T10:00:00",
-          "completed": "2025-08-25T11:56:32.097157",
-          "assigned_to": "AI Assistant"
-        },
-        {
-          "id": "validate_activity_models",
-          "description": "Validate expected vs actual behavior using comprehensive testing",
-          "priority": "high",
-          "status": "in_progress",
-          "assigned_to": "AI Assistant",
-          "details": {
-            "current_state": "4/5 tests passing, duplication cleaner working perfectly",
-            "next_steps": [
-              "Fix code generation to build complete model first",
-              "Implement activity model validation",
-              "Run comprehensive tests with logging and profiling",
-              "Compare expected vs actual activity models"
-            ],
-            "progress": "80% - Core system working, need to fix code generation approach"
-          }
-        },
-        {
-          "id": "fix_code_generation_approach",
-          "description": "Fix code generation to build complete in-memory model first instead of in-line generation",
-          "priority": "high",
-          "status": "completed",
-          "details": {
-            "current_state": "Code generation now produces full class structure with complete models",
-            "root_cause": "Generating code in-line before full model is constructed",
-            "solution": "Build complete in-memory model first, then generate code from complete model",
-            "implementation": [
-              "Added _build_complete_model() method for complete model construction",
-              "Added _validate_complete_model() method for model validation",
-              "Added _generate_from_complete_model() method for code generation",
-              "Fixed vocabulary alignment in generate_code_from_model path",
-              "All 5 tests now passing with full class structure generation"
-            ],
-            "best_practice": "Always build complete model first, then generate code from complete model",
-            "metrics": {
-              "tests_passing": "5/5 (100%)",
-              "code_generation": "Full class structure generated",
-              "vocabulary_alignment": "Working correctly"
-            }
-          },
-          "created": "2025-08-25T11:47:40.219821",
-          "completed": "2025-08-25T11:56:32.097194",
-          "assigned_to": "AI Assistant"
-        },
-        {
-          "id": "reality_check_round_trip_capabilities",
-          "description": "Update requirements to reflect actual system capabilities vs. claimed functionality",
-          "priority": "critical",
-          "status": "in_progress",
-          "assigned_to": "AI Assistant",
-          "details": {
-            "current_state": "Requirements claimed code preservation but system only generates structural skeletons",
-            "root_cause": "Assistant hallucinated about system capabilities",
-            "solution": "Update requirements to honestly reflect what the system actually does",
-            "implementation": [
-              "Updated requirements to clarify structural generation vs. code preservation",
-              "Added future enhancement items for actual code preservation",
-              "Clarified that system generates enhanced templates, not functional code"
-            ],
-            "best_practice": "Always audit actual system capabilities before updating requirements",
-            "metrics": {
-              "requirements_accuracy": "Updated to reflect reality",
-              "future_enhancements": "Planned for actual code preservation"
-            }
-          }
-        }
-      ],
-      "demo_role": "tool",
-      "extraction_candidate": true,
-      "reason": "Modular round-trip engineering system with ontological vocabulary alignment, comprehensive testing, and cProfile integration",
-      "completion_status": "100% - All major requirements completed via enhanced AST system",
-      "completed_at": "2025-08-30T18:59:00Z",
-      "refactoring_status": "PDCA_LOOPS_1_2_3_4_COMPLETE",
-      "current_phase": "PDCA_LOOP_4_PHASE_4_FINAL_COMPLIANCE",
-      "refactored_modules": [
-        "ClassGenerator",
-        "RoundTripSystem",
-        "VocabularyAligner"
-      ],
-      "new_modules": [
-        "VoiceControlIntegration",
-        "VoiceModeRoundTripDemo"
-      ],
-      "voice_integration_status": "completed",
-      "mcp_integration": "voice_mode_mcp_server",
-      "cli_interface": "completed",
-      "command_line_tools": [
-        "reverse",
-        "forward",
-        "round-trip",
-        "compare",
-        "status"
-      ],
-      "interface_principles": "documented_public_interfaces_only"
+        "round_trip_validation",
+        "structural_preservation"
+      ]
     },
     "over_engineering_prevention": {
       "patterns": [
@@ -3227,6 +3047,76 @@
         "score": 9,
         "reason": "Essential for RM compliance and test generation quality"
       }
+    },
+    "model_crud": null,
+    "model_management": {
+      "patterns": [
+        "src/round_trip_engineering/tools/*.py",
+        "scripts/model_crud.py",
+        "**/*model_crud*.py",
+        "**/*model_management*.py"
+      ],
+      "content_indicators": [
+        "model_crud",
+        "model_management",
+        "IModelCrud",
+        "ModelRegistry",
+        "json_model_manager",
+        "neo4j_model_manager",
+        "ontology_model_manager",
+        "project_model_manager"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "pytest",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc",
+        "*.pyo"
+      ],
+      "requirements": [
+        "Provide comprehensive model management operations across multiple backends",
+        "Support model creation, CRUD operations, and lifecycle management",
+        "Implement Reflective Module compliance for all managers",
+        "Provide registry pattern for model management",
+        "Support environment variable injection for credentials",
+        "Provide backup and restore functionality",
+        "Support schema validation and DDL operations",
+        "Enable model creation, validation, and transformation"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": true,
+      "reason": "Comprehensive model management system with creation, CRUD, and lifecycle support",
+      "completion_status": "80% - JSON manager complete, others in backlog",
+      "refactoring_status": "PDCA_LOOPS_1_2_3_COMPLETE",
+      "current_phase": "PDCA_LOOP_4_PHASE_2_IMPLEMENTATION",
+      "refactored_modules": [
+        "ModelCrudManager",
+        "ModelRegistry",
+        "IModelCrud"
+      ],
+      "new_modules": [
+        "Neo4jModelManager",
+        "OntologyModelManager",
+        "ProjectModelManager"
+      ],
+      "tools": [
+        "json_model_manager",
+        "neo4j_model_manager",
+        "ontology_model_manager",
+        "project_model_manager"
+      ],
+      "capabilities": [
+        "model_creation",
+        "model_crud",
+        "model_validation",
+        "model_transformation",
+        "schema_ddl",
+        "registry_management",
+        "backup_management",
+        "environment_injection",
+        "lifecycle_management"
+      ]
     }
   },
   "over_engineering_findings": {
@@ -4468,6 +4358,73 @@
       "implementation": "PDCA Loop 4 Phase 4: Comprehensive compliance audit, quality gate validation, final documentation review",
       "test": "test_final_compliance_assessment",
       "status": "in_progress"
+    },
+    {
+      "id": "json_model_manager_requirement",
+      "description": "Implement JSON Model Manager Reflective Module with jq Python package for reliable JSON editing",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1756680217
+    },
+    {
+      "requirement": "ALWAYS use Model Registry and CRUD tools instead of direct file access - Force use of built tools over direct JSON/file scanning",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Tool failure handling must be Reflective Module compliant - Self-Monitoring, Self-Reporting, Single Responsibility, Operational Visibility, Testability, Architecture Boundaries, Self-Documentation",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "When fixing tool issues, MUST update Requirements, Tests, Documentation, Health Monitoring, and Recovery Procedures",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Add list-domains action to model CRUD CLI for querying project domains",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Create model_crud as a full domain to separate model management from round_trip_engineering - preserve all working implementations",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Add mypy/pydantic validation, enhanced logging, and profiling to model management domain - RM compliant implementation",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Analyze domain requirements for overlaps - found 38 domains with validation requirements, 16 with deployment, 16 with quality, 15 with model integration. High similarity pairs: mdc_generator/rule_compliance (77.8%), interface_modeling/interface_specifications (73.1%). Need consolidation strategy.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Test requirement to validate project model CRUD operations",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "list-domain-requirements command is NOT reading from requirements_traceability collection - it only reads from domains section. This is a major architectural flaw.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "Final test to validate the demo is working end-to-end",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
     }
   ],
   "implementation_plan": {
@@ -5811,6 +5768,71 @@
       "demo_role": "policy",
       "extraction_candidate": false,
       "reason": "This is a project-wide policy that should remain in this project"
+    },
+    "model_crud": {
+      "patterns": [
+        "scripts/model_crud.py",
+        "**/*model_crud*.py"
+      ],
+      "content_indicators": [
+        "model_crud",
+        "Model CRUD CLI",
+        "register-model",
+        "list-models",
+        "list-domains",
+        "get-model-info",
+        "add-item",
+        "update-section"
+      ],
+      "linter": "flake8",
+      "formatter": "black",
+      "validator": "ast-parse",
+      "exclusions": [
+        "__pycache__/*",
+        "*.pyc"
+      ],
+      "requirements": [
+        "Provide comprehensive CLI interface for model CRUD operations",
+        "Support model registration with different implementations (json, neo4j, ontology, project)",
+        "Support listing registered models with implementation details",
+        "Support listing project domains with architecture categorization",
+        "Support getting detailed model information including configuration and status",
+        "Support business CRUD operations (add-item, update-section, remove-item, add-section, remove-section)",
+        "Support backup and restore operations for model data",
+        "Support model validation and integrity checks",
+        "Provide clear error messages and validation for required parameters",
+        "Support JSON configuration for model registration",
+        "Maintain separation between registry management and business operations",
+        "Provide comprehensive domain listing with extraction and package potential information",
+        "Group domains by architecture categories for better organization",
+        "Show domain tools (linter, formatter, validator) for each domain",
+        "Display extraction candidate status and package potential scores",
+        "Handle uncategorized domains separately from architecture categories",
+        "Provide summary statistics for total, categorized, and uncategorized domains"
+      ],
+      "demo_role": "tool",
+      "extraction_candidate": "MEDIUM",
+      "reason": "Generic model CRUD system that could benefit many projects",
+      "extraction_benefits": [
+        "Could become a standalone model management tool",
+        "Has potential for other model-driven projects",
+        "Could integrate with other development tools"
+      ],
+      "package_potential": {
+        "score": 8,
+        "reasons": [
+          "Standalone tool with clear purpose",
+          "Well-developed CLI interface",
+          "High-value domain identified",
+          "Has description",
+          "Has purpose",
+          "External value for model management",
+          "Reusable across projects",
+          "Comprehensive domain listing capabilities"
+        ],
+        "pypi_ready": true,
+        "package_name": "openflow-model-crud"
+      }
     }
   },
   "cursor_rules": {
@@ -6777,6 +6799,41 @@
       "status": "pending",
       "created_at": "2025-08-31T10:37:48.042493Z",
       "updated_at": "2025-08-31T10:37:48.042499Z"
+    },
+    {
+      "id": "json_model_manager_backlog",
+      "title": "JSON Model Manager Implementation",
+      "description": "Successfully implemented JSON Model Manager Reflective Module with jq Python package",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1756680630
+    }
+  ],
+  "query": {
+    "question": "What domains are defined in the project model?",
+    "action": "list_domains"
+  },
+  "use_cases": [
+    {
+      "id": "tool_usage_enforcement_use_case",
+      "description": "When querying model data, ALWAYS use Model Registry get_model() and manager.load_model() instead of direct file reading or JSON scanning",
+      "title": "Tool Usage Enforcement Use Case",
+      "priority": "medium",
+      "created_at": 1756730487
+    },
+    {
+      "id": "list_domains_working",
+      "description": "list-domains CLI action is working correctly - shows 46 domains organized by architecture categories with detailed information",
+      "title": "List Domains Working",
+      "priority": "medium",
+      "created_at": 1756733268
+    },
+    {
+      "id": "list_domain_requirements_cli",
+      "description": "Create CLI command to list domain requirements with filtering, search, and detailed analysis capabilities. Use case: 'list-domain-requirements' action in model_crud.py",
+      "title": "List Domain Requirements CLI",
+      "priority": "medium",
+      "created_at": 1756734443
     }
   ]
 }

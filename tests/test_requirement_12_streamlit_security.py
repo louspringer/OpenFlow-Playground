@@ -24,9 +24,9 @@ class TestRequirement12StreamlitSecurity:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert True, (
-            "streamlit requirement validation test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "streamlit requirement validation test placeholder - implement actual logic"
 
     def test_streamlit_specific_behavior(self):
         """Test streamlit-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement12StreamlitSecurity:
         # TODO: Check that streamlit tools and patterns are used correctly
         # TODO: Validate against streamlit best practices
 
-        assert True, (
-            "streamlit specific behavior test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "streamlit specific behavior test placeholder - implement actual logic"
 
     def test_streamlit_compliance(self):
         """Test that streamlit implementation complies with requirements."""

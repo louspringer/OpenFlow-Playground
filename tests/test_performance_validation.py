@@ -74,9 +74,9 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each operation should complete in under 1ms
-            assert avg_time < 0.001, (
-                f"Performance regression: {test_case['name']} took {avg_time:.6f}s per operation"
-            )
+            assert (
+                avg_time < 0.001
+            ), f"Performance regression: {test_case['name']} took {avg_time:.6f}s per operation"
 
         # Log performance results
         print(f"\n📊 ClassStructureGenerator Performance Results:")
@@ -138,9 +138,9 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each validation should complete in under 2ms
-            assert avg_time < 0.002, (
-                f"Performance regression: Method {i + 1} took {avg_time:.6f}s per validation"
-            )
+            assert (
+                avg_time < 0.002
+            ), f"Performance regression: Method {i + 1} took {avg_time:.6f}s per validation"
 
         # Log performance results
         print(f"\n📊 MethodValidator Performance Results:")
@@ -203,9 +203,9 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each completion should complete in under 2ms
-            assert avg_time < 0.002, (
-                f"Performance regression: Method {i + 1} took {avg_time:.6f}s per completion"
-            )
+            assert (
+                avg_time < 0.002
+            ), f"Performance regression: Method {i + 1} took {avg_time:.6f}s per completion"
 
         # Log performance results
         print(f"\n📊 MethodCompleter Performance Results:")
@@ -249,9 +249,9 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each generation should complete in under 1ms
-            assert avg_time < 0.001, (
-                f"Performance regression: Class {class_name} took {avg_time:.6f}s per generation"
-            )
+            assert (
+                avg_time < 0.001
+            ), f"Performance regression: Class {class_name} took {avg_time:.6f}s per generation"
 
         # Log performance results
         print(f"\n📊 OperationalMethodsGenerator Performance Results:")
@@ -326,9 +326,9 @@ class TestPerformanceBenchmarks:
         avg_time = total_time / 20
 
         # Performance assertion: each full workflow should complete in under 10ms
-        assert avg_time < 0.01, (
-            f"Performance regression: Full workflow took {avg_time:.6f}s per iteration"
-        )
+        assert (
+            avg_time < 0.01
+        ), f"Performance regression: Full workflow took {avg_time:.6f}s per iteration"
 
         print(f"\n📊 Integrated ClassGenerator Performance Results:")
         print(
@@ -378,9 +378,9 @@ class TestPerformanceBenchmarks:
         print(f"  Memory increase: {memory_increase:.2f} MB")
 
         # Memory assertion: memory increase should be reasonable (< 50MB)
-        assert memory_increase < 50, (
-            f"Memory usage increased by {memory_increase:.2f} MB, which is excessive"
-        )
+        assert (
+            memory_increase < 50
+        ), f"Memory usage increased by {memory_increase:.2f} MB, which is excessive"
 
     def test_concurrent_operation_performance(self):
         """Test performance under concurrent operations."""
@@ -456,9 +456,9 @@ class TestPerformanceBenchmarks:
 
             # Performance assertion: total time should scale reasonably with concurrency
             expected_time = 20 * 0.001 * concurrency  # Rough estimate
-            assert total_time < expected_time * 2, (
-                f"Performance regression: {concurrency} workers took {total_time:.6f}s (expected < {expected_time * 2:.6f}s)"
-            )
+            assert (
+                total_time < expected_time * 2
+            ), f"Performance regression: {concurrency} workers took {total_time:.6f}s (expected < {expected_time * 2:.6f}s)"
 
         print(f"\n📊 Concurrent Operation Performance Results:")
         for result in performance_results:
@@ -491,9 +491,9 @@ class TestPerformanceRegressionDetection:
         end_time = time.perf_counter()
         avg_time = (end_time - start_time) / 100
 
-        assert avg_time < baseline_expectations["class_structure_generation"], (
-            f"Class structure generation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['class_structure_generation']:.6f}s)"
-        )
+        assert (
+            avg_time < baseline_expectations["class_structure_generation"]
+        ), f"Class structure generation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['class_structure_generation']:.6f}s)"
 
         # Test method validation
         test_method = """def baseline_method(self):
@@ -505,9 +505,9 @@ class TestPerformanceRegressionDetection:
         end_time = time.perf_counter()
         avg_time = (end_time - start_time) / 100
 
-        assert avg_time < baseline_expectations["method_validation"], (
-            f"Method validation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['method_validation']:.6f}s)"
-        )
+        assert (
+            avg_time < baseline_expectations["method_validation"]
+        ), f"Method validation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['method_validation']:.6f}s)"
 
         print(f"\n✅ Performance baseline validation passed:")
         print(f"  Class structure generation: {avg_time:.6f}s avg")

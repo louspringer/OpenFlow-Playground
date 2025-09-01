@@ -24,9 +24,9 @@ class TestRequirement11YamlCicd:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert True, (
-            "yaml_cicd requirement validation test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "yaml_cicd requirement validation test placeholder - implement actual logic"
 
     def test_yaml_cicd_specific_behavior(self):
         """Test yaml_cicd-specific behavior and functionality."""
@@ -36,9 +36,9 @@ class TestRequirement11YamlCicd:
         # TODO: Check that yaml_cicd tools and patterns are used correctly
         # TODO: Validate against yaml_cicd best practices
 
-        assert True, (
-            "yaml_cicd specific behavior test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "yaml_cicd specific behavior test placeholder - implement actual logic"
 
     def test_yaml_cicd_compliance(self):
         """Test that yaml_cicd implementation complies with requirements."""

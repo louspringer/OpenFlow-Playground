@@ -95,9 +95,7 @@ class VoiceModeRoundTripDemo:
 
         # Check Voice Mode availability
         voice_mode_available = self.voice_control.voice_mode_available
-        print(
-            f"  Voice Mode Available: {'✅ Yes' if voice_mode_available else '❌ No'}"
-        )
+        print(f"  Voice Mode Available: {'✅ Yes' if voice_mode_available else '❌ No'}")
 
         # Check module health
         try:
@@ -160,9 +158,7 @@ class VoiceModeRoundTripDemo:
             # Test basic demo functionality
             basic_demo_result = self.demo_orchestrator.run_basic_demo()
             basic_demo_success = basic_demo_result.get("status") == "success"
-            print(
-                f"  Basic Demo: {'✅ Success' if basic_demo_success else '❌ Failed'}"
-            )
+            print(f"  Basic Demo: {'✅ Success' if basic_demo_success else '❌ Failed'}")
 
             success = basic_demo_success
 
@@ -343,9 +339,7 @@ class VoiceModeRoundTripDemo:
 
         if overall_success:
             print("\n🎉 All phases completed successfully!")
-            print(
-                "🚀 Voice Mode + Round-Trip Engineering integration is ready for use!"
-            )
+            print("🚀 Voice Mode + Round-Trip Engineering integration is ready for use!")
         else:
             print("\n⚠️ Some phases encountered issues.")
             print("🔧 Review the results above to identify and resolve problems.")

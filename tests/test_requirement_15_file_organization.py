@@ -24,9 +24,9 @@ class TestRequirement15FileOrganization:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert True, (
-            "* requirement validation test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "* requirement validation test placeholder - implement actual logic"
 
     def test___specific_behavior(self):
         """Test *-specific behavior and functionality."""

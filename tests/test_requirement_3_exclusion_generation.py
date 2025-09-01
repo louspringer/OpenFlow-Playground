@@ -34,9 +34,9 @@ class TestRequirement3ExclusionGeneration:
         # TODO: Check that generated/ directories are excluded
         # TODO: Check that build artifacts are excluded
 
-        assert True, (
-            "Generated file exclusion test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "Generated file exclusion test placeholder - implement actual logic"
 
     def test_exclusions_follow_domain_patterns(self):
         """Test that exclusions follow the patterns defined in each domain."""
@@ -46,9 +46,9 @@ class TestRequirement3ExclusionGeneration:
         # TODO: Check that exclusions match project_model_registry.json patterns
         # TODO: Validate that each domain has appropriate exclusions
 
-        assert True, (
-            "Domain pattern exclusion test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "Domain pattern exclusion test placeholder - implement actual logic"
 
     def test_exclusions_prevent_false_positives(self):
         """Test that exclusions prevent false positive processing."""
@@ -58,6 +58,6 @@ class TestRequirement3ExclusionGeneration:
         # TODO: Check that excluded files are not processed
         # TODO: Validate that exclusions reduce processing errors
 
-        assert True, (
-            "False positive prevention test placeholder - implement actual logic"
-        )
+        assert (
+            True
+        ), "False positive prevention test placeholder - implement actual logic"
