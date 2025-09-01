@@ -24,9 +24,7 @@ class TestRequirement39DevDependenciesUv:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "package_management requirement validation test placeholder - implement actual logic"
+        assert True, "package_management requirement validation test placeholder - implement actual logic"
 
     def test_package_management_specific_behavior(self):
         """Test package_management-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement39DevDependenciesUv:
         # TODO: Check that package_management tools and patterns are used correctly
         # TODO: Validate against package_management best practices
 
-        assert (
-            True
-        ), "package_management specific behavior test placeholder - implement actual logic"
+        assert True, "package_management specific behavior test placeholder - implement actual logic"
 
     def test_package_management_compliance(self):
         """Test that package_management implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement39DevDependenciesUv:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "package_management compliance test placeholder - implement actual logic"
+        assert True, "package_management compliance test placeholder - implement actual logic"

@@ -40,9 +40,7 @@ def test_profiling_activity_validation_hypothesis():
     reverse_engineer = EnhancedReverseEngineer()
     extracted_model = reverse_engineer.reverse_engineer_file(source_file)
 
-    print(
-        f"✅ Extracted model with {len(extracted_model.get('components', {}))} components"
-    )
+    print(f"✅ Extracted model with {len(extracted_model.get('components', {}))} components")
 
     # Step 2: Get execution trace from profiling
     print("\n📊 STEP 2: Execution Trace from Profiling")
@@ -51,21 +49,13 @@ def test_profiling_activity_validation_hypothesis():
     execution_trace = reverse_engineer.get_execution_trace()
     performance_summary = reverse_engineer.get_performance_summary()
 
-    print(
-        f"📈 Total function calls: {performance_summary.get('total_function_calls', 0)}"
-    )
-    print(
-        f"⏱️  Total execution time: {performance_summary.get('total_execution_time', 0):.6f}s"
-    )
-    print(
-        f"🐌 Average time per call: {performance_summary.get('average_time_per_call', 0):.6f}s"
-    )
+    print(f"📈 Total function calls: {performance_summary.get('total_function_calls', 0)}")
+    print(f"⏱️  Total execution time: {performance_summary.get('total_execution_time', 0):.6f}s")
+    print(f"🐌 Average time per call: {performance_summary.get('average_time_per_call', 0):.6f}s")
 
     print("\n🔍 Top 5 Bottlenecks:")
     for i, bottleneck in enumerate(performance_summary.get("bottlenecks", [])[:5]):
-        print(
-            f"  {i+1}. {bottleneck['function']} - {bottleneck['cumulative_time']:.6f}s ({bottleneck['call_count']} calls)"
-        )
+        print(f"  {i+1}. {bottleneck['function']} - {bottleneck['cumulative_time']:.6f}s ({bottleneck['call_count']} calls)")
 
     print("\n📞 Most Called Functions:")
     for i, func in enumerate(performance_summary.get("most_called_functions", [])[:5]):
@@ -104,14 +94,10 @@ def test_profiling_activity_validation_hypothesis():
 
         # Find the method in the component
         component_methods = components[component_name].get("methods", [])
-        method_info_full = next(
-            (m for m in component_methods if m.get("name") == method_name_only), None
-        )
+        method_info_full = next((m for m in component_methods if m.get("name") == method_name_only), None)
 
         if method_info_full:
-            validation_result = validator.validate_method_activity_model(
-                method_info_full
-            )
+            validation_result = validator.validate_method_activity_model(method_info_full)
             validation_results[method_name] = validation_result
 
     print(f"✅ Validated {len(validation_results)} activity models")
@@ -165,9 +151,7 @@ def test_profiling_activity_validation_hypothesis():
 
         if has_activity_model:
             # Find the activity model
-            activity_model = next(
-                (am for name, am in activity_models.items() if func_name in name), None
-            )
+            activity_model = next((am for name, am in activity_models.items() if func_name in name), None)
             if activity_model:
                 complexity = activity_model.get("complexity_score", 0)
                 control_flow = activity_model.get("control_flow", {})
@@ -182,9 +166,7 @@ def test_profiling_activity_validation_hypothesis():
 
     # Calculate correlation metrics
     total_functions = len(trace_functions.union(activity_functions))
-    overlap_ratio = (
-        len(common_functions) / total_functions if total_functions > 0 else 0
-    )
+    overlap_ratio = len(common_functions) / total_functions if total_functions > 0 else 0
 
     print(f"📊 Overlap Analysis:")
     print(f"  Total unique functions: {total_functions}")
@@ -193,24 +175,14 @@ def test_profiling_activity_validation_hypothesis():
 
     print("\n🎯 Hypothesis Assessment:")
     if overlap_ratio >= 0.8:
-        print(
-            "  ✅ STRONG SUPPORT: High overlap between profiling trace and activity models"
-        )
-        print(
-            "  💡 This suggests our activity modeling accurately predicts execution behavior"
-        )
+        print("  ✅ STRONG SUPPORT: High overlap between profiling trace and activity models")
+        print("  💡 This suggests our activity modeling accurately predicts execution behavior")
     elif overlap_ratio >= 0.6:
-        print(
-            "  ⚠️  MODERATE SUPPORT: Moderate overlap between profiling trace and activity models"
-        )
+        print("  ⚠️  MODERATE SUPPORT: Moderate overlap between profiling trace and activity models")
         print("  💡 Some functions may be missing from activity models or profiling")
     else:
-        print(
-            "  ❌ WEAK SUPPORT: Low overlap between profiling trace and activity models"
-        )
-        print(
-            "  💡 This suggests our activity modeling may not accurately predict execution behavior"
-        )
+        print("  ❌ WEAK SUPPORT: Low overlap between profiling trace and activity models")
+        print("  💡 This suggests our activity modeling may not accurately predict execution behavior")
 
     print()
 

@@ -40,9 +40,7 @@ def test_ghostbusters_status_not_found(mock_firestore):
     mock_doc.exists = False  # Direct attribute, not method
     mock_doc.to_dict.return_value = {}
 
-    mock_firestore.collection.return_value.document.return_value.get.return_value = (
-        mock_doc
-    )
+    mock_firestore.collection.return_value.document.return_value.get.return_value = mock_doc
 
     request = MockRequest({"analysis_id": "non-existent-id"})
     result, status_code = ghostbusters_status(request)
@@ -76,9 +74,7 @@ def test_ghostbusters_status_success(mock_firestore):
         "timestamp": "2024-01-01T00:00:00Z",
     }
 
-    mock_firestore.collection.return_value.document.return_value.get.return_value = (
-        mock_doc
-    )
+    mock_firestore.collection.return_value.document.return_value.get.return_value = mock_doc
 
     request = MockRequest({"analysis_id": "test-id"})
     result, status_code = ghostbusters_status(request)

@@ -40,9 +40,7 @@ class LiveLLMOrchestrator:
                 msg = f"Failed to import {provider} dependencies: {str(e)}. Install required packages."
                 raise ValueError(msg)
             except ValueError as e:
-                msg = (
-                    f"Invalid {provider} configuration: {str(e)}. Check API key format."
-                )
+                msg = f"Invalid {provider} configuration: {str(e)}. Check API key format."
                 raise ValueError(msg)
             except Exception as e:
                 msg = f"Failed to initialize {provider} model: {str(e)}. Check API key validity and model availability."

@@ -101,10 +101,7 @@ class ArtifactCorrelator:
         relationships = []
 
         # Check if artifact1 imports artifact2
-        if (
-            artifact1.get("artifact_type") == "python"
-            and artifact2.get("artifact_type") == "python"
-        ):
+        if artifact1.get("artifact_type") == "python" and artifact2.get("artifact_type") == "python":
             imports = artifact1.get("parsed_data", {}).get("imports", [])
             target_name = Path(artifact2["path"]).stem
 
@@ -161,10 +158,7 @@ class ArtifactCorrelator:
         relationships = []
 
         # Check for configuration dependencies
-        if (
-            artifact1.get("artifact_type") in ["yaml", "json"]
-            and artifact2.get("artifact_type") == "python"
-        ):
+        if artifact1.get("artifact_type") in ["yaml", "json"] and artifact2.get("artifact_type") == "python":
             # Configuration files often configure Python modules
             relationships.append(
                 ArtifactRelationship(
@@ -271,10 +265,7 @@ class ArtifactCorrelator:
         ratio = min(lines1, lines2) / max(lines1, lines2)
 
         # Additional similarity factors
-        if (
-            artifact1.get("artifact_type") == "python"
-            and artifact2.get("artifact_type") == "python"
-        ):
+        if artifact1.get("artifact_type") == "python" and artifact2.get("artifact_type") == "python":
             funcs1 = len(data1.get("functions", []))
             funcs2 = len(data2.get("functions", []))
             if funcs1 > 0 and funcs2 > 0:

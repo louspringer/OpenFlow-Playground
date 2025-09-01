@@ -24,9 +24,7 @@ class TestRequirement82ArtifactForgeMultiFormat:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "artifact_forge requirement validation test placeholder - implement actual logic"
+        assert True, "artifact_forge requirement validation test placeholder - implement actual logic"
 
     def test_artifact_forge_specific_behavior(self):
         """Test artifact_forge-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement82ArtifactForgeMultiFormat:
         # TODO: Check that artifact_forge tools and patterns are used correctly
         # TODO: Validate against artifact_forge best practices
 
-        assert (
-            True
-        ), "artifact_forge specific behavior test placeholder - implement actual logic"
+        assert True, "artifact_forge specific behavior test placeholder - implement actual logic"
 
     def test_artifact_forge_compliance(self):
         """Test that artifact_forge implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement82ArtifactForgeMultiFormat:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "artifact_forge compliance test placeholder - implement actual logic"
+        assert True, "artifact_forge compliance test placeholder - implement actual logic"

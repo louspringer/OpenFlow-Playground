@@ -64,9 +64,7 @@ def main():
     parser.add_argument("--backup-file", help="Backup file path")
     parser.add_argument("--domain", help="Domain name for list-domain-requirements")
     parser.add_argument("--search", help="Search term for filtering requirements")
-    parser.add_argument(
-        "--category", help="Category filter (demo_core, demo_tools, etc.)"
-    )
+    parser.add_argument("--category", help="Category filter (demo_core, demo_tools, etc.)")
     parser.add_argument(
         "--format",
         choices=["text", "json", "csv"],
@@ -94,9 +92,7 @@ def main():
                     return 1
 
             # Register model with config
-            success = registry.register_model(
-                args.model_name, args.implementation, **config
-            )
+            success = registry.register_model(args.model_name, args.implementation, **config)
             print(f"✅ Model registered: {args.model_name} ({args.implementation})")
 
         elif args.action == "list-models":
@@ -123,9 +119,7 @@ def main():
             print(f"📋 Model info for '{args.model_name}':")
             print(f"  Implementation: {info.get('implementation', 'N/A')}")
             print(f"  Config: {info.get('config', {})}")
-            print(
-                f"  Instance: {'Initialized' if info.get('instance') else 'Lazy (not initialized)'}"
-            )
+            print(f"  Instance: {'Initialized' if info.get('instance') else 'Lazy (not initialized)'}")
 
         elif args.action == "list-domains":
             # Load project model registry to get domains
@@ -185,12 +179,8 @@ def main():
                             package_potential = domain_info.get("package_potential", {})
                             if package_potential:
                                 score = package_potential.get("score", 0)
-                                package_name = package_potential.get(
-                                    "package_name", "N/A"
-                                )
-                                print(
-                                    f"       - Package Potential: {score}/10 ({package_name})"
-                                )
+                                package_name = package_potential.get("package_name", "N/A")
+                                print(f"       - Package Potential: {score}/10 ({package_name})")
 
                 # Show domains not in architecture categories
                 categorized_domains = set()
@@ -343,14 +333,8 @@ def main():
                     if args.category not in domain_architecture:
                         print(f"❌ Category '{args.category}' not found")
                         return 1
-                    category_domains = domain_architecture[args.category].get(
-                        "domains", []
-                    )
-                    domains_to_show = {
-                        k: v
-                        for k, v in domains_to_show.items()
-                        if k in category_domains
-                    }
+                    category_domains = domain_architecture[args.category].get("domains", [])
+                    domains_to_show = {k: v for k, v in domains_to_show.items() if k in category_domains}
 
                 # Filter by search term if specified
                 if args.search:
@@ -360,9 +344,7 @@ def main():
                         if domain_info and isinstance(domain_info, dict):
                             reqs = domain_info.get("requirements", [])
                             # Check if search term appears in domain name or requirements
-                            if search_term in domain_name.lower() or any(
-                                search_term in req.lower() for req in reqs
-                            ):
+                            if search_term in domain_name.lower() or any(search_term in req.lower() for req in reqs):
                                 filtered_domains[domain_name] = domain_info
                     domains_to_show = filtered_domains
 
@@ -399,24 +381,16 @@ def main():
                         if domain_info and isinstance(domain_info, dict):
                             reqs = domain_info.get("requirements", [])
                             if reqs:
-                                print(
-                                    f"\n🏗️  {domain_name} ({len(reqs)} requirements):"
-                                )
+                                print(f"\n🏗️  {domain_name} ({len(reqs)} requirements):")
                                 if domain_info.get("description"):
-                                    print(
-                                        f"   Description: {domain_info['description']}"
-                                    )
+                                    print(f"   Description: {domain_info['description']}")
                                 print("   Requirements:")
                                 for i, req in enumerate(reqs, 1):
                                     print(f"     {i}. {req}")
 
                     print(f"\n📊 Summary:")
                     print(f"   Total Domains: {len(domains_to_show)}")
-                    total_reqs = sum(
-                        len(domain_info.get("requirements", []))
-                        for domain_info in domains_to_show.values()
-                        if domain_info and isinstance(domain_info, dict)
-                    )
+                    total_reqs = sum(len(domain_info.get("requirements", [])) for domain_info in domains_to_show.values() if domain_info and isinstance(domain_info, dict))
                     print(f"   Total Requirements: {total_reqs}")
 
             except Exception as e:

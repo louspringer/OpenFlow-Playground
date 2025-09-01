@@ -90,9 +90,7 @@ def main():
         ("Integrated Workflow", "✅", "❌", "❌", "❌"),
     ]
 
-    print(
-        f"{'Feature':<25} {'Our':<8} {'SnakeViz':<10} {'VizTracer':<10} {'cProfile':<10}"
-    )
+    print(f"{'Feature':<25} {'Our':<8} {'SnakeViz':<10} {'VizTracer':<10} {'cProfile':<10}")
     print("-" * 80)
 
     for feature, our, snakeviz, viztracer, cprofile in features:

@@ -60,9 +60,7 @@ class OPManagerIntegration:
         """
         try:
             result = self.manager.discover_api_keys()
-            working_keys = [
-                key for key in result.api_keys if key.status == APIKeyStatus.WORKING
-            ]
+            working_keys = [key for key in result.api_keys if key.status == APIKeyStatus.WORKING]
 
             # Convert to simple dictionaries for main project
             return [
@@ -167,9 +165,7 @@ class OPManagerIntegration:
                 "api_keys_found": len(result.api_keys),
                 "credential_pairs": len(result.credential_pairs),
                 "providers": {k.value: v for k, v in result.providers.items()},
-                "status_summary": {
-                    k.value: v for k, v in result.status_summary.items()
-                },
+                "status_summary": {k.value: v for k, v in result.status_summary.items()},
                 "discovery_timestamp": result.discovery_timestamp,
                 "cache_status": cache_status,
             }

@@ -51,17 +51,13 @@ def create_env_file():
     # Write .env file
     try:
         with open(env_file, "w") as f:
-            f.write(
-                "# Auto-generated from working APIs - Breaking free from 1Password!\n"
-            )
+            f.write("# Auto-generated from working APIs - Breaking free from 1Password!\n")
             f.write(f"# Generated on: {os.popen('date').read().strip()}\n\n")
 
             for key, value in all_env_vars.items():
                 f.write(f"{key}={value}\n")
 
-        print(
-            f"✅ Successfully wrote {len(all_env_vars)} environment variables to {env_file}"
-        )
+        print(f"✅ Successfully wrote {len(all_env_vars)} environment variables to {env_file}")
 
         # Show what was added
         print(f"\n🆕 New APIs added:")

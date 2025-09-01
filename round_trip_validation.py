@@ -26,9 +26,7 @@ def main() -> None:
     try:
         extracted_model = engineer.reverse_engineer(original_file)
         print("✅ Model extraction successful!")
-        print(
-            f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines"
-        )
+        print(f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines")
         print(f"   🏗️  Classes: {extracted_model.get('classes', {}).get('count', 0)}")
         print(f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}")
 

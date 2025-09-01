@@ -67,9 +67,7 @@ BRANCH_PATTERN = "^develop$"
 BUILD_CONFIG_FILE = "cloudbuild.yaml"
 
 PARENT = f"projects/{PROJECT_ID}/locations/{REGION}"
-SECRET_VERSION_PATH = (
-    f"projects/{PROJECT_ID}/secrets/{SECRET_ID}/versions/{SECRET_VERSION}"
-)
+SECRET_VERSION_PATH = f"projects/{PROJECT_ID}/secrets/{SECRET_ID}/versions/{SECRET_VERSION}"
 CONNECTION_RESOURCE = f"{PARENT}/connections/{CONNECTION_ID}"
 REPO_RESOURCE = f"{CONNECTION_RESOURCE}/repositories/{REPO_NAME}"
 

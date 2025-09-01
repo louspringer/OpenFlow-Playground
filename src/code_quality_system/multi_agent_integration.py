@@ -58,9 +58,7 @@ class QualityMultiAgentAdapter:
             },
         }
 
-    async def run_multi_agent_quality_analysis(
-        self, agent_results: dict[str, Any]
-    ) -> dict[str, Any]:
+    async def run_multi_agent_quality_analysis(self, agent_results: dict[str, Any]) -> dict[str, Any]:
         """
         Run quality analysis using results from multiple expert agents.
 
@@ -74,22 +72,16 @@ class QualityMultiAgentAdapter:
 
         try:
             # Step 1: Convert agent results to quality metrics
-            quality_metrics = await self._convert_agent_results_to_metrics(
-                agent_results
-            )
+            quality_metrics = await self._convert_agent_results_to_metrics(agent_results)
 
             # Step 2: Aggregate quality metrics
             aggregated_metrics = self._aggregate_quality_metrics(quality_metrics)
 
             # Step 3: Run quality enforcement
-            enforcement_results = self.quality_enforcer.enforce_quality(
-                aggregated_metrics
-            )
+            enforcement_results = self.quality_enforcer.enforce_quality(aggregated_metrics)
 
             # Step 4: Generate comprehensive report
-            comprehensive_report = self._generate_comprehensive_report(
-                agent_results, quality_metrics, aggregated_metrics, enforcement_results
-            )
+            comprehensive_report = self._generate_comprehensive_report(agent_results, quality_metrics, aggregated_metrics, enforcement_results)
 
             self.logger.info("Multi-agent quality analysis completed successfully")
             return comprehensive_report
@@ -98,9 +90,7 @@ class QualityMultiAgentAdapter:
             self.logger.error(f"Multi-agent quality analysis failed: {e}")
             return {"status": "error", "error": str(e), "can_proceed": False}
 
-    async def _convert_agent_results_to_metrics(
-        self, agent_results: dict[str, Any]
-    ) -> dict[str, QualityScore]:
+    async def _convert_agent_results_to_metrics(self, agent_results: dict[str, Any]) -> dict[str, QualityScore]:
         """
         Convert expert agent results to quality metrics.
 
@@ -119,21 +109,15 @@ class QualityMultiAgentAdapter:
                 weight = mapping["weight"]
 
                 # Convert agent result to quality score
-                quality_score = self._convert_agent_result_to_score(
-                    agent_name, agent_result, metric_name, weight
-                )
+                quality_score = self._convert_agent_result_to_score(agent_name, agent_result, metric_name, weight)
 
                 if quality_score:
                     quality_scores[metric_name] = quality_score
-                    self.logger.info(
-                        f"Converted {agent_name} result to {metric_name} score: {quality_score.score:.1f}"
-                    )
+                    self.logger.info(f"Converted {agent_name} result to {metric_name} score: {quality_score.score:.1f}")
 
         return quality_scores
 
-    def _convert_agent_result_to_score(
-        self, agent_name: str, agent_result: Any, metric_name: str, weight: float
-    ) -> Optional[QualityScore]:
+    def _convert_agent_result_to_score(self, agent_name: str, agent_result: Any, metric_name: str, weight: float) -> Optional[QualityScore]:
         """
         Convert a single agent result to a quality score.
 
@@ -183,25 +167,19 @@ class QualityMultiAgentAdapter:
             if high_issues:
                 score -= len(high_issues) * 15  # High priority issues are costly
             if security_issues:
-                score -= (
-                    len(security_issues) * 5
-                )  # Each security issue has significant cost
+                score -= len(security_issues) * 5  # Each security issue has significant cost
 
             details = {
                 "security_issues": security_issues,
                 "critical_issues": critical_issues,
                 "high_issues": high_issues,
-                "total_issues": len(security_issues)
-                + len(critical_issues)
-                + len(high_issues),
+                "total_issues": len(security_issues) + len(critical_issues) + len(high_issues),
             }
 
         # Ensure score doesn't go below 0
         score = max(0.0, score)
 
-        return QualityScore(
-            metric_name="security", score=score, weight=weight, details=details
-        )
+        return QualityScore(metric_name="security", score=score, weight=weight, details=details)
 
     def _convert_code_quality_result(self, result: Any, weight: float) -> QualityScore:
         """Convert CodeQualityExpert result to code quality score."""
@@ -227,17 +205,13 @@ class QualityMultiAgentAdapter:
                 "flake8_issues": flake8_issues,
                 "code_style_issues": code_style_issues,
                 "complexity_issues": complexity_issues,
-                "total_issues": len(flake8_issues)
-                + len(code_style_issues)
-                + len(complexity_issues),
+                "total_issues": len(flake8_issues) + len(code_style_issues) + len(complexity_issues),
             }
 
         # Ensure score doesn't go below 0
         score = max(0.0, score)
 
-        return QualityScore(
-            metric_name="code_quality", score=score, weight=weight, details=details
-        )
+        return QualityScore(metric_name="code_quality", score=score, weight=weight, details=details)
 
     def _convert_devops_result(self, result: Any, weight: float) -> QualityScore:
         """Convert DevOpsExpert result to operational quality score."""
@@ -257,17 +231,13 @@ class QualityMultiAgentAdapter:
             if deployment_issues:
                 score -= len(deployment_issues) * 4  # Deployment issues are high cost
             if infrastructure_issues:
-                score -= (
-                    len(infrastructure_issues) * 2
-                )  # Infrastructure issues are moderate cost
+                score -= len(infrastructure_issues) * 2  # Infrastructure issues are moderate cost
 
             details = {
                 "ci_cd_issues": ci_cd_issues,
                 "deployment_issues": deployment_issues,
                 "infrastructure_issues": infrastructure_issues,
-                "total_issues": len(ci_cd_issues)
-                + len(deployment_issues)
-                + len(infrastructure_issues),
+                "total_issues": len(ci_cd_issues) + len(deployment_issues) + len(infrastructure_issues),
             }
 
         # Ensure score doesn't go below 0
@@ -308,9 +278,7 @@ class QualityMultiAgentAdapter:
         # Ensure score doesn't go below 0
         score = max(0.0, score)
 
-        return QualityScore(
-            metric_name="test_coverage", score=score, weight=weight, details=details
-        )
+        return QualityScore(metric_name="test_coverage", score=score, weight=weight, details=details)
 
     def _convert_architecture_result(self, result: Any, weight: float) -> QualityScore:
         """Convert ArchitectureExpert result to architecture quality score."""
@@ -328,9 +296,7 @@ class QualityMultiAgentAdapter:
             if design_issues:
                 score -= len(design_issues) * 4  # Design issues are high cost
             if pattern_violations:
-                score -= (
-                    len(pattern_violations) * 2
-                )  # Pattern violations are moderate cost
+                score -= len(pattern_violations) * 2  # Pattern violations are moderate cost
             if coupling_issues:
                 score -= len(coupling_issues) * 3  # Coupling issues are high cost
 
@@ -338,9 +304,7 @@ class QualityMultiAgentAdapter:
                 "design_issues": design_issues,
                 "pattern_violations": pattern_violations,
                 "coupling_issues": coupling_issues,
-                "total_issues": len(design_issues)
-                + len(pattern_violations)
-                + len(coupling_issues),
+                "total_issues": len(design_issues) + len(pattern_violations) + len(coupling_issues),
             }
 
         # Ensure score doesn't go below 0
@@ -353,9 +317,7 @@ class QualityMultiAgentAdapter:
             details=details,
         )
 
-    def _aggregate_quality_metrics(
-        self, quality_scores: dict[str, QualityScore]
-    ) -> dict[str, Any]:
+    def _aggregate_quality_metrics(self, quality_scores: dict[str, QualityScore]) -> dict[str, Any]:
         """
         Aggregate quality metrics into analysis results format.
 
@@ -377,16 +339,12 @@ class QualityMultiAgentAdapter:
         if "security" in quality_scores:
             security_score = quality_scores["security"]
             if security_score.details.get("security_issues"):
-                aggregated_results["security_issues"] = security_score.details[
-                    "security_issues"
-                ]
+                aggregated_results["security_issues"] = security_score.details["security_issues"]
 
         if "code_quality" in quality_scores:
             code_quality_score = quality_scores["code_quality"]
             if code_quality_score.details.get("flake8_issues"):
-                aggregated_results["flake8_issues"] = code_quality_score.details[
-                    "flake8_issues"
-                ]
+                aggregated_results["flake8_issues"] = code_quality_score.details["flake8_issues"]
 
         if "test_coverage" in quality_scores:
             test_coverage_score = quality_scores["test_coverage"]
@@ -464,12 +422,8 @@ class QualityMultiAgentAdapter:
             },
             # Agent analysis summary
             "agent_summary": agent_summary,
-            "agents_analyzed": len(
-                [a for a in agent_summary.values() if a["status"] == "analyzed"]
-            ),
-            "agents_failed": len(
-                [a for a in agent_summary.values() if a["status"] == "failed_analysis"]
-            ),
+            "agents_analyzed": len([a for a in agent_summary.values() if a["status"] == "analyzed"]),
+            "agents_failed": len([a for a in agent_summary.values() if a["status"] == "failed_analysis"]),
             # Quality enforcement results
             "enforcement_results": enforcement_results,
             "can_proceed": enforcement_results.get("can_proceed", False),
@@ -486,9 +440,7 @@ class QualityMultiAgentAdapter:
         """Get the current agent quality mapping configuration."""
         return self.agent_quality_mapping.copy()
 
-    def update_agent_quality_mapping(
-        self, agent_name: str, mapping: dict[str, Any]
-    ) -> bool:
+    def update_agent_quality_mapping(self, agent_name: str, mapping: dict[str, Any]) -> bool:
         """
         Update the quality mapping for a specific agent.
 
@@ -502,9 +454,7 @@ class QualityMultiAgentAdapter:
         try:
             required_keys = ["metric_name", "weight", "description"]
             if not all(key in mapping for key in required_keys):
-                self.logger.error(
-                    f"Invalid mapping for {agent_name}: missing required keys"
-                )
+                self.logger.error(f"Invalid mapping for {agent_name}: missing required keys")
                 return False
 
             self.agent_quality_mapping[agent_name] = mapping.copy()
@@ -515,9 +465,7 @@ class QualityMultiAgentAdapter:
             self.logger.error(f"Failed to update mapping for {agent_name}: {e}")
             return False
 
-    def add_agent_quality_mapping(
-        self, agent_name: str, mapping: dict[str, Any]
-    ) -> bool:
+    def add_agent_quality_mapping(self, agent_name: str, mapping: dict[str, Any]) -> bool:
         """
         Add a new agent quality mapping.
 

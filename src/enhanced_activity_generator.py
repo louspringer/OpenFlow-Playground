@@ -22,9 +22,7 @@ from typing import Dict, List, Any, Optional, Tuple
 import sys
 
 # Add the StarUML extension to our path
-sys.path.insert(
-    0, os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python")
-)
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python"))
 
 
 class EnhancedActivityGenerator:
@@ -33,9 +31,7 @@ class EnhancedActivityGenerator:
     def __init__(self):
         self.plantuml_jar = self._find_plantuml_jar()
         self.java_available = self._check_java()
-        self.ast_parser_path = os.path.join(
-            os.path.dirname(__file__), "..", "external", "staruml-python", "ast2json.py"
-        )
+        self.ast_parser_path = os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python", "ast2json.py")
 
     def _find_plantuml_jar(self) -> Optional[str]:
         """Find PlantUML JAR file in common locations."""
@@ -159,9 +155,7 @@ class EnhancedActivityGenerator:
     def _generate_svg_plantuml_jar(self, plantuml_code: str, output_path: str) -> bool:
         """Generate SVG using PlantUML JAR file."""
         try:
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".puml", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".puml", delete=False) as f:
                 f.write(plantuml_code)
                 temp_file = f.name
 
@@ -194,9 +188,7 @@ class EnhancedActivityGenerator:
         except Exception:
             return False
 
-    def _generate_svg_plantuml_server(
-        self, plantuml_code: str, output_path: str
-    ) -> bool:
+    def _generate_svg_plantuml_server(self, plantuml_code: str, output_path: str) -> bool:
         """Generate SVG using PlantUML server."""
         try:
             import requests
@@ -225,9 +217,7 @@ class EnhancedActivityGenerator:
             # Convert PlantUML to DOT format (simplified)
             dot_code = self._plantuml_to_dot(plantuml_code)
 
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".dot", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".dot", delete=False) as f:
                 f.write(dot_code)
                 temp_file = f.name
 
@@ -272,16 +262,12 @@ class EnhancedActivityGenerator:
                 node_counter += 1
                 node_id = f"start_{node_counter}"
                 nodes[node_id] = "Start"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];')
             elif line.startswith("stop"):
                 node_counter += 1
                 node_id = f"stop_{node_counter}"
                 nodes[node_id] = "Stop"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];')
 
         # Add edges (simplified)
         for i in range(1, node_counter):
@@ -290,9 +276,7 @@ class EnhancedActivityGenerator:
         dot_lines.append("}")
         return "\n".join(dot_lines)
 
-    def generate_activity_diagram(
-        self, python_file: str, output_dir: str = "generated_activity_models"
-    ) -> Dict[str, Any]:
+    def generate_activity_diagram(self, python_file: str, output_dir: str = "generated_activity_models") -> Dict[str, Any]:
         """Main method to generate activity diagram from Python file."""
         result = {
             "success": False,
@@ -308,9 +292,7 @@ class EnhancedActivityGenerator:
             # Analyze Python file using enhanced StarUML extension parser
             workflow_data = self.analyze_python_file_enhanced(python_file)
             if not workflow_data.get("success", False):
-                result["errors"].append(
-                    f"Analysis failed: {workflow_data.get('error', 'Unknown error')}"
-                )
+                result["errors"].append(f"Analysis failed: {workflow_data.get('error', 'Unknown error')}")
                 return result
 
             # Generate PlantUML code
@@ -318,9 +300,7 @@ class EnhancedActivityGenerator:
 
             # Save PlantUML code
             base_name = Path(python_file).stem
-            plantuml_file = os.path.join(
-                output_dir, f"{base_name}_enhanced_activity.puml"
-            )
+            plantuml_file = os.path.join(output_dir, f"{base_name}_enhanced_activity.puml")
             with open(plantuml_file, "w") as f:
                 f.write(plantuml_code)
             result["output_files"].append(plantuml_file)
@@ -343,9 +323,7 @@ class EnhancedActivityGenerator:
 class EnhancedWorkflowAnalyzer:
     """Analyze Python AST (from StarUML extension) to extract workflow information."""
 
-    def analyze_workflow_from_ast(
-        self, ast_data: Dict[str, Any], file_path: str
-    ) -> Dict[str, Any]:
+    def analyze_workflow_from_ast(self, ast_data: Dict[str, Any], file_path: str) -> Dict[str, Any]:
         """Analyze AST data and extract workflow nodes and edges."""
         try:
             # Extract workflow information from the AST
@@ -366,9 +344,7 @@ class EnhancedWorkflowAnalyzer:
         except Exception as e:
             return {"success": False, "error": str(e), "file_path": file_path}
 
-    def _extract_workflow_from_ast(
-        self, ast_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _extract_workflow_from_ast(self, ast_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Recursively extract workflow information from AST data."""
         if not isinstance(ast_data, dict):
             return
@@ -393,9 +369,7 @@ class EnhancedWorkflowAnalyzer:
                 for item in node_data:
                     self._extract_workflow_from_ast(item, nodes, edges)
 
-    def _process_function_def(
-        self, func_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _process_function_def(self, func_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Process function definition."""
         if "name" in func_data:
             func_name = func_data["name"]
@@ -430,18 +404,12 @@ class EnhancedWorkflowAnalyzer:
                         break
 
                 if last_activity:
-                    edges.append(
-                        {"from": last_activity["id"], "to": end_node["id"], "label": ""}
-                    )
+                    edges.append({"from": last_activity["id"], "to": end_node["id"], "label": ""})
                 else:
                     # No activities, connect start to end
-                    edges.append(
-                        {"from": start_node["id"], "to": end_node["id"], "label": ""}
-                    )
+                    edges.append({"from": start_node["id"], "to": end_node["id"], "label": ""})
 
-    def _process_if_statement(
-        self, if_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _process_if_statement(self, if_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Process if statement."""
         if "test" in if_data:
             # Simplify the test expression for readability
@@ -463,9 +431,7 @@ class EnhancedWorkflowAnalyzer:
             if "orelse" in if_data:
                 self._extract_workflow_from_ast(if_data["orelse"], nodes, edges)
 
-    def _process_while_loop(
-        self, while_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _process_while_loop(self, while_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Process while loop."""
         if "test" in while_data:
             test_str = self._simplify_expression(while_data["test"])
@@ -482,9 +448,7 @@ class EnhancedWorkflowAnalyzer:
             if "body" in while_data:
                 self._extract_workflow_from_ast(while_data["body"], nodes, edges)
 
-    def _process_for_loop(
-        self, for_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _process_for_loop(self, for_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Process for loop."""
         target_str = self._simplify_expression(for_data.get("target", "item"))
         iter_str = self._simplify_expression(for_data.get("iter", "collection"))
@@ -501,9 +465,7 @@ class EnhancedWorkflowAnalyzer:
         if "body" in for_data:
             self._extract_workflow_from_ast(for_data["body"], nodes, edges)
 
-    def _process_expression(
-        self, expr_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]
-    ):
+    def _process_expression(self, expr_data: Dict[str, Any], nodes: List[Dict], edges: List[Dict]):
         """Process expression."""
         if "value" in expr_data:
             value_data = expr_data["value"]
@@ -539,9 +501,7 @@ class EnhancedWorkflowAnalyzer:
             elif "Compare" in expr_data:
                 # Simplify comparison expressions
                 left = self._simplify_expression(expr_data["Compare"].get("left", ""))
-                right = self._simplify_expression(
-                    expr_data["Compare"].get("comparators", [""])[0]
-                )
+                right = self._simplify_expression(expr_data["Compare"].get("comparators", [""])[0])
                 return f"{left} == {right}"
             else:
                 return str(expr_data)[:50]  # Truncate long expressions

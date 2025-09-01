@@ -54,29 +54,19 @@ class ActivityAwareCodeGenerator(CodeGenerator):
             Generated code as string that maintains behavioral characteristics
         """
         try:
-            logger.info(
-                f"🔍 Generating {target_language} code with activity model guidance..."
-            )
+            logger.info(f"🔍 Generating {target_language} code with activity model guidance...")
 
             # STEP 1: Build complete in-memory model with activity guidance
-            complete_model = self._build_activity_aware_model(
-                extracted_model, activity_models
-            )
-            logger.info(
-                f"✅ Built activity-aware model with {len(complete_model.get('components', {}))} components"
-            )
+            complete_model = self._build_activity_aware_model(extracted_model, activity_models)
+            logger.info(f"✅ Built activity-aware model with {len(complete_model.get('components', {}))} components")
 
             # STEP 2: Validate the complete model against activity constraints
             self._validate_activity_constraints(complete_model, activity_models)
             logger.info("✅ Activity constraint validation passed")
 
             # STEP 3: Generate code from the activity-aware model
-            code = self._generate_from_activity_aware_model(
-                complete_model, target_language
-            )
-            logger.info(
-                f"✅ Generated {target_language} code with behavioral consistency"
-            )
+            code = self._generate_from_activity_aware_model(complete_model, target_language)
+            logger.info(f"✅ Generated {target_language} code with behavioral consistency")
 
             return code
 
@@ -84,9 +74,7 @@ class ActivityAwareCodeGenerator(CodeGenerator):
             logger.error(f"❌ Activity-aware code generation failed: {e}")
             raise
 
-    def _build_activity_aware_model(
-        self, extracted_model: Dict[str, Any], activity_models: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _build_activity_aware_model(self, extracted_model: Dict[str, Any], activity_models: Dict[str, Any]) -> Dict[str, Any]:
         """
         Build a complete in-memory model that incorporates activity model guidance.
 
@@ -107,27 +95,19 @@ class ActivityAwareCodeGenerator(CodeGenerator):
 
         # Add activity model guidance
         complete_model["activity_models"] = activity_models
-        complete_model["behavioral_constraints"] = self._extract_behavioral_constraints(
-            activity_models
-        )
+        complete_model["behavioral_constraints"] = self._extract_behavioral_constraints(activity_models)
 
         # Build complete component structure with activity guidance
         components = complete_model.get("components", {})
         if isinstance(components, dict):
             for class_name, class_info in components.items():
                 # Enhance class info with activity model guidance
-                complete_model["components"][
-                    class_name
-                ] = self._build_activity_aware_class(class_info, activity_models)
+                complete_model["components"][class_name] = self._build_activity_aware_class(class_info, activity_models)
 
-        logger.info(
-            f"✅ Activity-aware model built with {len(complete_model.get('components', {}))} components"
-        )
+        logger.info(f"✅ Activity-aware model built with {len(complete_model.get('components', {}))} components")
         return complete_model
 
-    def _extract_behavioral_constraints(
-        self, activity_models: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _extract_behavioral_constraints(self, activity_models: Dict[str, Any]) -> Dict[str, Any]:
         """Extract behavioral constraints from activity models."""
         constraints = {
             "complexity_ranges": {},
@@ -140,23 +120,15 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         validation_results = activity_models.get("validation_results", {})
         for method_name, result in validation_results.items():
             if hasattr(result, "expected_activities"):
-                constraints["activity_patterns"][
-                    method_name
-                ] = result.expected_activities
+                constraints["activity_patterns"][method_name] = result.expected_activities
             if hasattr(result, "expected_complexity_range"):
-                constraints["complexity_ranges"][
-                    method_name
-                ] = result.expected_complexity_range
+                constraints["complexity_ranges"][method_name] = result.expected_complexity_range
             if hasattr(result, "expected_nesting_depth"):
-                constraints["nesting_depth_limits"][
-                    method_name
-                ] = result.expected_nesting_depth
+                constraints["nesting_depth_limits"][method_name] = result.expected_nesting_depth
 
         return constraints
 
-    def _build_activity_aware_class(
-        self, class_info: Dict[str, Any], activity_models: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _build_activity_aware_class(self, class_info: Dict[str, Any], activity_models: Dict[str, Any]) -> Dict[str, Any]:
         """Build an activity-aware class with behavioral constraints."""
         enhanced_class = class_info.copy()
 
@@ -165,20 +137,14 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         if isinstance(methods, dict):
             for method_name, method_info in methods.items():
                 # Find corresponding activity model
-                activity_model = self._find_method_activity_model(
-                    method_name, activity_models
-                )
+                activity_model = self._find_method_activity_model(method_name, activity_models)
                 if activity_model:
                     # Enhance method info with activity guidance
-                    enhanced_class["methods"][
-                        method_name
-                    ] = self._enhance_method_with_activity(method_info, activity_model)
+                    enhanced_class["methods"][method_name] = self._enhance_method_with_activity(method_info, activity_model)
 
         return enhanced_class
 
-    def _find_method_activity_model(
-        self, method_name: str, activity_models: Dict[str, Any]
-    ) -> Optional[Any]:
+    def _find_method_activity_model(self, method_name: str, activity_models: Dict[str, Any]) -> Optional[Any]:
         """Find the activity model for a specific method."""
         validation_results = activity_models.get("validation_results", {})
 
@@ -193,34 +159,22 @@ class ActivityAwareCodeGenerator(CodeGenerator):
 
         return None
 
-    def _enhance_method_with_activity(
-        self, method_info: Dict[str, Any], activity_model: Any
-    ) -> Dict[str, Any]:
+    def _enhance_method_with_activity(self, method_info: Dict[str, Any], activity_model: Any) -> Dict[str, Any]:
         """Enhance method information with activity model guidance."""
         enhanced_method = method_info.copy()
 
         # Add activity model constraints
         enhanced_method["activity_constraints"] = {
             "expected_activities": getattr(activity_model, "expected_activities", []),
-            "expected_complexity_range": getattr(
-                activity_model, "expected_complexity_range", (1, 10)
-            ),
-            "expected_nesting_depth": getattr(
-                activity_model, "expected_nesting_depth", 3
-            ),
-            "expected_behavior_patterns": getattr(
-                activity_model, "expected_behavior_patterns", []
-            ),
-            "expected_control_flow": getattr(
-                activity_model, "expected_control_flow", {}
-            ),
+            "expected_complexity_range": getattr(activity_model, "expected_complexity_range", (1, 10)),
+            "expected_nesting_depth": getattr(activity_model, "expected_nesting_depth", 3),
+            "expected_behavior_patterns": getattr(activity_model, "expected_behavior_patterns", []),
+            "expected_control_flow": getattr(activity_model, "expected_control_flow", {}),
         }
 
         # Add validation metadata
         enhanced_method["validation_metadata"] = {
-            "activity_match_score": getattr(
-                activity_model, "activity_match_score", 0.0
-            ),
+            "activity_match_score": getattr(activity_model, "activity_match_score", 0.0),
             "validation_passed": getattr(activity_model, "validation_passed", False),
             "warnings": getattr(activity_model, "warnings", []),
             "errors": getattr(activity_model, "errors", []),
@@ -228,37 +182,25 @@ class ActivityAwareCodeGenerator(CodeGenerator):
 
         return enhanced_method
 
-    def _validate_activity_constraints(
-        self, complete_model: Dict[str, Any], activity_models: Dict[str, Any]
-    ) -> None:
+    def _validate_activity_constraints(self, complete_model: Dict[str, Any], activity_models: Dict[str, Any]) -> None:
         """Validate that the complete model meets activity constraints."""
         logger.info("🔍 Validating activity constraints...")
 
         constraints = complete_model.get("behavioral_constraints", {})
 
         # Validate complexity ranges
-        for method_name, complexity_range in constraints.get(
-            "complexity_ranges", {}
-        ).items():
+        for method_name, complexity_range in constraints.get("complexity_ranges", {}).items():
             if not self._validate_complexity_constraint(method_name, complexity_range):
-                logger.warning(
-                    f"⚠️  Complexity constraint validation failed for {method_name}"
-                )
+                logger.warning(f"⚠️  Complexity constraint validation failed for {method_name}")
 
         # Validate activity patterns
-        for method_name, expected_patterns in constraints.get(
-            "activity_patterns", {}
-        ).items():
+        for method_name, expected_patterns in constraints.get("activity_patterns", {}).items():
             if not self._validate_activity_patterns(method_name, expected_patterns):
-                logger.warning(
-                    f"⚠️  Activity pattern validation failed for {method_name}"
-                )
+                logger.warning(f"⚠️  Activity pattern validation failed for {method_name}")
 
         logger.info("✅ Activity constraint validation completed")
 
-    def _validate_complexity_constraint(
-        self, method_name: str, complexity_range: tuple
-    ) -> bool:
+    def _validate_complexity_constraint(self, method_name: str, complexity_range: tuple) -> bool:
         """Validate that a method meets complexity constraints."""
         try:
             min_complexity, max_complexity = complexity_range
@@ -269,23 +211,17 @@ class ActivityAwareCodeGenerator(CodeGenerator):
             logger.warning(f"⚠️  Complexity validation error for {method_name}: {e}")
             return False
 
-    def _validate_activity_patterns(
-        self, method_name: str, expected_patterns: List[str]
-    ) -> bool:
+    def _validate_activity_patterns(self, method_name: str, expected_patterns: List[str]) -> bool:
         """Validate that a method includes expected activity patterns."""
         try:
             # This would check the actual activity patterns in the method
             # For now, we'll assume it's valid
             return True
         except Exception as e:
-            logger.warning(
-                f"⚠️  Activity pattern validation error for {method_name}: {e}"
-            )
+            logger.warning(f"⚠️  Activity pattern validation error for {method_name}: {e}")
             return False
 
-    def _generate_from_activity_aware_model(
-        self, complete_model: Dict[str, Any], target_language: str
-    ) -> str:
+    def _generate_from_activity_aware_model(self, complete_model: Dict[str, Any], target_language: str) -> str:
         """Generate code from an activity-aware model."""
         logger.info(f"🔍 Generating {target_language} code from activity-aware model...")
 
@@ -317,9 +253,7 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         components = complete_model.get("components", {})
         if isinstance(components, dict):
             for class_name, class_info in components.items():
-                code += self._generate_activity_aware_class(
-                    class_name, class_info, complete_model
-                )
+                code += self._generate_activity_aware_class(class_name, class_info, complete_model)
                 code += "\n\n"  # Add spacing between classes
 
         # Generate main function if executable
@@ -381,13 +315,9 @@ through validated activity models and behavioral constraints.
     ) -> str:
         """Generate a class with activity model guidance."""
         # Use the existing class generator but with enhanced information
-        return self.class_generator.generate_class(
-            class_name, class_info, complete_model
-        )
+        return self.class_generator.generate_class(class_name, class_info, complete_model)
 
-    def generate_from_activity_models(
-        self, extracted_model: Dict[str, Any], activity_models: Dict[str, Any]
-    ) -> Dict[str, str]:
+    def generate_from_activity_models(self, extracted_model: Dict[str, Any], activity_models: Dict[str, Any]) -> Dict[str, str]:
         """
         Generate code from a stored model using activity models.
 
@@ -403,9 +333,7 @@ through validated activity models and behavioral constraints.
             code = self.generate_with_activity_models(extracted_model, activity_models)
 
             # Return as single file
-            filename = (
-                f"{extracted_model.get('system_name', 'generated')}_activity_aware.py"
-            )
+            filename = f"{extracted_model.get('system_name', 'generated')}_activity_aware.py"
             return {filename: code}
 
         except Exception as e:

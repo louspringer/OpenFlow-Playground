@@ -55,9 +55,9 @@ ensure_package("google-cloud-secret-manager")
 ## Root Cause Analysis
 
 1. **CLI approach**: `gcloud builds triggers create github` fails with "INVALID_ARGUMENT" - likely missing GitHub connection
-2. **Python approach**: Google Cloud client libraries not properly installed/configured
-3. **2nd-gen approach**: Requires GitHub connection first, but connection creation also fails
-4. **Auto-install approach**: Packages install but import structure is wrong
+1. **Python approach**: Google Cloud client libraries not properly installed/configured
+1. **2nd-gen approach**: Requires GitHub connection first, but connection creation also fails
+1. **Auto-install approach**: Packages install but import structure is wrong
 
 ## Required Solution
 
@@ -69,7 +69,7 @@ Need to establish GitHub connection using one of these approaches:
 - Create personal access token
 - Use 1st-gen trigger creation (if possible)
 
-### Option B: 2nd-Gen GitHub Integration  
+### Option B: 2nd-Gen GitHub Integration
 
 - Create GitHub connection first
 - Link repository
@@ -99,18 +99,18 @@ Need to establish GitHub connection using one of these approaches:
 ## Error Messages Encountered
 
 1. `ERROR: (gcloud.builds.triggers.create.github) INVALID_ARGUMENT: Request contains an invalid argument`
-2. `ModuleNotFoundError: No module named 'google.cloud'`
-3. `ImportError: cannot import name 'cloudbuild_v1' from 'google.cloud'`
-4. `CalledProcessError: Command returned non-zero exit status 1` (pip install)
+1. `ModuleNotFoundError: No module named 'google.cloud'`
+1. `ImportError: cannot import name 'cloudbuild_v1' from 'google.cloud'`
+1. `CalledProcessError: Command returned non-zero exit status 1` (pip install)
 
 ## Next Steps for Proper LLM
 
 1. **Determine correct approach**: 1st-gen vs 2nd-gen vs Python API
-2. **Install correct dependencies**: Google Cloud client libraries with proper import structure
-3. **Create GitHub connection**: Either via CLI or Python API
-4. **Link repository**: Connect GitHub repo to Cloud Build
-5. **Create trigger**: Set up automatic builds on develop branch
-6. **Test integration**: Verify triggers work on push
+1. **Install correct dependencies**: Google Cloud client libraries with proper import structure
+1. **Create GitHub connection**: Either via CLI or Python API
+1. **Link repository**: Connect GitHub repo to Cloud Build
+1. **Create trigger**: Set up automatic builds on develop branch
+1. **Test integration**: Verify triggers work on push
 
 ## Key Requirements
 

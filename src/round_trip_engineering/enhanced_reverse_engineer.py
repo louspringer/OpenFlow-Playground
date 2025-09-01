@@ -41,9 +41,7 @@ class EnhancedReverseEngineer:
         """Enable or disable live visualization during reverse engineering."""
         self.visualization_enabled = enabled
 
-    def _update_live_stats(
-        self, function_name: str, call_count: int, cumulative_time: float
-    ):
+    def _update_live_stats(self, function_name: str, call_count: int, cumulative_time: float):
         """Update live statistics for real-time visualization."""
         if not self.visualization_enabled:
             return
@@ -73,9 +71,7 @@ class EnhancedReverseEngineer:
         print()
 
         # Sort functions by cumulative time
-        sorted_stats = sorted(
-            self.live_stats.items(), key=lambda x: x[1]["cumulative_time"], reverse=True
-        )
+        sorted_stats = sorted(self.live_stats.items(), key=lambda x: x[1]["cumulative_time"], reverse=True)
 
         print("📊 TOP FUNCTIONS BY EXECUTION TIME:")
         print("-" * 40)
@@ -133,12 +129,8 @@ class EnhancedReverseEngineer:
 
         print("📊 FINAL PERFORMANCE SUMMARY:")
         print("-" * 30)
-        print(
-            f"  🔢 Total Function Calls: {performance_summary.get('total_function_calls', 0):,}"
-        )
-        print(
-            f"  ⏱️  Total Execution Time: {performance_summary.get('total_execution_time', 0):.3f}s"
-        )
+        print(f"  🔢 Total Function Calls: {performance_summary.get('total_function_calls', 0):,}")
+        print(f"  ⏱️  Total Execution Time: {performance_summary.get('total_execution_time', 0):.3f}s")
         print(f"  🎯 Functions Monitored: {len(self.live_stats)}")
 
         print("\n🏆 TOP PERFORMERS:")
@@ -165,13 +157,9 @@ class EnhancedReverseEngineer:
                 print(f"  🎯 {top_func} accounts for {percentage:.1f}% of total time")
 
                 if percentage > 50:
-                    print(
-                        f"  ⚠️  Consider optimizing {top_func} - it's the major bottleneck"
-                    )
+                    print(f"  ⚠️  Consider optimizing {top_func} - it's the major bottleneck")
                 elif percentage > 25:
-                    print(
-                        f"  💡 {top_func} is a significant contributor to execution time"
-                    )
+                    print(f"  💡 {top_func} is a significant contributor to execution time")
                 else:
                     print(f"  ✅ {top_func} performance is acceptable")
 
@@ -259,9 +247,7 @@ class EnhancedReverseEngineer:
             processing_time = time.time() - start_time
             self.model_data["processing_time"] = processing_time
 
-            print(
-                f"🆔 Model {model_id} completed with {len(self.cached_nodes)} AST nodes"
-            )
+            print(f"🆔 Model {model_id} completed with {len(self.cached_nodes)} AST nodes")
 
             # Final visualization
             if self.visualization_enabled:
@@ -275,18 +261,12 @@ class EnhancedReverseEngineer:
             print(f"❌ Error reverse engineering {file_path}: {e}")
             return {}
 
-    def _extract_method_info_enhanced(
-        self, func_node: ast.FunctionDef, source_lines: list[str]
-    ) -> Optional[dict[str, Any]]:
+    def _extract_method_info_enhanced(self, func_node: ast.FunctionDef, source_lines: list[str]) -> Optional[dict[str, Any]]:
         """Extract comprehensive method information including body content with line structure and activity modeling"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
             is_test_method = func_node.name.startswith("test_")
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info = {
                 "name": func_node.name,
@@ -316,9 +296,7 @@ class EnhancedReverseEngineer:
                 control_flow_map = {}  # Track control flow
 
                 for stmt in func_node.body:
-                    if isinstance(stmt, ast.Expr) and isinstance(
-                        stmt.value, ast.Constant
-                    ):
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
                         # Skip docstring lines
                         continue
 
@@ -365,37 +343,21 @@ class EnhancedReverseEngineer:
                     method_info["activity_model"] = {
                         "activity_sequence": activity_sequence,
                         "total_activities": len(activity_sequence),
-                        "activity_types": self._categorize_activities(
-                            activity_sequence
-                        ),
-                        "complexity_score": self._calculate_complexity_score(
-                            activity_sequence
-                        ),
+                        "activity_types": self._categorize_activities(activity_sequence),
+                        "complexity_score": self._calculate_complexity_score(activity_sequence),
                     }
 
                     # Add control flow analysis
                     method_info["control_flow"] = {
                         "flow_map": control_flow_map,
-                        "has_conditionals": any(
-                            cf.get("type") == "conditional"
-                            for cf in control_flow_map.values()
-                        ),
-                        "has_loops": any(
-                            cf.get("type") == "loop" for cf in control_flow_map.values()
-                        ),
-                        "has_exceptions": any(
-                            cf.get("type") == "exception"
-                            for cf in control_flow_map.values()
-                        ),
-                        "nesting_depth": self._calculate_nesting_depth(
-                            control_flow_map
-                        ),
+                        "has_conditionals": any(cf.get("type") == "conditional" for cf in control_flow_map.values()),
+                        "has_loops": any(cf.get("type") == "loop" for cf in control_flow_map.values()),
+                        "has_exceptions": any(cf.get("type") == "exception" for cf in control_flow_map.values()),
+                        "nesting_depth": self._calculate_nesting_depth(control_flow_map),
                     }
 
                     # Detect behavior patterns
-                    method_info["behavior_patterns"] = self._detect_behavior_patterns(
-                        activity_sequence, control_flow_map
-                    )
+                    method_info["behavior_patterns"] = self._detect_behavior_patterns(activity_sequence, control_flow_map)
 
                 else:
                     method_info["implementation_status"] = "skeleton"
@@ -411,18 +373,12 @@ class EnhancedReverseEngineer:
             print(f"🚨 ERROR in _extract_method_info_enhanced: {type(e).__name__}: {e}")
             return None
 
-    def _extract_async_method_info_enhanced(
-        self, func_node: ast.AsyncFunctionDef, source_lines: list[str]
-    ) -> Optional[dict[str, Any]]:
+    def _extract_async_method_info_enhanced(self, func_node: ast.AsyncFunctionDef, source_lines: list[str]) -> Optional[dict[str, Any]]:
         """Extract comprehensive async method information including body content with line structure"""
         try:
             # Detect test methods - only methods that start with "test_" are actual test methods
             is_test_method = func_node.name.startswith("test_")
-            return_type = (
-                "None"
-                if is_test_method
-                else self._extract_type_annotation(func_node.returns)
-            )
+            return_type = "None" if is_test_method else self._extract_type_annotation(func_node.returns)
 
             method_info = {
                 "name": func_node.name,
@@ -453,9 +409,7 @@ class EnhancedReverseEngineer:
                 control_flow_map = {}  # Track control flow
 
                 for stmt in func_node.body:
-                    if isinstance(stmt, ast.Expr) and isinstance(
-                        stmt.value, ast.Constant
-                    ):
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
                         # Skip docstring lines
                         continue
 
@@ -502,37 +456,21 @@ class EnhancedReverseEngineer:
                     method_info["activity_model"] = {
                         "activity_sequence": activity_sequence,
                         "total_activities": len(activity_sequence),
-                        "activity_types": self._categorize_activities(
-                            activity_sequence
-                        ),
-                        "complexity_score": self._calculate_complexity_score(
-                            activity_sequence
-                        ),
+                        "activity_types": self._categorize_activities(activity_sequence),
+                        "complexity_score": self._calculate_complexity_score(activity_sequence),
                     }
 
                     # Add control flow analysis
                     method_info["control_flow"] = {
                         "flow_map": control_flow_map,
-                        "has_conditionals": any(
-                            cf.get("type") == "conditional"
-                            for cf in control_flow_map.values()
-                        ),
-                        "has_loops": any(
-                            cf.get("type") == "loop" for cf in control_flow_map.values()
-                        ),
-                        "has_exceptions": any(
-                            cf.get("type") == "exception"
-                            for cf in control_flow_map.values()
-                        ),
-                        "nesting_depth": self._calculate_nesting_depth(
-                            control_flow_map
-                        ),
+                        "has_conditionals": any(cf.get("type") == "conditional" for cf in control_flow_map.values()),
+                        "has_loops": any(cf.get("type") == "loop" for cf in control_flow_map.values()),
+                        "has_exceptions": any(cf.get("type") == "exception" for cf in control_flow_map.values()),
+                        "nesting_depth": self._calculate_nesting_depth(control_flow_map),
                     }
 
                     # Detect behavior patterns
-                    method_info["behavior_patterns"] = self._detect_behavior_patterns(
-                        activity_sequence, control_flow_map
-                    )
+                    method_info["behavior_patterns"] = self._detect_behavior_patterns(activity_sequence, control_flow_map)
 
                 else:
                     method_info["implementation_status"] = "skeleton"
@@ -545,9 +483,7 @@ class EnhancedReverseEngineer:
             return method_info
 
         except Exception as e:
-            print(
-                f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}"
-            )
+            print(f"🚨 ERROR in _extract_async_method_info_enhanced: {type(e).__name__}: {e}")
             return None
 
     def _build_method_signature(self, func_node: ast.FunctionDef) -> str:
@@ -713,9 +649,7 @@ class EnhancedReverseEngineer:
                         "name": node.name,
                         "responsibility": "",
                         "methods": [],
-                        "bases": [
-                            base.id for base in node.bases if isinstance(base, ast.Name)
-                        ],
+                        "bases": [base.id for base in node.bases if isinstance(base, ast.Name)],
                         "class_decorators": [],
                         "implementation_status": "implemented",
                     }
@@ -723,15 +657,11 @@ class EnhancedReverseEngineer:
                     # Extract methods
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
-                            method_info = self._extract_method_info_enhanced(
-                                item, source_lines
-                            )
+                            method_info = self._extract_method_info_enhanced(item, source_lines)
                             if method_info:
                                 class_info["methods"].append(method_info)
                         elif isinstance(item, ast.AsyncFunctionDef):
-                            method_info = self._extract_async_method_info_enhanced(
-                                item, source_lines
-                            )
+                            method_info = self._extract_async_method_info_enhanced(item, source_lines)
                             if method_info:
                                 class_info["methods"].append(method_info)
 
@@ -751,9 +681,7 @@ class EnhancedReverseEngineer:
                     if method_info:
                         module_functions.append(method_info)
                 elif isinstance(node, ast.AsyncFunctionDef):
-                    method_info = self._extract_async_method_info_enhanced(
-                        node, source_lines
-                    )
+                    method_info = self._extract_async_method_info_enhanced(node, source_lines)
                     if method_info:
                         module_functions.append(method_info)
 
@@ -765,16 +693,8 @@ class EnhancedReverseEngineer:
         """Extract file structure information"""
         try:
             lines = content.split("\n")
-            code_lines = len(
-                [
-                    line
-                    for line in lines
-                    if line.strip() and not line.strip().startswith("#")
-                ]
-            )
-            comment_lines = len(
-                [line for line in lines if line.strip().startswith("#")]
-            )
+            code_lines = len([line for line in lines if line.strip() and not line.strip().startswith("#")])
+            comment_lines = len([line for line in lines if line.strip().startswith("#")])
             blank_lines = len([line for line in lines if not line.strip()])
 
             self.model_data["file_structure"] = {
@@ -783,29 +703,11 @@ class EnhancedReverseEngineer:
                 "comment_lines": comment_lines,
                 "blank_lines": blank_lines,
                 "total_nodes": len(self.cached_nodes),
-                "class_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.ClassDef)]
-                ),
-                "function_nodes": len(
-                    [
-                        n
-                        for n in self.cached_nodes
-                        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-                    ]
-                ),
-                "import_nodes": len(
-                    [
-                        n
-                        for n in self.cached_nodes
-                        if isinstance(n, (ast.Import, ast.ImportFrom))
-                    ]
-                ),
-                "expression_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.Expr)]
-                ),
-                "assignment_nodes": len(
-                    [n for n in self.cached_nodes if isinstance(n, ast.Assign)]
-                ),
+                "class_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.ClassDef)]),
+                "function_nodes": len([n for n in self.cached_nodes if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]),
+                "import_nodes": len([n for n in self.cached_nodes if isinstance(n, (ast.Import, ast.ImportFrom))]),
+                "expression_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.Expr)]),
+                "assignment_nodes": len([n for n in self.cached_nodes if isinstance(n, ast.Assign)]),
             }
         except Exception as e:
             print(f"🚨 ERROR in _extract_file_structure: {e}")
@@ -857,9 +759,7 @@ class EnhancedReverseEngineer:
                 )
 
             elif isinstance(stmt, ast.For):
-                activity_info.update(
-                    {"type": "loop", "description": "For loop", "complexity": "medium"}
-                )
+                activity_info.update({"type": "loop", "description": "For loop", "complexity": "medium"})
 
             elif isinstance(stmt, ast.While):
                 activity_info.update(
@@ -937,9 +837,7 @@ class EnhancedReverseEngineer:
             print(f"🚨 ERROR in _analyze_control_flow: {e}")
             return None
 
-    def _detect_behavior_patterns(
-        self, activity_sequence: list, control_flow: dict
-    ) -> list[str]:
+    def _detect_behavior_patterns(self, activity_sequence: list, control_flow: dict) -> list[str]:
         """Detect common behavior patterns in method execution"""
         patterns = []
 
@@ -964,24 +862,13 @@ class EnhancedReverseEngineer:
                 patterns.append("iteration")
 
             # Pattern: Configuration
-            if (
-                "assignment" in activity_types
-                and len([a for a in activity_sequence if a.get("type") == "assignment"])
-                > 2
-            ):
+            if "assignment" in activity_types and len([a for a in activity_sequence if a.get("type") == "assignment"]) > 2:
                 patterns.append("configuration")
 
             # Pattern: Logging/Monitoring
             if "function_call" in activity_types:
-                call_descriptions = [
-                    a.get("description", "")
-                    for a in activity_sequence
-                    if a.get("type") == "function_call"
-                ]
-                if any(
-                    "log" in desc.lower() or "print" in desc.lower()
-                    for desc in call_descriptions
-                ):
+                call_descriptions = [a.get("description", "") for a in activity_sequence if a.get("type") == "function_call"]
+                if any("log" in desc.lower() or "print" in desc.lower() for desc in call_descriptions):
                     patterns.append("logging")
 
             # Pattern: Resource management
@@ -1036,10 +923,7 @@ class EnhancedReverseEngineer:
         """Check if statement has nested control structures"""
         try:
             for child in ast.walk(stmt):
-                if (
-                    isinstance(child, (ast.If, ast.For, ast.While, ast.Try))
-                    and child != stmt
-                ):
+                if isinstance(child, (ast.If, ast.For, ast.While, ast.Try)) and child != stmt:
                     return True
             return False
         except Exception as e:
@@ -1158,9 +1042,7 @@ class EnhancedReverseEngineer:
         total_time = sum(item["total_time"] for item in trace)
 
         # Find bottlenecks (functions with high cumulative time)
-        bottlenecks = sorted(trace, key=lambda x: x["cumulative_time"], reverse=True)[
-            :5
-        ]
+        bottlenecks = sorted(trace, key=lambda x: x["cumulative_time"], reverse=True)[:5]
 
         # Find most called functions
         most_called = sorted(trace, key=lambda x: x["call_count"], reverse=True)[:5]

@@ -39,9 +39,7 @@ class AgentFinding:
     confidence: float
     timestamp: str
     metadata: dict[str, Any]
-    cross_references: list[str] | None = (
-        None  # IDs of related findings from other agents
-    )
+    cross_references: list[str] | None = None  # IDs of related findings from other agents
 
 
 @dataclass
@@ -98,26 +96,16 @@ class AgentSessionManager:
             context_files = list(self.storage_dir.glob("iteration_*.json"))
             if context_files:
                 # Find the highest iteration number
-                max_iteration = max(
-                    int(f.stem.split("_")[1])
-                    for f in context_files
-                    if f.stem.startswith("iteration_")
-                )
+                max_iteration = max(int(f.stem.split("_")[1]) for f in context_files if f.stem.startswith("iteration_"))
                 self.current_iteration = max_iteration
 
                 # Load the most recent context
-                latest_context_file = (
-                    self.storage_dir / f"iteration_{max_iteration}.json"
-                )
+                latest_context_file = self.storage_dir / f"iteration_{max_iteration}.json"
                 if latest_context_file.exists():
                     with open(latest_context_file) as f:
                         context_data = json.load(f)
-                        self.iteration_contexts[max_iteration] = (
-                            self._deserialize_context(context_data)
-                        )
-                        print(
-                            f"📋 Loaded existing context from iteration {max_iteration}"
-                        )
+                        self.iteration_contexts[max_iteration] = self._deserialize_context(context_data)
+                        print(f"📋 Loaded existing context from iteration {max_iteration}")
         except Exception as e:
             print(f"⚠️ Error loading existing context: {e}")
 
@@ -147,9 +135,7 @@ class AgentSessionManager:
 
         return self.current_iteration
 
-    def _create_agent_session(
-        self, agent_type: AgentType, iteration_number: int
-    ) -> AgentSession:
+    def _create_agent_session(self, agent_type: AgentType, iteration_number: int) -> AgentSession:
         """Create a new session for an agent"""
         session_id = f"{agent_type.value}_{iteration_number}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
@@ -157,9 +143,7 @@ class AgentSessionManager:
         learning_context = self._build_learning_context(agent_type, iteration_number)
 
         # Load previous findings from this agent type
-        previous_findings = self._get_agent_previous_findings(
-            agent_type, iteration_number
-        )
+        previous_findings = self._get_agent_previous_findings(agent_type, iteration_number)
 
         return AgentSession(
             agent_type=agent_type,
@@ -173,9 +157,7 @@ class AgentSessionManager:
             updated_at=datetime.now().isoformat(),
         )
 
-    def _build_learning_context(
-        self, agent_type: AgentType, iteration_number: int
-    ) -> dict[str, Any]:
+    def _build_learning_context(self, agent_type: AgentType, iteration_number: int) -> dict[str, Any]:
         """Build learning context for an agent based on previous iterations"""
         learning_context = {
             "previous_iterations": [],
@@ -200,9 +182,7 @@ class AgentSessionManager:
                             {
                                 "iteration": iter_num,
                                 "findings_count": len(prev_session.previous_findings),
-                                "key_insights": self._extract_key_insights(
-                                    prev_session.previous_findings
-                                ),
+                                "key_insights": self._extract_key_insights(prev_session.previous_findings),
                             }
                         )
 
@@ -227,9 +207,7 @@ class AgentSessionManager:
 
         return learning_context
 
-    def _get_agent_previous_findings(
-        self, agent_type: AgentType, iteration_number: int
-    ) -> list[AgentFinding]:
+    def _get_agent_previous_findings(self, agent_type: AgentType, iteration_number: int) -> list[AgentFinding]:
         """Get previous findings from this agent type across iterations"""
         previous_findings = []
 
@@ -242,9 +220,7 @@ class AgentSessionManager:
 
         return previous_findings
 
-    def get_agent_previous_findings(
-        self, agent_type: AgentType, iteration_number: int
-    ) -> list[AgentFinding]:
+    def get_agent_previous_findings(self, agent_type: AgentType, iteration_number: int) -> list[AgentFinding]:
         """Get previous findings for a specific agent from a specific iteration"""
         try:
             if iteration_number in self.iteration_contexts:
@@ -264,9 +240,7 @@ class AgentSessionManager:
                 insights.append(f"{finding.category}: {finding.description[:100]}...")
         return insights[:5]  # Top 5 insights
 
-    def update_agent_context(
-        self, agent_type: AgentType, context: dict[str, Any]
-    ) -> None:
+    def update_agent_context(self, agent_type: AgentType, context: dict[str, Any]) -> None:
         """Update the current context for an agent"""
         if agent_type in self.active_sessions:
             session = self.active_sessions[agent_type]
@@ -282,9 +256,7 @@ class AgentSessionManager:
 
             # Add to iteration context
             if self.current_iteration in self.iteration_contexts:
-                self.iteration_contexts[self.current_iteration].agent_sessions[
-                    agent_type
-                ] = session
+                self.iteration_contexts[self.current_iteration].agent_sessions[agent_type] = session
 
             # Generate finding ID if not provided
             if not finding.finding_id:
@@ -296,9 +268,7 @@ class AgentSessionManager:
 
     def _generate_finding_id(self, finding: AgentFinding) -> str:
         """Generate a unique ID for a finding"""
-        content = (
-            f"{finding.agent_type.value}_{finding.category}_{finding.description[:50]}"
-        )
+        content = f"{finding.agent_type.value}_{finding.category}_{finding.description[:50]}"
         return hashlib.md5(content.encode()).hexdigest()[:12]
 
     def get_cross_agent_context(self, agent_type: AgentType) -> dict[str, Any]:
@@ -315,12 +285,8 @@ class AgentSessionManager:
             for other_agent_type, other_session in context.agent_sessions.items():
                 if other_agent_type != agent_type:
                     cross_context["other_agents_findings"][other_agent_type.value] = {
-                        "findings": [
-                            asdict(f) for f in other_session.previous_findings
-                        ],
-                        "key_insights": self._extract_key_insights(
-                            other_session.previous_findings
-                        ),
+                        "findings": [asdict(f) for f in other_session.previous_findings],
+                        "key_insights": self._extract_key_insights(other_session.previous_findings),
                         "learning_context": other_session.learning_context,
                     }
 
@@ -332,9 +298,7 @@ class AgentSessionManager:
     def add_cross_agent_insight(self, insight: dict[str, Any]) -> None:
         """Add a cross-agent insight to the current iteration"""
         if self.current_iteration in self.iteration_contexts:
-            self.iteration_contexts[self.current_iteration].cross_agent_insights.append(
-                insight
-            )
+            self.iteration_contexts[self.current_iteration].cross_agent_insights.append(insight)
 
     def synthesize_iteration_results(self) -> dict[str, Any]:
         """Synthesize results from all agents in the current iteration"""
@@ -348,9 +312,7 @@ class AgentSessionManager:
         all_findings = []
         for agent_type, session in context.agent_sessions.items():
             for finding in session.previous_findings:
-                all_findings.append(
-                    {"agent": agent_type.value, "finding": asdict(finding)}
-                )
+                all_findings.append({"agent": agent_type.value, "finding": asdict(finding)})
 
         # Analyze patterns across agents
         patterns = self._analyze_cross_agent_patterns(all_findings)
@@ -361,15 +323,10 @@ class AgentSessionManager:
         # Create synthesis
         synthesis = {
             "total_findings": len(all_findings),
-            "findings_by_agent": {
-                agent_type.value: len(session.previous_findings)
-                for agent_type, session in context.agent_sessions.items()
-            },
+            "findings_by_agent": {agent_type.value: len(session.previous_findings) for agent_type, session in context.agent_sessions.items()},
             "cross_agent_patterns": patterns,
             "collaborative_insights": collaborative_insights,
-            "recommendations": self._generate_synthesis_recommendations(
-                all_findings, patterns
-            ),
+            "recommendations": self._generate_synthesis_recommendations(all_findings, patterns),
             "learning_outcomes": self._extract_learning_outcomes(context),
         }
 
@@ -380,9 +337,7 @@ class AgentSessionManager:
 
         return synthesis
 
-    def _analyze_cross_agent_patterns(
-        self, all_findings: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _analyze_cross_agent_patterns(self, all_findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Analyze patterns across different agents' findings"""
         patterns = []
 
@@ -417,9 +372,7 @@ class AgentSessionManager:
             return 0.0
 
         # Simple consensus based on confidence levels
-        avg_confidence = sum(f["finding"]["confidence"] for f in findings) / len(
-            findings
-        )
+        avg_confidence = sum(f["finding"]["confidence"] for f in findings) / len(findings)
         return min(avg_confidence, 1.0)
 
     def _extract_category_insights(self, findings: list[dict[str, Any]]) -> list[str]:
@@ -428,14 +381,10 @@ class AgentSessionManager:
         for finding_data in findings:
             finding = finding_data["finding"]
             if finding["confidence"] > 0.7:
-                insights.append(
-                    f"{finding_data['agent']}: {finding['description'][:100]}..."
-                )
+                insights.append(f"{finding_data['agent']}: {finding['description'][:100]}...")
         return insights[:3]
 
-    def _generate_collaborative_insights(
-        self, all_findings: list[dict[str, Any]]
-    ) -> list[str]:
+    def _generate_collaborative_insights(self, all_findings: list[dict[str, Any]]) -> list[str]:
         """Generate insights from collaborative analysis"""
         insights = []
 
@@ -448,9 +397,7 @@ class AgentSessionManager:
 
         return insights[:5]
 
-    def _findings_complement(
-        self, finding1: dict[str, Any], finding2: dict[str, Any]
-    ) -> bool:
+    def _findings_complement(self, finding1: dict[str, Any], finding2: dict[str, Any]) -> bool:
         """Check if two findings complement each other"""
         # Simple heuristic: different agents, same category, high confidence
         return (
@@ -460,29 +407,21 @@ class AgentSessionManager:
             and finding2["finding"]["confidence"] > 0.7
         )
 
-    def _generate_synthesis_recommendations(
-        self, all_findings: list[dict[str, Any]], patterns: list[dict[str, Any]]
-    ) -> list[str]:
+    def _generate_synthesis_recommendations(self, all_findings: list[dict[str, Any]], patterns: list[dict[str, Any]]) -> list[str]:
         """Generate recommendations based on synthesis"""
         recommendations = []
 
         # High-priority recommendations based on cross-agent consensus
         for pattern in patterns:
             if pattern["consensus_level"] > 0.8:
-                recommendations.append(
-                    f"High priority: Address {pattern['category']} - {len(pattern['agents_involved'])} agents agree"
-                )
+                recommendations.append(f"High priority: Address {pattern['category']} - {len(pattern['agents_involved'])} agents agree")
 
         # Recommendations based on high-confidence findings
-        high_confidence_findings = [
-            f for f in all_findings if f["finding"]["confidence"] > 0.9
-        ]
+        high_confidence_findings = [f for f in all_findings if f["finding"]["confidence"] > 0.9]
 
         for finding_data in high_confidence_findings:
             finding = finding_data["finding"]
-            recommendations.append(
-                f"Critical: {finding['description'][:100]}... (from {finding_data['agent']})"
-            )
+            recommendations.append(f"Critical: {finding['description'][:100]}... (from {finding_data['agent']})")
 
         return recommendations[:10]
 
@@ -491,26 +430,17 @@ class AgentSessionManager:
         outcomes = []
 
         # Analyze what was learned
-        total_findings = sum(
-            len(session.previous_findings)
-            for session in context.agent_sessions.values()
-        )
+        total_findings = sum(len(session.previous_findings) for session in context.agent_sessions.values())
         if total_findings > 0:
-            outcomes.append(
-                f"Generated {total_findings} findings across {len(context.agent_sessions)} agents"
-            )
+            outcomes.append(f"Generated {total_findings} findings across {len(context.agent_sessions)} agents")
 
         if context.cross_agent_insights:
-            outcomes.append(
-                f"Identified {len(context.cross_agent_insights)} cross-agent insights"
-            )
+            outcomes.append(f"Identified {len(context.cross_agent_insights)} cross-agent insights")
 
         # Add specific learning outcomes
         for agent_type, session in context.agent_sessions.items():
             if session.learning_context.get("successful_strategies"):
-                outcomes.append(
-                    f"{agent_type.value}: {len(session.learning_context['successful_strategies'])} successful strategies identified"
-                )
+                outcomes.append(f"{agent_type.value}: {len(session.learning_context['successful_strategies'])} successful strategies identified")
 
         return outcomes
 
@@ -559,9 +489,7 @@ class AgentSessionManager:
                 }
 
             # Save to file
-            context_file = (
-                self.storage_dir / f"iteration_{iteration_number}_context.json"
-            )
+            context_file = self.storage_dir / f"iteration_{iteration_number}_context.json"
             with open(context_file, "w") as f:
                 json.dump(context_data, f, indent=2)
 
@@ -573,9 +501,7 @@ class AgentSessionManager:
         try:
             # Parse agent sessions
             agent_sessions = {}
-            for agent_type_str, session_data in context_data.get(
-                "agent_sessions", {}
-            ).items():
+            for agent_type_str, session_data in context_data.get("agent_sessions", {}).items():
                 try:
                     agent_type = AgentType(agent_type_str)
                     # Reconstruct agent session
@@ -594,27 +520,19 @@ class AgentSessionManager:
                                 confidence=finding_data["confidence"],
                                 timestamp=finding_data["timestamp"],
                                 metadata=finding_data["metadata"],
-                                cross_references=finding_data.get(
-                                    "cross_references", []
-                                ),
+                                cross_references=finding_data.get("cross_references", []),
                             )
-                            for finding_data in session_data.get(
-                                "previous_findings", []
-                            )
+                            for finding_data in session_data.get("previous_findings", [])
                         ],
                         learning_context=session_data.get("learning_context", {}),
-                        collaboration_history=session_data.get(
-                            "collaboration_history", []
-                        ),
+                        collaboration_history=session_data.get("collaboration_history", []),
                         current_context=session_data.get("current_context", {}),
                         created_at=session_data.get("created_at", ""),
                         updated_at=session_data.get("updated_at", ""),
                     )
                     agent_sessions[agent_type] = session
                 except Exception as e:
-                    print(
-                        f"⚠️ Failed to deserialize agent session for {agent_type_str}: {e}"
-                    )
+                    print(f"⚠️ Failed to deserialize agent session for {agent_type_str}: {e}")
                     continue
 
             # Create iteration context
@@ -640,10 +558,7 @@ class AgentSessionManager:
                 "iteration": iteration_number,
                 "start_time": context.start_time,
                 "end_time": context.end_time,
-                "total_findings": sum(
-                    len(session.previous_findings)
-                    for session in context.agent_sessions.values()
-                ),
+                "total_findings": sum(len(session.previous_findings) for session in context.agent_sessions.values()),
                 "agents_used": list(context.agent_sessions.keys()),
                 "cross_agent_insights_count": len(context.cross_agent_insights),
                 "synthesis_available": bool(context.synthesis),

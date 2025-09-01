@@ -157,9 +157,7 @@ class GhostbustersOrchestrator:
     ) -> GhostbustersState:
         """Detect delusions using agents"""
         self.logger.info("🔍 [WORKFLOW_NODE] Detecting delusions...")
-        self.logger.info(
-            "🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__
-        )
+        self.logger.info("🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__)
 
         # Convert dict to GhostbustersState if needed
         if isinstance(state, dict):
@@ -195,9 +193,7 @@ class GhostbustersOrchestrator:
     ) -> GhostbustersState:
         """Validate findings using validators - FIXED ITERATION BUG"""
         self.logger.info("🔍 [WORKFLOW_NODE] Validating findings...")
-        self.logger.info(
-            "🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__
-        )
+        self.logger.info("🔍 [WORKFLOW_NODE] Input state type: %s", type(state).__name__)
 
         # Convert dict to GhostbustersState if needed
         if isinstance(state, dict):
@@ -325,15 +321,11 @@ class GhostbustersOrchestrator:
         # Calculate confidence based on validation and recovery results
         self.logger.info("📊 [REPORT_NODE] Calling _calculate_confidence...")
         confidence = self._calculate_confidence(state.validation_results)
-        self.logger.info(
-            "📊 [REPORT_NODE] Base confidence from validation: %s", confidence
-        )
+        self.logger.info("📊 [REPORT_NODE] Base confidence from validation: %s", confidence)
 
         # Adjust confidence based on recovery success
         recovery_success_rate = state.metadata.get("recovery_success_rate", 0.0)
-        self.logger.info(
-            "📊 [REPORT_NODE] Recovery success rate: %s", recovery_success_rate
-        )
+        self.logger.info("📊 [REPORT_NODE] Recovery success rate: %s", recovery_success_rate)
 
         # Add debug output
         print(f"📊 [REPORT_NODE_DEBUG] Base confidence: {confidence}")
@@ -365,16 +357,12 @@ class GhostbustersOrchestrator:
         }
 
         state.metadata["report"] = report
-        self.logger.info(
-            "📊 [REPORT_NODE] Ghostbusters completed with confidence: %s", confidence
-        )
+        self.logger.info("📊 [REPORT_NODE] Ghostbusters completed with confidence: %s", confidence)
         return state
 
     def _calculate_confidence(self, validation_results: dict[str, Any]) -> float:
         """Calculate confidence score from validation results"""
-        self.logger.info(
-            "🔍 [CONFIDENCE] Calculating confidence from validation results"
-        )
+        self.logger.info("🔍 [CONFIDENCE] Calculating confidence from validation results")
         self.logger.info(
             "🔍 [CONFIDENCE] Validation results keys: %s",
             list(validation_results.keys()),
@@ -397,20 +385,14 @@ class GhostbustersOrchestrator:
 
             if hasattr(result, "confidence"):
                 confidence = result.confidence
-                self.logger.info(
-                    "🔍 [CONFIDENCE] %s confidence: %s", validator_name, confidence
-                )
+                self.logger.info("🔍 [CONFIDENCE] %s confidence: %s", validator_name, confidence)
                 print(f"🔍 [CONFIDENCE_DEBUG] {validator_name}: {confidence}")
                 total_confidence += confidence
                 count += 1
             else:
-                self.logger.warning(
-                    "⚠️ [CONFIDENCE] %s has no confidence attribute", validator_name
-                )
+                self.logger.warning("⚠️ [CONFIDENCE] %s has no confidence attribute", validator_name)
                 print(f"⚠️ [CONFIDENCE_DEBUG] {validator_name}: NO CONFIDENCE ATTRIBUTE")
-                print(
-                    f"⚠️ [CONFIDENCE_DEBUG] {validator_name} result type: {type(result)}"
-                )
+                print(f"⚠️ [CONFIDENCE_DEBUG] {validator_name} result type: {type(result)}")
                 print(f"⚠️ [CONFIDENCE_DEBUG] {validator_name} result: {result}")
 
         final_confidence = total_confidence / count if count > 0 else 0.0
@@ -434,9 +416,7 @@ class GhostbustersOrchestrator:
         self.logger.info("🚀 [MAIN] Project path: %s", self.project_path)
         self.logger.info("🚀 [MAIN] Agents: %s", list(self.agents.keys()))
         self.logger.info("🚀 [MAIN] Validators: %s", list(self.validators.keys()))
-        self.logger.info(
-            "🚀 [MAIN] Recovery engines: %s", list(self.recovery_engines.keys())
-        )
+        self.logger.info("🚀 [MAIN] Recovery engines: %s", list(self.recovery_engines.keys()))
 
         # Initialize state
         self.logger.info("🚀 [MAIN] Initializing GhostbustersState...")
@@ -453,9 +433,7 @@ class GhostbustersOrchestrator:
             metadata={},
         )
 
-        self.logger.info(
-            "🚀 [MAIN] State initialized with type: %s", type(state).__name__
-        )
+        self.logger.info("🚀 [MAIN] State initialized with type: %s", type(state).__name__)
         self.logger.info(
             "🚀 [MAIN] State attributes: %s",
             [attr for attr in dir(state) if not attr.startswith("_")],
@@ -465,9 +443,7 @@ class GhostbustersOrchestrator:
         try:
             # Use the actual LangGraph workflow
             self.logger.info("🚀 [WORKFLOW] Executing LangGraph workflow...")
-            self.logger.info(
-                "🚀 [WORKFLOW] Workflow nodes: %s", list(self.workflow.nodes.keys())
-            )
+            self.logger.info("🚀 [WORKFLOW] Workflow nodes: %s", list(self.workflow.nodes.keys()))
 
             # Execute the compiled workflow asynchronously
             self.logger.info(
@@ -476,9 +452,7 @@ class GhostbustersOrchestrator:
             )
             final_state = await self.compiled_workflow.ainvoke(state)
             self.logger.info("🚀 [WORKFLOW] Workflow execution completed")
-            self.logger.info(
-                "🚀 [WORKFLOW] Final state type: %s", type(final_state).__name__
-            )
+            self.logger.info("🚀 [WORKFLOW] Final state type: %s", type(final_state).__name__)
 
             # Update our state with the workflow results
             state = final_state
@@ -495,9 +469,7 @@ class GhostbustersOrchestrator:
 
         # Handle both dict and GhostbustersState
         if isinstance(state, dict):
-            self.logger.info(
-                "🚀 [MAIN]   - Current phase: %s", state.get("current_phase", "unknown")
-            )
+            self.logger.info("🚀 [MAIN]   - Current phase: %s", state.get("current_phase", "unknown"))
             self.logger.info(
                 "🚀 [MAIN]   - Delusions detected: %d",
                 len(state.get("delusions_detected", [])),
@@ -515,45 +487,29 @@ class GhostbustersOrchestrator:
                 len(state.get("recovery_results", {})),
             )
             self.logger.info("🚀 [MAIN]   - Errors: %d", len(state.get("errors", [])))
-            self.logger.info(
-                "🚀 [MAIN]   - Warnings: %d", len(state.get("warnings", []))
-            )
-            self.logger.info(
-                "🚀 [MAIN]   - Metadata items: %d", len(state.get("metadata", {}))
-            )
+            self.logger.info("🚀 [MAIN]   - Warnings: %d", len(state.get("warnings", [])))
+            self.logger.info("🚀 [MAIN]   - Metadata items: %d", len(state.get("metadata", {})))
             self.logger.info(
                 "🚀 [MAIN]   - Confidence score: %s",
                 state.get("confidence_score", "unknown"),
             )
         else:
             self.logger.info("🚀 [MAIN]   - Current phase: %s", state.current_phase)
-            self.logger.info(
-                "🚀 [MAIN]   - Delusions detected: %d", len(state.delusions_detected)
-            )
-            self.logger.info(
-                "🚀 [MAIN]   - Validation results: %d", len(state.validation_results)
-            )
-            self.logger.info(
-                "🚀 [MAIN]   - Recovery actions: %d", len(state.recovery_actions)
-            )
-            self.logger.info(
-                "🚀 [MAIN]   - Recovery results: %d", len(state.recovery_results)
-            )
+            self.logger.info("🚀 [MAIN]   - Delusions detected: %d", len(state.delusions_detected))
+            self.logger.info("🚀 [MAIN]   - Validation results: %d", len(state.validation_results))
+            self.logger.info("🚀 [MAIN]   - Recovery actions: %d", len(state.recovery_actions))
+            self.logger.info("🚀 [MAIN]   - Recovery results: %d", len(state.recovery_results))
             self.logger.info("🚀 [MAIN]   - Errors: %d", len(state.errors))
             self.logger.info("🚀 [MAIN]   - Warnings: %d", len(state.warnings))
             self.logger.info("🚀 [MAIN]   - Metadata items: %d", len(state.metadata))
-            self.logger.info(
-                "🚀 [MAIN]   - Confidence score: %s", state.confidence_score
-            )
+            self.logger.info("🚀 [MAIN]   - Confidence score: %s", state.confidence_score)
 
         return state
 
     async def _detect_delusions(self, state: GhostbustersState) -> GhostbustersState:
         """Detect delusions using all agents - FIXED DATA STRUCTURE"""
         self.logger.info("🔍 [DETECTION] Starting _detect_delusions method")
-        self.logger.info(
-            "🔍 [DETECTION] Agents available: %s", list(self.agents.keys())
-        )
+        self.logger.info("🔍 [DETECTION] Agents available: %s", list(self.agents.keys()))
 
         delusions_detected = []
         for agent_count, (agent_name, agent) in enumerate(self.agents.items(), 1):
@@ -603,9 +559,7 @@ class GhostbustersOrchestrator:
 
                     # Store metadata
                     state.metadata[f"{agent_name}_confidence"] = result.confidence
-                    state.metadata[f"{agent_name}_recommendations"] = (
-                        result.recommendations
-                    )
+                    state.metadata[f"{agent_name}_recommendations"] = result.recommendations
 
                     self.logger.info(
                         "🔍 [DETECTION] %s confidence: %s, recommendations: %d",
@@ -623,9 +577,7 @@ class GhostbustersOrchestrator:
                 self.logger.info("✅ [DETECTION] %s detection completed", agent_name)
 
             except Exception as e:
-                self.logger.error(
-                    "❌ [DETECTION] %s detection failed: %s", agent_name, e
-                )
+                self.logger.error("❌ [DETECTION] %s detection failed: %s", agent_name, e)
                 self.logger.error("❌ [DETECTION] Exception type: %s", type(e).__name__)
                 state.errors.append(f"{agent_name} detection error: {e}")
 
@@ -638,9 +590,7 @@ class GhostbustersOrchestrator:
         for i, group in enumerate(delusions_detected):
             agent = group.get("agent", "Unknown")
             delusions = group.get("delusions", [])
-            self.logger.info(
-                "🔍 [DETECTION] Group %d: %s has %d delusions", i, agent, len(delusions)
-            )
+            self.logger.info("🔍 [DETECTION] Group %d: %s has %d delusions", i, agent, len(delusions))
 
         state.delusions_detected = delusions_detected
         state.current_phase = "detection_complete"
@@ -649,9 +599,7 @@ class GhostbustersOrchestrator:
             "🔍 [DETECTION] Final state.delusions_detected length: %d",
             len(state.delusions_detected),
         )
-        self.logger.info(
-            "🔍 [DETECTION] Final state.current_phase: %s", state.current_phase
-        )
+        self.logger.info("🔍 [DETECTION] Final state.current_phase: %s", state.current_phase)
 
         return state
 
@@ -721,9 +669,7 @@ class GhostbustersOrchestrator:
         original_delusions = len(state.delusions_detected)
 
         if original_delusions > 0:
-            success_rate = (
-                original_delusions - remaining_delusions
-            ) / original_delusions
+            success_rate = (original_delusions - remaining_delusions) / original_delusions
         else:
             success_rate = 1.0
 
@@ -735,9 +681,7 @@ class GhostbustersOrchestrator:
     async def _generate_report(self, state: GhostbustersState) -> GhostbustersState:
         """Generate final report and calculate confidence"""
         self.logger.info("📊 [REPORT] Generating final report...")
-        self.logger.info(
-            "📊 [REPORT] Validation results: %s", list(state.validation_results.keys())
-        )
+        self.logger.info("📊 [REPORT] Validation results: %s", list(state.validation_results.keys()))
 
         # Calculate confidence based on validation and recovery results
         self.logger.info("📊 [REPORT] Calling _calculate_confidence...")
@@ -765,9 +709,7 @@ class GhostbustersOrchestrator:
         state.confidence_score = confidence
         state.current_phase = "complete"
 
-        self.logger.info(
-            "📊 [REPORT] Ghostbusters completed with confidence: %s", confidence
-        )
+        self.logger.info("📊 [REPORT] Ghostbusters completed with confidence: %s", confidence)
         return state
 
     async def _plan_recovery_action(
@@ -825,16 +767,12 @@ if __name__ == "__main__":
             current_phase = state.current_phase
             metadata = state.metadata
 
-        print(
-            f"\n🎯 [MAIN_FUNCTION] Ghostbusters completed with confidence: {confidence}"
-        )
+        print(f"\n🎯 [MAIN_FUNCTION] Ghostbusters completed with confidence: {confidence}")
         print(f"🎯 [MAIN_FUNCTION] Final state type: {type(state).__name__}")
 
         # Show what was actually found with corruption detection
         if delusions_detected:
-            print(
-                f"\n🚨 [MAIN_FUNCTION] Found {len(delusions_detected)} delusion groups:"
-            )
+            print(f"\n🚨 [MAIN_FUNCTION] Found {len(delusions_detected)} delusion groups:")
 
             # Detect corruption: check for duplicate agents
             agent_counts = {}
@@ -843,13 +781,9 @@ if __name__ == "__main__":
                 agent_counts[agent] = agent_counts.get(agent, 0) + 1
 
             # Show corruption warnings
-            corrupted_agents = [
-                agent for agent, count in agent_counts.items() if count > 1
-            ]
+            corrupted_agents = [agent for agent, count in agent_counts.items() if count > 1]
             if corrupted_agents:
-                print(
-                    "⚠️ [MAIN_FUNCTION] CORRUPTION DETECTED: These agents ran multiple times:"
-                )
+                print("⚠️ [MAIN_FUNCTION] CORRUPTION DETECTED: These agents ran multiple times:")
                 for agent in corrupted_agents:
                     print(f"    {agent}: {agent_counts[agent]} times")
             else:
@@ -861,9 +795,7 @@ if __name__ == "__main__":
                 delusions = group.get("delusions", [])
                 print(f"  [MAIN_FUNCTION] {agent}: {len(delusions)} delusions")
                 for d in delusions[:3]:  # Show first 3
-                    print(
-                        f"    - {d.get('type', 'Unknown')}: {d.get('description', 'No description')}"
-                    )
+                    print(f"    - {d.get('type', 'Unknown')}: {d.get('description', 'No description')}")
                 if len(delusions) > 3:
                     print(f"    ... and {len(delusions) - 3} more")
         else:

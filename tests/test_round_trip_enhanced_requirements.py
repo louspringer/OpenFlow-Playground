@@ -41,9 +41,7 @@ class TestEnhancedRoundTripRequirements:
         cls.reverse_engineer = EnhancedReverseEngineer()
         cls.activity_aware_generator = ActivityAwareCodeGenerator()
 
-        print(
-            f"✅ Enhanced Round-Trip Requirements test suite initialized in {cls.test_dir}"
-        )
+        print(f"✅ Enhanced Round-Trip Requirements test suite initialized in {cls.test_dir}")
 
     @classmethod
     def teardown_class(cls):
@@ -69,9 +67,7 @@ class TestEnhancedRoundTripRequirements:
         }
 
         # Generate code
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code for analysis
         generated_file = self.test_dir / "test_pydantic_generated.py"
@@ -79,9 +75,7 @@ class TestEnhancedRoundTripRequirements:
             f.write(generated_code)
 
         # Test 1: Check for Pydantic v2 imports
-        assert (
-            "from pydantic import BaseModel" in generated_code
-        ), "Missing Pydantic v2 import"
+        assert "from pydantic import BaseModel" in generated_code, "Missing Pydantic v2 import"
         assert "from pydantic import" in generated_code, "Missing Pydantic imports"
 
         # Test 2: Check for BaseModel usage
@@ -109,9 +103,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_mypy_generated.py"
@@ -135,12 +127,8 @@ class TestEnhancedRoundTripRequirements:
         methods_with_return_types = re.findall(return_type_pattern, generated_code)
 
         # At least 80% of methods should have return type annotations
-        type_annotation_ratio = (
-            len(methods_with_return_types) / len(methods) if methods else 0
-        )
-        assert (
-            type_annotation_ratio >= 0.8
-        ), f"Only {type_annotation_ratio:.1%} of methods have return type annotations"
+        type_annotation_ratio = len(methods_with_return_types) / len(methods) if methods else 0
+        assert type_annotation_ratio >= 0.8, f"Only {type_annotation_ratio:.1%} of methods have return type annotations"
 
         print(f"✅ Type annotation coverage: {type_annotation_ratio:.1%}")
 
@@ -158,9 +146,7 @@ class TestEnhancedRoundTripRequirements:
             else:
                 print(f"⚠️ MyPy validation warnings: {result.stderr}")
                 # For now, we'll allow warnings but not errors
-                assert (
-                    "error:" not in result.stderr
-                ), f"MyPy validation errors: {result.stderr}"
+                assert "error:" not in result.stderr, f"MyPy validation errors: {result.stderr}"
 
         except (subprocess.TimeoutExpired, FileNotFoundError):
             print("ℹ️ MyPy not available, skipping MyPy validation")
@@ -184,9 +170,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_reflective_module_generated.py"
@@ -202,9 +186,7 @@ class TestEnhancedRoundTripRequirements:
         ]
 
         for method in required_methods:
-            assert (
-                method in generated_code
-            ), f"Missing required Reflective Module method: {method}"
+            assert method in generated_code, f"Missing required Reflective Module method: {method}"
 
         print("✅ Required Reflective Module methods found")
 
@@ -240,9 +222,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_no_probing_generated.py"
@@ -273,9 +253,7 @@ class TestEnhancedRoundTripRequirements:
 
             # For now, we'll allow some violations as we're transitioning
             # In production, this should be a hard failure
-            print(
-                "ℹ️ Allowing violations during transition to Reflective Module architecture"
-            )
+            print("ℹ️ Allowing violations during transition to Reflective Module architecture")
         else:
             print("✅ No internal probing violations found")
 
@@ -298,9 +276,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_graceful_degradation_generated.py"
@@ -323,9 +299,7 @@ class TestEnhancedRoundTripRequirements:
             if matches:
                 found_patterns.append(pattern)
 
-        print(
-            f"✅ Found {len(found_patterns)} degradation-related patterns: {found_patterns}"
-        )
+        print(f"✅ Found {len(found_patterns)} degradation-related patterns: {found_patterns}")
 
         # Test 2: Check for operational status reporting
         status_methods = [
@@ -340,9 +314,7 @@ class TestEnhancedRoundTripRequirements:
             if method in generated_code:
                 found_status_methods.append(method)
 
-        print(
-            f"✅ Found {len(found_status_methods)} status reporting methods: {found_status_methods}"
-        )
+        print(f"✅ Found {len(found_status_methods)} status reporting methods: {found_status_methods}")
 
         print("✅ Graceful degradation support test passed")
 
@@ -363,9 +335,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_operational_monitoring_generated.py"
@@ -388,9 +358,7 @@ class TestEnhancedRoundTripRequirements:
             if matches:
                 found_monitoring_patterns.append(pattern)
 
-        print(
-            f"✅ Found {len(found_monitoring_patterns)} monitoring patterns: {found_monitoring_patterns}"
-        )
+        print(f"✅ Found {len(found_monitoring_patterns)} monitoring patterns: {found_monitoring_patterns}")
 
         # Test 2: Check for external status interfaces
         interface_patterns = [
@@ -407,9 +375,7 @@ class TestEnhancedRoundTripRequirements:
             if matches:
                 found_interfaces.extend(matches)
 
-        print(
-            f"✅ Found {len(found_interfaces)} external status interfaces: {found_interfaces}"
-        )
+        print(f"✅ Found {len(found_interfaces)} external status interfaces: {found_interfaces}")
 
         print("✅ Operational monitoring capabilities test passed")
 
@@ -430,9 +396,7 @@ class TestEnhancedRoundTripRequirements:
             },
         }
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         # Save generated code
         generated_file = self.test_dir / "test_comprehensive_generated.py"
@@ -443,22 +407,10 @@ class TestEnhancedRoundTripRequirements:
         validation_results = {
             "pydantic_v2": "from pydantic import BaseModel" in generated_code,
             "type_annotations": "->" in generated_code and ":" in generated_code,
-            "reflective_interfaces": any(
-                method in generated_code
-                for method in ["get_module_status", "get_module_health"]
-            ),
-            "no_internal_probing": not any(
-                pattern in generated_code
-                for pattern in ["hasattr(", "getattr(", "inspect."]
-            ),
-            "graceful_degradation": any(
-                pattern in generated_code.lower()
-                for pattern in ["degradation", "graceful", "fallback"]
-            ),
-            "operational_monitoring": any(
-                pattern in generated_code.lower()
-                for pattern in ["monitoring", "health", "status"]
-            ),
+            "reflective_interfaces": any(method in generated_code for method in ["get_module_status", "get_module_health"]),
+            "no_internal_probing": not any(pattern in generated_code for pattern in ["hasattr(", "getattr(", "inspect."]),
+            "graceful_degradation": any(pattern in generated_code.lower() for pattern in ["degradation", "graceful", "fallback"]),
+            "operational_monitoring": any(pattern in generated_code.lower() for pattern in ["monitoring", "health", "status"]),
         }
 
         # Report results
@@ -472,20 +424,14 @@ class TestEnhancedRoundTripRequirements:
         total_requirements = len(validation_results)
         compliance_rate = passed_requirements / total_requirements
 
-        print(
-            f"\n📈 Overall Compliance Rate: {compliance_rate:.1%} ({passed_requirements}/{total_requirements})"
-        )
+        print(f"\n📈 Overall Compliance Rate: {compliance_rate:.1%} ({passed_requirements}/{total_requirements})")
 
         # For now, we'll allow some failures as we're transitioning
         # In production, this should require 100% compliance
         if compliance_rate >= 0.6:
-            print(
-                "✅ Comprehensive requirement validation passed (transitional threshold met)"
-            )
+            print("✅ Comprehensive requirement validation passed (transitional threshold met)")
         else:
-            pytest.fail(
-                f"Compliance rate {compliance_rate:.1%} below transitional threshold of 60%"
-            )
+            pytest.fail(f"Compliance rate {compliance_rate:.1%} below transitional threshold of 60%")
 
         print("✅ Comprehensive requirement validation test completed")
 

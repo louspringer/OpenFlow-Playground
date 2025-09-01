@@ -45,11 +45,7 @@ try:
 
     # Test if we can access orchestrator methods
     print("\n🔧 Testing orchestrator capabilities...")
-    methods = [
-        m
-        for m in dir(orchestrator)
-        if not m.startswith("_") and "analysis" in m.lower()
-    ]
+    methods = [m for m in dir(orchestrator) if not m.startswith("_") and "analysis" in m.lower()]
     print(f"Analysis methods available: {methods}")
 
     # Try to run a simple analysis

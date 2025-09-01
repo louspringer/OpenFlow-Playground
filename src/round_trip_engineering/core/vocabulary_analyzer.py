@@ -17,9 +17,7 @@ class VocabularyAnalyzer:
         """Initialize the vocabulary analyzer."""
         logger.info("✅ Vocabulary analyzer initialized")
 
-    def analyze_vocabulary_mismatches(
-        self, model: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def analyze_vocabulary_mismatches(self, model: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Analyze vocabulary mismatches between domains."""
         mismatches = []
 
@@ -120,9 +118,7 @@ class VocabularyAnalyzer:
                 field = mismatch.get("field", "unknown")
                 current_type = mismatch.get("current_type", "unknown")
 
-                transformation_counts[transformation] = (
-                    transformation_counts.get(transformation, 0) + 1
-                )
+                transformation_counts[transformation] = transformation_counts.get(transformation, 0) + 1
                 field_types[field] = current_type
 
             return {

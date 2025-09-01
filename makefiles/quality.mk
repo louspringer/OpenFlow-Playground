@@ -36,7 +36,12 @@ smart-commit: ## Smart commit: preprocess, then commit (recommended workflow)
 # Code formatting targets
 .PHONY: format-all format-python format-bash format-docs format-go format-secure-shell
 
-format-all: format-python format-bash format-docs format-go format-secure-shell ## Format all code
+format-yaml: ## Format YAML files with yamlfix
+	@echo "$(BLUE)🎨 Formatting YAML files...$(NC)"
+	@$(UV) run yamlfix *.yaml *.yml || true
+	@echo "$(GREEN)✅ YAML formatting complete$(NC)"
+
+format-all: format-python format-bash format-docs format-go format-secure-shell format-yaml ## Format all code
 
 format-python: ## Format Python code
 	@echo "$(BLUE)🎨 Formatting Python code...$(NC)"
@@ -51,8 +56,14 @@ format-bash: ## Format Bash scripts
 
 format-docs: ## Format documentation
 	@echo "$(BLUE)🎨 Formatting documentation...$(NC)"
+	@$(UV) run mdformat docs/ *.md || true
 	@find docs/ -name "*.md" -exec markdownlint {} \; || true
 	@echo "$(GREEN)✅ Documentation formatting complete$(NC)"
+
+format-markdown: ## Format markdown files with mdformat
+	@echo "$(BLUE)🎨 Formatting markdown files...$(NC)"
+	@$(UV) run mdformat docs/ *.md || true
+	@echo "$(GREEN)✅ Markdown formatting complete$(NC)"
 
 format-go: ## Format Go code
 	@echo "$(BLUE)🎨 Formatting Go code...$(NC)"

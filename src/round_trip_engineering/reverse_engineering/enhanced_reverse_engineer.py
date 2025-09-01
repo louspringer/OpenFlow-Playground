@@ -61,9 +61,7 @@ class EnhancedReverseEngineer(BaseReflectiveModule):
             logger.error(f"❌ Failed to parse {file_path}: {e}")
             raise
 
-    def _extract_ast_model(
-        self, tree: ast.AST, content: str, file_path: str
-    ) -> Dict[str, Any]:
+    def _extract_ast_model(self, tree: ast.AST, content: str, file_path: str) -> Dict[str, Any]:
         """Extract model from AST"""
         file_name = Path(file_path).stem
 
@@ -159,9 +157,7 @@ class EnhancedReverseEngineer(BaseReflectiveModule):
 
         return class_data
 
-    def _extract_method_data(
-        self, node: ast.FunctionDef, content: str
-    ) -> Dict[str, Any]:
+    def _extract_method_data(self, node: ast.FunctionDef, content: str) -> Dict[str, Any]:
         """Extract method data from AST node"""
         method_data = {
             "name": node.name,
@@ -176,9 +172,7 @@ class EnhancedReverseEngineer(BaseReflectiveModule):
 
         return method_data
 
-    def _extract_function_data(
-        self, node: ast.FunctionDef, content: str
-    ) -> Dict[str, Any]:
+    def _extract_function_data(self, node: ast.FunctionDef, content: str) -> Dict[str, Any]:
         """Extract function data from AST node"""
         func_data = {
             "name": node.name,
@@ -227,9 +221,7 @@ class EnhancedReverseEngineer(BaseReflectiveModule):
                 if default is not None and i < len(parameters):
                     param_idx = len(args.posonlyargs) + len(args.args) + i
                     if param_idx < len(parameters):
-                        parameters[param_idx]["default"] = self._get_default_value(
-                            default
-                        )
+                        parameters[param_idx]["default"] = self._get_default_value(default)
 
         return parameters
 

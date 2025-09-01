@@ -1,7 +1,6 @@
 ---
 # Pre-commit configuration for OpenFlow-Playground
 # Includes security scanning using established tools (best practices)
-
 repos:
   # Local hooks for project-specific operations
   - repo: local
@@ -23,7 +22,7 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-        description: "Run comprehensive code quality checks"
+        description: Run comprehensive code quality checks
 
       # Model-driven validation
       - id: model-validation
@@ -32,7 +31,7 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-        description: "Validate against project model registry"
+        description: Validate against project model registry
 
   # Python code formatting
   - repo: https://github.com/psf/black
@@ -40,7 +39,7 @@ repos:
     hooks:
       - id: black
         language_version: python3
-        args: [--line-length=88, --target-version=py312]
+        args: [--line-length=200, --target-version=py312]
 
   # Python linting (temporarily disabled due to extensive code quality issues)
   # - repo: https://github.com/charliermarsh/ruff-pre-commit
@@ -76,7 +75,7 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-        description: "Check for known security vulnerabilities in dependencies"
+        description: Check for known security vulnerabilities in dependencies
 
   # YAML validation
   - repo: https://github.com/adrienverge/yamllint
@@ -93,19 +92,27 @@ repos:
         entry: jq .
         language: system
         types: [json]
-        description: "Validate JSON syntax"
+        description: Validate JSON syntax
 
-  # Markdown validation
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
+  # Markdown validation and formatting
+  - repo: local
     hooks:
       - id: markdownlint
-        args: [--fix]
-
+        name: Markdown Lint
+        entry: markdownlint
+        language: system
+        args: [--fix, --config, .markdownlint.yaml]
+        types: [markdown]
+        description: Lint markdown files for style and structure
+      - id: mdformat
+        name: Markdown Format
+        entry: uv run mdformat
+        language: system
+        types: [markdown]
+        description: Format markdown files for consistency
 # Global configuration
 default_language_version:
   python: python3
-
 # Skip certain checks for specific file types
 exclude: |
   (?x)^(

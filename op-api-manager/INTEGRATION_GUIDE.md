@@ -473,7 +473,7 @@ make unlink-main      # Unlink from main project
 - **Documentation**: Check the README and examples
 - **Integration**: Use the integration bridge for complex use cases
 
----
+______________________________________________________________________
 
 **Happy integrating! 🚀**
 

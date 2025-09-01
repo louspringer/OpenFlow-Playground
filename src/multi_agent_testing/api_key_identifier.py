@@ -18,9 +18,7 @@ def test_openai_api(api_key: str) -> Optional[dict[str, Any]]:
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
         }
-        response = requests.get(
-            "https://api.openai.com/v1/models", headers=headers, timeout=10
-        )
+        response = requests.get("https://api.openai.com/v1/models", headers=headers, timeout=10)
         if response.status_code == 200:
             return {
                 "provider": "openai",
@@ -36,9 +34,7 @@ def test_anthropic_api(api_key: str) -> Optional[dict[str, Any]]:
     """Test if API key works with Anthropic"""
     try:
         headers = {"x-api-key": api_key, "Content-Type": "application/json"}
-        response = requests.get(
-            "https://api.anthropic.com/v1/models", headers=headers, timeout=10
-        )
+        response = requests.get("https://api.anthropic.com/v1/models", headers=headers, timeout=10)
         if response.status_code == 200:
             return {
                 "provider": "anthropic",
@@ -84,9 +80,7 @@ def test_openrouter_api(api_key: str) -> Optional[dict[str, Any]]:
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
         }
-        response = requests.get(
-            "https://openrouter.ai/api/v1/models", headers=headers, timeout=10
-        )
+        response = requests.get("https://openrouter.ai/api/v1/models", headers=headers, timeout=10)
         if response.status_code == 200:
             return {
                 "provider": "openrouter",

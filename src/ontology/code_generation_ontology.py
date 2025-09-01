@@ -146,9 +146,7 @@ class CodeGenerationOntology:
                 "uniqueness": "component names must be unique within context",
             },
         )
-        reverse_components.add_relationship(
-            RelationshipType.TRANSFORMS_TO, "code_generation_components"
-        )
+        reverse_components.add_relationship(RelationshipType.TRANSFORMS_TO, "code_generation_components")
 
         # Core concepts for code generation
         generation_components = ComponentConcept(
@@ -162,9 +160,7 @@ class CodeGenerationOntology:
                 "uniqueness": "component names must be unique",
             },
         )
-        generation_components.add_relationship(
-            RelationshipType.TRANSFORMS_FROM, "reverse_engineering_components"
-        )
+        generation_components.add_relationship(RelationshipType.TRANSFORMS_FROM, "reverse_engineering_components")
 
         # Method concepts
         reverse_methods = MethodConcept(
@@ -215,12 +211,8 @@ class CodeGenerationOntology:
                 "preservation": "all object properties must be preserved",
             },
         )
-        list_to_dict_rule.add_relationship(
-            RelationshipType.IMPLEMENTS, "reverse_engineering_components"
-        )
-        list_to_dict_rule.add_relationship(
-            RelationshipType.IMPLEMENTS, "code_generation_components"
-        )
+        list_to_dict_rule.add_relationship(RelationshipType.IMPLEMENTS, "reverse_engineering_components")
+        list_to_dict_rule.add_relationship(RelationshipType.IMPLEMENTS, "code_generation_components")
 
         self.add_concept(list_to_dict_rule)
 
@@ -258,16 +250,12 @@ class CodeGenerationOntology:
         # Check if there's a transformation rule
         for concept_name in self.contexts[ContextType.ROUND_TRIP]:
             concept = self.concepts[concept_name]
-            if from_concept in concept.get_relationships(
-                RelationshipType.IMPLEMENTS
-            ) and to_concept in concept.get_relationships(RelationshipType.IMPLEMENTS):
+            if from_concept in concept.get_relationships(RelationshipType.IMPLEMENTS) and to_concept in concept.get_relationships(RelationshipType.IMPLEMENTS):
                 return [from_concept, concept_name, to_concept]
 
         return []
 
-    def validate_transformation(
-        self, from_data: Any, to_format: FormatType
-    ) -> Dict[str, Any]:
+    def validate_transformation(self, from_data: Any, to_format: FormatType) -> Dict[str, Any]:
         """Validate that data can be transformed to the target format"""
         validation_result = {
             "valid": False,
@@ -285,9 +273,7 @@ class CodeGenerationOntology:
         # Find target concept with matching format
         target_concept = self._find_target_concept(to_format)
         if not target_concept:
-            validation_result["errors"].append(
-                f"No target concept found for format: {to_format.value}"
-            )
+            validation_result["errors"].append(f"No target concept found for format: {to_format.value}")
             return validation_result
 
         # Get transformation path
@@ -295,9 +281,7 @@ class CodeGenerationOntology:
         validation_result["transformation_path"] = path
 
         if not path:
-            validation_result["errors"].append(
-                f"No transformation path found from {source_concept.name} to {target_concept.name}"
-            )
+            validation_result["errors"].append(f"No transformation path found from {source_concept.name} to {target_concept.name}")
             return validation_result
 
         # Validate constraints - but be more flexible about structure
@@ -335,18 +319,14 @@ class CodeGenerationOntology:
 
         return None
 
-    def _find_target_concept(
-        self, target_format: FormatType
-    ) -> Optional[OntologicalConcept]:
+    def _find_target_concept(self, target_format: FormatType) -> Optional[OntologicalConcept]:
         """Find a concept that matches the target format"""
         for concept in self.concepts.values():
             if concept.format == target_format:
                 return concept
         return None
 
-    def _validate_constraints(
-        self, data: Any, concept: OntologicalConcept
-    ) -> Dict[str, List[str]]:
+    def _validate_constraints(self, data: Any, concept: OntologicalConcept) -> Dict[str, List[str]]:
         """Validate that data meets the concept's constraints"""
         result = {"errors": [], "warnings": []}
 
@@ -362,32 +342,17 @@ class CodeGenerationOntology:
                         if constraints["naming"] == "each component must have a name":
                             for i, item in enumerate(components_data):
                                 if not isinstance(item, dict) or "name" not in item:
-                                    result["errors"].append(
-                                        f"Component at index {i} missing 'name' property"
-                                    )
+                                    result["errors"].append(f"Component at index {i} missing 'name' property")
 
                     if "uniqueness" in constraints:
-                        if (
-                            constraints["uniqueness"]
-                            == "component names must be unique within context"
-                        ):
-                            names = [
-                                item.get("name")
-                                for item in components_data
-                                if isinstance(item, dict)
-                            ]
+                        if constraints["uniqueness"] == "component names must be unique within context":
+                            names = [item.get("name") for item in components_data if isinstance(item, dict)]
                             if len(names) != len(set(names)):
-                                result["warnings"].append(
-                                    "Duplicate component names detected"
-                                )
+                                result["warnings"].append("Duplicate component names detected")
                 else:
-                    result["errors"].append(
-                        "Components field must be a list for reverse engineering format"
-                    )
+                    result["errors"].append("Components field must be a list for reverse engineering format")
             else:
-                result["errors"].append(
-                    "Reverse engineering data must have a 'components' field"
-                )
+                result["errors"].append("Reverse engineering data must have a 'components' field")
 
         # For code generation components, check structure
         elif concept.name == "code_generation_components":
@@ -396,13 +361,9 @@ class CodeGenerationOntology:
                 if data and all(isinstance(v, dict) for v in data.values()):
                     pass  # Valid structure
                 else:
-                    result["warnings"].append(
-                        "Some values in components dict are not objects"
-                    )
+                    result["warnings"].append("Some values in components dict are not objects")
             else:
-                result["errors"].append(
-                    f"Expected dict structure for code generation, got {type(data).__name__}"
-                )
+                result["errors"].append(f"Expected dict structure for code generation, got {type(data).__name__}")
 
         return result
 
@@ -412,12 +373,8 @@ class CodeGenerationOntology:
             "ontology": {
                 "name": "Code Generation Domain Ontology",
                 "description": "Formal ontological model for code generation domain",
-                "concepts": {
-                    name: concept.to_dict() for name, concept in self.concepts.items()
-                },
-                "contexts": {
-                    ctx.value: list(names) for ctx, names in self.contexts.items()
-                },
+                "concepts": {name: concept.to_dict() for name, concept in self.concepts.items()},
+                "contexts": {ctx.value: list(names) for ctx, names in self.contexts.items()},
             }
         }
 
@@ -467,9 +424,7 @@ def main():
     ]
 
     validation = ontology.validate_transformation(test_data, FormatType.DICT)
-    print(
-        f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}"
-    )
+    print(f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}")
     if not validation["valid"]:
         print(f"    Errors: {validation['errors']}")
 

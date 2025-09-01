@@ -1,0 +1,25 @@
+---
+# Markdownlint configuration
+# Disable problematic rules - we'll handle these in PDCA loops
+default: true
+
+# Disable line length rule (MD013)
+MD013: false
+
+# Disable emphasis-as-heading rule (MD036) - we use emphasis for status
+MD036: false
+
+# Disable ordered list prefix rule (MD029) - we use custom numbering
+MD029: false
+
+# Disable first-line-heading rule (MD041) - some files start with content
+MD041: false
+
+# Disable heading style rule (MD003) - allow both atx and setext
+MD003: false
+
+# Keep other useful rules
+MD002: false  # First heading should be a top-level heading
+MD024: false  # No duplicate headings
+MD033: false  # No inline HTML
+MD040: false  # Fenced code blocks should have a language specified

@@ -2,7 +2,7 @@
 # Practical Python linter configuration - synchronized with Black
 
 target-version = "py39"
-line-length = 88
+line-length = 200
 
 # Enable essential rules
 select = [

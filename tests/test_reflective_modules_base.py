@@ -86,9 +86,7 @@ class TestModuleHealth:
 
         # Test capabilities validation
         with pytest.raises(ValueError, match="Capabilities must be a list"):
-            ModuleHealth(
-                status=ModuleStatus.AVAILABLE, message="Test", capabilities="not_a_list"
-            )
+            ModuleHealth(status=ModuleStatus.AVAILABLE, message="Test", capabilities="not_a_list")
 
     def test_module_health_properties(self):
         """Test ModuleHealth computed properties"""
@@ -97,9 +95,7 @@ class TestModuleHealth:
             ModuleCapability("unavailable", "Unavailable capability", False),
         ]
 
-        health = ModuleHealth(
-            status=ModuleStatus.AVAILABLE, message="Test", capabilities=capabilities
-        )
+        health = ModuleHealth(status=ModuleStatus.AVAILABLE, message="Test", capabilities=capabilities)
 
         assert health.is_healthy is True
         assert len(health.available_capabilities) == 1
@@ -109,9 +105,7 @@ class TestModuleHealth:
 
     def test_module_health_indicators(self):
         """Test health indicator management"""
-        health = ModuleHealth(
-            status=ModuleStatus.AVAILABLE, message="Test", capabilities=[]
-        )
+        health = ModuleHealth(status=ModuleStatus.AVAILABLE, message="Test", capabilities=[])
 
         health.add_health_indicator("test_key", "test_value")
         assert health.get_health_indicator("test_key") == "test_value"
@@ -173,9 +167,7 @@ class TestHealthMonitor:
         """Test creating healthy status"""
         capabilities = [ModuleCapability("test", "Test capability", True)]
 
-        health = HealthMonitor.create_healthy_status(
-            "Test message", capabilities, module_version="1.0.0"
-        )
+        health = HealthMonitor.create_healthy_status("Test message", capabilities, module_version="1.0.0")
 
         assert health.status == ModuleStatus.AVAILABLE
         assert health.message == "Test message"
@@ -189,26 +181,20 @@ class TestHealthMonitor:
             ModuleCapability("unavailable", "Unavailable capability", True),
         ]
 
-        health = HealthMonitor.create_degraded_status(
-            "Degraded message", capabilities, ["unavailable"]
-        )
+        health = HealthMonitor.create_degraded_status("Degraded message", capabilities, ["unavailable"])
 
         assert health.status == ModuleStatus.PARTIALLY_AVAILABLE
         assert health.message == "Degraded message"
 
         # Check that unavailable capability was marked as unavailable
-        unavailable_cap = next(
-            c for c in health.capabilities if c.name == "unavailable"
-        )
+        unavailable_cap = next(c for c in health.capabilities if c.name == "unavailable")
         assert unavailable_cap.available is False
 
     def test_create_error_status(self):
         """Test creating error status"""
         capabilities = [ModuleCapability("test", "Test capability", False)]
 
-        health = HealthMonitor.create_error_status(
-            "Error message", capabilities, "Test error details"
-        )
+        health = HealthMonitor.create_error_status("Error message", capabilities, "Test error details")
 
         assert health.status == ModuleStatus.ERROR
         assert health.message == "Error message"
@@ -324,9 +310,7 @@ class TestReflectiveModuleRegistry:
         registry = ReflectiveModuleRegistry()
 
         # Test invalid module type
-        with pytest.raises(
-            ValueError, match="Module must implement ReflectiveModule interface"
-        ):
+        with pytest.raises(ValueError, match="Module must implement ReflectiveModule interface"):
             registry.register_module("not_a_module")
 
     def test_module_unregistration(self):

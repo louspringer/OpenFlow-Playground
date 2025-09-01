@@ -27,9 +27,7 @@ class UserManager:
         self.users: List[UserProfile] = []
         self.logger = logging.getLogger(__name__)
 
-    def add_user(
-        self, name: str, email: str, age: int, preferences: Dict[str, str]
-    ) -> UserProfile:
+    def add_user(self, name: str, email: str, age: int, preferences: Dict[str, str]) -> UserProfile:
         """Add a new user to the system."""
         try:
             user = UserProfile(name=name, email=email, age=age, preferences=preferences)
@@ -47,9 +45,7 @@ class UserManager:
                 return user
         return None
 
-    def update_user_preferences(
-        self, email: str, new_preferences: Dict[str, str]
-    ) -> bool:
+    def update_user_preferences(self, email: str, new_preferences: Dict[str, str]) -> bool:
         """Update user preferences."""
         user = self.get_user_by_email(email)
         if user:
@@ -70,9 +66,7 @@ def main():
     manager = UserManager()
 
     # Add some test users
-    manager.add_user(
-        "Alice", "alice@example.com", 30, {"theme": "dark", "language": "en"}
-    )
+    manager.add_user("Alice", "alice@example.com", 30, {"theme": "dark", "language": "en"})
     manager.add_user("Bob", "bob@example.com", 25, {"theme": "light", "language": "es"})
 
     # List all users

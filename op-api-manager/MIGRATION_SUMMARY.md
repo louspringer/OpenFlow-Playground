@@ -131,22 +131,22 @@ class UnifiedOPInterface:
 ### **Immediate Actions (Ready Now)**
 
 1. **Test Migration**: Run `python migrate_to_unified.py validate`
-2. **Create Backup**: Run `python migrate_to_unified.py backup`
-3. **Run Migration**: Run `python migrate_to_unified.py migrate`
+1. **Create Backup**: Run `python migrate_to_unified.py backup`
+1. **Run Migration**: Run `python migrate_to_unified.py migrate`
 
 ### **Integration with Existing Core**
 
 1. **Replace Status Management**: Update `core.py` to use `StatusManager`
-2. **Update Testing Logic**: Modify `test_api_endpoints()` to respect archived status
-3. **CLI Integration**: Update CLI commands to use unified interface
-4. **Cache Migration**: Ensure all existing operations use new architecture
+1. **Update Testing Logic**: Modify `test_api_endpoints()` to respect archived status
+1. **CLI Integration**: Update CLI commands to use unified interface
+1. **Cache Migration**: Ensure all existing operations use new architecture
 
 ### **Enhanced Features**
 
 1. **Real-time Status Updates**: Live status monitoring
-2. **Batch Operations**: Multiple credential updates in single transaction
-3. **Audit Logging**: Complete history of all status changes
-4. **Performance Optimization**: Caching layers and async operations
+1. **Batch Operations**: Multiple credential updates in single transaction
+1. **Audit Logging**: Complete history of all status changes
+1. **Performance Optimization**: Caching layers and async operations
 
 ## 🧪 **Testing Commands**
 
@@ -202,10 +202,10 @@ uv run python migrate_to_unified.py rollback <backup_path>
 ### **What We've Delivered**
 
 1. **Complete Unified Architecture**: Clean CRUD interface with atomic operations
-2. **Transaction Safety**: Rollback capability for all operations
-3. **Seamless Integration**: Works with existing system without disruption
-4. **Comprehensive Testing**: Full validation of new components
-5. **Migration Tools**: Safe transition from old to new implementation
+1. **Transaction Safety**: Rollback capability for all operations
+1. **Seamless Integration**: Works with existing system without disruption
+1. **Comprehensive Testing**: Full validation of new components
+1. **Migration Tools**: Safe transition from old to new implementation
 
 ### **Ready for Production**
 

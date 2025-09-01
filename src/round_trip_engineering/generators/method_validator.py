@@ -28,21 +28,46 @@ class MethodValidator(BaseReflectiveModule):
 
             # Must start with 'def' or 'async def'
             if not (source.startswith("def ") or source.startswith("async def ")):
-                logger.warning(
-                    f"  ❌ Method doesn't start with 'def' or 'async def': {repr(source[:50])}"
-                )
+                logger.warning(f"  ❌ Method doesn't start with 'def' or 'async def': {repr(source[:50])}")
                 self._track_error()
                 return False
 
-            # Must have proper indentation (4 spaces)
+            # Must have proper indentation (4 spaces) - but be smarter about docstrings
             lines = source.split("\n")
             logger.info(f"  - Method has {len(lines)} lines")
 
+            # Skip docstring lines when checking indentation
+            in_docstring = False
+            docstring_quotes = None
+
             for i, line in enumerate(lines[1:], 1):  # Skip first line (def statement)
-                if line.strip() and not line.startswith("    "):
-                    logger.warning(
-                        f"  ❌ Line {i + 1} has improper indentation: {repr(line)}"
-                    )
+                stripped_line = line.strip()
+
+                # Check for docstring start/end
+                if '"""' in stripped_line or "'''" in stripped_line:
+                    if not in_docstring:
+                        # Starting docstring
+                        in_docstring = True
+                        if '"""' in stripped_line:
+                            docstring_quotes = '"""'
+                        else:
+                            docstring_quotes = "'''"
+                        # Check if docstring ends on same line
+                        if stripped_line.count(docstring_quotes) >= 2:
+                            in_docstring = False
+                    else:
+                        # Ending docstring
+                        if docstring_quotes in stripped_line:
+                            in_docstring = False
+                        continue
+
+                # Skip indentation check for docstring lines
+                if in_docstring:
+                    continue
+
+                # Only check indentation for non-empty, non-docstring lines
+                if stripped_line and not line.startswith("    "):
+                    logger.warning(f"  ❌ Line {i + 1} has improper indentation: {repr(line)}")
                     self._track_error()
                     return False
 
@@ -57,9 +82,7 @@ class MethodValidator(BaseReflectiveModule):
                 logger.info(f"  - Testing AST parsing...")
                 # Try to parse as a complete method in class context
                 # Need to properly indent the method body for class context
-                class_source = (
-                    f"class Test:\n    {source.replace(chr(10), chr(10) + '    ')}"
-                )
+                class_source = f"class Test:\n    {source.replace(chr(10), chr(10) + '    ')}"
                 logger.info(f"  - Class source: {repr(class_source)}")
                 ast.parse(class_source)
                 logger.info(f"  ✅ Method passes AST parsing")

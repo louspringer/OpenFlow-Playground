@@ -70,9 +70,7 @@ class AutomatedGUITester:
 
             result = {
                 "component": "Dashboard",
-                "status": "✅ PASS"
-                if "Workflow Extraction" in str(main_title)
-                else "❌ FAIL",
+                "status": "✅ PASS" if "Workflow Extraction" in str(main_title) else "❌ FAIL",
                 "screenshot": str(screenshot_path),
                 "details": f"Title: {title}, Main: {main_title}",
             }
@@ -102,9 +100,7 @@ class AutomatedGUITester:
             # Select control flow component from sidebar
             # Streamlit uses custom selectbox, not standard select elements
             await page.locator("div[data-testid='stSelectbox']").click()
-            await page.locator(
-                "div[role='option']:has-text('UC-2: Control Flow Pattern Recognition')"
-            ).click()
+            await page.locator("div[role='option']:has-text('UC-2: Control Flow Pattern Recognition')").click()
             await page.wait_for_timeout(2000)
 
             # Take screenshot
@@ -112,9 +108,7 @@ class AutomatedGUITester:
             await page.screenshot(path=str(screenshot_path))
 
             # Check for file selector
-            file_selector = await page.locator(
-                "select[data-testid='stSelectbox']"
-            ).count()
+            file_selector = await page.locator("select[data-testid='stSelectbox']").count()
 
             result = {
                 "component": "Control Flow Analysis",
@@ -148,9 +142,7 @@ class AutomatedGUITester:
             # Select UML component from sidebar
             # Streamlit uses custom selectbox, not standard select elements
             await page.locator("div[data-testid='stSelectbox']").click()
-            await page.locator(
-                "div[role='option']:has-text('UC-4: UML Activity Diagram Generation')"
-            ).click()
+            await page.locator("div[role='option']:has-text('UC-4: UML Activity Diagram Generation')").click()
             await page.wait_for_timeout(2000)
 
             # Take screenshot
@@ -158,9 +150,7 @@ class AutomatedGUITester:
             await page.screenshot(path=str(screenshot_path))
 
             # Check for generate button
-            generate_button = await page.locator(
-                "button:has-text('Generate UML Diagrams')"
-            ).count()
+            generate_button = await page.locator("button:has-text('Generate UML Diagrams')").count()
 
             result = {
                 "component": "UML Generation",

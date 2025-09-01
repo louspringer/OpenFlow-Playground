@@ -3,25 +3,25 @@
 ## Security Vulnerabilities to Flag
 
 1. **Subprocess Usage**: Flag subprocess.run, os.system, os.popen
-2. **Credential Exposure**: Check for hardcoded secrets/credentials
-3. **Input Validation**: Ensure all user inputs are validated
-4. **Error Handling**: Verify proper exception handling
-5. **Secure Shell**: Prefer elegant secure shell client over direct subprocess
+1. **Credential Exposure**: Check for hardcoded secrets/credentials
+1. **Input Validation**: Ensure all user inputs are validated
+1. **Error Handling**: Verify proper exception handling
+1. **Secure Shell**: Prefer elegant secure shell client over direct subprocess
 
 ## Model-Driven Architecture
 
 1. **Project Model Registry**: Align with project_model_registry.json
-2. **Domain Detection**: Verify proper domain classification
-3. **Tool Selection**: Check appropriate linters/validators
-4. **Requirements Traceability**: Ensure changes trace to model requirements
+1. **Domain Detection**: Verify proper domain classification
+1. **Tool Selection**: Check appropriate linters/validators
+1. **Requirements Traceability**: Ensure changes trace to model requirements
 
 ## Code Quality Standards
 
 1. **Python Standards**: PEP 8, type hints, docstrings
-2. **Error Handling**: Comprehensive exception handling
-3. **Logging**: Appropriate levels, secure logging
-4. **Testing**: Adequate test coverage
-5. **Documentation**: Update docs for significant changes
+1. **Error Handling**: Comprehensive exception handling
+1. **Logging**: Appropriate levels, secure logging
+1. **Testing**: Adequate test coverage
+1. **Documentation**: Update docs for significant changes
 
 ## Security-First Review Checklist
 
@@ -79,23 +79,23 @@
 ### Security
 
 1. **Subprocess Usage** - Flag and suggest secure alternatives
-2. **Credential Management** - Ensure no hardcoded secrets
-3. **Input Validation** - Verify all inputs are properly validated
-4. **Error Handling** - Check for comprehensive exception handling
-5. **Secure Logging** - Ensure sensitive data is not logged
+1. **Credential Management** - Ensure no hardcoded secrets
+1. **Input Validation** - Verify all inputs are properly validated
+1. **Error Handling** - Check for comprehensive exception handling
+1. **Secure Logging** - Ensure sensitive data is not logged
 
 ### Quality
 
 1. **Code Standards** - Follow PEP 8 and project conventions
-2. **Type Safety** - Add comprehensive type hints
-3. **Documentation** - Include proper docstrings and comments
-4. **Testing** - Ensure adequate test coverage
-5. **Performance** - Check for efficient implementations
+1. **Type Safety** - Add comprehensive type hints
+1. **Documentation** - Include proper docstrings and comments
+1. **Testing** - Ensure adequate test coverage
+1. **Performance** - Check for efficient implementations
 
 ### Architecture
 
 1. **Model Alignment** - Verify changes align with project model
-2. **Domain Classification** - Ensure proper domain detection
-3. **Tool Integration** - Check appropriate tools are used
-4. **Requirements Traceability** - Link changes to requirements
-5. **Pattern Consistency** - Follow established architectural patterns
+1. **Domain Classification** - Ensure proper domain detection
+1. **Tool Integration** - Check appropriate tools are used
+1. **Requirements Traceability** - Link changes to requirements
+1. **Pattern Consistency** - Follow established architectural patterns

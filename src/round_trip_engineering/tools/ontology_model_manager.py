@@ -49,9 +49,7 @@ class OntologyModelManager(BaseReflectiveModule, IModelCrud):
                     self._graph.parse(self.ontology_file, format=self.format)
 
             except ImportError:
-                raise ImportError(
-                    "rdflib package not installed. Run: pip install rdflib"
-                )
+                raise ImportError("rdflib package not installed. Run: pip install rdflib")
         return self._graph
 
     async def get_module_capabilities(self) -> List[Any]:
@@ -111,9 +109,7 @@ class OntologyModelManager(BaseReflectiveModule, IModelCrud):
             graph.serialize(self.ontology_file, format=self.format)
 
             self._track_success()
-            self.logger.info(
-                f"✅ Item added to ontology collection {collection}: {item_id}"
-            )
+            self.logger.info(f"✅ Item added to ontology collection {collection}: {item_id}")
             return True
 
         except Exception as e:
@@ -165,9 +161,7 @@ class OntologyModelManager(BaseReflectiveModule, IModelCrud):
             graph.serialize(self.ontology_file, format=self.format)
 
             self._track_success()
-            self.logger.info(
-                f"✅ Item removed from ontology collection {collection}: {item_id}"
-            )
+            self.logger.info(f"✅ Item removed from ontology collection {collection}: {item_id}")
             return True
 
         except Exception as e:

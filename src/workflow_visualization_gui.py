@@ -207,9 +207,7 @@ class WorkflowVisualizationGUI:
         """Render the main dashboard."""
         st.markdown('<div class="main-header">', unsafe_allow_html=True)
         st.title("🔍 Workflow Extraction Visualization System")
-        st.markdown(
-            "**Complete visualization framework for all tested components and generated artifacts**"
-        )
+        st.markdown("**Complete visualization framework for all tested components and generated artifacts**")
         st.markdown("</div>", unsafe_allow_html=True)
 
         # Overview metrics
@@ -239,16 +237,12 @@ class WorkflowVisualizationGUI:
         st.subheader("📋 Component Overview")
 
         for component_name, component_info in self.components.items():
-            with st.expander(
-                f"{component_info['icon']} {component_name}", expanded=False
-            ):
+            with st.expander(f"{component_info['icon']} {component_name}", expanded=False):
                 col1, col2 = st.columns([3, 1])
 
                 with col1:
                     st.markdown(f"**Description:** {component_info['description']}")
-                    st.markdown(
-                        f"**Artifacts:** {', '.join(component_info['artifacts'])}"
-                    )
+                    st.markdown(f"**Artifacts:** {', '.join(component_info['artifacts'])}")
 
                 with col2:
                     if st.button(
@@ -311,9 +305,7 @@ class WorkflowVisualizationGUI:
 
         # File selection
         st.info(f"📁 Available files: {', '.join(self.test_files)}")
-        selected_file = st.selectbox(
-            "Select file to analyze:", self.test_files, key="dependencies_file_selector"
-        )
+        selected_file = st.selectbox("Select file to analyze:", self.test_files, key="dependencies_file_selector")
 
         if st.button("Analyze Dependencies", key="analyze_dependencies"):
             with st.spinner("Analyzing function call chains..."):
@@ -343,24 +335,18 @@ class WorkflowVisualizationGUI:
 
         # File selection
         st.info(f"📁 Available files: {', '.join(self.test_files)}")
-        selected_file = st.selectbox(
-            "Select file to analyze:", self.test_files, key="control_flow_file"
-        )
+        selected_file = st.selectbox("Select file to analyze:", self.test_files, key="control_flow_file")
 
         if st.button("Analyze Control Flow", key="control_flow_btn"):
             with st.spinner("Analyzing control flow patterns..."):
                 try:
-                    result = self.control_flow_analyzer.analyze_control_flow(
-                        selected_file
-                    )
+                    result = self.control_flow_analyzer.analyze_control_flow(selected_file)
 
                     if result:
                         st.success("✅ Control flow analysis completed!")
 
                         # Display results in tabs
-                        tab1, tab2, tab3 = st.tabs(
-                            ["📊 Patterns", "📈 Metrics", "🔍 Details"]
-                        )
+                        tab1, tab2, tab3 = st.tabs(["📊 Patterns", "📈 Metrics", "🔍 Details"])
 
                         with tab1:
                             self._display_control_flow_patterns(result)
@@ -381,9 +367,7 @@ class WorkflowVisualizationGUI:
         st.subheader("📊 Method Workflow Extraction")
 
         # File selection
-        selected_file = st.selectbox(
-            "Select file to analyze:", self.test_files, key="workflow_file"
-        )
+        selected_file = st.selectbox("Select file to analyze:", self.test_files, key="workflow_file")
 
         if st.button("Extract Workflows", key="workflow_btn"):
             with st.spinner("Extracting workflow models..."):
@@ -418,12 +402,8 @@ class WorkflowVisualizationGUI:
         st.subheader("📋 UML Activity Diagram Generation")
 
         # File selection
-        selected_file = st.selectbox(
-            "Select file to analyze:", self.test_files, key="uml_file"
-        )
-        output_name = st.text_input(
-            "Output name (without extension):", value="generated_workflow"
-        )
+        selected_file = st.selectbox("Select file to analyze:", self.test_files, key="uml_file")
+        output_name = st.text_input("Output name (without extension):", value="generated_workflow")
 
         col1, col2 = st.columns(2)
 
@@ -431,9 +411,7 @@ class WorkflowVisualizationGUI:
             if st.button("Generate UML Diagrams", key="generate_uml"):
                 with st.spinner("Generating UML activity diagrams..."):
                     try:
-                        result = self.uml_generator.generate_activity_diagram(
-                            selected_file, output_name
-                        )
+                        result = self.uml_generator.generate_activity_diagram(selected_file, output_name)
 
                         if result:
                             st.success("✅ UML generation completed!")
@@ -453,9 +431,7 @@ class WorkflowVisualizationGUI:
         st.subheader("📈 Code Complexity Metrics")
 
         # File selection
-        selected_file = st.selectbox(
-            "Select file to analyze:", self.test_files, key="complexity_file"
-        )
+        selected_file = st.selectbox("Select file to analyze:", self.test_files, key="complexity_file")
 
         if st.button("Analyze Complexity", key="complexity_btn"):
             with st.spinner("Analyzing code complexity..."):
@@ -466,9 +442,7 @@ class WorkflowVisualizationGUI:
                         st.success("✅ Complexity analysis completed!")
 
                         # Display results in tabs
-                        tab1, tab2, tab3 = st.tabs(
-                            ["📊 Overview", "📈 Metrics", "🔍 Distribution"]
-                        )
+                        tab1, tab2, tab3 = st.tabs(["📊 Overview", "📈 Metrics", "🔍 Distribution"])
 
                         with tab1:
                             self._display_complexity_overview(result)
@@ -488,24 +462,18 @@ class WorkflowVisualizationGUI:
         """Render multi-file workflow analysis (UC-6)."""
         st.subheader("📁 Multi-File Workflow Analysis")
 
-        source_dir = st.selectbox(
-            "Select source directory:", ["src", "tests", "."], key="multi_file_dir"
-        )
+        source_dir = st.selectbox("Select source directory:", ["src", "tests", "."], key="multi_file_dir")
 
         if st.button("Analyze Multi-File Workflows", key="multi_file_btn"):
             with st.spinner("Analyzing multi-file workflows..."):
                 try:
-                    result = self.multi_file_analyzer.analyze_project_workflow(
-                        source_dir
-                    )
+                    result = self.multi_file_analyzer.analyze_project_workflow(source_dir)
 
                     if result:
                         st.success("✅ Multi-file analysis completed!")
 
                         # Display results in tabs
-                        tab1, tab2, tab3 = st.tabs(
-                            ["📊 Dependencies", "🔄 Circular", "📁 Cross-File"]
-                        )
+                        tab1, tab2, tab3 = st.tabs(["📊 Dependencies", "🔄 Circular", "📁 Cross-File"])
 
                         with tab1:
                             self._display_dependency_analysis(result)
@@ -526,16 +494,12 @@ class WorkflowVisualizationGUI:
         st.subheader("✅ Round-Trip Validation Framework")
 
         # File selection
-        selected_file = st.selectbox(
-            "Select file to validate:", self.test_files, key="validation_file"
-        )
+        selected_file = st.selectbox("Select file to validate:", self.test_files, key="validation_file")
 
         if st.button("Run Validation", key="validation_btn"):
             with st.spinner("Running round-trip validation..."):
                 try:
-                    result = self.round_trip_validator.validate_workflow_extraction(
-                        selected_file
-                    )
+                    result = self.round_trip_validator.validate_workflow_extraction(selected_file)
 
                     if result:
                         st.success("✅ Validation completed!")
@@ -555,17 +519,13 @@ class WorkflowVisualizationGUI:
         if st.button("Benchmark System Performance", key="performance_btn"):
             with st.spinner("Benchmarking system performance..."):
                 try:
-                    result = self.performance_optimizer.benchmark_system_performance(
-                        self.test_files
-                    )
+                    result = self.performance_optimizer.benchmark_system_performance(self.test_files)
 
                     if result:
                         st.success("✅ Performance benchmarking completed!")
 
                         # Display results in tabs
-                        tab1, tab2, tab3 = st.tabs(
-                            ["📊 Performance", "🐛 Bottlenecks", "💡 Recommendations"]
-                        )
+                        tab1, tab2, tab3 = st.tabs(["📊 Performance", "🐛 Bottlenecks", "💡 Recommendations"])
 
                         with tab1:
                             self._display_performance_metrics(result)
@@ -644,9 +604,7 @@ class WorkflowVisualizationGUI:
 
     def _render_file_upload(self):
         """Render file upload section."""
-        uploaded_file = st.file_uploader(
-            "Upload Python file for analysis:", type=["py"], key="file_uploader"
-        )
+        uploaded_file = st.file_uploader("Upload Python file for analysis:", type=["py"], key="file_uploader")
 
         if uploaded_file is not None:
             # Save uploaded file temporarily
@@ -696,8 +654,7 @@ class WorkflowVisualizationGUI:
                     with col2:
                         st.metric(
                             "Loops",
-                            patterns.get("for_loops", 0)
-                            + patterns.get("while_loops", 0),
+                            patterns.get("for_loops", 0) + patterns.get("while_loops", 0),
                         )
                     with col3:
                         st.metric("Try Blocks", patterns.get("try_blocks", 0))
@@ -705,15 +662,9 @@ class WorkflowVisualizationGUI:
                 if "complexity" in result:
                     complexity = result["complexity"]
                     st.markdown("**📊 Complexity Summary:**")
-                    st.markdown(
-                        f"- **Cyclomatic Complexity**: {complexity.get('cyclomatic_complexity', 0)}"
-                    )
-                    st.markdown(
-                        f"- **Max Nesting**: {complexity.get('max_nesting_level', 0)}"
-                    )
-                    st.markdown(
-                        f"- **Total Statements**: {complexity.get('total_statements', 0)}"
-                    )
+                    st.markdown(f"- **Cyclomatic Complexity**: {complexity.get('cyclomatic_complexity', 0)}")
+                    st.markdown(f"- **Max Nesting**: {complexity.get('max_nesting_level', 0)}")
+                    st.markdown(f"- **Total Statements**: {complexity.get('total_statements', 0)}")
 
                 # Show raw data in expandable section
                 with st.expander("🔍 View Raw Analysis Data", expanded=False):
@@ -738,26 +689,18 @@ class WorkflowVisualizationGUI:
                         file_data = radon_data[self.test_files[0]]
 
                         # Show function complexity
-                        functions = [
-                            item for item in file_data if item["type"] == "function"
-                        ]
+                        functions = [item for item in file_data if item["type"] == "function"]
                         if functions:
                             st.markdown("**🔧 Function Complexity:**")
                             for func in functions[:5]:  # Show first 5
-                                st.markdown(
-                                    f"- `{func['name']}`: {func['complexity']} (Rank: {func['rank']})"
-                                )
+                                st.markdown(f"- `{func['name']}`: {func['complexity']} (Rank: {func['rank']})")
 
                         # Show class complexity
-                        classes = [
-                            item for item in file_data if item["type"] == "class"
-                        ]
+                        classes = [item for item in file_data if item["type"] == "class"]
                         if classes:
                             st.markdown("**🏗️ Class Complexity:**")
                             for cls in classes:
-                                st.markdown(
-                                    f"- `{cls['name']}`: {cls['complexity']} (Rank: {cls['rank']})"
-                                )
+                                st.markdown(f"- `{cls['name']}`: {cls['complexity']} (Rank: {cls['rank']})")
 
                 if "overall_complexity_score" in result:
                     st.metric(
@@ -790,9 +733,7 @@ class WorkflowVisualizationGUI:
 
                         # Show the PlantUML code in an expandable section
                         with st.expander("📝 View PlantUML Code", expanded=False):
-                            st.code(
-                                result.get("plantuml", str(result)), language="plantuml"
-                            )
+                            st.code(result.get("plantuml", str(result)), language="plantuml")
 
                         # Try to render as SVG if PlantUML service is available
                         if "plantuml" in result:
@@ -816,21 +757,15 @@ class WorkflowVisualizationGUI:
                                         mime="image/svg+xml",
                                     )
                                 else:
-                                    st.info(
-                                        "💡 Tip: Enable PlantUML service for SVG visualization"
-                                    )
+                                    st.info("💡 Tip: Enable PlantUML service for SVG visualization")
 
                                 # Clean up temp file
                                 temp_puml.unlink(missing_ok=True)
 
                             except Exception as svg_error:
-                                st.info(
-                                    "💡 Tip: Enable PlantUML service for SVG visualization"
-                                )
+                                st.info("💡 Tip: Enable PlantUML service for SVG visualization")
                         else:
-                            st.info(
-                                "💡 PlantUML content not available for visualization"
-                            )
+                            st.info("💡 PlantUML content not available for visualization")
                     else:
                         st.error("❌ UML generation failed")
                 else:
@@ -853,12 +788,8 @@ class WorkflowVisualizationGUI:
             tree = ast.parse(content)
 
             # Extract classes and functions
-            classes = [
-                node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)
-            ]
-            functions = [
-                node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)
-            ]
+            classes = [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
+            functions = [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
 
             # Generate simple PlantUML
             uml = "@startuml\n"
@@ -868,19 +799,13 @@ class WorkflowVisualizationGUI:
             for cls in classes:
                 uml += f"class {cls.name} {{\n"
                 # Add methods
-                for func in [
-                    n for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)
-                ]:
+                for func in [n for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)]:
                     uml += f"  + {func.name}()\n"
                 uml += "}\n\n"
 
             # Add standalone functions
             for func in functions:
-                if not any(
-                    cls.name
-                    in [n.name for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)]
-                    for cls in classes
-                ):
+                if not any(cls.name in [n.name for n in ast.walk(cls) if isinstance(n, ast.FunctionDef)] for cls in classes):
                     uml += f"function {func.name}()\n"
 
             uml += "@enduml"
@@ -932,9 +857,7 @@ class WorkflowVisualizationGUI:
                 )
 
             except ImportError:
-                st.warning(
-                    "💡 Install graphviz: `pip install graphviz` for visual rendering"
-                )
+                st.warning("💡 Install graphviz: `pip install graphviz` for visual rendering")
                 st.info("📄 Showing DOT code instead:")
                 st.code(output, language="dot")
 
@@ -963,8 +886,7 @@ class WorkflowVisualizationGUI:
             with col2:
                 st.metric(
                     "Loops",
-                    result["patterns"].get("for_loops", 0)
-                    + result["patterns"].get("while_loops", 0),
+                    result["patterns"].get("for_loops", 0) + result["patterns"].get("while_loops", 0),
                 )
             with col3:
                 st.metric("Try Blocks", result["patterns"].get("try_blocks", 0))
@@ -1011,9 +933,7 @@ class WorkflowVisualizationGUI:
             if "nodes" in flow_data:
                 st.markdown("**📊 Execution Nodes:**")
                 for node in flow_data["nodes"][:10]:  # Show first 10 nodes
-                    st.markdown(
-                        f"- `{node['function']}`: {node['type']} (line {node['lineno']})"
-                    )
+                    st.markdown(f"- `{node['function']}`: {node['type']} (line {node['lineno']})")
 
                 if len(flow_data["nodes"]) > 10:
                     st.info(f"... and {len(flow_data['nodes']) - 10} more nodes")
@@ -1057,9 +977,7 @@ class WorkflowVisualizationGUI:
                         st.markdown(f"- **{key}**: {value}")
 
                 # Show first few items as expandable
-                with st.expander(
-                    "🔍 View Raw AST Data (First 1000 chars)", expanded=False
-                ):
+                with st.expander("🔍 View Raw AST Data (First 1000 chars)", expanded=False):
                     st.code(
                         output[:1000] + "..." if len(output) > 1000 else output,
                         language="json",
@@ -1073,9 +991,7 @@ class WorkflowVisualizationGUI:
         except Exception as e:
             st.error(f"❌ Failed to parse AST: {str(e)}")
             st.info("📄 Raw output (first 500 chars):")
-            st.code(
-                output[:500] + "..." if len(output) > 500 else output, language="text"
-            )
+            st.code(output[:500] + "..." if len(output) > 500 else output, language="text")
 
     def _display_uml_results(self, result: Dict[str, Any], output_name: str):
         """Display UML generation results."""
@@ -1160,13 +1076,9 @@ class WorkflowVisualizationGUI:
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.metric(
-                    "Maintainability", f"{metrics.get('maintainability_index', 0):.1f}"
-                )
+                st.metric("Maintainability", f"{metrics.get('maintainability_index', 0):.1f}")
             with col2:
-                st.metric(
-                    "Cyclomatic", f"{metrics.get('cyclomatic_complexity', 0):.1f}"
-                )
+                st.metric("Cyclomatic", f"{metrics.get('cyclomatic_complexity', 0):.1f}")
             with col3:
                 st.metric("Lines of Code", metrics.get("lines_of_code", 0))
 
@@ -1276,9 +1188,7 @@ class WorkflowVisualizationGUI:
             bottlenecks = result["bottlenecks"]
             if bottlenecks:
                 for bottleneck in bottlenecks:
-                    st.markdown(
-                        f"- **{bottleneck['component']}**: {bottleneck['description']}"
-                    )
+                    st.markdown(f"- **{bottleneck['component']}**: {bottleneck['description']}")
             else:
                 st.success("✅ No bottlenecks identified")
 
@@ -1319,21 +1229,15 @@ class WorkflowVisualizationGUI:
                 if svg_content.startswith("<?xml") or svg_content.startswith("<svg"):
                     return svg_content
                 else:
-                    st.error(
-                        f"PlantUML service returned non-SVG content: {response.text[:200]}"
-                    )
+                    st.error(f"PlantUML service returned non-SVG content: {response.text[:200]}")
                     return None
             else:
-                st.error(
-                    f"PlantUML service request failed: HTTP {response.status_code}"
-                )
+                st.error(f"PlantUML service request failed: HTTP {response.status_code}")
                 return None
 
         except requests.exceptions.RequestException as e:
             st.error(f"Error connecting to PlantUML Docker service: {str(e)}")
-            st.info(
-                "💡 Make sure the PlantUML Docker service is running: sudo docker start plantuml-server"
-            )
+            st.info("💡 Make sure the PlantUML Docker service is running: sudo docker start plantuml-server")
             return None
         except Exception as e:
             st.error(f"Error converting PlantUML to SVG: {str(e)}")

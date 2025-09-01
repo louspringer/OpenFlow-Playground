@@ -45,7 +45,7 @@ This document provides a comprehensive analysis of Python profiling tools, metho
 
 - **Use Case**: Production profiling without code modification
 - **Output**: Flame graphs, call frequency analysis
-- **Overhead**: <5% performance impact
+- **Overhead**: \<5% performance impact
 - **Real-time**: Yes, can attach to running processes
 - **Visualization**: Flame graphs, call frequency charts
 
@@ -126,9 +126,9 @@ This document provides a comprehensive analysis of Python profiling tools, metho
 | Tool | Overhead | Real-Time Impact | Production Ready |
 |------|----------|------------------|------------------|
 | **Our Implementation** | **~5-10%** | **Minimal** | ✅ **Yes** |
-| Py-Spy | **<5%** | **Minimal** | ✅ **Yes** |
+| Py-Spy | **\<5%** | **Minimal** | ✅ **Yes** |
 | VizTracer | **10-30%** | **High** | ❌ **No** |
-| SnakeViz | **<1%** | **None** | ✅ **Yes** |
+| SnakeViz | **\<1%** | **None** | ✅ **Yes** |
 | SmartProfiler | **15-40%** | **Moderate** | ⚠️ **Limited** |
 
 #### **Visualization Quality**
@@ -242,8 +242,8 @@ class EnhancedReverseEngineer:
 
 - **Update frequency**: 500ms intervals
 - **Memory overhead**: ~1-2MB for live stats
-- **CPU overhead**: <5% during profiling
-- **Real-time latency**: <100ms for dashboard updates
+- **CPU overhead**: \<5% during profiling
+- **Real-time latency**: \<100ms for dashboard updates
 
 ## 📊 Conclusion
 
@@ -252,10 +252,10 @@ class EnhancedReverseEngineer:
 Our real-time profiling visualization implementation provides capabilities that are **unique in the industry**:
 
 1. **Real-time live dashboard** with 500ms updates
-2. **Live progress tracking** through extraction steps
-3. **Immediate bottleneck identification** during execution
-4. **Integrated workflow** with no external tool dependencies
-5. **Production-ready** with minimal performance overhead
+1. **Live progress tracking** through extraction steps
+1. **Immediate bottleneck identification** during execution
+1. **Integrated workflow** with no external tool dependencies
+1. **Production-ready** with minimal performance overhead
 
 ### **Competitive Position**
 
@@ -268,9 +268,9 @@ Our real-time profiling visualization implementation provides capabilities that 
 ### **Strategic Recommendations**
 
 1. **Continue developing** our real-time profiling as a competitive advantage
-2. **Document and promote** the unique real-time capabilities
-3. **Integrate with external tools** for enhanced post-execution analysis
-4. **Create profiling framework** that can be adopted by the broader community
-5. **Position as the future** of Python profiling and performance analysis
+1. **Document and promote** the unique real-time capabilities
+1. **Integrate with external tools** for enhanced post-execution analysis
+1. **Create profiling framework** that can be adopted by the broader community
+1. **Position as the future** of Python profiling and performance analysis
 
 **Our implementation represents a significant advancement in the profiling discipline, providing real-time insights that were previously impossible to achieve.**

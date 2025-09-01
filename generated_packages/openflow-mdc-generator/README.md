@@ -39,10 +39,10 @@ result = main()
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+1. Create a feature branch
+1. Make your changes
+1. Add tests
+1. Submit a pull request
 
 ## License
 

@@ -127,9 +127,7 @@ class GhostbustersPRReview:
             result = secure_execute(["ps", "aux"], capture_output=True, text=True)
             running_services = []
             for line in result.stdout.split("\n"):
-                if "python" in line and (
-                    "streamlit" in line or "uvicorn" in line or "flask" in line
-                ):
+                if "python" in line and ("streamlit" in line or "uvicorn" in line or "flask" in line):
                     running_services.append(line.strip())
 
             print(f"📊 Found {len(running_services)} potential running services")
@@ -184,10 +182,7 @@ class GhostbustersPRReview:
         for delusion in delusions:
             if hasattr(delusion, "delusions"):
                 for d in delusion.delusions:
-                    if (
-                        "critical" in d.severity.lower()
-                        or "security" in d.description.lower()
-                    ):
+                    if "critical" in d.severity.lower() or "security" in d.description.lower():
                         critical_issues += 1
 
         # Test status

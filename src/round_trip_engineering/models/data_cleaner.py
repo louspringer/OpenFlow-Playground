@@ -177,9 +177,7 @@ class DataCleaner(BaseReflectiveModule):
             logger.error(f"❌ Method validation failed: {e}")
             return False
 
-    def get_cleaning_statistics(
-        self, original_model: Dict[str, Any], cleaned_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def get_cleaning_statistics(self, original_model: Dict[str, Any], cleaned_model: Dict[str, Any]) -> Dict[str, Any]:
         """Get statistics about the cleaning process"""
         stats = {
             "original_size": len(str(original_model)),
@@ -191,11 +189,7 @@ class DataCleaner(BaseReflectiveModule):
 
         # Calculate size reduction
         if stats["original_size"] > 0:
-            stats["size_reduction"] = (
-                (stats["original_size"] - stats["cleaned_size"])
-                / stats["original_size"]
-                * 100
-            )
+            stats["size_reduction"] = (stats["original_size"] - stats["cleaned_size"]) / stats["original_size"] * 100
 
         # Count fields added/modified (simplified)
         original_keys = set(self._flatten_dict(original_model).keys())
@@ -206,9 +200,7 @@ class DataCleaner(BaseReflectiveModule):
 
         return stats
 
-    def _flatten_dict(
-        self, d: Dict[str, Any], parent_key: str = "", sep: str = "."
-    ) -> Dict[str, Any]:
+    def _flatten_dict(self, d: Dict[str, Any], parent_key: str = "", sep: str = ".") -> Dict[str, Any]:
         """Flatten a nested dictionary for key counting"""
         items = []
         for k, v in d.items():

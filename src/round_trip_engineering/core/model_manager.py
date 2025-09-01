@@ -47,9 +47,7 @@ class ModelManager:
             # Store the model
             self.design_models[model["name"]] = model
 
-            logger.info(
-                f"✅ Created model: {model['name']} with {len(model['components'])} components"
-            )
+            logger.info(f"✅ Created model: {model['name']} with {len(model['components'])} components")
             return model
 
         except Exception as e:
@@ -110,9 +108,7 @@ class ModelManager:
             # Store in memory
             self.design_models[model["name"]] = model
 
-            logger.info(
-                f"✅ Loaded model {model['name']} with {len(model['components'])} components"
-            )
+            logger.info(f"✅ Loaded model {model['name']} with {len(model['components'])} components")
             return model
 
         except Exception as e:

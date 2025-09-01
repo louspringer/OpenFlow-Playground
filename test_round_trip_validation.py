@@ -84,9 +84,7 @@ def test_round_trip():
     print("=" * 50)
     print(f"Testing file: {__file__}")
     print(f"Validation passed: {result.get('validation_passed', False)}")
-    print(
-        f"Overall accuracy: {result.get('accuracy_metrics', {}).get('overall_accuracy', 0):.2%}"
-    )
+    print(f"Overall accuracy: {result.get('accuracy_metrics', {}).get('overall_accuracy', 0):.2%}")
 
     # Print detailed results
     if "accuracy_metrics" in result:

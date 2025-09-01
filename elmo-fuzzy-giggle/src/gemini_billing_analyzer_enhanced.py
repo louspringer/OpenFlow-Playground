@@ -76,9 +76,7 @@ class GeminiBillingAnalyzer:
                 text=True,
                 check=True,
             )
-            billing_account = (
-                result.stdout.strip().split("\n")[0] if result.stdout.strip() else None
-            )
+            billing_account = result.stdout.strip().split("\n")[0] if result.stdout.strip() else None
 
             # Get enabled services
             result = subprocess.run(
@@ -87,9 +85,7 @@ class GeminiBillingAnalyzer:
                 text=True,
                 check=True,
             )
-            enabled_services = (
-                result.stdout.strip().split("\n") if result.stdout.strip() else []
-            )
+            enabled_services = result.stdout.strip().split("\n") if result.stdout.strip() else []
 
             # Get resource usage
             resources = {}
@@ -102,9 +98,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                functions = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                functions = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["cloud_functions"] = len(functions)
             except Exception:
                 resources["cloud_functions"] = 0
@@ -117,9 +111,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                run_services = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                run_services = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["cloud_run"] = len(run_services)
             except Exception:
                 resources["cloud_run"] = 0
@@ -138,9 +130,7 @@ class GeminiBillingAnalyzer:
                     text=True,
                     check=True,
                 )
-                databases = (
-                    result.stdout.strip().split("\n") if result.stdout.strip() else []
-                )
+                databases = result.stdout.strip().split("\n") if result.stdout.strip() else []
                 resources["firestore"] = len(databases)
             except Exception:
                 resources["firestore"] = 0
@@ -327,11 +317,7 @@ async def main() -> None:
             f"  Ghostbusters Confidence: {result['summary']['ghostbusters_confidence']}",
         )
 
-    if (
-        result.get("full_analysis", {})
-        .get("billing_analysis", {})
-        .get("gemini_analysis")
-    ):
+    if result.get("full_analysis", {}).get("billing_analysis", {}).get("gemini_analysis"):
         print("\n🤖 Gemini Analysis:")
         print("-" * 40)
         print(result["full_analysis"]["billing_analysis"]["gemini_analysis"])

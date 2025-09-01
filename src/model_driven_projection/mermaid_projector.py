@@ -108,9 +108,7 @@ class MermaidProjector:
 
     def project_workflow_diagram(self) -> str:
         """Project workflow diagram from actual workflow code."""
-        workflow_path = (
-            self.project_root / "src" / "ghostbusters" / "ghostbusters_orchestrator.py"
-        )
+        workflow_path = self.project_root / "src" / "ghostbusters" / "ghostbusters_orchestrator.py"
         if not workflow_path.exists():
             return self._generate_fallback_workflow_diagram()
 
@@ -269,9 +267,7 @@ class MermaidProjector:
             "testing_architecture": self.project_testing_architecture_diagram(),
         }
 
-    def update_markdown_file(
-        self, markdown_file: Path, diagrams: dict[str, str]
-    ) -> None:
+    def update_markdown_file(self, markdown_file: Path, diagrams: dict[str, str]) -> None:
         """Update markdown file with projected diagrams."""
         if not markdown_file.exists():
             logger.error(f"❌ Markdown file not found: {markdown_file}")
@@ -299,11 +295,7 @@ class MermaidProjector:
                             mermaid_end = sections[1].find("```", mermaid_start + 1)
                             if mermaid_end != -1:
                                 # Replace the diagram content
-                                new_section = (
-                                    sections[1][:mermaid_start]
-                                    + f"```mermaid\n{diagram_content}\n```\n"
-                                    + sections[1][mermaid_end + 3 :]
-                                )
+                                new_section = sections[1][:mermaid_start] + f"```mermaid\n{diagram_content}\n```\n" + sections[1][mermaid_end + 3 :]
                                 content = sections[0] + section_pattern + new_section
 
             # Write the updated content back

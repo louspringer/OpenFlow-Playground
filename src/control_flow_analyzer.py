@@ -108,16 +108,12 @@ class ControlFlowAnalyzer:
                     patterns["early_returns"].append(
                         {
                             "lineno": getattr(node, "lineno", 0),
-                            "value": (
-                                self._get_node_value(node.value) if node.value else None
-                            ),
+                            "value": (self._get_node_value(node.value) if node.value else None),
                         }
                     )
 
             elif isinstance(node, (ast.Break, ast.Continue)):
-                patterns["break_continue"].append(
-                    {"type": type(node).__name__, "lineno": getattr(node, "lineno", 0)}
-                )
+                patterns["break_continue"].append({"type": type(node).__name__, "lineno": getattr(node, "lineno", 0)})
 
         # Analyze nested structures
         patterns["nested_structures"] = self._analyze_nested_structures(ast_tree)
@@ -143,15 +139,11 @@ class ControlFlowAnalyzer:
                 complexity["cyclomatic_complexity"] += 1
 
             if isinstance(node, ast.BoolOp):
-                complexity["boolean_complexity"] += self._calculate_boolean_complexity(
-                    node
-                )
+                complexity["boolean_complexity"] += self._calculate_boolean_complexity(node)
 
             if isinstance(node, (ast.If, ast.For, ast.While, ast.Try)):
                 nesting = self._calculate_nesting_level(node)
-                complexity["max_nesting_level"] = max(
-                    complexity["max_nesting_level"], nesting
-                )
+                complexity["max_nesting_level"] = max(complexity["max_nesting_level"], nesting)
 
         return complexity
 
@@ -205,11 +197,7 @@ class ControlFlowAnalyzer:
             "lineno": getattr(node, "lineno", 0),
             "body_complexity": self._analyze_body_complexity(node.body),
             "handlers": len(node.handlers),
-            "except_types": [
-                self._get_node_value(handler.type)
-                for handler in node.handlers
-                if handler.type
-            ],
+            "except_types": [self._get_node_value(handler.type) for handler in node.handlers if handler.type],
             "orelse_complexity": self._analyze_body_complexity(node.orelse),
             "finalbody_complexity": self._analyze_body_complexity(node.finalbody),
             "nested_level": self._calculate_nesting_level(node),
@@ -327,9 +315,7 @@ class ControlFlowAnalyzer:
             if isinstance(stmt, (ast.Break, ast.Continue)):
                 return True
             elif isinstance(stmt, (ast.If, ast.For, ast.While)):
-                if self._has_break_continue(stmt.body) or self._has_break_continue(
-                    stmt.orelse
-                ):
+                if self._has_break_continue(stmt.body) or self._has_break_continue(stmt.orelse):
                     return True
         return False
 
@@ -341,9 +327,7 @@ class ControlFlowAnalyzer:
             return False
 
         function_lines = len(function.body)
-        return_lines = [
-            stmt.lineno for stmt in function.body if isinstance(stmt, ast.Return)
-        ]
+        return_lines = [stmt.lineno for stmt in function.body if isinstance(stmt, ast.Return)]
 
         if not return_lines:
             return False
@@ -351,9 +335,7 @@ class ControlFlowAnalyzer:
         # Consider early return if it's in the first third of the function
         return min(return_lines) < function_lines / 3
 
-    def _find_parent_function(
-        self, node: ast.AST, ast_tree: ast.AST
-    ) -> Optional[ast.FunctionDef]:
+    def _find_parent_function(self, node: ast.AST, ast_tree: ast.AST) -> Optional[ast.FunctionDef]:
         """Find the parent function of a node."""
         for n in ast.walk(ast_tree):
             if isinstance(n, ast.FunctionDef):
@@ -436,9 +418,7 @@ class ControlFlowAnalyzer:
         # Extract function definitions as entry points
         for node in ast.walk(ast_tree):
             if isinstance(node, ast.FunctionDef):
-                graph["entry_points"].append(
-                    {"name": node.name, "lineno": node.lineno, "type": "function"}
-                )
+                graph["entry_points"].append({"name": node.name, "lineno": node.lineno, "type": "function"})
 
                 # Add function body as nodes with detailed analysis
                 for stmt in node.body:
@@ -561,12 +541,8 @@ class ControlFlowAnalyzer:
                 }
         elif isinstance(expr, ast.BinOp):
             # Check if binary operation involves function calls
-            left_call = (
-                self._extract_call_info(expr.left) if hasattr(expr, "left") else None
-            )
-            right_call = (
-                self._extract_call_info(expr.right) if hasattr(expr, "right") else None
-            )
+            left_call = self._extract_call_info(expr.left) if hasattr(expr, "left") else None
+            right_call = self._extract_call_info(expr.right) if hasattr(expr, "right") else None
 
             if left_call or right_call:
                 return {
@@ -653,13 +629,9 @@ def test_control_flow_analyzer():
 
         print(f"\nComplexity Metrics:")
         print(f"  Total If Statements: {len(result['patterns']['if_statements'])}")
-        print(
-            f"  Total Loops: {len(result['patterns']['for_loops']) + len(result['patterns']['while_loops'])}"
-        )
+        print(f"  Total Loops: {len(result['patterns']['for_loops']) + len(result['patterns']['while_loops'])}")
         print(f"  Total Try Blocks: {len(result['patterns']['try_blocks'])}")
-        print(
-            f"  Boolean Expressions: {len(result['patterns']['boolean_expressions'])}"
-        )
+        print(f"  Boolean Expressions: {len(result['patterns']['boolean_expressions'])}")
 
         print(f"\nRecognized Patterns:")
         for pattern_type, patterns in result["recognized_patterns"].items():
@@ -668,12 +640,8 @@ def test_control_flow_analyzer():
         # Print detailed boolean expressions
         if result["patterns"]["boolean_expressions"]:
             print(f"\nDetailed Boolean Expressions:")
-            for i, bool_expr in enumerate(
-                result["patterns"]["boolean_expressions"][:3]
-            ):  # Show first 3
-                print(
-                    f"  {i + 1}. Line {bool_expr['lineno']}: {bool_expr['operator']} (complexity: {bool_expr['complexity']})"
-                )
+            for i, bool_expr in enumerate(result["patterns"]["boolean_expressions"][:3]):  # Show first 3
+                print(f"  {i + 1}. Line {bool_expr['lineno']}: {bool_expr['operator']} (complexity: {bool_expr['complexity']})")
 
     else:
         print(f"Analysis failed: {result['error']}")

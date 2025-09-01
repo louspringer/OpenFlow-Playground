@@ -125,8 +125,8 @@ source sql/healthcare-cdc-schema.sql
 ### 3. Configure Openflow Pipeline
 
 1. Access Openflow Console
-2. Create New Pipeline: `HealthcareCDC`
-3. Add required processors (Kinesis Consumer, JSON Parser, etc.)
+1. Create New Pipeline: `HealthcareCDC`
+1. Add required processors (Kinesis Consumer, JSON Parser, etc.)
 
 ### 4. Monitor System
 
@@ -286,12 +286,12 @@ This implementation is based on the [Snowflake Healthcare CDC Quickstart](https:
 ## 🔄 Next Steps
 
 1. **Review and Merge**: This PR provides a complete, production-ready implementation
-2. **Testing**: Deploy to staging environment for validation
-3. **Documentation**: Update main README with healthcare CDC section
-4. **Monitoring**: Set up alerts and dashboards
-5. **Training**: Create user guides for healthcare teams
+1. **Testing**: Deploy to staging environment for validation
+1. **Documentation**: Update main README with healthcare CDC section
+1. **Monitoring**: Set up alerts and dashboards
+1. **Training**: Create user guides for healthcare teams
 
----
+______________________________________________________________________
 
 **Ready for Review** ✅
 

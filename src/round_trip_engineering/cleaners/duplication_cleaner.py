@@ -65,9 +65,7 @@ class DuplicationCleaner:
                     method_signature = line_stripped[method_start:method_end].strip()
 
                     if method_signature in seen_methods:
-                        logger.warning(
-                            f"⚠️ Removing duplicate method: {method_signature}"
-                        )
+                        logger.warning(f"⚠️ Removing duplicate method: {method_signature}")
                         # Set flag to skip until next method
                         skip_until_next_method = True
                         current_method = None
@@ -88,9 +86,7 @@ class DuplicationCleaner:
                 # Check for return statements (including unreachable ones)
                 elif line_stripped.startswith("return "):
                     if current_method and method_has_return:
-                        logger.warning(
-                            f"⚠️ Removing unreachable return in {current_method}: {line_stripped}"
-                        )
+                        logger.warning(f"⚠️ Removing unreachable return in {current_method}: {line_stripped}")
                         # Skip this unreachable return - don't add it to cleaned_lines
                         continue
                     else:
@@ -109,9 +105,7 @@ class DuplicationCleaner:
             cleaned_lines_count = len(cleaned_code.split("\n"))
 
             if original_lines != cleaned_lines_count:
-                logger.info(
-                    f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines"
-                )
+                logger.info(f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines")
             else:
                 logger.info("✅ Code cleaning complete: No duplications found")
 
@@ -143,13 +137,9 @@ class DuplicationCleaner:
                 if line.startswith("def ") and "(" in line:
                     method_signature = line.split("(")[0].replace("def ", "").strip()
                     if method_signature in seen_methods:
-                        logger.warning(
-                            f"⚠️ Removing duplicate method: {method_signature}"
-                        )
+                        logger.warning(f"⚠️ Removing duplicate method: {method_signature}")
                         # Skip until next method or end of class
-                        while i < len(lines) and not lines[i].strip().startswith(
-                            "def "
-                        ):
+                        while i < len(lines) and not lines[i].strip().startswith("def "):
                             i += 1
                         continue
                     else:

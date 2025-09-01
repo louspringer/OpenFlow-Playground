@@ -4425,6 +4425,30 @@
       "domain": "general",
       "implementation": "",
       "test": ""
+    },
+    {
+      "requirement": "All Python modules must use mypy type hints and pydantic models for data validation. Return values must be clearly typed to prevent scalar/list confusion.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "All files must pass pre-commit quality checks before committing. PDCA checklist includes: line length optimization, proper headings, consistent formatting, security validation, and model compliance. Pre-commit is final safety net, not primary quality gate.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "All PDCA loops must follow the documented checklist in RM_COMPLIANCE_ENFORCEMENT_PLAN.md which includes: pre-commit quality gates, self-monitoring, single responsibility, architectural boundaries, testability, and operational visibility. This ensures systematic quality improvement.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
+    },
+    {
+      "requirement": "All markdown files must be formatted with mdformat before committing. This prevents heading increment violations, ensures consistent formatting, and maintains documentation quality. mdformat is integrated into pre-commit hooks and PDCA checklist.",
+      "domain": "general",
+      "implementation": "",
+      "test": ""
     }
   ],
   "implementation_plan": {

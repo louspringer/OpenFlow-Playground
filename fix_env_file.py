@@ -56,9 +56,7 @@ def get_working_keys_from_1password():
                 if working_items:
                     print(f"✅ Found {len(working_items)} working items:")
                     for item in working_items:
-                        print(
-                            f"  - {item.get('title', 'Unknown')}: {item.get('id', 'No ID')}"
-                        )
+                        print(f"  - {item.get('title', 'Unknown')}: {item.get('id', 'No ID')}")
                 else:
                     print("❌ No working items found in cache")
             else:

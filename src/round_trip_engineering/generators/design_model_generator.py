@@ -35,9 +35,7 @@ class DesignModelGenerator(BaseReflectiveModule):
             ],
         }
 
-    def generate_code_from_model(
-        self, model_components: list[Dict[str, Any]]
-    ) -> Dict[str, str]:
+    def generate_code_from_model(self, model_components: list[Dict[str, Any]]) -> Dict[str, str]:
         """Generate code from design model components"""
         logger.info(f"🎯 Generating code from {len(model_components)} components")
 

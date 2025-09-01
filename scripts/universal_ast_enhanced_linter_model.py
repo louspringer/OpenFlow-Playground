@@ -160,9 +160,7 @@ class FileTypeParser(ABC):
         """Analyze semantics of parsed data"""
 
     @abstractmethod
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         """Calculate quality metrics"""
 
 
@@ -170,9 +168,7 @@ class PythonParser(FileTypeParser):
     """Python file parser using AST"""
 
     def __init__(self):
-        super().__init__(
-            file_type=FileType.PYTHON, supported_extensions=[".py", ".pyi", ".pyx"]
-        )
+        super().__init__(file_type=FileType.PYTHON, supported_extensions=[".py", ".pyi", ".pyx"])
 
     def can_parse(self, file_path: Path) -> bool:
         return file_path.suffix in self.supported_extensions
@@ -255,9 +251,7 @@ class PythonParser(FileTypeParser):
 
         return semantic_issues
 
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         if not parsed_data["syntax_valid"]:
             return []
 
@@ -265,30 +259,16 @@ class PythonParser(FileTypeParser):
         metrics = []
 
         # Function count
-        function_count = len(
-            [node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-        )
-        metrics.append(
-            {"name": "function_count", "value": function_count, "unit": "functions"}
-        )
+        function_count = len([node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)])
+        metrics.append({"name": "function_count", "value": function_count, "unit": "functions"})
 
         # Class count
-        class_count = len(
-            [node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
-        )
+        class_count = len([node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)])
         metrics.append({"name": "class_count", "value": class_count, "unit": "classes"})
 
         # Import count
-        import_count = len(
-            [
-                node
-                for node in ast.walk(tree)
-                if isinstance(node, (ast.Import, ast.ImportFrom))
-            ]
-        )
-        metrics.append(
-            {"name": "import_count", "value": import_count, "unit": "imports"}
-        )
+        import_count = len([node for node in ast.walk(tree) if isinstance(node, (ast.Import, ast.ImportFrom))])
+        metrics.append({"name": "import_count", "value": import_count, "unit": "imports"})
 
         return metrics
 
@@ -297,9 +277,7 @@ class JSONParser(FileTypeParser):
     """JSON file parser with schema validation"""
 
     def __init__(self):
-        super().__init__(
-            file_type=FileType.JSON, supported_extensions=[".json", ".jsonc", ".json5"]
-        )
+        super().__init__(file_type=FileType.JSON, supported_extensions=[".json", ".jsonc", ".json5"])
 
     def can_parse(self, file_path: Path) -> bool:
         return file_path.suffix in self.supported_extensions
@@ -373,9 +351,7 @@ class JSONParser(FileTypeParser):
 
         return semantic_issues
 
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         if not parsed_data["syntax_valid"]:
             return []
 
@@ -397,16 +373,11 @@ class JSONParser(FileTypeParser):
         if isinstance(obj, dict):
             if not obj:
                 return current_depth
-            return max(
-                self._calculate_nesting_depth(v, current_depth + 1)
-                for v in obj.values()
-            )
+            return max(self._calculate_nesting_depth(v, current_depth + 1) for v in obj.values())
         if isinstance(obj, list):
             if not obj:
                 return current_depth
-            return max(
-                self._calculate_nesting_depth(item, current_depth + 1) for item in obj
-            )
+            return max(self._calculate_nesting_depth(item, current_depth + 1) for item in obj)
         return current_depth
 
 
@@ -414,9 +385,7 @@ class YAMLParser(FileTypeParser):
     """YAML file parser with structure analysis"""
 
     def __init__(self):
-        super().__init__(
-            file_type=FileType.YAML, supported_extensions=[".yaml", ".yml"]
-        )
+        super().__init__(file_type=FileType.YAML, supported_extensions=[".yaml", ".yml"])
 
     def can_parse(self, file_path: Path) -> bool:
         return file_path.suffix in self.supported_extensions
@@ -507,9 +476,7 @@ class YAMLParser(FileTypeParser):
 
         return semantic_issues
 
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         if not parsed_data["syntax_valid"]:
             return []
 
@@ -531,9 +498,7 @@ class INIParser(FileTypeParser):
     """INI file parser with configuration analysis"""
 
     def __init__(self):
-        super().__init__(
-            file_type=FileType.INI, supported_extensions=[".ini", ".cfg", ".conf"]
-        )
+        super().__init__(file_type=FileType.INI, supported_extensions=[".ini", ".cfg", ".conf"])
 
     def can_parse(self, file_path: Path) -> bool:
         return file_path.suffix in self.supported_extensions
@@ -612,9 +577,7 @@ class INIParser(FileTypeParser):
 
         return semantic_issues
 
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         if not parsed_data["syntax_valid"]:
             return []
 
@@ -623,9 +586,7 @@ class INIParser(FileTypeParser):
 
         # Section count
         section_count = len(config.sections())
-        metrics.append(
-            {"name": "section_count", "value": section_count, "unit": "sections"}
-        )
+        metrics.append({"name": "section_count", "value": section_count, "unit": "sections"})
 
         # Total key count
         total_keys = sum(len(config[section]) for section in config.sections())
@@ -754,9 +715,7 @@ class TOMLParser(FileTypeParser):
 
         return semantic_issues
 
-    def calculate_metrics(
-        self, parsed_data: dict[str, Any], lines: list[str]
-    ) -> list[Any]:
+    def calculate_metrics(self, parsed_data: dict[str, Any], lines: list[str]) -> list[Any]:
         if not parsed_data["syntax_valid"]:
             return []
 
@@ -778,16 +737,11 @@ class TOMLParser(FileTypeParser):
         if isinstance(obj, dict):
             if not obj:
                 return current_depth
-            return max(
-                self._calculate_nesting_depth(v, current_depth + 1)
-                for v in obj.values()
-            )
+            return max(self._calculate_nesting_depth(v, current_depth + 1) for v in obj.values())
         if isinstance(obj, list):
             if not obj:
                 return current_depth
-            return max(
-                self._calculate_nesting_depth(item, current_depth + 1) for item in obj
-            )
+            return max(self._calculate_nesting_depth(item, current_depth + 1) for item in obj)
         return current_depth
 
 
@@ -869,15 +823,11 @@ class UniversalASTEnhancedLinterModel:
                 return parser
         return None
 
-    def get_rules_for_file_type(
-        self, file_type: FileType
-    ) -> list[UniversalAnalysisRule]:
+    def get_rules_for_file_type(self, file_type: FileType) -> list[UniversalAnalysisRule]:
         """Get analysis rules for a specific file type"""
         return [rule for rule in self.analysis_rules if file_type in rule.file_types]
 
-    def get_rules_for_strategy(
-        self, strategy: AnalysisStrategy
-    ) -> list[UniversalAnalysisRule]:
+    def get_rules_for_strategy(self, strategy: AnalysisStrategy) -> list[UniversalAnalysisRule]:
         """Get analysis rules for a specific strategy"""
         return [rule for rule in self.analysis_rules if rule.strategy == strategy]
 

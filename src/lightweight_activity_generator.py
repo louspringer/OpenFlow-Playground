@@ -137,9 +137,7 @@ class LightweightActivityGenerator:
     def _generate_svg_plantuml_jar(self, plantuml_code: str, output_path: str) -> bool:
         """Generate SVG using PlantUML JAR file."""
         try:
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".puml", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".puml", delete=False) as f:
                 f.write(plantuml_code)
                 temp_file = f.name
 
@@ -172,9 +170,7 @@ class LightweightActivityGenerator:
         except Exception:
             return False
 
-    def _generate_svg_plantuml_server(
-        self, plantuml_code: str, output_path: str
-    ) -> bool:
+    def _generate_svg_plantuml_server(self, plantuml_code: str, output_path: str) -> bool:
         """Generate SVG using PlantUML server."""
         try:
             import requests
@@ -203,9 +199,7 @@ class LightweightActivityGenerator:
             # Convert PlantUML to DOT format (simplified)
             dot_code = self._plantuml_to_dot(plantuml_code)
 
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".dot", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".dot", delete=False) as f:
                 f.write(dot_code)
                 temp_file = f.name
 
@@ -250,16 +244,12 @@ class LightweightActivityGenerator:
                 node_counter += 1
                 node_id = f"start_{node_counter}"
                 nodes[node_id] = "Start"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];')
             elif line.startswith("stop"):
                 node_counter += 1
                 node_id = f"stop_{node_counter}"
                 nodes[node_id] = "Stop"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];')
 
         # Add edges (simplified)
         for i in range(1, node_counter):
@@ -268,9 +258,7 @@ class LightweightActivityGenerator:
         dot_lines.append("}")
         return "\n".join(dot_lines)
 
-    def generate_activity_diagram(
-        self, python_file: str, output_dir: str = "generated_activity_models"
-    ) -> Dict[str, Any]:
+    def generate_activity_diagram(self, python_file: str, output_dir: str = "generated_activity_models") -> Dict[str, Any]:
         """Main method to generate activity diagram from Python file."""
         result = {
             "success": False,
@@ -286,9 +274,7 @@ class LightweightActivityGenerator:
             # Analyze Python file
             workflow_data = self.analyze_python_file(python_file)
             if not workflow_data.get("success", False):
-                result["errors"].append(
-                    f"Analysis failed: {workflow_data.get('error', 'Unknown error')}"
-                )
+                result["errors"].append(f"Analysis failed: {workflow_data.get('error', 'Unknown error')}")
                 return result
 
             # Generate PlantUML code
@@ -415,9 +401,7 @@ class WorkflowVisitor(ast.NodeVisitor):
     def visit_For(self, node: ast.For):
         """Visit for loops."""
         # Add loop start
-        target_str = (
-            ast.unparse(node.target) if hasattr(ast, "unparse") else str(node.target)
-        )
+        target_str = ast.unparse(node.target) if hasattr(ast, "unparse") else str(node.target)
         iter_str = ast.unparse(node.iter) if hasattr(ast, "unparse") else str(node.iter)
         loop_id = self._add_node("loop", f"For: {target_str} in {iter_str}")
 

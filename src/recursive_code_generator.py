@@ -298,9 +298,7 @@ class RecursiveCodeGenerator(CodeGenerator):
             elif isinstance(decomposed_model, dict):
                 # Handle custom models
                 if decomposed_model.get("type") == "variable_assignment":
-                    generated = (
-                        f"{decomposed_model['name']} = {decomposed_model['value']}"
-                    )
+                    generated = f"{decomposed_model['name']} = {decomposed_model['value']}"
                 elif decomposed_model.get("type") == "string_literal":
                     generated = f"{decomposed_model['quotes'][0]}{decomposed_model['value']}{decomposed_model['quotes'][1]}"
                 else:
@@ -357,9 +355,7 @@ class RecursiveCodeGenerator(CodeGenerator):
         strings = []
 
         # Extract import statements
-        import_pattern = (
-            r"^(from\s+\w+(?:\.\w+)*\s+import\s+[\w\s,]+|import\s+\w+(?:\.\w+)*)$"
-        )
+        import_pattern = r"^(from\s+\w+(?:\.\w+)*\s+import\s+[\w\s,]+|import\s+\w+(?:\.\w+)*)$"
         for line in code.split("\n"):
             line = line.strip()
             if re.match(import_pattern, line):

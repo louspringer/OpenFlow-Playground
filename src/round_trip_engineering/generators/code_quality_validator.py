@@ -97,20 +97,12 @@ class CodeQualityValidator(BaseReflectiveModule):
         total_lines = len(lines)
         empty_lines = len([line for line in lines if line.strip() == ""])
         comment_lines = len([line for line in lines if line.strip().startswith("#")])
-        docstring_lines = len(
-            [line for line in lines if '"""' in line or "'''" in line]
-        )
+        docstring_lines = len([line for line in lines if '"""' in line or "'''" in line])
 
         # Count code elements
-        class_definitions = len(
-            [line for line in lines if line.strip().startswith("class ")]
-        )
-        function_definitions = len(
-            [line for line in lines if line.strip().startswith("def ")]
-        )
-        import_statements = len(
-            [line for line in lines if line.strip().startswith(("import ", "from "))]
-        )
+        class_definitions = len([line for line in lines if line.strip().startswith("class ")])
+        function_definitions = len([line for line in lines if line.strip().startswith("def ")])
+        import_statements = len([line for line in lines if line.strip().startswith(("import ", "from "))])
 
         # Calculate metrics
         code_lines = total_lines - empty_lines - comment_lines
@@ -271,19 +263,13 @@ class CodeQualityValidator(BaseReflectiveModule):
 
         # Generate recommendations
         if quality_metrics["complexity_score"] > 8:
-            validation_result["recommendations"].append(
-                "Consider breaking down complex functions into smaller, focused functions"
-            )
+            validation_result["recommendations"].append("Consider breaking down complex functions into smaller, focused functions")
 
         if quality_metrics["maintainability_score"] < 60:
-            validation_result["recommendations"].append(
-                "Improve code structure and reduce nesting for better maintainability"
-            )
+            validation_result["recommendations"].append("Improve code structure and reduce nesting for better maintainability")
 
         if quality_metrics["readability_score"] < 70:
-            validation_result["recommendations"].append(
-                "Add more comments and improve variable naming for better readability"
-            )
+            validation_result["recommendations"].append("Add more comments and improve variable naming for better readability")
 
         return validation_result
 

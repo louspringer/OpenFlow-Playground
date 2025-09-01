@@ -22,7 +22,7 @@ Migrate the fragile command-line Ghostbusters to a reliable, scalable AWS Lambda
 - Real-time monitoring
 - Cost-effective ($3/month for 1000 analyses)
 
----
+______________________________________________________________________
 
 ## 🏗️ **Architecture Design**
 
@@ -44,11 +44,11 @@ Migrate the fragile command-line Ghostbusters to a reliable, scalable AWS Lambda
 ### **Data Flow:**
 
 1. **Client** → API Gateway → Lambda Function
-2. **Lambda** → S3 (file storage) → DynamoDB (results)
-3. **Lambda** → CloudWatch (logging/monitoring)
-4. **Client** ← API Gateway ← Lambda (results)
+1. **Lambda** → S3 (file storage) → DynamoDB (results)
+1. **Lambda** → CloudWatch (logging/monitoring)
+1. **Client** ← API Gateway ← Lambda (results)
 
----
+______________________________________________________________________
 
 ## 🚀 **Implementation Phases**
 
@@ -212,7 +212,7 @@ class CodeQualityPredictor:
         """Suggest code improvements using ML"""
 ```
 
----
+______________________________________________________________________
 
 ## 🛠️ **Technical Implementation**
 
@@ -333,7 +333,7 @@ class GhostbustersClient:
                 yield json.loads(message)
 ```
 
----
+______________________________________________________________________
 
 ## 📊 **Cost Estimation**
 
@@ -353,7 +353,7 @@ class GhostbustersClient:
 - **CloudWatch Logs Retention**: Reduce storage costs
 - **S3 Lifecycle**: Archive old files
 
----
+______________________________________________________________________
 
 ## 🚀 **Deployment Plan**
 
@@ -389,7 +389,7 @@ class GhostbustersClient:
 - [ ] Documentation and deployment guides
 - [ ] Team training and handover
 
----
+______________________________________________________________________
 
 ## 🎯 **Success Metrics**
 

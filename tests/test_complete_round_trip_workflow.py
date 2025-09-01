@@ -64,9 +64,7 @@ class TestCompleteRoundTripWorkflow:
         test_file = "src/round_trip_engineering/enhanced_reverse_engineer.py"
 
         # STEP 1: Reverse Engineering - Extract model from Python file
-        self.logger.info(
-            "🔄 Step 1: Reverse Engineering - Extracting model from Python file"
-        )
+        self.logger.info("🔄 Step 1: Reverse Engineering - Extracting model from Python file")
         start_time = time.time()
 
         extracted_model = self.reverse_engineer.reverse_engineer_file(test_file)
@@ -75,12 +73,8 @@ class TestCompleteRoundTripWorkflow:
         assert extracted_model is not None
         assert "model_id" in extracted_model
         assert "components" in extracted_model
-        self.logger.info(
-            f"✅ Reverse engineering completed in {reverse_engineering_time:.3f}s"
-        )
-        self.logger.info(
-            f"📊 Extracted model contains {len(extracted_model.get('components', {}))} components"
-        )
+        self.logger.info(f"✅ Reverse engineering completed in {reverse_engineering_time:.3f}s")
+        self.logger.info(f"📊 Extracted model contains {len(extracted_model.get('components', {}))} components")
 
         # STEP 2: Activity Modeling - Generate activity models for the extracted model
         self.logger.info("🔄 Step 2: Activity Modeling - Generating activity models")
@@ -98,47 +92,28 @@ class TestCompleteRoundTripWorkflow:
                 method_key = f"{class_name}.{method_name}"
 
                 # Validate the method's activity model
-                validation_result = (
-                    self.activity_validator.validate_method_activity_model(method_info)
-                )
+                validation_result = self.activity_validator.validate_method_activity_model(method_info)
                 activity_models[method_key] = validation_result
 
         activity_modeling_time = time.time() - start_time
-        self.logger.info(
-            f"✅ Activity modeling completed in {activity_modeling_time:.3f}s"
-        )
+        self.logger.info(f"✅ Activity modeling completed in {activity_modeling_time:.3f}s")
         self.logger.info(f"📊 Generated {len(activity_models)} activity models")
 
         # STEP 3: Activity Model Validation - Validate behavioral consistency
-        self.logger.info(
-            "🔄 Step 3: Activity Model Validation - Validating behavioral consistency"
-        )
+        self.logger.info("🔄 Step 3: Activity Model Validation - Validating behavioral consistency")
         start_time = time.time()
 
         # Analyze validation results
         total_methods = len(activity_models)
-        passed_validations = sum(
-            1 for result in activity_models.values() if result.validation_passed
-        )
-        average_match_score = (
-            sum(result.activity_match_score for result in activity_models.values())
-            / total_methods
-            if total_methods > 0
-            else 0
-        )
+        passed_validations = sum(1 for result in activity_models.values() if result.validation_passed)
+        average_match_score = sum(result.activity_match_score for result in activity_models.values()) / total_methods if total_methods > 0 else 0
 
         validation_time = time.time() - start_time
-        self.logger.info(
-            f"✅ Activity model validation completed in {validation_time:.3f}s"
-        )
-        self.logger.info(
-            f"📊 Validation Results: {passed_validations}/{total_methods} passed, avg score: {average_match_score:.2f}"
-        )
+        self.logger.info(f"✅ Activity model validation completed in {validation_time:.3f}s")
+        self.logger.info(f"📊 Validation Results: {passed_validations}/{total_methods} passed, avg score: {average_match_score:.2f}")
 
         # STEP 4: Forward Engineering - Generate code with activity model guidance
-        self.logger.info(
-            "🔄 Step 4: Forward Engineering - Generating code with behavioral consistency"
-        )
+        self.logger.info("🔄 Step 4: Forward Engineering - Generating code with behavioral consistency")
         start_time = time.time()
 
         # Create activity models structure for the generator
@@ -153,20 +128,14 @@ class TestCompleteRoundTripWorkflow:
         }
 
         # Generate code using activity-aware generator
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            extracted_model, activity_models_structure
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(extracted_model, activity_models_structure)
 
         forward_engineering_time = time.time() - start_time
-        self.logger.info(
-            f"✅ Forward engineering completed in {forward_engineering_time:.3f}s"
-        )
+        self.logger.info(f"✅ Forward engineering completed in {forward_engineering_time:.3f}s")
         self.logger.info(f"📊 Generated code length: {len(generated_code)} characters")
 
         # STEP 5: Validation - Ensure generated code maintains behavioral characteristics
-        self.logger.info(
-            "🔄 Step 5: Validation - Ensuring behavioral consistency in generated code"
-        )
+        self.logger.info("🔄 Step 5: Validation - Ensuring behavioral consistency in generated code")
         start_time = time.time()
 
         # Save generated code to test file
@@ -175,9 +144,7 @@ class TestCompleteRoundTripWorkflow:
             f.write(generated_code)
 
         # Validate that the generated code has the same structure
-        validation_passed = self._validate_generated_code_structure(
-            extracted_model, generated_code
-        )
+        validation_passed = self._validate_generated_code_structure(extracted_model, generated_code)
 
         validation_time = time.time() - start_time
         self.logger.info(f"✅ Code validation completed in {validation_time:.3f}s")
@@ -187,19 +154,13 @@ class TestCompleteRoundTripWorkflow:
         start_time = time.time()
 
         # Test that we can reverse engineer the generated code
-        regenerated_model = self.reverse_engineer.reverse_engineer_file(
-            str(generated_file)
-        )
+        regenerated_model = self.reverse_engineer.reverse_engineer_file(str(generated_file))
 
         round_trip_validation_time = time.time() - start_time
-        self.logger.info(
-            f"✅ Round-trip validation completed in {round_trip_validation_time:.3f}s"
-        )
+        self.logger.info(f"✅ Round-trip validation completed in {round_trip_validation_time:.3f}s")
 
         # Validate round-trip consistency
-        round_trip_consistent = self._validate_round_trip_consistency(
-            extracted_model, regenerated_model
-        )
+        round_trip_consistent = self._validate_round_trip_consistency(extracted_model, regenerated_model)
 
         # STEP 7: Generate comprehensive report
         self.logger.info("🔄 Step 7: Generating comprehensive workflow report")
@@ -239,9 +200,7 @@ class TestCompleteRoundTripWorkflow:
         self.logger.info("✅ Behavioral consistency maintained")
         self.logger.info("✅ Round-trip validation successful")
 
-    def _validate_generated_code_structure(
-        self, original_model: Dict[str, Any], generated_code: str
-    ) -> bool:
+    def _validate_generated_code_structure(self, original_model: Dict[str, Any], generated_code: str) -> bool:
         """Validate that generated code maintains the same structure as original."""
         try:
             # Check that generated code contains expected components
@@ -249,9 +208,7 @@ class TestCompleteRoundTripWorkflow:
 
             for class_name in components.keys():
                 if class_name not in generated_code:
-                    self.logger.warning(
-                        f"⚠️  Generated code missing class: {class_name}"
-                    )
+                    self.logger.warning(f"⚠️  Generated code missing class: {class_name}")
                     return False
 
             # Check that generated code has proper Python syntax
@@ -263,9 +220,7 @@ class TestCompleteRoundTripWorkflow:
 
             # Check that generated code has activity model metadata
             if "Behavioral Constraints:" not in generated_code:
-                self.logger.warning(
-                    "⚠️  Generated code missing behavioral constraints metadata"
-                )
+                self.logger.warning("⚠️  Generated code missing behavioral constraints metadata")
                 return False
 
             self.logger.info("✅ Generated code structure validation passed")
@@ -275,9 +230,7 @@ class TestCompleteRoundTripWorkflow:
             self.logger.error(f"❌ Code structure validation failed: {e}")
             return False
 
-    def _validate_round_trip_consistency(
-        self, original_model: Dict[str, Any], regenerated_model: Dict[str, Any]
-    ) -> bool:
+    def _validate_round_trip_consistency(self, original_model: Dict[str, Any], regenerated_model: Dict[str, Any]) -> bool:
         """Validate that round-trip engineering maintains consistency."""
         try:
             # Check that both models have the same basic structure
@@ -285,9 +238,7 @@ class TestCompleteRoundTripWorkflow:
             regenerated_components = regenerated_model.get("components", {})
 
             if len(original_components) != len(regenerated_components):
-                self.logger.warning(
-                    f"⚠️  Component count mismatch: {len(original_components)} vs {len(regenerated_components)}"
-                )
+                self.logger.warning(f"⚠️  Component count mismatch: {len(original_components)} vs {len(regenerated_components)}")
                 return False
 
             # Check that component names are preserved
@@ -295,9 +246,7 @@ class TestCompleteRoundTripWorkflow:
             regenerated_names = set(regenerated_components.keys())
 
             if original_names != regenerated_names:
-                self.logger.warning(
-                    f"⚠️  Component name mismatch: {original_names} vs {regenerated_names}"
-                )
+                self.logger.warning(f"⚠️  Component name mismatch: {original_names} vs {regenerated_names}")
                 return False
 
             self.logger.info("✅ Round-trip consistency validation passed")
@@ -324,19 +273,11 @@ class TestCompleteRoundTripWorkflow:
 
         # Summary
         report_lines.append("📊 WORKFLOW SUMMARY")
-        report_lines.append(
-            f"  Original Model ID: {extracted_model.get('model_id', 'unknown')}"
-        )
-        report_lines.append(
-            f"  Components Extracted: {len(extracted_model.get('components', {}))}"
-        )
+        report_lines.append(f"  Original Model ID: {extracted_model.get('model_id', 'unknown')}")
+        report_lines.append(f"  Components Extracted: {len(extracted_model.get('components', {}))}")
         report_lines.append(f"  Activity Models Generated: {len(activity_models)}")
-        report_lines.append(
-            f"  Generated Code Length: {len(generated_code)} characters"
-        )
-        report_lines.append(
-            f"  Regenerated Model ID: {regenerated_model.get('model_id', 'unknown')}"
-        )
+        report_lines.append(f"  Generated Code Length: {len(generated_code)} characters")
+        report_lines.append(f"  Regenerated Model ID: {regenerated_model.get('model_id', 'unknown')}")
         report_lines.append("")
 
         # Timing Metrics
@@ -344,35 +285,22 @@ class TestCompleteRoundTripWorkflow:
         total_time = sum(timing_metrics.values())
         for step, time_taken in timing_metrics.items():
             percentage = (time_taken / total_time) * 100 if total_time > 0 else 0
-            report_lines.append(
-                f"  {step.replace('_', ' ').title()}: {time_taken:.3f}s ({percentage:.1f}%)"
-            )
+            report_lines.append(f"  {step.replace('_', ' ').title()}: {time_taken:.3f}s ({percentage:.1f}%)")
         report_lines.append(f"  Total Workflow Time: {total_time:.3f}s")
         report_lines.append("")
 
         # Activity Model Analysis
         report_lines.append("🎯 ACTIVITY MODEL ANALYSIS")
         if activity_models:
-            passed_validations = sum(
-                1 for result in activity_models.values() if result.validation_passed
-            )
+            passed_validations = sum(1 for result in activity_models.values() if result.validation_passed)
             total_methods = len(activity_models)
-            average_score = (
-                sum(result.activity_match_score for result in activity_models.values())
-                / total_methods
-                if total_methods > 0
-                else 0
-            )
+            average_score = sum(result.activity_match_score for result in activity_models.values()) / total_methods if total_methods > 0 else 0
 
             report_lines.append(f"  Total Methods: {total_methods}")
             report_lines.append(f"  Passed Validations: {passed_validations}")
-            report_lines.append(
-                f"  Failed Validations: {total_methods - passed_validations}"
-            )
+            report_lines.append(f"  Failed Validations: {total_methods - passed_validations}")
             report_lines.append(f"  Average Match Score: {average_score:.2f}")
-            report_lines.append(
-                f"  Success Rate: {(passed_validations / total_methods) * 100:.1f}%"
-            )
+            report_lines.append(f"  Success Rate: {(passed_validations / total_methods) * 100:.1f}%")
         else:
             report_lines.append("  No activity models generated")
         report_lines.append("")
@@ -380,29 +308,17 @@ class TestCompleteRoundTripWorkflow:
         # Behavioral Consistency
         report_lines.append("🔄 BEHAVIORAL CONSISTENCY")
         report_lines.append("  ✅ Reverse Engineering: Successfully extracted model")
-        report_lines.append(
-            "  ✅ Activity Modeling: Generated comprehensive activity models"
-        )
-        report_lines.append(
-            "  ✅ Forward Engineering: Generated code with behavioral guidance"
-        )
-        report_lines.append(
-            "  ✅ Round-Trip Validation: Maintained structural consistency"
-        )
+        report_lines.append("  ✅ Activity Modeling: Generated comprehensive activity models")
+        report_lines.append("  ✅ Forward Engineering: Generated code with behavioral guidance")
+        report_lines.append("  ✅ Round-Trip Validation: Maintained structural consistency")
         report_lines.append("")
 
         # Next Steps
         report_lines.append("🚀 NEXT STEPS")
-        report_lines.append(
-            "  1. Enhance activity model validation rules for better accuracy"
-        )
-        report_lines.append(
-            "  2. Implement more sophisticated behavioral constraint validation"
-        )
+        report_lines.append("  1. Enhance activity model validation rules for better accuracy")
+        report_lines.append("  2. Implement more sophisticated behavioral constraint validation")
         report_lines.append("  3. Add support for more programming languages")
-        report_lines.append(
-            "  4. Integrate with CI/CD for automated round-trip validation"
-        )
+        report_lines.append("  4. Integrate with CI/CD for automated round-trip validation")
         report_lines.append("")
 
         report_lines.append("=" * 80)
@@ -427,12 +343,8 @@ class TestCompleteRoundTripWorkflow:
             methods = first_class.get("methods", [])
             if methods:
                 first_method = methods[0]
-                validation_result = (
-                    self.activity_validator.validate_method_activity_model(first_method)
-                )
-                assert (
-                    validation_result is not None
-                ), "Activity model validation component failed"
+                validation_result = self.activity_validator.validate_method_activity_model(first_method)
+                assert validation_result is not None, "Activity model validation component failed"
 
         # Test code generation
         dummy_model = {
@@ -443,9 +355,7 @@ class TestCompleteRoundTripWorkflow:
         }
         dummy_activity_models = {"validation_results": {}}
 
-        generated_code = self.activity_aware_generator.generate_with_activity_models(
-            dummy_model, dummy_activity_models
-        )
+        generated_code = self.activity_aware_generator.generate_with_activity_models(dummy_model, dummy_activity_models)
         assert generated_code is not None, "Code generation component failed"
 
         self.logger.info("✅ All individual workflow components working correctly")

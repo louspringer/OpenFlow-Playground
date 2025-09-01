@@ -112,9 +112,7 @@ Focus on your specific role perspective and provide unique insights.
 
         try:
             # Create the prompt for this role
-            role_prompt = (
-                f"{diversity_system.roles[config['role']]}\n\n{analysis_question}"
-            )
+            role_prompt = f"{diversity_system.roles[config['role']]}\n\n{analysis_question}"
 
             # Call the LLM
             response = diversity_system.call_llm(
@@ -158,9 +156,7 @@ Focus on your specific role perspective and provide unique insights.
     if results:
         print("🎯 KEY INSIGHTS FROM DIVERSITY SYSTEM:")
         for result in results:
-            print(
-                f"  • {result['model']} ({result['role']}): {result['format']} analysis"
-            )
+            print(f"  • {result['model']} ({result['role']}): {result['format']} analysis")
         print()
         print("💡 This demonstrates the power of diverse AI perspectives!")
     else:
@@ -181,9 +177,7 @@ if __name__ == "__main__":
         print("✅ Diversity system imported successfully")
     except ImportError as e:
         print(f"❌ Import error: {e}")
-        print(
-            "Make sure you're in the right directory and the diversity system is available"
-        )
+        print("Make sure you're in the right directory and the diversity system is available")
         sys.exit(1)
 
     # Run the analysis

@@ -92,9 +92,7 @@ def run_enhanced_round_trip_test() -> None:
         print(f"   ✅ Reverse engineered model: {model['system_name']}")
         print(f"   📦 Components: {len(model['components'])}")
         print(f"   ⚙️  Module Functions: {len(model.get('module_functions', []))}")
-        print(
-            f"   📏 Total Lines: {model.get('file_structure', {}).get('total_lines', 0)}"
-        )
+        print(f"   📏 Total Lines: {model.get('file_structure', {}).get('total_lines', 0)}")
 
         # Save the reverse engineered model
         with open("calculator_reverse_engineered_model.json", "w") as f:
@@ -204,29 +202,16 @@ def run_enhanced_round_trip_test() -> None:
         # Overall assessment
         print("\n🎯 Enhanced Functional Equivalence Assessment:")
 
-        structure_match = (
-            original_classes == generated_classes
-            and abs(original_methods - generated_methods) <= 1
-        )
+        structure_match = original_classes == generated_classes and abs(original_methods - generated_methods) <= 1
 
-        functionality_match = (
-            original_has_calc == generated_has_calc
-            and original_types == generated_types
-        )
+        functionality_match = original_has_calc == generated_has_calc and original_types == generated_types
 
-        module_elements_match = (
-            original_main == generated_main
-            and original_docstring == generated_docstring
-        )
+        module_elements_match = original_main == generated_main and original_docstring == generated_docstring
 
         if structure_match and functionality_match and module_elements_match:
-            print(
-                "   ✅ FULLY FUNCTIONALLY EQUIVALENT - Enhanced round-trip successful!"
-            )
+            print("   ✅ FULLY FUNCTIONALLY EQUIVALENT - Enhanced round-trip successful!")
         else:
-            print(
-                "   ❌ NOT FULLY FUNCTIONALLY EQUIVALENT - Enhanced round-trip failed!"
-            )
+            print("   ❌ NOT FULLY FUNCTIONALLY EQUIVALENT - Enhanced round-trip failed!")
 
         if not structure_match:
             print("   ⚠️  Structure mismatch detected")

@@ -119,12 +119,8 @@ class ModuleDomainGenerator(BaseReflectiveModule):
         code_lines.append("    # Core domain properties")
         code_lines.append("    name: str")
         code_lines.append("    description: str")
-        code_lines.append(
-            "    created_at: datetime = field(default_factory=datetime.now)"
-        )
-        code_lines.append(
-            "    updated_at: datetime = field(default_factory=datetime.now)"
-        )
+        code_lines.append("    created_at: datetime = field(default_factory=datetime.now)")
+        code_lines.append("    updated_at: datetime = field(default_factory=datetime.now)")
         code_lines.append("    metadata: Dict[str, Any] = field(default_factory=dict)")
         code_lines.append("")
 
@@ -198,9 +194,7 @@ class ModuleDomainGenerator(BaseReflectiveModule):
         code_lines.append(f"__domain_name__ = '{package_name}'")
         code_lines.append("")
         code_lines.append("# Import domain models")
-        code_lines.append(
-            f"from .domain_model import {package_name.title().replace('_', '')}"
-        )
+        code_lines.append(f"from .domain_model import {package_name.title().replace('_', '')}")
         code_lines.append("")
         code_lines.append(f"__all__ = ['{package_name.title().replace('_', '')}']")
 

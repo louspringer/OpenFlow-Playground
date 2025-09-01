@@ -173,9 +173,7 @@ def main():
     if total_errors == 0:
         print("🎉 SUCCESS: Simple templates generate linting-compliant code!")
     else:
-        print(
-            f"⚠️ WARNING: Simple templates still produce {total_errors} linting issues"
-        )
+        print(f"⚠️ WARNING: Simple templates still produce {total_errors} linting issues")
         print("   This means our approach needs refinement!")
 
 
@@ -356,9 +354,7 @@ def main():
     if total_errors == 0:
         print("🎉 SUCCESS: Simple templates generate linting-compliant code!")
     else:
-        print(
-            f"⚠️ WARNING: Simple templates still produce {total_errors} linting issues"
-        )
+        print(f"⚠️ WARNING: Simple templates still produce {total_errors} linting issues")
         print("   This means our approach needs refinement!")
 
 

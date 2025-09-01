@@ -58,9 +58,7 @@ class TypeNormalizer(BaseReflectiveModule):
 
         return type_str
 
-    def normalize_parameter_types(
-        self, parameters: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+    def normalize_parameter_types(self, parameters: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Normalize types for a list of parameters"""
         normalized = []
 
@@ -102,21 +100,15 @@ class TypeNormalizer(BaseReflectiveModule):
             # Check for potential issues
             if type_annotation.lower() in ["unknown", "undefined"]:
                 validation_result["warnings"].append("Vague type annotation")
-                validation_result["suggestions"].append(
-                    "Consider using a more specific type"
-                )
+                validation_result["suggestions"].append("Consider using a more specific type")
 
             if len(type_annotation) > 50:
                 validation_result["warnings"].append("Very long type annotation")
-                validation_result["suggestions"].append(
-                    "Consider breaking into multiple types"
-                )
+                validation_result["suggestions"].append("Consider breaking into multiple types")
 
             # Check for common patterns that could be improved
             if "Any" in normalized and normalized != "Any":
-                validation_result["suggestions"].append(
-                    "Consider using more specific types instead of Any"
-                )
+                validation_result["suggestions"].append("Consider using more specific types instead of Any")
 
         except Exception as e:
             validation_result["is_valid"] = False
@@ -136,33 +128,23 @@ class TypeNormalizer(BaseReflectiveModule):
         # Count type frequencies
         for type_ann in type_annotations:
             normalized = self.normalize_type(type_ann)
-            analysis["type_frequency"][normalized] = (
-                analysis["type_frequency"].get(normalized, 0) + 1
-            )
+            analysis["type_frequency"][normalized] = analysis["type_frequency"].get(normalized, 0) + 1
 
         # Identify common patterns
         for type_name, count in analysis["type_frequency"].items():
             if count > 1:
-                analysis["common_patterns"].append(
-                    {"type": type_name, "frequency": count}
-                )
+                analysis["common_patterns"].append({"type": type_name, "frequency": count})
 
         # Identify improvement opportunities
         if analysis["type_frequency"].get("Any", 0) > len(type_annotations) * 0.3:
-            analysis["improvement_opportunities"].append(
-                "High usage of Any types - consider more specific types"
-            )
+            analysis["improvement_opportunities"].append("High usage of Any types - consider more specific types")
 
         if analysis["type_frequency"].get("str", 0) > len(type_annotations) * 0.5:
-            analysis["improvement_opportunities"].append(
-                "High usage of str types - consider more specific string types"
-            )
+            analysis["improvement_opportunities"].append("High usage of str types - consider more specific string types")
 
         return analysis
 
-    def suggest_type_improvements(
-        self, type_annotation: str, context: str = ""
-    ) -> List[str]:
+    def suggest_type_improvements(self, type_annotation: str, context: str = "") -> List[str]:
         """Suggest improvements for a type annotation"""
         suggestions = []
 

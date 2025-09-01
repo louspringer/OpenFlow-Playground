@@ -76,11 +76,7 @@ def test_live_llm_call_with_credentials() -> None:
     # Should either have questions or an error
     if "error" not in result:
         # Check for different possible response formats
-        has_questions = (
-            "questions" in result
-            or "probing_questions" in result
-            or any(key.endswith("questions") for key in result)
-        )
+        has_questions = "questions" in result or "probing_questions" in result or any(key.endswith("questions") for key in result)
         assert has_questions, f"Expected questions in result, got: {result}"
 
         # Get the questions list regardless of key name

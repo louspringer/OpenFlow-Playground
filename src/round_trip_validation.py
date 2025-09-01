@@ -21,9 +21,7 @@ class RoundTripValidator:
         self.validation_results = {}
         self.accuracy_metrics = {}
 
-    def validate_workflow_extraction(
-        self, source_file: str, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def validate_workflow_extraction(self, source_file: str, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Validate extracted workflow model against source code.
 
@@ -47,14 +45,10 @@ class RoundTripValidator:
             actual_elements = self._extract_actual_workflow_elements(source_ast)
 
             # Extract expected workflow elements from model
-            expected_elements = self._extract_expected_workflow_elements(
-                extracted_model
-            )
+            expected_elements = self._extract_expected_workflow_elements(extracted_model)
 
             # Compare and calculate accuracy
-            accuracy_results = self._calculate_accuracy(
-                actual_elements, expected_elements
-            )
+            accuracy_results = self._calculate_accuracy(actual_elements, expected_elements)
 
             # Generate validation report
             validation_report = {
@@ -64,10 +58,7 @@ class RoundTripValidator:
                 "missing_elements": accuracy_results["missing_elements"],
                 "extra_elements": accuracy_results["extra_elements"],
                 "validation_passed": accuracy_results["overall_accuracy"] >= 0.95,
-                "critical_paths_missing": len(
-                    accuracy_results["missing_critical_paths"]
-                )
-                > 0,
+                "critical_paths_missing": len(accuracy_results["missing_critical_paths"]) > 0,
             }
 
             self.validation_results[source_file] = validation_report
@@ -116,11 +107,7 @@ class RoundTripValidator:
                         {
                             "name": node.name,
                             "lineno": node.lineno,
-                            "methods": [
-                                n.name
-                                for n in node.body
-                                if isinstance(n, ast.FunctionDef)
-                            ],
+                            "methods": [n.name for n in node.body if isinstance(n, ast.FunctionDef)],
                         }
                     )
                 elif isinstance(node, ast.Call):
@@ -132,9 +119,7 @@ class RoundTripValidator:
                     for alias in node.names:
                         elements["imports"].append({"name": alias.name})
                 elif isinstance(node, ast.ImportFrom):
-                    elements["imports"].append(
-                        {"name": f"{node.module}.{node.names[0].name}"}
-                    )
+                    elements["imports"].append({"name": f"{node.module}.{node.names[0].name}"})
                 elif isinstance(node, (ast.If, ast.For, ast.While, ast.Try)):
                     elements["control_flow"].append({"type": type(node).__name__})
 
@@ -144,9 +129,7 @@ class RoundTripValidator:
             # Fallback to basic extraction if our tools aren't available
             return self._extract_actual_workflow_elements_basic(ast_tree)
 
-    def _extract_call_info_improved(
-        self, call_node: ast.Call
-    ) -> Optional[Dict[str, Any]]:
+    def _extract_call_info_improved(self, call_node: ast.Call) -> Optional[Dict[str, Any]]:
         """Extract detailed call information."""
         try:
             if isinstance(call_node.func, ast.Name):
@@ -169,9 +152,7 @@ class RoundTripValidator:
         except Exception:
             return None
 
-    def _extract_function_calls_improved(
-        self, function_node: ast.FunctionDef
-    ) -> List[str]:
+    def _extract_function_calls_improved(self, function_node: ast.FunctionDef) -> List[str]:
         """Extract function calls within a function with improved detection."""
         calls = []
         for node in ast.walk(function_node):
@@ -181,9 +162,7 @@ class RoundTripValidator:
                     calls.append(call_info["function"])
         return calls
 
-    def _extract_actual_workflow_elements_basic(
-        self, ast_tree: ast.AST
-    ) -> Dict[str, Any]:
+    def _extract_actual_workflow_elements_basic(self, ast_tree: ast.AST) -> Dict[str, Any]:
         """Basic fallback extraction method."""
         elements = {
             "functions": [],
@@ -208,27 +187,19 @@ class RoundTripValidator:
                     {
                         "name": node.name,
                         "lineno": node.lineno,
-                        "methods": [
-                            n.name for n in node.body if isinstance(n, ast.FunctionDef)
-                        ],
+                        "methods": [n.name for n in node.body if isinstance(n, ast.FunctionDef)],
                     }
                 )
             elif isinstance(node, ast.Call):
                 if hasattr(node.func, "id"):
-                    elements["calls"].append(
-                        {"function": node.func.id, "lineno": getattr(node, "lineno", 0)}
-                    )
+                    elements["calls"].append({"function": node.func.id, "lineno": getattr(node, "lineno", 0)})
             elif isinstance(node, ast.Import):
                 for alias in node.names:
                     elements["imports"].append({"name": alias.name})
             elif isinstance(node, ast.ImportFrom):
-                elements["imports"].append(
-                    {"name": f"{node.module}.{node.names[0].name}"}
-                )
+                elements["imports"].append({"name": f"{node.module}.{node.names[0].name}"})
             elif isinstance(node, (ast.If, ast.For, ast.While, ast.Try)):
-                elements["control_flow"].append(
-                    {"type": type(node).__name__, "lineno": getattr(node, "lineno", 0)}
-                )
+                elements["control_flow"].append({"type": type(node).__name__, "lineno": getattr(node, "lineno", 0)})
 
         return elements
 
@@ -240,9 +211,7 @@ class RoundTripValidator:
                 calls.append(node.func.id)
         return calls
 
-    def _extract_expected_workflow_elements(
-        self, model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _extract_expected_workflow_elements(self, model: Dict[str, Any]) -> Dict[str, Any]:
         """Extract expected workflow elements from extracted model."""
         # This would parse the extracted model format
         # For now, return a basic structure
@@ -254,14 +223,10 @@ class RoundTripValidator:
             "control_flow": model.get("control_flow", []),
         }
 
-    def _calculate_accuracy(
-        self, actual: Dict[str, Any], expected: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _calculate_accuracy(self, actual: Dict[str, Any], expected: Dict[str, Any]) -> Dict[str, Any]:
         """Calculate accuracy metrics between actual and expected elements."""
 
-        def calculate_element_accuracy(
-            actual_list: List, expected_list: List, key: str
-        ) -> float:
+        def calculate_element_accuracy(actual_list: List, expected_list: List, key: str) -> float:
             if not expected_list:
                 return 1.0 if not actual_list else 0.0
             if not actual_list:
@@ -270,9 +235,7 @@ class RoundTripValidator:
             # Handle different data structures for calls vs other elements
             if key == "function":  # For calls
                 actual_names = [item.get("function", str(item)) for item in actual_list]
-                expected_names = [
-                    item.get("function", str(item)) for item in expected_list
-                ]
+                expected_names = [item.get("function", str(item)) for item in expected_list]
             else:  # For functions, classes, imports, control_flow
                 actual_names = [item.get("name", str(item)) for item in actual_list]
                 expected_names = [item.get("name", str(item)) for item in expected_list]
@@ -281,30 +244,14 @@ class RoundTripValidator:
             return matches / len(expected_names) if expected_names else 0.0
 
         # Calculate accuracy for each element type
-        function_accuracy = calculate_element_accuracy(
-            actual["functions"], expected["functions"], "name"
-        )
-        class_accuracy = calculate_element_accuracy(
-            actual["classes"], expected["classes"], "name"
-        )
-        call_accuracy = calculate_element_accuracy(
-            actual["calls"], expected["calls"], "function"
-        )
-        import_accuracy = calculate_element_accuracy(
-            actual["imports"], expected["imports"], "name"
-        )
-        control_flow_accuracy = calculate_element_accuracy(
-            actual["control_flow"], expected["control_flow"], "type"
-        )
+        function_accuracy = calculate_element_accuracy(actual["functions"], expected["functions"], "name")
+        class_accuracy = calculate_element_accuracy(actual["classes"], expected["classes"], "name")
+        call_accuracy = calculate_element_accuracy(actual["calls"], expected["calls"], "function")
+        import_accuracy = calculate_element_accuracy(actual["imports"], expected["imports"], "name")
+        control_flow_accuracy = calculate_element_accuracy(actual["control_flow"], expected["control_flow"], "type")
 
         # Calculate overall accuracy
-        overall_accuracy = (
-            function_accuracy
-            + class_accuracy
-            + call_accuracy
-            + import_accuracy
-            + control_flow_accuracy
-        ) / 5
+        overall_accuracy = (function_accuracy + class_accuracy + call_accuracy + import_accuracy + control_flow_accuracy) / 5
 
         # Identify missing and extra elements
         missing_elements = []
@@ -321,15 +268,9 @@ class RoundTripValidator:
             actual_call_counts[func_name] = actual_call_counts.get(func_name, 0) + 1
 
         # Functions called more than 3 times are considered critical
-        critical_functions = [
-            func for func, count in actual_call_counts.items() if count > 3
-        ]
+        critical_functions = [func for func, count in actual_call_counts.items() if count > 3]
         for critical_func in critical_functions:
-            if not any(
-                (call.get("function") if isinstance(call, dict) else str(call))
-                == critical_func
-                for call in expected["calls"]
-            ):
+            if not any((call.get("function") if isinstance(call, dict) else str(call)) == critical_func for call in expected["calls"]):
                 missing_critical_paths.append(critical_func)
 
         return {

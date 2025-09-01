@@ -303,10 +303,7 @@ class TestOperationalMethodsGenerator:
         methods = generator.generate_operational_methods("TestClass")
 
         assert "async def get_module_status(self) -> ModuleHealth:" in methods
-        assert (
-            "async def get_module_capabilities(self) -> List[ModuleCapability]:"
-            in methods
-        )
+        assert "async def get_module_capabilities(self) -> List[ModuleCapability]:" in methods
         assert "async def is_healthy(self) -> bool:" in methods
         assert "async def get_health_indicators(self) -> Dict[str, Any]:" in methods
         assert "TestClass" in methods  # Class name should be included
@@ -318,10 +315,7 @@ class TestOperationalMethodsGenerator:
         methods = generator._generate_basic_operational_methods("TestClass")
 
         assert "async def get_module_status(self) -> ModuleHealth:" in methods
-        assert (
-            "async def get_module_capabilities(self) -> List[ModuleCapability]:"
-            in methods
-        )
+        assert "async def get_module_capabilities(self) -> List[ModuleCapability]:" in methods
         assert "TestClass" in methods
 
     @pytest.mark.asyncio
@@ -331,9 +325,7 @@ class TestOperationalMethodsGenerator:
         capabilities = await generator.get_module_capabilities()
 
         assert len(capabilities) == 2
-        assert any(
-            cap["name"] == "operational_methods_generation" for cap in capabilities
-        )
+        assert any(cap["name"] == "operational_methods_generation" for cap in capabilities)
         assert any(cap["name"] == "reflective_module_interface" for cap in capabilities)
 
 
@@ -354,9 +346,7 @@ class TestClassGeneratorIntegration:
         assert isinstance(generator.class_structure_generator, ClassStructureGenerator)
         assert isinstance(generator.method_validator, MethodValidator)
         assert isinstance(generator.method_completer, MethodCompleter)
-        assert isinstance(
-            generator.operational_methods_generator, OperationalMethodsGenerator
-        )
+        assert isinstance(generator.operational_methods_generator, OperationalMethodsGenerator)
 
     def test_class_generator_orchestration(self):
         """Test that ClassGenerator properly orchestrates its components."""
@@ -374,18 +364,10 @@ class TestClassGeneratorIntegration:
         generator = ClassGenerator()
 
         # Test each component's capabilities
-        structure_capabilities = (
-            await generator.class_structure_generator.get_module_capabilities()
-        )
-        validator_capabilities = (
-            await generator.method_validator.get_module_capabilities()
-        )
-        completer_capabilities = (
-            await generator.method_completer.get_module_capabilities()
-        )
-        operational_capabilities = (
-            await generator.operational_methods_generator.get_module_capabilities()
-        )
+        structure_capabilities = await generator.class_structure_generator.get_module_capabilities()
+        validator_capabilities = await generator.method_validator.get_module_capabilities()
+        completer_capabilities = await generator.method_completer.get_module_capabilities()
+        operational_capabilities = await generator.operational_methods_generator.get_module_capabilities()
 
         # Verify capabilities are reported
         assert len(structure_capabilities) > 0
@@ -414,9 +396,7 @@ class TestReflectiveModuleCompliance:
         source_lines = inspect.getsource(module_class).split("\n")
         line_count = len(source_lines)
 
-        assert (
-            line_count <= 200
-        ), f"{module_class.__name__} exceeds 200 lines: {line_count}"
+        assert line_count <= 200, f"{module_class.__name__} exceeds 200 lines: {line_count}"
 
     @pytest.mark.parametrize(
         "module_class",
@@ -429,9 +409,7 @@ class TestReflectiveModuleCompliance:
     )
     def test_module_inheritance_compliance(self, module_class):
         """Test that all modules inherit from BaseReflectiveModule."""
-        assert issubclass(
-            module_class, BaseReflectiveModule
-        ), f"{module_class.__name__} must inherit from BaseReflectiveModule"
+        assert issubclass(module_class, BaseReflectiveModule), f"{module_class.__name__} must inherit from BaseReflectiveModule"
 
     @pytest.mark.parametrize(
         "module_class",

@@ -69,9 +69,7 @@ class WorkflowAnalyzer:
             # Extract workflow patterns from the parsed data
             workflow_data = self._extract_workflow_patterns(source_path, artifact)
 
-            logger.info(
-                f"✅ Workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes"
-            )
+            logger.info(f"✅ Workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes")
             return workflow_data
 
         except Exception as e:
@@ -130,9 +128,7 @@ class WorkflowAnalyzer:
             )
 
             # Analyze methods for workflow patterns
-            method_nodes = self._analyze_method_workflow(
-                source_code, class_name, class_info
-            )
+            method_nodes = self._analyze_method_workflow(source_code, class_name, class_info)
             nodes.extend(method_nodes)
 
             # Connect class processing to first method
@@ -184,11 +180,7 @@ class WorkflowAnalyzer:
                 # Check if this node has no outgoing edges
                 has_outgoing = any(edge.from_node == node.name for edge in edges)
                 if not has_outgoing:
-                    edges.append(
-                        WorkflowEdge(
-                            from_node=node.name, to_node="End", label="Complete"
-                        )
-                    )
+                    edges.append(WorkflowEdge(from_node=node.name, to_node="End", label="Complete"))
 
         return {
             "source_path": source_path,
@@ -198,9 +190,7 @@ class WorkflowAnalyzer:
             "complexity": len(nodes) + len(edges),
         }
 
-    def _analyze_method_workflow(
-        self, source_code: str, class_name: str, class_info: Dict
-    ) -> List[WorkflowNode]:
+    def _analyze_method_workflow(self, source_code: str, class_name: str, class_info: Dict) -> List[WorkflowNode]:
         """Analyze individual methods for workflow patterns"""
         nodes = []
 
@@ -223,9 +213,7 @@ class WorkflowAnalyzer:
                 method_content = self._extract_method_content(source_code, method_start)
 
                 # Analyze method for control flow
-                method_nodes = self._analyze_method_control_flow(
-                    method_name, method_content
-                )
+                method_nodes = self._analyze_method_control_flow(method_name, method_content)
                 nodes.extend(method_nodes)
 
         return nodes
@@ -256,9 +244,7 @@ class WorkflowAnalyzer:
 
         return "\n".join(method_lines)
 
-    def _analyze_method_control_flow(
-        self, method_name: str, method_content: str
-    ) -> List[WorkflowNode]:
+    def _analyze_method_control_flow(self, method_name: str, method_content: str) -> List[WorkflowNode]:
         """Analyze method content for control flow patterns"""
         nodes = []
 
@@ -460,9 +446,7 @@ class WorkflowAnalyzer:
 
         return cleaned
 
-    def save_mermaid_diagram(
-        self, workflow_data: Dict[str, Any], output_path: str
-    ) -> str:
+    def save_mermaid_diagram(self, workflow_data: Dict[str, Any], output_path: str) -> str:
         """Save Mermaid activity diagram to file"""
 
         mermaid_syntax = self.generate_mermaid_activity_diagram(workflow_data)

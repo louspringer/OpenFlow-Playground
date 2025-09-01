@@ -5,8 +5,8 @@ This guide will help you deploy Snowflake Openflow infrastructure in under 30 mi
 ## Prerequisites
 
 1. **AWS CLI configured** with appropriate permissions
-2. **Snowflake account with admin access**
-3. **Python 3.6+** (for the setup wizard)
+1. **Snowflake account with admin access**
+1. **Python 3.6+** (for the setup wizard)
 
 ## Step 1: Snowflake Setup (5 minutes)
 
@@ -88,13 +88,13 @@ ALTER USER openflow_user SET DEFAULT_SECONDARY_ROLES = ('ALL');
    ./deploy.sh status
    ```
 
-2. **Monitor resources:**
+1. **Monitor resources:**
 
    ```bash
    ./monitor.sh
    ```
 
-3. **Test connectors** in Snowflake console
+1. **Test connectors** in Snowflake console
 
 ## Troubleshooting
 
@@ -156,9 +156,9 @@ The deployment creates a complete Openflow environment that connects your AWS in
 ## Next Steps
 
 1. **Test connectors** in Snowflake console
-2. **Configure data sources** in AWS
-3. **Set up data pipelines** using Openflow
-4. **Monitor performance** using the provided tools
+1. **Configure data sources** in AWS
+1. **Set up data pipelines** using Openflow
+1. **Monitor performance** using the provided tools
 
 ## Documentation
 
@@ -172,6 +172,6 @@ The deployment creates a complete Openflow environment that connects your AWS in
 - **AWS Support**: Contact AWS for infrastructure issues
 - **Security Issues**: Run `./scripts/security-check.sh` to validate
 
----
+______________________________________________________________________
 
 **Remember:** This setup wizard makes deployment easy and secure. No more manual configuration files!

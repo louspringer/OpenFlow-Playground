@@ -202,11 +202,11 @@ pytest -m "slow"
 ### **Development Setup**
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+1. Create a feature branch
+1. Make your changes
+1. Add tests for new functionality
+1. Ensure all tests pass
+1. Submit a pull request
 
 ### **Code Standards**
 
@@ -267,11 +267,11 @@ pytest -m "slow"
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+______________________________________________________________________
 
-**Status**: 🚀 **ACTIVE DEVELOPMENT**  
-**Version**: 0.1.0  
-**Python**: 3.9+  
-**License**: MIT  
+**Status**: 🚀 **ACTIVE DEVELOPMENT**\
+**Version**: 0.1.0\
+**Python**: 3.9+\
+**License**: MIT
 
 **Chase down hallucinations, unravel tangled logic, keep the output on the level!** 🕵️✨

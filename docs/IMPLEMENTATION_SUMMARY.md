@@ -76,10 +76,10 @@ python ast_to_neo4j_converter.py ast_models_filtered.json
 The converter provides 5 sample Cypher queries:
 
 1. **High complexity files**: `WHERE f.complexity_score > 50`
-2. **Files with many functions**: `count(func) > 5`
-3. **Import dependencies**: `MATCH (f)-[:IMPORTS]->(imp)`
-4. **Files by type**: `WHERE f.file_type = 'python'`
-5. **Complex classes**: `WHERE f.complexity_score > 30`
+1. **Files with many functions**: `count(func) > 5`
+1. **Import dependencies**: `MATCH (f)-[:IMPORTS]->(imp)`
+1. **Files by type**: `WHERE f.file_type = 'python'`
+1. **Complex classes**: `WHERE f.complexity_score > 30`
 
 ## 🔧 **Setup Instructions:**
 
@@ -138,9 +138,9 @@ profiler_ast_correlation = {
 ### **Next Steps for Profiler Integration:**
 
 1. **Profiler data format analysis** (your key requirement!)
-2. **Real-time correlation** between profiler and AST data
-3. **Performance optimization** queries
-4. **Advanced analytics** and machine learning
+1. **Real-time correlation** between profiler and AST data
+1. **Performance optimization** queries
+1. **Advanced analytics** and machine learning
 
 ## 🚀 **Ready for Advanced Features:**
 
@@ -183,6 +183,6 @@ We've successfully **implemented the immediate actions** from our Ghostbusters a
 
 **🚀 READY FOR GRAPH DATABASE ANALYSIS!** 🚀
 
----
+______________________________________________________________________
 
 _"We've made it so!"_ - The implementation is complete and ready for the next phase of advanced features and profiler integration.

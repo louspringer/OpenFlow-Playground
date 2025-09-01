@@ -55,9 +55,7 @@ class SecurityScanResult:
 class GitGuardianSecurityScanner:
     """Security scanner using GitGuardian API"""
 
-    def __init__(
-        self, api_token: str, base_url: str = "https://api.gitguardian.com/v1"
-    ):
+    def __init__(self, api_token: str, base_url: str = "https://api.gitguardian.com/v1"):
         self.api_token = api_token
         self.base_url = base_url
         self.headers = {"Authorization": f"Token {api_token}"}
@@ -90,18 +88,14 @@ class GitGuardianSecurityScanner:
     def get_incident_details(self, incident_id: int) -> Optional[dict[str, Any]]:
         """Get detailed information about a specific incident"""
         try:
-            response = requests.get(
-                f"{self.base_url}/incidents/secrets/{incident_id}", headers=self.headers
-            )
+            response = requests.get(f"{self.base_url}/incidents/secrets/{incident_id}", headers=self.headers)
             response.raise_for_status()
             return response.json()
         except Exception as e:
             logger.error(f"Failed to get incident details for {incident_id}: {e}")
             return None
 
-    def analyze_security_issues(
-        self, incidents: list[dict[str, Any]]
-    ) -> SecurityScanResult:
+    def analyze_security_issues(self, incidents: list[dict[str, Any]]) -> SecurityScanResult:
         """Analyze security incidents and provide actionable insights"""
         security_issues = []
 
@@ -137,9 +131,7 @@ class GitGuardianSecurityScanner:
         actionable_items = self._generate_actionable_items(security_issues)
 
         # Create summary
-        summary = self._create_summary(
-            security_issues, high_severity, medium_severity, low_severity
-        )
+        summary = self._create_summary(security_issues, high_severity, medium_severity, low_severity)
 
         return SecurityScanResult(
             timestamp=datetime.utcnow().isoformat(),
@@ -194,42 +186,24 @@ class GitGuardianSecurityScanner:
         # Generate specific actions
         for detector_name, detector_issues in issue_types.items():
             if detector_name == "company_email_password":
-                actionable_items.append(
-                    f"Review {len(detector_issues)} files with exposed email credentials"
-                )
-                actionable_items.append(
-                    "Implement secure credential management for email services"
-                )
+                actionable_items.append(f"Review {len(detector_issues)} files with exposed email credentials")
+                actionable_items.append("Implement secure credential management for email services")
             elif detector_name == "aws_access_key_id":
-                actionable_items.append(
-                    f"Rotate {len(detector_issues)} exposed AWS access keys"
-                )
-                actionable_items.append(
-                    "Review AWS IAM policies and implement least privilege"
-                )
+                actionable_items.append(f"Rotate {len(detector_issues)} exposed AWS access keys")
+                actionable_items.append("Review AWS IAM policies and implement least privilege")
             elif detector_name == "github_token":
-                actionable_items.append(
-                    f"Revoke {len(detector_issues)} exposed GitHub tokens"
-                )
-                actionable_items.append(
-                    "Implement secure token management and rotation"
-                )
+                actionable_items.append(f"Revoke {len(detector_issues)} exposed GitHub tokens")
+                actionable_items.append("Implement secure token management and rotation")
 
         # Add general actions
         if issues:
-            actionable_items.append(
-                "Update security policies to prevent credential exposure"
-            )
-            actionable_items.append(
-                "Implement pre-commit hooks for credential scanning"
-            )
+            actionable_items.append("Update security policies to prevent credential exposure")
+            actionable_items.append("Implement pre-commit hooks for credential scanning")
             actionable_items.append("Schedule security training for development team")
 
         return actionable_items
 
-    def _create_summary(
-        self, issues: list[SecurityIssue], high: int, medium: int, low: int
-    ) -> str:
+    def _create_summary(self, issues: list[SecurityIssue], high: int, medium: int, low: int) -> str:
         """Create a summary of the security scan results"""
         if not issues:
             return "No security issues detected in the specified time period."
@@ -242,14 +216,10 @@ class GitGuardianSecurityScanner:
         ]
 
         if high > 0:
-            summary_parts.append(
-                "⚠️  CRITICAL: High severity issues require immediate attention!"
-            )
+            summary_parts.append("⚠️  CRITICAL: High severity issues require immediate attention!")
 
         if medium > 0:
-            summary_parts.append(
-                "⚠️  Medium severity issues should be addressed promptly."
-            )
+            summary_parts.append("⚠️  Medium severity issues should be addressed promptly.")
 
         return "\n".join(summary_parts)
 
@@ -360,13 +330,9 @@ def main():
     """Main function for command-line usage"""
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Security Scanner for OpenFlow-Playground"
-    )
+    parser = argparse.ArgumentParser(description="Security Scanner for OpenFlow-Playground")
     parser.add_argument("--api-token", help="GitGuardian API token (or use 1Password)")
-    parser.add_argument(
-        "--days-back", type=int, default=30, help="Number of days to look back"
-    )
+    parser.add_argument("--days-back", type=int, default=30, help="Number of days to look back")
     parser.add_argument("--output", help="Output file for results")
 
     args = parser.parse_args()

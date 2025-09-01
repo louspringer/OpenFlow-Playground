@@ -83,10 +83,7 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
         elif metric == "module_functions_count":
             values = [len(result.get("module_functions", [])) for result in results]
         elif metric == "total_lines":
-            values = [
-                result.get("file_structure", {}).get("total_lines", 0)
-                for result in results
-            ]
+            values = [result.get("file_structure", {}).get("total_lines", 0) for result in results]
         else:
             values = [result.get(metric, "N/A") for result in results]
 
@@ -129,9 +126,7 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
     else:
         for comp_name in first_components:
             if comp_name not in last_components:
-                differences_found.append(
-                    f"Component '{comp_name}' missing in later run"
-                )
+                differences_found.append(f"Component '{comp_name}' missing in later run")
             else:
                 first_comp = first_components[comp_name]
                 last_comp = last_components[comp_name]
@@ -140,9 +135,7 @@ def test_parser_determinism(file_path: str, num_runs: int = 5) -> None:
                 first_methods = len(first_comp.get("methods", []))
                 last_methods = len(last_comp.get("methods", []))
                 if first_methods != last_methods:
-                    differences_found.append(
-                        f"Component '{comp_name}' method count differs: {first_methods} vs {last_methods}"
-                    )
+                    differences_found.append(f"Component '{comp_name}' method count differs: {first_methods} vs {last_methods}")
 
     # Check module functions
     first_functions = first_result.get("module_functions", [])

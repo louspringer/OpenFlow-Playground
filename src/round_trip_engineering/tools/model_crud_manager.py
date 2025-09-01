@@ -34,26 +34,20 @@ class ItemSchema(BaseModel):
     priority: str = Field(default="medium", description="Item priority")
     status: str = Field(default="pending", description="Item status")
     created_at: int = Field(description="Creation timestamp")
-    data: Dict[str, Any] = Field(
-        default_factory=dict, description="Additional item data"
-    )
+    data: Dict[str, Any] = Field(default_factory=dict, description="Additional item data")
 
 
 class UpdateSchema(BaseModel):
     """Generic update schema structure."""
 
     data: Dict[str, Any] = Field(description="Update data")
-    metadata: Dict[str, Any] = Field(
-        default_factory=dict, description="Update metadata"
-    )
+    metadata: Dict[str, Any] = Field(default_factory=dict, description="Update metadata")
 
 
 class ModelCrudManager(BaseReflectiveModule):
     """JSON-based model CRUD operations with schema validation and backup management."""
 
-    def __init__(
-        self, model_file: str = "model.json", backup_dir: str = "backups"
-    ) -> None:
+    def __init__(self, model_file: str = "model.json", backup_dir: str = "backups") -> None:
         super().__init__()
         self.logger = logging.getLogger(__name__)
         self.model_file = Path(model_file)
@@ -350,9 +344,7 @@ class ModelCrudManager(BaseReflectiveModule):
 
             # Remove item
             if collection in model_data and isinstance(model_data[collection], list):
-                model_data[collection] = [
-                    item for item in model_data[collection] if item.get("id") != item_id
-                ]
+                model_data[collection] = [item for item in model_data[collection] if item.get("id") != item_id]
 
             # Validate
             self.validate_json(model_data)
@@ -435,9 +427,7 @@ class ModelCrudManager(BaseReflectiveModule):
             self.logger.error(f"❌ Failed to remove section: {e}")
             raise
 
-    def add_backlog_item(
-        self, item_id: str, title: str, description: str, priority: str = "medium"
-    ) -> bool:
+    def add_backlog_item(self, item_id: str, title: str, description: str, priority: str = "medium") -> bool:
         """Add a new backlog item using internal schema validation."""
         try:
             # Create backup first
@@ -524,14 +514,7 @@ class ModelCrudManager(BaseReflectiveModule):
                 content = f.read()
 
             # Use jq Python package to remove requirement
-            updated_content = (
-                jq.compile(
-                    ".requirements_traceability = [.[] | select(.id != $req_id)]"
-                )
-                .input(content)
-                .input(req_id)
-                .first()
-            )
+            updated_content = jq.compile(".requirements_traceability = [.[] | select(.id != $req_id)]").input(content).input(req_id).first()
 
             # Parse and validate
             model_data = json.loads(updated_content)
@@ -561,12 +544,7 @@ class ModelCrudManager(BaseReflectiveModule):
                 content = f.read()
 
             # Use jq Python package to remove backlog item
-            updated_content = (
-                jq.compile(".backlog = [.[] | select(.id != $item_id)]")
-                .input(content)
-                .input(item_id)
-                .first()
-            )
+            updated_content = jq.compile(".backlog = [.[] | select(.id != $item_id)]").input(content).input(item_id).first()
 
             # Parse and validate
             model_data = json.loads(updated_content)
@@ -596,12 +574,7 @@ class ModelCrudManager(BaseReflectiveModule):
                 content = f.read()
 
             # Use jq Python package to add domain
-            updated_content = (
-                jq.compile(f'.domains["{domain_name}"] = $domain_config')
-                .input(content)
-                .input(domain_config)
-                .first()
-            )
+            updated_content = jq.compile(f'.domains["{domain_name}"] = $domain_config').input(content).input(domain_config).first()
 
             # Parse and validate
             model_data = json.loads(updated_content)
@@ -631,9 +604,7 @@ class ModelCrudManager(BaseReflectiveModule):
                 content = f.read()
 
             # Use jq Python package to remove domain
-            updated_content = (
-                jq.compile(f'del(.domains["{domain_name}"])').input(content).first()
-            )
+            updated_content = jq.compile(f'del(.domains["{domain_name}"])').input(content).first()
 
             # Parse and validate
             model_data = json.loads(updated_content)
@@ -692,9 +663,7 @@ class ModelCrudManager(BaseReflectiveModule):
             validation_results = {
                 "total_mappings": len(self.vocabulary_mappings),
                 "standard_terms": list(self.vocabulary_mappings.keys()),
-                "total_variations": sum(
-                    len(variations) for variations in self.vocabulary_mappings.values()
-                ),
+                "total_variations": sum(len(variations) for variations in self.vocabulary_mappings.values()),
                 "conflicts": [],
                 "suggestions": [],
             }
@@ -704,9 +673,7 @@ class ModelCrudManager(BaseReflectiveModule):
             for term, variations in self.vocabulary_mappings.items():
                 for variation in variations:
                     if variation in all_variations:
-                        validation_results["conflicts"].append(
-                            f"Duplicate variation: {variation}"
-                        )
+                        validation_results["conflicts"].append(f"Duplicate variation: {variation}")
                     all_variations.append(variation)
 
             self._track_success()
@@ -814,9 +781,7 @@ def main():
             if not all([args.id, args.description]):
                 print("❌ --id and --description required for add-item")
                 return 1
-            success = manager.add_item(
-                args.id, args.description, args.title, args.priority, args.collection
-            )
+            success = manager.add_item(args.id, args.description, args.title, args.priority, args.collection)
             print(f"✅ Item added to {args.collection}: {success}")
 
         elif args.action == "update-section":

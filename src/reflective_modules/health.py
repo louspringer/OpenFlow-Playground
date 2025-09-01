@@ -116,9 +116,7 @@ class HealthMonitor:
     """Utility class for monitoring module health"""
 
     @staticmethod
-    def create_healthy_status(
-        message: str, capabilities: List[ModuleCapability], **kwargs
-    ) -> ModuleHealth:
+    def create_healthy_status(message: str, capabilities: List[ModuleCapability], **kwargs) -> ModuleHealth:
         """Create a healthy status for a module"""
         return ModuleHealth(
             status=ModuleStatus.AVAILABLE,
@@ -148,9 +146,7 @@ class HealthMonitor:
         )
 
     @staticmethod
-    def create_error_status(
-        message: str, capabilities: List[ModuleCapability], error_details: str, **kwargs
-    ) -> ModuleHealth:
+    def create_error_status(message: str, capabilities: List[ModuleCapability], error_details: str, **kwargs) -> ModuleHealth:
         """Create an error status for a module"""
         return ModuleHealth(
             status=ModuleStatus.ERROR,

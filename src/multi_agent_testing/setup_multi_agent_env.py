@@ -114,9 +114,7 @@ def setup_multi_agent_environment():
         print()
         print("💾 Updating .env file...")
         if working_credentials or test_results:
-            credentials_to_use = (
-                working_credentials if working_credentials else test_results
-            )
+            credentials_to_use = working_credentials if working_credentials else test_results
             success = api_manager.update_env_file(credentials_to_use, backup=True)
 
             if success:
@@ -221,12 +219,8 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Multi-Agent Environment Setup")
-    parser.add_argument(
-        "--check", action="store_true", help="Check readiness without setup"
-    )
-    parser.add_argument(
-        "--setup", action="store_true", help="Force setup even if already configured"
-    )
+    parser.add_argument("--check", action="store_true", help="Check readiness without setup")
+    parser.add_argument("--setup", action="store_true", help="Force setup even if already configured")
 
     args = parser.parse_args()
 

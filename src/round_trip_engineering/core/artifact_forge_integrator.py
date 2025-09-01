@@ -21,9 +21,7 @@ class ArtifactForgeIntegrator:
         self.workflow_analyzer = WorkflowAnalyzer()
         logger.info("✅ ArtifactForge integrator initialized")
 
-    def analyze_source_with_artifact_forge(
-        self, source_path: str, target_language: str = "python"
-    ) -> Dict[str, Any]:
+    def analyze_source_with_artifact_forge(self, source_path: str, target_language: str = "python") -> Dict[str, Any]:
         """
         Analyze source code with ArtifactForge and generate enhanced model.
 
@@ -38,15 +36,11 @@ class ArtifactForgeIntegrator:
             logger.info(f"🔍 Starting ArtifactForge-integrated analysis: {source_path}")
 
             # Step 1: Use ArtifactForge for enhanced AST parsing and workflow analysis
-            logger.info(
-                "🔄 Step 1: ArtifactForge enhanced AST parsing and workflow analysis"
-            )
+            logger.info("🔄 Step 1: ArtifactForge enhanced AST parsing and workflow analysis")
             workflow_data = self.workflow_analyzer.analyze_workflow(source_path)
 
             if not workflow_data.get("workflow_analysis_successful", False):
-                logger.warning(
-                    "⚠️ Workflow analysis failed, proceeding with basic parsing"
-                )
+                logger.warning("⚠️ Workflow analysis failed, proceeding with basic parsing")
 
             # Step 2: Extract enhanced model from source using EnhancedArtifactParser
             logger.info("🔄 Step 2: Enhanced AST model extraction")
@@ -58,21 +52,13 @@ class ArtifactForgeIntegrator:
             ast_result = enhanced_parser.parse_artifact(source_path, "python")
 
             if not ast_result.parsed_data:
-                logger.warning(
-                    "⚠️ Enhanced AST parsing failed, falling back to basic model"
-                )
+                logger.warning("⚠️ Enhanced AST parsing failed, falling back to basic model")
                 # Fallback to simple model
-                extracted_model = self._create_fallback_model(
-                    source_path, workflow_data
-                )
+                extracted_model = self._create_fallback_model(source_path, workflow_data)
             else:
                 # Use the rich enhanced AST data
-                logger.info(
-                    f"✅ Enhanced AST parsing successful: {len(ast_result.parsed_data.get('classes', []))} classes found"
-                )
-                extracted_model = self._create_enhanced_ast_model(
-                    source_path, workflow_data, ast_result
-                )
+                logger.info(f"✅ Enhanced AST parsing successful: {len(ast_result.parsed_data.get('classes', []))} classes found")
+                extracted_model = self._create_enhanced_ast_model(source_path, workflow_data, ast_result)
 
             logger.info("✅ ArtifactForge-integrated analysis completed successfully")
             return extracted_model
@@ -85,9 +71,7 @@ class ArtifactForgeIntegrator:
                 "artifactorge_integration": "failed",
             }
 
-    def _create_fallback_model(
-        self, source_path: str, workflow_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _create_fallback_model(self, source_path: str, workflow_data: Dict[str, Any]) -> Dict[str, Any]:
         """Create a fallback model when enhanced AST parsing fails."""
         return {
             "components": [
@@ -105,9 +89,7 @@ class ArtifactForgeIntegrator:
             "workflow_analysis": workflow_data,
         }
 
-    def _create_enhanced_ast_model(
-        self, source_path: str, workflow_data: Dict[str, Any], ast_result: Any
-    ) -> Dict[str, Any]:
+    def _create_enhanced_ast_model(self, source_path: str, workflow_data: Dict[str, Any], ast_result: Any) -> Dict[str, Any]:
         """Create an enhanced AST model from successful parsing."""
         components = []
         for cls in ast_result.parsed_data.get("classes", []):

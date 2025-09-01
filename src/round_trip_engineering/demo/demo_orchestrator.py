@@ -104,9 +104,7 @@ class DemoOrchestrator(BaseReflectiveModule):
                 "analysis_results": results,
                 "workflow_analysis": workflow_analysis,
                 "system_status": system_status,
-                "round_trip_successful": results.get("enhancement_metrics", {}).get(
-                    "code_generation_successful", False
-                ),
+                "round_trip_successful": results.get("enhancement_metrics", {}).get("code_generation_successful", False),
             }
 
             self.current_demo_step = "completed"
@@ -160,9 +158,7 @@ class DemoOrchestrator(BaseReflectiveModule):
                 "analysis_results": results,
                 "workflow_analysis": workflow_analysis,
                 "vocabulary_alignment": vocabulary_status,
-                "round_trip_successful": results.get("enhancement_metrics", {}).get(
-                    "code_generation_successful", False
-                ),
+                "round_trip_successful": results.get("enhancement_metrics", {}).get("code_generation_successful", False),
             }
 
             self.current_demo_step = "completed"
@@ -202,12 +198,8 @@ class DemoOrchestrator(BaseReflectiveModule):
                 demo_file = self._create_performance_demo_python_file(i)
 
                 # Run the full workflow
-                analysis_results = self.round_trip_system.analyze_and_generate_code(
-                    demo_file
-                )
-                workflow_analysis = self.round_trip_system.get_workflow_analysis(
-                    demo_file
-                )
+                analysis_results = self.round_trip_system.analyze_and_generate_code(demo_file)
+                workflow_analysis = self.round_trip_system.get_workflow_analysis(demo_file)
 
                 iteration_duration = time.time() - iteration_start
                 results.append(
@@ -215,13 +207,9 @@ class DemoOrchestrator(BaseReflectiveModule):
                         "iteration": i + 1,
                         "duration": iteration_duration,
                         "source_file": demo_file,
-                        "analysis_successful": analysis_results.get(
-                            "enhancement_metrics", {}
-                        ).get("code_generation_successful", False),
+                        "analysis_successful": analysis_results.get("enhancement_metrics", {}).get("code_generation_successful", False),
                         "workflow_nodes": len(workflow_analysis.get("nodes", [])),
-                        "enhanced_ast_classes": analysis_results.get(
-                            "enhancement_metrics", {}
-                        ).get("enhanced_ast_classes", 0),
+                        "enhanced_ast_classes": analysis_results.get("enhancement_metrics", {}).get("enhanced_ast_classes", 0),
                     }
                 )
 
@@ -236,9 +224,7 @@ class DemoOrchestrator(BaseReflectiveModule):
                 "iterations": iterations,
                 "average_iteration_time": avg_iteration_time,
                 "results": results,
-                "performance_score": (
-                    "excellent" if avg_iteration_time < 2.0 else "good"
-                ),
+                "performance_score": ("excellent" if avg_iteration_time < 2.0 else "good"),
             }
 
             self.current_demo_step = "completed"
@@ -553,9 +539,7 @@ if __name__ == "__main__":
 
         return demo_file
 
-    async def _validate_vocabulary_alignment(
-        self, analysis_results: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    async def _validate_vocabulary_alignment(self, analysis_results: Dict[str, Any]) -> Dict[str, Any]:
         """Validate vocabulary alignment for the analysis results."""
         try:
             # This would normally use the vocabulary aligner

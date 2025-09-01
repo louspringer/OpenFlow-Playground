@@ -37,15 +37,11 @@ class TestProviderType:
     def test_provider_detection(self):
         """Test provider detection logic."""
         # Test OpenAI detection
-        item = APIKeyItem(
-            id="test-id", title="OpenAI API Key", category="login", provider="openai"
-        )
+        item = APIKeyItem(id="test-id", title="OpenAI API Key", category="login", provider="openai")
         assert item.provider == ProviderType.OPENAI
 
         # Test Anthropic detection
-        item = APIKeyItem(
-            id="test-id", title="Claude API Key", category="login", provider="anthropic"
-        )
+        item = APIKeyItem(id="test-id", title="Claude API Key", category="login", provider="anthropic")
         assert item.provider == ProviderType.ANTHROPIC
 
 
@@ -160,9 +156,7 @@ class TestDiscoveryResult:
     def test_create_discovery_result(self):
         """Test creating a DiscoveryResult."""
         api_keys = [
-            APIKeyItem(
-                id="key1", title="Key 1", category="login", provider=ProviderType.OPENAI
-            ),
+            APIKeyItem(id="key1", title="Key 1", category="login", provider=ProviderType.OPENAI),
             APIKeyItem(
                 id="key2",
                 title="Key 2",

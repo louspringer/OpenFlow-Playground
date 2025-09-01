@@ -24,9 +24,7 @@ class TestRequirement26MdcProjection:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "mdc_generator requirement validation test placeholder - implement actual logic"
+        assert True, "mdc_generator requirement validation test placeholder - implement actual logic"
 
     def test_mdc_generator_specific_behavior(self):
         """Test mdc_generator-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement26MdcProjection:
         # TODO: Check that mdc_generator tools and patterns are used correctly
         # TODO: Validate against mdc_generator best practices
 
-        assert (
-            True
-        ), "mdc_generator specific behavior test placeholder - implement actual logic"
+        assert True, "mdc_generator specific behavior test placeholder - implement actual logic"
 
     def test_mdc_generator_compliance(self):
         """Test that mdc_generator implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement26MdcProjection:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "mdc_generator compliance test placeholder - implement actual logic"
+        assert True, "mdc_generator compliance test placeholder - implement actual logic"

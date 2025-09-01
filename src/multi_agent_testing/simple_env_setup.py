@@ -52,12 +52,7 @@ def check_api_keys():
 
     for service, env_var in api_keys.items():
         value = os.getenv(env_var)
-        if (
-            value
-            and value != "YOUR_API_KEY"
-            and not value.startswith("YOUR_")
-            and value.strip()
-        ):
+        if value and value != "YOUR_API_KEY" and not value.startswith("YOUR_") and value.strip():
             available_keys.append(service)
             preview = value[:8] + "..." if len(value) > 8 else value
             print(f"  ✅ {service}: {preview}")
@@ -93,15 +88,11 @@ def setup_multi_agent_environment():
         working_models = []
 
         if "OpenAI" in available_keys:
-            working_models.extend(
-                ["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"]
-            )
+            working_models.extend(["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"])
             print("🔑 OpenAI models available")
 
         if "Anthropic" in available_keys:
-            working_models.extend(
-                ["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"]
-            )
+            working_models.extend(["claude_3_5_sonnet", "claude_3_haiku", "claude_3_opus"])
             print("🔑 Anthropic models available")
 
         if "Google/Gemini" in available_keys:
@@ -129,9 +120,7 @@ def setup_multi_agent_environment():
             print("🔑 OpenRouter models available")
 
         if "Azure" in available_keys:
-            working_models.extend(
-                ["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"]
-            )
+            working_models.extend(["gpt4_vision", "gpt5", "gpt4o", "gpt4o_mini", "gpt3_5_turbo"])
             print("🔑 Azure OpenAI models available")
 
         if "Unknown/Generic" in available_keys:
@@ -189,12 +178,7 @@ def test_multi_agent_readiness():
             if os.getenv(var):
                 value = os.getenv(var)
                 preview = value[:8] + "..." if len(value) > 8 else value
-                if (
-                    value
-                    and value != "YOUR_API_KEY"
-                    and not value.startswith("YOUR_")
-                    and value.strip()
-                ):
+                if value and value != "YOUR_API_KEY" and not value.startswith("YOUR_") and value.strip():
                     print(f"  ✅ {var}: {preview} (REAL)")
                     real_keys += 1
                     ready = True
@@ -224,12 +208,8 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Simple Multi-Agent Environment Setup")
-    parser.add_argument(
-        "--check", action="store_true", help="Check readiness without setup"
-    )
-    parser.add_argument(
-        "--setup", action="store_true", help="Force setup even if already configured"
-    )
+    parser.add_argument("--check", action="store_true", help="Check readiness without setup")
+    parser.add_argument("--setup", action="store_true", help="Force setup even if already configured")
 
     args = parser.parse_args()
 

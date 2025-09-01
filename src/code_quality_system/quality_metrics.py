@@ -142,18 +142,14 @@ class QualityMetricsCalculator:
     def __init__(self, project_path: Path):
         self.project_path = project_path
 
-    def calculate_code_quality_score(
-        self, flake8_issues: list[dict[str, Any]]
-    ) -> QualityScore:
+    def calculate_code_quality_score(self, flake8_issues: list[dict[str, Any]]) -> QualityScore:
         """Calculate code quality score from flake8 issues"""
         if not flake8_issues:
             return QualityScore("code_quality", 100.0, weight=2.0)
 
         # Penalize based on number and severity of issues
         total_issues = len(flake8_issues)
-        critical_issues = len(
-            [i for i in flake8_issues if i.get("priority") == "critical"]
-        )
+        critical_issues = len([i for i in flake8_issues if i.get("priority") == "critical"])
         high_issues = len([i for i in flake8_issues if i.get("priority") == "high"])
 
         # Base score starts at 100
@@ -179,18 +175,14 @@ class QualityMetricsCalculator:
             },
         )
 
-    def calculate_security_score(
-        self, security_issues: list[dict[str, Any]]
-    ) -> QualityScore:
+    def calculate_security_score(self, security_issues: list[dict[str, Any]]) -> QualityScore:
         """Calculate security score from security analysis"""
         if not security_issues:
             return QualityScore("security", 100.0, weight=3.0)
 
         # Security issues are heavily weighted
         total_issues = len(security_issues)
-        critical_issues = len(
-            [i for i in security_issues if i.get("priority") == "critical"]
-        )
+        critical_issues = len([i for i in security_issues if i.get("priority") == "critical"])
         high_issues = len([i for i in security_issues if i.get("priority") == "high"])
 
         score = 100.0
@@ -224,9 +216,7 @@ class QualityMetricsCalculator:
             details={"coverage_percentage": coverage_percentage},
         )
 
-    def calculate_performance_score(
-        self, performance_metrics: dict[str, Any]
-    ) -> QualityScore:
+    def calculate_performance_score(self, performance_metrics: dict[str, Any]) -> QualityScore:
         """Calculate performance score from various metrics"""
         # This is a placeholder - implement based on your performance metrics
         score = 100.0
@@ -238,9 +228,7 @@ class QualityMetricsCalculator:
 
         score = max(0.0, score)
 
-        return QualityScore(
-            "performance", score, weight=1.0, details=performance_metrics
-        )
+        return QualityScore("performance", score, weight=1.0, details=performance_metrics)
 
     def calculate_all_metrics(self, analysis_results: dict[str, Any]) -> QualityMetrics:
         """Calculate all quality metrics from analysis results"""
@@ -248,27 +236,19 @@ class QualityMetricsCalculator:
 
         # Calculate individual scores
         if "flake8_issues" in analysis_results:
-            code_quality = self.calculate_code_quality_score(
-                analysis_results["flake8_issues"]
-            )
+            code_quality = self.calculate_code_quality_score(analysis_results["flake8_issues"])
             metrics.add_score(code_quality)
 
         if "security_issues" in analysis_results:
-            security = self.calculate_security_score(
-                analysis_results["security_issues"]
-            )
+            security = self.calculate_security_score(analysis_results["security_issues"])
             metrics.add_score(security)
 
         if "coverage_percentage" in analysis_results:
-            coverage = self.calculate_test_coverage_score(
-                analysis_results["coverage_percentage"]
-            )
+            coverage = self.calculate_test_coverage_score(analysis_results["coverage_percentage"])
             metrics.add_score(coverage)
 
         if "performance_metrics" in analysis_results:
-            performance = self.calculate_performance_score(
-                analysis_results["performance_metrics"]
-            )
+            performance = self.calculate_performance_score(analysis_results["performance_metrics"])
             metrics.add_score(performance)
 
         return metrics

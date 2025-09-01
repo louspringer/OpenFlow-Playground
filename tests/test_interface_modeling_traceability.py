@@ -18,25 +18,19 @@ class TestInterfaceModelingTraceability:
         """Test that the interface modeling traceability requirement is properly implemented."""
         # TODO: Implement actual validation logic
         # This should validate that interface-test mapping works
-        assert (
-            True
-        ), "interface modeling traceability requirement validation test placeholder - implement actual logic"
+        assert True, "interface modeling traceability requirement validation test placeholder - implement actual logic"
 
     def test_interface_modeling_traceability_specific_behavior(self):
         """Test specific behavior of interface modeling traceability."""
         # TODO: Implement specific behavior testing
         # This should test the interface-test mapping and validation system
-        assert (
-            True
-        ), "interface modeling traceability specific behavior test placeholder - implement actual logic"
+        assert True, "interface modeling traceability specific behavior test placeholder - implement actual logic"
 
     def test_interface_modeling_traceability_compliance(self):
         """Test compliance with interface modeling traceability requirements."""
         # TODO: Implement compliance testing
         # This should ensure bidirectional traceability is maintained
-        assert (
-            True
-        ), "interface modeling traceability compliance test placeholder - implement actual logic"
+        assert True, "interface modeling traceability compliance test placeholder - implement actual logic"
 
 
 if __name__ == "__main__":

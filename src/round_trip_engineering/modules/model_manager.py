@@ -45,9 +45,7 @@ class ModelManager:
 
     def create_model_from_design(self, design_spec: dict[str, Any]) -> DesignModel:
         """Create a model directly from design specification (NO reverse engineering)"""
-        logger.info(
-            f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}"
-        )
+        logger.info(f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}")
 
         # Extract design components
         components = []
@@ -73,9 +71,7 @@ class ModelManager:
 
         # Store the model
         self.design_models[design_model.name] = design_model
-        logger.info(
-            f"✅ Created model: {design_model.name} with {len(components)} components"
-        )
+        logger.info(f"✅ Created model: {design_model.name} with {len(components)} components")
 
         return design_model
 

@@ -37,9 +37,7 @@ class PyreverseAnalyzer:
     def __init__(self, output_dir: str = "generated_diagrams"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
-        logger.info(
-            f"Pyreverse analyzer initialized with output directory: {self.output_dir}"
-        )
+        logger.info(f"Pyreverse analyzer initialized with output directory: {self.output_dir}")
 
     def analyze_module(self, source_path: str) -> Dict[str, Any]:
         """
@@ -80,9 +78,7 @@ class PyreverseAnalyzer:
 
                 # Collect generated files
                 generated_files = list(temp_path.glob("*.dot"))
-                logger.info(
-                    f"✅ Pyreverse analysis completed. Generated {len(generated_files)} files"
-                )
+                logger.info(f"✅ Pyreverse analysis completed. Generated {len(generated_files)} files")
 
                 # Copy files to our output directory
                 result_files = []
@@ -124,9 +120,7 @@ class PyreverseAnalyzer:
                 if isinstance(node, ast.ClassDef):
                     class_info = {
                         "name": node.name,
-                        "bases": [
-                            base.id for base in node.bases if isinstance(base, ast.Name)
-                        ],
+                        "bases": [base.id for base in node.bases if isinstance(base, ast.Name)],
                         "methods": [],
                         "attributes": [],
                         "docstring": ast.get_docstring(node) or "",
@@ -164,9 +158,7 @@ class PlantUMLGenerator:
         self.server = plantuml.PlantUML(url=server_url)
         logger.info(f"PlantUML generator initialized with server: {server_url}")
 
-    def generate_activity_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> str:
+    def generate_activity_diagram(self, class_structure: Dict[str, Any], output_path: str) -> str:
         """
         Generate PlantUML activity diagram from class structure
 
@@ -264,9 +256,7 @@ class PlantUMLGenerator:
 
         return "\n".join(plantuml_lines)
 
-    def generate_sequence_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> str:
+    def generate_sequence_diagram(self, class_structure: Dict[str, Any], output_path: str) -> str:
         """Generate PlantUML sequence diagram from class structure"""
         logger.info(f"🎬 Generating PlantUML sequence diagram")
 
@@ -334,9 +324,7 @@ class ActivityModelGenerator:
         self.pyreverse = PyreverseAnalyzer(str(self.output_dir / "pyreverse"))
         self.plantuml = PlantUMLGenerator()
 
-        logger.info(
-            f"🎯 Activity Model Generator initialized with output directory: {self.output_dir}"
-        )
+        logger.info(f"🎯 Activity Model Generator initialized with output directory: {self.output_dir}")
 
     def generate_from_code(self, source_path: str) -> Dict[str, Any]:
         """
@@ -363,15 +351,11 @@ class ActivityModelGenerator:
         try:
             # Generate activity diagram
             activity_diagram_path = self.output_dir / "activity_diagram.png"
-            self.plantuml.generate_activity_diagram(
-                class_structure, str(activity_diagram_path)
-            )
+            self.plantuml.generate_activity_diagram(class_structure, str(activity_diagram_path))
 
             # Generate sequence diagram
             sequence_diagram_path = self.output_dir / "sequence_diagram.png"
-            self.plantuml.generate_sequence_diagram(
-                class_structure, str(sequence_diagram_path)
-            )
+            self.plantuml.generate_sequence_diagram(class_structure, str(sequence_diagram_path))
 
             # Compile results
             results = {
@@ -437,9 +421,7 @@ def main():
     """Command-line interface for the Activity Model Generator"""
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Generate activity models from Python code"
-    )
+    parser = argparse.ArgumentParser(description="Generate activity models from Python code")
     parser.add_argument("source", help="Python source file or directory")
     parser.add_argument(
         "--output",
@@ -447,9 +429,7 @@ def main():
         default="generated_models",
         help="Output directory for generated models",
     )
-    parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
 
     args = parser.parse_args()
 

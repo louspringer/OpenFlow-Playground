@@ -5,16 +5,16 @@
 ### **What We're Recovering (Simple Changes)**
 
 1. **Domain additions to existing arrays** - safe, simple string additions
-2. **Known issues update** - adding Cursor IDE warning to existing array
-3. **Backlog item** - adding MyPy errors to existing backlog array
-4. **Requirements traceability** - adding one new requirement entry
-5. **Emoji prefix** - adding 🚨 for the new domain
+1. **Known issues update** - adding Cursor IDE warning to existing array
+1. **Backlog item** - adding MyPy errors to existing backlog array
+1. **Requirements traceability** - adding one new requirement entry
+1. **Emoji prefix** - adding 🚨 for the new domain
 
 ### **What We're NOT Recovering Yet (Complex Structure)**
 
 1. **New `risk_management` section** - complex nested object (needs proper tooling)
-2. **Full domain definition** - extensive configuration (needs systematic approach)
-3. **Complex nested updates** - multiple indentation levels (prone to corruption)
+1. **Full domain definition** - extensive configuration (needs systematic approach)
+1. **Complex nested updates** - multiple indentation levels (prone to corruption)
 
 ### **Recovery Strategy**
 
@@ -31,8 +31,8 @@
 ### **Validation Steps**
 
 1. **JSON syntax validation** after each change
-2. **Git diff review** to ensure only intended changes
-3. **Test status commands** to verify Makefile integration still works
+1. **Git diff review** to ensure only intended changes
+1. **Test status commands** to verify Makefile integration still works
 
 ## 🎯 **Recovery Checklist**
 
@@ -59,10 +59,10 @@
 ### **✅ Successfully Recovered**
 
 1. **Known Issues Update** - Added Cursor IDE systemic issue warning to `system_status.known_issues`
-2. **Backlog Item** - Added "Fix 131 MyPy type errors" to `implementation_plan.backlogged`
-3. **Requirements Traceability** - Added Cursor IDE requirement to `requirements_traceability`
-4. **JSON Syntax** - All changes maintain valid JSON structure
-5. **Makefile Integration** - Status commands still working with critical reminders
+1. **Backlog Item** - Added "Fix 131 MyPy type errors" to `implementation_plan.backlogged`
+1. **Requirements Traceability** - Added Cursor IDE requirement to `requirements_traceability`
+1. **JSON Syntax** - All changes maintain valid JSON structure
+1. **Makefile Integration** - Status commands still working with critical reminders
 
 ### **📊 Recovery Statistics**
 
@@ -75,8 +75,8 @@
 ### **🔍 What Was NOT Recovered (Complex Structure)**
 
 1. **Domain additions to arrays** - These sections were not found in the current structure
-2. **Emoji prefix additions** - Domain structure differs from expected
-3. **Complex risk management framework** - Saved for future Node.js tool implementation
+1. **Emoji prefix additions** - Domain structure differs from expected
+1. **Complex risk management framework** - Saved for future Node.js tool implementation
 
 ## 🔮 **Future Work (After Recovery)**
 

@@ -108,17 +108,13 @@ class OperationalMethodsGenerator(BaseReflectiveModule):
             self._track_success()
             operation_time = self._get_last_operation_time() - start_time
 
-            logger.info(
-                f"✅ Generated operational methods for {class_name} in {operation_time:.3f}s"
-            )
+            logger.info(f"✅ Generated operational methods for {class_name} in {operation_time:.3f}s")
             return operational_methods
 
         except Exception as e:
             # Track error
             self._track_error()
-            logger.error(
-                f"❌ Failed to generate operational methods for {class_name}: {e}"
-            )
+            logger.error(f"❌ Failed to generate operational methods for {class_name}: {e}")
             # Fallback to basic operational methods
             return self._generate_basic_operational_methods(class_name)
 

@@ -20,9 +20,7 @@ class TestExpert(BaseExpert):
 
         # Check for test files
         test_files = list(project_path.rglob("test_*.py"))
-        test_dirs = [
-            d for d in project_path.iterdir() if d.is_dir() and "test" in d.name.lower()
-        ]
+        test_dirs = [d for d in project_path.iterdir() if d.is_dir() and "test" in d.name.lower()]
 
         # Check if tests exist
         if not test_files and not test_dirs:

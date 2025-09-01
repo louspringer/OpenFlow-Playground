@@ -90,11 +90,7 @@ class RoundTripCodeGenerator(CodeGenerationTool):
 
     def can_handle(self, model: dict[str, Any]) -> bool:
         # Check if this is an extracted model (not a design spec)
-        return (
-            "components" in model
-            and "module_functions" in model
-            and "file_structure" in model
-        )
+        return "components" in model and "module_functions" in model and "file_structure" in model
 
     def generate_code(self, model: dict[str, Any]) -> str:
         """Use the root round_trip_model_system.py with generate_code_from_extracted_model"""
@@ -113,11 +109,7 @@ class DesignSpecCodeGenerator(CodeGenerationTool):
 
     def can_handle(self, model: dict[str, Any]) -> bool:
         # Check if this is a design spec (not an extracted model)
-        return (
-            "system_name" in model
-            and "components" in model
-            and "file_structure" not in model
-        )
+        return "system_name" in model and "components" in model and "file_structure" not in model
 
     def generate_code(self, model: dict[str, Any]) -> str:
         """Use the src round_trip_model_system.py for design specs"""
@@ -143,9 +135,7 @@ class PythonLinter(LintingTool):
         try:
             import subprocess
 
-            result = subprocess.run(
-                ["flake8", file_path, "--format=json"], capture_output=True, text=True
-            )
+            result = subprocess.run(["flake8", file_path, "--format=json"], capture_output=True, text=True)
             if result.returncode == 0:
                 return []
             # Parse flake8 JSON output
@@ -167,9 +157,7 @@ class YAMLLinter(LintingTool):
         try:
             import subprocess
 
-            result = subprocess.run(
-                ["yamllint", file_path, "--format=json"], capture_output=True, text=True
-            )
+            result = subprocess.run(["yamllint", file_path, "--format=json"], capture_output=True, text=True)
             if result.returncode == 0:
                 return []
             # Parse yamllint output

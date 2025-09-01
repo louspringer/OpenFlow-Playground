@@ -78,11 +78,7 @@ class SyntaxRecoveryEngine(BaseRecoveryEngine):
                     line_num = e.lineno - 1  # type: ignore
                     if line_num < len(lines):
                         line = lines[line_num]
-                        if (
-                            line.strip().endswith("if")
-                            or line.strip().endswith("for")
-                            or line.strip().endswith("while")
-                        ):
+                        if line.strip().endswith("if") or line.strip().endswith("for") or line.strip().endswith("while"):
                             lines[line_num] = line + ":"
                             changes_made.append(
                                 self._create_change_message(

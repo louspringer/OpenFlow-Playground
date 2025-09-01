@@ -53,20 +53,12 @@ class ClassGenerator:
 
             if enhanced_ast and enhanced_ast.get("source_code"):
                 # Use enhanced AST data for code preservation
-                logger.info(
-                    f"✅ Using enhanced AST data for {class_name} (preserving {len(enhanced_ast['source_code'])} chars)"
-                )
-                return self._generate_from_enhanced_ast(
-                    class_name, enhanced_ast, extracted_model
-                )
+                logger.info(f"✅ Using enhanced AST data for {class_name} (preserving {len(enhanced_ast['source_code'])} chars)")
+                return self._generate_from_enhanced_ast(class_name, enhanced_ast, extracted_model)
             else:
                 # Fallback to basic generation
-                logger.info(
-                    f"⚠️ No enhanced AST data for {class_name}, using basic generation"
-                )
-                return self._generate_basic_class(
-                    class_name, class_info, extracted_model
-                )
+                logger.info(f"⚠️ No enhanced AST data for {class_name}, using basic generation")
+                return self._generate_basic_class(class_name, class_info, extracted_model)
 
         except Exception as e:
             logger.error(f"❌ Failed to generate class {class_name}: {e}")
@@ -81,9 +73,7 @@ class ClassGenerator:
         """Generate class code from enhanced AST data using focused modules."""
         try:
             # Use ClassStructureGenerator for class structure
-            class_def = self.class_structure_generator.generate_class_structure(
-                class_name, enhanced_ast
-            )
+            class_def = self.class_structure_generator.generate_class_structure(class_name, enhanced_ast)
 
             # Process methods using focused modules
             methods = enhanced_ast.get("methods", [])
@@ -96,50 +86,34 @@ class ClassGenerator:
                 method_name = method.get("name", "")
                 method_source = method.get("source_code", "")
 
-                logger.info(
-                    f"🔍 Processing method {i + 1}/{len(methods)}: {method_name}"
-                )
-                logger.info(
-                    f"  - Method source length: {len(method_source) if method_source else 0} chars"
-                )
+                logger.info(f"🔍 Processing method {i + 1}/{len(methods)}: {method_name}")
+                logger.info(f"  - Method source length: {len(method_source) if method_source else 0} chars")
 
                 if method_source and method_source.strip():
                     # Use MethodValidator to check if method is valid
                     if self.method_validator.is_valid_method_source(method_source):
-                        # Method is valid, use as-is
-                        method_code += method_source
+                        # Method is valid, use as-is with proper spacing
+                        method_code += f"\n{method_source}\n"
                         valid_methods += 1
                         logger.info(f"  ✅ Using preserved method source")
                     else:
                         # Method is invalid, try to complete it
-                        logger.info(
-                            f"  🔧 Method validation failed, attempting completion"
-                        )
-                        completed_method = self.method_completer.complete_method_source(
-                            method_source
-                        )
+                        logger.info(f"  🔧 Method validation failed, attempting completion")
+                        completed_method = self.method_completer.complete_method_source(method_source)
                         if completed_method != method_source:
-                            method_code += completed_method
+                            method_code += f"\n{completed_method}\n"
                             logger.info(f"  ✅ Method completed successfully")
                         else:
                             # Completion failed, fall back to generated method
-                            logger.info(
-                                f"  ⚠️ Method completion failed, using generated method"
-                            )
-                            generated_method = self.method_generator.generate_method(
-                                method, extracted_model
-                            )
-                            method_code += generated_method
+                            logger.info(f"  ⚠️ Method completion failed, using generated method")
+                            generated_method = self.method_generator.generate_method(method, extracted_model)
+                            method_code += f"\n{generated_method}\n"
                             generated_methods += 1
                         invalid_methods += 1
                 else:
-                    logger.info(
-                        f"  ⚠️ No method source available, using generated method"
-                    )
-                    generated_method = self.method_generator.generate_method(
-                        method, extracted_model
-                    )
-                    method_code += generated_method
+                    logger.info(f"  ⚠️ No method source available, using generated method")
+                    generated_method = self.method_generator.generate_method(method, extracted_model)
+                    method_code += f"\n{generated_method}\n"
                     generated_methods += 1
 
             logger.info(f"📊 Method processing summary for {class_name}:")
@@ -148,28 +122,18 @@ class ClassGenerator:
             logger.info(f"  - Total generated methods: {generated_methods}")
 
             # Use OperationalMethodsGenerator for ReflectiveModule methods
-            operational_methods = (
-                self.operational_methods_generator.generate_operational_methods(
-                    class_name
-                )
-            )
+            operational_methods = self.operational_methods_generator.generate_operational_methods(class_name)
 
             # Combine everything with proper spacing
             code = f"{class_def}{method_code}{operational_methods}"
 
-            logger.info(
-                f"✅ Generated class {class_name} from enhanced AST with {len(methods)} methods"
-            )
+            logger.info(f"✅ Generated class {class_name} from enhanced AST with {len(methods)} methods")
             return code
 
         except Exception as e:
-            logger.error(
-                f"❌ Failed to generate from enhanced AST for {class_name}: {e}"
-            )
+            logger.error(f"❌ Failed to generate from enhanced AST for {class_name}: {e}")
             # Fallback to basic generation
-            return self._generate_basic_class(
-                class_name, {"name": class_name}, extracted_model
-            )
+            return self._generate_basic_class(class_name, {"name": class_name}, extracted_model)
 
     def _generate_basic_class(
         self,
@@ -187,9 +151,7 @@ class ClassGenerator:
 
             # Use ClassStructureGenerator for basic class structure
             enhanced_ast = {"bases": bases, "docstring": responsibility}
-            class_def = self.class_structure_generator.generate_class_structure(
-                class_name, enhanced_ast
-            )
+            class_def = self.class_structure_generator.generate_class_structure(class_name, enhanced_ast)
 
             # Add decorators
             decorator_code = ""
@@ -207,16 +169,10 @@ class ClassGenerator:
                     code += "\n"
 
             # Use OperationalMethodsGenerator for ReflectiveModule methods
-            operational_methods = (
-                self.operational_methods_generator.generate_operational_methods(
-                    class_name
-                )
-            )
+            operational_methods = self.operational_methods_generator.generate_operational_methods(class_name)
             code += operational_methods
 
-            logger.info(
-                f"✅ Generated basic class {class_name} with {len(methods)} methods"
-            )
+            logger.info(f"✅ Generated basic class {class_name} with {len(methods)} methods")
             return code
 
         except Exception as e:

@@ -127,9 +127,7 @@ class EnhancedLearningTimeoutAgent:
 
         # Phase 7: Create spaced repetition schedule
         self.logger.info("⏰ Phase 7: Creating spaced repetition schedule")
-        state.spaced_repetition_schedule = (
-            await self._create_spaced_repetition_schedule(state)
-        )
+        state.spaced_repetition_schedule = await self._create_spaced_repetition_schedule(state)
         self.logger.info(
             "📅 Created spaced repetition schedule for %d items",
             len(state.spaced_repetition_schedule),
@@ -159,9 +157,7 @@ class EnhancedLearningTimeoutAgent:
         self.logger.info(
             "❓ Phase 10: Identifying knowledge gaps with memory techniques",
         )
-        state.knowledge_gaps = (
-            await self._identify_knowledge_gaps_with_memory_techniques(state)
-        )
+        state.knowledge_gaps = await self._identify_knowledge_gaps_with_memory_techniques(state)
         self.logger.info("🕳️ Found %d knowledge gaps", len(state.knowledge_gaps))
 
         # Phase 11: Calculate enhanced learning confidence
@@ -252,8 +248,7 @@ class EnhancedLearningTimeoutAgent:
                 "item": file_path,
                 "type": "file",
                 "intervals": intervals,
-                "next_review": time.time()
-                + (intervals[0] * 24 * 3600),  # 1 day from now
+                "next_review": time.time() + (intervals[0] * 24 * 3600),  # 1 day from now
                 "review_count": 0,
             }
 
@@ -333,13 +328,7 @@ class EnhancedLearningTimeoutAgent:
         state: EnhancedLearningTimeoutState,
     ) -> float:
         """Calculate knowledge retention score using web-discovered metrics"""
-        total_items = (
-            len(state.files_i_created)
-            + len(state.systems_i_built)
-            + len(state.patterns_i_established)
-            + len(state.rules_i_wrote)
-            + len(state.documentation_i_authored)
-        )
+        total_items = len(state.files_i_created) + len(state.systems_i_built) + len(state.patterns_i_established) + len(state.rules_i_wrote) + len(state.documentation_i_authored)
 
         if total_items == 0:
             return 0.0
@@ -393,9 +382,7 @@ class EnhancedLearningTimeoutAgent:
         ]
 
         for system in key_systems:
-            if not any(
-                system.lower() in file.lower() for file in state.files_i_created
-            ):
+            if not any(system.lower() in file.lower() for file in state.files_i_created):
                 gaps.append(f"Don't remember {system} system")
 
         # Check for gaps in pattern understanding
@@ -417,13 +404,7 @@ class EnhancedLearningTimeoutAgent:
         state: EnhancedLearningTimeoutState,
     ) -> float:
         """Calculate enhanced learning confidence with memory techniques"""
-        total_items = (
-            len(state.files_i_created)
-            + len(state.systems_i_built)
-            + len(state.patterns_i_established)
-            + len(state.rules_i_wrote)
-            + len(state.documentation_i_authored)
-        )
+        total_items = len(state.files_i_created) + len(state.systems_i_built) + len(state.patterns_i_established) + len(state.rules_i_wrote) + len(state.documentation_i_authored)
 
         if total_items == 0:
             return 0.0

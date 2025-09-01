@@ -42,9 +42,7 @@ except ImportError:
     ModelManager = None
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -70,9 +68,7 @@ class ActivityModelIntegration:
             except Exception as e:
                 logger.warning(f"⚠️  Round-trip system integration failed: {e}")
 
-    def generate_activity_models(
-        self, source_paths: List[str], include_round_trip: bool = True
-    ) -> Dict[str, Any]:
+    def generate_activity_models(self, source_paths: List[str], include_round_trip: bool = True) -> Dict[str, Any]:
         """
         Generate comprehensive activity models for the given source paths.
 
@@ -100,8 +96,7 @@ class ActivityModelIntegration:
                 "total_time": 0,
                 "success_rate": 0.0,
             },
-            "round_trip_integration": include_round_trip
-            and self.round_trip_system is not None,
+            "round_trip_integration": include_round_trip and self.round_trip_system is not None,
         }
 
         try:
@@ -111,9 +106,7 @@ class ActivityModelIntegration:
                     logger.info(f"🔍 Processing Python file: {python_file}")
 
                     # Generate activity models from individual file
-                    model_result = self.activity_generator.generate_from_code(
-                        python_file
-                    )
+                    model_result = self.activity_generator.generate_from_code(python_file)
 
                     if model_result:
                         results["generated_models"].append(
@@ -132,9 +125,7 @@ class ActivityModelIntegration:
                                 "status": "failed",
                             }
                         )
-                        logger.warning(
-                            f"⚠️  Failed to generate models for: {python_file}"
-                        )
+                        logger.warning(f"⚠️  Failed to generate models for: {python_file}")
 
                 except Exception as e:
                     error_msg = f"Error processing {python_file}: {e}"
@@ -166,27 +157,12 @@ class ActivityModelIntegration:
             results["performance_metrics"] = {
                 "total_time": end_time - start_time,
                 "python_files_found": len(python_files),
-                "models_generated": len(
-                    [m for m in results["generated_models"] if m["status"] == "success"]
-                ),
+                "models_generated": len([m for m in results["generated_models"] if m["status"] == "success"]),
                 "errors_count": len(results["errors"]),
-                "success_rate": (
-                    len(
-                        [
-                            m
-                            for m in results["generated_models"]
-                            if m["status"] == "success"
-                        ]
-                    )
-                    / len(python_files)
-                    if python_files
-                    else 0
-                ),
+                "success_rate": (len([m for m in results["generated_models"] if m["status"] == "success"]) / len(python_files) if python_files else 0),
             }
 
-            logger.info(
-                f"🎯 Generation completed: {results['performance_metrics']['models_generated']} models, {results['performance_metrics']['errors_count']} errors"
-            )
+            logger.info(f"🎯 Generation completed: {results['performance_metrics']['models_generated']} models, {results['performance_metrics']['errors_count']} errors")
 
         except Exception as e:
             error_msg = f"Critical error in activity model generation: {e}"
@@ -218,9 +194,7 @@ class ActivityModelIntegration:
                 logger.info(f"🔍 Scanning directory: {source_path}")
                 for py_file in path.rglob("*.py"):
                     # Skip __pycache__ and generated files
-                    if "__pycache__" not in str(py_file) and "generated" not in str(
-                        py_file
-                    ):
+                    if "__pycache__" not in str(py_file) and "generated" not in str(py_file):
                         python_files.append(str(py_file))
                         logger.debug(f"  Found Python file: {py_file}")
             else:
@@ -229,9 +203,7 @@ class ActivityModelIntegration:
         logger.info(f"📁 Found {len(python_files)} Python files to analyze")
         return python_files
 
-    def _integrate_with_round_trip(
-        self, activity_results: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _integrate_with_round_trip(self, activity_results: Dict[str, Any]) -> Dict[str, Any]:
         """
         Integrate generated activity models with the round-trip system.
 
@@ -290,21 +262,11 @@ class ActivityModelIntegration:
         # Summary
         report_lines.append("📊 SUMMARY")
         report_lines.append(f"  Source Paths: {len(results['source_paths'])}")
-        report_lines.append(
-            f"  Python Files Found: {results['performance_metrics']['python_files_found']}"
-        )
-        report_lines.append(
-            f"  Models Generated: {results['performance_metrics']['models_generated']}"
-        )
-        report_lines.append(
-            f"  Errors: {results['performance_metrics']['errors_count']}"
-        )
-        report_lines.append(
-            f"  Success Rate: {results['performance_metrics']['success_rate']:.1%}"
-        )
-        report_lines.append(
-            f"  Total Time: {results['performance_metrics']['total_time']:.2f}s"
-        )
+        report_lines.append(f"  Python Files Found: {results['performance_metrics']['python_files_found']}")
+        report_lines.append(f"  Models Generated: {results['performance_metrics']['models_generated']}")
+        report_lines.append(f"  Errors: {results['performance_metrics']['errors_count']}")
+        report_lines.append(f"  Success Rate: {results['performance_metrics']['success_rate']:.1%}")
+        report_lines.append(f"  Total Time: {results['performance_metrics']['total_time']:.2f}s")
         report_lines.append("")
 
         # Round-trip integration status
@@ -312,13 +274,9 @@ class ActivityModelIntegration:
             report_lines.append("🔄 ROUND-TRIP INTEGRATION")
             if "round_trip_result" in results:
                 rt_result = results["round_trip_result"]
-                report_lines.append(
-                    f"  Status: {rt_result.get('integration_status', 'unknown')}"
-                )
+                report_lines.append(f"  Status: {rt_result.get('integration_status', 'unknown')}")
                 if rt_result.get("integration_status") == "success":
-                    report_lines.append(
-                        f"  Models Validated: {rt_result.get('models_validated', 0)}"
-                    )
+                    report_lines.append(f"  Models Validated: {rt_result.get('models_validated', 0)}")
             else:
                 report_lines.append("  Status: Not attempted")
             report_lines.append("")
@@ -327,9 +285,7 @@ class ActivityModelIntegration:
         report_lines.append("🎨 GENERATED MODELS")
         for model in results["generated_models"]:
             status_emoji = "✅" if model["status"] == "success" else "❌"
-            report_lines.append(
-                f"  {status_emoji} {model['source_path']} - {model['status']}"
-            )
+            report_lines.append(f"  {status_emoji} {model['source_path']} - {model['status']}")
             if model.get("error"):
                 report_lines.append(f"      Error: {model['error']}")
         report_lines.append("")
@@ -370,9 +326,7 @@ Examples:
         """,
     )
 
-    parser.add_argument(
-        "source_paths", nargs="+", help="Source files or directories to analyze"
-    )
+    parser.add_argument("source_paths", nargs="+", help="Source files or directories to analyze")
 
     parser.add_argument(
         "--output-dir",
@@ -405,9 +359,7 @@ Examples:
         integration = ActivityModelIntegration(args.output_dir)
         logger.info(f"🚀 Activity Model Integration initialized")
         logger.info(f"📁 Output directory: {args.output_dir}")
-        logger.info(
-            f"🔄 Round-trip integration: {'enabled' if not args.no_round_trip else 'disabled'}"
-        )
+        logger.info(f"🔄 Round-trip integration: {'enabled' if not args.no_round_trip else 'disabled'}")
 
         if args.report_only:
             # Generate report from existing results
@@ -418,9 +370,7 @@ Examples:
 
         # Generate activity models
         logger.info("🎨 Starting activity model generation...")
-        results = integration.generate_activity_models(
-            source_paths=args.source_paths, include_round_trip=not args.no_round_trip
-        )
+        results = integration.generate_activity_models(source_paths=args.source_paths, include_round_trip=not args.no_round_trip)
 
         # Generate and display report
         report = integration.generate_report(results)

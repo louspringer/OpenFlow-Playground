@@ -43,9 +43,7 @@ class ComponentManager(BaseReflectiveModule):
                 return False
 
             # Check for duplicate names
-            existing_names = {
-                comp.name for comp in model_components if hasattr(comp, "name")
-            }
+            existing_names = {comp.name for comp in model_components if hasattr(comp, "name")}
             if component.name in existing_names:
                 logger.warning(f"Component {component.name} already exists")
                 return False
@@ -58,9 +56,7 @@ class ComponentManager(BaseReflectiveModule):
             logger.error(f"❌ Failed to add component: {e}")
             return False
 
-    def remove_component(
-        self, model_components: List[Any], component_name: str
-    ) -> bool:
+    def remove_component(self, model_components: List[Any], component_name: str) -> bool:
         """Remove a component from a list of model components"""
         try:
             for i, component in enumerate(model_components):
@@ -76,9 +72,7 @@ class ComponentManager(BaseReflectiveModule):
             logger.error(f"❌ Failed to remove component {component_name}: {e}")
             return False
 
-    def update_component(
-        self, model_components: List[Any], component_name: str, updates: Dict[str, Any]
-    ) -> bool:
+    def update_component(self, model_components: List[Any], component_name: str, updates: Dict[str, Any]) -> bool:
         """Update a component in a list of model components"""
         try:
             for component in model_components:
@@ -97,9 +91,7 @@ class ComponentManager(BaseReflectiveModule):
             logger.error(f"❌ Failed to update component {component_name}: {e}")
             return False
 
-    def find_component(
-        self, model_components: List[Any], component_name: str
-    ) -> Optional[Any]:
+    def find_component(self, model_components: List[Any], component_name: str) -> Optional[Any]:
         """Find a component by name"""
         try:
             for component in model_components:
@@ -152,9 +144,7 @@ class ComponentManager(BaseReflectiveModule):
             for component in model_components:
                 if hasattr(component, "type"):
                     comp_type = component.type
-                    stats["component_types"][comp_type] = (
-                        stats["component_types"].get(comp_type, 0) + 1
-                    )
+                    stats["component_types"][comp_type] = stats["component_types"].get(comp_type, 0) + 1
 
                     if comp_type not in stats["components_by_type"]:
                         stats["components_by_type"][comp_type] = []
@@ -166,20 +156,12 @@ class ComponentManager(BaseReflectiveModule):
             logger.error(f"❌ Failed to generate component statistics: {e}")
             return {"error": str(e)}
 
-    def filter_components_by_type(
-        self, model_components: List[Any], component_type: str
-    ) -> List[Any]:
+    def filter_components_by_type(self, model_components: List[Any], component_type: str) -> List[Any]:
         """Filter components by type"""
         try:
-            return [
-                comp
-                for comp in model_components
-                if hasattr(comp, "type") and comp.type == component_type
-            ]
+            return [comp for comp in model_components if hasattr(comp, "type") and comp.type == component_type]
         except Exception as e:
-            logger.error(
-                f"❌ Failed to filter components by type {component_type}: {e}"
-            )
+            logger.error(f"❌ Failed to filter components by type {component_type}: {e}")
             return []
 
     def sort_components_by_name(self, model_components: List[Any]) -> List[Any]:

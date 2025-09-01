@@ -69,9 +69,7 @@ class Profiler:
             # Calculate execution time
             execution_time = time.time() - self.start_time if self.start_time else 0
 
-            logger.info(
-                f"✅ Profiling completed: {self.operation_name} in {execution_time:.4f}s"
-            )
+            logger.info(f"✅ Profiling completed: {self.operation_name} in {execution_time:.4f}s")
 
         except Exception as e:
             logger.error(f"❌ Failed to stop profiling: {e}")
@@ -171,9 +169,7 @@ class Profiler:
                 "total_calls": total_calls,
                 "total_time": total_time,
                 "top_functions": function_times[:10],
-                "execution_time": (
-                    time.time() - self.start_time if self.start_time else 0
-                ),
+                "execution_time": (time.time() - self.start_time if self.start_time else 0),
             }
 
         except Exception as e:

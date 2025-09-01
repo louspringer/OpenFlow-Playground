@@ -68,9 +68,7 @@ class VoiceControlIntegration(BaseReflectiveModule):
             "lint_code": "Run linting checks on this code",
         }
 
-    def execute_voice_command(
-        self, command: str, context: Dict[str, Any] = None
-    ) -> Dict[str, Any]:
+    def execute_voice_command(self, command: str, context: Dict[str, Any] = None) -> Dict[str, Any]:
         """Execute a voice command for round-trip engineering."""
         if not self.voice_mode_available:
             return {
@@ -258,9 +256,7 @@ class VoiceControlIntegration(BaseReflectiveModule):
         for command, description in self.supported_commands.items():
             help_text += f"• **{command}**: {description}\n"
 
-        help_text += (
-            "\n💡 **Usage**: Say the command followed by context or code to process."
-        )
+        help_text += "\n💡 **Usage**: Say the command followed by context or code to process."
         help_text += "\n🔧 **Integration**: Works with Voice Mode MCP server for hands-free development."
 
         return help_text
@@ -273,9 +269,7 @@ def main():
     parser = argparse.ArgumentParser(description="Voice Control Integration CLI")
     parser.add_argument("--command", required=True, help="Voice command to execute")
     parser.add_argument("--context", help="Context for the command (JSON)")
-    parser.add_argument(
-        "--help-commands", action="store_true", help="Show available commands"
-    )
+    parser.add_argument("--help-commands", action="store_true", help="Show available commands")
 
     args = parser.parse_args()
 

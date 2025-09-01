@@ -20,9 +20,7 @@ async def live_fire_exercise():
     """Live fire exercise targeting real code quality issues"""
     print("🎯 LIVE FIRE EXERCISE - MULTI-LLM TARGET ANALYSIS")
     print("=" * 80)
-    print(
-        "🎯 TARGET: Security vulnerabilities, code quality issues, and architectural problems"
-    )
+    print("🎯 TARGET: Security vulnerabilities, code quality issues, and architectural problems")
     print("🚀 OBJECTIVE: Find real issues using all available LLMs")
     print("=" * 80)
 
@@ -61,9 +59,7 @@ async def live_fire_exercise():
         print("=" * 80)
 
         # Success metrics
-        print(
-            f"🎯 MISSION STATUS: {'✅ SUCCESS' if result.get('success', False) else '❌ FAILED'}"
-        )
+        print(f"🎯 MISSION STATUS: {'✅ SUCCESS' if result.get('success', False) else '❌ FAILED'}")
         print(f"🔍 TOTAL FINDINGS: {result.get('total_issues', 0)}")
         print(f"🧠 MODELS DEPLOYED: {len(result.get('models_used', []))}")
         print(f"💰 OPERATIONAL COST: ${result.get('total_cost', 0):.6f}")
@@ -72,9 +68,7 @@ async def live_fire_exercise():
         if "security" in result:
             security_findings = result["security"]
             if isinstance(security_findings, list):
-                print(
-                    f"\n🔒 SECURITY FINDINGS: {len(security_findings)} issues detected"
-                )
+                print(f"\n🔒 SECURITY FINDINGS: {len(security_findings)} issues detected")
                 for i, finding in enumerate(security_findings[:5], 1):  # Show first 5
                     print(f"  {i}. {str(finding)[:100]}...")
             else:
@@ -113,9 +107,7 @@ async def live_fire_exercise():
             print(f"\n📈 TOTAL OPERATIONAL METRICS:")
             print(f"  🎯 Total Tokens: {total_tokens:,}")
             print(f"  💰 Total Cost: ${total_cost:.6f}")
-            print(
-                f"  🚀 Cost per Finding: ${total_cost / max(result.get('total_issues', 1), 1):.6f}"
-            )
+            print(f"  🚀 Cost per Finding: ${total_cost / max(result.get('total_issues', 1), 1):.6f}")
 
         # Mission assessment
         print(f"\n🎯 MISSION ASSESSMENT:")

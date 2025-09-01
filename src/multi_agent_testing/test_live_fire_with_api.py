@@ -66,15 +66,11 @@ async def test_multi_agent_analysis():
         logger.info("🧠 Testing Simple LLM Call...")
 
         # Use the correct call_llm method signature
-        test_prompt = (
-            "Analyze this code for potential security issues: print(user_input)"
-        )
+        test_prompt = "Analyze this code for potential security issues: print(user_input)"
 
         logger.info("🔍 Testing Claude API...")
         claude_result = smoke_test.call_llm("claude", test_prompt)
-        logger.info(
-            f"✅ Claude test completed: {claude_result.get('status', 'unknown')}"
-        )
+        logger.info(f"✅ Claude test completed: {claude_result.get('status', 'unknown')}")
 
         if "error" in claude_result:
             logger.warning(f"⚠️ Claude API error: {claude_result['error']}")
@@ -94,9 +90,7 @@ async def test_multi_agent_analysis():
         logger.info(f"  Success: {workflow_results.get('workflow_success', False)}")
         logger.info(f"  Iterations: {workflow_results.get('iterations_completed', 0)}")
         logger.info(f"  Final stage: {workflow_results.get('final_stage', 'unknown')}")
-        logger.info(
-            f"  Agent findings: {workflow_results.get('total_agent_findings', 0)}"
-        )
+        logger.info(f"  Agent findings: {workflow_results.get('total_agent_findings', 0)}")
         logger.info(f"  Execution time: {execution_time:.2f} seconds")
 
         # Show cost summary if available
@@ -189,18 +183,12 @@ async def test_agent_collaboration():
         # Test cross-agent context
         logger.info("🔍 Testing Cross-Agent Context...")
         for agent_type in [AgentType.SECURITY, AgentType.QUALITY, AgentType.DEVOPS]:
-            other_findings = agent_session_manager.get_agent_previous_findings(
-                agent_type, iteration
-            )
-            logger.info(
-                f"  {agent_type.value}: {len(other_findings)} other agents' findings available"
-            )
+            other_findings = agent_session_manager.get_agent_previous_findings(agent_type, iteration)
+            logger.info(f"  {agent_type.value}: {len(other_findings)} other agents' findings available")
 
         # Generate synthesis
         synthesis = agent_session_manager.synthesize_iteration_results()
-        logger.info(
-            f"🧠 Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations"
-        )
+        logger.info(f"🧠 Synthesis generated: {len(synthesis.get('recommendations', []))} recommendations")
 
         logger.info("✅ Agent Collaboration Test Passed!")
         return True

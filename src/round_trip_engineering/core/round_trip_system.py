@@ -45,9 +45,7 @@ class RoundTripSystem:
 
         logger.info("✅ Round-trip system initialized with focused modules")
 
-    def generate_code_from_extracted_model(
-        self, extracted_model: Dict[str, Any], target_language: str = "python"
-    ) -> str:
+    def generate_code_from_extracted_model(self, extracted_model: Dict[str, Any], target_language: str = "python") -> str:
         """
         Generate code from an extracted model using ontological vocabulary alignment.
 
@@ -60,16 +58,12 @@ class RoundTripSystem:
         """
         try:
             logger.info(f"🎯 Generating {target_language} code from extracted model...")
-            return self.code_generation_orchestrator.generate_code_from_extracted_model(
-                extracted_model, target_language
-            )
+            return self.code_generation_orchestrator.generate_code_from_extracted_model(extracted_model, target_language)
         except Exception as e:
             logger.error(f"❌ Code generation failed: {e}")
             raise
 
-    def analyze_and_generate_code(
-        self, source_path: str, target_language: str = "python"
-    ) -> Dict[str, Any]:
+    def analyze_and_generate_code(self, source_path: str, target_language: str = "python") -> Dict[str, Any]:
         """
         Analyze source code with ArtifactForge and generate enhanced code.
 
@@ -89,20 +83,12 @@ class RoundTripSystem:
             logger.info(f"🔍 Starting ArtifactForge-integrated analysis: {source_path}")
 
             # Step 1: Use ArtifactForge for enhanced AST parsing and workflow analysis
-            logger.info(
-                "🔄 Step 1: ArtifactForge enhanced AST parsing and workflow analysis"
-            )
-            extracted_model = (
-                self.artifact_forge_integrator.analyze_source_with_artifact_forge(
-                    source_path, target_language
-                )
-            )
+            logger.info("🔄 Step 1: ArtifactForge enhanced AST parsing and workflow analysis")
+            extracted_model = self.artifact_forge_integrator.analyze_source_with_artifact_forge(source_path, target_language)
 
             # Step 2: Generate enhanced code using the enriched model
             logger.info("🔄 Step 2: Enhanced code generation from AST data")
-            generated_code = self.generate_code_from_extracted_model(
-                extracted_model, target_language
-            )
+            generated_code = self.generate_code_from_extracted_model(extracted_model, target_language)
 
             # Step 3: Compile results
             workflow_data = extracted_model.get("workflow_analysis", {})
@@ -118,17 +104,8 @@ class RoundTripSystem:
                     "workflow_complexity": workflow_data.get("complexity", 0),
                     "code_generation_successful": True,
                     "artifactorge_integration": "success",
-                    "enhanced_ast_classes": (
-                        len(ast_result.get("classes", [])) if ast_result else 0
-                    ),
-                    "enhanced_ast_methods": (
-                        sum(
-                            len(cls.get("methods", []))
-                            for cls in ast_result.get("classes", [])
-                        )
-                        if ast_result
-                        else 0
-                    ),
+                    "enhanced_ast_classes": (len(ast_result.get("classes", [])) if ast_result else 0),
+                    "enhanced_ast_methods": (sum(len(cls.get("methods", [])) for cls in ast_result.get("classes", [])) if ast_result else 0),
                 },
             }
 

@@ -29,9 +29,7 @@ class OntologicalRoundTripFixer:
             self.ontology = ProperCodeGenerationOntology()
 
         print("🔧 Ontological Round-Trip Fixer initialized")
-        print(
-            f"  📚 Ontology contains {self.ontology.get_statistics()['total_triples']} triples"
-        )
+        print(f"  📚 Ontology contains {self.ontology.get_statistics()['total_triples']} triples")
 
     def fix_round_trip_vocabulary(self, model_file: str) -> Dict[str, Any]:
         """Fix vocabulary alignment using ontological reasoning"""
@@ -93,9 +91,7 @@ class OntologicalRoundTripFixer:
             }
 
         # Validate against ontological constraints
-        validation_result = self.ontology.validate_transformation(
-            data, "dict" if concept_type == "code_generation" else "list"
-        )
+        validation_result = self.ontology.validate_transformation(data, "dict" if concept_type == "code_generation" else "list")
 
         return {
             "valid": validation_result["valid"],
@@ -169,19 +165,13 @@ class OntologicalRoundTripFixer:
                         name = component["name"]
 
                         # Apply ontological vocabulary mapping
-                        mapped_component = self._map_vocabulary_ontologically(
-                            component, "reverse_engineering", "code_generation"
-                        )
+                        mapped_component = self._map_vocabulary_ontologically(component, "reverse_engineering", "code_generation")
 
                         if name in transformed_components:
-                            print(
-                                f"      ⚠️  Warning: Duplicate component '{name}' - merging properties"
-                            )
+                            print(f"      ⚠️  Warning: Duplicate component '{name}' - merging properties")
                             # Merge properties for duplicate names
                             existing = transformed_components[name]
-                            if isinstance(existing, dict) and isinstance(
-                                mapped_component, dict
-                            ):
+                            if isinstance(existing, dict) and isinstance(mapped_component, dict):
                                 existing.update(mapped_component)
                         else:
                             transformed_components[name] = mapped_component
@@ -194,15 +184,11 @@ class OntologicalRoundTripFixer:
                 transformed_data["components"] = transformed_components
 
                 # Apply vocabulary mapping to top-level fields
-                transformed_data = self._map_top_level_vocabulary(
-                    transformed_data, "reverse_engineering", "code_generation"
-                )
+                transformed_data = self._map_top_level_vocabulary(transformed_data, "reverse_engineering", "code_generation")
 
         return transformed_data
 
-    def _map_vocabulary_ontologically(
-        self, component: Dict[str, Any], from_context: str, to_context: str
-    ) -> Dict[str, Any]:
+    def _map_vocabulary_ontologically(self, component: Dict[str, Any], from_context: str, to_context: str) -> Dict[str, Any]:
         """Map vocabulary using ontological relationships"""
 
         # Create a copy to avoid modifying original
@@ -234,20 +220,14 @@ class OntologicalRoundTripFixer:
 
         return mapped_component
 
-    def _map_top_level_vocabulary(
-        self, data: Dict[str, Any], from_context: str, to_context: str
-    ) -> Dict[str, Any]:
+    def _map_top_level_vocabulary(self, data: Dict[str, Any], from_context: str, to_context: str) -> Dict[str, Any]:
         """Map top-level vocabulary fields"""
 
         # Create a copy to avoid modifying original
         mapped_data = data.copy()
 
         # Apply top-level vocabulary mapping
-        top_level_mapping = {
-            "reverse_engineering": {
-                "code_generation": {"components": "target_components"}
-            }
-        }
+        top_level_mapping = {"reverse_engineering": {"code_generation": {"components": "target_components"}}}
 
         # Get the mapping for this context transformation
         context_mapping = top_level_mapping.get(from_context, {}).get(to_context, {})
@@ -271,9 +251,7 @@ class OntologicalRoundTripFixer:
             }
 
         # Validate against ontological constraints
-        validation_result = self.ontology.validate_transformation(
-            data, "dict" if concept_type == "code_generation" else "list"
-        )
+        validation_result = self.ontology.validate_transformation(data, "dict" if concept_type == "code_generation" else "list")
 
         return {
             "valid": validation_result["valid"],
@@ -302,35 +280,19 @@ class OntologicalRoundTripFixer:
 
         # Generate recommendations based on ontological analysis
         if fix_result["success"]:
-            report["recommendations"].append(
-                "✅ Vocabulary alignment successful using ontological reasoning"
-            )
-            report["recommendations"].append(
-                "✅ Transformation follows ontological constraints"
-            )
+            report["recommendations"].append("✅ Vocabulary alignment successful using ontological reasoning")
+            report["recommendations"].append("✅ Transformation follows ontological constraints")
             report["recommendations"].append("✅ No vocabulary ambiguity detected")
         else:
-            report["recommendations"].append(
-                "❌ Vocabulary alignment failed - review ontological constraints"
-            )
-            report["recommendations"].append(
-                "🔍 Check input data structure against ontology"
-            )
-            report["recommendations"].append(
-                "🔄 Verify transformation rules in ontology"
-            )
+            report["recommendations"].append("❌ Vocabulary alignment failed - review ontological constraints")
+            report["recommendations"].append("🔍 Check input data structure against ontology")
+            report["recommendations"].append("🔄 Verify transformation rules in ontology")
 
         # Add ontological insights
         stats = report["ontology_statistics"]
-        report["recommendations"].append(
-            f"📊 Ontology contains {stats['total_triples']} triples for comprehensive reasoning"
-        )
-        report["recommendations"].append(
-            f"🏗️ {stats['classes']} classes define the conceptual structure"
-        )
-        report["recommendations"].append(
-            f"🔗 {stats['object_properties']} relationships enable transformation rules"
-        )
+        report["recommendations"].append(f"📊 Ontology contains {stats['total_triples']} triples for comprehensive reasoning")
+        report["recommendations"].append(f"🏗️ {stats['classes']} classes define the conceptual structure")
+        report["recommendations"].append(f"🔗 {stats['object_properties']} relationships enable transformation rules")
 
         return report
 
@@ -357,23 +319,15 @@ def main():
             print(f"📋 Results:")
             print(f"  Input file: {fix_result['input_file']}")
             print(f"  Output file: {fix_result['output_file']}")
-            print(
-                f"  Transformation path: {' → '.join(fix_result['transformation_path'])}"
-            )
+            print(f"  Transformation path: {' → '.join(fix_result['transformation_path'])}")
 
             # Generate ontological report
             report = fixer.generate_ontological_report(fix_result)
 
             print(f"\n📊 ONTOLOGICAL REPORT:")
-            print(
-                f"  Success: {'✅' if report['ontological_fix']['success'] else '❌'}"
-            )
-            print(
-                f"  Input validation: {'✅ PASS' if report['ontological_validation']['input']['valid'] else '❌ FAIL'}"
-            )
-            print(
-                f"  Output validation: {'✅ PASS' if report['ontological_validation']['output']['valid'] else '❌ FAIL'}"
-            )
+            print(f"  Success: {'✅' if report['ontological_fix']['success'] else '❌'}")
+            print(f"  Input validation: {'✅ PASS' if report['ontological_validation']['input']['valid'] else '❌ FAIL'}")
+            print(f"  Output validation: {'✅ PASS' if report['ontological_validation']['output']['valid'] else '❌ FAIL'}")
 
             if report["recommendations"]:
                 print(f"\n💡 Recommendations:")

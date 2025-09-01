@@ -21,23 +21,17 @@ class OnePasswordIntegration:
     def __init__(self):
         self.op_available = self._check_op_availability()
         if not self.op_available:
-            logger.warning(
-                "1Password CLI (op) not available. Credential lookup will fail."
-            )
+            logger.warning("1Password CLI (op) not available. Credential lookup will fail.")
 
     def _check_op_availability(self) -> bool:
         """Check if 1Password CLI is available"""
         try:
-            result = subprocess.run(
-                ["op", "--version"], capture_output=True, text=True, check=False
-            )
+            result = subprocess.run(["op", "--version"], capture_output=True, text=True, check=False)
             return result.returncode == 0
         except (FileNotFoundError, subprocess.SubprocessError):
             return False
 
-    def get_credential(
-        self, item_id: str, field_name: str = "password"
-    ) -> Optional[str]:
+    def get_credential(self, item_id: str, field_name: str = "password") -> Optional[str]:
         """Get a credential from 1Password by item ID and field name"""
         if not self.op_available:
             logger.error("1Password CLI not available")
@@ -51,13 +45,9 @@ class OnePasswordIntegration:
 
             credential = result.stdout.strip()
             if credential:
-                logger.debug(
-                    f"Retrieved credential for item {item_id}, field {field_name}"
-                )
+                logger.debug(f"Retrieved credential for item {item_id}, field {field_name}")
                 return credential
-            logger.warning(
-                f"No credential found for item {item_id}, field {field_name}"
-            )
+            logger.warning(f"No credential found for item {item_id}, field {field_name}")
             return None
 
         except subprocess.CalledProcessError as e:
@@ -156,9 +146,7 @@ class CredentialManager:
         """Get Neo4j credentials from 1Password"""
         item_id = os.getenv("NEO4J_CREDENTIALS_ITEM_ID")
         if not item_id:
-            logger.warning(
-                "NEO4J_CREDENTIALS_ITEM_ID not set, using environment defaults"
-            )
+            logger.warning("NEO4J_CREDENTIALS_ITEM_ID not set, using environment defaults")
             return {
                 "username": os.getenv("NEO4J_USERNAME", "neo4j"),
                 "password": os.getenv("NEO4J_PASSWORD", ""),
@@ -171,9 +159,7 @@ class CredentialManager:
         if username and password:
             logger.info("Successfully retrieved Neo4j credentials from 1Password")
             return {"username": username, "password": password}
-        logger.warning(
-            "Failed to retrieve Neo4j credentials from 1Password, using environment defaults"
-        )
+        logger.warning("Failed to retrieve Neo4j credentials from 1Password, using environment defaults")
         return {
             "username": os.getenv("NEO4J_USERNAME", "neo4j"),
             "password": os.getenv("NEO4J_PASSWORD", ""),
@@ -182,16 +168,11 @@ class CredentialManager:
     def get_security_config(self) -> dict[str, Any]:
         """Get security configuration from environment"""
         return {
-            "security_scan_enabled": os.getenv("SECURITY_SCAN_ENABLED", "true").lower()
-            == "true",
+            "security_scan_enabled": os.getenv("SECURITY_SCAN_ENABLED", "true").lower() == "true",
             "security_scan_days_back": int(os.getenv("SECURITY_SCAN_DAYS_BACK", "30")),
-            "minimum_security_score": float(
-                os.getenv("MINIMUM_SECURITY_SCORE", "70.0")
-            ),
+            "minimum_security_score": float(os.getenv("MINIMUM_SECURITY_SCORE", "70.0")),
             "max_high_severity_issues": int(os.getenv("MAX_HIGH_SEVERITY_ISSUES", "0")),
-            "max_total_security_issues": int(
-                os.getenv("MAX_TOTAL_SECURITY_ISSUES", "10")
-            ),
+            "max_total_security_issues": int(os.getenv("MAX_TOTAL_SECURITY_ISSUES", "10")),
             "debug_mode": os.getenv("DEBUG_MODE", "false").lower() == "true",
             "log_level": os.getenv("LOG_LEVEL", "INFO"),
         }
@@ -204,9 +185,7 @@ class CredentialManager:
 
         try:
             # Test basic op command
-            result = subprocess.run(
-                ["op", "whoami"], capture_output=True, text=True, check=False
-            )
+            result = subprocess.run(["op", "whoami"], capture_output=True, text=True, check=False)
 
             if result.returncode == 0:
                 logger.info(f"1Password CLI authenticated as: {result.stdout.strip()}")
@@ -224,18 +203,10 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="1Password Credential Manager Test")
-    parser.add_argument(
-        "--test-op", action="store_true", help="Test 1Password connection"
-    )
-    parser.add_argument(
-        "--get-gitguardian", action="store_true", help="Get GitGuardian API token"
-    )
-    parser.add_argument(
-        "--get-neo4j", action="store_true", help="Get Neo4j credentials"
-    )
-    parser.add_argument(
-        "--config", action="store_true", help="Show security configuration"
-    )
+    parser.add_argument("--test-op", action="store_true", help="Test 1Password connection")
+    parser.add_argument("--get-gitguardian", action="store_true", help="Get GitGuardian API token")
+    parser.add_argument("--get-neo4j", action="store_true", help="Get Neo4j credentials")
+    parser.add_argument("--config", action="store_true", help="Show security configuration")
 
     args = parser.parse_args()
 
@@ -261,9 +232,7 @@ def main():
         creds = credential_manager.get_neo4j_credentials()
         if creds:
             print(f"✅ Username: {creds['username']}")
-            print(
-                f"✅ Password: {'*' * len(creds['password']) if creds['password'] else 'Not set'}"
-            )
+            print(f"✅ Password: {'*' * len(creds['password']) if creds['password'] else 'Not set'}")
         else:
             print("❌ Failed to retrieve credentials")
 

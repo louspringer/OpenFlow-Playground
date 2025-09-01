@@ -97,10 +97,7 @@ def calculate_pattern_score(pattern: str) -> int:
         if pattern.count("*") == 1 and pattern.endswith("*.py"):
             specificity += 10
         # Domain-specific patterns get higher priority
-        if any(
-            domain in pattern
-            for domain in ["mcp", "ghostbusters", "streamlit", "healthcare"]
-        ):
+        if any(domain in pattern for domain in ["mcp", "ghostbusters", "streamlit", "healthcare"]):
             specificity += 20
         return specificity
     # Exact match gets highest priority

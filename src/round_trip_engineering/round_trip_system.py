@@ -76,9 +76,7 @@ class RoundTripSystem:
 
         logger.info("🎯 STEP 1: Creating model from design")
         model = self.create_model_from_design(design_spec)
-        logger.info(
-            f"   ✅ Created model: {model.name} with {len(model.components)} components"
-        )
+        logger.info(f"   ✅ Created model: {model.name} with {len(model.components)} components")
 
         # STEP 2: Save model to JSON
         logger.info("🎯 STEP 2: Saving model to JSON")

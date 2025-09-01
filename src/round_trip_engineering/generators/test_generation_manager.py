@@ -206,9 +206,7 @@ class TestGenerationManager(BaseReflectiveModule):
 
         # Test module initialization
         test_code.append("    def test_module_initialization(self):")
-        test_code.append(
-            '        """Test that the module can be imported and initialized"""'
-        )
+        test_code.append('        """Test that the module can be imported and initialized"""')
         test_code.append("        # TODO: Implement module initialization test")
         test_code.append("        pass")
         test_code.append("")
@@ -390,23 +388,17 @@ class TestGenerationManager(BaseReflectiveModule):
 
         # Calculate coverage
         if target_classes:
-            class_coverage = len(
-                [c for c in target_classes if c in test_classes]
-            ) / len(target_classes)
+            class_coverage = len([c for c in target_classes if c in test_classes]) / len(target_classes)
             coverage_result["class_coverage"] = class_coverage
 
         if target_methods:
-            method_coverage = len(
-                [m for m in target_methods if m in test_methods]
-            ) / len(target_methods)
+            method_coverage = len([m for m in target_methods if m in test_methods]) / len(target_methods)
             coverage_result["method_coverage"] = method_coverage
 
         # Overall coverage
         total_elements = len(target_classes) + len(target_methods)
         if total_elements > 0:
-            covered_elements = len(
-                [c for c in target_classes if c in test_classes]
-            ) + len([m for m in target_methods if m in test_methods])
+            covered_elements = len([c for c in target_classes if c in test_classes]) + len([m for m in target_methods if m in test_methods])
             coverage_result["overall_coverage"] = covered_elements / total_elements
 
         # Identify missing tests
@@ -436,12 +428,8 @@ class TestGenerationManager(BaseReflectiveModule):
         lines = test_code.split("\n")
         for i, line in enumerate(lines, 1):
             # Check for proper test method naming
-            if line.strip().startswith("def ") and not line.strip().startswith(
-                "def test_"
-            ):
-                if not any(
-                    keyword in line for keyword in ["setUp", "tearDown", "__init__"]
-                ):
+            if line.strip().startswith("def ") and not line.strip().startswith("def test_"):
+                if not any(keyword in line for keyword in ["setUp", "tearDown", "__init__"]):
                     issues.append(f"Line {i}: Test method should start with 'test_'")
 
             # Check for proper assertions
@@ -515,11 +503,7 @@ class TestGenerationManager(BaseReflectiveModule):
             if line.strip() and not line.startswith(" ") and not line.startswith("\t"):
                 if line.startswith("class ") or line.startswith("def "):
                     continue
-                if (
-                    line.startswith("if ")
-                    or line.startswith("for ")
-                    or line.startswith("while ")
-                ):
+                if line.startswith("if ") or line.startswith("for ") or line.startswith("while "):
                     continue
                 if line.startswith("import ") or line.startswith("from "):
                     continue
@@ -539,25 +523,17 @@ class TestGenerationManager(BaseReflectiveModule):
         quality_result["maintainability"] = maintainability_score
 
         # Overall quality
-        quality_result["overall_quality"] = (
-            structure_score + content_score + maintainability_score
-        ) / 3
+        quality_result["overall_quality"] = (structure_score + content_score + maintainability_score) / 3
 
         # Generate recommendations
         if structure_score < 80:
-            quality_result["recommendations"].append(
-                "Improve test structure and organization"
-            )
+            quality_result["recommendations"].append("Improve test structure and organization")
 
         if content_score < 60:
-            quality_result["recommendations"].append(
-                "Add more meaningful test content and assertions"
-            )
+            quality_result["recommendations"].append("Add more meaningful test content and assertions")
 
         if maintainability_score < 70:
-            quality_result["recommendations"].append(
-                "Complete TODO items and fix indentation issues"
-            )
+            quality_result["recommendations"].append("Complete TODO items and fix indentation issues")
 
         return quality_result
 
@@ -586,19 +562,13 @@ class TestGenerationManager(BaseReflectiveModule):
 
         # Generate recommendations
         if len(organization["unit_tests"]) > 10:
-            organization["recommendations"].append(
-                "Consider organizing unit tests into subdirectories by module"
-            )
+            organization["recommendations"].append("Consider organizing unit tests into subdirectories by module")
 
         if len(organization["integration_tests"]) == 0:
-            organization["recommendations"].append(
-                "Consider adding integration tests for end-to-end workflows"
-            )
+            organization["recommendations"].append("Consider adding integration tests for end-to-end workflows")
 
         if len(organization["test_utilities"]) == 0:
-            organization["recommendations"].append(
-                "Consider creating test utilities for common setup/teardown operations"
-            )
+            organization["recommendations"].append("Consider creating test utilities for common setup/teardown operations")
 
         return organization
 
@@ -661,15 +631,11 @@ class TestGenerationManager(BaseReflectiveModule):
 
         # Update coverage
         if "coverage" in test_data:
-            registry_update["coverage_percentage"] = (
-                test_data["coverage"].get("overall_coverage", 0.0) * 100
-            )
+            registry_update["coverage_percentage"] = test_data["coverage"].get("overall_coverage", 0.0) * 100
 
         # Update quality score
         if "quality" in test_data:
-            registry_update["quality_score"] = (
-                test_data["quality"].get("overall_quality", 0.0) * 100
-            )
+            registry_update["quality_score"] = test_data["quality"].get("overall_quality", 0.0) * 100
 
         # Generate test summary
         registry_update["test_summary"] = {

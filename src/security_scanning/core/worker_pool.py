@@ -45,9 +45,7 @@ class WorkerPool:
     - Graceful error handling and task abandonment
     """
 
-    def __init__(
-        self, max_workers: Optional[int] = None, enable_monitoring: bool = True
-    ):
+    def __init__(self, max_workers: Optional[int] = None, enable_monitoring: bool = True):
         """
         Initialize the worker pool
 
@@ -87,9 +85,7 @@ class WorkerPool:
         optimal_workers = int(cpu_count * 3.2)  # 3.2x CPU cores for ~80% utilization
 
         # Adjust based on available memory (each worker needs ~25MB for security scanning)
-        max_memory_workers = int(
-            memory_gb * 6
-        )  # Allow more memory usage for better throughput
+        max_memory_workers = int(memory_gb * 6)  # Allow more memory usage for better throughput
 
         # Use the higher of the two for better CPU utilization
         optimal_workers = max(optimal_workers, max_memory_workers)
@@ -114,15 +110,11 @@ class WorkerPool:
         logger.info("Starting worker pool...")
 
         # Start the thread pool executor
-        self.executor = ThreadPoolExecutor(
-            max_workers=self.max_workers, thread_name_prefix="SecurityScanner"
-        )
+        self.executor = ThreadPoolExecutor(max_workers=self.max_workers, thread_name_prefix="SecurityScanner")
 
         # Start monitoring if enabled
         if self.enable_monitoring:
-            self.monitor_thread = threading.Thread(
-                target=self._monitor_performance, daemon=True, name="PerformanceMonitor"
-            )
+            self.monitor_thread = threading.Thread(target=self._monitor_performance, daemon=True, name="PerformanceMonitor")
             self.monitor_thread.start()
 
         self.metrics["start_time"] = time.time()
@@ -184,9 +176,7 @@ class WorkerPool:
         # Submit work to executor in batches of 4
         # This keeps each thread busy longer and reduces context switching overhead
         batch_size = 4
-        file_batches = [
-            files[i : i + batch_size] for i in range(0, len(files), batch_size)
-        ]
+        file_batches = [files[i : i + batch_size] for i in range(0, len(files), batch_size)]
 
         future_to_batch = {}
         for batch in file_batches:
@@ -236,10 +226,7 @@ class WorkerPool:
 
         logger.info(f"Completed processing {len(files)} files")
         logger.info(
-            f"Tasks: {self.metrics['tasks_submitted']} submitted, "
-            f"{self.metrics['tasks_completed']} completed, "
-            f"{self.metrics['tasks_failed']} failed, "
-            f"{self.metrics['tasks_abandoned']} abandoned"
+            f"Tasks: {self.metrics['tasks_submitted']} submitted, {self.metrics['tasks_completed']} completed, {self.metrics['tasks_failed']} failed, {self.metrics['tasks_abandoned']} abandoned"
         )
 
         return results
@@ -251,9 +238,7 @@ class WorkerPool:
             stop=stop_after_attempt(3),  # Three strikes and you're out
             wait=wait_exponential(multiplier=1, min=1, max=10),
             retry=retry_if_exception_type((Exception,)),
-            before_sleep=lambda retry_state: logger.warning(
-                f"Retrying {retry_state.fn.__name__} after {retry_state.attempt_number} attempts"
-            ),
+            before_sleep=lambda retry_state: logger.warning(f"Retrying {retry_state.fn.__name__} after {retry_state.attempt_number} attempts"),
         )
         def retry_wrapper(file_path: Path):
             start_time = time.time()
@@ -319,15 +304,11 @@ class WorkerPool:
                 except Exception as e:
                     last_error = e
                     if attempt < 2:  # Not the last attempt
-                        logger.warning(
-                            f"Task failed for {file_path} (attempt {attempt + 1}/3): {e}"
-                        )
+                        logger.warning(f"Task failed for {file_path} (attempt {attempt + 1}/3): {e}")
                         self.metrics["tasks_retried"] += 1
                         time.sleep(min(2**attempt, 5))  # Exponential backoff, max 5s
                     else:
-                        logger.error(
-                            f"Task failed permanently for {file_path} after 3 attempts: {e}"
-                        )
+                        logger.error(f"Task failed permanently for {file_path} after 3 attempts: {e}")
                         raise last_error
 
             # This should never be reached
@@ -335,9 +316,7 @@ class WorkerPool:
 
         return retry_wrapper
 
-    def _process_batch(
-        self, worker_func: Callable[[Path], Any], batch: list[Path]
-    ) -> list[Any]:
+    def _process_batch(self, worker_func: Callable[[Path], Any], batch: list[Path]) -> list[Any]:
         """
         Process a batch of files using the worker function
 
@@ -389,9 +368,7 @@ class WorkerPool:
                 if len(self.metrics["cpu_usage"]) % 10 == 0:
                     avg_cpu = sum(self.metrics["cpu_usage"][-10:]) / 10
                     avg_memory = sum(self.metrics["memory_usage"][-10:]) / 10
-                    logger.debug(
-                        f"Performance: CPU {avg_cpu:.1f}%, Memory {avg_memory:.1f}%"
-                    )
+                    logger.debug(f"Performance: CPU {avg_cpu:.1f}%, Memory {avg_memory:.1f}%")
 
                 time.sleep(1.0)
 
@@ -415,16 +392,8 @@ class WorkerPool:
         current_memory = psutil.virtual_memory().percent
 
         # Calculate averages
-        avg_cpu = (
-            sum(self.metrics["cpu_usage"]) / len(self.metrics["cpu_usage"])
-            if self.metrics["cpu_usage"]
-            else 0
-        )
-        avg_memory = (
-            sum(self.metrics["memory_usage"]) / len(self.metrics["memory_usage"])
-            if self.metrics["memory_usage"]
-            else 0
-        )
+        avg_cpu = sum(self.metrics["cpu_usage"]) / len(self.metrics["cpu_usage"]) if self.metrics["cpu_usage"] else 0
+        avg_memory = sum(self.metrics["memory_usage"]) / len(self.metrics["memory_usage"]) if self.metrics["memory_usage"] else 0
 
         return {
             "worker_count": self.max_workers,
@@ -433,20 +402,13 @@ class WorkerPool:
             "tasks_failed": self.metrics["tasks_failed"],
             "tasks_retried": self.metrics["tasks_retried"],
             "tasks_abandoned": self.metrics["tasks_abandoned"],
-            "success_rate": (
-                self.metrics["tasks_completed"] - self.metrics["tasks_failed"]
-            )
-            / max(1, self.metrics["tasks_submitted"]),
+            "success_rate": (self.metrics["tasks_completed"] - self.metrics["tasks_failed"]) / max(1, self.metrics["tasks_submitted"]),
             "throughput": self.metrics.get("throughput", 0),
             "current_cpu_usage": current_cpu,
             "current_memory_usage": current_memory,
             "average_cpu_usage": avg_cpu,
             "average_memory_usage": avg_memory,
-            "elapsed_time": (
-                time.time() - self.metrics["start_time"]
-                if self.metrics["start_time"]
-                else 0
-            ),
+            "elapsed_time": (time.time() - self.metrics["start_time"] if self.metrics["start_time"] else 0),
         }
 
     def __enter__(self):
@@ -459,9 +421,7 @@ class WorkerPool:
         self.stop()
 
 
-def create_worker_pool(
-    max_workers: Optional[int] = None, enable_monitoring: bool = True
-) -> WorkerPool:
+def create_worker_pool(max_workers: Optional[int] = None, enable_monitoring: bool = True) -> WorkerPool:
     """
     Factory function to create a worker pool with optimal settings
 

@@ -1,4 +1,3 @@
-
 # 🎯 Diversity Hypothesis Analysis Report
 
 ## Executive Summary
@@ -15,10 +14,12 @@ This report presents the results of a multi-agent diversity analysis using LangG
 
 ### Analysis Context
 
-    GitHub PR #1: Healthcare CDC Implementation with 28 commits, 11,222 additions, 90 deletions. 
-    Multiple Copilot AI reviewers found: 1) Missing package installation instructions, 
-    2) Potential credential exposure via subprocess, 3) Unnecessary input sanitization. 
-    The PR implements real-time CDC operations for healthcare claims between DynamoDB and Snowflake.
+```
+GitHub PR #1: Healthcare CDC Implementation with 28 commits, 11,222 additions, 90 deletions. 
+Multiple Copilot AI reviewers found: 1) Missing package installation instructions, 
+2) Potential credential exposure via subprocess, 3) Unnecessary input sanitization. 
+The PR implements real-time CDC operations for healthcare claims between DynamoDB and Snowflake.
+```
 
 ## Agent Analysis Results
 

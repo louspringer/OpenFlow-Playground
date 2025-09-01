@@ -54,9 +54,7 @@ class MermaidValidator:
         pattern = r"```mermaid\s*\n(.*?)\n```"
         return re.findall(pattern, content, re.DOTALL)
 
-    def _validate_mermaid_block(
-        self, block: str, block_num: int, file_path: Path
-    ) -> bool:
+    def _validate_mermaid_block(self, block: str, block_num: int, file_path: Path) -> bool:
         """Validate a single Mermaid block."""
         is_valid = True
 
@@ -110,9 +108,7 @@ class MermaidValidator:
                 break
 
         if not diagram_type:
-            self.errors.append(
-                f"{file_path}:{block_num}: Invalid diagram type: {first_line}"
-            )
+            self.errors.append(f"{file_path}:{block_num}: Invalid diagram type: {first_line}")
             return False
 
         return True
@@ -143,24 +139,16 @@ class MermaidValidator:
         # Generic arrow checks apply only to graph/flowchart/state diagrams
         if is_graph_like:
             arrow_pattern = r"-->|--|==>|==|-.->|-.|~>|~~"
-            if re.search(arrow_pattern, block) and not re.search(
-                r"[A-Za-z0-9_]\s*(?:-->|--|==>|==|-.->|-.|~>|~~)\s*[A-Za-z0-9_]", block
-            ):
-                self.warnings.append(
-                    f"{file_path}:{block_num}: Potential arrow syntax issue"
-                )
+            if re.search(arrow_pattern, block) and not re.search(r"[A-Za-z0-9_]\s*(?:-->|--|==>|==|-.->|-.|~>|~~)\s*[A-Za-z0-9_]", block):
+                self.warnings.append(f"{file_path}:{block_num}: Potential arrow syntax issue")
 
         # For classDiagram, perform relationship validation explicitly
-        if is_class_diagram and not self._validate_class_relationships(
-            block, file_path, block_num
-        ):
+        if is_class_diagram and not self._validate_class_relationships(block, file_path, block_num):
             is_valid = False
 
         return is_valid
 
-    def _validate_class_relationships(
-        self, block: str, file_path: Path, block_num: int
-    ) -> bool:
+    def _validate_class_relationships(self, block: str, file_path: Path, block_num: int) -> bool:
         """Validate classDiagram relationship lines using allowed operators."""
         allowed_ops = [
             r"<\|--",  # inheritance
@@ -175,26 +163,16 @@ class MermaidValidator:
             r"\\.\\.",  # dotted
         ]
         op_regex = "(" + "|".join(allowed_ops) + ")"
-        pattern = re.compile(
-            r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*"
-            + op_regex
-            + r"\s*([A-Za-z_][A-Za-z0-9_]*)\b"
-        )
+        pattern = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*" + op_regex + r"\s*([A-Za-z_][A-Za-z0-9_]*)\b")
 
         valid = True
         for line in block.splitlines():
-            if (
-                "--" in line or ".." in line or "<|" in line or "|>" in line
-            ) and not line.strip().startswith("class "):
+            if ("--" in line or ".." in line or "<|" in line or "|>" in line) and not line.strip().startswith("class "):
                 if not pattern.search(line):
-                    self.warnings.append(
-                        f"{file_path}:{block_num}: Potential class relationship syntax issue: {line.strip()}"
-                    )
+                    self.warnings.append(f"{file_path}:{block_num}: Potential class relationship syntax issue: {line.strip()}")
         return valid
 
-    def _check_class_diagram_syntax(
-        self, block: str, block_num: int, file_path: Path
-    ) -> bool:
+    def _check_class_diagram_syntax(self, block: str, block_num: int, file_path: Path) -> bool:
         """Check class diagram specific syntax."""
         if not block.strip().startswith("classDiagram"):
             return True
@@ -204,23 +182,15 @@ class MermaidValidator:
         # Check for proper class syntax
         class_pattern = r"class\s+[A-Za-z_][A-Za-z0-9_]*\s*{"
         if not re.search(class_pattern, block):
-            self.warnings.append(
-                f"{file_path}:{block_num}: No explicit class bodies found (ok if using only relationships)"
-            )
+            self.warnings.append(f"{file_path}:{block_num}: No explicit class bodies found (ok if using only relationships)")
 
         # Check for proper inheritance syntax token presence (relationships validated elsewhere)
-        if "<|--" in block and not re.search(
-            r"[A-Za-z_][A-Za-z0-9_]*\s*<\|--\s*[A-Za-z_][A-Za-z0-9_]*", block
-        ):
-            self.warnings.append(
-                f"{file_path}:{block_num}: Potential inheritance syntax issue"
-            )
+        if "<|--" in block and not re.search(r"[A-Za-z_][A-Za-z0-9_]*\s*<\|--\s*[A-Za-z_][A-Za-z0-9_]*", block):
+            self.warnings.append(f"{file_path}:{block_num}: Potential inheritance syntax issue")
 
         return is_valid
 
-    def _check_state_diagram_syntax(
-        self, block: str, block_num: int, file_path: Path
-    ) -> bool:
+    def _check_state_diagram_syntax(self, block: str, block_num: int, file_path: Path) -> bool:
         """Check state diagram specific syntax."""
         if not block.strip().startswith("stateDiagram"):
             return True
@@ -230,24 +200,18 @@ class MermaidValidator:
         # Check for proper state syntax
         state_pattern = r"state\s+[A-Za-z_][A-Za-z0-9_]*\s*{"
         if re.search(r"state\s+", block) and not re.search(state_pattern, block):
-            self.warnings.append(
-                f"{file_path}:{block_num}: Potential state syntax issue"
-            )
+            self.warnings.append(f"{file_path}:{block_num}: Potential state syntax issue")
 
         # Check for proper transitions
         transition_pattern = r"[A-Za-z_][A-Za-z0-9_]*\s*-->.*?[A-Za-z_][A-Za-z0-9_]"
         if re.search(r"-->", block) and not re.search(transition_pattern, block):
-            self.warnings.append(
-                f"{file_path}:{block_num}: Potential transition syntax issue"
-            )
+            self.warnings.append(f"{file_path}:{block_num}: Potential transition syntax issue")
 
         return is_valid
 
     def _check_graph_syntax(self, block: str, block_num: int, file_path: Path) -> bool:
         """Check graph/flowchart specific syntax."""
-        if not (
-            block.strip().startswith("graph") or block.strip().startswith("flowchart")
-        ):
+        if not (block.strip().startswith("graph") or block.strip().startswith("flowchart")):
             return True
 
         is_valid = True
@@ -255,18 +219,12 @@ class MermaidValidator:
         # Check for proper node definitions
         node_pattern = r"[A-Za-z_][A-Za-z0-9_]*\s*\[.*?\]"
         if re.search(r"\[", block) and not re.search(node_pattern, block):
-            self.warnings.append(
-                f"{file_path}:{block_num}: Potential node syntax issue"
-            )
+            self.warnings.append(f"{file_path}:{block_num}: Potential node syntax issue")
 
         # Check for proper subgraph syntax
         subgraph_pattern = r'subgraph\s+["\'][^"\']*["\'].*?end'
-        if re.search(r"subgraph", block) and not re.search(
-            subgraph_pattern, block, re.DOTALL
-        ):
-            self.warnings.append(
-                f"{file_path}:{block_num}: Potential subgraph syntax issue"
-            )
+        if re.search(r"subgraph", block) and not re.search(subgraph_pattern, block, re.DOTALL):
+            self.warnings.append(f"{file_path}:{block_num}: Potential subgraph syntax issue")
 
         return is_valid
 

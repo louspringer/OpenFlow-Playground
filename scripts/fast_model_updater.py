@@ -59,9 +59,7 @@ def update_package_scores():
             if f'"{domain_name}"' in context:
                 # Replace the score
                 old_score = match.group(1)
-                new_content = (
-                    content[: match.start(1)] + str(new_score) + content[match.end(1) :]
-                )
+                new_content = content[: match.start(1)] + str(new_score) + content[match.end(1) :]
 
                 if new_content != content:
                     content = new_content

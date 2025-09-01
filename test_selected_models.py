@@ -59,17 +59,11 @@ async def test_selected_models():
 
         # Show analysis details if available
         if "security" in result:
-            print(
-                f"\n🔒 Security Analysis: {len(result['security']) if isinstance(result['security'], list) else 'Completed'}"
-            )
+            print(f"\n🔒 Security Analysis: {len(result['security']) if isinstance(result['security'], list) else 'Completed'}")
         if "quality" in result:
-            print(
-                f"\n🔍 Quality Analysis: {len(result['quality']) if isinstance(result['quality'], list) else 'Completed'}"
-            )
+            print(f"\n🔍 Quality Analysis: {len(result['quality']) if isinstance(result['quality'], list) else 'Completed'}")
         if "devops" in result:
-            print(
-                f"\n⚙️ DevOps Analysis: {len(result['devops']) if isinstance(result['devops'], list) else 'Completed'}"
-            )
+            print(f"\n⚙️ DevOps Analysis: {len(result['devops']) if isinstance(result['devops'], list) else 'Completed'}")
 
         return True
 

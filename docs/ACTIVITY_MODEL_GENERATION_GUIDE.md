@@ -24,7 +24,7 @@ The Activity Model Generation System provides automated generation of UML activi
    docker run -d -p 20075:8080 plantuml/plantuml-server
    ```
 
-2. **Dependencies**: Install required Python packages
+1. **Dependencies**: Install required Python packages
 
    ```bash
    uv sync
@@ -153,9 +153,9 @@ ci_activity_models/
 When `include_round_trip` is enabled, the system automatically:
 
 1. **Analyzes Source Code**: Parses Python files to extract class and method information
-2. **Generates Models**: Creates UML diagrams from the extracted information
-3. **Integrates with Round-Trip System**: Stores model summaries for validation
-4. **Provides Validation Reports**: Reports on model consistency and quality
+1. **Generates Models**: Creates UML diagrams from the extracted information
+1. **Integrates with Round-Trip System**: Stores model summaries for validation
+1. **Provides Validation Reports**: Reports on model consistency and quality
 
 ### Manual Integration
 
@@ -214,13 +214,13 @@ Performance is automatically validated against configurable thresholds:
    💾 PlantUML code saved (server not available): output.puml
    ```
 
-2. **Source File Issues**
+1. **Source File Issues**
 
    ```
    ❌ Error processing src/broken_file.py: SyntaxError: invalid syntax
    ```
 
-3. **Round-Trip Integration Failures**
+1. **Round-Trip Integration Failures**
 
    ```
    ⚠️  Round-trip system integration failed: Module not found
@@ -331,13 +331,13 @@ pipeline {
    curl http://localhost:20075/
    ```
 
-2. **Verify Port Configuration**
+1. **Verify Port Configuration**
 
    ```bash
    netstat -tlnp | grep 20075
    ```
 
-3. **Check Docker Container**
+1. **Check Docker Container**
 
    ```bash
    docker ps | grep plantuml
@@ -346,35 +346,35 @@ pipeline {
 ### Performance Issues
 
 1. **Large Codebases**: Consider processing directories separately
-2. **Memory Usage**: Monitor system resources during generation
-3. **Network Latency**: Ensure PlantUML server is accessible
+1. **Memory Usage**: Monitor system resources during generation
+1. **Network Latency**: Ensure PlantUML server is accessible
 
 ### Integration Issues
 
 1. **Import Errors**: Check Python path and dependencies
-2. **Round-Trip System**: Verify round-trip system availability
-3. **Configuration**: Validate configuration file syntax
+1. **Round-Trip System**: Verify round-trip system availability
+1. **Configuration**: Validate configuration file syntax
 
 ## Best Practices
 
 ### Development Workflow
 
 1. **Use Make Targets**: Leverage the provided Make targets for consistency
-2. **Incremental Generation**: Generate models for specific modules during development
-3. **Version Control**: Commit generated models for documentation purposes
+1. **Incremental Generation**: Generate models for specific modules during development
+1. **Version Control**: Commit generated models for documentation purposes
 
 ### CI/CD Pipeline
 
 1. **Parallel Execution**: Run model generation in parallel with other CI tasks
-2. **Artifact Management**: Configure appropriate artifact retention policies
-3. **Performance Monitoring**: Set realistic performance thresholds
-4. **Error Handling**: Implement proper error notification and escalation
+1. **Artifact Management**: Configure appropriate artifact retention policies
+1. **Performance Monitoring**: Set realistic performance thresholds
+1. **Error Handling**: Implement proper error notification and escalation
 
 ### Output Management
 
 1. **Organized Structure**: Use consistent output directory naming
-2. **Cleanup Policies**: Implement artifact cleanup to manage disk space
-3. **Backup Strategy**: Consider backing up important generated models
+1. **Cleanup Policies**: Implement artifact cleanup to manage disk space
+1. **Backup Strategy**: Consider backing up important generated models
 
 ## Advanced Usage
 
@@ -417,14 +417,14 @@ class CustomActivityModelIntegration(ActivityModelIntegration):
 ### Getting Help
 
 1. **Check Logs**: Enable verbose logging for detailed information
-2. **Review Configuration**: Verify configuration file syntax and values
-3. **Test Components**: Test individual components in isolation
+1. **Review Configuration**: Verify configuration file syntax and values
+1. **Test Components**: Test individual components in isolation
 
 ### Contributing
 
 1. **Report Issues**: Use GitHub issues for bug reports
-2. **Feature Requests**: Submit feature requests with use case descriptions
-3. **Code Contributions**: Follow the project's coding standards and testing requirements
+1. **Feature Requests**: Submit feature requests with use case descriptions
+1. **Code Contributions**: Follow the project's coding standards and testing requirements
 
 ## Conclusion
 

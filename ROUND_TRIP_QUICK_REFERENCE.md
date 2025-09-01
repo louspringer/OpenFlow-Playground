@@ -20,13 +20,13 @@ complete_code = system.generate_code_from_extracted_model(model)  # WORKING CODE
 ## 🔄 Complete Workflow
 
 1. **Extract Model**: `python enhanced_reverse_engineer.py <file.py>`
-2. **Generate Code**: Use `generate_code_from_extracted_model(model)`
-3. **Validate**: Compare original vs generated for functional equivalence
+1. **Generate Code**: Use `generate_code_from_extracted_model(model)`
+1. **Validate**: Compare original vs generated for functional equivalence
 
 ## 📁 Key Files
 
 - **Enhanced AST Parser**: `enhanced_ast_wrapper.py` ✅
-- **Model Extractor**: `enhanced_reverse_engineer.py` ✅  
+- **Model Extractor**: `enhanced_reverse_engineer.py` ✅
 - **Code Generator**: `round_trip_model_system.py` ✅
 - **Test Runner**: `enhanced_round_trip_test.py` ✅
 

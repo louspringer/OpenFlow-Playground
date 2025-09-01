@@ -1,6 +1,7 @@
 # Implementation Plan
 
 - [x] 1. Update base data model classes to use pydantic BaseModel
+
   - Convert DelusionResult from dataclass to pydantic BaseModel with field validation
   - Convert ValidationResult from dataclass to pydantic BaseModel with constraints
   - Convert RecoveryResult from dataclass to pydantic BaseModel with validation
@@ -9,6 +10,7 @@
   - _Requirements: 1.1, 1.2, 2.2_
 
 - [x] 2. Migrate GhostbustersState to pydantic BaseModel
+
   - Convert GhostbustersState dataclass to pydantic BaseModel
   - Add field defaults using Field(default_factory=list) for lists and dicts
   - Add validation for confidence_score field (0.0-1.0 range)
@@ -17,6 +19,7 @@
   - _Requirements: 2.1, 2.3_
 
 - [x] 3. Update base expert agent class interface
+
   - Modify BaseExpert class to return pydantic DelusionResult
   - Update detect_delusions method signature and return type
   - Add proper type hints for all methods
@@ -24,7 +27,8 @@
   - Test agent initialization and delusion detection
   - _Requirements: 1.1, 3.1_
 
-- [ ] 4. Update base validator class interface  
+- [ ] 4. Update base validator class interface
+
   - Modify BaseValidator class to return pydantic ValidationResult
   - Update validate_findings method signature and return type
   - Add proper type hints for validation methods
@@ -33,6 +37,7 @@
   - _Requirements: 1.1, 3.2_
 
 - [ ] 5. Update base recovery engine class interface
+
   - Modify BaseRecoveryEngine class to return pydantic RecoveryResult
   - Update execute_recovery method signature and return type
   - Add proper type hints for recovery methods
@@ -41,6 +46,7 @@
   - _Requirements: 1.1, 3.3_
 
 - [ ] 6. Update GhostbustersOrchestrator for pydantic compatibility
+
   - Modify orchestrator to work with pydantic GhostbustersState
   - Update LangGraph workflow initialization to use pydantic state
   - Fix state transitions between workflow nodes
@@ -49,6 +55,7 @@
   - _Requirements: 2.1, 2.2, 2.3_
 
 - [ ] 7. Fix import statements and remove deprecated imports
+
   - Remove any langchain_core.pydantic_v1 imports
   - Add direct pydantic imports (from pydantic import BaseModel, Field)
   - Update type hints to use typing.List, typing.Dict
@@ -57,6 +64,7 @@
   - _Requirements: 4.1, 4.2, 4.3_
 
 - [ ] 8. Update all concrete agent implementations
+
   - Update SecurityExpert, CodeQualityExpert, TestExpert, BuildExpert, ArchitectureExpert, ModelExpert
   - Ensure all agents return proper pydantic DelusionResult objects
   - Update agent-specific logic to work with pydantic models
@@ -65,6 +73,7 @@
   - _Requirements: 1.1, 3.1_
 
 - [ ] 9. Update all concrete validator implementations
+
   - Update SecurityValidator, CodeQualityValidator, TestValidator, BuildValidator, ArchitectureValidator, ModelValidator
   - Ensure all validators return proper pydantic ValidationResult objects
   - Update validator-specific logic to work with pydantic models
@@ -73,6 +82,7 @@
   - _Requirements: 1.1, 3.2_
 
 - [ ] 10. Update all concrete recovery engine implementations
+
   - Update SyntaxRecoveryEngine, IndentationFixer, ImportResolver, TypeAnnotationFixer
   - Ensure all recovery engines return proper pydantic RecoveryResult objects
   - Update recovery engine logic to work with pydantic models
@@ -81,6 +91,7 @@
   - _Requirements: 1.1, 3.3_
 
 - [ ] 11. Re-enable and update disabled test file
+
   - Rename tests/test_ghostbusters.py.disabled to tests/test_ghostbusters_comprehensive.py
   - Update test assertions to work with pydantic models instead of dataclasses
   - Update test fixtures to create pydantic model instances
@@ -89,6 +100,7 @@
   - _Requirements: 5.1, 5.2_
 
 - [ ] 12. Update existing test file for pydantic compatibility
+
   - Modify tests/test_ghostbusters.py to work with pydantic models
   - Update test assertions to check pydantic model attributes
   - Add tests for model validation and serialization
@@ -97,6 +109,7 @@
   - _Requirements: 1.1, 5.3_
 
 - [ ] 13. Add comprehensive pydantic validation tests
+
   - Create tests for field validation (confidence score ranges, required fields)
   - Test model serialization and deserialization (to_dict, from_dict)
   - Test error handling for ValidationError exceptions
@@ -105,6 +118,7 @@
   - _Requirements: 3.1, 3.2, 3.3_
 
 - [ ] 14. Test LangGraph workflow with pydantic state
+
   - Test GhostbustersOrchestrator initialization with pydantic state
   - Test state transitions between workflow nodes
   - Test state serialization during workflow execution
@@ -113,6 +127,7 @@
   - _Requirements: 2.1, 2.2, 2.3_
 
 - [ ] 15. Run full test suite and fix remaining issues
+
   - Execute pytest tests/test_ghostbusters.py and tests/test_ghostbusters_comprehensive.py
   - Fix any remaining pydantic compatibility issues
   - Ensure test success rate >90% for Ghostbusters tests

@@ -248,8 +248,8 @@ if detect_ghostbusters_trigger(message):
 This rule ensures that:
 
 1. **Multi-agent validation** is always available
-2. **Delusion detection** is systematic
-3. **Quality assurance** is comprehensive
-4. **Collective intelligence** prevents individual delusions
+1. **Delusion detection** is systematic
+1. **Quality assurance** is comprehensive
+1. **Collective intelligence** prevents individual delusions
 
 **The era of systematic delusion detection has begun!** 🚀

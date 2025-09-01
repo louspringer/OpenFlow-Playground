@@ -46,9 +46,7 @@ class VocabularyAligner:
             logger.info("🔍 Starting ontological vocabulary alignment...")
 
             # Step 1: Analyze vocabulary mismatches
-            mismatches = self.vocabulary_analyzer.analyze_vocabulary_mismatches(
-                extracted_model
-            )
+            mismatches = self.vocabulary_analyzer.analyze_vocabulary_mismatches(extracted_model)
 
             if mismatches:
                 logger.info(f"⚠️ Found {len(mismatches)} vocabulary mismatches")
@@ -56,18 +54,10 @@ class VocabularyAligner:
                     logger.info(f"  - {mismatch['description']}")
 
                 # Step 2: Apply vocabulary transformations
-                aligned_model = (
-                    self.vocabulary_transformer.apply_vocabulary_transformations(
-                        extracted_model, mismatches
-                    )
-                )
+                aligned_model = self.vocabulary_transformer.apply_vocabulary_transformations(extracted_model, mismatches)
 
                 # Step 3: Validate alignment
-                validation_result = (
-                    self.vocabulary_validator.validate_vocabulary_alignment(
-                        extracted_model, aligned_model
-                    )
-                )
+                validation_result = self.vocabulary_validator.validate_vocabulary_alignment(extracted_model, aligned_model)
 
                 if validation_result["valid"]:
                     logger.info("✅ Ontological vocabulary alignment successful")

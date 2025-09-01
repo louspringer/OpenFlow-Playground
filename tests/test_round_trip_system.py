@@ -87,12 +87,8 @@ class TestRoundTripSystem:
         assert "TestComponent" in aligned_data["components"]
         assert aligned_data["components"]["TestComponent"]["name"] == "TestComponent"
 
-        self.logger.info(
-            f"📊 Output components type: {type(aligned_data['components'])}"
-        )
-        self.logger.info(
-            f"📊 Output components keys: {list(aligned_data['components'].keys())}"
-        )
+        self.logger.info(f"📊 Output components type: {type(aligned_data['components'])}")
+        self.logger.info(f"📊 Output components keys: {list(aligned_data['components'].keys())}")
 
         # Log performance metrics
         self.system.print_profiling_summary()
@@ -144,9 +140,7 @@ class TestRoundTripSystem:
         assert "str" in generated_code  # Return type
 
         self.logger.info(f"📊 Generated code length: {len(generated_code)} characters")
-        self.logger.info(
-            f"📊 Generated code lines: {len(generated_code.split(chr(10)))}"
-        )
+        self.logger.info(f"📊 Generated code lines: {len(generated_code.split(chr(10)))}")
 
         # Save generated code for inspection
         code_file = self.test_dir / "generated_test_component.py"
@@ -216,32 +210,18 @@ class TestRoundTripSystem:
             elif line_stripped.startswith("return "):
                 if current_method and method_has_return:
                     remaining_unreachable_returns += 1
-                    self.logger.info(
-                        f"🔍 DEBUG: Found unreachable return: {line_stripped} in {current_method}"
-                    )
+                    self.logger.info(f"🔍 DEBUG: Found unreachable return: {line_stripped} in {current_method}")
                 method_has_return = True
-                self.logger.info(
-                    f"🔍 DEBUG: Found return: {line_stripped} in {current_method}"
-                )
+                self.logger.info(f"🔍 DEBUG: Found return: {line_stripped} in {current_method}")
 
         self.logger.info(f"📊 Cleaned code lines: {cleaned_lines}")
-        self.logger.info(
-            f"📊 Remaining duplicate methods: {remaining_duplicate_methods}"
-        )
-        self.logger.info(
-            f"📊 Remaining unreachable returns: {remaining_unreachable_returns}"
-        )
+        self.logger.info(f"📊 Remaining duplicate methods: {remaining_duplicate_methods}")
+        self.logger.info(f"📊 Remaining unreachable returns: {remaining_unreachable_returns}")
 
         # Validate cleaning effectiveness
-        assert (
-            remaining_duplicate_methods == 1
-        ), f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
-        assert (
-            remaining_unreachable_returns == 0
-        ), f"Should have no unreachable returns, got {remaining_unreachable_returns}"
-        assert (
-            cleaned_lines < original_lines
-        ), f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
+        assert remaining_duplicate_methods == 1, f"Should have only one duplicate_method, got {remaining_duplicate_methods}"
+        assert remaining_unreachable_returns == 0, f"Should have no unreachable returns, got {remaining_unreachable_returns}"
+        assert cleaned_lines < original_lines, f"Should have fewer lines after cleaning: {original_lines} → {cleaned_lines}"
 
         # Save cleaned code for inspection
         cleaned_file = self.test_dir / "cleaned_test_code.py"
@@ -270,9 +250,7 @@ class TestRoundTripSystem:
                             "name": "process_data",
                             "docstring": "Process input data",
                             "return_type": "Dict[str, Any]",
-                            "parameters": [
-                                {"name": "data", "type": "List[str]", "default": None}
-                            ],
+                            "parameters": [{"name": "data", "type": "List[str]", "default": None}],
                         }
                     ],
                 }
@@ -280,9 +258,7 @@ class TestRoundTripSystem:
         }
 
         self.logger.info("🔄 Step 1: Generate code from extracted model")
-        generated_code = self.system.generate_code_from_extracted_model(
-            extracted_model, "python"
-        )
+        generated_code = self.system.generate_code_from_extracted_model(extracted_model, "python")
         assert generated_code is not None
         assert len(generated_code) > 0
 
@@ -303,10 +279,7 @@ class TestRoundTripSystem:
         # Step 4: Validate code quality
         self.logger.info("🔄 Step 4: Validate code quality")
         # Check for Reflective Module interfaces
-        assert (
-            "ReflectiveModule" in generated_code
-            or "reflective_module" in generated_code.lower()
-        )
+        assert "ReflectiveModule" in generated_code or "reflective_module" in generated_code.lower()
         # Check for Pydantic usage
         assert "BaseModel" in generated_code or "pydantic" in generated_code.lower()
 

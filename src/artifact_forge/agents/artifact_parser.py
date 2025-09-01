@@ -261,9 +261,7 @@ class ArtifactParser:
             "classes": classes,
             "imports": imports,
             "complexity": len(functions) + len(classes),  # Simplified complexity
-            "line_count": sum(
-                block["end_line"] - block["start_line"] + 1 for block in blocks
-            ),
+            "line_count": sum(block["end_line"] - block["start_line"] + 1 for block in blocks),
         }
 
     def _extract_function_from_block(
@@ -382,9 +380,7 @@ class ArtifactParser:
             "block_type": block.block_type,
             "indent_level": block.indent_level,
             "content": block.content,
-            "parent_block": (
-                block.parent_block.block_type if block.parent_block else None
-            ),
+            "parent_block": (block.parent_block.block_type if block.parent_block else None),
         }
 
     def _count_block_types(self, blocks: list[BlockBoundary]) -> dict[str, int]:

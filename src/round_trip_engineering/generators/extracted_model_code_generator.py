@@ -36,13 +36,9 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
             ],
         }
 
-    def generate_module_from_extracted_model(
-        self, extracted_model: Dict[str, Any]
-    ) -> str:
+    def generate_module_from_extracted_model(self, extracted_model: Dict[str, Any]) -> str:
         """Generate complete Python module skeleton code from an extracted model"""
-        self.logger.info(
-            f"🎯 Generating module from extracted model: {extracted_model.get('name', 'Unknown')}"
-        )
+        self.logger.info(f"🎯 Generating module from extracted model: {extracted_model.get('name', 'Unknown')}")
 
         # Extract basic information
         module_name = extracted_model.get("name", "generated_module")
@@ -82,9 +78,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         code = "\n".join(code_lines).strip()
         code = self.ensure_clean_generation(code)
 
-        self.logger.info(
-            f"✅ Generated module with {len(classes)} classes and {len(functions)} functions"
-        )
+        self.logger.info(f"✅ Generated module with {len(classes)} classes and {len(functions)} functions")
         return code
 
     def generate_class_from_extracted_model(self, class_data: Dict[str, Any]) -> str:
@@ -111,9 +105,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         for method_data in methods:
             method_code = self.generate_method_from_extracted_model(method_data)
             # Indent method code
-            indented_method = "\n".join(
-                f"    {line}" for line in method_code.split("\n")
-            )
+            indented_method = "\n".join(f"    {line}" for line in method_code.split("\n"))
             code_lines.append(indented_method)
             code_lines.append("")
 
@@ -205,9 +197,7 @@ class ExtractedModelCodeGenerator(BaseReflectiveModule):
         """Record formatting patterns in the generated code for analysis"""
         patterns = {
             "total_lines": len(code.split("\n")),
-            "empty_lines": len(
-                [line for line in code.split("\n") if line.strip() == ""]
-            ),
+            "empty_lines": len([line for line in code.split("\n") if line.strip() == ""]),
             "class_definitions": len(re.findall(r"^class\s+\w+", code, re.MULTILINE)),
             "function_definitions": len(re.findall(r"^def\s+\w+", code, re.MULTILINE)),
             "docstrings": len(re.findall(r'""".*?"""', code, re.DOTALL)),

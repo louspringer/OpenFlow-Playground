@@ -27,9 +27,7 @@ class CodeGenerator:
         self.import_generator = ImportGenerator()
         logger.info("✅ Code generator initialized")
 
-    def generate(
-        self, extracted_model: Dict[str, Any], target_language: str = "python"
-    ) -> str:
+    def generate(self, extracted_model: Dict[str, Any], target_language: str = "python") -> str:
         """
         Generate code from an extracted model.
 
@@ -45,9 +43,7 @@ class CodeGenerator:
 
             # STEP 1: Build complete in-memory model first (BEST PRACTICE)
             complete_model = self._build_complete_model(extracted_model)
-            logger.info(
-                f"✅ Built complete in-memory model with {len(complete_model.get('components', {}))} components"
-            )
+            logger.info(f"✅ Built complete in-memory model with {len(complete_model.get('components', {}))} components")
 
             # STEP 2: Validate the complete model
             self._validate_complete_model(complete_model)
@@ -55,9 +51,7 @@ class CodeGenerator:
 
             # STEP 3: Generate code from the complete model
             code = self._generate_from_complete_model(complete_model, target_language)
-            logger.info(
-                f"✅ Generated {target_language} code successfully from complete model"
-            )
+            logger.info(f"✅ Generated {target_language} code successfully from complete model")
 
             return code
 
@@ -89,13 +83,9 @@ class CodeGenerator:
         if isinstance(components, dict):
             for class_name, class_info in components.items():
                 # Ensure each class has complete structure
-                complete_model["components"][class_name] = self._build_complete_class(
-                    class_info
-                )
+                complete_model["components"][class_name] = self._build_complete_class(class_info)
 
-        logger.info(
-            f"✅ Complete model built with {len(complete_model.get('components', {}))} components"
-        )
+        logger.info(f"✅ Complete model built with {len(complete_model.get('components', {}))} components")
         return complete_model
 
     def _build_complete_class(self, class_info: Dict[str, Any]) -> Dict[str, Any]:
@@ -112,15 +102,9 @@ class CodeGenerator:
         complete_class.setdefault("class_decorators", [])
 
         # Ensure data models inherit from Pydantic BaseModel for modern Python development
-        if (
-            not complete_class.get("bases")
-            and "data" in complete_class.get("type", "").lower()
-        ):
+        if not complete_class.get("bases") and "data" in complete_class.get("type", "").lower():
             complete_class["bases"] = ["BaseModel"]
-        elif (
-            not complete_class.get("bases")
-            and "model" in complete_class.get("description", "").lower()
-        ):
+        elif not complete_class.get("bases") and "model" in complete_class.get("description", "").lower():
             complete_class["bases"] = ["BaseModel"]
         elif not complete_class.get("bases"):
             # Default to ReflectiveModule for operational classes
@@ -173,15 +157,11 @@ class CodeGenerator:
             required_class_fields = ["name", "type", "methods"]
             for field in required_class_fields:
                 if field not in class_info:
-                    raise ValueError(
-                        f"Component {class_name} missing required field: {field}"
-                    )
+                    raise ValueError(f"Component {class_name} missing required field: {field}")
 
         logger.info("✅ Complete model validation passed")
 
-    def _generate_from_complete_model(
-        self, complete_model: Dict[str, Any], target_language: str
-    ) -> str:
+    def _generate_from_complete_model(self, complete_model: Dict[str, Any], target_language: str) -> str:
         """Generate code from the complete, validated model."""
         logger.info(f"🎯 Generating {target_language} code from complete model...")
 
@@ -220,9 +200,7 @@ class CodeGenerator:
         components = complete_model.get("components", {})
         if isinstance(components, dict):
             for class_name, class_info in components.items():
-                code += self.class_generator.generate_class(
-                    class_name, class_info, complete_model
-                )
+                code += self.class_generator.generate_class(class_name, class_info, complete_model)
                 code += "\n\n"  # Add spacing between classes
 
         # Generate main function if executable

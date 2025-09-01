@@ -15,9 +15,7 @@ logger = logging.getLogger(__name__)
 class ClassStructureGenerator(BaseReflectiveModule):
     """Generate class structure from enhanced AST data."""
 
-    def generate_class_structure(
-        self, class_name: str, enhanced_ast: Dict[str, Any]
-    ) -> str:
+    def generate_class_structure(self, class_name: str, enhanced_ast: Dict[str, Any]) -> str:
         """Generate class structure with proper inheritance and docstring."""
         try:
             start_time = self._get_last_operation_time()
@@ -47,9 +45,7 @@ class ClassStructureGenerator(BaseReflectiveModule):
             self._track_success()
             operation_time = self._get_last_operation_time() - start_time
 
-            logger.info(
-                f"✅ Generated class structure for {class_name} in {operation_time:.3f}s"
-            )
+            logger.info(f"✅ Generated class structure for {class_name} in {operation_time:.3f}s")
             return class_def
 
         except Exception as e:

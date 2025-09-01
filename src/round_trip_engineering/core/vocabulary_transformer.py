@@ -17,9 +17,7 @@ class VocabularyTransformer:
         """Initialize the vocabulary transformer."""
         logger.info("✅ Vocabulary transformer initialized")
 
-    def apply_vocabulary_transformations(
-        self, model: Dict[str, Any], mismatches: List[Dict[str, Any]]
-    ) -> Dict[str, Any]:
+    def apply_vocabulary_transformations(self, model: Dict[str, Any], mismatches: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Apply vocabulary transformations to resolve mismatches."""
         aligned_model = model.copy()
 
@@ -31,60 +29,37 @@ class VocabularyTransformer:
 
             if transformation == "convert_list_to_dict_by_name":
                 if field == "components":
-                    aligned_model["components"] = self._convert_components_list_to_dict(
-                        aligned_model["components"]
-                    )
+                    aligned_model["components"] = self._convert_components_list_to_dict(aligned_model["components"])
 
             elif transformation == "ensure_component_structure":
                 if field.startswith("components."):
                     component_name = field.split(".")[1]
                     if component_name in aligned_model["components"]:
-                        aligned_model["components"][
-                            component_name
-                        ] = self._ensure_component_structure(
-                            aligned_model["components"][component_name]
-                        )
+                        aligned_model["components"][component_name] = self._ensure_component_structure(aligned_model["components"][component_name])
 
             elif transformation == "enhance_workflow_metrics":
                 if field == "workflow_analysis":
-                    aligned_model["workflow_analysis"] = self._enhance_workflow_metrics(
-                        aligned_model["workflow_analysis"]
-                    )
+                    aligned_model["workflow_analysis"] = self._enhance_workflow_metrics(aligned_model["workflow_analysis"])
 
             elif transformation == "convert_list_to_dict_by_id":
                 if field == "relationships":
-                    aligned_model[
-                        "relationships"
-                    ] = self._convert_relationships_list_to_dict(
-                        aligned_model["relationships"]
-                    )
+                    aligned_model["relationships"] = self._convert_relationships_list_to_dict(aligned_model["relationships"])
 
             elif transformation == "ensure_class_structure":
                 if field.startswith("enhanced_ast_data.classes["):
                     # Extract class index from field path
                     try:
                         class_index = int(field.split("[")[1].split("]")[0])
-                        if (
-                            "enhanced_ast_data" in aligned_model
-                            and "classes" in aligned_model["enhanced_ast_data"]
-                        ):
+                        if "enhanced_ast_data" in aligned_model and "classes" in aligned_model["enhanced_ast_data"]:
                             classes = aligned_model["enhanced_ast_data"]["classes"]
-                            if isinstance(classes, list) and 0 <= class_index < len(
-                                classes
-                            ):
-                                classes[class_index] = self._ensure_class_structure(
-                                    classes[class_index]
-                                )
+                            if isinstance(classes, list) and 0 <= class_index < len(classes):
+                                classes[class_index] = self._ensure_class_structure(classes[class_index])
                     except (ValueError, IndexError):
-                        logger.warning(
-                            f"⚠️ Could not parse class index from field: {field}"
-                        )
+                        logger.warning(f"⚠️ Could not parse class index from field: {field}")
 
         return aligned_model
 
-    def _convert_components_list_to_dict(
-        self, components: List[Dict[str, Any]]
-    ) -> Dict[str, Any]:
+    def _convert_components_list_to_dict(self, components: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Convert components list to name-keyed dictionary."""
         if not isinstance(components, list):
             return components
@@ -141,15 +116,11 @@ class VocabularyTransformer:
         edge_count = len(workflow.get("edges", []))
 
         if node_count > 0:
-            workflow["complexity"] = max(
-                workflow["complexity"], node_count * 10 + edge_count * 5
-            )
+            workflow["complexity"] = max(workflow["complexity"], node_count * 10 + edge_count * 5)
 
         return workflow
 
-    def _convert_relationships_list_to_dict(
-        self, relationships: List[Dict[str, Any]]
-    ) -> Dict[str, Any]:
+    def _convert_relationships_list_to_dict(self, relationships: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Convert relationships list to ID-keyed dictionary."""
         if not isinstance(relationships, list):
             return relationships

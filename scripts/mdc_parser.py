@@ -70,18 +70,11 @@ class MDCParser:
                     yaml_data[key] = True
                 elif value.lower() == "false":
                     yaml_data[key] = False
-                elif (
-                    value.startswith('"')
-                    and value.endswith('"')
-                    or value.startswith("'")
-                    and value.endswith("'")
-                ):
+                elif value.startswith('"') and value.endswith('"') or value.startswith("'") and value.endswith("'"):
                     yaml_data[key] = value[1:-1]
                 elif value.startswith("[") and value.endswith("]"):
                     # Handle YAML list format
-                    items = [
-                        item.strip().strip("\"'") for item in value[1:-1].split(",")
-                    ]
+                    items = [item.strip().strip("\"'") for item in value[1:-1].split(",")]
                     yaml_data[key] = items
                 else:
                     # Assume string value
@@ -104,9 +97,7 @@ class MDCParser:
 
             # Check required fields
             required_fields = ["description", "alwaysApply"]
-            missing_fields = [
-                field for field in required_fields if field not in yaml_data
-            ]
+            missing_fields = [field for field in required_fields if field not in yaml_data]
 
             if missing_fields:
                 print(f"❌ Missing required fields: {missing_fields}")
@@ -142,9 +133,7 @@ class MDCParser:
                         print("❌ 'globs' list must contain strings")
                         return False
                 else:
-                    print(
-                        "❌ 'globs' must be a string (Cursor format) or list (standard format)"
-                    )
+                    print("❌ 'globs' must be a string (Cursor format) or list (standard format)")
                     return False
 
             # Check markdown content
@@ -162,9 +151,7 @@ class MDCParser:
             print(f"❌ MDC validation failed: {e}")
             return False
 
-    def _validate_rule_heuristics(
-        self, file_path: str, yaml_data: dict[str, Any], markdown_content: str
-    ):
+    def _validate_rule_heuristics(self, file_path: str, yaml_data: dict[str, Any], markdown_content: str):
         """
         Heuristic fuzzy checks for rule purpose vs configuration
 
@@ -182,14 +169,9 @@ class MDCParser:
         warnings = []
 
         # YAML-specific rules should target YAML files
-        if any(
-            keyword in filename or keyword in description
-            for keyword in ["yaml", "yml", "config", "template"]
-        ):
+        if any(keyword in filename or keyword in description for keyword in ["yaml", "yml", "config", "template"]):
             if always_apply is True:
-                warnings.append(
-                    "YAML-specific rule with alwaysApply: true - consider targeting YAML files specifically"
-                )
+                warnings.append("YAML-specific rule with alwaysApply: true - consider targeting YAML files specifically")
             elif always_apply is False and globs:
                 # Check if globs include YAML extensions
                 yaml_extensions = [
@@ -201,32 +183,19 @@ class MDCParser:
                     ".yml.template",
                 ]
                 glob_patterns = globs.split(",") if isinstance(globs, str) else globs
-                has_yaml_targets = any(
-                    any(ext in pattern for ext in yaml_extensions)
-                    for pattern in glob_patterns
-                )
+                has_yaml_targets = any(any(ext in pattern for ext in yaml_extensions) for pattern in glob_patterns)
                 if not has_yaml_targets:
                     warnings.append("YAML rule doesn't target YAML file extensions")
 
         # Security rules should be universal
-        if any(
-            keyword in filename or keyword in description
-            for keyword in ["security", "credential", "auth", "encrypt"]
-        ):
+        if any(keyword in filename or keyword in description for keyword in ["security", "credential", "auth", "encrypt"]):
             if always_apply is False:
-                warnings.append(
-                    "Security rule with alwaysApply: false - consider making it universal"
-                )
+                warnings.append("Security rule with alwaysApply: false - consider making it universal")
 
         # Language-specific rules should target appropriate files
-        if any(
-            keyword in filename or keyword in description
-            for keyword in ["python", "py", "js", "typescript", "ts"]
-        ):
+        if any(keyword in filename or keyword in description for keyword in ["python", "py", "js", "typescript", "ts"]):
             if always_apply is True:
-                warnings.append(
-                    "Language-specific rule with alwaysApply: true - consider targeting specific file types"
-                )
+                warnings.append("Language-specific rule with alwaysApply: true - consider targeting specific file types")
 
         # Print warnings
         for warning in warnings:

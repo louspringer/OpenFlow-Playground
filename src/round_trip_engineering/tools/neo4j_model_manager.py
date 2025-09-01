@@ -40,9 +40,7 @@ class Neo4jModelManager(BaseReflectiveModule, IModelCrud):
             try:
                 from neo4j import GraphDatabase
 
-                self._driver = GraphDatabase.driver(
-                    self.uri, auth=(self.username, self.password)
-                )
+                self._driver = GraphDatabase.driver(self.uri, auth=(self.username, self.password))
             except ImportError:
                 raise ImportError("neo4j package not installed. Run: pip install neo4j")
         return self._driver
@@ -120,9 +118,7 @@ class Neo4jModelManager(BaseReflectiveModule, IModelCrud):
                         session.run(query, {"item_id": item_id, "value": value})
 
             self._track_success()
-            self.logger.info(
-                f"✅ Item added to Neo4j collection {collection}: {item_id}"
-            )
+            self.logger.info(f"✅ Item added to Neo4j collection {collection}: {item_id}")
             return True
 
         except Exception as e:
@@ -164,14 +160,10 @@ class Neo4jModelManager(BaseReflectiveModule, IModelCrud):
                 DETACH DELETE i
                 """
 
-                result = session.run(
-                    query, {"item_id": item_id, "collection": collection}
-                )
+                result = session.run(query, {"item_id": item_id, "collection": collection})
 
             self._track_success()
-            self.logger.info(
-                f"✅ Item removed from Neo4j collection {collection}: {item_id}"
-            )
+            self.logger.info(f"✅ Item removed from Neo4j collection {collection}: {item_id}")
             return True
 
         except Exception as e:

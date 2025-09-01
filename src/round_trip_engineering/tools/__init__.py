@@ -129,9 +129,7 @@ class ModelRegistry:
         if model_info["instance"] is None:
             implementation_name = model_info["implementation"]
             config = model_info["config"]
-            model_info["instance"] = self._create_implementation(
-                implementation_name, config
-            )
+            model_info["instance"] = self._create_implementation(implementation_name, config)
 
         return model_info["instance"]
 
@@ -153,14 +151,10 @@ class ModelRegistry:
         # Persist changes directly (registry manages its own model)
         self._save_registry()
 
-        logger.info(
-            f"✅ Registered model '{model_name}' with implementation '{implementation}'"
-        )
+        logger.info(f"✅ Registered model '{model_name}' with implementation '{implementation}'")
         return True
 
-    def _get_default_config(
-        self, implementation: str, model_name: str, **overrides
-    ) -> Dict[str, Any]:
+    def _get_default_config(self, implementation: str, model_name: str, **overrides) -> Dict[str, Any]:
         """Get default configuration for implementation (opaque to users)."""
         config = {}
 
@@ -195,9 +189,7 @@ class ModelRegistry:
             config = model_info["config"]  # Right auth, right config, ALL details
 
             # Factory method - implementation details completely hidden
-            model_info["instance"] = self._create_implementation(
-                implementation_name, config
-            )
+            model_info["instance"] = self._create_implementation(implementation_name, config)
 
         return model_info["instance"]
 
@@ -208,11 +200,7 @@ class ModelRegistry:
         resolved_config = {}
 
         for key, value in config.items():
-            if (
-                isinstance(value, str)
-                and value.startswith("${")
-                and value.endswith("}")
-            ):
+            if isinstance(value, str) and value.startswith("${") and value.endswith("}"):
                 # Extract environment variable name
                 env_var_name = value[2:-1]  # Remove ${ and }
                 env_value = os.getenv(env_var_name)
@@ -224,9 +212,7 @@ class ModelRegistry:
 
         return resolved_config
 
-    def _create_implementation(
-        self, implementation_name: str, config: Dict[str, Any]
-    ) -> IModelCrud:
+    def _create_implementation(self, implementation_name: str, config: Dict[str, Any]) -> IModelCrud:
         """Create implementation instance with environment variable resolution."""
         try:
             # Resolve environment variables in config
@@ -246,9 +232,7 @@ class ModelRegistry:
             return implementation_map[implementation_name](resolved_config)
 
         except Exception as e:
-            logger.error(
-                f"❌ Failed to create implementation '{implementation_name}': {e}"
-            )
+            logger.error(f"❌ Failed to create implementation '{implementation_name}': {e}")
             raise
 
     def _create_json_manager(self, config: Dict[str, Any]) -> IModelCrud:

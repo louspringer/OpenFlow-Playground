@@ -191,9 +191,7 @@ def main():
     )
 
     print_header("AWS Configuration")
-    values["aws_region"] = (
-        input(f"{BOLD}AWS Region (default: us-east-1):{END} ").strip() or "us-east-1"
-    )
+    values["aws_region"] = input(f"{BOLD}AWS Region (default: us-east-1):{END} ").strip() or "us-east-1"
 
     # Generate config file
     config_content = generate_config_env(values)

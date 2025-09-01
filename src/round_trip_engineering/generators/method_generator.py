@@ -17,9 +17,7 @@ class MethodGenerator:
         """Initialize the method generator."""
         logger.info("✅ Method generator initialized")
 
-    def generate_method(
-        self, method_info: Dict[str, Any], extracted_model: Dict[str, Any]
-    ) -> str:
+    def generate_method(self, method_info: Dict[str, Any], extracted_model: Dict[str, Any]) -> str:
         """
         Generate method code from method info.
 
@@ -62,9 +60,7 @@ class MethodGenerator:
                 return_type = "Any"
 
             # Build method signature
-            method_sig = self._build_method_signature(
-                name, parameters, return_type, is_async
-            )
+            method_sig = self._build_method_signature(name, parameters, return_type, is_async)
 
             # Add decorators
             decorator_code = ""

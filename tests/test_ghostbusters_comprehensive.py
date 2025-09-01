@@ -26,9 +26,7 @@ class TestGhostbustersBasic:
         assert orchestrator is not None
         assert hasattr(orchestrator, "project_path")
 
-    def test_ghostbusters_orchestrator_basic_functionality(
-        self, project_path: Path
-    ) -> None:
+    def test_ghostbusters_orchestrator_basic_functionality(self, project_path: Path) -> None:
         """Test basic GhostbustersOrchestrator functionality"""
         orchestrator = GhostbustersOrchestrator()
 
@@ -51,9 +49,7 @@ class TestGhostbustersBasic:
         # Check that the file has content
         content = rules_file.read_text()
         assert len(content) > 0, "Ghostbusters rules file should have content"
-        assert "Ghostbusters Component" in content, (
-            "Rules file should contain component description"
-        )
+        assert "Ghostbusters Component" in content, "Rules file should contain component description"
 
 
 if __name__ == "__main__":

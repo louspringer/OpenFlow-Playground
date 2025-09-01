@@ -78,9 +78,7 @@ class StreamlitTestServer:
         """Kill any existing Streamlit processes on the test port."""
         for proc in psutil.process_iter(["pid", "name", "cmdline"]):
             try:
-                if proc.info["name"] == "python" and any(
-                    "streamlit" in str(cmd) for cmd in proc.info["cmdline"]
-                ):
+                if proc.info["name"] == "python" and any("streamlit" in str(cmd) for cmd in proc.info["cmdline"]):
                     if str(self.port) in str(proc.info["cmdline"]):
                         proc.terminate()
                         proc.wait()
@@ -223,9 +221,7 @@ class TestGUINavigation(GUITestBase):
         self.page.wait_for_load_state("networkidle")
 
         # Check main title - use the actual title text
-        expect(
-            self.page.locator("text=🔍 Workflow Extraction Visualization System")
-        ).to_be_visible()
+        expect(self.page.locator("text=🔍 Workflow Extraction Visualization System")).to_be_visible()
 
         # Check component count - look for the specific metric card
         component_metric = self.page.locator("text=Components").first
@@ -242,16 +238,12 @@ class TestGUINavigation(GUITestBase):
         print("🔍 Starting comprehensive debug test...")
 
         # Take screenshot of dashboard
-        self.take_screenshot(
-            "comprehensive_debug_dashboard", "Dashboard for comprehensive debugging"
-        )
+        self.take_screenshot("comprehensive_debug_dashboard", "Dashboard for comprehensive debugging")
 
         # Check dashboard elements
         print("\n📊 Dashboard Elements:")
         try:
-            main_title = self.page.locator(
-                "text=🔍 Workflow Extraction Visualization System"
-            )
+            main_title = self.page.locator("text=🔍 Workflow Extraction Visualization System")
             if main_title.count() > 0:
                 print("✅ Main title found")
             else:
@@ -270,9 +262,7 @@ class TestGUINavigation(GUITestBase):
                 print("✅ Component selector clicked")
 
                 # Find and click UC-2 component
-                uc2_component = self.page.locator(
-                    "text=UC-2: Control Flow Pattern Recognition"
-                )
+                uc2_component = self.page.locator("text=UC-2: Control Flow Pattern Recognition")
                 if uc2_component.count() > 0:
                     print("✅ UC-2 component found")
                     uc2_component.click()
@@ -321,9 +311,7 @@ class TestGUINavigation(GUITestBase):
                     print("\n📝 All Visible Text Elements:")
                     try:
                         # Use a more specific selector for text elements
-                        text_elements = self.page.locator(
-                            "h1, h2, h3, h4, h5, h6, p, span, div, label, button"
-                        ).all()
+                        text_elements = self.page.locator("h1, h2, h3, h4, h5, h6, p, span, div, label, button").all()
                         print(f"Found {len(text_elements)} potential text elements")
 
                         # Print first 10 elements with text content
@@ -354,9 +342,7 @@ class TestGUINavigation(GUITestBase):
         # Test Quick Control Flow
         self.page.locator("text=🚀 Quick Control Flow").click()
         time.sleep(2)  # Wait for analysis
-        self.take_screenshot(
-            "quick_control_flow", "Quick Control Flow analysis completed"
-        )
+        self.take_screenshot("quick_control_flow", "Quick Control Flow analysis completed")
 
         # Test Quick Complexity
         self.page.locator("text=📊 Quick Complexity").click()
@@ -381,14 +367,10 @@ class TestGUINavigation(GUITestBase):
             time.sleep(1)
 
             # Take screenshot
-            self.take_screenshot(
-                f"responsive_{device}", f"Responsive design test at {width}x{height}"
-            )
+            self.take_screenshot(f"responsive_{device}", f"Responsive design test at {width}x{height}")
 
             # Verify basic functionality still works - look for the main title
-            main_title = self.page.locator(
-                "text=🔍 Workflow Extraction Visualization System"
-            ).first
+            main_title = self.page.locator("text=🔍 Workflow Extraction Visualization System").first
             expect(main_title).to_be_visible()
 
 

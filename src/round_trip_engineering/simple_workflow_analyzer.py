@@ -42,13 +42,9 @@ class SimpleWorkflowAnalyzer:
             tree = ast.parse(source_code)
 
             # Extract simplified workflow
-            workflow_data = self._extract_simple_workflow(
-                source_path, source_code, tree
-            )
+            workflow_data = self._extract_simple_workflow(source_path, source_code, tree)
 
-            logger.info(
-                f"✅ Simple workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes"
-            )
+            logger.info(f"✅ Simple workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes")
             return workflow_data
 
         except Exception as e:
@@ -59,9 +55,7 @@ class SimpleWorkflowAnalyzer:
                 "error": str(e),
             }
 
-    def _extract_simple_workflow(
-        self, source_path: str, source_code: str, tree: ast.AST
-    ) -> Dict[str, Any]:
+    def _extract_simple_workflow(self, source_path: str, source_code: str, tree: ast.AST) -> Dict[str, Any]:
         """Extract a simplified workflow from Python code"""
 
         nodes = []
@@ -182,13 +176,9 @@ class SimpleWorkflowAnalyzer:
         for workflow_node in nodes:
             if workflow_node["type"] in ["activity", "decision"]:
                 # Check if this node has no outgoing edges
-                has_outgoing = any(
-                    edge["from"] == workflow_node["id"] for edge in edges
-                )
+                has_outgoing = any(edge["from"] == workflow_node["id"] for edge in edges)
                 if not has_outgoing:
-                    edges.append(
-                        {"from": workflow_node["id"], "to": "end", "label": "Complete"}
-                    )
+                    edges.append({"from": workflow_node["id"], "to": "end", "label": "Complete"})
 
         return {
             "source_path": source_path,
@@ -288,9 +278,7 @@ class SimpleWorkflowAnalyzer:
 
         return "\n".join(mermaid_lines)
 
-    def save_clean_mermaid(
-        self, workflow_data: Dict[str, Any], output_path: str
-    ) -> str:
+    def save_clean_mermaid(self, workflow_data: Dict[str, Any], output_path: str) -> str:
         """Save clean Mermaid syntax to file"""
 
         mermaid_syntax = self.generate_clean_mermaid(workflow_data)

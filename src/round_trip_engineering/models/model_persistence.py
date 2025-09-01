@@ -82,9 +82,7 @@ class ModelPersistence(BaseReflectiveModule):
             logger.error(f"❌ Failed to load model from {file_path}: {e}")
             return None
 
-    def export_model(
-        self, model_data: Dict[str, Any], model_name: str, format: str = "json"
-    ) -> Optional[str]:
+    def export_model(self, model_data: Dict[str, Any], model_name: str, format: str = "json") -> Optional[str]:
         """Export model in specified format"""
         try:
             if format.lower() == "json":
@@ -101,9 +99,7 @@ class ModelPersistence(BaseReflectiveModule):
             logger.error(f"❌ Failed to export model {model_name}: {e}")
             return None
 
-    def import_model(
-        self, model_content: str, format: str = "json"
-    ) -> Optional[Dict[str, Any]]:
+    def import_model(self, model_content: str, format: str = "json") -> Optional[Dict[str, Any]]:
         """Import model from content string"""
         try:
             if format.lower() == "json":

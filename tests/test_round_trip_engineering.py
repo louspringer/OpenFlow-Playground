@@ -241,9 +241,7 @@ if __name__ == "__main__":
         ]
 
         for file_path in conflicting_files:
-            assert not Path(file_path).exists(), (
-                f"Conflicting file {file_path} still exists"
-            )
+            assert not Path(file_path).exists(), f"Conflicting file {file_path} still exists"
 
     def test_project_model_registry_integration(self):
         """Test that round_trip_engineering domain is properly configured"""

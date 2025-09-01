@@ -62,16 +62,12 @@ class ModelProfiler:
             "successful_operations": len(successful_ops),
             "failed_operations": len(failed_ops),
             "success_rate": len(successful_ops) / len(self.metrics) * 100,
-            "average_duration_ms": sum(m.duration_ms for m in self.metrics)
-            / len(self.metrics),
+            "average_duration_ms": sum(m.duration_ms for m in self.metrics) / len(self.metrics),
             "max_duration_ms": max(m.duration_ms for m in self.metrics),
             "min_duration_ms": min(m.duration_ms for m in self.metrics),
-            "average_memory_mb": sum(m.memory_usage_mb or 0 for m in self.metrics)
-            / len(self.metrics),
+            "average_memory_mb": sum(m.memory_usage_mb or 0 for m in self.metrics) / len(self.metrics),
             "max_memory_mb": max(m.memory_usage_mb or 0 for m in self.metrics),
-            "recent_operations": [
-                m.dict() for m in self.metrics[-10:]
-            ],  # Last 10 operations
+            "recent_operations": [m.dict() for m in self.metrics[-10:]],  # Last 10 operations
         }
 
 
@@ -93,18 +89,14 @@ class ModelLogger:
         # Console handler
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
-        console_formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
+        console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         console_handler.setFormatter(console_formatter)
         self.logger.addHandler(console_handler)
 
         # File handler for detailed logs
         file_handler = logging.FileHandler("logs/model_management.log")
         file_handler.setLevel(logging.DEBUG)
-        file_formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
-        )
+        file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s")
         file_handler.setFormatter(file_formatter)
         self.logger.addHandler(file_handler)
 
@@ -127,9 +119,7 @@ class ModelLogger:
 
         # Log to standard logger
         log_method = getattr(self.logger, level.lower(), self.logger.info)
-        log_method(
-            f"{message} | Operation: {operation} | Model: {model_name} | Details: {details}"
-        )
+        log_method(f"{message} | Operation: {operation} | Model: {model_name} | Details: {details}")
 
         return log_entry
 
@@ -152,9 +142,7 @@ class ModelLogger:
                     raise
                 finally:
                     duration_ms = (time.time() - start_time) * 1000
-                    metric = self.profiler.record_operation(
-                        operation_name, duration_ms, success, error_message
-                    )
+                    metric = self.profiler.record_operation(operation_name, duration_ms, success, error_message)
 
                     # Log the operation
                     self.log_operation(
@@ -200,9 +188,7 @@ class ModelLogger:
             raise
         finally:
             duration_ms = (time.time() - start_time) * 1000
-            metric = self.profiler.record_operation(
-                operation_name, duration_ms, success, error_message
-            )
+            metric = self.profiler.record_operation(operation_name, duration_ms, success, error_message)
 
             self.log_operation(
                 "INFO" if success else "ERROR",

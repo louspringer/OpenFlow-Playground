@@ -134,35 +134,23 @@ class ActivityModelValidator:
             actual_activities = self._extract_actual_activities(method_info)
             actual_control_flow = method_info.get("control_flow", {})
             actual_behavior_patterns = method_info.get("behavior_patterns", [])
-            actual_complexity = method_info.get("activity_model", {}).get(
-                "complexity_score", 0
-            )
+            actual_complexity = method_info.get("activity_model", {}).get("complexity_score", 0)
 
             # Determine expected model if not provided
             if expected_model is None:
-                expected_model = self._infer_expected_model(
-                    method_info, actual_behavior_patterns
-                )
+                expected_model = self._infer_expected_model(method_info, actual_behavior_patterns)
 
             # Validate activities
-            activity_validation = self._validate_activities(
-                expected_model.expected_activities, actual_activities
-            )
+            activity_validation = self._validate_activities(expected_model.expected_activities, actual_activities)
 
             # Validate control flow
-            control_flow_validation = self._validate_control_flow(
-                expected_model.expected_control_flow, actual_control_flow
-            )
+            control_flow_validation = self._validate_control_flow(expected_model.expected_control_flow, actual_control_flow)
 
             # Validate behavior patterns
-            behavior_pattern_validation = self._validate_behavior_patterns(
-                expected_model.expected_behavior_patterns, actual_behavior_patterns
-            )
+            behavior_pattern_validation = self._validate_behavior_patterns(expected_model.expected_behavior_patterns, actual_behavior_patterns)
 
             # Validate complexity
-            complexity_validation = self._validate_complexity(
-                expected_model.expected_complexity_range, actual_complexity
-            )
+            complexity_validation = self._validate_complexity(expected_model.expected_complexity_range, actual_complexity)
 
             # Calculate overall validation score
             validation_passed = all(
@@ -175,9 +163,7 @@ class ActivityModelValidator:
             )
 
             # Calculate activity match score
-            activity_match_score = self._calculate_activity_match_score(
-                expected_model.expected_activities, actual_activities
-            )
+            activity_match_score = self._calculate_activity_match_score(expected_model.expected_activities, actual_activities)
 
             validation_time = time.time() - start_time
 
@@ -198,15 +184,11 @@ class ActivityModelValidator:
             # Store result
             self.validation_results[method_name] = result
 
-            logger.info(
-                f"✅ Activity model validation completed for {method_name} in {validation_time:.3f}s"
-            )
+            logger.info(f"✅ Activity model validation completed for {method_name} in {validation_time:.3f}s")
             return result
 
         except Exception as e:
-            logger.error(
-                f"❌ Activity model validation failed for {method_info.get('name', 'unknown')}: {e}"
-            )
+            logger.error(f"❌ Activity model validation failed for {method_info.get('name', 'unknown')}: {e}")
             return ActivityValidationResult(
                 method_name=method_info.get("name", "unknown"),
                 validation_passed=False,
@@ -237,9 +219,7 @@ class ActivityModelValidator:
             logger.error(f"❌ Error extracting actual activities: {e}")
             return []
 
-    def _infer_expected_model(
-        self, method_info: Dict[str, Any], behavior_patterns: List[str]
-    ) -> MethodActivityModel:
+    def _infer_expected_model(self, method_info: Dict[str, Any], behavior_patterns: List[str]) -> MethodActivityModel:
         """Infer expected activity model from method behavior patterns"""
         try:
             method_name = method_info.get("name", "unknown")
@@ -248,19 +228,14 @@ class ActivityModelValidator:
             primary_pattern = behavior_patterns[0] if behavior_patterns else "general"
 
             # Get validation rules for this pattern
-            rules = self.validation_rules.get(
-                primary_pattern, self.validation_rules["data_processing"]
-            )
+            rules = self.validation_rules.get(primary_pattern, self.validation_rules["data_processing"])
 
             # Infer expected activities
-            expected_activities = rules.get(
-                "required_activities", ["assignment", "function_call"]
-            )
+            expected_activities = rules.get("required_activities", ["assignment", "function_call"])
 
             # Infer expected control flow
             expected_control_flow = {
-                "has_conditionals": "validation" in behavior_patterns
-                or "error_handling" in behavior_patterns,
+                "has_conditionals": "validation" in behavior_patterns or "error_handling" in behavior_patterns,
                 "has_loops": "iteration" in behavior_patterns,
                 "has_exceptions": "error_handling" in behavior_patterns,
                 "nesting_depth": 2 if "iteration" in behavior_patterns else 1,
@@ -275,10 +250,7 @@ class ActivityModelValidator:
 
             # Infer return type and parameters
             expected_return_type = method_info.get("return_type", "Any")
-            expected_parameters = [
-                param.get("name", "param")
-                for param in method_info.get("parameters", [])
-            ]
+            expected_parameters = [param.get("name", "param") for param in method_info.get("parameters", [])]
 
             return MethodActivityModel(
                 name=method_name,
@@ -310,9 +282,7 @@ class ActivityModelValidator:
                 expected_parameters=[],
             )
 
-    def _validate_activities(
-        self, expected: List[str], actual: List[str]
-    ) -> Dict[str, Any]:
+    def _validate_activities(self, expected: List[str], actual: List[str]) -> Dict[str, Any]:
         """Validate that actual activities match expected activities"""
         try:
             # Check for required activities
@@ -325,20 +295,14 @@ class ActivityModelValidator:
                 "passed": passed,
                 "missing_activities": missing_activities,
                 "extra_activities": extra_activities,
-                "coverage": (
-                    len([act for act in expected if act in actual]) / len(expected)
-                    if expected
-                    else 1.0
-                ),
+                "coverage": (len([act for act in expected if act in actual]) / len(expected) if expected else 1.0),
             }
 
         except Exception as e:
             logger.error(f"❌ Error validating activities: {e}")
             return {"passed": False, "error": str(e)}
 
-    def _validate_control_flow(
-        self, expected: Dict[str, Any], actual: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _validate_control_flow(self, expected: Dict[str, Any], actual: Dict[str, Any]) -> Dict[str, Any]:
         """Validate control flow characteristics"""
         try:
             validation_results = {}
@@ -347,9 +311,7 @@ class ActivityModelValidator:
             if "has_conditionals" in expected:
                 expected_conditionals = expected["has_conditionals"]
                 actual_conditionals = actual.get("has_conditionals", False)
-                validation_results["conditionals"] = (
-                    expected_conditionals == actual_conditionals
-                )
+                validation_results["conditionals"] = expected_conditionals == actual_conditionals
 
             # Validate loop presence
             if "has_loops" in expected:
@@ -361,9 +323,7 @@ class ActivityModelValidator:
             if "has_exceptions" in expected:
                 expected_exceptions = expected["has_exceptions"]
                 actual_exceptions = actual.get("has_exceptions", False)
-                validation_results["exceptions"] = (
-                    expected_exceptions == actual_exceptions
-                )
+                validation_results["exceptions"] = expected_exceptions == actual_exceptions
 
             # Validate nesting depth
             if "nesting_depth" in expected:
@@ -385,15 +345,11 @@ class ActivityModelValidator:
             logger.error(f"❌ Error validating control flow: {e}")
             return {"passed": False, "error": str(e)}
 
-    def _validate_behavior_patterns(
-        self, expected: List[str], actual: List[str]
-    ) -> Dict[str, Any]:
+    def _validate_behavior_patterns(self, expected: List[str], actual: List[str]) -> Dict[str, Any]:
         """Validate behavior patterns"""
         try:
             # Check for required patterns
-            missing_patterns = [
-                pattern for pattern in expected if pattern not in actual
-            ]
+            missing_patterns = [pattern for pattern in expected if pattern not in actual]
             extra_patterns = [pattern for pattern in actual if pattern not in expected]
 
             passed = len(missing_patterns) == 0
@@ -402,20 +358,14 @@ class ActivityModelValidator:
                 "passed": passed,
                 "missing_patterns": missing_patterns,
                 "extra_patterns": extra_patterns,
-                "pattern_coverage": (
-                    len([p for p in expected if p in actual]) / len(expected)
-                    if expected
-                    else 1.0
-                ),
+                "pattern_coverage": (len([p for p in expected if p in actual]) / len(expected) if expected else 1.0),
             }
 
         except Exception as e:
             logger.error(f"❌ Error validating behavior patterns: {e}")
             return {"passed": False, "error": str(e)}
 
-    def _validate_complexity(
-        self, expected_range: Tuple[int, int], actual: int
-    ) -> Dict[str, Any]:
+    def _validate_complexity(self, expected_range: Tuple[int, int], actual: int) -> Dict[str, Any]:
         """Validate complexity score"""
         try:
             min_complexity, max_complexity = expected_range
@@ -434,9 +384,7 @@ class ActivityModelValidator:
             logger.error(f"❌ Error validating complexity: {e}")
             return {"passed": False, "error": str(e)}
 
-    def _calculate_activity_match_score(
-        self, expected: List[str], actual: List[str]
-    ) -> float:
+    def _calculate_activity_match_score(self, expected: List[str], actual: List[str]) -> float:
         """Calculate how well actual activities match expected activities"""
         try:
             if not expected:
@@ -458,9 +406,7 @@ class ActivityModelValidator:
             logger.error(f"❌ Error calculating activity match score: {e}")
             return 0.0
 
-    def validate_file_activity_models(
-        self, file_path: str, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def validate_file_activity_models(self, file_path: str, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Validate activity models for all methods in a file.
 
@@ -494,29 +440,21 @@ class ActivityModelValidator:
                     methods = class_info.get("methods", [])
                     for method_info in methods:
                         result = self.validate_method_activity_model(method_info)
-                        validation_results["method_validations"][
-                            f"{class_name}.{method_info['name']}"
-                        ] = result
+                        validation_results["method_validations"][f"{class_name}.{method_info['name']}"] = result
 
                         # Update overall statistics
                         validation_results["overall_validation"]["total_methods"] += 1
                         if result.validation_passed:
-                            validation_results["overall_validation"][
-                                "passed_methods"
-                            ] += 1
+                            validation_results["overall_validation"]["passed_methods"] += 1
                         else:
-                            validation_results["overall_validation"][
-                                "failed_methods"
-                            ] += 1
+                            validation_results["overall_validation"]["failed_methods"] += 1
                             validation_results["overall_validation"]["passed"] = False
 
             # Validate module functions
             module_functions = extracted_model.get("module_functions", [])
             for func_info in module_functions:
                 result = self.validate_method_activity_model(func_info)
-                validation_results["method_validations"][
-                    f"module.{func_info['name']}"
-                ] = result
+                validation_results["method_validations"][f"module.{func_info['name']}"] = result
 
                 # Update overall statistics
                 validation_results["overall_validation"]["total_methods"] += 1
@@ -528,14 +466,8 @@ class ActivityModelValidator:
 
             # Calculate average match score
             if validation_results["overall_validation"]["total_methods"] > 0:
-                total_score = sum(
-                    result.activity_match_score
-                    for result in validation_results["method_validations"].values()
-                )
-                validation_results["overall_validation"]["average_match_score"] = (
-                    total_score
-                    / validation_results["overall_validation"]["total_methods"]
-                )
+                total_score = sum(result.activity_match_score for result in validation_results["method_validations"].values())
+                validation_results["overall_validation"]["average_match_score"] = total_score / validation_results["overall_validation"]["total_methods"]
 
             logger.info(
                 f"✅ File activity model validation completed: {validation_results['overall_validation']['passed_methods']}/{validation_results['overall_validation']['total_methods']} methods passed"
@@ -564,15 +496,11 @@ class ActivityModelValidator:
             overall = validation_results.get("overall_validation", {})
 
             report_lines.append(f"📁 File: {file_path}")
-            report_lines.append(
-                f"📊 Overall Status: {'✅ PASSED' if overall.get('passed', False) else '❌ FAILED'}"
-            )
+            report_lines.append(f"📊 Overall Status: {'✅ PASSED' if overall.get('passed', False) else '❌ FAILED'}")
             report_lines.append(f"🔢 Total Methods: {overall.get('total_methods', 0)}")
             report_lines.append(f"✅ Passed: {overall.get('passed_methods', 0)}")
             report_lines.append(f"❌ Failed: {overall.get('failed_methods', 0)}")
-            report_lines.append(
-                f"📈 Average Match Score: {overall.get('average_match_score', 0.0):.2f}"
-            )
+            report_lines.append(f"📈 Average Match Score: {overall.get('average_match_score', 0.0):.2f}")
             report_lines.append("")
 
             # Method details
@@ -584,23 +512,15 @@ class ActivityModelValidator:
                 for method_name, result in method_validations.items():
                     status = "✅ PASSED" if result.validation_passed else "❌ FAILED"
                     report_lines.append(f"{method_name}: {status}")
-                    report_lines.append(
-                        f"  Activity Match Score: {result.activity_match_score:.2f}"
-                    )
+                    report_lines.append(f"  Activity Match Score: {result.activity_match_score:.2f}")
 
                     if not result.validation_passed:
                         if result.control_flow_validation.get("errors"):
-                            report_lines.append(
-                                f"  Control Flow Errors: {result.control_flow_validation['errors']}"
-                            )
+                            report_lines.append(f"  Control Flow Errors: {result.control_flow_validation['errors']}")
                         if result.behavior_pattern_validation.get("errors"):
-                            report_lines.append(
-                                f"  Behavior Pattern Errors: {result.behavior_pattern_validation['errors']}"
-                            )
+                            report_lines.append(f"  Behavior Pattern Errors: {result.behavior_pattern_validation['errors']}")
                         if result.complexity_validation.get("errors"):
-                            report_lines.append(
-                                f"  Complexity Errors: {result.complexity_validation['errors']}"
-                            )
+                            report_lines.append(f"  Complexity Errors: {result.complexity_validation['errors']}")
 
                     report_lines.append("")
 
@@ -611,9 +531,7 @@ class ActivityModelValidator:
             logger.error(f"❌ Error generating validation report: {e}")
             return f"Error generating report: {e}"
 
-    def save_validation_results(
-        self, output_path: str, validation_results: Dict[str, Any]
-    ) -> bool:
+    def save_validation_results(self, output_path: str, validation_results: Dict[str, Any]) -> bool:
         """Save validation results to JSON file"""
         try:
             output_file = Path(output_path)

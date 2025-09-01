@@ -26,9 +26,9 @@ Examples:
 ### 3. Generation Process
 
 1. **Source Analysis**: System scans source files matching domain patterns in `project_model_registry.json`
-2. **Model Extraction**: Extracts artifact models (classes, functions, modules) using AST analysis
-3. **Test Generation**: Creates pytest-compatible test files with basic validation
-4. **File Writing**: Writes generated tests to `tests/generated/` directory
+1. **Model Extraction**: Extracts artifact models (classes, functions, modules) using AST analysis
+1. **Test Generation**: Creates pytest-compatible test files with basic validation
+1. **File Writing**: Writes generated tests to `tests/generated/` directory
 
 ## Why This Happens
 
@@ -37,8 +37,8 @@ Examples:
 This behavior directly implements these requirements from `project_model_registry.json`:
 
 1. **"Generate unit tests directly from implementation models"**
-2. **"Ensure tests stay in sync with actual code structure"**
-3. **"Integrate with project model registry for comprehensive coverage"**
+1. **"Ensure tests stay in sync with actual code structure"**
+1. **"Integrate with project model registry for comprehensive coverage"**
 
 ### Test Validation
 

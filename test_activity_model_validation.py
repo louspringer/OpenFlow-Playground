@@ -32,9 +32,7 @@ def test_activity_model_validation():
         extracted_model = reverse_engineer.reverse_engineer_file(test_file)
         print(f"✅ Successfully extracted model from {test_file}")
         print(f"📊 Model contains {len(extracted_model.get('components', {}))} classes")
-        print(
-            f"🔧 Model contains {len(extracted_model.get('module_functions', []))} module functions"
-        )
+        print(f"🔧 Model contains {len(extracted_model.get('module_functions', []))} module functions")
 
     except Exception as e:
         print(f"❌ Failed to reverse engineer {test_file}: {e}")
@@ -45,21 +43,13 @@ def test_activity_model_validation():
     validator = ActivityModelValidator()
 
     try:
-        validation_results = validator.validate_file_activity_models(
-            test_file, extracted_model
-        )
+        validation_results = validator.validate_file_activity_models(test_file, extracted_model)
         print(f"✅ Activity model validation completed")
-        print(
-            f"📊 Overall validation: {'✅ PASSED' if validation_results['overall_validation']['passed'] else '❌ FAILED'}"
-        )
-        print(
-            f"🔢 Total methods: {validation_results['overall_validation']['total_methods']}"
-        )
+        print(f"📊 Overall validation: {'✅ PASSED' if validation_results['overall_validation']['passed'] else '❌ FAILED'}")
+        print(f"🔢 Total methods: {validation_results['overall_validation']['total_methods']}")
         print(f"✅ Passed: {validation_results['overall_validation']['passed_methods']}")
         print(f"❌ Failed: {validation_results['overall_validation']['failed_methods']}")
-        print(
-            f"📈 Average match score: {validation_results['overall_validation']['average_match_score']:.2f}"
-        )
+        print(f"📈 Average match score: {validation_results['overall_validation']['average_match_score']:.2f}")
 
     except Exception as e:
         print(f"❌ Activity model validation failed: {e}")
@@ -143,9 +133,7 @@ def test_individual_method_validation():
             "complexity_score": 8,
         },
         "control_flow": {
-            "flow_map": {
-                10: {"type": "conditional", "has_nested": False, "nesting_level": 1}
-            },
+            "flow_map": {10: {"type": "conditional", "has_nested": False, "nesting_level": 1}},
             "has_conditionals": True,
             "has_loops": False,
             "has_exceptions": False,
@@ -165,15 +153,9 @@ def test_individual_method_validation():
 
         # Show detailed validation results
         print(f"\n📋 Detailed Results:")
-        print(
-            f"  Control Flow: {'✅ PASSED' if result.control_flow_validation['passed'] else '❌ FAILED'}"
-        )
-        print(
-            f"  Behavior Patterns: {'✅ PASSED' if result.behavior_pattern_validation['passed'] else '❌ FAILED'}"
-        )
-        print(
-            f"  Complexity: {'✅ PASSED' if result.complexity_validation['passed'] else '❌ FAILED'}"
-        )
+        print(f"  Control Flow: {'✅ PASSED' if result.control_flow_validation['passed'] else '❌ FAILED'}")
+        print(f"  Behavior Patterns: {'✅ PASSED' if result.behavior_pattern_validation['passed'] else '❌ FAILED'}")
+        print(f"  Complexity: {'✅ PASSED' if result.complexity_validation['passed'] else '❌ FAILED'}")
 
         return True
 
@@ -201,18 +183,12 @@ def main():
     print(f"Individual Method Test: {'✅ PASSED' if success2 else '❌ FAILED'}")
 
     overall_success = success1 and success2
-    print(
-        f"\nOverall Test Result: {'🎉 ALL TESTS PASSED' if overall_success else '❌ SOME TESTS FAILED'}"
-    )
+    print(f"\nOverall Test Result: {'🎉 ALL TESTS PASSED' if overall_success else '❌ SOME TESTS FAILED'}")
 
     if overall_success:
         print("\n✅ Activity Model Validation System is working correctly!")
-        print(
-            "🔍 The system can now validate expected vs actual behavior for methods and functions."
-        )
-        print(
-            "🔄 This enables round-trip engineering to maintain behavioral consistency."
-        )
+        print("🔍 The system can now validate expected vs actual behavior for methods and functions.")
+        print("🔄 This enables round-trip engineering to maintain behavioral consistency.")
     else:
         print("\n❌ Some tests failed. Check the output above for details.")
 

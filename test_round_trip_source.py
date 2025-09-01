@@ -96,9 +96,7 @@ class RoundTripEngine:
 
 def main():
     """Main function to demonstrate the classes."""
-    processor = DataProcessor(
-        name="test_processor", config={"version": "1.0", "mode": "test"}
-    )
+    processor = DataProcessor(name="test_processor", config={"version": "1.0", "mode": "test"})
 
     engine = RoundTripEngine("test_file.py")
 

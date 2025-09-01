@@ -1,4 +1,3 @@
-
 # F-String Fixing Report
 
 ## Summary

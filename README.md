@@ -217,14 +217,14 @@ uv run safety check
 ## 🤝 Contributing
 
 1. Follow the model-driven development approach
-2. Ensure all tests pass
-3. Follow security-first principles
-4. Update documentation as needed
+1. Ensure all tests pass
+1. Follow security-first principles
+1. Update documentation as needed
 
 ## 📄 License
 
 [License information]
 
----
+______________________________________________________________________
 
 **Built with security-first principles and model-driven development.**

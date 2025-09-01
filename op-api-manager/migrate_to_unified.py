@@ -64,9 +64,7 @@ class MigrationManager:
             required_fields = ["id", "title", "status"]
             missing_fields = [field for field in required_fields if not key.get(field)]
             if missing_fields:
-                orphaned_entries.append(
-                    {"id": key.get("id"), "missing_fields": missing_fields}
-                )
+                orphaned_entries.append({"id": key.get("id"), "missing_fields": missing_fields})
 
         analysis = {
             "total_credentials": len(old_cache.get("api_keys", [])),
@@ -175,15 +173,11 @@ class MigrationManager:
 
             # Test status update (on a test item)
             test_item_id = "test-migration-item"
-            success = self.interface.update_credential_status(
-                test_item_id, "discovered", "Migration test"
-            )
+            success = self.interface.update_credential_status(test_item_id, "discovered", "Migration test")
             print(f"   ✅ Status update test: {success}")
 
             # Test archive operation (on a test item)
-            success = self.interface.archive_credential(
-                test_item_id, "Migration test - cleanup"
-            )
+            success = self.interface.archive_credential(test_item_id, "Migration test - cleanup")
             print(f"   ✅ Archive test: {success}")
 
             print("   🎉 Status management migration: SUCCESS")

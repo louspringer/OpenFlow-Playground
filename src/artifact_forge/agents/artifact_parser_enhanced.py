@@ -261,9 +261,7 @@ class EnhancedArtifactParser:
             "classes": classes,
             "imports": imports,
             "complexity": len(functions) + len(classes),  # Simplified complexity
-            "line_count": sum(
-                block["end_line"] - block["start_line"] + 1 for block in blocks
-            ),
+            "line_count": sum(block["end_line"] - block["start_line"] + 1 for block in blocks),
         }
 
     def _extract_function_from_block(
@@ -382,9 +380,7 @@ class EnhancedArtifactParser:
             "block_type": block.block_type,
             "indent_level": block.indent_level,
             "content": block.content,
-            "parent_block": (
-                block.parent_block.block_type if block.parent_block else None
-            ),
+            "parent_block": (block.parent_block.block_type if block.parent_block else None),
         }
 
     def _count_block_types(self, blocks: list[BlockBoundary]) -> dict[str, int]:
@@ -530,10 +526,7 @@ class EnhancedArtifactParser:
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
                 # Extract inheritance relationships using ast.unparse
-                bases = [
-                    ast.unparse(base) if hasattr(ast, "unparse") else str(base)
-                    for base in node.bases
-                ]
+                bases = [ast.unparse(base) if hasattr(ast, "unparse") else str(base) for base in node.bases]
 
                 # Extract methods with full implementations
                 methods = []
@@ -553,20 +546,12 @@ class EnhancedArtifactParser:
                                     {
                                         "name": target.id,
                                         "line_number": child.lineno,
-                                        "value": (
-                                            ast.unparse(child)
-                                            if hasattr(ast, "unparse")
-                                            else str(child)
-                                        ),
+                                        "value": (ast.unparse(child) if hasattr(ast, "unparse") else str(child)),
                                     }
                                 )
 
                 # Get full class source code using ast.get_source_segment
-                class_source = (
-                    ast.get_source_segment(source, node)
-                    if hasattr(ast, "get_source_segment")
-                    else self._extract_node_source_fallback(node, source)
-                )
+                class_source = ast.get_source_segment(source, node) if hasattr(ast, "get_source_segment") else self._extract_node_source_fallback(node, source)
 
                 classes.append(
                     {
@@ -657,9 +642,7 @@ class EnhancedArtifactParser:
             )
         return current_depth
 
-    def _extract_method_details(
-        self, method_node: ast.FunctionDef, source: str
-    ) -> dict[str, Any]:
+    def _extract_method_details(self, method_node: ast.FunctionDef, source: str) -> dict[str, Any]:
         """Extract detailed method information using built-in AST capabilities"""
         # Extract arguments with types and defaults using ast.unparse
         args = []
@@ -669,20 +652,12 @@ class EnhancedArtifactParser:
                 "type": self._get_annotation_name(arg.annotation),
                 "default": self._get_default_value(getattr(arg, "default", None)),
                 "position": len(args),
-                "full_signature": (
-                    ast.unparse(arg)
-                    if hasattr(ast, "unparse")
-                    else f"{arg.arg}: {self._get_annotation_name(arg.annotation)}"
-                ),
+                "full_signature": (ast.unparse(arg) if hasattr(ast, "unparse") else f"{arg.arg}: {self._get_annotation_name(arg.annotation)}"),
             }
             args.append(arg_info)
 
         # Extract return type using ast.unparse
-        return_type = (
-            self._get_annotation_name(method_node.returns)
-            if method_node.returns
-            else "Any"
-        )
+        return_type = self._get_annotation_name(method_node.returns) if method_node.returns else "Any"
 
         # Extract decorators using ast.unparse
         decorators = []
@@ -690,20 +665,12 @@ class EnhancedArtifactParser:
             decorator_info = {
                 "name": self._get_decorator_name(decorator),
                 "arguments": self._get_decorator_arguments(decorator),
-                "full_decorator": (
-                    ast.unparse(decorator)
-                    if hasattr(ast, "unparse")
-                    else str(decorator)
-                ),
+                "full_decorator": (ast.unparse(decorator) if hasattr(ast, "unparse") else str(decorator)),
             }
             decorators.append(decorator_info)
 
         # Get full method source code using ast.get_source_segment
-        method_source = (
-            ast.get_source_segment(source, method_node)
-            if hasattr(ast, "get_source_segment")
-            else self._extract_node_source_fallback(method_node, source)
-        )
+        method_source = ast.get_source_segment(source, method_node) if hasattr(ast, "get_source_segment") else self._extract_node_source_fallback(method_node, source)
 
         return {
             "name": method_node.name,
@@ -716,11 +683,7 @@ class EnhancedArtifactParser:
             "source_code": method_source,
             "is_async": isinstance(method_node, ast.AsyncFunctionDef),
             "arg_count": len(args),
-            "full_signature": (
-                ast.unparse(method_node)
-                if hasattr(ast, "unparse")
-                else f"def {method_node.name}(...)"
-            ),
+            "full_signature": (ast.unparse(method_node) if hasattr(ast, "unparse") else f"def {method_node.name}(...)"),
         }
 
     def _get_annotation_name(self, annotation: ast.expr) -> str:
@@ -739,9 +702,7 @@ class EnhancedArtifactParser:
             if isinstance(annotation, ast.Name):
                 return annotation.id
             elif isinstance(annotation, ast.Attribute):
-                return (
-                    f"{self._get_annotation_name(annotation.value)}.{annotation.attr}"
-                )
+                return f"{self._get_annotation_name(annotation.value)}.{annotation.attr}"
             elif isinstance(annotation, ast.Subscript):
                 return self._get_base_name(annotation.value)
             else:

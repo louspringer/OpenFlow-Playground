@@ -28,13 +28,9 @@ def investigate_broken_fstring():
     # Let's see what Python's tokenizer sees
     print("\n🧪 Python Tokenizer Analysis:")
     try:
-        tokens = list(
-            tokenize.tokenize(io.BytesIO(broken_code.encode("utf-8")).readline)
-        )
+        tokens = list(tokenize.tokenize(io.BytesIO(broken_code.encode("utf-8")).readline))
         for token in tokens:
-            print(
-                f"  {token.type}: {repr(token.string)} (line {token.start[0]}, col {token.start[1]})"
-            )
+            print(f"  {token.type}: {repr(token.string)} (line {token.start[0]}, col {token.start[1]})")
     except Exception as e:
         print(f"  Tokenizer error: {e}")
 
@@ -131,16 +127,12 @@ def investigate_python_parser_stages():
     # Stage 1: Tokenization
     print("\nStage 1: Tokenization")
     try:
-        tokens = list(
-            tokenize.tokenize(io.BytesIO(broken_code.encode("utf-8")).readline)
-        )
+        tokens = list(tokenize.tokenize(io.BytesIO(broken_code.encode("utf-8")).readline))
         print("  ✅ Tokenization successful")
         print(f"  Number of tokens: {len(tokens)}")
 
         # Look for f-string tokens
-        fstring_tokens = [
-            t for t in tokens if t.type == tokenize.STRING and t.string.startswith("f")
-        ]
+        fstring_tokens = [t for t in tokens if t.type == tokenize.STRING and t.string.startswith("f")]
         print(f"  F-string tokens: {len(fstring_tokens)}")
         for t in fstring_tokens:
             print(f"    {repr(t.string)}")

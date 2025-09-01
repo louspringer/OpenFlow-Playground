@@ -76,9 +76,7 @@ class TestDemoOrchestrator:
     async def test_basic_demo_success(self, demo_orchestrator, mock_round_trip_system):
         """Test successful execution of basic demo."""
         # Patch the round_trip_system
-        with patch.object(
-            demo_orchestrator, "round_trip_system", mock_round_trip_system
-        ):
+        with patch.object(demo_orchestrator, "round_trip_system", mock_round_trip_system):
             # Run the basic demo
             results = await demo_orchestrator.run_basic_demo()
 
@@ -98,14 +96,10 @@ class TestDemoOrchestrator:
             assert demo_orchestrator.demo_results == results
 
     @pytest.mark.asyncio
-    async def test_advanced_demo_success(
-        self, demo_orchestrator, mock_round_trip_system
-    ):
+    async def test_advanced_demo_success(self, demo_orchestrator, mock_round_trip_system):
         """Test successful execution of advanced demo."""
         # Patch the round_trip_system
-        with patch.object(
-            demo_orchestrator, "round_trip_system", mock_round_trip_system
-        ):
+        with patch.object(demo_orchestrator, "round_trip_system", mock_round_trip_system):
             # Run the advanced demo
             results = await demo_orchestrator.run_advanced_demo()
 
@@ -126,14 +120,10 @@ class TestDemoOrchestrator:
             assert vocab["overall_health"] == "excellent"
 
     @pytest.mark.asyncio
-    async def test_performance_demo_success(
-        self, demo_orchestrator, mock_round_trip_system
-    ):
+    async def test_performance_demo_success(self, demo_orchestrator, mock_round_trip_system):
         """Test successful execution of performance demo."""
         # Patch the round_trip_system
-        with patch.object(
-            demo_orchestrator, "round_trip_system", mock_round_trip_system
-        ):
+        with patch.object(demo_orchestrator, "round_trip_system", mock_round_trip_system):
             # Run the performance demo
             results = await demo_orchestrator.run_performance_demo()
 
@@ -163,9 +153,7 @@ class TestDemoOrchestrator:
         """Test that demo failures are handled gracefully."""
         # Create a mock that raises an exception
         mock_failing_system = Mock()
-        mock_failing_system.create_model_from_design.side_effect = Exception(
-            "Test error"
-        )
+        mock_failing_system.create_model_from_design.side_effect = Exception("Test error")
 
         with patch.object(demo_orchestrator, "round_trip_system", mock_failing_system):
             # Run the basic demo (should fail)
@@ -220,9 +208,7 @@ class TestDemoOrchestrator:
         """Test vocabulary alignment validation."""
         # Test successful validation
         mock_model = Mock()
-        vocab_status = await demo_orchestrator._validate_vocabulary_alignment(
-            mock_model
-        )
+        vocab_status = await demo_orchestrator._validate_vocabulary_alignment(mock_model)
 
         assert vocab_status["status"] == "validated"
         assert vocab_status["alignment_score"] == 0.95
@@ -312,9 +298,7 @@ class TestDemoOrchestrator:
 
         # Create a failing system
         failing_system = Mock()
-        failing_system.create_model_from_design.side_effect = Exception(
-            "System failure"
-        )
+        failing_system.create_model_from_design.side_effect = Exception("System failure")
 
         # Replace the system temporarily
         demo_orchestrator.round_trip_system = failing_system
@@ -334,13 +318,9 @@ class TestDemoOrchestrator:
         assert demo_orchestrator._is_operational is True
 
     @pytest.mark.asyncio
-    async def test_demo_metrics_accuracy(
-        self, demo_orchestrator, mock_round_trip_system
-    ):
+    async def test_demo_metrics_accuracy(self, demo_orchestrator, mock_round_trip_system):
         """Test that demo metrics are accurate and meaningful."""
-        with patch.object(
-            demo_orchestrator, "round_trip_system", mock_round_trip_system
-        ):
+        with patch.object(demo_orchestrator, "round_trip_system", mock_round_trip_system):
             # Record start time
             start_time = time.time()
 
@@ -416,9 +396,7 @@ class TestDemoOrchestrator:
         ]
 
         for method_name in demo_methods:
-            assert hasattr(
-                demo_orchestrator, method_name
-            ), f"Missing demo method: {method_name}"
+            assert hasattr(demo_orchestrator, method_name), f"Missing demo method: {method_name}"
 
         # Should not have methods for other concerns
         non_demo_methods = [
@@ -429,9 +407,7 @@ class TestDemoOrchestrator:
         ]
 
         for method_name in non_demo_methods:
-            assert not hasattr(
-                demo_orchestrator, method_name
-            ), f"Unexpected method: {method_name}"
+            assert not hasattr(demo_orchestrator, method_name), f"Unexpected method: {method_name}"
 
 
 class TestDemoSystemIntegration:
@@ -483,9 +459,7 @@ class TestDemoSystemIntegration:
 
         # Create a system that fails on specific operations
         mock_system = Mock()
-        mock_system.create_model_from_design.side_effect = Exception(
-            "Integration error"
-        )
+        mock_system.create_model_from_design.side_effect = Exception("Integration error")
 
         with patch.object(orchestrator, "round_trip_system", mock_system):
             # Run demo (should fail)

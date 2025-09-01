@@ -41,9 +41,9 @@ cd neo4j-community-5.15.0
 ## Option 4: Cloud Neo4j (Free Tier)
 
 1. Go to <https://neo4j.com/cloud/platform/aura-graph-database/>
-2. Create free account
-3. Create new database
-4. Use provided connection string
+1. Create free account
+1. Create new database
+1. Use provided connection string
 
 ## Connection Details
 
@@ -66,5 +66,5 @@ driver.close()
 ## Next Steps After Setup
 
 1. Run: python ast_data_validator.py
-2. Run: python ast_to_neo4j_converter.py ast_models_filtered.json
-3. Open: <http://localhost:7474> (Neo4j Browser)
+1. Run: python ast_to_neo4j_converter.py ast_models_filtered.json
+1. Open: <http://localhost:7474> (Neo4j Browser)

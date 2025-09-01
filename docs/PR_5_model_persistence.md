@@ -48,9 +48,9 @@
 ### **The Recovery Chain:**
 
 1. **Cursor rule** → Tells LLM to check for `project_model_registry.json`
-2. **JSON model** → Contains all domain mappings and requirements
-3. **Tests** → Prove the model works and trace requirements
-4. **Rules** → Enforce the model-driven approach
+1. **JSON model** → Contains all domain mappings and requirements
+1. **Tests** → Prove the model works and trace requirements
+1. **Rules** → Enforce the model-driven approach
 
 ### **Recovery Scenarios:**
 
@@ -154,7 +154,7 @@ const detectDomain = (filepath, model) => {
 
 **"The model is the authority. If you're not using `project_model_registry.json` to make decisions, you're guessing. Load the model, understand the intent, follow the mappings."**
 
----
+______________________________________________________________________
 
 ## 📈 Mermaid: Model-Driven Architecture
 
@@ -223,6 +223,6 @@ graph LR
     style H fill:#e3f2fd
 ```
 
----
+______________________________________________________________________
 
 **🎉 This PR creates a self-healing, model-driven system that can recover from any state and continue intelligent work!**

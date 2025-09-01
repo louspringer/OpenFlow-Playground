@@ -1,14 +1,18 @@
-name: "ghostbusters-api-develop-trigger"
-description: "Automatic build and deploy Ghostbusters API on push to develop branch"
+---
+name: ghostbusters-api-develop-trigger
+description: Automatic build and deploy Ghostbusters API on push to develop
 github:
-  name: "OpenFlow-Playground"
-  owner: "louspringer"
+  name: OpenFlow-Playground
+  owner: louspringer
   push:
-    branch: "^develop$"
+    branch: ^develop$
 build:
   steps:
-    - name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/aardvark-linkedin-grepper/ghostbusters-api:latest", "."]
-      dir: "src/ghostbusters_api"
-  images:
-    - "gcr.io/aardvark-linkedin-grepper/ghostbusters-api:latest" 
+    - name: gcr.io/cloud-builders/docker
+      args:
+        - build
+        - -t
+        - gcr.io/aardvark-linkedin-grepper/ghostbusters-api:latest
+        - .
+      dir: src/ghostbusters_api
+  images: [gcr.io/aardvark-linkedin-grepper/ghostbusters-api:latest]

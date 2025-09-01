@@ -19,9 +19,7 @@ def main() -> None:
     """Perform round-trip validation on specified Python file"""
     if len(sys.argv) != 2:
         print("Usage: python round_trip_any_file.py <python_file_path>")
-        print(
-            "Example: python round_trip_any_file.py clewcrew-recovery/tests/test_syntax_recovery.py"
-        )
+        print("Example: python round_trip_any_file.py clewcrew-recovery/tests/test_syntax_recovery.py")
         return
 
     file_path = sys.argv[1]
@@ -40,9 +38,7 @@ def main() -> None:
     try:
         extracted_model = engineer.reverse_engineer(file_path)
         print("✅ Model extraction successful!")
-        print(
-            f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines"
-        )
+        print(f"   📊 File structure: {extracted_model.get('file_structure', {}).get('total_lines', 0)} lines")
         print(f"   🏗️  Classes: {extracted_model.get('classes', {}).get('count', 0)}")
         print(f"   🔧 Functions: {extracted_model.get('functions', {}).get('count', 0)}")
 
@@ -122,9 +118,7 @@ def main() -> None:
             else:
                 print(f"   ❌ Flake8 errors: {result.stdout}")
 
-            result = subprocess.run(
-                ["uv", "run", "mypy", regenerated_file], capture_output=True, text=True
-            )
+            result = subprocess.run(["uv", "run", "mypy", regenerated_file], capture_output=True, text=True)
             if result.returncode == 0:
                 print("   ✅ MyPy: No type errors")
             else:

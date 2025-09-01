@@ -36,54 +36,42 @@ class EnhancedArtifactForgeWorkflow:
         # TODO: Implement _create_workflow
         return StateGraph()
 
-    def _detect_artifacts_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _detect_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Detect artifacts in the codebase
         """
         # TODO: Implement _detect_artifacts_node
         return EnhancedArtifactForgeState()
 
-    def _parse_artifacts_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _parse_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Parse artifacts with enhanced error recovery
         """
         # TODO: Implement _parse_artifacts_node
         return EnhancedArtifactForgeState()
 
-    def _correlate_artifacts_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _correlate_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Correlate artifacts with performance limits
         """
         # TODO: Implement _correlate_artifacts_node
         return EnhancedArtifactForgeState()
 
-    def _optimize_artifacts_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _optimize_artifacts_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Find optimization opportunities including syntax errors
         """
         # TODO: Implement _optimize_artifacts_node
         return EnhancedArtifactForgeState()
 
-    def _apply_intelligent_fixes_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _apply_intelligent_fixes_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Apply intelligent fixes based on block analysis
         """
         # TODO: Implement _apply_intelligent_fixes_node
         return EnhancedArtifactForgeState()
 
-    def _apply_syntax_fix(
-        self, opportunity: dict[str, Any], state: EnhancedArtifactForgeState
-    ) -> dict[str, Any]:
+    def _apply_syntax_fix(self, opportunity: dict[str, Any], state: EnhancedArtifactForgeState) -> dict[str, Any]:
         """
         Apply intelligent syntax fix based on block analysis
         """
@@ -97,18 +85,14 @@ class EnhancedArtifactForgeWorkflow:
         # TODO: Implement _fix_block_indentation
         return False
 
-    def _synthesize_insights_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _synthesize_insights_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Synthesize insights from all analysis
         """
         # TODO: Implement _synthesize_insights_node
         return EnhancedArtifactForgeState()
 
-    def _validate_fixes_node(
-        self, state: EnhancedArtifactForgeState
-    ) -> EnhancedArtifactForgeState:
+    def _validate_fixes_node(self, state: EnhancedArtifactForgeState) -> EnhancedArtifactForgeState:
         """
         Validate that fixes were successful
         """

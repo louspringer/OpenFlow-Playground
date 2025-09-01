@@ -24,9 +24,7 @@ class TestRequirementBacklogDiscoveryMethodology:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "backlog_discovery requirement validation test placeholder - implement actual logic"
+        assert True, "backlog_discovery requirement validation test placeholder - implement actual logic"
 
     def test_backlog_discovery_specific_behavior(self):
         """Test backlog_discovery-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirementBacklogDiscoveryMethodology:
         # TODO: Check that backlog_discovery tools and patterns are used correctly
         # TODO: Validate against backlog_discovery best practices
 
-        assert (
-            True
-        ), "backlog_discovery specific behavior test placeholder - implement actual logic"
+        assert True, "backlog_discovery specific behavior test placeholder - implement actual logic"
 
     def test_backlog_discovery_compliance(self):
         """Test that backlog_discovery implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirementBacklogDiscoveryMethodology:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "backlog_discovery compliance test placeholder - implement actual logic"
+        assert True, "backlog_discovery compliance test placeholder - implement actual logic"

@@ -74,9 +74,7 @@ class ReflectiveModuleRegistry:
         # Index capabilities
         self._index_module_capabilities(module_id, module)
 
-        logger.info(
-            f"Registered Reflective Module: {module_id} ({module.__class__.__name__})"
-        )
+        logger.info(f"Registered Reflective Module: {module_id} ({module.__class__.__name__})")
         return module_id
 
     def unregister_module(self, module_id: str) -> bool:
@@ -159,9 +157,7 @@ class ReflectiveModuleRegistry:
         """
         return self._capability_index.copy()
 
-    async def get_module_health(
-        self, module_id: str, force_check: bool = False
-    ) -> Optional[ModuleHealth]:
+    async def get_module_health(self, module_id: str, force_check: bool = False) -> Optional[ModuleHealth]:
         """
         Get health status for a specific module.
 
@@ -223,10 +219,7 @@ class ReflectiveModuleRegistry:
         total_modules = system_health["total_modules"]
         if total_modules == 0:
             system_health["overall_status"] = ModuleStatus.UNKNOWN.value
-        elif (
-            system_health["unhealthy_modules"] == 0
-            and system_health["degraded_modules"] == 0
-        ):
+        elif system_health["unhealthy_modules"] == 0 and system_health["degraded_modules"] == 0:
             system_health["overall_status"] = ModuleStatus.AVAILABLE.value
         elif system_health["unhealthy_modules"] == 0:
             system_health["overall_status"] = ModuleStatus.PARTIALLY_AVAILABLE.value
@@ -271,9 +264,7 @@ class ReflectiveModuleRegistry:
 
         return validation_results
 
-    def _index_module_capabilities(
-        self, module_id: str, module: ReflectiveModule
-    ) -> None:
+    def _index_module_capabilities(self, module_id: str, module: ReflectiveModule) -> None:
         """Index the capabilities of a module for discovery"""
         try:
             # Get capabilities synchronously for indexing
@@ -288,9 +279,7 @@ class ReflectiveModuleRegistry:
         except Exception as e:
             logger.warning(f"Could not index capabilities for {module_id}: {e}")
 
-    async def _async_index_capabilities(
-        self, module_id: str, module: ReflectiveModule
-    ) -> None:
+    async def _async_index_capabilities(self, module_id: str, module: ReflectiveModule) -> None:
         """Asynchronously index module capabilities"""
         try:
             capabilities = await module.get_module_capabilities()
@@ -302,9 +291,7 @@ class ReflectiveModuleRegistry:
         except Exception as e:
             logger.warning(f"Failed to index capabilities for {module_id}: {e}")
 
-    def _remove_module_capabilities(
-        self, module_id: str, module: ReflectiveModule
-    ) -> None:
+    def _remove_module_capabilities(self, module_id: str, module: ReflectiveModule) -> None:
         """Remove module capabilities from the index"""
         for capability_name, module_ids in list(self._capability_index.items()):
             if module_id in module_ids:

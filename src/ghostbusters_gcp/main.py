@@ -75,31 +75,19 @@ class GCPGhostbustersOrchestrator:
             # Analyze Cloud Build configurations
             cloud_build_analysis = self._analyze_cloud_build(project_id)
             investigation_results["gcp_services_analyzed"].append("cloud_build")
-            investigation_results["infrastructure_issues"].extend(
-                cloud_build_analysis.get("issues", [])
-            )
+            investigation_results["infrastructure_issues"].extend(cloud_build_analysis.get("issues", []))
 
             # Analyze Cloud Run configurations
             cloud_run_analysis = self._analyze_cloud_run(project_id)
             investigation_results["gcp_services_analyzed"].append("cloud_run")
-            investigation_results["infrastructure_issues"].extend(
-                cloud_run_analysis.get("issues", [])
-            )
+            investigation_results["infrastructure_issues"].extend(cloud_run_analysis.get("issues", []))
 
             # Calculate overall metrics
-            investigation_results["deployment_quality"] = (
-                self._calculate_deployment_quality(investigation_results)
-            )
-            investigation_results["security_posture"] = self._assess_security_posture(
-                investigation_results
-            )
-            investigation_results["cost_optimization"] = self._assess_cost_optimization(
-                investigation_results
-            )
+            investigation_results["deployment_quality"] = self._calculate_deployment_quality(investigation_results)
+            investigation_results["security_posture"] = self._assess_security_posture(investigation_results)
+            investigation_results["cost_optimization"] = self._assess_cost_optimization(investigation_results)
 
-            logger.info(
-                f"✅ GCP investigation complete. Quality score: {investigation_results['deployment_quality']:.2f}"
-            )
+            logger.info(f"✅ GCP investigation complete. Quality score: {investigation_results['deployment_quality']:.2f}")
 
         except Exception as e:
             logger.error(f"❌ GCP investigation failed: {e}")
@@ -241,9 +229,7 @@ class GCPGhostbustersOrchestrator:
 
         return analysis
 
-    def _calculate_deployment_quality(
-        self, investigation_results: dict[str, Any]
-    ) -> float:
+    def _calculate_deployment_quality(self, investigation_results: dict[str, Any]) -> float:
         """Calculate overall deployment quality score"""
         issues = investigation_results.get("infrastructure_issues", [])
 
@@ -270,9 +256,7 @@ class GCPGhostbustersOrchestrator:
         """Assess overall security posture"""
         issues = investigation_results.get("infrastructure_issues", [])
 
-        critical_security_issues = [
-            i for i in issues if i.get("severity") == "critical"
-        ]
+        critical_security_issues = [i for i in issues if i.get("severity") == "critical"]
         high_security_issues = [i for i in issues if i.get("severity") == "high"]
 
         if critical_security_issues:
@@ -287,9 +271,7 @@ class GCPGhostbustersOrchestrator:
         """Assess cost optimization status"""
         issues = investigation_results.get("infrastructure_issues", [])
 
-        cost_related_issues = [
-            i for i in issues if "cost" in i.get("description", "").lower()
-        ]
+        cost_related_issues = [i for i in issues if "cost" in i.get("description", "").lower()]
 
         if cost_related_issues:
             return "needs_optimization"
@@ -307,13 +289,7 @@ class GCPGhostbustersOrchestrator:
             "total_investigations": len(self.infrastructure_issues),
             "projects_investigated": list(self.infrastructure_issues.keys()),
             "overall_gcp_quality": self._calculate_overall_gcp_quality(),
-            "service_coverage": list(
-                {
-                    service
-                    for result in self.infrastructure_issues.values()
-                    for service in result.get("gcp_services_analyzed", [])
-                }
-            ),
+            "service_coverage": list({service for result in self.infrastructure_issues.values() for service in result.get("gcp_services_analyzed", [])}),
         }
 
     def _calculate_overall_gcp_quality(self) -> str:
@@ -321,10 +297,7 @@ class GCPGhostbustersOrchestrator:
         if not self.infrastructure_issues:
             return "no_data"
 
-        scores = [
-            result.get("deployment_quality", 0)
-            for result in self.infrastructure_issues.values()
-        ]
+        scores = [result.get("deployment_quality", 0) for result in self.infrastructure_issues.values()]
         avg_score = sum(scores) / len(scores)
 
         if avg_score >= 90:

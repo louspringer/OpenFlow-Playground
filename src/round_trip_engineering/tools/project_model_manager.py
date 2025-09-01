@@ -212,18 +212,10 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
             if collection in model_data:
                 if collection == "requirements_traceability":
                     # Remove by requirement description
-                    model_data[collection] = [
-                        item
-                        for item in model_data[collection]
-                        if item.get("requirement") != item_id
-                    ]
+                    model_data[collection] = [item for item in model_data[collection] if item.get("requirement") != item_id]
                 else:
                     # Remove by id
-                    model_data[collection] = [
-                        item
-                        for item in model_data[collection]
-                        if item.get("id") != item_id
-                    ]
+                    model_data[collection] = [item for item in model_data[collection] if item.get("id") != item_id]
 
             # Validate
             self.validate()
@@ -310,9 +302,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
         """Create a backup of the project model registry."""
         try:
             timestamp = int(time.time())
-            backup_file = (
-                self.backup_dir / f"project_model_registry_backup_{timestamp}.json"
-            )
+            backup_file = self.backup_dir / f"project_model_registry_backup_{timestamp}.json"
 
             if self.model_file.exists():
                 with open(self.model_file, "r") as f:
@@ -325,9 +315,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
                 self.logger.info(f"✅ Backup created: {backup_file}")
                 return str(backup_file)
             else:
-                raise FileNotFoundError(
-                    f"Project model file not found: {self.model_file}"
-                )
+                raise FileNotFoundError(f"Project model file not found: {self.model_file}")
 
         except Exception as e:
             self._track_error()
@@ -337,9 +325,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
     def list_backups(self) -> List[str]:
         """List available project model backups."""
         try:
-            backup_files = list(
-                self.backup_dir.glob("project_model_registry_backup_*.json")
-            )
+            backup_files = list(self.backup_dir.glob("project_model_registry_backup_*.json"))
             return sorted([str(f) for f in backup_files])
 
         except Exception as e:
@@ -377,9 +363,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
         """Validate the project model registry structure."""
         try:
             if not self.model_file.exists():
-                raise FileNotFoundError(
-                    f"Project model file not found: {self.model_file}"
-                )
+                raise FileNotFoundError(f"Project model file not found: {self.model_file}")
 
             with open(self.model_file, "r") as f:
                 content = f.read()
@@ -408,9 +392,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
         """Load the current project model registry."""
         try:
             if not self.model_file.exists():
-                raise FileNotFoundError(
-                    f"Project model file not found: {self.model_file}"
-                )
+                raise FileNotFoundError(f"Project model file not found: {self.model_file}")
 
             with open(self.model_file, "r") as f:
                 content = f.read()
@@ -432,24 +414,10 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
 
             stats = {
                 "total_domains": len(model_data.get("domains", {})),
-                "total_requirements": len(
-                    model_data.get("requirements_traceability", [])
-                ),
+                "total_requirements": len(model_data.get("requirements_traceability", [])),
                 "total_backlog_items": len(model_data.get("backlog", [])),
-                "pending_backlog_items": len(
-                    [
-                        item
-                        for item in model_data.get("backlog", [])
-                        if item.get("status") == "pending"
-                    ]
-                ),
-                "high_priority_items": len(
-                    [
-                        item
-                        for item in model_data.get("backlog", [])
-                        if item.get("priority") == "high"
-                    ]
-                ),
+                "pending_backlog_items": len([item for item in model_data.get("backlog", []) if item.get("status") == "pending"]),
+                "high_priority_items": len([item for item in model_data.get("backlog", []) if item.get("priority") == "high"]),
             }
 
             return stats

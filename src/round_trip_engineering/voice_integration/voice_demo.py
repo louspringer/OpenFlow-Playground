@@ -103,9 +103,7 @@ class VoiceModeRoundTripDemo:
             if hasattr(module_healthy, "__await__"):
                 # Handle async method
                 module_healthy = True  # Assume healthy for demo
-            print(
-                f"  Module Health: {'✅ Healthy' if module_healthy else '❌ Unhealthy'}"
-            )
+            print(f"  Module Health: {'✅ Healthy' if module_healthy else '❌ Unhealthy'}")
         except Exception as e:
             print(f"  Module Health: ⚠️ Check failed - {e}")
             module_healthy = True  # Assume healthy for demo
@@ -118,9 +116,7 @@ class VoiceModeRoundTripDemo:
         # Test basic functionality
         test_result = self.voice_control.execute_voice_command("explain_workflow")
         basic_functionality = test_result["success"]
-        print(
-            f"  Basic Functionality: {'✅ Working' if basic_functionality else '❌ Failed'}"
-        )
+        print(f"  Basic Functionality: {'✅ Working' if basic_functionality else '❌ Failed'}")
 
         success = voice_mode_available and module_healthy and basic_functionality
 
@@ -204,9 +200,7 @@ class VoiceModeRoundTripDemo:
                     successful_commands += 1
                     print(f"  {command}: ✅ Success")
                 else:
-                    print(
-                        f"  {command}: ❌ Failed - {result.get('error', 'Unknown error')}"
-                    )
+                    print(f"  {command}: ❌ Failed - {result.get('error', 'Unknown error')}")
 
             except Exception as e:
                 results[command] = {"success": False, "error": str(e)}
@@ -234,9 +228,7 @@ class VoiceModeRoundTripDemo:
             }
 
             # Execute voice command with context
-            result = self.voice_control.execute_voice_command(
-                "generate_python_from_ast", context
-            )
+            result = self.voice_control.execute_voice_command("generate_python_from_ast", context)
 
             if result["success"]:
                 print("  Voice Command Execution: ✅ Success")
@@ -246,16 +238,12 @@ class VoiceModeRoundTripDemo:
                 has_next_steps = "next_steps" in result
                 has_context = "context" in result
 
-                print(
-                    f"  Result Structure: ✅ Next steps: {has_next_steps}, Context: {has_context}"
-                )
+                print(f"  Result Structure: ✅ Next steps: {has_next_steps}, Context: {has_context}")
 
                 integration_success = has_next_steps and has_context
 
             else:
-                print(
-                    f"  Voice Command Execution: ❌ Failed - {result.get('error', 'Unknown error')}"
-                )
+                print(f"  Voice Command Execution: ❌ Failed - {result.get('error', 'Unknown error')}")
                 integration_success = False
 
         except Exception as e:
@@ -298,17 +286,11 @@ class VoiceModeRoundTripDemo:
         performance_metrics["round_trip_response_time"] = round_trip_response_time
 
         # Assess overall performance
-        voice_performance = (
-            voice_response_time < 1.0
-        )  # Should respond in under 1 second
-        round_trip_performance = (
-            round_trip_response_time < 0.5
-        )  # Should respond in under 0.5 seconds
+        voice_performance = voice_response_time < 1.0  # Should respond in under 1 second
+        round_trip_performance = round_trip_response_time < 0.5  # Should respond in under 0.5 seconds
 
         print(f"  Voice Performance: {'✅ Good' if voice_performance else '⚠️ Slow'}")
-        print(
-            f"  Round-Trip Performance: {'✅ Good' if round_trip_performance else '⚠️ Slow'}"
-        )
+        print(f"  Round-Trip Performance: {'✅ Good' if round_trip_performance else '⚠️ Slow'}")
 
         overall_performance = voice_performance and round_trip_performance
 

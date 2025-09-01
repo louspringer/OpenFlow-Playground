@@ -68,9 +68,7 @@ def _handle_model_operations(args):
     model_ops = create_model_registry_operations()
 
     if args.action == "register-model":
-        success, message = model_ops.register_model(
-            args.model_name, args.implementation, args.config
-        )
+        success, message = model_ops.register_model(args.model_name, args.implementation, args.config)
         print(message)
         return 0 if success else 1
 
@@ -107,23 +105,17 @@ def _handle_crud_operations(args):
         return 0 if success else 1
 
     elif args.action == "update-section":
-        success, message = crud_ops.update_section(
-            args.model_name, args.section, args.updates
-        )
+        success, message = crud_ops.update_section(args.model_name, args.section, args.updates)
         print(message)
         return 0 if success else 1
 
     elif args.action == "remove-item":
-        success, message = crud_ops.remove_item(
-            args.model_name, args.id, args.collection
-        )
+        success, message = crud_ops.remove_item(args.model_name, args.id, args.collection)
         print(message)
         return 0 if success else 1
 
     elif args.action == "add-section":
-        success, message = crud_ops.add_section(
-            args.model_name, args.section, args.updates
-        )
+        success, message = crud_ops.add_section(args.model_name, args.section, args.updates)
         print(message)
         return 0 if success else 1
 

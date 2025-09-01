@@ -120,22 +120,15 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
         capabilities = []
 
         # Get Ghostbusters domain configuration from project model
-        ghostbusters_domain = self.project_model.get("domains", {}).get(
-            "ghostbusters", {}
-        )
+        ghostbusters_domain = self.project_model.get("domains", {}).get("ghostbusters", {})
 
         for name, perspective in self.perspectives.items():
             try:
                 # Get perspective-specific capabilities
                 if hasattr(perspective, "detect_delusions"):
                     # Check if this perspective is mentioned in project model
-                    content_indicators = ghostbusters_domain.get(
-                        "content_indicators", []
-                    )
-                    perspective_mentioned = any(
-                        name.replace("_", "") in indicator.lower()
-                        for indicator in content_indicators
-                    )
+                    content_indicators = ghostbusters_domain.get("content_indicators", [])
+                    perspective_mentioned = any(name.replace("_", "") in indicator.lower() for indicator in content_indicators)
 
                     capabilities.append(
                         ServiceCapability(
@@ -148,9 +141,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
                                 "method": "detect_delusions",
                                 "async": True,
                                 "model_defined": perspective_mentioned,
-                                "project_model_requirements": self._get_perspective_requirements(
-                                    name, ghostbusters_domain
-                                ),
+                                "project_model_requirements": self._get_perspective_requirements(name, ghostbusters_domain),
                             },
                         )
                     )
@@ -172,9 +163,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
                     )
 
             except Exception as e:
-                logger.warning(
-                    f"Error getting capabilities for perspective {name}: {e}"
-                )
+                logger.warning(f"Error getting capabilities for perspective {name}: {e}")
                 capabilities.append(
                     ServiceCapability(
                         name=f"{name}_analysis",
@@ -204,9 +193,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
 
         return capabilities
 
-    def _get_perspective_requirements(
-        self, perspective: str, domain_config: dict
-    ) -> List[str]:
+    def _get_perspective_requirements(self, perspective: str, domain_config: dict) -> List[str]:
         """Get requirements related to a specific perspective from project model"""
         requirements = domain_config.get("requirements", [])
         perspective_requirements = []
@@ -325,8 +312,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
                 summary[name] = {
                     "status": status.status.value,
                     "message": status.message,
-                    "available": status.status
-                    in [ServiceStatus.AVAILABLE, ServiceStatus.PARTIALLY_AVAILABLE],
+                    "available": status.status in [ServiceStatus.AVAILABLE, ServiceStatus.PARTIALLY_AVAILABLE],
                 }
             except Exception as e:
                 summary[name] = {
@@ -336,9 +322,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
                 }
         return summary
 
-    async def run_analysis(
-        self, perspective: str, project_path: Optional[str] = None
-    ) -> Dict[str, Any]:
+    async def run_analysis(self, perspective: str, project_path: Optional[str] = None) -> Dict[str, Any]:
         """Run analysis using a specific perspective"""
         if perspective not in self.perspectives:
             raise ValueError(f"Perspective '{perspective}' not available")
@@ -380,11 +364,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
             "success_count": self._success_count,
             "error_count": self._error_count,
             "total_requests": self._success_count + self._error_count,
-            "success_rate": (
-                (self._success_count / (self._success_count + self._error_count) * 100)
-                if (self._success_count + self._error_count) > 0
-                else 0
-            ),
+            "success_rate": ((self._success_count / (self._success_count + self._error_count) * 100) if (self._success_count + self._error_count) > 0 else 0),
             "last_health_check": self._last_health_check,
             "current_health_status": self._health_status.value,
         }

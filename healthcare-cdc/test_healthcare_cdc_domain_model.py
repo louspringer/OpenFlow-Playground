@@ -32,10 +32,7 @@ class TestHealthcareCDCDomainModel:
         assert model.infrastructure.schema == "CDC_SCHEMA"
         assert model.infrastructure.destination_table == "openflow_insclaim_dest_tbl"
         assert model.infrastructure.cdc_table == "openflow_insclaim_cdc_tbl"
-        assert (
-            model.infrastructure.event_history_table
-            == "openflow_insclaim_event_hist_tbl"
-        )
+        assert model.infrastructure.event_history_table == "openflow_insclaim_event_hist_tbl"
 
     def test_pipeline_configuration(self):
         """Test pipeline configuration setup"""

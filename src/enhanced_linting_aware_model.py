@@ -95,13 +95,7 @@ class EnhancedLintingAwareFunctionDefinition:
                 line = line.replace("logger.", "self.logger.")
 
             # Skip lines with unused variables (F841)
-            if (
-                any(
-                    var in line
-                    for var in ["logger = logging.getLogger", "logger = logging"]
-                )
-                and "logger" not in self.used_variables
-            ):
+            if any(var in line for var in ["logger = logging.getLogger", "logger = logging"]) and "logger" not in self.used_variables:
                 continue  # Skip unused logger assignment
 
             lines.append(f"    {line}")

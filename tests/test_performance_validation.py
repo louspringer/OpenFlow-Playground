@@ -74,16 +74,12 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each operation should complete in under 1ms
-            assert (
-                avg_time < 0.001
-            ), f"Performance regression: {test_case['name']} took {avg_time:.6f}s per operation"
+            assert avg_time < 0.001, f"Performance regression: {test_case['name']} took {avg_time:.6f}s per operation"
 
         # Log performance results
         print(f"\n📊 ClassStructureGenerator Performance Results:")
         for result in performance_results:
-            print(
-                f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)"
-            )
+            print(f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)")
 
     def test_method_validator_performance(self):
         """Test MethodValidator performance with various method sources."""
@@ -138,16 +134,12 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each validation should complete in under 2ms
-            assert (
-                avg_time < 0.002
-            ), f"Performance regression: Method {i + 1} took {avg_time:.6f}s per validation"
+            assert avg_time < 0.002, f"Performance regression: Method {i + 1} took {avg_time:.6f}s per validation"
 
         # Log performance results
         print(f"\n📊 MethodValidator Performance Results:")
         for result in performance_results:
-            print(
-                f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)"
-            )
+            print(f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)")
 
     def test_method_completer_performance(self):
         """Test MethodCompleter performance with various incomplete methods."""
@@ -203,16 +195,12 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each completion should complete in under 2ms
-            assert (
-                avg_time < 0.002
-            ), f"Performance regression: Method {i + 1} took {avg_time:.6f}s per completion"
+            assert avg_time < 0.002, f"Performance regression: Method {i + 1} took {avg_time:.6f}s per completion"
 
         # Log performance results
         print(f"\n📊 MethodCompleter Performance Results:")
         for result in performance_results:
-            print(
-                f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)"
-            )
+            print(f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)")
 
     def test_operational_methods_generator_performance(self):
         """Test OperationalMethodsGenerator performance."""
@@ -249,16 +237,12 @@ class TestPerformanceBenchmarks:
             )
 
             # Performance assertion: each generation should complete in under 1ms
-            assert (
-                avg_time < 0.001
-            ), f"Performance regression: Class {class_name} took {avg_time:.6f}s per generation"
+            assert avg_time < 0.001, f"Performance regression: Class {class_name} took {avg_time:.6f}s per generation"
 
         # Log performance results
         print(f"\n📊 OperationalMethodsGenerator Performance Results:")
         for result in performance_results:
-            print(
-                f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)"
-            )
+            print(f"  {result['case']}: {result['avg_time']:.6f}s avg ({result['total_time']:.6f}s total)")
 
     def test_integrated_class_generator_performance(self):
         """Test integrated ClassGenerator performance with full workflow."""
@@ -298,42 +282,26 @@ class TestPerformanceBenchmarks:
         # Run multiple iterations for accurate timing
         for _ in range(20):
             # Simulate the full workflow
-            class_structure = (
-                generator.class_structure_generator.generate_class_structure(
-                    test_scenario["class_name"], test_scenario["enhanced_ast"]
-                )
-            )
+            class_structure = generator.class_structure_generator.generate_class_structure(test_scenario["class_name"], test_scenario["enhanced_ast"])
 
             # Validate methods
             for method in test_scenario["enhanced_ast"]["methods"]:
-                is_valid = generator.method_validator.is_valid_method_source(
-                    method["source"]
-                )
+                is_valid = generator.method_validator.is_valid_method_source(method["source"])
                 if not is_valid:
-                    completed = generator.method_completer.complete_method_source(
-                        method["source"]
-                    )
+                    completed = generator.method_completer.complete_method_source(method["source"])
 
             # Generate operational methods
-            operational_methods = (
-                generator.operational_methods_generator.generate_operational_methods(
-                    test_scenario["class_name"]
-                )
-            )
+            operational_methods = generator.operational_methods_generator.generate_operational_methods(test_scenario["class_name"])
 
         end_time = time.perf_counter()
         total_time = end_time - start_time
         avg_time = total_time / 20
 
         # Performance assertion: each full workflow should complete in under 10ms
-        assert (
-            avg_time < 0.01
-        ), f"Performance regression: Full workflow took {avg_time:.6f}s per iteration"
+        assert avg_time < 0.01, f"Performance regression: Full workflow took {avg_time:.6f}s per iteration"
 
         print(f"\n📊 Integrated ClassGenerator Performance Results:")
-        print(
-            f"  Full workflow: {avg_time:.6f}s avg ({total_time:.6f}s total for 20 iterations)"
-        )
+        print(f"  Full workflow: {avg_time:.6f}s avg ({total_time:.6f}s total for 20 iterations)")
 
     def test_memory_usage_stability(self):
         """Test that memory usage remains stable during operations."""
@@ -365,9 +333,7 @@ class TestPerformanceBenchmarks:
             generator.method_completer.complete_method_source(incomplete_method)
 
             # Generate operational methods
-            generator.operational_methods_generator.generate_operational_methods(
-                f"MemoryTestClass{i}"
-            )
+            generator.operational_methods_generator.generate_operational_methods(f"MemoryTestClass{i}")
 
         final_memory = process.memory_info().rss / 1024 / 1024  # MB
         memory_increase = final_memory - initial_memory
@@ -378,9 +344,7 @@ class TestPerformanceBenchmarks:
         print(f"  Memory increase: {memory_increase:.2f} MB")
 
         # Memory assertion: memory increase should be reasonable (< 50MB)
-        assert (
-            memory_increase < 50
-        ), f"Memory usage increased by {memory_increase:.2f} MB, which is excessive"
+        assert memory_increase < 50, f"Memory usage increased by {memory_increase:.2f} MB, which is excessive"
 
     def test_concurrent_operation_performance(self):
         """Test performance under concurrent operations."""
@@ -393,11 +357,9 @@ class TestPerformanceBenchmarks:
             start_time = time.perf_counter()
 
             # Generate class structure
-            class_structure = (
-                generator.class_structure_generator.generate_class_structure(
-                    f"ConcurrentClass{class_id}",
-                    {"bases": [], "docstring": f"Concurrent test class {class_id}"},
-                )
+            class_structure = generator.class_structure_generator.generate_class_structure(
+                f"ConcurrentClass{class_id}",
+                {"bases": [], "docstring": f"Concurrent test class {class_id}"},
             )
 
             # Validate methods
@@ -409,16 +371,10 @@ class TestPerformanceBenchmarks:
             incomplete_method = f"""def incomplete_method_{class_id}(self):
     if True:
         return {class_id}"""
-            completed = generator.method_completer.complete_method_source(
-                incomplete_method
-            )
+            completed = generator.method_completer.complete_method_source(incomplete_method)
 
             # Generate operational methods
-            operational_methods = (
-                generator.operational_methods_generator.generate_operational_methods(
-                    f"ConcurrentClass{class_id}"
-                )
-            )
+            operational_methods = generator.operational_methods_generator.generate_operational_methods(f"ConcurrentClass{class_id}")
 
             end_time = time.perf_counter()
             return end_time - start_time
@@ -430,16 +386,9 @@ class TestPerformanceBenchmarks:
         for concurrency in concurrency_levels:
             start_time = time.perf_counter()
 
-            with concurrent.futures.ThreadPoolExecutor(
-                max_workers=concurrency
-            ) as executor:
-                futures = [
-                    executor.submit(generate_class_workload, i) for i in range(20)
-                ]
-                results = [
-                    future.result()
-                    for future in concurrent.futures.as_completed(futures)
-                ]
+            with concurrent.futures.ThreadPoolExecutor(max_workers=concurrency) as executor:
+                futures = [executor.submit(generate_class_workload, i) for i in range(20)]
+                results = [future.result() for future in concurrent.futures.as_completed(futures)]
 
             end_time = time.perf_counter()
             total_time = end_time - start_time
@@ -456,15 +405,11 @@ class TestPerformanceBenchmarks:
 
             # Performance assertion: total time should scale reasonably with concurrency
             expected_time = 20 * 0.001 * concurrency  # Rough estimate
-            assert (
-                total_time < expected_time * 2
-            ), f"Performance regression: {concurrency} workers took {total_time:.6f}s (expected < {expected_time * 2:.6f}s)"
+            assert total_time < expected_time * 2, f"Performance regression: {concurrency} workers took {total_time:.6f}s (expected < {expected_time * 2:.6f}s)"
 
         print(f"\n📊 Concurrent Operation Performance Results:")
         for result in performance_results:
-            print(
-                f"  {result['concurrency']} workers: {result['total_time']:.6f}s total, {result['avg_individual_time']:.6f}s avg per operation"
-            )
+            print(f"  {result['concurrency']} workers: {result['total_time']:.6f}s total, {result['avg_individual_time']:.6f}s avg per operation")
 
 
 class TestPerformanceRegressionDetection:
@@ -485,9 +430,7 @@ class TestPerformanceRegressionDetection:
         # Test class structure generation
         start_time = time.perf_counter()
         for _ in range(100):
-            generator.class_structure_generator.generate_class_structure(
-                "BaselineClass", {"bases": [], "docstring": "Baseline test"}
-            )
+            generator.class_structure_generator.generate_class_structure("BaselineClass", {"bases": [], "docstring": "Baseline test"})
         end_time = time.perf_counter()
         avg_time = (end_time - start_time) / 100
 
@@ -505,9 +448,7 @@ class TestPerformanceRegressionDetection:
         end_time = time.perf_counter()
         avg_time = (end_time - start_time) / 100
 
-        assert (
-            avg_time < baseline_expectations["method_validation"]
-        ), f"Method validation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['method_validation']:.6f}s)"
+        assert avg_time < baseline_expectations["method_validation"], f"Method validation performance regression: {avg_time:.6f}s (expected < {baseline_expectations['method_validation']:.6f}s)"
 
         print(f"\n✅ Performance baseline validation passed:")
         print(f"  Class structure generation: {avg_time:.6f}s avg")

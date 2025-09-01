@@ -18,9 +18,7 @@ from .quality_enforcer import QualityEnforcer
 def setup_logging(*, verbose: bool = False) -> None:
     """Set up logging configuration"""
     level = logging.DEBUG if verbose else logging.INFO
-    logging.basicConfig(
-        level=level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
+    logging.basicConfig(level=level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 
 def run_quality_check(project_path: Path, *, verbose: bool = False) -> int:
@@ -154,9 +152,7 @@ def install_pre_commit_hook(project_path: Path, *, verbose: bool = False) -> int
         return 1
 
 
-def show_quality_trends(
-    project_path: Path, *, days: int = 30, verbose: bool = False
-) -> int:
+def show_quality_trends(project_path: Path, *, days: int = 30, verbose: bool = False) -> int:
     """Show quality trends over time"""
     setup_logging(verbose=verbose)
     logger = logging.getLogger(__name__)
@@ -211,9 +207,7 @@ Examples:
 
     # Check command
     check_parser = subparsers.add_parser("check", help="Run quality check")
-    check_parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    check_parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     check_parser.add_argument(
         "project_path",
         nargs="?",
@@ -222,12 +216,8 @@ Examples:
     )
 
     # Pre-commit command
-    pre_commit_parser = subparsers.add_parser(
-        "pre-commit", help="Run pre-commit quality check"
-    )
-    pre_commit_parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    pre_commit_parser = subparsers.add_parser("pre-commit", help="Run pre-commit quality check")
+    pre_commit_parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     pre_commit_parser.add_argument(
         "project_path",
         nargs="?",
@@ -237,9 +227,7 @@ Examples:
 
     # CI command
     ci_parser = subparsers.add_parser("ci", help="Run CI/CD quality check")
-    ci_parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    ci_parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     ci_parser.add_argument(
         "project_path",
         nargs="?",
@@ -249,9 +237,7 @@ Examples:
 
     # Install hook command
     hook_parser = subparsers.add_parser("install-hook", help="Install pre-commit hook")
-    hook_parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    hook_parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     hook_parser.add_argument(
         "project_path",
         nargs="?",
@@ -261,9 +247,7 @@ Examples:
 
     # Trends command
     trends_parser = subparsers.add_parser("trends", help="Show quality trends")
-    trends_parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    trends_parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     trends_parser.add_argument(
         "project_path",
         nargs="?",
@@ -299,15 +283,11 @@ Examples:
     if args.command == "ci":
         import asyncio
 
-        return asyncio.run(
-            run_ci_check(project_path=project_path, verbose=args.verbose)
-        )
+        return asyncio.run(run_ci_check(project_path=project_path, verbose=args.verbose))
     if args.command == "install-hook":
         return install_pre_commit_hook(project_path=project_path, verbose=args.verbose)
     if args.command == "trends":
-        return show_quality_trends(
-            project_path=project_path, days=args.days, verbose=args.verbose
-        )
+        return show_quality_trends(project_path=project_path, days=args.days, verbose=args.verbose)
 
     print(f"❌ Unknown command: {args.command}")
     return 1

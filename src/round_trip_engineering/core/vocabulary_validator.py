@@ -17,9 +17,7 @@ class VocabularyValidator:
         """Initialize the vocabulary validator."""
         logger.info("✅ Vocabulary validator initialized")
 
-    def validate_vocabulary_alignment(
-        self, original_model: Dict[str, Any], aligned_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def validate_vocabulary_alignment(self, original_model: Dict[str, Any], aligned_model: Dict[str, Any]) -> Dict[str, Any]:
         """Validate that vocabulary alignment was successful."""
         validation_result = {"valid": True, "issues": [], "improvements": []}
 
@@ -27,30 +25,22 @@ class VocabularyValidator:
         if "components" in aligned_model:
             components = aligned_model["components"]
             if isinstance(components, dict):
-                validation_result["improvements"].append(
-                    "Components successfully converted to dict format"
-                )
+                validation_result["improvements"].append("Components successfully converted to dict format")
 
                 # Check component structure
                 for name, component in components.items():
                     if not isinstance(component, dict) or "name" not in component:
                         validation_result["valid"] = False
-                        validation_result["issues"].append(
-                            f"Component {name} missing required structure"
-                        )
+                        validation_result["issues"].append(f"Component {name} missing required structure")
             else:
                 validation_result["valid"] = False
-                validation_result["issues"].append(
-                    "Components not in expected dict format"
-                )
+                validation_result["issues"].append("Components not in expected dict format")
 
         # Check workflow enhancement
         if "workflow_analysis" in aligned_model:
             workflow = aligned_model["workflow_analysis"]
             if isinstance(workflow, dict) and "complexity" in workflow:
-                validation_result["improvements"].append(
-                    "Workflow enhanced with complexity metrics"
-                )
+                validation_result["improvements"].append("Workflow enhanced with complexity metrics")
             else:
                 validation_result["issues"].append("Workflow not properly enhanced")
 
@@ -58,13 +48,9 @@ class VocabularyValidator:
         if "relationships" in aligned_model:
             relationships = aligned_model["relationships"]
             if isinstance(relationships, dict):
-                validation_result["improvements"].append(
-                    "Relationships successfully converted to dict format"
-                )
+                validation_result["improvements"].append("Relationships successfully converted to dict format")
             else:
-                validation_result["issues"].append(
-                    "Relationships not in expected dict format"
-                )
+                validation_result["issues"].append("Relationships not in expected dict format")
 
         # Check enhanced AST data structure
         if "enhanced_ast_data" in aligned_model:
@@ -74,18 +60,12 @@ class VocabularyValidator:
                 if isinstance(classes, list):
                     for i, cls in enumerate(classes):
                         if isinstance(cls, dict) and "name" in cls:
-                            validation_result["improvements"].append(
-                                f"Class {i} has proper structure"
-                            )
+                            validation_result["improvements"].append(f"Class {i} has proper structure")
                         else:
                             validation_result["valid"] = False
-                            validation_result["issues"].append(
-                                f"Class {i} missing required structure"
-                            )
+                            validation_result["issues"].append(f"Class {i} missing required structure")
 
-        logger.info(
-            f"✅ Vocabulary alignment validation completed: {len(validation_result['improvements'])} improvements, {len(validation_result['issues'])} issues"
-        )
+        logger.info(f"✅ Vocabulary alignment validation completed: {len(validation_result['improvements'])} improvements, {len(validation_result['issues'])} issues")
         return validation_result
 
     def basic_vocabulary_alignment(self, model: Dict[str, Any]) -> Dict[str, Any]:
@@ -98,9 +78,7 @@ class VocabularyValidator:
         if "components" in aligned_model:
             components = aligned_model["components"]
             if isinstance(components, list):
-                aligned_model[
-                    "components"
-                ] = self._basic_convert_components_list_to_dict(components)
+                aligned_model["components"] = self._basic_convert_components_list_to_dict(components)
 
         # Basic workflow enhancement
         if "workflow_analysis" in aligned_model:
@@ -115,9 +93,7 @@ class VocabularyValidator:
 
         return aligned_model
 
-    def _basic_convert_components_list_to_dict(
-        self, components: List[Dict[str, Any]]
-    ) -> Dict[str, Any]:
+    def _basic_convert_components_list_to_dict(self, components: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Basic conversion of components list to name-keyed dictionary."""
         if not isinstance(components, list):
             return components
@@ -139,9 +115,7 @@ class VocabularyValidator:
         logger.info(f"✅ Basic conversion: {len(components)} components to dict format")
         return components_dict
 
-    def get_validation_summary(
-        self, validation_result: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def get_validation_summary(self, validation_result: Dict[str, Any]) -> Dict[str, Any]:
         """Get a summary of vocabulary validation results."""
         try:
             return {
@@ -149,20 +123,9 @@ class VocabularyValidator:
                 "total_improvements": len(validation_result.get("improvements", [])),
                 "total_issues": len(validation_result.get("issues", [])),
                 "alignment_quality": (
-                    "excellent"
-                    if validation_result.get("valid", False)
-                    and len(validation_result.get("issues", [])) == 0
-                    else (
-                        "good"
-                        if validation_result.get("valid", False)
-                        else "needs_attention"
-                    )
+                    "excellent" if validation_result.get("valid", False) and len(validation_result.get("issues", [])) == 0 else ("good" if validation_result.get("valid", False) else "needs_attention")
                 ),
-                "status": (
-                    "validated"
-                    if validation_result.get("valid", False)
-                    else "validation_failed"
-                ),
+                "status": ("validated" if validation_result.get("valid", False) else "validation_failed"),
             }
         except Exception as e:
             logger.error(f"❌ Failed to generate validation summary: {e}")

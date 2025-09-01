@@ -52,9 +52,7 @@ class SimpleClassAnalyzer:
                 if isinstance(node, ast.ClassDef):
                     class_info = {
                         "name": node.name,
-                        "bases": [
-                            base.id for base in node.bases if isinstance(base, ast.Name)
-                        ],
+                        "bases": [base.id for base in node.bases if isinstance(base, ast.Name)],
                         "methods": [],
                         "attributes": [],
                         "docstring": ast.get_docstring(node) or "",
@@ -84,9 +82,7 @@ class SimpleClassAnalyzer:
                     }
                     functions.append(function_info)
 
-            logger.info(
-                f"✅ Analysis completed: {len(classes)} classes, {len(functions)} functions"
-            )
+            logger.info(f"✅ Analysis completed: {len(classes)} classes, {len(functions)} functions")
 
             return {
                 "source_path": source_path,
@@ -120,9 +116,7 @@ class PlantUMLGenerator:
             logger.warning(f"⚠️ PlantUML client not available: {e}")
             self.plantuml_client = None
 
-    def generate_activity_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> str:
+    def generate_activity_diagram(self, class_structure: Dict[str, Any], output_path: str) -> str:
         """
         Generate REAL UML activity diagram using PlantUML
 
@@ -146,13 +140,9 @@ class PlantUMLGenerator:
         try:
             # Try to use PlantUML client if available
             if hasattr(self, "plantuml_client") and self.plantuml_client:
-                svg_path = self.plantuml_client.generate_diagram(
-                    plantuml_code, output_path, "svg"
-                )
+                svg_path = self.plantuml_client.generate_diagram(plantuml_code, output_path, "svg")
                 if svg_path:
-                    logger.info(
-                        f"✅ REAL UML activity diagram generated using PlantUML: {svg_path}"
-                    )
+                    logger.info(f"✅ REAL UML activity diagram generated using PlantUML: {svg_path}")
                     return svg_path
 
             # Fallback: generate basic SVG (not UML compliant)
@@ -221,11 +211,7 @@ class PlantUMLGenerator:
                         plantuml_lines.append(f":{method['name']};")
 
                 # Add decision points for conditional logic
-                if any(
-                    "if" in method.get("docstring", "").lower()
-                    or "check" in method.get("name", "").lower()
-                    for method in methods
-                ):
+                if any("if" in method.get("docstring", "").lower() or "check" in method.get("name", "").lower() for method in methods):
                     plantuml_lines.extend(
                         [
                             "",
@@ -421,18 +407,10 @@ class PlantUMLGenerator:
 
                     # Arrow from previous
                     if i == 0:
-                        svg_lines.extend(
-                            [
-                                f'  <line x1="{x_offset + 30}" y1="{y_offset + 20}" x2="{x_offset + 100}" y2="{current_y}" class="arrow" />'
-                            ]
-                        )
+                        svg_lines.extend([f'  <line x1="{x_offset + 30}" y1="{y_offset + 20}" x2="{x_offset + 100}" y2="{current_y}" class="arrow" />'])
                     else:
                         prev_y = current_y - 50
-                        svg_lines.extend(
-                            [
-                                f'  <line x1="{x_offset + 100}" y1="{prev_y + 40}" x2="{x_offset + 100}" y2="{current_y}" class="arrow" />'
-                            ]
-                        )
+                        svg_lines.extend([f'  <line x1="{x_offset + 100}" y1="{prev_y + 40}" x2="{x_offset + 100}" y2="{current_y}" class="arrow" />'])
 
                     current_y += 60
 
@@ -446,11 +424,7 @@ class PlantUMLGenerator:
                 )
 
                 # Add decision points if methods suggest conditional logic
-                if any(
-                    "if" in method.get("docstring", "").lower()
-                    or "check" in method.get("name", "").lower()
-                    for method in methods
-                ):
+                if any("if" in method.get("docstring", "").lower() or "check" in method.get("name", "").lower() for method in methods):
                     decision_x = x_offset + 300
                     decision_y = y_offset + 100
 
@@ -533,9 +507,7 @@ class PlantUMLGenerator:
 
         return "\n".join(svg_lines)
 
-    def generate_sequence_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> str:
+    def generate_sequence_diagram(self, class_structure: Dict[str, Any], output_path: str) -> str:
         """Generate SVG sequence diagram from class structure"""
         logger.info(f"🎬 Generating SVG sequence diagram")
 
@@ -611,9 +583,7 @@ class SimpleActivityModelGenerator:
         self.class_analyzer = SimpleClassAnalyzer()
         self.plantuml = PlantUMLGenerator()
 
-        logger.info(
-            f"🎯 Simple Activity Model Generator initialized with output directory: {self.output_dir}"
-        )
+        logger.info(f"🎯 Simple Activity Model Generator initialized with output directory: {self.output_dir}")
 
     def generate_from_code(self, source_path: str) -> Dict[str, Any]:
         """
@@ -640,20 +610,12 @@ class SimpleActivityModelGenerator:
         try:
             # Generate unique filenames based on source file
             source_name = Path(source_path).stem
-            activity_diagram_path = (
-                self.output_dir / f"{source_name}_activity_diagram.svg"
-            )
-            self.plantuml.generate_activity_diagram(
-                class_structure, str(activity_diagram_path)
-            )
+            activity_diagram_path = self.output_dir / f"{source_name}_activity_diagram.svg"
+            self.plantuml.generate_activity_diagram(class_structure, str(activity_diagram_path))
 
             # Generate sequence diagram
-            sequence_diagram_path = (
-                self.output_dir / f"{source_name}_sequence_diagram.svg"
-            )
-            self.plantuml.generate_sequence_diagram(
-                class_structure, str(sequence_diagram_path)
-            )
+            sequence_diagram_path = self.output_dir / f"{source_name}_sequence_diagram.svg"
+            self.plantuml.generate_sequence_diagram(class_structure, str(sequence_diagram_path))
 
             # Compile results
             results = {
@@ -670,9 +632,7 @@ class SimpleActivityModelGenerator:
 
             logger.info(f"🎉 Simplified model generation completed successfully!")
             logger.info(f"📁 Output directory: {self.output_dir}")
-            logger.info(
-                f"📊 Analyzed {len(analysis_results.get('classes', {}))} classes"
-            )
+            logger.info(f"📊 Analyzed {len(analysis_results.get('classes', {}))} classes")
             logger.info(f"🎨 Generated PlantUML diagrams")
 
             return results
@@ -691,9 +651,7 @@ def main():
     """Command-line interface for the Simple Activity Model Generator"""
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Generate activity models from Python code (simplified)"
-    )
+    parser = argparse.ArgumentParser(description="Generate activity models from Python code (simplified)")
     parser.add_argument("source", help="Python source file or directory")
     parser.add_argument(
         "--output",
@@ -701,9 +659,7 @@ def main():
         default="generated_models_simple",
         help="Output directory for generated models",
     )
-    parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Enable verbose logging"
-    )
+    parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
 
     args = parser.parse_args()
 

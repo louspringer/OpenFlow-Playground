@@ -195,24 +195,24 @@ All security findings include Common Weakness Enumeration (CWE) references:
 ### **Code Security**
 
 1. **Never hardcode credentials** - Use environment variables
-2. **Validate all user inputs** - Implement input sanitization
-3. **Use secure cryptographic primitives** - Avoid MD5, SHA1
-4. **Implement proper authentication** - Use JWT, OAuth
-5. **Follow least privilege principle** - Grant minimum required permissions
+1. **Validate all user inputs** - Implement input sanitization
+1. **Use secure cryptographic primitives** - Avoid MD5, SHA1
+1. **Implement proper authentication** - Use JWT, OAuth
+1. **Follow least privilege principle** - Grant minimum required permissions
 
 ### **Dependency Security**
 
 1. **Regular vulnerability scanning** - Use Safety and Trivy
-2. **Keep dependencies updated** - Regular updates and patches
-3. **Monitor security advisories** - Stay informed about vulnerabilities
-4. **Use dependency lock files** - Ensure reproducible builds
+1. **Keep dependencies updated** - Regular updates and patches
+1. **Monitor security advisories** - Stay informed about vulnerabilities
+1. **Use dependency lock files** - Ensure reproducible builds
 
 ### **Infrastructure Security**
 
 1. **Secure configuration management** - Use parameter stores
-2. **Implement security headers** - HTTPS, CSP, HSTS
-3. **Rate limiting** - Prevent abuse and attacks
-4. **Audit logging** - Track security events
+1. **Implement security headers** - HTTPS, CSP, HSTS
+1. **Rate limiting** - Prevent abuse and attacks
+1. **Audit logging** - Track security events
 
 ## 🔧 **Integration with CI/CD**
 
@@ -307,24 +307,24 @@ jobs:
    make security-install
    ```
 
-2. **Run security scan**:
+1. **Run security scan**:
 
    ```bash
    make security-scan
    ```
 
-3. **Review findings** and fix issues
+1. **Review findings** and fix issues
 
-4. **Re-run scans** to validate fixes
+1. **Re-run scans** to validate fixes
 
-5. **Commit improvements** to version control
+1. **Commit improvements** to version control
 
 ### **Development Workflow**
 
 1. **Before committing**: Run `make security-check`
-2. **Before pushing**: Run `make security-scan`
-3. **Weekly**: Run `make security-scan` for comprehensive review
-4. **Monthly**: Review and update security tool configurations
+1. **Before pushing**: Run `make security-scan`
+1. **Weekly**: Run `make security-scan` for comprehensive review
+1. **Monthly**: Review and update security tool configurations
 
 ## 🔒 **Remember**
 

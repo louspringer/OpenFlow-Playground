@@ -104,11 +104,11 @@ grep -r "export.*API_KEY" . --exclude-dir=.git
 ### **If API Keys Are Exposed:**
 
 1. **IMMEDIATELY REVOKE** the exposed API keys
-2. **DELETE** the files containing the keys
-3. **UPDATE** .gitignore to prevent future exposure
-4. **SCAN** the entire repository for other exposures
-5. **DOCUMENT** the incident and lessons learned
-6. **TRAIN** team members on security practices
+1. **DELETE** the files containing the keys
+1. **UPDATE** .gitignore to prevent future exposure
+1. **SCAN** the entire repository for other exposures
+1. **DOCUMENT** the incident and lessons learned
+1. **TRAIN** team members on security practices
 
 ## 📚 Best Practices
 
@@ -170,10 +170,10 @@ class Settings(BaseSettings):
 If you discover a security issue:
 
 1. **DO NOT** create a public issue
-2. **DO NOT** discuss in public channels
-3. **IMMEDIATELY** contact the security team
-4. **FOLLOW** the incident response plan
+1. **DO NOT** discuss in public channels
+1. **IMMEDIATELY** contact the security team
+1. **FOLLOW** the incident response plan
 
----
+______________________________________________________________________
 
 **Remember: Security is everyone's responsibility. When in doubt, ask before committing sensitive information.**

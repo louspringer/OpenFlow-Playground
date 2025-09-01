@@ -24,9 +24,7 @@ class TestRequirement8YamlInfrastructure:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "yaml_infrastructure requirement validation test placeholder - implement actual logic"
+        assert True, "yaml_infrastructure requirement validation test placeholder - implement actual logic"
 
     def test_yaml_infrastructure_specific_behavior(self):
         """Test yaml_infrastructure-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement8YamlInfrastructure:
         # TODO: Check that yaml_infrastructure tools and patterns are used correctly
         # TODO: Validate against yaml_infrastructure best practices
 
-        assert (
-            True
-        ), "yaml_infrastructure specific behavior test placeholder - implement actual logic"
+        assert True, "yaml_infrastructure specific behavior test placeholder - implement actual logic"
 
     def test_yaml_infrastructure_compliance(self):
         """Test that yaml_infrastructure implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement8YamlInfrastructure:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "yaml_infrastructure compliance test placeholder - implement actual logic"
+        assert True, "yaml_infrastructure compliance test placeholder - implement actual logic"

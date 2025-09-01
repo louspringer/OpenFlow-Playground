@@ -48,14 +48,10 @@ class ComplexityMetricsAnalyzer:
             custom_analysis = self._analyze_ast_complexity(source_ast)
 
             # Calculate industry standard metrics
-            industry_metrics = self._calculate_industry_metrics(
-                radon_analysis, custom_analysis
-            )
+            industry_metrics = self._calculate_industry_metrics(radon_analysis, custom_analysis)
 
             # Generate complexity report
-            complexity_report = self._generate_complexity_report(
-                source_file, radon_analysis, custom_analysis, industry_metrics
-            )
+            complexity_report = self._generate_complexity_report(source_file, radon_analysis, custom_analysis, industry_metrics)
 
             analysis_result = {
                 "source_file": source_file,
@@ -64,9 +60,7 @@ class ComplexityMetricsAnalyzer:
                 "custom_analysis": custom_analysis,
                 "industry_metrics": industry_metrics,
                 "complexity_report": complexity_report,
-                "overall_complexity_score": self._calculate_overall_complexity_score(
-                    radon_analysis, custom_analysis
-                ),
+                "overall_complexity_score": self._calculate_overall_complexity_score(radon_analysis, custom_analysis),
             }
 
             return analysis_result
@@ -156,18 +150,12 @@ class ComplexityMetricsAnalyzer:
                 complexity_metrics["overall_metrics"]["total_variables"] += 1
 
         # Calculate overall metrics
-        complexity_metrics["overall_metrics"]["total_lines"] = self._count_lines(
-            ast_tree
-        )
-        complexity_metrics["overall_metrics"]["max_nesting"] = (
-            self._calculate_max_nesting(ast_tree)
-        )
+        complexity_metrics["overall_metrics"]["total_lines"] = self._count_lines(ast_tree)
+        complexity_metrics["overall_metrics"]["max_nesting"] = self._calculate_max_nesting(ast_tree)
 
         return complexity_metrics
 
-    def _calculate_function_complexity(
-        self, func_node: ast.FunctionDef
-    ) -> Dict[str, Any]:
+    def _calculate_function_complexity(self, func_node: ast.FunctionDef) -> Dict[str, Any]:
         """Calculate complexity metrics for a function."""
         complexity = {
             "name": func_node.name,
@@ -265,9 +253,7 @@ class ComplexityMetricsAnalyzer:
                 max_line = max(max_line, node.lineno)
         return max_line
 
-    def _categorize_complexity(
-        self, complexity_value: int, distribution: Dict[str, int]
-    ):
+    def _categorize_complexity(self, complexity_value: int, distribution: Dict[str, int]):
         """Categorize complexity into distribution buckets."""
         if complexity_value <= 5:
             distribution["low"] += 1
@@ -278,9 +264,7 @@ class ComplexityMetricsAnalyzer:
         else:
             distribution["very_high"] += 1
 
-    def _calculate_industry_metrics(
-        self, radon_analysis: Dict[str, Any], custom_analysis: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _calculate_industry_metrics(self, radon_analysis: Dict[str, Any], custom_analysis: Dict[str, Any]) -> Dict[str, Any]:
         """Calculate industry standard complexity metrics."""
         industry_metrics = {
             "maintainability_index": 0,
@@ -294,24 +278,13 @@ class ComplexityMetricsAnalyzer:
 
         if custom_analysis["overall_metrics"]["total_functions"] > 0:
             # Calculate average complexity per function
-            total_complexity = sum(
-                func["cyclomatic"]
-                for func in custom_analysis["function_complexity"].values()
-            )
-            industry_metrics["complexity_per_function"] = (
-                total_complexity / custom_analysis["overall_metrics"]["total_functions"]
-            )
+            total_complexity = sum(func["cyclomatic"] for func in custom_analysis["function_complexity"].values())
+            industry_metrics["complexity_per_function"] = total_complexity / custom_analysis["overall_metrics"]["total_functions"]
 
         if custom_analysis["overall_metrics"]["total_classes"] > 0:
             # Calculate average complexity per class
-            total_class_complexity = sum(
-                cls["total_complexity"]
-                for cls in custom_analysis["class_complexity"].values()
-            )
-            industry_metrics["complexity_per_class"] = (
-                total_class_complexity
-                / custom_analysis["overall_metrics"]["total_classes"]
-            )
+            total_class_complexity = sum(cls["total_complexity"] for cls in custom_analysis["class_complexity"].values())
+            industry_metrics["complexity_per_class"] = total_class_complexity / custom_analysis["overall_metrics"]["total_classes"]
 
         # Calculate maintainability index (simplified)
         # Higher is better, max 100
@@ -342,19 +315,13 @@ class ComplexityMetricsAnalyzer:
 
         # Calculate overall quality score
         industry_metrics["overall_quality_score"] = (
-            industry_metrics["maintainability_index"] * 0.4
-            + industry_metrics["nesting_depth_score"] * 0.3
-            + (100 - industry_metrics["complexity_per_function"] * 2) * 0.3
+            industry_metrics["maintainability_index"] * 0.4 + industry_metrics["nesting_depth_score"] * 0.3 + (100 - industry_metrics["complexity_per_function"] * 2) * 0.3
         )
-        industry_metrics["overall_quality_score"] = max(
-            0, min(100, industry_metrics["overall_quality_score"])
-        )
+        industry_metrics["overall_quality_score"] = max(0, min(100, industry_metrics["overall_quality_score"]))
 
         return industry_metrics
 
-    def _calculate_overall_complexity_score(
-        self, radon_analysis: Dict[str, Any], custom_analysis: Dict[str, Any]
-    ) -> float:
+    def _calculate_overall_complexity_score(self, radon_analysis: Dict[str, Any], custom_analysis: Dict[str, Any]) -> float:
         """Calculate overall complexity score (0-100, lower is better)."""
         if not radon_analysis.get("success"):
             return 100.0  # Worst case if Radon fails
@@ -364,13 +331,7 @@ class ComplexityMetricsAnalyzer:
 
         # Function complexity contribution (40%)
         if custom_analysis["overall_metrics"]["total_functions"] > 0:
-            avg_func_complexity = (
-                sum(
-                    func["cyclomatic"]
-                    for func in custom_analysis["function_complexity"].values()
-                )
-                / custom_analysis["overall_metrics"]["total_functions"]
-            )
+            avg_func_complexity = sum(func["cyclomatic"] for func in custom_analysis["function_complexity"].values()) / custom_analysis["overall_metrics"]["total_functions"]
             base_score += min(100, avg_func_complexity * 5) * 0.4
 
         # Nesting depth contribution (30%)
@@ -380,10 +341,7 @@ class ComplexityMetricsAnalyzer:
         # Control structure density contribution (30%)
         total_statements = custom_analysis["overall_metrics"]["total_statements"]
         if total_statements > 0:
-            control_structures = sum(
-                func["control_structures"]
-                for func in custom_analysis["function_complexity"].values()
-            )
+            control_structures = sum(func["control_structures"] for func in custom_analysis["function_complexity"].values())
             control_density = (control_structures / total_statements) * 100
             base_score += min(100, control_density * 2) * 0.3
 
@@ -467,18 +425,12 @@ Status: {"✅ Success" if radon_analysis.get("success") else "❌ Failed"}
                 result = self.analyze_complexity(str(python_file))
                 if result["analysis_success"]:
                     project_metrics["analyzed_files"] += 1
-                    project_metrics["file_complexity_scores"].append(
-                        result["overall_complexity_score"]
-                    )
-                    project_metrics["maintainability_scores"].append(
-                        result["industry_metrics"]["maintainability_index"]
-                    )
+                    project_metrics["file_complexity_scores"].append(result["overall_complexity_score"])
+                    project_metrics["maintainability_scores"].append(result["industry_metrics"]["maintainability_index"])
 
                     # Aggregate complexity distribution
                     custom_analysis = result["custom_analysis"]
-                    for category, count in custom_analysis[
-                        "complexity_distribution"
-                    ].items():
+                    for category, count in custom_analysis["complexity_distribution"].items():
                         project_metrics["complexity_distribution"][category] += count
                 else:
                     project_metrics["failed_files"] += 1
@@ -488,14 +440,10 @@ Status: {"✅ Success" if radon_analysis.get("success") else "❌ Failed"}
 
         # Calculate project-wide metrics
         if project_metrics["file_complexity_scores"]:
-            project_metrics["overall_complexity_score"] = statistics.mean(
-                project_metrics["file_complexity_scores"]
-            )
+            project_metrics["overall_complexity_score"] = statistics.mean(project_metrics["file_complexity_scores"])
 
         if project_metrics["maintainability_scores"]:
-            project_metrics["average_maintainability"] = statistics.mean(
-                project_metrics["maintainability_scores"]
-            )
+            project_metrics["average_maintainability"] = statistics.mean(project_metrics["maintainability_scores"])
 
         return project_metrics
 

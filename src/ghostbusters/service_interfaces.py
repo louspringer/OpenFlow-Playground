@@ -183,6 +183,4 @@ def get_ghostbusters_status_message() -> str:
     """Get a human-readable status message"""
     # This would query the actual service registry
     # For now, return a placeholder
-    return (
-        "Status: Ghostbusters services not initialized - run service setup for details"
-    )
+    return "Status: Ghostbusters services not initialized - run service setup for details"

@@ -76,9 +76,9 @@ flowchart TD
 ### **Expected Behavior**
 
 1. **Vocabulary Alignment**: List → Dict transformation
-2. **Code Generation**: Clean, structured Python code
-3. **Duplication Removal**: No duplicate methods or returns
-4. **Logging**: Comprehensive profiling at each step
+1. **Code Generation**: Clean, structured Python code
+1. **Duplication Removal**: No duplicate methods or returns
+1. **Logging**: Comprehensive profiling at each step
 
 ### **Actual Behavior (To be validated)**
 

@@ -80,9 +80,7 @@ class MultiFileWorkflowAnalyzer:
         except Exception as e:
             return {"error": str(e), "analysis_success": False}
 
-    def _analyze_dependencies_with_pydeps(
-        self, python_files: List[Path]
-    ) -> Dict[str, Any]:
+    def _analyze_dependencies_with_pydeps(self, python_files: List[Path]) -> Dict[str, Any]:
         """Analyze dependencies using pydeps."""
         try:
             # Use pydeps to analyze the entire source directory
@@ -108,11 +106,7 @@ class MultiFileWorkflowAnalyzer:
                     "total_dependencies": len(dependencies),
                     "dependency_graph_nodes": self.dependency_graph.number_of_nodes(),
                     "dependency_graph_edges": self.dependency_graph.number_of_edges(),
-                    "raw_output": (
-                        result.stdout[:500] + "..."
-                        if len(result.stdout) > 500
-                        else result.stdout
-                    ),
+                    "raw_output": (result.stdout[:500] + "..." if len(result.stdout) > 500 else result.stdout),
                 }
             else:
                 return {
@@ -221,14 +215,10 @@ class MultiFileWorkflowAnalyzer:
                 namespace_analysis["exports"][str(file_path)].extend(exports)
 
             except Exception as e:
-                namespace_analysis["unresolved_imports"].append(
-                    {"file": str(file_path), "error": str(e)}
-                )
+                namespace_analysis["unresolved_imports"].append({"file": str(file_path), "error": str(e)})
 
         # Check for namespace conflicts
-        namespace_analysis["namespace_conflicts"] = self._detect_namespace_conflicts(
-            namespace_analysis["exports"]
-        )
+        namespace_analysis["namespace_conflicts"] = self._detect_namespace_conflicts(namespace_analysis["exports"])
 
         return namespace_analysis
 
@@ -296,9 +286,7 @@ class MultiFileWorkflowAnalyzer:
 
         return exports
 
-    def _detect_namespace_conflicts(
-        self, exports: Dict[str, List]
-    ) -> List[Dict[str, Any]]:
+    def _detect_namespace_conflicts(self, exports: Dict[str, List]) -> List[Dict[str, Any]]:
         """Detect namespace conflicts across files."""
         conflicts = []
 
@@ -377,17 +365,13 @@ class MultiFileWorkflowAnalyzer:
                                 }
                             )
 
-                            cross_file_calls["call_graph"][str(file_path)].append(
-                                {"target": target_file, "function": call["function"]}
-                            )
+                            cross_file_calls["call_graph"][str(file_path)].append({"target": target_file, "function": call["function"]})
 
             except Exception as e:
                 continue
 
         # Identify entry and exit points
-        cross_file_calls["entry_points"] = self._identify_entry_points(
-            function_locations
-        )
+        cross_file_calls["entry_points"] = self._identify_entry_points(function_locations)
         cross_file_calls["exit_points"] = self._identify_exit_points(function_locations)
 
         return cross_file_calls
@@ -415,9 +399,7 @@ class MultiFileWorkflowAnalyzer:
         for node in ast.walk(tree):
             if isinstance(node, ast.Call):
                 if hasattr(node.func, "id"):
-                    calls.append(
-                        {"function": node.func.id, "lineno": getattr(node, "lineno", 0)}
-                    )
+                    calls.append({"function": node.func.id, "lineno": getattr(node, "lineno", 0)})
 
         return calls
 
@@ -467,9 +449,7 @@ class MultiFileWorkflowAnalyzer:
 
         # Add dependency edges
         for edge in self.dependency_graph.edges():
-            workflow_graph["edges"].append(
-                {"source": edge[0], "target": edge[1], "type": "dependency"}
-            )
+            workflow_graph["edges"].append({"source": edge[0], "target": edge[1], "type": "dependency"})
 
         # Add cross-file call edges
         for source_file, calls in self.cross_file_calls.get("call_graph", {}).items():
@@ -488,9 +468,7 @@ class MultiFileWorkflowAnalyzer:
     def generate_analysis_report(self) -> str:
         """Generate a comprehensive analysis report."""
         if not hasattr(self, "last_analysis_result"):
-            return (
-                "No analysis results available. Run analyze_project_workflow() first."
-            )
+            return "No analysis results available. Run analyze_project_workflow() first."
 
         result = self.last_analysis_result
 
@@ -556,19 +534,13 @@ def test_multi_file_analyzer():
             print(f"  Graph Nodes: {dep_analysis.get('dependency_graph_nodes', 0)}")
             print(f"  Graph Edges: {dep_analysis.get('dependency_graph_edges', 0)}")
         else:
-            print(
-                f"  ❌ Pydeps Analysis Failed: {dep_analysis.get('error', 'Unknown error')}"
-            )
+            print(f"  ❌ Pydeps Analysis Failed: {dep_analysis.get('error', 'Unknown error')}")
 
         print(f"\nCircular Dependencies:")
         circular_deps = result["circular_dependencies"]
-        print(
-            f"  Total Circular Dependencies: {circular_deps.get('total_circular_deps', 0)}"
-        )
+        print(f"  Total Circular Dependencies: {circular_deps.get('total_circular_deps', 0)}")
         print(f"  Simple Cycles: {len(circular_deps.get('simple_cycles', []))}")
-        print(
-            f"  Strongly Connected Components: {len(circular_deps.get('strongly_connected_components', []))}"
-        )
+        print(f"  Strongly Connected Components: {len(circular_deps.get('strongly_connected_components', []))}")
 
         print(f"\nCross-File Analysis:")
         cross_file = result["cross_file_calls"]
@@ -577,12 +549,8 @@ def test_multi_file_analyzer():
 
         print(f"\nNamespace Resolution:")
         namespace = result["namespace_resolution"]
-        total_imports = sum(
-            len(imports) for imports in namespace.get("imports", {}).values()
-        )
-        total_exports = sum(
-            len(exports) for exports in namespace.get("exports", {}).values()
-        )
+        total_imports = sum(len(imports) for imports in namespace.get("imports", {}).values())
+        total_exports = sum(len(exports) for exports in namespace.get("exports", {}).values())
         print(f"  Total Imports: {total_imports}")
         print(f"  Total Exports: {total_exports}")
         print(f"  Namespace Conflicts: {len(namespace.get('namespace_conflicts', []))}")

@@ -29,9 +29,7 @@ class CodeQualityExpert(BaseExpert):
         if linting_issues:
             systemic_issues = await self._identify_systemic_problems(linting_issues)
             delusions.extend(systemic_issues)
-            recommendations.extend(
-                await self._generate_systemic_recommendations(linting_issues)
-            )
+            recommendations.extend(await self._generate_systemic_recommendations(linting_issues))
         else:
             delusions.append(
                 self._create_delusion(
@@ -127,9 +125,7 @@ class CodeQualityExpert(BaseExpert):
             return systemic_issues
         error_codes = [issue["code"] for issue in linting_issues if "code" in issue]
         files_affected = {issue["file"] for issue in linting_issues if "file" in issue}
-        import_errors = [
-            code for code in error_codes if code in ["E402", "E302", "E305"]
-        ]
+        import_errors = [code for code in error_codes if code in ["E402", "E302", "E305"]]
         if len(import_errors) > len(linting_issues) * 0.3:
             systemic_issues.append(
                 self._create_delusion(
@@ -141,9 +137,7 @@ class CodeQualityExpert(BaseExpert):
                     "high",
                 )
             )
-        formatting_errors = [
-            code for code in error_codes if code in ["W291", "W292", "E501"]
-        ]
+        formatting_errors = [code for code in error_codes if code in ["W291", "W292", "E501"]]
         if len(formatting_errors) > len(linting_issues) * 0.4:
             systemic_issues.append(
                 self._create_delusion(
@@ -189,9 +183,7 @@ class CodeQualityExpert(BaseExpert):
             return recommendations
         error_codes = [issue["code"] for issue in linting_issues if "code" in issue]
         files_affected = {issue["file"] for issue in linting_issues if "file" in issue}
-        import_errors = [
-            code for code in error_codes if code in ["E402", "E302", "E305"]
-        ]
+        import_errors = [code for code in error_codes if code in ["E402", "E302", "E305"]]
         if import_errors:
             recommendations.append(
                 self._create_recommendation(
@@ -205,9 +197,7 @@ class CodeQualityExpert(BaseExpert):
                     "medium",
                 )
             )
-        formatting_errors = [
-            code for code in error_codes if code in ["W291", "W292", "E501"]
-        ]
+        formatting_errors = [code for code in error_codes if code in ["W291", "W292", "E501"]]
         if formatting_errors:
             recommendations.append(
                 self._create_recommendation(
@@ -229,11 +219,7 @@ class CodeQualityExpert(BaseExpert):
                     "high",
                 )
             )
-            recommendations.append(
-                self._create_recommendation(
-                    "Add mypy to CI/CD pipeline for type checking", "medium"
-                )
-            )
+            recommendations.append(self._create_recommendation("Add mypy to CI/CD pipeline for type checking", "medium"))
         if len(files_affected) > 10:
             recommendations.append(
                 self._create_recommendation(
@@ -241,11 +227,7 @@ class CodeQualityExpert(BaseExpert):
                     "high",
                 )
             )
-            recommendations.append(
-                self._create_recommendation(
-                    "Add quality gates to CI/CD pipeline to prevent regressions", "high"
-                )
-            )
+            recommendations.append(self._create_recommendation("Add quality gates to CI/CD pipeline to prevent regressions", "high"))
         if len(linting_issues) > 100:
             recommendations.append(
                 self._create_recommendation(

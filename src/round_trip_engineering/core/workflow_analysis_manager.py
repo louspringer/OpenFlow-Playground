@@ -34,9 +34,7 @@ class WorkflowAnalysisManager:
             logger.info(f"🔍 Getting workflow analysis for: {source_path}")
             workflow_data = self.workflow_analyzer.analyze_workflow(source_path)
 
-            logger.info(
-                f"✅ Workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes"
-            )
+            logger.info(f"✅ Workflow analysis completed: {len(workflow_data.get('nodes', []))} nodes")
             return workflow_data
 
         except Exception as e:
@@ -47,9 +45,7 @@ class WorkflowAnalysisManager:
                 "error": str(e),
             }
 
-    def analyze_workflow_complexity(
-        self, workflow_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def analyze_workflow_complexity(self, workflow_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Analyze the complexity of a workflow.
 
@@ -66,16 +62,12 @@ class WorkflowAnalysisManager:
             complexity_metrics = {
                 "node_count": len(nodes),
                 "edge_count": len(edges),
-                "complexity_score": len(nodes)
-                * len(edges)
-                / 100,  # Simple complexity formula
+                "complexity_score": len(nodes) * len(edges) / 100,  # Simple complexity formula
                 "density": len(edges) / max(len(nodes), 1),
                 "analysis_timestamp": workflow_data.get("timestamp", "unknown"),
             }
 
-            logger.info(
-                f"✅ Workflow complexity analysis completed: {complexity_metrics['complexity_score']:.2f}"
-            )
+            logger.info(f"✅ Workflow complexity analysis completed: {complexity_metrics['complexity_score']:.2f}")
             return complexity_metrics
 
         except Exception as e:
@@ -98,9 +90,7 @@ class WorkflowAnalysisManager:
 
             summary = {
                 "source_path": source_path,
-                "workflow_analysis_successful": workflow_data.get(
-                    "workflow_analysis_successful", False
-                ),
+                "workflow_analysis_successful": workflow_data.get("workflow_analysis_successful", False),
                 "complexity_metrics": complexity_metrics,
                 "nodes": workflow_data.get("nodes", []),
                 "edges": workflow_data.get("edges", []),

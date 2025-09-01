@@ -46,9 +46,7 @@ class TestModelDrivenTestingSystem:
         except SyntaxError as e:
             pytest.fail(f"Target file has syntax errors: {e}")
 
-    def test_generate_tests_for_target(
-        self, test_generator: PythonUnitTestGenerator, target_file: Path
-    ) -> None:
+    def test_generate_tests_for_target(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
         """Test that we can generate tests for the target file"""
         # Generate tests for the target file
         test_files = test_generator.generate_tests_for_file(target_file)
@@ -67,9 +65,7 @@ class TestModelDrivenTestingSystem:
             except SyntaxError as e:
                 pytest.fail(f"Generated test file {test_file} has syntax errors: {e}")
 
-    def test_generated_tests_are_runnable(
-        self, test_generator: PythonUnitTestGenerator, target_file: Path
-    ) -> None:
+    def test_generated_tests_are_runnable(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
         """Test that generated tests can actually be run with pytest"""
         # Generate tests
         test_files = test_generator.generate_tests_for_file(target_file)
@@ -81,9 +77,7 @@ class TestModelDrivenTestingSystem:
                 main_test_file = test_file
                 break
 
-        assert main_test_file is not None, (
-            "Should generate a test for GhostbustersOrchestrator"
-        )
+        assert main_test_file is not None, "Should generate a test for GhostbustersOrchestrator"
 
         # Test that the generated test can be imported (SAFE - no execution)
         try:
@@ -108,9 +102,7 @@ class TestModelDrivenTestingSystem:
         except Exception as e:
             pytest.fail(f"Failed to validate generated test: {e}")
 
-    def test_test_implementation_sync(
-        self, test_generator: PythonUnitTestGenerator, target_file: Path
-    ) -> None:
+    def test_test_implementation_sync(self, test_generator: PythonUnitTestGenerator, target_file: Path) -> None:
         """Test that generated tests stay in sync with implementation"""
         # Generate tests
         test_files = test_generator.generate_tests_for_file(target_file)
@@ -129,10 +121,7 @@ class TestModelDrivenTestingSystem:
             test_content = f.read()
 
         # Should import the actual class
-        assert (
-            "from src.ghostbusters.ghostbusters_orchestrator import GhostbustersOrchestrator"
-            in test_content
-        )
+        assert "from src.ghostbusters.ghostbusters_orchestrator import GhostbustersOrchestrator" in test_content
 
         # Should test actual attributes that exist
         assert "test_project_path_attribute_exists" in test_content

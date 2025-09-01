@@ -76,9 +76,7 @@ class ConfigManager:
         """Load custom configuration from file"""
         try:
             # TODO: Implement custom config loading
-            logger.info(
-                f"Custom configuration loading not yet implemented: {config_file}"
-            )
+            logger.info(f"Custom configuration loading not yet implemented: {config_file}")
         except Exception as e:
             logger.warning(f"Failed to load custom config {config_file}: {e}")
 

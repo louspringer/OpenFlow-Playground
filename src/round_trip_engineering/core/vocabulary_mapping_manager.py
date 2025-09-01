@@ -37,9 +37,7 @@ class VocabularyMappingManager:
 
     def __init__(self):
         """Initialize the vocabulary mapping manager."""
-        self.reverse_engineering_vocabulary = (
-            self._build_reverse_engineering_vocabulary()
-        )
+        self.reverse_engineering_vocabulary = self._build_reverse_engineering_vocabulary()
         self.code_generation_vocabulary = self._build_code_generation_vocabulary()
         self.vocabulary_mappings = self._build_vocabulary_mappings()
 
@@ -154,10 +152,7 @@ class VocabularyMappingManager:
             return {
                 "total_mappings": len(self.vocabulary_mappings),
                 "domains_supported": ["reverse_engineering", "code_generation"],
-                "mapping_confidence": {
-                    key: mapping.confidence
-                    for key, mapping in self.vocabulary_mappings.items()
-                },
+                "mapping_confidence": {key: mapping.confidence for key, mapping in self.vocabulary_mappings.items()},
                 "status": "healthy",
             }
         except Exception as e:

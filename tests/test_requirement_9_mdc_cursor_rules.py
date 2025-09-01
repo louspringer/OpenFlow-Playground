@@ -24,9 +24,7 @@ class TestRequirement9MdcCursorRules:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "mdc_cursor_rules requirement validation test placeholder - implement actual logic"
+        assert True, "mdc_cursor_rules requirement validation test placeholder - implement actual logic"
 
     def test_mdc_cursor_rules_specific_behavior(self):
         """Test mdc_cursor_rules-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement9MdcCursorRules:
         # TODO: Check that mdc_cursor_rules tools and patterns are used correctly
         # TODO: Validate against mdc_cursor_rules best practices
 
-        assert (
-            True
-        ), "mdc_cursor_rules specific behavior test placeholder - implement actual logic"
+        assert True, "mdc_cursor_rules specific behavior test placeholder - implement actual logic"
 
     def test_mdc_cursor_rules_compliance(self):
         """Test that mdc_cursor_rules implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement9MdcCursorRules:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "mdc_cursor_rules compliance test placeholder - implement actual logic"
+        assert True, "mdc_cursor_rules compliance test placeholder - implement actual logic"

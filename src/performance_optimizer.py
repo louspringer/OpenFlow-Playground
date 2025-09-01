@@ -42,9 +42,7 @@ class PerformanceOptimizer:
         self.complexity_analyzer = ComplexityMetricsAnalyzer()
         self.performance_cache = {}
 
-    def benchmark_system_performance(
-        self, test_files: List[str] = None
-    ) -> Dict[str, Any]:
+    def benchmark_system_performance(self, test_files: List[str] = None) -> Dict[str, Any]:
         """
         Benchmark the performance of the integrated workflow extraction system.
 
@@ -73,41 +71,27 @@ class PerformanceOptimizer:
 
         # Benchmark each component
         print("🔍 Benchmarking Control Flow Analysis...")
-        benchmark_results["component_benchmarks"]["control_flow"] = (
-            self._benchmark_control_flow(test_files)
-        )
+        benchmark_results["component_benchmarks"]["control_flow"] = self._benchmark_control_flow(test_files)
 
         print("🔍 Benchmarking Multi-File Analysis...")
-        benchmark_results["component_benchmarks"]["multi_file"] = (
-            self._benchmark_multi_file_analysis(test_files)
-        )
+        benchmark_results["component_benchmarks"]["multi_file"] = self._benchmark_multi_file_analysis(test_files)
 
         print("🔍 Benchmarking UML Generation...")
-        benchmark_results["component_benchmarks"]["uml_generation"] = (
-            self._benchmark_uml_generation(test_files)
-        )
+        benchmark_results["component_benchmarks"]["uml_generation"] = self._benchmark_uml_generation(test_files)
 
         print("🔍 Benchmarking Complexity Analysis...")
-        benchmark_results["component_benchmarks"]["complexity"] = (
-            self._benchmark_complexity_analysis(test_files)
-        )
+        benchmark_results["component_benchmarks"]["complexity"] = self._benchmark_complexity_analysis(test_files)
 
         # Calculate overall performance metrics
-        benchmark_results["overall_performance"] = self._calculate_overall_performance(
-            benchmark_results["component_benchmarks"]
-        )
+        benchmark_results["overall_performance"] = self._calculate_overall_performance(benchmark_results["component_benchmarks"])
 
         # Identify bottlenecks
-        benchmark_results["bottlenecks"] = self._identify_bottlenecks(
-            benchmark_results["component_benchmarks"]
-        )
+        benchmark_results["bottlenecks"] = self._identify_bottlenecks(benchmark_results["component_benchmarks"])
 
         # Generate optimization recommendations
-        benchmark_results["optimization_recommendations"] = (
-            self._generate_optimization_recommendations(
-                benchmark_results["bottlenecks"],
-                benchmark_results["overall_performance"],
-            )
+        benchmark_results["optimization_recommendations"] = self._generate_optimization_recommendations(
+            benchmark_results["bottlenecks"],
+            benchmark_results["overall_performance"],
         )
 
         return benchmark_results
@@ -230,9 +214,7 @@ class PerformanceOptimizer:
 
                 # Generate UML diagram
                 output_file = f"test_uml_{Path(test_file).stem}"
-                result = self.uml_generator.generate_activity_diagram(
-                    test_file, output_file
-                )
+                result = self.uml_generator.generate_activity_diagram(test_file, output_file)
 
                 end_time = time.time()
                 end_memory = psutil.Process().memory_info().rss / 1024 / 1024  # MB
@@ -334,9 +316,7 @@ class PerformanceOptimizer:
 
         return results
 
-    def _calculate_overall_performance(
-        self, component_benchmarks: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _calculate_overall_performance(self, component_benchmarks: Dict[str, Any]) -> Dict[str, Any]:
         """Calculate overall performance metrics."""
         overall = {
             "total_execution_time": 0,
@@ -392,9 +372,7 @@ class PerformanceOptimizer:
 
         return overall
 
-    def _identify_bottlenecks(
-        self, component_benchmarks: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def _identify_bottlenecks(self, component_benchmarks: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Identify performance bottlenecks."""
         bottlenecks = []
 
@@ -413,12 +391,7 @@ class PerformanceOptimizer:
                             "type": "execution_time",
                             "value": benchmark["total_execution_time"],
                             "threshold": execution_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["total_execution_time"]
-                                > execution_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["total_execution_time"] > execution_threshold * 2 else "medium"),
                         }
                     )
 
@@ -430,12 +403,7 @@ class PerformanceOptimizer:
                             "type": "memory_usage",
                             "value": benchmark["total_memory_usage"],
                             "threshold": memory_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["total_memory_usage"]
-                                > memory_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["total_memory_usage"] > memory_threshold * 2 else "medium"),
                         }
                     )
 
@@ -447,11 +415,7 @@ class PerformanceOptimizer:
                             "type": "cpu_usage",
                             "value": benchmark["total_cpu_usage"],
                             "threshold": cpu_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["total_cpu_usage"] > cpu_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["total_cpu_usage"] > cpu_threshold * 2 else "medium"),
                         }
                     )
             else:
@@ -463,11 +427,7 @@ class PerformanceOptimizer:
                             "type": "execution_time",
                             "value": benchmark["execution_time"],
                             "threshold": execution_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["execution_time"] > execution_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["execution_time"] > execution_threshold * 2 else "medium"),
                         }
                     )
 
@@ -478,11 +438,7 @@ class PerformanceOptimizer:
                             "type": "memory_usage",
                             "value": benchmark["memory_usage"],
                             "threshold": memory_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["memory_usage"] > memory_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["memory_usage"] > memory_threshold * 2 else "medium"),
                         }
                     )
 
@@ -493,67 +449,43 @@ class PerformanceOptimizer:
                             "type": "cpu_usage",
                             "value": benchmark["cpu_usage"],
                             "threshold": cpu_threshold,
-                            "severity": (
-                                "high"
-                                if benchmark["cpu_usage"] > cpu_threshold * 2
-                                else "medium"
-                            ),
+                            "severity": ("high" if benchmark["cpu_usage"] > cpu_threshold * 2 else "medium"),
                         }
                     )
 
         return bottlenecks
 
-    def _generate_optimization_recommendations(
-        self, bottlenecks: List[Dict[str, Any]], overall_performance: Dict[str, Any]
-    ) -> List[str]:
+    def _generate_optimization_recommendations(self, bottlenecks: List[Dict[str, Any]], overall_performance: Dict[str, Any]) -> List[str]:
         """Generate optimization recommendations based on bottlenecks."""
         recommendations = []
 
         # General recommendations based on overall performance
         if overall_performance["performance_score"] < 70:
-            recommendations.append(
-                "Overall performance is below target. Consider implementing caching strategies."
-            )
+            recommendations.append("Overall performance is below target. Consider implementing caching strategies.")
 
         if overall_performance["total_execution_time"] > 10:
-            recommendations.append(
-                "Total execution time is high. Consider parallel processing for independent operations."
-            )
+            recommendations.append("Total execution time is high. Consider parallel processing for independent operations.")
 
         if overall_performance["total_memory_usage"] > 100:
-            recommendations.append(
-                "Memory usage is high. Consider implementing memory pooling and cleanup strategies."
-            )
+            recommendations.append("Memory usage is high. Consider implementing memory pooling and cleanup strategies.")
 
         # Specific recommendations based on bottlenecks
         for bottleneck in bottlenecks:
             if bottleneck["type"] == "execution_time":
                 if bottleneck["component"] == "control_flow":
-                    recommendations.append(
-                        f"Control flow analysis is slow ({bottleneck['value']:.2f}s). Consider AST caching and incremental analysis."
-                    )
+                    recommendations.append(f"Control flow analysis is slow ({bottleneck['value']:.2f}s). Consider AST caching and incremental analysis.")
                 elif bottleneck["component"] == "multi_file":
-                    recommendations.append(
-                        f"Multi-file analysis is slow ({bottleneck['value']:.2f}s). Consider parallel file processing and dependency caching."
-                    )
+                    recommendations.append(f"Multi-file analysis is slow ({bottleneck['value']:.2f}s). Consider parallel file processing and dependency caching.")
                 elif bottleneck["component"] == "uml_generation":
-                    recommendations.append(
-                        f"UML generation is slow ({bottleneck['value']:.2f}s). Consider template caching and lazy diagram generation."
-                    )
+                    recommendations.append(f"UML generation is slow ({bottleneck['value']:.2f}s). Consider template caching and lazy diagram generation.")
                 elif bottleneck["component"] == "complexity":
-                    recommendations.append(
-                        f"Complexity analysis is slow ({bottleneck['value']:.2f}s). Consider result caching and selective analysis."
-                    )
+                    recommendations.append(f"Complexity analysis is slow ({bottleneck['value']:.2f}s). Consider result caching and selective analysis.")
 
             elif bottleneck["type"] == "memory_usage":
-                recommendations.append(
-                    f"{bottleneck['component'].title()} uses excessive memory ({bottleneck['value']:.1f}MB). Implement memory-efficient data structures."
-                )
+                recommendations.append(f"{bottleneck['component'].title()} uses excessive memory ({bottleneck['value']:.1f}MB). Implement memory-efficient data structures.")
 
             elif bottleneck["type"] == "cpu_usage":
-                recommendations.append(
-                    f"{bottleneck['component'].title()} uses excessive CPU ({bottleneck['value']:.1f}%). Consider implementing async processing and CPU throttling."
-                )
+                recommendations.append(f"{bottleneck['component'].title()} uses excessive CPU ({bottleneck['value']:.1f}%). Consider implementing async processing and CPU throttling.")
 
         # Add general optimization strategies
         recommendations.extend(
@@ -587,9 +519,7 @@ Component Performance:
 ---------------------
 """
 
-        for component_name, performance in benchmark_results["overall_performance"][
-            "component_performance"
-        ].items():
+        for component_name, performance in benchmark_results["overall_performance"]["component_performance"].items():
             report += f"{component_name.title()}:\n"
             report += f"  Execution Time: {performance['execution_time']:.2f}s\n"
             report += f"  Memory Usage: {performance['memory_usage']:.1f}MB\n"
@@ -607,9 +537,7 @@ Component Performance:
         if benchmark_results["optimization_recommendations"]:
             report += "\nOptimization Recommendations:\n"
             report += "-----------------------------\n"
-            for i, recommendation in enumerate(
-                benchmark_results["optimization_recommendations"], 1
-            ):
+            for i, recommendation in enumerate(benchmark_results["optimization_recommendations"], 1):
                 report += f"{i}. {recommendation}\n"
 
         return report
@@ -627,36 +555,20 @@ def test_performance_optimizer():
 
     print(f"✅ Benchmark completed!")
     print(f"Total test files: {benchmark_results['total_files']}")
-    print(
-        f"Performance score: {benchmark_results['overall_performance']['performance_score']:.1f}/100"
-    )
-    print(
-        f"Total execution time: {benchmark_results['overall_performance']['total_execution_time']:.2f}s"
-    )
-    print(
-        f"Total memory usage: {benchmark_results['overall_performance']['total_memory_usage']:.1f}MB"
-    )
+    print(f"Performance score: {benchmark_results['overall_performance']['performance_score']:.1f}/100")
+    print(f"Total execution time: {benchmark_results['overall_performance']['total_execution_time']:.2f}s")
+    print(f"Total memory usage: {benchmark_results['overall_performance']['total_memory_usage']:.1f}MB")
 
     print(f"\nComponent Performance:")
-    for component_name, performance in benchmark_results["overall_performance"][
-        "component_performance"
-    ].items():
-        print(
-            f"  {component_name.title()}: {performance['execution_time']:.2f}s, {performance['memory_usage']:.1f}MB"
-        )
+    for component_name, performance in benchmark_results["overall_performance"]["component_performance"].items():
+        print(f"  {component_name.title()}: {performance['execution_time']:.2f}s, {performance['memory_usage']:.1f}MB")
 
     print(f"\nBottlenecks Found: {len(benchmark_results['bottlenecks'])}")
     for bottleneck in benchmark_results["bottlenecks"]:
-        print(
-            f"  • {bottleneck['component']}: {bottleneck['type']} = {bottleneck['value']:.2f} ({bottleneck['severity']})"
-        )
+        print(f"  • {bottleneck['component']}: {bottleneck['type']} = {bottleneck['value']:.2f} ({bottleneck['severity']})")
 
-    print(
-        f"\nOptimization Recommendations: {len(benchmark_results['optimization_recommendations'])}"
-    )
-    for i, recommendation in enumerate(
-        benchmark_results["optimization_recommendations"][:5], 1
-    ):
+    print(f"\nOptimization Recommendations: {len(benchmark_results['optimization_recommendations'])}")
+    for i, recommendation in enumerate(benchmark_results["optimization_recommendations"][:5], 1):
         print(f"  {i}. {recommendation}")
 
     # Generate detailed report

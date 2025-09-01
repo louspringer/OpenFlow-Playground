@@ -1,6 +1,6 @@
 # Subprocess Migration Plan
 
-==================================================
+\==================================================
 
 ## Summary
 
@@ -10,9 +10,9 @@
 ## Migration Strategy
 
 1. Replace `subprocess.run()` with `secure_execute()`
-2. Replace `subprocess.Popen()` with async secure shell calls
-3. Replace `os.system()` with secure shell service
-4. Add proper error handling and timeouts
+1. Replace `subprocess.Popen()` with async secure shell calls
+1. Replace `os.system()` with secure shell service
+1. Add proper error handling and timeouts
 
 ## Files to Migrate
 

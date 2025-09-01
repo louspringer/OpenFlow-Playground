@@ -24,9 +24,7 @@ class TestRequirement87DocumentationMarkdownlint:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "documentation requirement validation test placeholder - implement actual logic"
+        assert True, "documentation requirement validation test placeholder - implement actual logic"
 
     def test_documentation_specific_behavior(self):
         """Test documentation-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement87DocumentationMarkdownlint:
         # TODO: Check that documentation tools and patterns are used correctly
         # TODO: Validate against documentation best practices
 
-        assert (
-            True
-        ), "documentation specific behavior test placeholder - implement actual logic"
+        assert True, "documentation specific behavior test placeholder - implement actual logic"
 
     def test_documentation_compliance(self):
         """Test that documentation implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement87DocumentationMarkdownlint:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "documentation compliance test placeholder - implement actual logic"
+        assert True, "documentation compliance test placeholder - implement actual logic"

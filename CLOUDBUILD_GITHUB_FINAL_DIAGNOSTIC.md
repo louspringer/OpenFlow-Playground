@@ -166,21 +166,21 @@ gcloud builds connections describe github-connection --region=us-central1
 **This is NOT a user error.** The GitHub integration is working perfectly:
 
 - Connection created ✅
-- Repository linked ✅  
+- Repository linked ✅
 - App installed ✅
 - Authorization complete ✅
 
 **The failure is at the trigger creation layer**, which suggests either:
 
 1. **Missing IAM permissions** for trigger creation
-2. **GCP backend bug** affecting this specific project/region
-3. **Regional quota or rollout issue**
+1. **GCP backend bug** affecting this specific project/region
+1. **Regional quota or rollout issue**
 
 ## 🚀 **Immediate Action Items**
 
 1. **Run IAM permission check** (Step 1 above)
-2. **Test in fresh project** (Step 2 above)  
-3. **If both fail**: Contact GCP support with complete evidence
-4. **If fresh project works**: Investigate project-specific IAM/organization policies
+1. **Test in fresh project** (Step 2 above)
+1. **If both fail**: Contact GCP support with complete evidence
+1. **If fresh project works**: Investigate project-specific IAM/organization policies
 
 **The diagnostic work is complete. The next agent has everything needed to resolve this.** 🎯

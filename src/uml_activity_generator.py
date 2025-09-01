@@ -24,9 +24,7 @@ class UMLActivityGenerator:
         self.control_flow_analyzer = ControlFlowAnalyzer()
         self.diagram_cache = {}
 
-    def generate_activity_diagram(
-        self, source_file: str, output_file: str = None
-    ) -> Dict[str, Any]:
+    def generate_activity_diagram(self, source_file: str, output_file: str = None) -> Dict[str, Any]:
         """
         Generate UML activity diagram from Python source file.
 
@@ -58,9 +56,7 @@ class UMLActivityGenerator:
 
             # Save diagrams if output file specified
             if output_file:
-                self._save_diagrams(
-                    output_file, plantuml_content, mermaid_content, dot_content
-                )
+                self._save_diagrams(output_file, plantuml_content, mermaid_content, dot_content)
 
             # Generate visual output if PlantUML is available
             visual_output = self._generate_visual_output(plantuml_content, output_file)
@@ -74,13 +70,8 @@ class UMLActivityGenerator:
                 "dot": dot_content,
                 "visual_output": visual_output,
                 "control_flow_summary": {
-                    "total_patterns": sum(
-                        len(patterns) for patterns in control_flow["patterns"].values()
-                    ),
-                    "recognized_patterns": sum(
-                        len(patterns)
-                        for patterns in control_flow["recognized_patterns"].values()
-                    ),
+                    "total_patterns": sum(len(patterns) for patterns in control_flow["patterns"].values()),
+                    "recognized_patterns": sum(len(patterns) for patterns in control_flow["recognized_patterns"].values()),
                     "complexity": control_flow["complexity"],
                 },
             }
@@ -138,9 +129,7 @@ class UMLActivityGenerator:
 
         # Add loops
         for loop in patterns.get("for_loops", []):
-            plantuml.append(
-                f"while (Loop: {loop.get('target', 'item')}) is (has items)"
-            )
+            plantuml.append(f"while (Loop: {loop.get('target', 'item')}) is (has items)")
             plantuml.append("  :Process item;")
             plantuml.append("endwhile (no more items)")
 
@@ -157,9 +146,7 @@ class UMLActivityGenerator:
             if try_block.get("finalbody_complexity", 0) > 0:
                 plantuml.append(":Finally block;")
 
-    def _add_plantuml_recognized_patterns(
-        self, plantuml: List[str], recognized: Dict[str, Any]
-    ):
+    def _add_plantuml_recognized_patterns(self, plantuml: List[str], recognized: Dict[str, Any]):
         """Add recognized patterns to PlantUML diagram."""
         # Add guard clauses
         if recognized.get("guard_clauses"):
@@ -241,17 +228,13 @@ class UMLActivityGenerator:
 
         # Add control flow nodes
         if patterns.get("if_statements"):
-            dot.append(
-                '    if_stmt [shape=diamond, fillcolor=yellow, label="If Statement"];'
-            )
+            dot.append('    if_stmt [shape=diamond, fillcolor=yellow, label="If Statement"];')
 
         if patterns.get("for_loops"):
             dot.append('    for_loop [shape=box, fillcolor=orange, label="For Loop"];')
 
         if patterns.get("while_loops"):
-            dot.append(
-                '    while_loop [shape=box, fillcolor=orange, label="While Loop"];'
-            )
+            dot.append('    while_loop [shape=box, fillcolor=orange, label="While Loop"];')
 
         dot.append('    end [shape=oval, fillcolor=red, label="End"];')
         dot.append("")
@@ -282,9 +265,7 @@ class UMLActivityGenerator:
 
         return "\n".join(dot)
 
-    def _save_diagrams(
-        self, base_output_file: str, plantuml: str, mermaid: str, dot: str
-    ):
+    def _save_diagrams(self, base_output_file: str, plantuml: str, mermaid: str, dot: str):
         """Save diagrams to files."""
         base_path = Path(base_output_file).stem
 
@@ -303,15 +284,11 @@ class UMLActivityGenerator:
         with open(dot_file, "w") as f:
             f.write(dot)
 
-    def _generate_visual_output(
-        self, plantuml_content: str, output_file: str = None
-    ) -> Dict[str, Any]:
+    def _generate_visual_output(self, plantuml_content: str, output_file: str = None) -> Dict[str, Any]:
         """Generate visual output using PlantUML if available."""
         try:
             # Check if PlantUML is available
-            result = subprocess.run(
-                ["plantuml", "-version"], capture_output=True, text=True
-            )
+            result = subprocess.run(["plantuml", "-version"], capture_output=True, text=True)
 
             if result.returncode == 0:
                 # PlantUML is available, generate PNG
@@ -320,16 +297,12 @@ class UMLActivityGenerator:
                     png_file = f"{base_path}.png"
 
                     # Create temporary PlantUML file
-                    with tempfile.NamedTemporaryFile(
-                        mode="w", suffix=".puml", delete=False
-                    ) as f:
+                    with tempfile.NamedTemporaryFile(mode="w", suffix=".puml", delete=False) as f:
                         f.write(plantuml_content)
                         temp_file = f.name
 
                     # Generate PNG
-                    subprocess.run(
-                        ["plantuml", "-tpng", temp_file], cwd=os.path.dirname(temp_file)
-                    )
+                    subprocess.run(["plantuml", "-tpng", temp_file], cwd=os.path.dirname(temp_file))
 
                     # Clean up temp file
                     os.unlink(temp_file)
@@ -361,9 +334,7 @@ class UMLActivityGenerator:
         except Exception as e:
             return {"success": False, "error": str(e), "plantuml_available": False}
 
-    def generate_project_diagrams(
-        self, source_dir: str = "src", output_dir: str = "diagrams"
-    ) -> Dict[str, Any]:
+    def generate_project_diagrams(self, source_dir: str = "src", output_dir: str = "diagrams") -> Dict[str, Any]:
         """
         Generate activity diagrams for all Python files in a directory.
 
@@ -384,17 +355,13 @@ class UMLActivityGenerator:
         for python_file in python_files[:5]:  # Limit to first 5 files for testing
             try:
                 output_file = output_path / f"{python_file.stem}_workflow"
-                result = self.generate_activity_diagram(
-                    str(python_file), str(output_file)
-                )
+                result = self.generate_activity_diagram(str(python_file), str(output_file))
                 result["source_file"] = str(python_file)
                 result["output_file"] = str(output_file)
                 results.append(result)
 
             except Exception as e:
-                results.append(
-                    {"success": False, "source_file": str(python_file), "error": str(e)}
-                )
+                results.append({"success": False, "source_file": str(python_file), "error": str(e)})
 
         return {
             "total_files": len(python_files),

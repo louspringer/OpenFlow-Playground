@@ -8,7 +8,7 @@ Transform from pattern-based syntax fixing to AST-based semantic reconstruction 
 
 ### **💡 The Heuristic vs Deterministic Principle**
 
-**"LLMs excel at heuristic tasks and fail at deterministic grunt work"**
+### "LLMs excel at heuristic tasks and fail at deterministic grunt work"
 
 #### **✅ What Works (Heuristic Tasks):**
 
@@ -28,17 +28,17 @@ Transform from pattern-based syntax fixing to AST-based semantic reconstruction 
 
 ### **🔍 The Meta-Insight: "Failure Equivalence"**
 
-**"Both original and reconstructed files fail the same tests in the same way"**
+## "Both original and reconstructed files fail the same tests in the same way"
 
-#### **Why This Is Significant:**
+### **Why This Is Significant:**
 
 1. **🎯 Semantic Fidelity**: Identical failure patterns prove we captured the **exact same semantic structure**
-2. **🔍 Test Infrastructure Issues**: Failures aren't in our code - they're in test infrastructure
-3. **✅ Behavioral Consistency**: Identical failure patterns prove **functional equivalence** more convincingly than passing tests
+1. **🔍 Test Infrastructure Issues**: Failures aren't in our code - they're in test infrastructure
+1. **✅ Behavioral Consistency**: Identical failure patterns prove **functional equivalence** more convincingly than passing tests
 
-#### **The Hypothesis:**
+### **The Hypothesis:**
 
-**"Failure equivalence is a stronger indicator of semantic reconstruction quality than success equivalence"**
+## "Failure equivalence is a stronger indicator of semantic reconstruction quality than success equivalence"
 
 ### **🎯 The Success Architecture:**
 
@@ -51,7 +51,7 @@ Success = Deterministic Tools + LLM Heuristics
 - **Deterministic Tools** handle precision and grunt work (`ast.parse()`, `black`, `flake8`)
 - **LLM Heuristics** handle intelligence and insight (semantic understanding, pattern recognition)
 
----
+______________________________________________________________________
 
 ## 📊 **Current State Analysis**
 
@@ -64,9 +64,9 @@ Success = Deterministic Tools + LLM Heuristics
 ### **Key Gaps Identified:**
 
 1. **No semantic understanding** of broken code
-2. **No context-aware projection** capabilities
-3. **No intelligent reconstruction** algorithms
-4. **Limited pattern recognition** beyond basic syntax
+1. **No context-aware projection** capabilities
+1. **No intelligent reconstruction** algorithms
+1. **Limited pattern recognition** beyond basic syntax
 
 ## 🚀 **AST LEVEL UP STRATEGY**
 

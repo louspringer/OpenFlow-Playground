@@ -41,9 +41,7 @@ async def diagnostic_screenshot():
     time.sleep(10)
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True
-        )  # Must be headless in this environment
+        browser = await p.chromium.launch(headless=True)  # Must be headless in this environment
         page = await browser.new_page()
 
         try:

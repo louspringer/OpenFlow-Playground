@@ -57,11 +57,11 @@ sequenceDiagram
 ### Validation Points
 
 1. **Model Creation**: Design spec → Complete model with components
-2. **Model Persistence**: Save/load cycle maintains data integrity
-3. **Vocabulary Alignment**: List format → Dict format conversion
-4. **Complete Model Building**: All required fields populated
-5. **Model Validation**: Structure validation before code generation
-6. **Code Generation**: Full class structure, not just headers
+1. **Model Persistence**: Save/load cycle maintains data integrity
+1. **Vocabulary Alignment**: List format → Dict format conversion
+1. **Complete Model Building**: All required fields populated
+1. **Model Validation**: Structure validation before code generation
+1. **Code Generation**: Full class structure, not just headers
 
 ## Activity Model 2: Code Generation with Complete Model
 
@@ -93,9 +93,9 @@ flowchart TD
 ### Validation Points
 
 1. **Complete Model Building**: All missing fields populated with defaults
-2. **Structure Validation**: Required fields present and correct types
-3. **Code Generation**: Full implementation, not just stubs
-4. **Error Handling**: Proper validation errors for malformed models
+1. **Structure Validation**: Required fields present and correct types
+1. **Code Generation**: Full implementation, not just stubs
+1. **Error Handling**: Proper validation errors for malformed models
 
 ## Activity Model 3: Vocabulary Alignment Workflow
 
@@ -124,9 +124,9 @@ sequenceDiagram
 ### Validation Points
 
 1. **List → Dict Conversion**: Components properly keyed by name
-2. **Dict Preservation**: Existing dict format unchanged
-3. **Data Integrity**: All component information preserved
-4. **Format Consistency**: Output always in dict format for code generation
+1. **Dict Preservation**: Existing dict format unchanged
+1. **Data Integrity**: All component information preserved
+1. **Format Consistency**: Output always in dict format for code generation
 
 ## Activity Model 4: Duplication Cleaning Workflow
 
@@ -154,10 +154,10 @@ flowchart TD
 ### Validation Points
 
 1. **Method Signature Detection**: Full signature (name + parameters)
-2. **Duplicate Removal**: Entire method body skipped
-3. **Return Statement Handling**: Unreachable returns removed
-4. **Loop Safety**: No infinite loops during cleaning
-5. **Data Preservation**: Non-duplicate code unchanged
+1. **Duplicate Removal**: Entire method body skipped
+1. **Return Statement Handling**: Unreachable returns removed
+1. **Loop Safety**: No infinite loops during cleaning
+1. **Data Preservation**: Non-duplicate code unchanged
 
 ## Activity Model 5: Error Handling and Logging
 
@@ -189,9 +189,9 @@ sequenceDiagram
 ### Validation Points
 
 1. **Comprehensive Logging**: All major operations logged
-2. **Error Context**: Full context captured for debugging
-3. **Profiling Integration**: cProfile properly integrated
-4. **Performance Metrics**: Timing and resource usage tracked
+1. **Error Context**: Full context captured for debugging
+1. **Profiling Integration**: cProfile properly integrated
+1. **Performance Metrics**: Timing and resource usage tracked
 
 ## Testing and Validation Strategy
 
@@ -246,19 +246,19 @@ def test_activity_model_validation():
 
 ## Current Status
 
-✅ **Activity Models Defined**: Expected behavior documented  
-✅ **Validation Strategy**: Testing approach established  
-🔄 **Implementation**: Core system working, validation in progress  
-📋 **Next Steps**: Implement validation tests and performance monitoring  
+✅ **Activity Models Defined**: Expected behavior documented\
+✅ **Validation Strategy**: Testing approach established\
+🔄 **Implementation**: Core system working, validation in progress\
+📋 **Next Steps**: Implement validation tests and performance monitoring
 
 ## Success Criteria
 
 The `validate_activity_models` todo will be marked complete when:
 
 1. **All activity models validated** against actual system behavior
-2. **Performance benchmarks met** for all critical operations
-3. **Error handling verified** for all failure scenarios
-4. **Integration tests passing** for complete workflows
-5. **Expected vs actual behavior** documented and aligned
+1. **Performance benchmarks met** for all critical operations
+1. **Error handling verified** for all failure scenarios
+1. **Integration tests passing** for complete workflows
+1. **Expected vs actual behavior** documented and aligned
 
 This will ensure the Round-Trip Engineering system behaves exactly as designed and can be relied upon for production use.

@@ -155,10 +155,10 @@ BaseModel (pydantic)
 ### Field Validation Rules
 
 1. **Confidence Scores**: Must be between 0.0 and 1.0
-2. **Lists**: Default to empty lists, not None
-3. **Dictionaries**: Default to empty dicts, not None
-4. **Strings**: Required fields must be non-empty
-5. **Phase Values**: Restricted to valid phase names
+1. **Lists**: Default to empty lists, not None
+1. **Dictionaries**: Default to empty dicts, not None
+1. **Strings**: Required fields must be non-empty
+1. **Phase Values**: Restricted to valid phase names
 
 ## Error Handling
 
@@ -211,29 +211,29 @@ BaseModel (pydantic)
 ### Phase 1: Base Model Migration
 
 1. Update base data model classes to use pydantic BaseModel
-2. Add field validation and constraints
-3. Update import statements
+1. Add field validation and constraints
+1. Update import statements
 
-### Phase 2: State Model Migration  
+### Phase 2: State Model Migration
 
 1. Convert GhostbustersState to pydantic BaseModel
-2. Update LangGraph workflow initialization
-3. Test state serialization
+1. Update LangGraph workflow initialization
+1. Test state serialization
 
 ### Phase 3: Interface Updates
 
 1. Update all agent, validator, and recovery engine interfaces
-2. Ensure return types match new pydantic models
-3. Update error handling
+1. Ensure return types match new pydantic models
+1. Update error handling
 
 ### Phase 4: Test Re-enablement
 
 1. Re-enable disabled test file
-2. Update test assertions for pydantic models
-3. Add new tests for pydantic-specific features
+1. Update test assertions for pydantic models
+1. Add new tests for pydantic-specific features
 
 ### Phase 5: Validation and Cleanup
 
 1. Run full test suite
-2. Fix any remaining compatibility issues
-3. Remove deprecated code and imports
+1. Fix any remaining compatibility issues
+1. Remove deprecated code and imports

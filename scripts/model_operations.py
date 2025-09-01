@@ -14,9 +14,7 @@ class ModelRegistryOperations:
     def __init__(self):
         self.registry = get_model_registry()
 
-    def register_model(
-        self, model_name: str, implementation: str, config: str = None
-    ) -> tuple[bool, str]:
+    def register_model(self, model_name: str, implementation: str, config: str = None) -> tuple[bool, str]:
         """Register a new model."""
         try:
             # Parse configuration if provided
@@ -28,9 +26,7 @@ class ModelRegistryOperations:
                     return False, "Invalid --config JSON"
 
             # Register model with config
-            success = self.registry.register_model(
-                model_name, implementation, **config_dict
-            )
+            success = self.registry.register_model(model_name, implementation, **config_dict)
             if success:
                 return True, f"✅ Model registered: {model_name} ({implementation})"
             else:

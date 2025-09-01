@@ -30,9 +30,7 @@ class CodeGenerationOrchestrator:
 
         logger.info("✅ Code generation orchestrator initialized")
 
-    def generate_code_from_extracted_model(
-        self, extracted_model: Dict[str, Any], target_language: str = "python"
-    ) -> str:
+    def generate_code_from_extracted_model(self, extracted_model: Dict[str, Any], target_language: str = "python") -> str:
         """
         Generate code from an extracted model using ontological vocabulary alignment.
 
@@ -48,9 +46,7 @@ class CodeGenerationOrchestrator:
             self.profiler.start_profiling("generate_code_from_extracted_model")
 
             # REAL profiling: track function entry
-            logger.info(
-                f"🚀 ENTERING generate_code_from_extracted_model with {target_language}"
-            )
+            logger.info(f"🚀 ENTERING generate_code_from_extracted_model with {target_language}")
             logger.info(f"📊 Input model keys: {list(extracted_model.keys())}")
 
             logger.info(f"🎯 Generating {target_language} code from extracted model...")
@@ -70,9 +66,7 @@ class CodeGenerationOrchestrator:
 
             # Step 2: Generate code using aligned model
             logger.info("🔄 Step 2: Code generation")
-            generated_code = self.code_generator.generate(
-                aligned_model, target_language
-            )
+            generated_code = self.code_generator.generate(aligned_model, target_language)
 
             # Log code generation results
             log_data_transformation(

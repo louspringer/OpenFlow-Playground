@@ -108,9 +108,7 @@ def test_quick_analysis():
         try:
             result = gui.control_flow_analyzer.analyze_control_flow(test_file)
             if result:
-                print(
-                    f"  ✅ Control flow analysis: {len(result.get('patterns', {}))} patterns found"
-                )
+                print(f"  ✅ Control flow analysis: {len(result.get('patterns', {}))} patterns found")
             else:
                 print("  ⚠️ Control flow analysis returned no results")
         except Exception as e:
@@ -120,9 +118,7 @@ def test_quick_analysis():
         try:
             result = gui.complexity_analyzer.analyze_complexity(test_file)
             if result:
-                print(
-                    f"  ✅ Complexity analysis: Score {result.get('overall_score', 'N/A')}"
-                )
+                print(f"  ✅ Complexity analysis: Score {result.get('overall_score', 'N/A')}")
             else:
                 print("  ⚠️ Complexity analysis returned no results")
         except Exception as e:

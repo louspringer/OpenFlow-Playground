@@ -271,20 +271,12 @@ class CodeCleaner(BaseReflectiveModule):
         total_lines = len(lines)
         empty_lines = len([line for line in lines if line.strip() == ""])
         comment_lines = len([line for line in lines if line.strip().startswith("#")])
-        docstring_lines = len(
-            [line for line in lines if '"""' in line or "'''" in line]
-        )
+        docstring_lines = len([line for line in lines if '"""' in line or "'''" in line])
 
         # Count code elements
-        class_definitions = len(
-            [line for line in lines if line.strip().startswith("class ")]
-        )
-        function_definitions = len(
-            [line for line in lines if line.strip().startswith("def ")]
-        )
-        import_statements = len(
-            [line for line in lines if line.strip().startswith(("import ", "from "))]
-        )
+        class_definitions = len([line for line in lines if line.strip().startswith("class ")])
+        function_definitions = len([line for line in lines if line.strip().startswith("def ")])
+        import_statements = len([line for line in lines if line.strip().startswith(("import ", "from "))])
 
         # Calculate metrics
         code_lines = total_lines - empty_lines - comment_lines

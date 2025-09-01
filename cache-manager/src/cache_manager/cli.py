@@ -20,9 +20,7 @@ from .models import CacheConfig, CacheFormat
     default=Path.cwd(),
     help="Cache directory",
 )
-@click.option(
-    "--format", type=click.Choice(["json", "yaml"]), default="json", help="Cache format"
-)
+@click.option("--format", type=click.Choice(["json", "yaml"]), default="json", help="Cache format")
 @click.option("--ttl-hours", type=int, default=24, help="Time to live in hours")
 @click.option("--max-size-mb", type=int, default=100, help="Maximum cache size in MB")
 @click.pass_context
@@ -222,9 +220,7 @@ def export(cache_manager: CacheManager, cache_key: str, output: Optional[Path]):
 
 @cli.command()
 @click.argument("cache_key")
-@click.option(
-    "--backup/--no-backup", default=True, help="Create backup before migration"
-)
+@click.option("--backup/--no-backup", default=True, help="Create backup before migration")
 @click.pass_obj
 def migrate(cache_manager: CacheManager, cache_key: str, backup: bool):
     """Migrate cache to a different format."""
@@ -239,9 +235,7 @@ def migrate(cache_manager: CacheManager, cache_key: str, backup: bool):
 
         # Create backup if requested
         if backup:
-            backup_path = Path(
-                f"{cache_key}_backup.{cache_manager.config.format.value}"
-            )
+            backup_path = Path(f"{cache_key}_backup.{cache_manager.config.format.value}")
             if cache_manager.config.format == CacheFormat.JSON:
                 import json
 

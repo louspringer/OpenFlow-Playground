@@ -159,8 +159,8 @@ EOF
 
 - **Typing responsiveness**: No lag on keystrokes
 - **File search speed**: Quick file finding
-- **Memory usage**: IDE using <1GB RAM
-- **Background processes**: <10 Cursor processes
+- **Memory usage**: IDE using \<1GB RAM
+- **Background processes**: \<10 Cursor processes
 
 ## Prevention Strategies
 
@@ -197,16 +197,16 @@ echo "Cache cleanup completed"
 ### If IDE Becomes Unresponsive
 
 1. **Kill all Cursor processes**: `pkill -f cursor`
-2. **Clear all cache**: Run cache cleanup script
-3. **Reset settings**: Use minimal settings configuration
-4. **Restart IDE**: Fresh start with optimized settings
+1. **Clear all cache**: Run cache cleanup script
+1. **Reset settings**: Use minimal settings configuration
+1. **Restart IDE**: Fresh start with optimized settings
 
 ### If Performance Issues Persist
 
 1. **Check system resources**: `htop` or `top`
-2. **Monitor disk I/O**: `iotop`
-3. **Check for other heavy processes**: `ps aux --sort=-%mem`
-4. **Consider lighter editor**: Vim, Nano, or minimal VS Code
+1. **Monitor disk I/O**: `iotop`
+1. **Check for other heavy processes**: `ps aux --sort=-%mem`
+1. **Consider lighter editor**: Vim, Nano, or minimal VS Code
 
 ## Rule Application
 
@@ -221,8 +221,8 @@ echo "Cache cleanup completed"
 ### Rule Priority
 
 1. **Immediate**: Apply cache cleanup and settings optimization
-2. **Short-term**: Monitor performance and adjust settings
-3. **Long-term**: Implement prevention strategies
+1. **Short-term**: Monitor performance and adjust settings
+1. **Long-term**: Implement prevention strategies
 
 ## Remember
 

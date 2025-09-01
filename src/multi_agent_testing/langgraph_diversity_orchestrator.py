@@ -85,9 +85,7 @@ class LangGraphDiversityOrchestrator:
         # TODO: Implement calculate_diversity_metrics
         return {}
 
-    def detect_blind_spots(
-        self, model_responses: dict[str, Any], role_responses: dict[str, Any]
-    ) -> list[Any]:
+    def detect_blind_spots(self, model_responses: dict[str, Any], role_responses: dict[str, Any]) -> list[Any]:
         """
         Detect blind spots in model and role diversity
         """

@@ -232,17 +232,11 @@ class MultiDimensionalSmokeTest:
                     set_llm_cache(cache)
                     print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
                 else:
-                    print(
-                        "✅ MultiDimensionalSmokeTest: Using existing LangChain cache"
-                    )
+                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
             except Exception as e:
-                print(
-                    f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}"
-                )
+                print(f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}")
         else:
-            print(
-                "⚠️ MultiDimensionalSmokeTest: LangChain not available, skipping cache"
-            )
+            print("⚠️ MultiDimensionalSmokeTest: LangChain not available, skipping cache")
 
     def call_llm(
         self,
@@ -251,9 +245,7 @@ class MultiDimensionalSmokeTest:
         temperature: float = 0.7,
     ) -> dict[str, Any]:
         """Call LLM with enhanced error handling and retry logic"""
-        print(
-            f"    🔍 call_llm called with model_name='{model_name}', prompt type: {type(prompt)}"
-        )
+        print(f"    🔍 call_llm called with model_name='{model_name}', prompt type: {type(prompt)}")
 
         # Check if prompt is None
         if prompt is None:
@@ -276,9 +268,7 @@ class MultiDimensionalSmokeTest:
         api_key = os.getenv(api_key_env)
         if not api_key:
             msg = f"No API key found in environment variable {api_key_env} for {model_name}"
-            print(
-                f"    🔑 Available environment variables: {[k for k in os.environ if 'API_KEY' in k]}"
-            )
+            print(f"    🔑 Available environment variables: {[k for k in os.environ if 'API_KEY' in k]}")
             raise ValueError(msg)
 
         print(f"    🔑 Using environment variable {api_key_env} for {model_name}")
@@ -358,16 +348,10 @@ Return your analysis in the requested format with high confidence in your findin
 
         # Map keys to actual descriptions
         role = self.roles.get(role_key, f"You are a {role_key} expert.")
-        prompt_structure = self.prompt_structures.get(
-            prompt_structure_key, prompt_structure_key
-        )
-        response_format = self.response_formats.get(
-            response_format_key, response_format_key
-        )
+        prompt_structure = self.prompt_structures.get(prompt_structure_key, prompt_structure_key)
+        response_format = self.response_formats.get(response_format_key, response_format_key)
 
-        print(
-            f"🔍 DEBUG: Extracted values - model: {model_name}, role_key: {role_key}, prompt_structure_key: {prompt_structure_key}, response_format_key: {response_format_key}"
-        )
+        print(f"🔍 DEBUG: Extracted values - model: {model_name}, role_key: {role_key}, prompt_structure_key: {prompt_structure_key}, response_format_key: {response_format_key}")
         print(
             f"🔍 DEBUG: Mapped values - role: {str(role)[:50] if role else 'None'}..., prompt_structure: {str(prompt_structure)[:50] if prompt_structure else 'None'}..., response_format: {str(response_format)[:50] if response_format else 'None'}..."
         )
@@ -427,9 +411,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                             [q for q in questions if "blind" in q.lower()],
                         ),
                         "confidence": confidence,
-                        "decision": (
-                            "PROCEED_WITH_CAUTION" if confidence > 0.7 else "ASK_HUMAN"
-                        ),
+                        "decision": ("PROCEED_WITH_CAUTION" if confidence > 0.7 else "ASK_HUMAN"),
                     },
                     "real_llm_result": {
                         "raw_response": content,
@@ -469,9 +451,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if isinstance(data, dict) and "questions" in data:
                     questions = [q.get("question", "") for q in data["questions"]]
                 elif isinstance(data, list):
-                    questions = [
-                        q.get("question", "") for q in data if isinstance(q, dict)
-                    ]
+                    questions = [q.get("question", "") for q in data if isinstance(q, dict)]
             except Exception:
                 pass
 
@@ -495,21 +475,13 @@ Focus on identifying what might be missing or overlooked from your unique perspe
 
         for question in questions:
             # High confidence indicators
-            if any(
-                word in question.lower()
-                for word in ["evidence", "proo", "demonstrate", "verify"]
-            ):
+            if any(word in question.lower() for word in ["evidence", "proo", "demonstrate", "verify"]):
                 confidence_indicators += 2
-            elif any(
-                word in question.lower() for word in ["how", "what", "why", "when"]
-            ):
+            elif any(word in question.lower() for word in ["how", "what", "why", "when"]):
                 confidence_indicators += 1
 
             # Low confidence indicators
-            if any(
-                word in question.lower()
-                for word in ["maybe", "perhaps", "possibly", "might"]
-            ):
+            if any(word in question.lower() for word in ["maybe", "perhaps", "possibly", "might"]):
                 confidence_indicators -= 1
 
             total_indicators += 1
@@ -543,9 +515,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
     def set_working_api_keys(self, working_keys: dict[str, str]) -> None:
         """Set working API keys for specific models"""
         self.working_api_keys = working_keys
-        print(
-            f"🔑 MultiDimensionalSmokeTest: Set working API keys for {len(working_keys)} models"
-        )
+        print(f"🔑 MultiDimensionalSmokeTest: Set working API keys for {len(working_keys)} models")
 
     def discover_and_test_apis(self) -> dict[str, bool]:
         """Discover and test available APIs"""
@@ -566,9 +536,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                         self.logger.info(f"✅ {api_name}: API working")
                     else:
                         working_apis[api_name] = False
-                        self.logger.info(
-                            f"❌ {api_name}: API error - {response['error']}"
-                        )
+                        self.logger.info(f"❌ {api_name}: API error - {response['error']}")
 
                 except Exception as e:
                     working_apis[api_name] = False
@@ -590,12 +558,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
 
             # Calculate cost (rough estimate)
             input_tokens = len(prompt.split())
-            output_tokens = len(
-                response.get("choices", [{}])[0]
-                .get("message", {})
-                .get("content", "")
-                .split()
-            )
+            output_tokens = len(response.get("choices", [{}])[0].get("message", {}).get("content", "").split())
 
             # Anthropic pricing (approximate)
             input_cost = (input_tokens / 1000) * 0.00015  # $0.15 per 1K input tokens
@@ -624,12 +587,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
 
             # Calculate cost (rough estimate)
             input_tokens = len(prompt.split())
-            output_tokens = len(
-                response.get("choices", [{}])[0]
-                .get("message", {})
-                .get("content", "")
-                .split()
-            )
+            output_tokens = len(response.get("choices", [{}])[0].get("message", {}).get("content", "").split())
 
             # OpenAI pricing (approximate)
             input_cost = (input_tokens / 1000) * 0.00001  # $0.01 per 1K input tokens
@@ -670,9 +628,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                     {
                         "agent": "security_expert",
                         "finding": "Security analysis completed",
-                        "details": security_response.get("choices", [{}])[0]
-                        .get("message", {})
-                        .get("content", "")[:200],
+                        "details": security_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
                     }
                 )
 
@@ -689,9 +645,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                     {
                         "agent": "code_quality_expert",
                         "finding": "Code quality analysis completed",
-                        "details": quality_response.get("choices", [{}])[0]
-                        .get("message", {})
-                        .get("content", "")[:200],
+                        "details": quality_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
                     }
                 )
 
@@ -708,9 +662,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                     {
                         "agent": "devops_expert",
                         "finding": "DevOps analysis completed",
-                        "details": devops_response.get("choices", [{}])[0]
-                        .get("message", {})
-                        .get("content", "")[:200],
+                        "details": devops_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
                     }
                 )
 
@@ -907,9 +859,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
                 if result.get("agreement", False):
                     agreement_count += 1
 
-                status = (
-                    "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
-                )
+                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
                 insights = result.get("insights", [])
 
                 print(f"🧪 Testing: {config['name']}")
@@ -930,9 +880,7 @@ Focus on identifying what might be missing or overlooked from your unique perspe
             if "real_llm_result" in result and "questions" in result["real_llm_result"]:
                 unique_insights.update(result["real_llm_result"]["questions"])
 
-        diversity_score = (
-            len(unique_insights) / (total_tests * 5) if total_tests > 0 else 0
-        )
+        diversity_score = len(unique_insights) / (total_tests * 5) if total_tests > 0 else 0
 
         print("=" * 60)
         print("📊 MULTI-DIMENSIONAL ANALYSIS:")

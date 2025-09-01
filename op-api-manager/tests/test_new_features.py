@@ -67,9 +67,7 @@ class TestNewCLIFeatures:
                 {"title": "OpenAI Key 1", "credential": "sk-1234567890abcdef"},
                 {"title": "OpenAI Key 2", "credential": "sk-fedcba0987654321"},
             ],
-            "anthropic": [
-                {"title": "Anthropic Key 1", "credential": "sk-ant-1234567890abcdef"}
-            ],
+            "anthropic": [{"title": "Anthropic Key 1", "credential": "sk-ant-1234567890abcdef"}],
             "aws": [{"title": "AWS Key 1", "credential": "AKIA1234567890ABCDEF"}],
         }
 
@@ -81,9 +79,7 @@ class TestNewCLIFeatures:
         mock_manager.discover_api_keys.return_value = Mock(**self.mock_discovery_result)
 
         # Test with provider filter
-        result = self.runner.invoke(
-            main, ["discover", "--provider", "openai", "--verbose"]
-        )
+        result = self.runner.invoke(main, ["discover", "--provider", "openai", "--verbose"])
         assert result.exit_code == 0
         assert "OpenAI Key 1" in result.output
 
@@ -109,9 +105,7 @@ class TestNewCLIFeatures:
             }
         ]
 
-        result = self.runner.invoke(
-            main, ["discover", "--dry-run", "--provider", "openai"]
-        )
+        result = self.runner.invoke(main, ["discover", "--dry-run", "--provider", "openai"])
         assert result.exit_code == 0
         assert "DRY RUN MODE" in result.output
         assert "Would process 1 cached items" in result.output
@@ -188,9 +182,7 @@ class TestNewCLIFeatures:
         """Test working command with all new options."""
         mock_manager = Mock()
         mock_manager_class.return_value = mock_manager
-        mock_manager.get_working_credentials_all.return_value = (
-            self.mock_working_credentials
-        )
+        mock_manager.get_working_credentials_all.return_value = self.mock_working_credentials
 
         # Test with refresh
         result = self.runner.invoke(main, ["working", "--refresh", "--verbose"])
@@ -198,9 +190,7 @@ class TestNewCLIFeatures:
         assert "Refresh mode enabled" in result.output
 
         # Test with provider filter
-        result = self.runner.invoke(
-            main, ["working", "--provider", "openai", "--verbose"]
-        )
+        result = self.runner.invoke(main, ["working", "--provider", "openai", "--verbose"])
         assert result.exit_code == 0
         assert "Provider filter: openai" in result.output
 
@@ -209,9 +199,7 @@ class TestNewCLIFeatures:
         """Test working command with different export formats."""
         mock_manager = Mock()
         mock_manager_class.return_value = mock_manager
-        mock_manager.get_working_credentials_all.return_value = (
-            self.mock_working_credentials
-        )
+        mock_manager.get_working_credentials_all.return_value = self.mock_working_credentials
 
         # Test JSON export
         result = self.runner.invoke(main, ["working", "--export", "json"])
@@ -226,9 +214,7 @@ class TestNewCLIFeatures:
             output_file = f.name
 
         try:
-            result = self.runner.invoke(
-                main, ["working", "--export", "json", "--output", output_file]
-            )
+            result = self.runner.invoke(main, ["working", "--export", "json", "--output", output_file])
             assert result.exit_code == 0
             assert "JSON exported to:" in result.output
 
@@ -386,10 +372,7 @@ class TestNewCLIFeatures:
 
         result = self.runner.invoke(main, ["backup", "--timestamp"])
         assert result.exit_code == 0
-        assert (
-            "Backup created successfully: /tmp/backup_20240101_120000.json"
-            in result.output
-        )
+        assert "Backup created successfully: /tmp/backup_20240101_120000.json" in result.output
 
     @patch("op_api_manager.cli.OnePasswordAPIKeyManager")
     def test_restore_command(self, mock_manager_class):
@@ -562,9 +545,7 @@ class TestCoreManagerNewFeatures:
         }
 
         with tempfile.TemporaryDirectory() as temp_dir:
-            backup_path = self.manager.create_backup(
-                backup_dir=temp_dir, timestamp=False
-            )
+            backup_path = self.manager.create_backup(backup_dir=temp_dir, timestamp=False)
 
             assert backup_path is not None
             assert Path(backup_path).exists()
@@ -624,16 +605,12 @@ class TestCoreManagerNewFeatures:
         ]
 
         # Test provider filter
-        filtered = self.manager._apply_test_filters(
-            api_keys, "openai", None, None, False
-        )
+        filtered = self.manager._apply_test_filters(api_keys, "openai", None, None, False)
         assert len(filtered) == 1
         assert filtered[0]["provider"] == "openai"
 
         # Test status filter
-        filtered = self.manager._apply_test_filters(
-            api_keys, "all", "working", None, False
-        )
+        filtered = self.manager._apply_test_filters(api_keys, "all", "working", None, False)
         assert len(filtered) == 2
         assert all(k["status"] == "working" for k in filtered)
 

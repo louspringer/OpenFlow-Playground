@@ -7,7 +7,7 @@ Need to create automatic Cloud Build triggers for GitHub repository using **CLI 
 ## Current Status
 
 - ✅ Cloud Build API enabled
-- ✅ Secret Manager API enabled  
+- ✅ Secret Manager API enabled
 - ✅ Manual builds working (`gcloud builds submit` succeeds)
 - ❌ No automatic triggers configured
 - ❌ GitHub connection not established
@@ -15,9 +15,9 @@ Need to create automatic Cloud Build triggers for GitHub repository using **CLI 
 ## Failed Attempts
 
 1. **1st-gen approach**: `gcloud builds triggers create github` fails with "INVALID_ARGUMENT"
-2. **2nd-gen approach**: Requires GitHub connection first
-3. **Webhook approach**: Requires secret configuration
-4. **Manual triggers**: Not automatic
+1. **2nd-gen approach**: Requires GitHub connection first
+1. **Webhook approach**: Requires secret configuration
+1. **Manual triggers**: Not automatic
 
 ## Required Solution
 
@@ -109,6 +109,6 @@ After setup, pushing to `develop` branch should automatically trigger Cloud Buil
 ## Next Steps for LLM
 
 1. Get GitHub token from user
-2. Run the 2nd-gen setup script
-3. Verify trigger creation
-4. Test with a push to develop branch
+1. Run the 2nd-gen setup script
+1. Verify trigger creation
+1. Test with a push to develop branch

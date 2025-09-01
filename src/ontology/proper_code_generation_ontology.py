@@ -66,9 +66,7 @@ class ProperCodeGenerationOntology:
 
         # Reverse Engineering Component
         self.g.add((self.RE.ReverseEngineeringComponent, RDF.type, OWL.Class))
-        self.g.add(
-            (self.RE.ReverseEngineeringComponent, RDFS.subClassOf, self.CG.Component)
-        )
+        self.g.add((self.RE.ReverseEngineeringComponent, RDFS.subClassOf, self.CG.Component))
         self.g.add(
             (
                 self.RE.ReverseEngineeringComponent,
@@ -86,9 +84,7 @@ class ProperCodeGenerationOntology:
 
         # Code Generation Component
         self.g.add((self.CG.CodeGenerationComponent, RDF.type, OWL.Class))
-        self.g.add(
-            (self.CG.CodeGenerationComponent, RDFS.subClassOf, self.CG.Component)
-        )
+        self.g.add((self.CG.CodeGenerationComponent, RDFS.subClassOf, self.CG.Component))
         self.g.add(
             (
                 self.CG.CodeGenerationComponent,
@@ -107,9 +103,7 @@ class ProperCodeGenerationOntology:
         # Method class
         self.g.add((self.CODE.Method, RDF.type, OWL.Class))
         self.g.add((self.CODE.Method, RDFS.label, Literal("Method")))
-        self.g.add(
-            (self.CODE.Method, RDFS.comment, Literal("A method within a component"))
-        )
+        self.g.add((self.CODE.Method, RDFS.comment, Literal("A method within a component")))
 
         # Context class
         self.g.add((self.CG.Context, RDF.type, OWL.Class))
@@ -125,29 +119,21 @@ class ProperCodeGenerationOntology:
         # Format class
         self.g.add((self.CG.Format, RDF.type, OWL.Class))
         self.g.add((self.CG.Format, RDFS.label, Literal("Format")))
-        self.g.add(
-            (self.CG.Format, RDFS.comment, Literal("The data format of a component"))
-        )
+        self.g.add((self.CG.Format, RDFS.comment, Literal("The data format of a component")))
 
     def _define_object_properties(self):
         """Define object properties (relationships between classes)"""
 
         # transformsTo - reverse engineering component transforms to code generation component
         self.g.add((self.RE.transformsTo, RDF.type, OWL.ObjectProperty))
-        self.g.add(
-            (self.RE.transformsTo, RDFS.domain, self.RE.ReverseEngineeringComponent)
-        )
+        self.g.add((self.RE.transformsTo, RDFS.domain, self.RE.ReverseEngineeringComponent))
         self.g.add((self.RE.transformsTo, RDFS.range, self.CG.CodeGenerationComponent))
         self.g.add((self.RE.transformsTo, RDFS.label, Literal("transforms to")))
 
         # transformsFrom - code generation component transforms from reverse engineering component
         self.g.add((self.CG.transformsFrom, RDF.type, OWL.ObjectProperty))
-        self.g.add(
-            (self.CG.transformsFrom, RDFS.domain, self.CG.CodeGenerationComponent)
-        )
-        self.g.add(
-            (self.CG.transformsFrom, RDFS.range, self.RE.ReverseEngineeringComponent)
-        )
+        self.g.add((self.CG.transformsFrom, RDFS.domain, self.CG.CodeGenerationComponent))
+        self.g.add((self.CG.transformsFrom, RDFS.range, self.RE.ReverseEngineeringComponent))
         self.g.add((self.CG.transformsFrom, RDFS.label, Literal("transforms from")))
 
         # hasMethod - component has methods
@@ -211,9 +197,7 @@ class ProperCodeGenerationOntology:
 
         code_generation_context = URIRef(self.CG.CodeGenerationContext)
         self.g.add((code_generation_context, RDF.type, self.CG.Context))
-        self.g.add(
-            (code_generation_context, RDFS.label, Literal("Code Generation Context"))
-        )
+        self.g.add((code_generation_context, RDFS.label, Literal("Code Generation Context")))
 
         # Format individuals
         list_format = URIRef(self.CG.ListFormat)
@@ -228,9 +212,7 @@ class ProperCodeGenerationOntology:
         self.g.add((reverse_engineering_context, self.CG.hasFormat, list_format))
         self.g.add((code_generation_context, self.CG.hasFormat, dict_format))
 
-    def add_component(
-        self, name: str, component_type: str, context: str, description: str = ""
-    ) -> URIRef:
+    def add_component(self, name: str, component_type: str, context: str, description: str = "") -> URIRef:
         """Add a component to the ontology"""
 
         # Create component URI
@@ -301,9 +283,7 @@ class ProperCodeGenerationOntology:
                     self.g.add((param_uri, self.CG.hasType, Literal(param["type"])))
                 self.g.add((method_uri, self.CODE.hasParameter, param_uri))
 
-    def add_transformation_rule(
-        self, from_component: URIRef, to_component: URIRef, rule_name: str
-    ):
+    def add_transformation_rule(self, from_component: URIRef, to_component: URIRef, rule_name: str):
         """Add a transformation rule between components"""
 
         # Create transformation rule
@@ -379,9 +359,7 @@ class ProperCodeGenerationOntology:
             }
 
         # Check if transformation is allowed by ontology
-        transformation_allowed = self._check_transformation_allowed(
-            source_concept, target_concept
-        )
+        transformation_allowed = self._check_transformation_allowed(source_concept, target_concept)
 
         if transformation_allowed:
             return {
@@ -416,16 +394,11 @@ class ProperCodeGenerationOntology:
 
         return None
 
-    def _check_transformation_allowed(
-        self, source_concept: str, target_concept: str
-    ) -> bool:
+    def _check_transformation_allowed(self, source_concept: str, target_concept: str) -> bool:
         """Check if transformation is allowed by ontology rules"""
 
         # Query the ontology to see if transformation is allowed
-        if (
-            source_concept == "reverse_engineering"
-            and target_concept == "code_generation"
-        ):
+        if source_concept == "reverse_engineering" and target_concept == "code_generation":
             # Check if reverse engineering components can transform to code generation components
             query = """
             PREFIX re: <http://example.org/reverse-engineering#>
@@ -491,9 +464,7 @@ class ProperCodeGenerationOntology:
         # Count different types of entities
         class_count = len(list(self.g.subjects(RDF.type, OWL.Class)))
         object_property_count = len(list(self.g.subjects(RDF.type, OWL.ObjectProperty)))
-        datatype_property_count = len(
-            list(self.g.subjects(RDF.type, OWL.DatatypeProperty))
-        )
+        datatype_property_count = len(list(self.g.subjects(RDF.type, OWL.DatatypeProperty)))
         individual_count = len(list(self.g.subjects(RDF.type, self.CG.Component)))
 
         return {
@@ -539,9 +510,7 @@ def main():
         [{"name": "code", "type": "str"}],
     )
 
-    ontology.add_method(
-        quality_rule_re, "generate_fix", "str", [{"name": "code", "type": "str"}]
-    )
+    ontology.add_method(quality_rule_re, "generate_fix", "str", [{"name": "code", "type": "str"}])
 
     ontology.add_method(
         ast_analyzer_re,
@@ -552,9 +521,7 @@ def main():
 
     # Add transformation rules
     print("🔄 Adding transformation rules...")
-    ontology.add_transformation_rule(
-        quality_rule_re, URIRef(f"{ontology.CG}QualityRule"), "transformsTo"
-    )
+    ontology.add_transformation_rule(quality_rule_re, URIRef(f"{ontology.CG}QualityRule"), "transformsTo")
 
     # Query components by context
     print("\n🔍 Querying components by context...")
@@ -567,9 +534,7 @@ def main():
     print("\n✅ Testing transformation validation...")
     test_data = {"components": [{"name": "QualityRule", "type": "class"}]}
     validation = ontology.validate_transformation(test_data, "dict")
-    print(
-        f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}"
-    )
+    print(f"  List -> Dict validation: {'✅ PASS' if validation['valid'] else '❌ FAIL'}")
 
     # Get ontology statistics
     stats = ontology.get_statistics()

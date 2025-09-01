@@ -6,13 +6,13 @@ This document outlines the platform compatibility of our `make install` targets 
 
 ## 📋 **Platform Support Matrix**
 
-| Platform                | Package Manager | Go Support | Shell Support | Python Support | Status        |
+| Platform | Package Manager | Go Support | Shell Support | Python Support | Status |
 | ----------------------- | --------------- | ---------- | ------------- | -------------- | ------------- |
-| **Linux**               | `apt-get`       | ✅ Full    | ✅ Full       | ✅ Full        | ✅ Tested     |
-| **macOS**               | `brew`          | ✅ Full    | ✅ Full       | ✅ Full        | ✅ Tested     |
-| **Windows (Git Bash)**  | `chocolatey`    | ✅ Full    | ⚠️ Limited    | ✅ Full        | ⚠️ Partial    |
-| **Windows (MSYS2)**     | `pacman`        | ✅ Full    | ⚠️ Limited    | ✅ Full        | ⚠️ Partial    |
-| **Snowflake Workspace** | `apt-get`       | ✅ Full    | ✅ Full       | ✅ Full        | ✅ Compatible |
+| **Linux** | `apt-get` | ✅ Full | ✅ Full | ✅ Full | ✅ Tested |
+| **macOS** | `brew` | ✅ Full | ✅ Full | ✅ Full | ✅ Tested |
+| **Windows (Git Bash)** | `chocolatey` | ✅ Full | ⚠️ Limited | ✅ Full | ⚠️ Partial |
+| **Windows (MSYS2)** | `pacman` | ✅ Full | ⚠️ Limited | ✅ Full | ⚠️ Partial |
+| **Snowflake Workspace** | `apt-get` | ✅ Full | ✅ Full | ✅ Full | ✅ Compatible |
 
 ## 🔧 **Platform Detection**
 
@@ -196,9 +196,9 @@ pacman -S shellcheck protobuf go
 ### **Pre-Installation Checklist**
 
 1. **Verify Platform**: Run `make help` to confirm platform detection
-2. **Check Permissions**: Ensure write access to installation directories
-3. **Network Access**: Verify internet access for package downloads
-4. **Python Environment**: Ensure Python 3.8+ is available
+1. **Check Permissions**: Ensure write access to installation directories
+1. **Network Access**: Verify internet access for package downloads
+1. **Python Environment**: Ensure Python 3.8+ is available
 
 ### **Installation Strategy**
 
@@ -303,8 +303,8 @@ Our `make install` targets are designed to be **platform-agnostic** and **Snowfl
 **For Snowflake Workspace Deployment:**
 
 1. Run `make help` to verify platform detection
-2. Use `make install-all` for complete setup
-3. Test with `make test-all` to verify functionality
-4. Monitor with `make check-deps` for dependency status
+1. Use `make install-all` for complete setup
+1. Test with `make test-all` to verify functionality
+1. Monitor with `make check-deps` for dependency status
 
 The system is ready for deployment in Snowflake workspaces and other containerized environments! 🚀

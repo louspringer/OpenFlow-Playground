@@ -76,9 +76,7 @@ def test_pyreverse_analysis():
 
     try:
         analyzer = PyreverseAnalyzer("test_pyreverse")
-        results = analyzer.analyze_module(
-            "src/round_trip_engineering/core/round_trip_system.py"
-        )
+        results = analyzer.analyze_module("src/round_trip_engineering/core/round_trip_system.py")
 
         if results["analysis_successful"]:
             print(f"✅ Pyreverse analysis successful")
@@ -86,9 +84,7 @@ def test_pyreverse_analysis():
             print(f"   - Found {len(results['class_structure'])} classes")
             return True
         else:
-            print(
-                f"❌ Pyreverse analysis failed: {results.get('error', 'Unknown error')}"
-            )
+            print(f"❌ Pyreverse analysis failed: {results.get('error', 'Unknown error')}")
             return False
 
     except Exception as e:

@@ -29,9 +29,7 @@ class ProfilingLogger:
         self.start_times[operation] = time.time()
         self.logger.info(f"⏱️ START: {operation}")
 
-    def end_timer(
-        self, operation: str, metadata: Optional[Dict[str, Any]] = None
-    ) -> float:
+    def end_timer(self, operation: str, metadata: Optional[Dict[str, Any]] = None) -> float:
         """End timing an operation and log the duration."""
         if operation not in self.start_times:
             self.logger.warning(f"⚠️ Timer for {operation} was never started")
@@ -49,9 +47,7 @@ class ProfilingLogger:
 
         # Log completion with duration
         metadata_str = f" | {metadata}" if metadata else ""
-        self.logger.info(
-            f"⏱️ END: {operation} | Duration: {duration:.4f}s{metadata_str}"
-        )
+        self.logger.info(f"⏱️ END: {operation} | Duration: {duration:.4f}s{metadata_str}")
 
         # Clean up start time
         del self.start_times[operation]
@@ -101,18 +97,14 @@ def profile_operation(operation_name: str):
 
                 # End timing
                 duration = time.time() - start_time
-                logger.info(
-                    f"⏱️ END: {operation_name} | Duration: {duration:.4f}s | Success"
-                )
+                logger.info(f"⏱️ END: {operation_name} | Duration: {duration:.4f}s | Success")
 
                 return result
 
             except Exception as e:
                 # Log error with timing
                 duration = time.time() - start_time
-                logger.error(
-                    f"⏱️ END: {operation_name} | Duration: {duration:.4f}s | Error: {e}"
-                )
+                logger.error(f"⏱️ END: {operation_name} | Duration: {duration:.4f}s | Error: {e}")
                 raise
 
         return wrapper
@@ -147,9 +139,7 @@ def setup_logging(
     root_logger.handlers.clear()
 
     # Create formatters
-    detailed_formatter = logging.Formatter(
-        "%(asctime)s | %(name)s | %(levelname)s | %(funcName)s:%(lineno)d | %(message)s"
-    )
+    detailed_formatter = logging.Formatter("%(asctime)s | %(name)s | %(levelname)s | %(funcName)s:%(lineno)d | %(message)s")
 
     simple_formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
 
@@ -179,9 +169,7 @@ def setup_logging(
 
     # Performance profiling handler
     if enable_profiling:
-        profiling_handler = logging.FileHandler(
-            logs_dir / f"profiling_{datetime.now().strftime('%Y%m%d')}.log"
-        )
+        profiling_handler = logging.FileHandler(logs_dir / f"profiling_{datetime.now().strftime('%Y%m%d')}.log")
         profiling_handler.setLevel(logging.INFO)
         profiling_handler.setFormatter(detailed_formatter)
 
@@ -228,17 +216,13 @@ def log_data_transformation(
 
     # Log input structure
     if hasattr(input_data, "__len__"):
-        logger.debug(
-            f"  📥 Input: {type(input_data).__name__} with {len(input_data)} items"
-        )
+        logger.debug(f"  📥 Input: {type(input_data).__name__} with {len(input_data)} items")
     else:
         logger.debug(f"  📥 Input: {type(input_data).__name__}")
 
     # Log output structure
     if hasattr(output_data, "__len__"):
-        logger.debug(
-            f"  📤 Output: {type(output_data).__name__} with {len(output_data)} items"
-        )
+        logger.debug(f"  📤 Output: {type(output_data).__name__} with {len(output_data)} items")
     else:
         logger.debug(f"  📤 Output: {type(output_data).__name__}")
 

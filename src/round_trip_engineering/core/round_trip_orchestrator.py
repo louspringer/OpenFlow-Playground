@@ -48,15 +48,11 @@ class RoundTripOrchestrator(BaseReflectiveModule):
 
     def create_model_from_design(self, design_spec: Dict[str, Any]) -> Dict[str, Any]:
         """Create a model directly from design specification (forward engineering)"""
-        logger.info(
-            f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}"
-        )
+        logger.info(f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}")
 
         try:
             # Use design model manager
-            design_model = self.design_model_manager.create_model_from_design(
-                design_spec
-            )
+            design_model = self.design_model_manager.create_model_from_design(design_spec)
 
             # Save the model
             self.design_model_manager.save_model(design_model.name)
@@ -104,9 +100,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
                 )
 
             # Generate code using design model generator
-            generated_files = self.design_model_generator.generate_code_from_model(
-                components
-            )
+            generated_files = self.design_model_generator.generate_code_from_model(components)
 
             result = {
                 "success": True,
@@ -133,14 +127,10 @@ class RoundTripOrchestrator(BaseReflectiveModule):
 
         try:
             # Use enhanced reverse engineer
-            extracted_model = self.enhanced_reverse_engineer.parse_python_file(
-                file_path
-            )
+            extracted_model = self.enhanced_reverse_engineer.parse_python_file(file_path)
 
             # Process the extracted model
-            processed_model = self.extracted_model_processor.process_extracted_model(
-                extracted_model
-            )
+            processed_model = self.extracted_model_processor.process_extracted_model(extracted_model)
 
             result = {
                 "success": True,
@@ -163,9 +153,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
                 "message": f"❌ Failed to reverse engineer {file_path}: {e}",
             }
 
-    def round_trip_validation(
-        self, source_file: str, target_file: str
-    ) -> Dict[str, Any]:
+    def round_trip_validation(self, source_file: str, target_file: str) -> Dict[str, Any]:
         """Validate round-trip engineering by comparing source and generated files"""
         logger.info(f"🎯 Validating round-trip: {source_file} -> {target_file}")
 
@@ -173,16 +161,12 @@ class RoundTripOrchestrator(BaseReflectiveModule):
             # Reverse engineer source file
             source_model = self.reverse_engineer_code(source_file)
             if not source_model["success"]:
-                raise ValueError(
-                    f"Failed to reverse engineer source: {source_model['error']}"
-                )
+                raise ValueError(f"Failed to reverse engineer source: {source_model['error']}")
 
             # Reverse engineer target file
             target_model = self.reverse_engineer_code(target_file)
             if not target_model["success"]:
-                raise ValueError(
-                    f"Failed to reverse engineer target: {target_model['error']}"
-                )
+                raise ValueError(f"Failed to reverse engineer target: {target_model['error']}")
 
             # Compare models
             comparison = self._compare_models(source_model, target_model)
@@ -195,9 +179,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
                 "message": "✅ Round-trip validation completed",
             }
 
-            logger.info(
-                f"✅ Round-trip validation completed: {source_file} -> {target_file}"
-            )
+            logger.info(f"✅ Round-trip validation completed: {source_file} -> {target_file}")
             return result
 
         except Exception as e:
@@ -208,9 +190,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
                 "message": f"❌ Round-trip validation failed: {e}",
             }
 
-    def _compare_models(
-        self, source_model: Dict[str, Any], target_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _compare_models(self, source_model: Dict[str, Any], target_model: Dict[str, Any]) -> Dict[str, Any]:
         """Compare two models for round-trip validation"""
         comparison = {
             "structural_similarity": 0.0,
@@ -226,9 +206,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
         target_classes = set(target_model.get("classes", {}).keys())
 
         if source_classes:
-            class_preservation = len(source_classes.intersection(target_classes)) / len(
-                source_classes
-            )
+            class_preservation = len(source_classes.intersection(target_classes)) / len(source_classes)
             comparison["class_preservation"] = class_preservation
 
         # Compare function preservation
@@ -236,9 +214,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
         target_functions = set(target_model.get("functions", {}).keys())
 
         if source_functions:
-            function_preservation = len(
-                source_functions.intersection(target_functions)
-            ) / len(source_functions)
+            function_preservation = len(source_functions.intersection(target_functions)) / len(source_functions)
             comparison["function_preservation"] = function_preservation
 
         # Compare import preservation
@@ -246,9 +222,7 @@ class RoundTripOrchestrator(BaseReflectiveModule):
         target_imports = set(str(imp) for imp in target_model.get("imports", []))
 
         if source_imports:
-            import_preservation = len(
-                source_imports.intersection(target_imports)
-            ) / len(source_imports)
+            import_preservation = len(source_imports.intersection(target_imports)) / len(source_imports)
             comparison["import_preservation"] = import_preservation
 
         # Calculate overall score

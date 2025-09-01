@@ -15,18 +15,14 @@ from typing import Dict, List, Any, Optional
 import sys
 
 # Add the StarUML extension to our path
-sys.path.insert(
-    0, os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python")
-)
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python"))
 
 
 class SimpleEnhancedGenerator:
     """Generate clean activity diagrams from Python code."""
 
     def __init__(self):
-        self.ast_parser_path = os.path.join(
-            os.path.dirname(__file__), "..", "external", "staruml-python", "ast2json.py"
-        )
+        self.ast_parser_path = os.path.join(os.path.dirname(__file__), "..", "external", "staruml-python", "ast2json.py")
 
     def analyze_python_file(self, file_path: str) -> Dict[str, Any]:
         """Analyze Python file using StarUML extension's AST parser."""
@@ -48,9 +44,7 @@ class SimpleEnhancedGenerator:
         except Exception as e:
             return {"success": False, "error": str(e), "file_path": file_path}
 
-    def _extract_simple_workflow(
-        self, ast_data: Dict[str, Any], file_path: str
-    ) -> Dict[str, Any]:
+    def _extract_simple_workflow(self, ast_data: Dict[str, Any], file_path: str) -> Dict[str, Any]:
         """Extract a simple, clean workflow from AST data."""
         try:
             functions = []
@@ -126,9 +120,7 @@ class SimpleEnhancedGenerator:
 
         return "\n".join(plantuml_lines)
 
-    def generate_activity_diagram(
-        self, python_file: str, output_dir: str = "generated_activity_models"
-    ) -> Dict[str, Any]:
+    def generate_activity_diagram(self, python_file: str, output_dir: str = "generated_activity_models") -> Dict[str, Any]:
         """Main method to generate activity diagram from Python file."""
         result = {
             "success": False,
@@ -144,9 +136,7 @@ class SimpleEnhancedGenerator:
             # Analyze Python file
             workflow_data = self.analyze_python_file(python_file)
             if not workflow_data.get("success", False):
-                result["errors"].append(
-                    f"Analysis failed: {workflow_data.get('error', 'Unknown error')}"
-                )
+                result["errors"].append(f"Analysis failed: {workflow_data.get('error', 'Unknown error')}")
                 return result
 
             # Generate PlantUML code
@@ -154,9 +144,7 @@ class SimpleEnhancedGenerator:
 
             # Save PlantUML code
             base_name = Path(python_file).stem
-            plantuml_file = os.path.join(
-                output_dir, f"{base_name}_simple_enhanced.puml"
-            )
+            plantuml_file = os.path.join(output_dir, f"{base_name}_simple_enhanced.puml")
             with open(plantuml_file, "w") as f:
                 f.write(plantuml_code)
             result["output_files"].append(plantuml_file)
@@ -181,9 +169,7 @@ class SimpleEnhancedGenerator:
             # Convert PlantUML to DOT format
             dot_code = self._plantuml_to_dot(plantuml_code)
 
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".dot", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".dot", delete=False) as f:
                 f.write(dot_code)
                 temp_file = f.name
 
@@ -227,25 +213,19 @@ class SimpleEnhancedGenerator:
                 node_counter += 1
                 node_id = f"start_{node_counter}"
                 nodes[node_id] = "Start"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightgreen, label="Start"];')
             elif line.startswith("stop"):
                 node_counter += 1
                 node_id = f"stop_{node_counter}"
                 nodes[node_id] = "Stop"
-                dot_lines.append(
-                    f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=oval, fillcolor=lightcoral, label="Stop"];')
             elif line.startswith("if ("):
                 node_counter += 1
                 node_id = f"decision_{node_counter}"
                 # Extract condition from if statement
                 condition = line[3 : line.find(")")] if ")" in line else "condition"
                 nodes[node_id] = condition
-                dot_lines.append(
-                    f'  {node_id} [shape=diamond, fillcolor=lightyellow, label="{condition}"];'
-                )
+                dot_lines.append(f'  {node_id} [shape=diamond, fillcolor=lightyellow, label="{condition}"];')
 
         # Add edges (simplified sequential flow)
         for i in range(1, node_counter):

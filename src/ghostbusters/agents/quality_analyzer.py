@@ -41,9 +41,7 @@ class QualityAnalyzer:
                 analysis["quality_metrics"] = self._analyze_directory_quality(path)
 
             # Generate recommendations based on analysis
-            analysis["recommendations"] = self._generate_quality_recommendations(
-                analysis["quality_metrics"]
-            )
+            analysis["recommendations"] = self._generate_quality_recommendations(analysis["quality_metrics"])
 
             logger.info("✅ Code quality analysis complete")
 
@@ -122,23 +120,15 @@ class QualityAnalyzer:
         recommendations = []
 
         if metrics.get("complexity_score", 0) > 20:
-            recommendations.append(
-                "🔧 Consider breaking down complex functions into smaller ones"
-            )
+            recommendations.append("🔧 Consider breaking down complex functions into smaller ones")
 
         if metrics.get("average_quality", 100) < 80:
-            recommendations.append(
-                "📚 Review code quality standards and implement improvements"
-            )
+            recommendations.append("📚 Review code quality standards and implement improvements")
 
         if metrics.get("python_files", 0) > 100:
-            recommendations.append(
-                "🏗️ Consider modularizing the codebase for better maintainability"
-            )
+            recommendations.append("🏗️ Consider modularizing the codebase for better maintainability")
 
         if not recommendations:
-            recommendations.append(
-                "🎉 Code quality looks good! Keep up the excellent work!"
-            )
+            recommendations.append("🎉 Code quality looks good! Keep up the excellent work!")
 
         return recommendations

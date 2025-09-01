@@ -51,9 +51,7 @@ class RealSecureShellClient:
         # TODO: Implement connect
         return False
 
-    async def execute_command(
-        self, command: str, timeout: int, validate_input: bool
-    ) -> dict[str, Any]:
+    async def execute_command(self, command: str, timeout: int, validate_input: bool) -> dict[str, Any]:
         """
         Execute command securely via gRPC
         """

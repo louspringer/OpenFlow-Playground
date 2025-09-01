@@ -54,9 +54,9 @@
 ### **🔗 Access Points**
 
 1. **Streamlit Dashboard**: `uv run streamlit run simple_visualization_dashboard.py`
-2. **SVG Files**: `data/visualizations/` directory
-3. **Test System**: `uv run python test_visualization_system.py`
-4. **SVG Generation**: `uv run python src/visualization/svg_engine.py`
+1. **SVG Files**: `data/visualizations/` directory
+1. **Test System**: `uv run python test_visualization_system.py`
+1. **SVG Generation**: `uv run python src/visualization/svg_engine.py`
 
 ### **📋 Next Steps**
 

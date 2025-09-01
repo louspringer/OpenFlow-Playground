@@ -31,78 +31,78 @@ The Security Scanning domain is responsible for detecting security vulnerabiliti
 
 ### **UC-001: Comprehensive Project Security Scan**
 
-**Actor**: Developer, CI/CD System, Security Team  
-**Precondition**: Project files accessible, security scanner configured  
+**Actor**: Developer, CI/CD System, Security Team\
+**Precondition**: Project files accessible, security scanner configured\
 **Main Flow**:
 
 1. System initiates security scan
-2. Scanner loads security patterns and rules
-3. Scanner identifies scannable files (excludes caches, binaries, etc.)
-4. Scanner distributes files across worker threads
-5. Each worker scans assigned files for security patterns
-6. Results are aggregated and deduplicated
-7. System generates comprehensive security report
-8. System saves report and exits with appropriate status code
+1. Scanner loads security patterns and rules
+1. Scanner identifies scannable files (excludes caches, binaries, etc.)
+1. Scanner distributes files across worker threads
+1. Each worker scans assigned files for security patterns
+1. Results are aggregated and deduplicated
+1. System generates comprehensive security report
+1. System saves report and exits with appropriate status code
 
 **Postcondition**: Security report generated, vulnerabilities documented, exit code set
 
 ### **UC-002: Real-Time Security Monitoring**
 
-**Actor**: Development Environment, IDE Integration  
-**Precondition**: File watcher active, security patterns loaded  
+**Actor**: Development Environment, IDE Integration\
+**Precondition**: File watcher active, security patterns loaded\
 **Main Flow**:
 
 1. File system change detected
-2. Changed file queued for security scan
-3. Scanner processes file in background
-4. Immediate notification if critical issues found
-5. Results cached for performance
-6. Developer notified of security issues
+1. Changed file queued for security scan
+1. Scanner processes file in background
+1. Immediate notification if critical issues found
+1. Results cached for performance
+1. Developer notified of security issues
 
 **Postcondition**: Security issues immediately identified, developer notified
 
 ### **UC-003: Pre-commit Security Validation**
 
-**Actor**: Git Pre-commit Hook, Developer  
-**Precondition**: Pre-commit hooks configured, staged files identified  
+**Actor**: Git Pre-commit Hook, Developer\
+**Precondition**: Pre-commit hooks configured, staged files identified\
 **Main Flow**:
 
 1. Pre-commit hook triggers security scan
-2. Scanner analyzes only staged files
-3. Quick scan with focused patterns
-4. Block commit if critical issues found
-5. Provide actionable feedback to developer
-6. Allow commit if no critical issues
+1. Scanner analyzes only staged files
+1. Quick scan with focused patterns
+1. Block commit if critical issues found
+1. Provide actionable feedback to developer
+1. Allow commit if no critical issues
 
 **Postcondition**: Commit blocked or allowed based on security scan results
 
 ### **UC-004: Security Pattern Management**
 
-**Actor**: Security Team, DevOps Engineer  
-**Precondition**: Access to security configuration  
+**Actor**: Security Team, DevOps Engineer\
+**Precondition**: Access to security configuration\
 **Main Flow**:
 
 1. Security team reviews current patterns
-2. New security threats identified
-3. New patterns added to configuration
-4. Existing patterns updated or deprecated
-5. False positive patterns refined
-6. Configuration validated and deployed
+1. New security threats identified
+1. New patterns added to configuration
+1. Existing patterns updated or deprecated
+1. False positive patterns refined
+1. Configuration validated and deployed
 
 **Postcondition**: Security patterns updated, scanner enhanced
 
 ### **UC-005: Security Report Generation**
 
-**Actor**: Security Team, Management, CI/CD System  
-**Precondition**: Security scan completed  
+**Actor**: Security Team, Management, CI/CD System\
+**Precondition**: Security scan completed\
 **Main Flow**:
 
 1. Raw scan results collected
-2. Results categorized by severity and type
-3. False positives filtered out
-4. Report formatted for different audiences
-5. Report exported in multiple formats (JSON, HTML, Markdown)
-6. Report distributed to stakeholders
+1. Results categorized by severity and type
+1. False positives filtered out
+1. Report formatted for different audiences
+1. Report exported in multiple formats (JSON, HTML, Markdown)
+1. Report distributed to stakeholders
 
 **Postcondition**: Comprehensive security report available in multiple formats
 
@@ -375,22 +375,22 @@ src/security_scanning/
 
 ### **Performance Metrics**
 
-- **Scan Time**: <30 seconds for 10,000 files
+- **Scan Time**: \<30 seconds for 10,000 files
 - **CPU Utilization**: Distributed across all cores
-- **Memory Usage**: <500MB for large projects
+- **Memory Usage**: \<500MB for large projects
 - **Throughput**: >1000 files/second
 
 ### **Quality Metrics**
 
 - **Detection Rate**: >95% for known security patterns
-- **False Positive Rate**: <5%
+- **False Positive Rate**: \<5%
 - **Coverage**: 100% of scannable text files
 - **Reliability**: 99.9% successful scans
 
 ### **Usability Metrics**
 
 - **Ease of Use**: Simple command-line interface
-- **Configuration**: <5 minutes to set up
+- **Configuration**: \<5 minutes to set up
 - **Integration**: Seamless CI/CD integration
 - **Documentation**: Comprehensive and clear
 

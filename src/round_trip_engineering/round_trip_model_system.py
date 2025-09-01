@@ -34,9 +34,7 @@ try:
     BLACK_AVAILABLE = True
 except ImportError:
     BLACK_AVAILABLE = False
-    logging.warning(
-        "Black not available - generated code may not be properly formatted"
-    )
+    logging.warning("Black not available - generated code may not be properly formatted")
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -76,9 +74,7 @@ class RoundTripModelSystem:
         if ONTOLOGY_BRIDGE_AVAILABLE:
             try:
                 self.ontology_bridge = SimpleOntologyBridge()
-                print(
-                    "✅ Ontology vocabulary bridge initialized for vocabulary alignment"
-                )
+                print("✅ Ontology vocabulary bridge initialized for vocabulary alignment")
             except Exception as e:
                 print(f"Warning: Failed to initialize ontology bridge: {e}")
                 self.ontology_bridge = None
@@ -151,9 +147,7 @@ class RoundTripModelSystem:
         logger.info(f"✅ Generated {len(generated_files)} files from model")
         return generated_files
 
-    def generate_code_from_extracted_model(
-        self, extracted_model: dict[str, Any]
-    ) -> str:
+    def generate_code_from_extracted_model(self, extracted_model: dict[str, Any]) -> str:
         """
         Generate complete Python module skeleton code from an extracted model.
 
@@ -241,11 +235,7 @@ Generated at: {timestamp}
 
         components = extracted_model.get("components", {})
         # Use ontology bridge for vocabulary alignment if available
-        if (
-            hasattr(self, "ontology_bridge")
-            and self.ontology_bridge
-            and isinstance(components, list)
-        ):
+        if hasattr(self, "ontology_bridge") and self.ontology_bridge and isinstance(components, list):
             print("🔍 Using ontology bridge for vocabulary alignment...")
             try:
                 aligned_model = self._align_vocabulary_ontologically(extracted_model)
@@ -290,20 +280,13 @@ Generated at: {timestamp}
                 if return_type and "Enum" in return_type and not needs_enum:
                     needs_enum = True
                 # Check return type for Optional usage
-                if (
-                    return_type
-                    and "Optional" in return_type
-                    and "Optional" not in typing_imports
-                ):
+                if return_type and "Optional" in return_type and "Optional" not in typing_imports:
                     typing_imports.append("Optional")
 
                 for param in method.get("parameters", []):
                     if isinstance(param, dict) and "type" in param:
                         param_type = param["type"]
-                        if (
-                            "Optional" in param_type
-                            and "Optional" not in typing_imports
-                        ):
+                        if "Optional" in param_type and "Optional" not in typing_imports:
                             typing_imports.append("Optional")
                         # Only add Tuple if it's actually used in the final cleaned types
                         # Since we convert complex types to simple ones, we need to check if Tuple is still needed
@@ -355,9 +338,7 @@ Generated at: {timestamp}
 
         # Check if this is a package __init__.py file first
         metadata = extracted_model.get("file_metadata", {})
-        is_package_init = (
-            metadata.get("file_type") == "module" and "clewcrew" in system_name.lower()
-        )
+        is_package_init = metadata.get("file_type") == "module" and "clewcrew" in system_name.lower()
 
         if is_package_init:
             # For package __init__.py files, keep all imports
@@ -372,13 +353,9 @@ Generated at: {timestamp}
                 if "from " in imp and " import " in imp:
                     # Handle: "from module import name" - MUST COME FIRST!
                     imported_names_str = imp.split(" import ")[1].strip()
-                    print(
-                        f"🔍 DEBUG: From import - extracted names string: {imported_names_str}"
-                    )
+                    print(f"🔍 DEBUG: From import - extracted names string: {imported_names_str}")
                     # Split comma-separated names
-                    imported_names = [
-                        name.strip() for name in imported_names_str.split(", ")
-                    ]
+                    imported_names = [name.strip() for name in imported_names_str.split(", ")]
                     print(f"🔍 DEBUG: Split names: {imported_names}")
                     # Check if ANY of the imported names are used
                     if any(name in used_names for name in imported_names):
@@ -427,11 +404,7 @@ Generated at: {timestamp}
                 # Keep pytest only if we actually use pytest decorators
                 if "pytest" in imp:
                     # Check if any methods have pytest decorators
-                    has_pytest_decorators = any(
-                        "pytest" in method.get("decorators", [])
-                        for class_info in extracted_model.get("components", {}).values()
-                        for method in class_info.get("methods", [])
-                    )
+                    has_pytest_decorators = any("pytest" in method.get("decorators", []) for class_info in extracted_model.get("components", {}).values() for method in class_info.get("methods", []))
                     if has_pytest_decorators:
                         essential_imports.append(imp)
                 # For test files, be very conservative about imports
@@ -439,11 +412,7 @@ Generated at: {timestamp}
                 # Only keep imports that are absolutely essential and won't cause mypy errors
                 elif "Mock" in imp or "AsyncMock" in imp:
                     # Only keep if we actually use them in the generated code
-                    if any(
-                        "Mock" in str(method) or "AsyncMock" in str(method)
-                        for class_info in extracted_model.get("components", {}).values()
-                        for method in class_info.get("methods", [])
-                    ):
+                    if any("Mock" in str(method) or "AsyncMock" in str(method) for class_info in extracted_model.get("components", {}).values() for method in class_info.get("methods", [])):
                         essential_imports.append(imp)
                 # Skip other imports that aren't used
                 else:
@@ -547,9 +516,7 @@ Generated at: {timestamp}
                 code += "\n"
             else:
                 code += "\n\n"
-            code += self._generate_class_from_extracted_model(
-                class_name, class_info, extracted_model
-            )
+            code += self._generate_class_from_extracted_model(class_name, class_info, extracted_model)
 
         # ⚙️ STEP 6: Generate standalone functions with type hints
         functions = extracted_model.get("functions", {})
@@ -564,9 +531,7 @@ Generated at: {timestamp}
 
         # 🚀 STEP 7: Generate main entry point and __main__ guard
         if not is_package_init:
-            if (
-                components or functions
-            ):  # Add blank line if there are classes or functions before
+            if components or functions:  # Add blank line if there are classes or functions before
                 code += "\n\n"
             code += f"""def main() -> None:
     \"\"\"Main entry point for {system_name}\"\"\"
@@ -627,9 +592,7 @@ if __name__ == "__main__":
 
                 # Log what Black changed so we can learn to generate cleaner code
                 if formatted_code != cleaned_code:
-                    logger.warning(
-                        "🔍 Black made formatting changes - this means the model generated messy code:"
-                    )
+                    logger.warning("🔍 Black made formatting changes - this means the model generated messy code:")
                     logger.warning(f"  Original length: {len(cleaned_code)} chars")
                     logger.warning(f"  Formatted length: {len(formatted_code)} chars")
 
@@ -638,9 +601,7 @@ if __name__ == "__main__":
                     formatted_lines = formatted_code.split("\n")
 
                     if len(original_lines) != len(formatted_lines):
-                        logger.warning(
-                            f"  Line count changed: {len(original_lines)} → {len(formatted_lines)}"
-                        )
+                        logger.warning(f"  Line count changed: {len(original_lines)} → {len(formatted_lines)}")
 
                     # Enhanced pattern analysis for learning
                     pattern_counts = {
@@ -652,43 +613,24 @@ if __name__ == "__main__":
                     }
 
                     # Analyze first 20 differences for pattern recognition
-                    for i, (orig, fmt) in enumerate(
-                        zip(original_lines, formatted_lines)
-                    ):
-                        if (
-                            orig != fmt and i < 20
-                        ):  # Increased to 20 for better pattern detection
+                    for i, (orig, fmt) in enumerate(zip(original_lines, formatted_lines)):
+                        if orig != fmt and i < 20:  # Increased to 20 for better pattern detection
                             # Categorize the type of change
                             if "'" in orig and '"' in fmt or '"' in orig and "'" in fmt:
                                 pattern_counts["quote_changes"] += 1
-                                logger.warning(
-                                    f"  Line {i + 1} QUOTE: '{orig}' → '{fmt}'"
-                                )
+                                logger.warning(f"  Line {i + 1} QUOTE: '{orig}' → '{fmt}'")
                             elif len(orig) > 88 and len(fmt) <= 88:
                                 pattern_counts["line_length_fixes"] += 1
-                                logger.warning(
-                                    f"  Line {i + 1} LENGTH: '{orig}' → '{fmt}'"
-                                )
-                            elif (
-                                "  " in orig
-                                and "    " in fmt
-                                or "    " in orig
-                                and "  " in fmt
-                            ):
+                                logger.warning(f"  Line {i + 1} LENGTH: '{orig}' → '{fmt}'")
+                            elif "  " in orig and "    " in fmt or "    " in orig and "  " in fmt:
                                 pattern_counts["spacing_fixes"] += 1
-                                logger.warning(
-                                    f"  Line {i + 1} SPACING: '{orig}' → '{fmt}'"
-                                )
+                                logger.warning(f"  Line {i + 1} SPACING: '{orig}' → '{fmt}'")
                             elif "import" in orig.lower() and "import" in fmt.lower():
                                 pattern_counts["import_reordering"] += 1
-                                logger.warning(
-                                    f"  Line {i + 1} IMPORT: '{orig}' → '{fmt}'"
-                                )
+                                logger.warning(f"  Line {i + 1} IMPORT: '{orig}' → '{fmt}'")
                             else:
                                 pattern_counts["other"] += 1
-                                logger.warning(
-                                    f"  Line {i + 1} OTHER: '{orig}' → '{fmt}'"
-                                )
+                                logger.warning(f"  Line {i + 1} OTHER: '{orig}' → '{fmt}'")
 
                     # Log pattern summary for learning
                     logger.warning("🔍 Pattern Analysis Summary:")
@@ -700,13 +642,7 @@ if __name__ == "__main__":
                     self._record_formatting_patterns(
                         file_path="unknown",  # We don't have the original file path here
                         pattern_counts=pattern_counts,
-                        total_changes=len(
-                            [
-                                1
-                                for orig, fmt in zip(original_lines, formatted_lines)
-                                if orig != fmt
-                            ]
-                        ),
+                        total_changes=len([1 for orig, fmt in zip(original_lines, formatted_lines) if orig != fmt]),
                         original_length=len(cleaned_code),
                         formatted_length=len(formatted_code),
                         original_lines=len(original_lines),
@@ -722,16 +658,12 @@ if __name__ == "__main__":
 
                 return formatted_code
             except Exception as e:
-                logger.warning(
-                    f"Black formatting failed: {e}, returning unformatted code"
-                )
+                logger.warning(f"Black formatting failed: {e}, returning unformatted code")
 
                 # Clean up any duplications using ontology-based cleaning
                 if hasattr(self, "_ensure_clean_generation"):
                     cleaned_code = self._ensure_clean_generation(cleaned_code)
-                    logger.info(
-                        "✅ Applied ontology-based code cleaning to unformatted code"
-                    )
+                    logger.info("✅ Applied ontology-based code cleaning to unformatted code")
 
                 return cleaned_code
         else:
@@ -740,9 +672,7 @@ if __name__ == "__main__":
             # Clean up any duplications using ontology-based cleaning
             if hasattr(self, "_ensure_clean_generation"):
                 cleaned_code = self._ensure_clean_generation(cleaned_code)
-                logger.info(
-                    "✅ Applied ontology-based code cleaning to unformatted code"
-                )
+                logger.info("✅ Applied ontology-based code cleaning to unformatted code")
 
             return cleaned_code
 
@@ -831,9 +761,7 @@ if __name__ == "__main__":
 
         return code
 
-    def _generate_method_from_extracted_model(
-        self, method_info: dict[str, Any], extracted_model: dict[str, Any]
-    ) -> str:
+    def _generate_method_from_extracted_model(self, method_info: dict[str, Any], extracted_model: dict[str, Any]) -> str:
         """Generate method code from extracted model method info"""
         name = method_info.get("name", "unknown_method")
         docstring = method_info.get("docstring", "")
@@ -884,14 +812,10 @@ if __name__ == "__main__":
             if param_str:
                 method_sig = f"    async def {method_name}(self, {param_str}) -> {actual_return_type}:"
             else:
-                method_sig = (
-                    f"    async def {method_name}(self) -> {actual_return_type}:"
-                )
+                method_sig = f"    async def {method_name}(self) -> {actual_return_type}:"
         else:
             if param_str:
-                method_sig = (
-                    f"    def {method_name}(self, {param_str}) -> {actual_return_type}:"
-                )
+                method_sig = f"    def {method_name}(self, {param_str}) -> {actual_return_type}:"
             else:
                 method_sig = f"    def {method_name}(self) -> {actual_return_type}:"
 
@@ -913,9 +837,7 @@ if __name__ == "__main__":
                 return_stmt = "return ()"
             else:
                 # For custom classes, try to create a default instance
-                if cleaned_return_type and not cleaned_return_type.startswith(
-                    "Optional"
-                ):
+                if cleaned_return_type and not cleaned_return_type.startswith("Optional"):
                     # Check if it's a type that can be instantiated
                     if cleaned_return_type in [
                         "Any",
@@ -937,9 +859,7 @@ if __name__ == "__main__":
                         elif cleaned_return_type == "tuple":
                             return_stmt = "return ()"
                         else:
-                            return_stmt = (
-                                f"return {self._get_default_value(cleaned_return_type)}"
-                            )
+                            return_stmt = f"return {self._get_default_value(cleaned_return_type)}"
                     else:
                         # Try to create a default instance of the custom class
                         return_stmt = f"return {cleaned_return_type}()"
@@ -963,20 +883,14 @@ if __name__ == "__main__":
 
         # Ghostbusters recommendation: Respect implementation_status over is_test_method
         if method_body and implementation_status == "implemented":
-            print(
-                f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: USING EXTRACTED BODY (Ghostbusters approved)"
-            )
-            print(
-                f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Body lines: {method_body[:3]}..."
-            )  # Show first 3 lines
+            print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: USING EXTRACTED BODY (Ghostbusters approved)")
+            print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Body lines: {method_body[:3]}...")  # Show first 3 lines
             # Use the actual implementation from the extracted model
             body_lines = []
             for body_line in method_body:
                 body_lines.append(f"        {body_line}")
             body_content = "\n".join(body_lines)
-            print(
-                f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated body content length: {len(body_content)}"
-            )
+            print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated body content length: {len(body_content)}")
 
             code = f"""{decorator_code}{method_sig}
         \"\"\"
@@ -984,22 +898,13 @@ if __name__ == "__main__":
         \"\"\"
 {body_content}
 """
-            print(
-                f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated code with body, length: {len(code)}"
-            )
+            print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generated code with body, length: {len(code)}")
         else:
             # Generate appropriate code based on method type and status
             if is_test_method:
-                print(
-                    f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating test method placeholder"
-                )
+                print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating test method placeholder")
                 # Generate realistic test method code that uses imports
-                if (
-                    "ClewcrewState" in name
-                    or "state" in name.lower()
-                    or "orchestrator" in name.lower()
-                    or "mock" in name.lower()
-                ):
+                if "ClewcrewState" in name or "state" in name.lower() or "orchestrator" in name.lower() or "mock" in name.lower():
                     code = f"""{decorator_code}{method_sig}
         \"\"\"
         {docstring}
@@ -1018,9 +923,7 @@ if __name__ == "__main__":
         {return_stmt}
 """
             else:
-                print(
-                    f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating skeleton placeholder"
-                )
+                print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Generating skeleton placeholder")
                 # Generate skeleton code for unimplemented methods
                 code = f"""{decorator_code}{method_sig}
         \"\"\"
@@ -1029,14 +932,10 @@ if __name__ == "__main__":
         # TODO: Implement {method_name}
         {return_stmt}
 """
-        print(
-            f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Final code length: {len(code)}"
-        )
+        print(f"🔍 DEBUG: Method {method_info.get('name', 'unknown')}: Final code length: {len(code)}")
         return code
 
-    def _generate_function_from_extracted_model(
-        self, func_name: str, func_info: dict[str, Any]
-    ) -> str:
+    def _generate_function_from_extracted_model(self, func_name: str, func_info: dict[str, Any]) -> str:
         """Generate function code from extracted model function info"""
         docstring = func_info.get("docstring", "")
         return_type = func_info.get("return_type", "Any")
@@ -1150,12 +1049,7 @@ class {component.name}:
         # Add methods with proper signature parsing
         for method in methods:
             # Skip __init__ method since we already generated it above
-            if (
-                isinstance(method, str)
-                and method.startswith("__init__")
-                or isinstance(method, dict)
-                and method.get("name") == "__init__"
-            ):
+            if isinstance(method, str) and method.startswith("__init__") or isinstance(method, dict) and method.get("name") == "__init__":
                 continue
 
             # Parse method signature if it's a string
@@ -1198,9 +1092,7 @@ class {component.name}:
                             continue
                         if ":" in param:
                             param_name, param_type = param.split(":", 1)
-                            params.append(
-                                {"name": param_name.strip(), "type": param_type.strip()}
-                            )
+                            params.append({"name": param_name.strip(), "type": param_type.strip()})
                         else:
                             params.append({"name": param.strip(), "type": "Any"})
 
@@ -1473,9 +1365,7 @@ class {component.name}Domain:
 
         return model
 
-    def _align_vocabulary_ontologically(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _align_vocabulary_ontologically(self, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Align vocabulary between reverse engineering and code generation using ontology.
 
@@ -1503,21 +1393,13 @@ class {component.name}Domain:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model["components"] = (
-                            self.ontology_bridge.resolve_vocabulary_mismatch(
-                                extracted_model["components"], "dict"
-                            )
-                        )
+                        extracted_model["components"] = self.ontology_bridge.resolve_vocabulary_mismatch(extracted_model["components"], "dict")
                         break
 
             # Validate transformation integrity
-            if "components" in extracted_model and isinstance(
-                extracted_model["components"], dict
-            ):
+            if "components" in extracted_model and isinstance(extracted_model["components"], dict):
                 validation = self.ontology_bridge.validate_transformation(
-                    extracted_model.get(
-                        "original_components", extracted_model["components"]
-                    ),
+                    extracted_model.get("original_components", extracted_model["components"]),
                     extracted_model["components"],
                     "dict",
                 )
@@ -1527,9 +1409,7 @@ class {component.name}Domain:
                     for issue in validation.get("issues", []):
                         print(f"  - {issue}")
                 else:
-                    print(
-                        "✅ Vocabulary alignment and transformation validation successful"
-                    )
+                    print("✅ Vocabulary alignment and transformation validation successful")
 
             return extracted_model
 
@@ -1538,9 +1418,7 @@ class {component.name}Domain:
             print("🔄 Falling back to manual alignment...")
             return self._align_vocabulary_manually(extracted_model)
 
-    def _align_vocabulary_manually(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _align_vocabulary_manually(self, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Manual fallback for vocabulary alignment when ontology bridge is unavailable.
 
@@ -1609,9 +1487,7 @@ class {component.name}Domain:
                     if method_signature in seen_methods:
                         print(f"⚠️ Removing duplicate method: {method_signature}")
                         # Skip until next method or end of class
-                        while i < len(lines) and not lines[i].strip().startswith(
-                            "def "
-                        ):
+                        while i < len(lines) and not lines[i].strip().startswith("def "):
                             i += 1
                         continue
                     else:
@@ -1636,9 +1512,7 @@ class {component.name}Domain:
             cleaned_lines_count = len(cleaned_code.split("\n"))
 
             if original_lines != cleaned_lines_count:
-                print(
-                    f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines"
-                )
+                print(f"✅ Code cleaning complete: {original_lines} → {cleaned_lines_count} lines")
             else:
                 print("✅ Code cleaning complete: No duplications found")
 
@@ -1740,9 +1614,7 @@ def main() -> None:
         },
     }
 
-    def _align_vocabulary_ontologically(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _align_vocabulary_ontologically(self, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Align vocabulary between reverse engineering and code generation using ontology.
 
@@ -1770,21 +1642,13 @@ def main() -> None:
                 for transform in analysis.get("recommended_transformations", []):
                     if transform["type"] == "list_to_dict":
                         print(f"🔄 Applying {transform['description']}...")
-                        extracted_model["components"] = (
-                            self.ontology_bridge.resolve_vocabulary_mismatch(
-                                extracted_model["components"], "dict"
-                            )
-                        )
+                        extracted_model["components"] = self.ontology_bridge.resolve_vocabulary_mismatch(extracted_model["components"], "dict")
                         break
 
             # Validate transformation integrity
-            if "components" in extracted_model and isinstance(
-                extracted_model["components"], dict
-            ):
+            if "components" in extracted_model and isinstance(extracted_model["components"], dict):
                 validation = self.ontology_bridge.validate_transformation(
-                    extracted_model.get(
-                        "original_components", extracted_model["components"]
-                    ),
+                    extracted_model.get("original_components", extracted_model["components"]),
                     extracted_model["components"],
                     "dict",
                 )
@@ -1794,9 +1658,7 @@ def main() -> None:
                     for issue in validation.get("issues", []):
                         print(f"  - {issue}")
                 else:
-                    print(
-                        "✅ Vocabulary alignment and transformation validation successful"
-                    )
+                    print("✅ Vocabulary alignment and transformation validation successful")
 
             return extracted_model
 
@@ -1805,9 +1667,7 @@ def main() -> None:
             print("🔄 Falling back to manual alignment...")
             return self._align_vocabulary_manually(extracted_model)
 
-    def _align_vocabulary_manually(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def _align_vocabulary_manually(self, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """
         Manual fallback for vocabulary alignment when ontology bridge is unavailable.
 

@@ -24,9 +24,7 @@ class TestRequirement34RateLimiting:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "security_first requirement validation test placeholder - implement actual logic"
+        assert True, "security_first requirement validation test placeholder - implement actual logic"
 
     def test_security_first_specific_behavior(self):
         """Test security_first-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement34RateLimiting:
         # TODO: Check that security_first tools and patterns are used correctly
         # TODO: Validate against security_first best practices
 
-        assert (
-            True
-        ), "security_first specific behavior test placeholder - implement actual logic"
+        assert True, "security_first specific behavior test placeholder - implement actual logic"
 
     def test_security_first_compliance(self):
         """Test that security_first implementation complies with requirements."""
@@ -48,6 +44,4 @@ class TestRequirement34RateLimiting:
         # TODO: Check that all requirement criteria are met
         # TODO: Validate against project standards
 
-        assert (
-            True
-        ), "security_first compliance test placeholder - implement actual logic"
+        assert True, "security_first compliance test placeholder - implement actual logic"

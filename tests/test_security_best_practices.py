@@ -43,9 +43,7 @@ def run_command(user_input):
 
         try:
             # Run Bandit on the file
-            result = subprocess.run(
-                ["bandit", temp_file], capture_output=True, text=True, cwd=os.getcwd()
-            )
+            result = subprocess.run(["bandit", temp_file], capture_output=True, text=True, cwd=os.getcwd())
 
             # Bandit should find security issues
             assert result.returncode == 1, "Bandit should detect security issues"
@@ -54,17 +52,13 @@ def run_command(user_input):
             output = result.stdout + result.stderr
 
             # Should detect hardcoded password
-            assert "hardcoded_password_string" in output, (
-                "Should detect hardcoded password"
-            )
+            assert "hardcoded_password_string" in output, "Should detect hardcoded password"
 
             # Should detect weak hash
             assert "hashlib" in output, "Should detect weak hash usage"
 
             # Should detect command injection
-            assert "start_process_with_a_shell" in output, (
-                "Should detect command injection"
-            )
+            assert "start_process_with_a_shell" in output, "Should detect command injection"
 
             print("✅ Bandit successfully detected security issues")
 
@@ -76,9 +70,7 @@ def run_command(user_input):
         """Test that required security tools are available"""
         # Check Bandit
         try:
-            result = subprocess.run(
-                ["bandit", "--version"], capture_output=True, text=True
-            )
+            result = subprocess.run(["bandit", "--version"], capture_output=True, text=True)
             assert result.returncode == 0, "Bandit should be available"
             print("✅ Bandit is available")
         except FileNotFoundError:

@@ -66,9 +66,7 @@ class DesignModelManager(BaseReflectiveModule):
 
     def create_model_from_design(self, design_spec: Dict[str, Any]) -> DesignModel:
         """Create a model directly from design specification (NO reverse engineering)"""
-        logger.info(
-            f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}"
-        )
+        logger.info(f"🎯 Creating model from design: {design_spec.get('name', 'Unknown')}")
 
         # Extract design components
         components = []
@@ -115,18 +113,14 @@ class DesignModelManager(BaseReflectiveModule):
         model = self.design_models[model_name]
         return self.component_manager.remove_component(model.components, component_name)
 
-    def update_component(
-        self, model_name: str, component_name: str, updates: Dict[str, Any]
-    ) -> bool:
+    def update_component(self, model_name: str, component_name: str, updates: Dict[str, Any]) -> bool:
         """Update a component in an existing model"""
         if model_name not in self.design_models:
             logger.error(f"Model {model_name} not found")
             return False
 
         model = self.design_models[model_name]
-        return self.component_manager.update_component(
-            model.components, component_name, updates
-        )
+        return self.component_manager.update_component(model.components, component_name, updates)
 
     def get_model(self, model_name: str) -> Optional[DesignModel]:
         """Get a design model by name"""

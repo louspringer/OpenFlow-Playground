@@ -100,30 +100,34 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 │   ├── Formats (4 Types)
 │   └── Test Status (100% Success Rate)
 ```
-│   └── Status (✅ Complete)
+
+│ └── Status (✅ Complete)
 ├── 📋 Component Overview
-│   └── [Expandable component cards]
+│ └── [Expandable component cards]
 ├── 🆕 Recent Artifacts
 └── 🚀 Quick Analysis
-    ├── 🚀 Quick Control Flow
-    ├── 📊 Quick Complexity
-    └── 🎨 Quick UML Generation
+├── 🚀 Quick Control Flow
+├── 📊 Quick Complexity
+└── 🎨 Quick UML Generation
+
 ```
 
 ### **Sidebar Navigation**
 
 ```
+
 🔍 Workflow Extraction
 ├── 📋 Tested Components
-│   └── Select Component: [Dropdown]
+│ └── Select Component: [Dropdown]
 ├── ⚡ Quick Actions
-│   ├── 🔄 Refresh All Artifacts
-│   └── 📊 Generate Demo Data
+│ ├── 🔄 Refresh All Artifacts
+│ └── 📊 Generate Demo Data
 ├── 🚀 Quick Analysis
-│   ├── 🚀 Quick Control Flow
-│   ├── 📊 Quick Complexity
-│   └── 🎨 Quick UML Generation
+│ ├── 🚀 Quick Control Flow
+│ ├── 📊 Quick Complexity
+│ └── 🎨 Quick UML Generation
 └── 📊 System Status
+
 ```
 
 ### **Component Pages**
@@ -131,11 +135,12 @@ The Workflow Visualization GUI is a comprehensive Streamlit-based application th
 Each component page follows this structure:
 
 ```
-[Component Icon] [Component Name]
-[Component Description]
----
+
+## [Component Icon] [Component Name] [Component Description]
+
 [Component-specific content]
 🏠 Back to Dashboard
+
 ```
 
 ## 🎨 **Visualization Capabilities**
@@ -201,22 +206,24 @@ Each component page follows this structure:
 ### **File Structure**
 
 ```
+
 src/
-├── workflow_visualization_gui.py    # Main GUI application
-├── control_flow_analyzer.py         # UC-2 implementation
-├── multi_file_workflow_analyzer.py  # UC-6 implementation
-├── uml_activity_generator.py        # UC-4 implementation
-├── complexity_metrics_analyzer.py   # UC-5 implementation
-├── performance_optimizer.py         # UC-9 implementation
-└── round_trip_validation.py        # UC-7 implementation
+├── workflow_visualization_gui.py # Main GUI application
+├── control_flow_analyzer.py # UC-2 implementation
+├── multi_file_workflow_analyzer.py # UC-6 implementation
+├── uml_activity_generator.py # UC-4 implementation
+├── complexity_metrics_analyzer.py # UC-5 implementation
+├── performance_optimizer.py # UC-9 implementation
+└── round_trip_validation.py # UC-7 implementation
 
 tests/
-├── test_gui_navigation.py          # Playwright test suite
-└── test_gui_demo.py                # Simple functionality test
+├── test_gui_navigation.py # Playwright test suite
+└── test_gui_demo.py # Simple functionality test
 
 makefiles/
-└── activity-models.mk              # Build and test targets
-```
+└── activity-models.mk # Build and test targets
+
+````
 
 ### **Key Methods**
 
@@ -251,7 +258,7 @@ make test-gui-navigation
 
 # Install dependencies
 uv sync --extra dev
-```
+````
 
 ### **Service Requirements**
 
@@ -312,7 +319,7 @@ uv sync --extra dev
 - **Code Examples**: Implementation patterns
 - **API Reference**: Component interface documentation
 
----
+______________________________________________________________________
 
 **Status**: ✅ **100% Complete** - All use cases implemented, tested, and documented
 **Last Updated**: Current session

@@ -1,6 +1,6 @@
 # 🔥 TiDB AgentX Hackathon 2025
 
-**AI-powered multi-agent testing with TiDB Serverless**
+## AI-powered multi-agent testing with TiDB Serverless
 
 ## **🏆 Hackathon Details**
 
@@ -103,10 +103,10 @@ API_PORT=8000
 ### **TiDB Serverless Setup**
 
 1. Create a TiDB Serverless account at [tidbcloud.com](https://tidbcloud.com)
-2. Create a new cluster
-3. Enable vector search capabilities
-4. Get connection credentials
-5. Update environment variables
+1. Create a new cluster
+1. Enable vector search capabilities
+1. Get connection credentials
+1. Update environment variables
 
 ## **🚀 Usage**
 
@@ -230,11 +230,11 @@ uv run pytest --cov=src --cov-report=html
 ### **Development Setup**
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+1. Create a feature branch
+1. Make your changes
+1. Add tests for new functionality
+1. Ensure all tests pass
+1. Submit a pull request
 
 ### **Code Standards**
 
@@ -291,11 +291,11 @@ uv run pytest --cov=src --cov-report=html
 - **Email**: <lou@example.com>
 - **Project**: [TiDB AgentX Hackathon](https://github.com/louspringer/tidb-agentx-hackathon)
 
----
+______________________________________________________________________
 
-**Status**: 🚨 **CRISIS MODE - 34 DAYS TO SUBMISSION**  
-**Priority**: 🔴 **HIGHEST** - $30,500 prize  
-**Strategy**: Component distribution + TiDB integration  
+**Status**: 🚨 **CRISIS MODE - 34 DAYS TO SUBMISSION**\
+**Priority**: 🔴 **HIGHEST** - $30,500 prize\
+**Strategy**: Component distribution + TiDB integration\
 **Success Criteria**: Complete AI agent workflow with TiDB
 
-**Let's build something amazing for the TiDB AgentX Hackathon! 🚀✨**
+## Let's build something amazing for the TiDB AgentX Hackathon! 🚀✨

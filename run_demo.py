@@ -49,9 +49,7 @@ async def run_demo_showcase():
         print(f"   🏗️  Model: {basic_results['model_name']}")
         print(f"   📦 Components: {basic_results['components_count']}")
         print(f"   📁 Files Generated: {basic_results['generated_files_count']}")
-        print(
-            f"   🔄 Round-trip: {'✅ Successful' if basic_results['round_trip_successful'] else '❌ Failed'}"
-        )
+        print(f"   🔄 Round-trip: {'✅ Successful' if basic_results['round_trip_successful'] else '❌ Failed'}")
 
     # Run Advanced Demo
     print("\n🚀 Running Advanced Demo...")
@@ -65,16 +63,12 @@ async def run_demo_showcase():
         print(f"   🏗️  Model: {advanced_results['model_name']}")
         print(f"   📦 Components: {advanced_results['components_count']}")
         print(f"   📁 Files Generated: {advanced_results['generated_files_count']}")
-        print(
-            f"   🔄 Round-trip: {'✅ Successful' if advanced_results['round_trip_successful'] else '❌ Failed'}"
-        )
+        print(f"   🔄 Round-trip: {'✅ Successful' if advanced_results['round_trip_successful'] else '❌ Failed'}")
 
         # Show vocabulary alignment if available
         if "vocabulary_alignment" in advanced_results:
             vocab = advanced_results["vocabulary_alignment"]
-            print(
-                f"   🔤 Vocabulary Alignment: {vocab['alignment_score']:.1%} ({vocab['overall_health']})"
-            )
+            print(f"   🔤 Vocabulary Alignment: {vocab['alignment_score']:.1%} ({vocab['overall_health']})")
 
     # Run Performance Demo
     print("\n🚀 Running Performance Demo...")
@@ -87,9 +81,7 @@ async def run_demo_showcase():
     if performance_results["status"] == "success":
         print(f"   📈 Performance Score: {performance_results['performance_score']}")
         print(f"   🔄 Iterations: {performance_results['iterations']}")
-        print(
-            f"   ⏱️  Average Time: {performance_results['average_iteration_time']:.3f}s"
-        )
+        print(f"   ⏱️  Average Time: {performance_results['average_iteration_time']:.3f}s")
         print(f"   ⏱️  Total Time: {performance_results['total_duration']:.3f}s")
 
     # Get final system status
@@ -97,9 +89,7 @@ async def run_demo_showcase():
     final_status = await orchestrator.get_module_status()
     print(f"   Success Count: {final_status.health_indicators.get('success_count', 0)}")
     print(f"   Error Count: {final_status.health_indicators.get('error_count', 0)}")
-    print(
-        f"   Success Rate: {final_status.health_indicators.get('success_rate', 0):.1%}"
-    )
+    print(f"   Success Rate: {final_status.health_indicators.get('success_rate', 0):.1%}")
 
     # Summary
     print("\n🎉 Demo Showcase Complete!")

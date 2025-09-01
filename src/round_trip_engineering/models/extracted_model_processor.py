@@ -39,9 +39,7 @@ class ExtractedModelProcessor(BaseReflectiveModule):
             ],
         }
 
-    def process_extracted_model(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def process_extracted_model(self, extracted_model: Dict[str, Any]) -> Dict[str, Any]:
         """Process an extracted model for code generation"""
         logger.info("🎯 Processing extracted model for code generation")
 
@@ -55,16 +53,12 @@ class ExtractedModelProcessor(BaseReflectiveModule):
         # Process classes
         if "classes" in cleaned_model:
             for class_name, class_data in cleaned_model["classes"].items():
-                cleaned_model["classes"][class_name] = self._process_class_data(
-                    class_data
-                )
+                cleaned_model["classes"][class_name] = self._process_class_data(class_data)
 
         # Process functions
         if "functions" in cleaned_model:
             for func_name, func_data in cleaned_model["functions"].items():
-                cleaned_model["functions"][func_name] = self._process_function_data(
-                    func_data
-                )
+                cleaned_model["functions"][func_name] = self._process_function_data(func_data)
 
         # Store processed model
         model_id = extracted_model.get("name", "unnamed_model")
@@ -97,14 +91,10 @@ class ExtractedModelProcessor(BaseReflectiveModule):
         # Process methods
         for method_name, method_data in processed["methods"].items():
             if isinstance(method_data, dict):
-                processed["methods"][method_name] = self._process_method_data(
-                    method_data
-                )
+                processed["methods"][method_name] = self._process_method_data(method_data)
 
         # Process attributes
-        processed["attributes"] = self._process_attributes(
-            processed.get("attributes", [])
-        )
+        processed["attributes"] = self._process_attributes(processed.get("attributes", []))
 
         return processed
 
@@ -113,14 +103,10 @@ class ExtractedModelProcessor(BaseReflectiveModule):
         processed = method_data.copy()
 
         # Process parameters
-        processed["parameters"] = self._process_parameters(
-            processed.get("parameters", [])
-        )
+        processed["parameters"] = self._process_parameters(processed.get("parameters", []))
 
         # Process return type
-        processed["return_type"] = self._normalize_type(
-            processed.get("return_type", "Any")
-        )
+        processed["return_type"] = self._normalize_type(processed.get("return_type", "Any"))
 
         return processed
 
@@ -129,26 +115,18 @@ class ExtractedModelProcessor(BaseReflectiveModule):
         processed = func_data.copy()
 
         # Process parameters
-        processed["parameters"] = self._process_parameters(
-            processed.get("parameters", [])
-        )
+        processed["parameters"] = self._process_parameters(processed.get("parameters", []))
 
         # Process return type
-        processed["return_type"] = self._normalize_type(
-            processed.get("return_type", "Any")
-        )
+        processed["return_type"] = self._normalize_type(processed.get("return_type", "Any"))
 
         return processed
 
-    def _process_parameters(
-        self, parameters: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+    def _process_parameters(self, parameters: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Process method/function parameters"""
         return self.type_normalizer.normalize_parameter_types(parameters)
 
-    def _process_attributes(
-        self, attributes: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+    def _process_attributes(self, attributes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Process class attributes"""
         processed = []
 

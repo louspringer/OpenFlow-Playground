@@ -55,12 +55,8 @@ class CICDIntegration:
             "ci_environment": self.ci_environment,
             "quality_threshold": float(os.getenv("QUALITY_THRESHOLD", "70.0")),
             "fail_on_quality": os.getenv("FAIL_ON_QUALITY", "true").lower() == "true",
-            "quality_report_path": os.getenv(
-                "QUALITY_REPORT_PATH", "quality_report.json"
-            ),
-            "quality_metrics_path": os.getenv(
-                "QUALITY_METRICS_PATH", ".quality_metrics"
-            ),
+            "quality_report_path": os.getenv("QUALITY_REPORT_PATH", "quality_report.json"),
+            "quality_metrics_path": os.getenv("QUALITY_METRICS_PATH", ".quality_metrics"),
             "verbose": os.getenv("QUALITY_VERBOSE", "false").lower() == "true",
             "environment": os.getenv("DEPLOYMENT_ENVIRONMENT", "development"),
         }
@@ -152,9 +148,7 @@ class CICDIntegration:
 
         # Set quality threshold from environment rules
         threshold = env_rules["quality_threshold"]
-        self.logger.info(
-            f"Setting quality threshold to {threshold} for {self.ci_config['environment']} environment"
-        )
+        self.logger.info(f"Setting quality threshold to {threshold} for {self.ci_config['environment']} environment")
 
         # Update CI config with environment-specific threshold
         self.ci_config["quality_threshold"] = threshold
@@ -170,11 +164,7 @@ class CICDIntegration:
             multi_agent_results = await self._run_multi_agent_analysis()
 
             # Convert multi-agent results to quality metrics
-            quality_metrics = (
-                await self.quality_adapter._convert_agent_results_to_metrics(
-                    multi_agent_results
-                )
-            )
+            quality_metrics = await self.quality_adapter._convert_agent_results_to_metrics(multi_agent_results)
 
             # Run quality enforcement with the metrics
             enforcement_result = self.quality_enforcer.enforce_quality(quality_metrics)
@@ -285,8 +275,7 @@ class CICDIntegration:
             # Quality metrics
             "overall_score": quality_result.get("overall_score", 0.0),
             "quality_threshold": self.ci_config["quality_threshold"],
-            "threshold_met": quality_result.get("overall_score", 0.0)
-            >= self.ci_config["quality_threshold"],
+            "threshold_met": quality_result.get("overall_score", 0.0) >= self.ci_config["quality_threshold"],
             # Gate results
             "gate_summary": quality_result.get("gate_summary", {}),
             "can_proceed": quality_result.get("can_proceed", False),
@@ -296,9 +285,7 @@ class CICDIntegration:
             # Recommendations
             "recommendations": quality_result.get("recommendations", []),
             # Status
-            "status": (
-                "success" if quality_result.get("can_proceed", False) else "failed"
-            ),
+            "status": ("success" if quality_result.get("can_proceed", False) else "failed"),
         }
 
     def _get_build_info(self) -> dict[str, Any]:
@@ -307,12 +294,9 @@ class CICDIntegration:
             "ci_environment": self.ci_environment,
             "build_id": os.getenv("BUILD_ID", "unknown"),
             "build_number": os.getenv("BUILD_NUMBER", "unknown"),
-            "commit_sha": os.getenv("GITHUB_SHA")
-            or os.getenv("CI_COMMIT_SHA", "unknown"),
-            "branch": os.getenv("GITHUB_REF")
-            or os.getenv("CI_COMMIT_REF_NAME", "unknown"),
-            "triggered_by": os.getenv("GITHUB_ACTOR")
-            or os.getenv("GITLAB_USER_NAME", "unknown"),
+            "commit_sha": os.getenv("GITHUB_SHA") or os.getenv("CI_COMMIT_SHA", "unknown"),
+            "branch": os.getenv("GITHUB_REF") or os.getenv("CI_COMMIT_REF_NAME", "unknown"),
+            "triggered_by": os.getenv("GITHUB_ACTOR") or os.getenv("GITLAB_USER_NAME", "unknown"),
         }
 
         # Add environment-specific variables
@@ -354,9 +338,7 @@ class CICDIntegration:
         metrics_dir = Path(self.ci_config["quality_metrics_path"])
         metrics_dir.mkdir(exist_ok=True)
 
-        metrics_file = (
-            metrics_dir / f"ci_metrics_{self._get_build_info()['build_id']}.json"
-        )
+        metrics_file = metrics_dir / f"ci_metrics_{self._get_build_info()['build_id']}.json"
         with open(metrics_file, "w") as f:
             json.dump(ci_report, f, indent=2)
 
@@ -375,10 +357,7 @@ class CICDIntegration:
 
             # Fail the build if configured to do so
             if self.ci_config["fail_on_quality"]:
-                error_message = (
-                    f"Quality check failed with score {ci_report['overall_score']:.1f} "
-                    f"(threshold: {ci_report['quality_threshold']:.1f})"
-                )
+                error_message = f"Quality check failed with score {ci_report['overall_score']:.1f} (threshold: {ci_report['quality_threshold']:.1f})"
                 raise QualityEnforcementError(error_message)
         else:
             self.logger.info("Quality gates passed - CI can proceed")
@@ -400,9 +379,7 @@ class CICDIntegration:
             gate_summary = ci_report["gate_summary"]
             self.logger.error(f"Total Gates: {gate_summary.get('total_gates', 0)}")
             self.logger.error(f"Failed Gates: {gate_summary.get('failed_gates', 0)}")
-            self.logger.error(
-                f"Blocking Gates: {gate_summary.get('blocking_gates', 0)}"
-            )
+            self.logger.error(f"Blocking Gates: {gate_summary.get('blocking_gates', 0)}")
 
         if "recommendations" in ci_report:
             self.logger.error("Recommendations:")

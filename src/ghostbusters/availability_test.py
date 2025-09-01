@@ -53,9 +53,7 @@ class GhostbustersAvailabilityTest:
                     "ghostbusters_domain": None,
                 }
 
-            ghostbusters_domain = self.project_model.get("domains", {}).get(
-                "ghostbusters", {}
-            )
+            ghostbusters_domain = self.project_model.get("domains", {}).get("ghostbusters", {})
             if not ghostbusters_domain:
                 return {
                     "available": False,
@@ -152,13 +150,7 @@ class GhostbustersAvailabilityTest:
             # Check project model for multi-agent requirements
             ghostbusters_domain = project_model_test.get("ghostbusters_domain", {})
             requirements = ghostbusters_domain.get("requirements", [])
-            multi_agent_requirements = [
-                req
-                for req in requirements
-                if "multi-agent" in req.lower()
-                or "langchain" in req.lower()
-                or "langgraph" in req.lower()
-            ]
+            multi_agent_requirements = [req for req in requirements if "multi-agent" in req.lower() or "langchain" in req.lower() or "langgraph" in req.lower()]
             multi_agent_available = len(multi_agent_requirements) > 0
 
             self.results["summary"] = {
@@ -236,12 +228,8 @@ if __name__ == "__main__":
 
         if summary.get("project_model_working", False):
             print(f"🔍 Project Model: ✅ Working")
-            print(
-                f"🎯 Multi-Perspective: {'Available' if summary['multi_perspective_available'] else 'Not Available'}"
-            )
-            print(
-                f"🚀 Multi-Agent: {'Available' if summary['multi_agent_available'] else 'Not Available'}"
-            )
+            print(f"🎯 Multi-Perspective: {'Available' if summary['multi_perspective_available'] else 'Not Available'}")
+            print(f"🚀 Multi-Agent: {'Available' if summary['multi_agent_available'] else 'Not Available'}")
 
             if summary.get("perspectives_count"):
                 print(f"🔍 Perspectives: {summary['perspectives_count']} available")
@@ -249,22 +237,13 @@ if __name__ == "__main__":
                 print(f"🔍 Capabilities: {summary['capabilities_count']} available")
 
             if summary.get("multi_agent_requirements"):
-                print(
-                    f"📋 Multi-Agent Requirements: {len(summary['multi_agent_requirements'])} found"
-                )
+                print(f"📋 Multi-Agent Requirements: {len(summary['multi_agent_requirements'])} found")
 
-            if (
-                summary["multi_perspective_available"]
-                and summary["multi_agent_available"]
-            ):
-                print(
-                    "\n✅ Both multi-perspective analysis and multi-agent systems are available!"
-                )
+            if summary["multi_perspective_available"] and summary["multi_agent_available"]:
+                print("\n✅ Both multi-perspective analysis and multi-agent systems are available!")
             elif summary["multi_perspective_available"]:
                 print("\n✅ Multi-perspective analysis system is available")
-                print(
-                    "❌ Multi-agent system is not available - basic functionality only"
-                )
+                print("❌ Multi-agent system is not available - basic functionality only")
             elif summary["multi_agent_available"]:
                 print("\n✅ Multi-agent system is available")
                 print("❌ Multi-perspective analysis system is not available")
@@ -273,8 +252,6 @@ if __name__ == "__main__":
         else:
             print(f"🔍 Project Model: ❌ Not Working")
             print(f"🔍 Message: {summary.get('message', 'Unknown error')}")
-            print(
-                "\n❌ Cannot determine service availability - project model needs to be fixed"
-            )
+            print("\n❌ Cannot determine service availability - project model needs to be fixed")
 
     asyncio.run(main())

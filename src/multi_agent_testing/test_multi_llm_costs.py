@@ -83,16 +83,12 @@ async def test_multi_llm_analysis():
                     logger.info(f"\n📊 {perspective.title()} Analysis Results:")
                     logger.info(f"  LLMs used: {result.get('llms_used', 'Unknown')}")
                     logger.info(f"  Total findings: {result.get('total_findings', 0)}")
-                    logger.info(
-                        f"  Total recommendations: {result.get('total_recommendations', 0)}"
-                    )
+                    logger.info(f"  Total recommendations: {result.get('total_recommendations', 0)}")
                     logger.info(f"  Total insights: {result.get('total_insights', 0)}")
                 else:
                     logger.info(f"\n📊 {perspective.title()}: {result}")
         else:
-            logger.error(
-                f"❌ Multi-agent analysis failed: {analysis_result.get('error')}"
-            )
+            logger.error(f"❌ Multi-agent analysis failed: {analysis_result.get('error')}")
             return False
 
         # Show final cost state
@@ -149,9 +145,7 @@ async def test_direct_llm_calls():
         smoke_test = MultiDimensionalSmokeTest()
 
         # Test prompt
-        test_prompt = (
-            "Analyze this code for potential security issues: print(user_input)"
-        )
+        test_prompt = "Analyze this code for potential security issues: print(user_input)"
 
         # Test Claude
         logger.info("🔒 Testing Claude...")

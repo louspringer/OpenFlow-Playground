@@ -339,9 +339,7 @@ class ComplexModel:
                 "line": issue["line"],
                 "description": issue["description"],
                 "fix_strategy": issue["fix_strategy"],
-                "priority": (
-                    "high" if "error" in issue.get("code", "").lower() else "medium"
-                ),
+                "priority": ("high" if "error" in issue.get("code", "").lower() else "medium"),
             }
             strategies.append(strategy)
         return strategies

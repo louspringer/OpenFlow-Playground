@@ -20,9 +20,7 @@ def fix_model_mapping():
     load_dotenv()
 
     # Path to the orchestrator
-    orchestrator_path = Path(
-        "src/multi_agent_testing/code_quality_automation_orchestrator.py"
-    )
+    orchestrator_path = Path("src/multi_agent_testing/code_quality_automation_orchestrator.py")
 
     if not orchestrator_path.exists():
         print(f"❌ Orchestrator not found: {orchestrator_path}")
@@ -263,9 +261,7 @@ def restore_backup():
 
     print("\n🔄 Restoring original orchestrator...")
 
-    orchestrator_path = Path(
-        "src/multi_agent_testing/code_quality_automation_orchestrator.py"
-    )
+    orchestrator_path = Path("src/multi_agent_testing/code_quality_automation_orchestrator.py")
     backup_path = orchestrator_path.with_suffix(".py.backup2")
 
     if not backup_path.exists():

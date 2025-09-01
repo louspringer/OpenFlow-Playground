@@ -55,9 +55,7 @@ class TestModelSchemas:
 
     def test_performance_metrics_creation(self):
         """Test PerformanceMetrics schema creation."""
-        metrics = PerformanceMetrics(
-            operation="test_op", duration_ms=100.5, success=True
-        )
+        metrics = PerformanceMetrics(operation="test_op", duration_ms=100.5, success=True)
         assert metrics.operation == "test_op"
         assert metrics.duration_ms == 100.5
         assert metrics.success is True
@@ -75,9 +73,7 @@ class TestModelLogger:
     def test_log_operation(self):
         """Test log operation functionality."""
         logger = ModelLogger("test_logger")
-        log_entry = logger.log_operation(
-            "INFO", "Test message", operation="test_op", model_name="test_model"
-        )
+        log_entry = logger.log_operation("INFO", "Test message", operation="test_op", model_name="test_model")
         assert log_entry.level == "INFO"
         assert log_entry.message == "Test message"
         assert log_entry.operation == "test_op"

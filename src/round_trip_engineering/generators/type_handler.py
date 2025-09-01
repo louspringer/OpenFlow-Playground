@@ -167,9 +167,7 @@ class TypeHandler(BaseReflectiveModule):
 
         # Method signature
         if arguments:
-            param_str = ", ".join(
-                [f"{arg['name']}: {arg.get('type', 'Any')}" for arg in arguments]
-            )
+            param_str = ", ".join([f"{arg['name']}: {arg.get('type', 'Any')}" for arg in arguments])
             code_lines.append(f"def {method_name}({param_str}) -> {return_type}:")
         else:
             code_lines.append(f"def {method_name}(self) -> {return_type}:")
@@ -259,9 +257,7 @@ class TypeHandler(BaseReflectiveModule):
         }
 
         for alias, standard in type_mapping.items():
-            normalized = re.sub(
-                rf"\b{alias}\b", standard, normalized, flags=re.IGNORECASE
-            )
+            normalized = re.sub(rf"\b{alias}\b", standard, normalized, flags=re.IGNORECASE)
 
         return normalized
 
@@ -273,9 +269,7 @@ class TypeHandler(BaseReflectiveModule):
             "original": type_annotation,
             "normalized": normalized,
             "is_optional": "None" in normalized or "|" in normalized,
-            "is_collection": any(
-                t in normalized for t in ["list", "dict", "set", "tuple"]
-            ),
+            "is_collection": any(t in normalized for t in ["list", "dict", "set", "tuple"]),
             "is_union": "|" in normalized,
             "default_value": self.get_default_value(normalized),
         }

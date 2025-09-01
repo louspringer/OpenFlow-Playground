@@ -19,9 +19,7 @@ from .domain_model import (
 
 __version__ = "1.0.0"
 __author__ = "OpenFlow-Playground Team"
-__description__ = (
-    "Security best practices using established tools instead of custom scanners"
-)
+__description__ = "Security best practices using established tools instead of custom scanners"
 
 __all__ = [
     "SecurityBestPractices",

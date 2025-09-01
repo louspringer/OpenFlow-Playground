@@ -2252,6 +2252,19 @@ wheels = [
 ]
 
 [[package]]
+name = "maison"
+version = "2.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "toml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2e/c5/c0574d47920f30eb84938bbe5220b249bde9b648b4517e1726e50a4b0967/maison-2.0.0.tar.gz", hash = "sha256:f5dafbbf4ce57bdb7cae128e075f457434b2cc9573b4f4bb4535f16d2ebd1cc5", size = 12074, upload-time = "2024-08-19T09:04:26.415Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/30/24/cd1e7447cc43aeaf3dd8a336d79876262ebf0fd003b73796ee78cad19cd3/maison-2.0.0-py3-none-any.whl", hash = "sha256:e684fbab833f0f049d6e3556a127b8c5abe7cd18620f5b751a483e103dc4cbb5", size = 10093, upload-time = "2024-08-19T09:04:24.793Z" },
+]
+
+[[package]]
 name = "mando"
 version = "0.7.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2427,6 +2440,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/e7/ff/0ffefdcac38932a54d2b5eed4e0ba8a408f215002cd178ad1df0f2806ff8/mccabe-0.7.0.tar.gz", hash = "sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325", size = 9658, upload-time = "2022-01-24T01:14:51.113Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/27/1a/1f68f9ba0c207934b35b86a8ca3aad8395a3d6dd7921c0686e23853ff5a9/mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e", size = 7350, upload-time = "2022-01-24T01:14:49.62Z" },
+]
+
+[[package]]
+name = "mdformat"
+version = "0.7.22"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "markdown-it-py" },
+    { name = "tomli", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fc/eb/b5cbf2484411af039a3d4aeb53a5160fae25dd8c84af6a4243bc2f3fedb3/mdformat-0.7.22.tar.gz", hash = "sha256:eef84fa8f233d3162734683c2a8a6222227a229b9206872e6139658d99acb1ea", size = 34610, upload-time = "2025-01-30T18:00:51.418Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f2/6f/94a7344f6d634fe3563bea8b33bccedee37f2726f7807e9a58440dc91627/mdformat-0.7.22-py3-none-any.whl", hash = "sha256:61122637c9e1d9be1329054f3fa216559f0d1f722b7919b060a8c2a4ae1850e5", size = 34447, upload-time = "2025-01-30T18:00:48.708Z" },
 ]
 
 [[package]]
@@ -2984,6 +3010,7 @@ dev = [
     { name = "black" },
     { name = "detect-secrets" },
     { name = "flake8" },
+    { name = "mdformat" },
     { name = "mypy" },
     { name = "pandas-stubs" },
     { name = "pydantic" },
@@ -2996,6 +3023,7 @@ dev = [
     { name = "snakeviz" },
     { name = "types-requests" },
     { name = "viztracer" },
+    { name = "yamlfix" },
 ]
 
 [package.metadata]
@@ -3079,6 +3107,7 @@ dev = [
     { name = "black", specifier = ">=23.0.0" },
     { name = "detect-secrets", specifier = ">=1.5.0" },
     { name = "flake8", specifier = ">=6.0.0" },
+    { name = "mdformat", specifier = ">=0.7.22" },
     { name = "mypy", specifier = ">=1.0.0" },
     { name = "pandas-stubs", specifier = ">=2.0.0" },
     { name = "pydantic", specifier = ">=2.9.2" },
@@ -3091,6 +3120,7 @@ dev = [
     { name = "snakeviz", specifier = ">=2.2.2" },
     { name = "types-requests", specifier = ">=2.31.0" },
     { name = "viztracer", specifier = ">=1.0.4" },
+    { name = "yamlfix", specifier = ">=1.17.0" },
 ]
 
 [[package]]
@@ -4583,6 +4613,19 @@ wheels = [
 ]
 
 [[package]]
+name = "ruyaml"
+version = "0.91.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "distro" },
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4b/75/abbc7eab08bad7f47887a0555d3ac9e3947f89d2416678c08e025e449fdc/ruyaml-0.91.0.tar.gz", hash = "sha256:6ce9de9f4d082d696d3bde264664d1bcdca8f5a9dff9d1a1f1a127969ab871ab", size = 239075, upload-time = "2021-12-07T16:19:58.427Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1e/9a/16ca152a04b231c179c626de40af1d5d0bc2bc57bc875c397706016ddb2b/ruyaml-0.91.0-py3-none-any.whl", hash = "sha256:50e0ee3389c77ad340e209472e0effd41ae0275246df00cdad0a067532171755", size = 108906, upload-time = "2021-12-07T16:19:56.798Z" },
+]
+
+[[package]]
 name = "s3transfer"
 version = "0.13.1"
 source = { registry = "https://pypi.org/simple" }
@@ -5336,6 +5379,21 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/0f/f8/f6c61fd794229cc3848d144f73754a0c107854372d7261419dcbbd286299/xxhash-3.5.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4e2febf914ace002132aa09169cc572e0d8959d0f305f93d5828c4836f9bc5a6", size = 32020, upload-time = "2024-08-17T09:20:13.537Z" },
     { url = "https://files.pythonhosted.org/packages/79/d3/c029c99801526f859e6b38d34ab87c08993bf3dcea34b11275775001638a/xxhash-3.5.0-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:5d3a10609c51da2a1c0ea0293fc3968ca0a18bd73838455b5bca3069d7f8e32b", size = 40515, upload-time = "2024-08-17T09:20:14.669Z" },
     { url = "https://files.pythonhosted.org/packages/62/e3/bef7b82c1997579c94de9ac5ea7626d01ae5858aa22bf4fcb38bf220cb3e/xxhash-3.5.0-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:5a74f23335b9689b66eb6dbe2a931a88fcd7a4c2cc4b1cb0edba8ce381c7a1da", size = 30064, upload-time = "2024-08-17T09:20:15.925Z" },
+]
+
+[[package]]
+name = "yamlfix"
+version = "1.17.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "maison" },
+    { name = "pydantic" },
+    { name = "ruyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a9/04/e5061d4c353fad1240356458c999ddd452315a2485c3e8b00159767b3567/yamlfix-1.17.0.tar.gz", hash = "sha256:81d7220b62798d1dda580e1574b3d3d6926701ae8cd79588c4e0b33f2e345d85", size = 36923, upload-time = "2024-08-21T16:02:29.593Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e9/14/10b17267fd650b5135aa728d4c8088c053781b4e2706bf2eabf6846fe501/yamlfix-1.17.0-py3-none-any.whl", hash = "sha256:0a510930a3a4f9655ca05a923594f2271849988f33f3c30363d5dee1261b6734", size = 28156, upload-time = "2024-08-21T16:02:27.182Z" },
 ]
 
 [[package]]

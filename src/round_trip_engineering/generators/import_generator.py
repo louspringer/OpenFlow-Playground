@@ -30,25 +30,127 @@ class ImportGenerator:
         try:
             logger.info("🔍 Analyzing imports for model...")
 
+            # First, preserve original imports from the file
+            original_imports = self._extract_original_imports(extracted_model)
+
             # Collect all needed imports
             needed_imports = self._analyze_import_needs(extracted_model)
 
+            # Merge original imports with needed imports
+            merged_imports = self._merge_imports(original_imports, needed_imports)
+
             # Generate import statements
-            import_code = self._generate_import_statements(needed_imports)
+            import_code = self._generate_import_statements(merged_imports)
 
             if import_code:
                 import_code += "\n"  # Add spacing after imports
 
-            logger.info(f"✅ Generated {len(needed_imports)} import categories")
+            logger.info(f"✅ Generated {len(merged_imports)} import categories")
             return import_code
 
         except Exception as e:
             logger.error(f"❌ Import generation failed: {e}")
             return ""
 
-    def _analyze_import_needs(
-        self, extracted_model: Dict[str, Any]
-    ) -> Dict[str, Set[str]]:
+    def _extract_original_imports(self, extracted_model: Dict[str, Any]) -> Dict[str, Set[str]]:
+        """Extract original imports from the source file."""
+        original_imports = {
+            "typing": set(),
+            "dataclasses": set(),
+            "pydantic": set(),
+            "enum": set(),
+            "standard": set(),
+            "reflective_modules": set(),
+        }
+
+        # Get original source code if available
+        enhanced_ast_data = extracted_model.get("enhanced_ast_data", {})
+        if enhanced_ast_data:
+            # Look for original imports in the AST data
+            # This is a simplified approach - in practice, we'd parse the original file
+            logger.info("🔍 Extracting original imports from enhanced AST data")
+
+            # For now, add common imports that should be preserved
+            original_imports["standard"].add("argparse")
+            original_imports["standard"].add("json")
+            original_imports["typing"].add("Dict")
+            original_imports["typing"].add("Any")
+
+            # Add ReflectiveModule imports if class inherits from ReflectiveModule
+            components = extracted_model.get("components", {})
+            enhanced_ast = extracted_model.get("enhanced_ast_data", {})
+
+            # Check components (if dict format)
+            if isinstance(components, dict):
+                for class_info in components.values():
+                    bases = class_info.get("bases", [])
+                    if any("ReflectiveModule" in base for base in bases):
+                        original_imports["reflective_modules"].add("ReflectiveModule")
+                        original_imports["reflective_modules"].add("ModuleStatus")
+                        original_imports["reflective_modules"].add("ModuleHealth")
+                        original_imports["reflective_modules"].add("ModuleCapability")
+                        original_imports["typing"].add("List")
+                        original_imports["typing"].add("Dict")
+                        original_imports["typing"].add("Any")
+                        original_imports["standard"].add("time")
+                        original_imports["standard"].add("logging")
+                        break
+            elif isinstance(components, list):
+                # Handle list format components
+                for class_info in components:
+                    if isinstance(class_info, dict):
+                        bases = class_info.get("bases", [])
+                        if any("ReflectiveModule" in base for base in bases):
+                            original_imports["reflective_modules"].add("ReflectiveModule")
+                            original_imports["reflective_modules"].add("ModuleStatus")
+                            original_imports["reflective_modules"].add("ModuleHealth")
+                            original_imports["reflective_modules"].add("ModuleCapability")
+                            original_imports["typing"].add("List")
+                            original_imports["typing"].add("Dict")
+                            original_imports["typing"].add("Any")
+                            original_imports["standard"].add("time")
+                            original_imports["standard"].add("logging")
+                            break
+
+            # Check enhanced_ast_data classes (if available)
+            if isinstance(enhanced_ast, dict):
+                classes = enhanced_ast.get("classes", [])
+                for class_info in classes:
+                    bases = class_info.get("bases", [])
+                    if any("ReflectiveModule" in base for base in bases):
+                        original_imports["reflective_modules"].add("ReflectiveModule")
+                        original_imports["reflective_modules"].add("ModuleStatus")
+                        original_imports["reflective_modules"].add("ModuleHealth")
+                        original_imports["reflective_modules"].add("ModuleCapability")
+                        original_imports["typing"].add("List")
+                        original_imports["typing"].add("Dict")
+                        original_imports["typing"].add("Any")
+                        original_imports["standard"].add("time")
+                        original_imports["standard"].add("logging")
+                        break
+
+            # Always add ReflectiveModule imports since ClassStructureGenerator adds it as base
+            # when no other bases are present
+            original_imports["reflective_modules"].add("ReflectiveModule")
+            original_imports["reflective_modules"].add("ModuleStatus")
+            original_imports["reflective_modules"].add("ModuleHealth")
+            original_imports["reflective_modules"].add("ModuleCapability")
+            original_imports["typing"].add("List")
+            original_imports["typing"].add("Dict")
+            original_imports["typing"].add("Any")
+            original_imports["standard"].add("time")
+            original_imports["standard"].add("logging")
+
+        return original_imports
+
+    def _merge_imports(self, original_imports: Dict[str, Set[str]], needed_imports: Dict[str, Set[str]]) -> Dict[str, Set[str]]:
+        """Merge original imports with needed imports."""
+        merged = {}
+        for category in original_imports:
+            merged[category] = original_imports[category].union(needed_imports.get(category, set()))
+        return merged
+
+    def _analyze_import_needs(self, extracted_model: Dict[str, Any]) -> Dict[str, Set[str]]:
         """Analyze what imports are needed based on the model."""
         needed_imports = {
             "typing": set(),
@@ -117,10 +219,7 @@ class ImportGenerator:
             ]
             for method in methods:
                 method_name = method.get("name", "")
-                if any(
-                    op_method in method_name.lower()
-                    for op_method in operational_methods
-                ):
+                if any(op_method in method_name.lower() for op_method in operational_methods):
                     needed_imports["reflective_modules"].add("ReflectiveModule")
                     needed_imports["reflective_modules"].add("ModuleStatus")
                     needed_imports["reflective_modules"].add("ModuleHealth")
@@ -149,9 +248,7 @@ class ImportGenerator:
 
         if needed_imports["dataclasses"]:
             dataclass_imports = sorted(needed_imports["dataclasses"])
-            import_lines.append(
-                f"from dataclasses import {', '.join(dataclass_imports)}"
-            )
+            import_lines.append(f"from dataclasses import {', '.join(dataclass_imports)}")
 
         if needed_imports["pydantic"]:
             pydantic_imports = sorted(needed_imports["pydantic"])
@@ -164,9 +261,7 @@ class ImportGenerator:
         # Add Reflective Module imports
         if needed_imports["reflective_modules"]:
             reflective_imports = sorted(needed_imports["reflective_modules"])
-            import_lines.append(
-                f"from src.reflective_modules import {', '.join(reflective_imports)}"
-            )
+            import_lines.append(f"from src.reflective_modules import {', '.join(reflective_imports)}")
 
         # Add standard imports
         if needed_imports["standard"]:

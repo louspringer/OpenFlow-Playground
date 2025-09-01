@@ -24,9 +24,7 @@ class TestRequirement47GhostbustersPreLint:
         # TODO: Check that the requirement is satisfied
         # TODO: Validate implementation against requirements
 
-        assert (
-            True
-        ), "ghostbusters requirement validation test placeholder - implement actual logic"
+        assert True, "ghostbusters requirement validation test placeholder - implement actual logic"
 
     def test_ghostbusters_specific_behavior(self):
         """Test ghostbusters-specific behavior and functionality."""
@@ -36,9 +34,7 @@ class TestRequirement47GhostbustersPreLint:
         # TODO: Check that ghostbusters tools and patterns are used correctly
         # TODO: Validate against ghostbusters best practices
 
-        assert (
-            True
-        ), "ghostbusters specific behavior test placeholder - implement actual logic"
+        assert True, "ghostbusters specific behavior test placeholder - implement actual logic"
 
     def test_ghostbusters_compliance(self):
         """Test that ghostbusters implementation complies with requirements."""

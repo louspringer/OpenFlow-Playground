@@ -64,6 +64,6 @@ This session demonstrates how recursion enables exponential improvement:
 - Create automated improvement pipelines
 - Extend to other code quality tools
 
----
+______________________________________________________________________
 
 **Recursion is the other free lunch - use it to make your tools better at making themselves better!** 🚀

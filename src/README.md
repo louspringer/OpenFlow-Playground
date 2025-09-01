@@ -100,7 +100,7 @@ pytest src/multi_agent_testing/test_multi_agent_blind_spot_detection.py -v
 This structure follows the project model registry domains:
 
 - **streamlit**: Streamlit application components
-- **security_first**: Security-first architecture components  
+- **security_first**: Security-first architecture components
 - **multi_agent_testing**: Multi-agent testing framework components
 
 Each domain has its own:
@@ -113,15 +113,15 @@ Each domain has its own:
 ## Development Guidelines
 
 1. **Domain Separation**: Keep files in their appropriate domain directories
-2. **Package Structure**: Each domain should have `__init__.py` for proper imports
-3. **Testing**: All components should have corresponding tests
-4. **Documentation**: Update this README when adding new domains or files
-5. **Model Registry**: Update `project_model_registry.json` when adding new domains
+1. **Package Structure**: Each domain should have `__init__.py` for proper imports
+1. **Testing**: All components should have corresponding tests
+1. **Documentation**: Update this README when adding new domains or files
+1. **Model Registry**: Update `project_model_registry.json` when adding new domains
 
 ## Adding New Components
 
 1. **Create Domain Directory**: Add new domain directory under `src/`
-2. **Add **init**.py**: Create package initialization file
-3. **Update Model Registry**: Add domain configuration to `project_model_registry.json`
-4. **Add Tests**: Create corresponding test files in `tests/`
-5. **Update Documentation**: Update this README and implementation docs
+1. **Add **init**.py**: Create package initialization file
+1. **Update Model Registry**: Add domain configuration to `project_model_registry.json`
+1. **Add Tests**: Create corresponding test files in `tests/`
+1. **Update Documentation**: Update this README and implementation docs

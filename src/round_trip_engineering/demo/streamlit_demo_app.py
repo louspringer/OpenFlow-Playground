@@ -130,17 +130,11 @@ def run_demo(demo_type: str):
     try:
         with st.spinner(f"Running {demo_type}..."):
             if demo_type == "Basic Demo":
-                result = asyncio.run(
-                    st.session_state.demo_orchestrator.run_basic_demo()
-                )
+                result = asyncio.run(st.session_state.demo_orchestrator.run_basic_demo())
             elif demo_type == "Advanced Demo":
-                result = asyncio.run(
-                    st.session_state.demo_orchestrator.run_advanced_demo()
-                )
+                result = asyncio.run(st.session_state.demo_orchestrator.run_advanced_demo())
             elif demo_type == "Performance Demo":
-                result = asyncio.run(
-                    st.session_state.demo_orchestrator.run_performance_demo()
-                )
+                result = asyncio.run(st.session_state.demo_orchestrator.run_performance_demo())
             elif demo_type == "All Demos":
                 result = run_all_demos()
             else:
@@ -160,21 +154,15 @@ def run_all_demos():
 
     # Basic Demo
     with st.spinner("Running Basic Demo..."):
-        results["Basic Demo"] = asyncio.run(
-            st.session_state.demo_orchestrator.run_basic_demo()
-        )
+        results["Basic Demo"] = asyncio.run(st.session_state.demo_orchestrator.run_basic_demo())
 
     # Advanced Demo
     with st.spinner("Running Advanced Demo..."):
-        results["Advanced Demo"] = asyncio.run(
-            st.session_state.demo_orchestrator.run_advanced_demo()
-        )
+        results["Advanced Demo"] = asyncio.run(st.session_state.demo_orchestrator.run_advanced_demo())
 
     # Performance Demo
     with st.spinner("Running Performance Demo..."):
-        results["Performance Demo"] = asyncio.run(
-            st.session_state.demo_orchestrator.run_performance_demo()
-        )
+        results["Performance Demo"] = asyncio.run(st.session_state.demo_orchestrator.run_performance_demo())
 
     return results
 
@@ -193,9 +181,7 @@ def display_system_status():
             st.error("🔴 System Not Available")
 
         # Health indicators
-        st.metric(
-            "Success Rate", f"{status.health_indicators.get('success_rate', 0):.1%}"
-        )
+        st.metric("Success Rate", f"{status.health_indicators.get('success_rate', 0):.1%}")
         st.metric("Success Count", status.health_indicators.get("success_count", 0))
         st.metric("Error Count", status.health_indicators.get("error_count", 0))
 
@@ -414,9 +400,7 @@ def show_performance_analysis():
             "Error Count": status.health_indicators.get("error_count", 0),
         }
 
-        fig = go.Figure(
-            data=[go.Bar(x=list(health_data.keys()), y=list(health_data.values()))]
-        )
+        fig = go.Figure(data=[go.Bar(x=list(health_data.keys()), y=list(health_data.values()))])
         fig.update_layout(title="Current System Health Metrics")
         st.plotly_chart(fig, use_container_width=True)
 
@@ -437,9 +421,7 @@ def show_generated_code():
     for demo_name, results in st.session_state.demo_results.items():
         if results.get("status") == "success" and "generated_files" in results:
             for filename in results["generated_files"]:
-                generated_files.append(
-                    {"demo": demo_name, "filename": filename, "results": results}
-                )
+                generated_files.append({"demo": demo_name, "filename": filename, "results": results})
 
     if generated_files:
         st.subheader(f"📁 Generated Files ({len(generated_files)})")
@@ -465,9 +447,7 @@ def show_generated_code():
                             st.metric("Demo", file_info["demo"])
                     else:
                         st.warning("Generated file not found on disk")
-                        st.info(
-                            "This is normal for demo purposes - files are generated in memory"
-                        )
+                        st.info("This is normal for demo purposes - files are generated in memory")
 
                 except Exception as e:
                     st.error(f"Error reading file: {e}")
@@ -508,16 +488,12 @@ def show_system_architecture():
     st.subheader("🔧 Module Capabilities")
 
     try:
-        capabilities = asyncio.run(
-            st.session_state.demo_orchestrator.get_module_capabilities()
-        )
+        capabilities = asyncio.run(st.session_state.demo_orchestrator.get_module_capabilities())
 
         for capability in capabilities:
             with st.expander(f"📋 {capability['name']}"):
                 st.write(f"**Description**: {capability['description']}")
-                st.write(
-                    f"**Available**: {'✅ Yes' if capability['available'] else '❌ No'}"
-                )
+                st.write(f"**Available**: {'✅ Yes' if capability['available'] else '❌ No'}")
                 st.write(f"**Version**: {capability['version']}")
 
     except Exception as e:

@@ -259,9 +259,7 @@ class EdgeCaseClass:
 
         return results
 
-    def _compare_outputs(
-        self, file_path: str, v2_result: dict[str, Any], v3_result: dict[str, Any]
-    ) -> dict[str, Any]:
+    def _compare_outputs(self, file_path: str, v2_result: dict[str, Any], v3_result: dict[str, Any]) -> dict[str, Any]:
         """Compare V2 and V3 outputs for compatibility"""
         issues = []
 
@@ -293,9 +291,7 @@ class EdgeCaseClass:
             v3_classes = v3_result["classes"]  # V3 uses 'classes'
 
             if len(v2_classes) != len(v3_classes):
-                issues.append(
-                    f"Class count mismatch: V2={len(v2_classes)}, V3={len(v3_classes)}"
-                )
+                issues.append(f"Class count mismatch: V2={len(v2_classes)}, V3={len(v3_classes)}")
 
             # Check if same class names are extracted
             v2_class_names = set(v2_classes.keys())
@@ -315,9 +311,7 @@ class EdgeCaseClass:
             v3_funcs = v3_result["functions"]  # V3 uses 'functions'
 
             if len(v2_funcs) != len(v3_funcs):
-                issues.append(
-                    f"Function count mismatch: V2={len(v2_funcs)}, V3={len(v3_funcs)}"
-                )
+                issues.append(f"Function count mismatch: V2={len(v2_funcs)}, V3={len(v3_funcs)}")
 
         # Check import extraction compatibility
         if "imports" in v2_result and "imports" in v3_result:
@@ -377,9 +371,7 @@ def main():
         print(f"Total Tests: {results['total_tests']}")
         print(f"Passed: {results['passed']} ✅")
         print(f"Failed: {results['failed']} ❌")
-        print(
-            f"Success Rate: {(results['passed'] / results['total_tests'] * 100):.1f}%"
-        )
+        print(f"Success Rate: {(results['passed'] / results['total_tests'] * 100):.1f}%")
 
         if results["failed"] > 0:
             print("\n🚨 COMPATIBILITY ISSUES DETECTED!")

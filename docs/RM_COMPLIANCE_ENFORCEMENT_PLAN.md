@@ -6,7 +6,7 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 
 **⚠️ CRITICAL**: This plan is mandatory for all PDCA loops. No loop can proceed without full RM compliance validation.
 
----
+______________________________________________________________________
 
 ## 🔍 **Current RM Compliance Status**
 
@@ -21,7 +21,7 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 #### **1. Size Violations (>200 lines)**
 
 - ❌ `profiling.profiler` - 276 lines
-- ❌ `tools.json_model_manager` - 230 lines  
+- ❌ `tools.json_model_manager` - 230 lines
 - ❌ `voice_integration.voice_control` - 311 lines
 - ❌ `voice_integration.voice_demo` - 376 lines
 
@@ -35,22 +35,22 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 
 - ❌ `voice_integration.voice_control` - Multiple responsibilities detected
 
----
+______________________________________________________________________
 
 ## 🚀 **RM Compliance Enforcement Strategy**
 
 ### **Phase 1: Immediate Compliance (PDCA Loop 5)**
 
-**Duration**: 1 week  
-**Priority**: CRITICAL  
+**Duration**: 1 week\
+**Priority**: CRITICAL\
 **Focus**: Fix existing violations before proceeding
 
 #### **Week 1: Size Violations**
 
-- [ ] **Day 1-2**: Refactor `profiling.profiler` (276 → <200 lines)
-- [ ] **Day 3-4**: Refactor `tools.json_model_manager` (230 → <200 lines)
-- [ ] **Day 5**: Refactor `voice_integration.voice_control` (311 → <200 lines)
-- [ ] **Day 6-7**: Refactor `voice_integration.voice_demo` (376 → <200 lines)
+- [ ] **Day 1-2**: Refactor `profiling.profiler` (276 → \<200 lines)
+- [ ] **Day 3-4**: Refactor `tools.json_model_manager` (230 → \<200 lines)
+- [ ] **Day 5**: Refactor `voice_integration.voice_control` (311 → \<200 lines)
+- [ ] **Day 6-7**: Refactor `voice_integration.voice_demo` (376 → \<200 lines)
 
 #### **Week 1: Interface Violations**
 
@@ -60,8 +60,8 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 
 ### **Phase 2: Prevention & Monitoring (PDCA Loop 6)**
 
-**Duration**: 1 week  
-**Priority**: HIGH  
+**Duration**: 1 week\
+**Priority**: HIGH\
 **Focus**: Prevent future violations
 
 #### **Continuous Monitoring**
@@ -79,8 +79,8 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 
 ### **Phase 3: Optimization & Excellence (PDCA Loop 7)**
 
-**Duration**: 1 week  
-**Priority**: MEDIUM  
+**Duration**: 1 week\
+**Priority**: MEDIUM\
 **Focus**: Achieve excellence in RM compliance
 
 #### **Excellence Targets**
@@ -90,7 +90,7 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 - [ ] **Responsibility Excellence**: 100% single responsibility compliance
 - [ ] **Boundary Excellence**: 100% clean architectural boundaries
 
----
+______________________________________________________________________
 
 ## 🔧 **RM Compliance Validation Process**
 
@@ -99,6 +99,12 @@ This document defines the comprehensive plan for enforcing Reflective Module pri
 ```bash
 # Run comprehensive RM compliance validation
 make test-reflective-module-compliance
+
+# Run pre-commit quality gates
+make quality-check
+make security-check
+make model-validation
+make format-markdown
 
 # Check specific compliance areas
 make check-module-sizes
@@ -120,48 +126,57 @@ make check-architectural-boundaries
 - [ ] **Size Verification**: All modules confirmed under 200 lines
 - [ ] **Architecture Review**: Dependency graph validated for clean boundaries
 
----
+______________________________________________________________________
 
 ## 📋 **RM Compliance Checklist**
 
 ### **Mandatory Checks for Every PDCA Loop**
 
-#### **1. Self-Monitoring & Self-Reporting** ✅ **ENFORCED**
+#### **1. Pre-Commit Quality Gates** ✅ **ENFORCED**
+
+- [ ] **Line Length Optimization**: Can long lines be shortened? If yes, fix them
+- [ ] **Python Quality**: Black formatting (200 char limit), no syntax errors
+- [ ] **Markdown Quality**: Proper headings (# not **bold**), consistent formatting, mdformat applied
+- [ ] **Documentation Structure**: Files start with proper headings, valid links
+- [ ] **Security Validation**: No hardcoded secrets, input validation
+- [ ] **Model Compliance**: Follows project model registry requirements
+
+#### **2. Self-Monitoring & Self-Reporting** ✅ **ENFORCED**
 
 - [ ] **Module Status Interface**: All modules implement `get_module_status()`
 - [ ] **Capability Reporting**: All modules implement `get_module_capabilities()`
 - [ ] **Health Monitoring**: All modules implement `is_healthy()` and `get_health_indicators()`
 - [ ] **Operational Visibility**: No hidden internal state, all status exposed through interfaces
 
-#### **2. Single Responsibility Principle** ✅ **ENFORCED**
+#### **3. Single Responsibility Principle** ✅ **ENFORCED**
 
 - [ ] **Module Size**: All modules under 200 lines (ideally under 150)
 - [ ] **Single Concern**: Each module has exactly one reason to change
 - [ ] **No God Objects**: No monolithic modules with multiple responsibilities
 - [ ] **Clear Purpose**: Each module's purpose is immediately obvious from its name
 
-#### **3. Clear Architectural Boundaries** ✅ **ENFORCED**
+#### **4. Clear Architectural Boundaries** ✅ **ENFORCED**
 
 - [ ] **Interface Contracts**: Clear interfaces prevent cross-module dependencies
 - [ ] **Dependency Injection**: Modules receive dependencies through interfaces
 - [ ] **No Circular Dependencies**: Clean dependency graph with no cycles
 - [ ] **Loose Coupling**: Modules interact only through defined interfaces
 
-#### **4. Testability in Isolation** ✅ **ENFORCED**
+#### **5. Testability in Isolation** ✅ **ENFORCED**
 
 - [ ] **Public Interface Testing**: Tests use only public interfaces
 - [ ] **Mock Dependencies**: Dependencies can be mocked through interfaces
 - [ ] **No Internal Testing**: No testing of private methods or internal state
 - [ ] **Isolation**: Modules can be tested without external dependencies
 
-#### **5. Operational Visibility** ✅ **ENFORCED**
+#### **6. Operational Visibility** ✅ **ENFORCED**
 
 - [ ] **Performance Metrics**: Modules report execution time, memory usage
 - [ ] **Error Tracking**: Modules track and report error counts and types
 - [ ] **Success Rates**: Modules report success/failure ratios
 - [ ] **Health Indicators**: Detailed health status for monitoring and debugging
 
----
+______________________________________________________________________
 
 ## 🛠️ **RM Compliance Tools**
 
@@ -183,7 +198,7 @@ make check-architectural-boundaries
 - **Trend Analysis**: Compliance improvement over time
 - **Violation Tracking**: Issue resolution monitoring
 
----
+______________________________________________________________________
 
 ## 🎯 **Success Criteria**
 
@@ -206,32 +221,32 @@ make check-architectural-boundaries
 - [ ] **100% Compliance**: All RM principles fully satisfied
 - [ ] **Sustainable Process**: RM compliance maintained long-term
 
----
+______________________________________________________________________
 
 ## 🚨 **Violation Response Protocol**
 
 ### **Critical Violations (>200 lines)**
 
 1. **Immediate Action**: Refactor within 24 hours
-2. **Size Reduction**: Split into focused modules
-3. **Interface Implementation**: Add RM interfaces
-4. **Validation**: Confirm compliance before proceeding
+1. **Size Reduction**: Split into focused modules
+1. **Interface Implementation**: Add RM interfaces
+1. **Validation**: Confirm compliance before proceeding
 
 ### **Interface Violations (Missing RM Methods)**
 
 1. **Immediate Action**: Implement missing methods within 48 hours
-2. **Interface Design**: Follow RM interface patterns
-3. **Testing**: Ensure interfaces work correctly
-4. **Documentation**: Document interface contracts
+1. **Interface Design**: Follow RM interface patterns
+1. **Testing**: Ensure interfaces work correctly
+1. **Documentation**: Document interface contracts
 
 ### **Responsibility Violations (Multiple Concerns)**
 
 1. **Analysis**: Identify distinct responsibilities
-2. **Refactoring**: Split into focused modules
-3. **Interface Design**: Define clean interfaces
-4. **Validation**: Confirm single responsibility
+1. **Refactoring**: Split into focused modules
+1. **Interface Design**: Define clean interfaces
+1. **Validation**: Confirm single responsibility
 
----
+______________________________________________________________________
 
 ## 📚 **References**
 
@@ -247,7 +262,7 @@ make check-architectural-boundaries
 - `makefiles/domains.mk` - RM compliance Make targets
 - `src/round_trip_engineering/generators/base_reflective_module.py` - RM base class
 
----
+______________________________________________________________________
 
 ## 🎯 **The Meta-Rule**
 
@@ -256,8 +271,8 @@ make check-architectural-boundaries
 This plan ensures that:
 
 1. **Architectural Integrity** is maintained at every step
-2. **Reflective Module Principles** are enforced systematically
-3. **Quality Gates** prevent degradation patterns
-4. **Continuous Improvement** drives excellence in module design
+1. **Reflective Module Principles** are enforced systematically
+1. **Quality Gates** prevent degradation patterns
+1. **Continuous Improvement** drives excellence in module design
 
 **The era of systematic RM compliance enforcement has begun!** 🚀

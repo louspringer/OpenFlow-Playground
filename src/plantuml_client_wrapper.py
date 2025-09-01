@@ -37,9 +37,7 @@ class NodePlantUMLWrapper:
         if not self.node_client_path.exists():
             raise FileNotFoundError(f"Node.js client not found: {node_client_path}")
 
-        logger.info(
-            f"🎨 Node.js PlantUML wrapper initialized with client: {node_client_path}"
-        )
+        logger.info(f"🎨 Node.js PlantUML wrapper initialized with client: {node_client_path}")
 
     def test_connection(self) -> bool:
         """
@@ -56,25 +54,18 @@ class NodePlantUMLWrapper:
                 timeout=30,
             )
 
-            if (
-                result.returncode == 0
-                and "✅ PlantUML server connection successful" in result.stdout
-            ):
+            if result.returncode == 0 and "✅ PlantUML server connection successful" in result.stdout:
                 logger.info("✅ Node.js PlantUML client connection test passed")
                 return True
             else:
-                logger.error(
-                    f"❌ Node.js PlantUML client connection test failed: {result.stderr}"
-                )
+                logger.error(f"❌ Node.js PlantUML client connection test failed: {result.stderr}")
                 return False
 
         except Exception as e:
             logger.error(f"❌ Node.js PlantUML client test failed: {e}")
             return False
 
-    def generate_diagram(
-        self, plantuml_code: str, output_path: str, format: str = "svg"
-    ) -> Optional[str]:
+    def generate_diagram(self, plantuml_code: str, output_path: str, format: str = "svg") -> Optional[str]:
         """
         Generate a diagram from PlantUML code using Node.js client.
 
@@ -87,9 +78,7 @@ class NodePlantUMLWrapper:
             Path to generated diagram file, or None if failed
         """
         try:
-            logger.info(
-                f"🔄 Generating {format.upper()} diagram using Node.js client..."
-            )
+            logger.info(f"🔄 Generating {format.upper()} diagram using Node.js client...")
 
             # Create a temporary Node.js script that embeds the PlantUML code
             node_script = f"""
@@ -208,45 +197,29 @@ generateDiagram();
 """
 
             # Write the temporary Node.js script
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".js", delete=False
-            ) as temp_script:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".js", delete=False) as temp_script:
                 temp_script.write(node_script)
                 temp_script_path = temp_script.name
 
             # Execute the Node.js script
-            result = subprocess.run(
-                ["node", temp_script_path], capture_output=True, text=True, timeout=60
-            )
+            result = subprocess.run(["node", temp_script_path], capture_output=True, text=True, timeout=60)
 
             # Clean up temporary files
             Path(temp_script_path).unlink(missing_ok=True)
 
             if result.returncode == 0:
                 if "SUCCESS:" in result.stdout:
-                    success_line = [
-                        line
-                        for line in result.stdout.split("\n")
-                        if line.startswith("SUCCESS:")
-                    ][0]
+                    success_line = [line for line in result.stdout.split("\n") if line.startswith("SUCCESS:")][0]
                     output_file = success_line.replace("SUCCESS:", "")
                     logger.info(f"✅ Diagram generated successfully: {output_file}")
                     return output_file
                 elif "FAILED:" in result.stdout:
-                    error_line = [
-                        line
-                        for line in result.stdout.split("\n")
-                        if line.startswith("FAILED:")
-                    ][0]
+                    error_line = [line for line in result.stdout.split("\n") if line.startswith("FAILED:")][0]
                     error_msg = error_line.replace("FAILED:", "")
                     logger.error(f"❌ Diagram generation failed: {error_msg}")
                     return None
                 elif "ERROR:" in result.stdout:
-                    error_line = [
-                        line
-                        for line in result.stdout.split("\n")
-                        if line.startswith("ERROR:")
-                    ][0]
+                    error_line = [line for line in result.stdout.split("\n") if line.startswith("ERROR:")][0]
                     error_msg = error_line.replace("ERROR:", "")
                     logger.error(f"❌ Node.js client error: {error_msg}")
                     return None
@@ -261,9 +234,7 @@ generateDiagram();
             logger.error(f"❌ Diagram generation failed with exception: {e}")
             return None
 
-    def generate_activity_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> Optional[str]:
+    def generate_activity_diagram(self, class_structure: Dict[str, Any], output_path: str) -> Optional[str]:
         """
         Generate an activity diagram from class structure.
 
@@ -280,9 +251,7 @@ generateDiagram();
         # Generate the diagram
         return self.generate_diagram(plantuml_code, output_path)
 
-    def generate_sequence_diagram(
-        self, class_structure: Dict[str, Any], output_path: str
-    ) -> Optional[str]:
+    def generate_sequence_diagram(self, class_structure: Dict[str, Any], output_path: str) -> Optional[str]:
         """
         Generate a sequence diagram from class structure.
 
@@ -333,9 +302,7 @@ generateDiagram();
         # Add class-specific activities (with shorter labels)
         for class_name, class_info in classes.items():
             # Truncate long class names
-            display_name = (
-                class_name[:20] + "..." if len(class_name) > 20 else class_name
-            )
+            display_name = class_name[:20] + "..." if len(class_name) > 20 else class_name
 
             plantuml_lines.extend(
                 [
@@ -347,17 +314,11 @@ generateDiagram();
             # Add method processing (limit to first few methods)
             methods = class_info.get("methods", [])[:5]  # Limit to 5 methods
             for method in methods:
-                method_name = (
-                    method["name"][:15] + "..."
-                    if len(method["name"]) > 15
-                    else method["name"]
-                )
+                method_name = method["name"][:15] + "..." if len(method["name"]) > 15 else method["name"]
                 plantuml_lines.append(f"  :Generate Method: {method_name};")
 
             if len(class_info.get("methods", [])) > 5:
-                plantuml_lines.append(
-                    f"  :... and {len(class_info.get('methods', [])) - 5} more;"
-                )
+                plantuml_lines.append(f"  :... and {len(class_info.get('methods', [])) - 5} more;")
 
             plantuml_lines.append("")
 
@@ -372,11 +333,7 @@ generateDiagram();
             )
 
             for func in display_functions:
-                func_name = (
-                    func["name"][:15] + "..."
-                    if len(func["name"]) > 15
-                    else func["name"]
-                )
+                func_name = func["name"][:15] + "..." if len(func["name"]) > 15 else func["name"]
                 plantuml_lines.append(f"  :Generate Function: {func_name};")
 
             if len(functions) > 3:

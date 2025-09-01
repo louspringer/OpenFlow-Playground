@@ -36,9 +36,7 @@ def test_status_manager():
 
     # Test status update
     print("  🔄 Testing status update...")
-    success = status_manager.update_credential_status(
-        "test-item-123", CredentialStatus.WORKING.value, "Test status update"
-    )
+    success = status_manager.update_credential_status("test-item-123", CredentialStatus.WORKING.value, "Test status update")
     print(f"    ✅ Status update: {success}")
 
     # Test working credentials
@@ -86,9 +84,7 @@ def test_unified_interface():
 
     # DELETE - Archive credential
     print("    🗑️  Testing credential archiving...")
-    success = interface.archive_credential(
-        "test-item-789", "Not suitable for API usage"
-    )
+    success = interface.archive_credential("test-item-789", "Not suitable for API usage")
     print(f"      ✅ Archive credential: {success}")
 
     # Test utility operations
@@ -121,9 +117,7 @@ def test_transaction_safety():
     print("  ✅ Testing successful transaction...")
     try:
         with status_manager.transaction():
-            status_manager.update_credential_status(
-                "test-item-1", CredentialStatus.WORKING.value, "Successful transaction"
-            )
+            status_manager.update_credential_status("test-item-1", CredentialStatus.WORKING.value, "Successful transaction")
             print("    ✅ Transaction completed successfully")
     except Exception as e:
         print(f"    ❌ Unexpected error: {e}")
@@ -132,9 +126,7 @@ def test_transaction_safety():
     print("  ❌ Testing failed transaction with rollback...")
     try:
         with status_manager.transaction():
-            status_manager.update_credential_status(
-                "test-item-2", CredentialStatus.WORKING.value, "Will fail"
-            )
+            status_manager.update_credential_status("test-item-2", CredentialStatus.WORKING.value, "Will fail")
             # Simulate a failure
             raise RuntimeError("Simulated transaction failure")
     except RuntimeError:
