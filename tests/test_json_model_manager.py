@@ -8,7 +8,7 @@ import tempfile
 import json
 from pathlib import Path
 from unittest.mock import patch, MagicMock
-from src.round_trip_engineering.tools.json_model_manager import JSONModelManager
+from src.round_trip_engineering.tools.project_model_manager import ProjectModelManager as JSONModelManager
 
 
 class TestJSONModelManager:
