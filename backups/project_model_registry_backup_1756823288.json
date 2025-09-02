@@ -4462,12 +4462,6 @@
       "domain": "general",
       "implementation": "",
       "test": ""
-    },
-    {
-      "requirement": "Implement RM Compliance Checker as Reflective Module for assessing RM compliance across all domains in project_management_design domain",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
     }
   ],
   "implementation_plan": {
