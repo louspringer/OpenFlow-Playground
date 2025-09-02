@@ -8,17 +8,36 @@ import json
 import sys
 from pathlib import Path
 
-# Add parent directory to path so we can import from src
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Add project root to path so we can import from src
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.round_trip_engineering.tools import get_model_registry
 
 
-class ModelRegistryOperations:
+class ModelOperations:
     """Handles model registry operations."""
 
     def __init__(self):
         self.registry = get_model_registry()
+
+    def read_model_registry(self) -> str:
+        """Read the project model registry and return as JSON string."""
+        try:
+            import json
+            from pathlib import Path
+
+            # Read the project model registry directly
+            model_file = Path(__file__).parent.parent.parent / "project_model_registry.json"
+            if not model_file.exists():
+                return "❌ project_model_registry.json not found"
+
+            with open(model_file, "r") as f:
+                data = json.load(f)
+
+            return json.dumps(data, indent=2)
+
+        except Exception as e:
+            return f"❌ Error reading model: {e}"
 
     def register_model(self, model_name: str, implementation: str, config: str = None) -> tuple[bool, str]:
         """Register a new model."""
@@ -86,6 +105,6 @@ class ModelRegistryOperations:
             return False, f"❌ Error getting model info: {e}"
 
 
-def create_model_registry_operations() -> ModelRegistryOperations:
+def create_model_registry_operations() -> ModelOperations:
     """Factory function to create model registry operations instance."""
-    return ModelRegistryOperations()
+    return ModelOperations()

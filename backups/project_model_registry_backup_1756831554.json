@@ -3159,6 +3159,7 @@
         "reason": "Essential for RM compliance and test generation quality"
       }
     },
+
     "model_management": {
       "patterns": [
         "src/model_management/*.py",
@@ -3361,36 +3362,6 @@
         "*.pyc",
         "__pycache__"
       ]
-    },
-    "schema_test_domain3": {
-      "patterns": [
-        "src/schema_test_domain3/*.py"
-      ],
-      "content_indicators": [
-        "schema_test_domain3"
-      ],
-      "linter": "flake8",
-      "formatter": "black",
-      "validator": "pytest",
-      "exclusions": [
-        "*.pyc",
-        "__pycache__"
-      ],
-      "requirements": [
-        "Test domain with fixed schema validation"
-      ],
-      "demo_role": null,
-      "extraction_candidate": false,
-      "reason": null,
-      "completion_status": null,
-      "refactoring_status": null,
-      "current_phase": null,
-      "refactored_modules": [],
-      "new_modules": [],
-      "tools": [],
-      "capabilities": [],
-      "description": "Test domain with fixed schema validation",
-      "package_potential": null
     }
   },
   "over_engineering_findings": {

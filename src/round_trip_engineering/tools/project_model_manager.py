@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Optional
 
 from ..generators.base_reflective_module import BaseReflectiveModule
 from .interface import IModelCrud
+from .model_schemas import ProjectModel, DomainInfo, CategoryInfo
 
 
 class ProjectModelManager(BaseReflectiveModule, IModelCrud):
@@ -109,30 +110,67 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
             # Load current model data
             model_data = json.loads(content)
 
-            # Ensure collection exists
-            if collection not in model_data:
-                model_data[collection] = []
+            # Handle different collection types
+            if collection == "domains":
+                # Domains is a dict, add as new domain
+                if collection not in model_data:
+                    model_data[collection] = {}
 
-            # Create new item based on collection type
-            if collection == "backlog":
-                new_item = {
-                    "id": item_id,
-                    "title": title or item_id,
+                # Create domain info using schema defaults
+                domain_data = {
+                    "patterns": kwargs.get("patterns", [f"src/{item_id}/*.py"]),
+                    "content_indicators": kwargs.get("content_indicators", [item_id]),
+                    "linter": kwargs.get("linter", "flake8"),
+                    "validator": kwargs.get("validator", "pytest"),
+                    "formatter": kwargs.get("formatter", "black"),
+                    "requirements": kwargs.get("requirements", [description]),
+                    "tools": kwargs.get("tools", []),
+                    "capabilities": kwargs.get("capabilities", []),
+                    "workflows": kwargs.get("workflows", {}),
+                    "tool_rules": kwargs.get("tool_rules", {}),
+                    "exclusions": kwargs.get("exclusions", ["*.pyc", "__pycache__"]),
                     "description": description,
-                    "priority": priority,
-                    "status": "pending",
-                    "created_at": int(time.time()),
-                    **kwargs,
                 }
-            elif collection == "requirements_traceability":
-                new_item = {
-                    "requirement": description,
-                    "domain": kwargs.get("domain", "general"),
-                    "implementation": kwargs.get("implementation", ""),
-                    "test": kwargs.get("test", ""),
-                    **kwargs,
-                }
+
+                # Validate domain data against schema
+                try:
+                    domain_info = DomainInfo(**domain_data)
+                    model_data[collection][item_id] = domain_info.model_dump()
+                    self.logger.info(f"✅ Domain '{item_id}' created with schema validation")
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Domain schema validation failed, using raw data: {e}")
+                    model_data[collection][item_id] = domain_data
+
+            elif collection in ["backlog", "requirements_traceability"]:
+                # These are lists
+                if collection not in model_data:
+                    model_data[collection] = []
+
+                if collection == "backlog":
+                    new_item = {
+                        "id": item_id,
+                        "title": title or item_id,
+                        "description": description,
+                        "priority": priority,
+                        "status": "pending",
+                        "created_at": int(time.time()),
+                        **kwargs,
+                    }
+                else:  # requirements_traceability
+                    new_item = {
+                        "requirement": description,
+                        "domain": kwargs.get("domain", "general"),
+                        "implementation": kwargs.get("implementation", ""),
+                        "test": kwargs.get("test", ""),
+                        **kwargs,
+                    }
+                model_data[collection].append(new_item)
+
             else:
+                # Default: treat as list
+                if collection not in model_data:
+                    model_data[collection] = []
+
                 new_item = {
                     "id": item_id,
                     "description": description,
@@ -141,9 +179,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
                     "created_at": int(time.time()),
                     **kwargs,
                 }
-
-            # Add new item
-            model_data[collection].append(new_item)
+                model_data[collection].append(new_item)
 
             # Validate
             self.validate()
@@ -360,7 +396,7 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
             raise
 
     def validate(self) -> bool:
-        """Validate the project model registry structure."""
+        """Validate the project model registry structure using Pydantic schemas."""
         try:
             if not self.model_file.exists():
                 raise FileNotFoundError(f"Project model file not found: {self.model_file}")
@@ -370,14 +406,19 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
 
             model_data = json.loads(content)
 
+            # Validate using Pydantic schema
+            try:
+                project_model = ProjectModel(**model_data)
+                self.logger.info("✅ Project model schema validation passed")
+            except Exception as schema_error:
+                self.logger.error(f"❌ Schema validation failed: {schema_error}")
+                # Fall back to basic validation for backward compatibility
+                self._basic_validation(model_data)
+
             # Check required sections
             for section in self._required_sections:
                 if section not in model_data:
                     self.logger.warning(f"⚠️ Missing required section: {section}")
-
-            # Basic structure validation
-            if not isinstance(model_data, dict):
-                raise ValueError("Project model must be a JSON object")
 
             self._track_success()
             self.logger.info("✅ Project model validation passed")
@@ -387,6 +428,35 @@ class ProjectModelManager(BaseReflectiveModule, IModelCrud):
             self._track_error()
             self.logger.error(f"❌ Project model validation failed: {e}")
             raise
+
+    def _basic_validation(self, model_data: Dict[str, Any]) -> None:
+        """Basic validation fallback for backward compatibility."""
+        if not isinstance(model_data, dict):
+            raise ValueError("Project model must be a JSON object")
+
+        # Validate domains structure if present
+        if "domains" in model_data and isinstance(model_data["domains"], dict):
+            for domain_name, domain_info in model_data["domains"].items():
+                if not isinstance(domain_info, dict):
+                    raise ValueError(f"Domain '{domain_name}' must be a dictionary")
+
+                # Validate domain info structure
+                try:
+                    DomainInfo(**domain_info)
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Domain '{domain_name}' schema validation failed: {e}")
+
+        # Validate domain_architecture structure if present
+        if "domain_architecture" in model_data and isinstance(model_data["domain_architecture"], dict):
+            for category_name, category_info in model_data["domain_architecture"].items():
+                if not isinstance(category_info, dict):
+                    raise ValueError(f"Category '{category_name}' must be a dictionary")
+
+                # Validate category info structure
+                try:
+                    CategoryInfo(**category_info)
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Category '{category_name}' schema validation failed: {e}")
 
     def load_model(self) -> Dict[str, Any]:
         """Load the current project model registry."""
