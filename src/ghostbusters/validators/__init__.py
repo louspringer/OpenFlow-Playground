@@ -88,12 +88,12 @@ class CodeQualityValidator(BaseValidator):
         )
 
 
-class TestValidator(BaseValidator):
+class TestIssueValidator(BaseValidator):
     """Test validator for validating test findings"""
 
     def __init__(self) -> None:
-        """Initialize TestValidator with name."""
-        super().__init__("TestValidator")
+        """Initialize TestIssueValidator with name."""
+        super().__init__("TestIssueValidator")
 
     async def validate_findings(
         self,
@@ -124,7 +124,7 @@ class TestValidator(BaseValidator):
             confidence=confidence,
             issues=issues,
             recommendations=recommendations,
-            validator_name="TestValidator",
+            validator_name="TestIssueValidator",
         )
 
 
@@ -259,5 +259,5 @@ __all__ = [
     "CodeQualityValidator",
     "ModelValidator",
     "SecurityValidator",
-    "TestValidator",
+    "TestIssueValidator",
 ]

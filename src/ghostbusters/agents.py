@@ -170,7 +170,7 @@ class CodeQualityExpert(BaseExpert):
         )
 
 
-class TestExpert(BaseExpert):
+class TestIssueExpert(BaseExpert):
     """Test expert for detecting test-related delusions"""
 
     async def detect_delusions(self, project_path: Path) -> DelusionResult:

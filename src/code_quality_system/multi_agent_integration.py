@@ -49,7 +49,7 @@ class QualityMultiAgentAdapter:
             "test_expert": {
                 "metric_name": "test_coverage",
                 "weight": 1.5,
-                "description": "Test coverage analysis from TestExpert",
+                "description": "Test coverage analysis from TestIssueExpert",
             },
             "architecture_expert": {
                 "metric_name": "architecture_quality",
@@ -251,7 +251,7 @@ class QualityMultiAgentAdapter:
         )
 
     def _convert_test_result(self, result: Any, weight: float) -> QualityScore:
-        """Convert TestExpert result to test coverage score."""
+        """Convert TestIssueExpert result to test coverage score."""
         # Default test coverage score
         score = 100.0
         details = {}

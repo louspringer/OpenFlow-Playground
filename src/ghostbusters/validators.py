@@ -115,7 +115,7 @@ class CodeQualityValidator(BaseValidator):
         )
 
 
-class TestValidator(BaseValidator):
+class TestIssueValidator(BaseValidator):
     """Test validator for validating test findings"""
 
     async def validate_findings(
@@ -147,7 +147,7 @@ class TestValidator(BaseValidator):
             confidence=confidence,
             issues=issues,
             recommendations=recommendations,
-            validator_name="TestValidator",
+            validator_name="TestIssueValidator",
         )
 
 

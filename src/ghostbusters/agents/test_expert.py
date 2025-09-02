@@ -6,12 +6,12 @@ from typing import Any
 from .base_expert import BaseExpert, DelusionResult
 
 
-class TestExpert(BaseExpert):
+class TestIssueExpert(BaseExpert):
     """Expert agent for detecting test-related issues."""
 
     def __init__(self) -> None:
-        """Initialize the test expert."""
-        super().__init__("TestExpert")
+        """Initialize the test issue expert."""
+        super().__init__("TestIssueExpert")
 
     async def detect_delusions(self, project_path: Path) -> DelusionResult:
         """Detect test-related issues in the project."""

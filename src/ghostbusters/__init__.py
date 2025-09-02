@@ -9,7 +9,7 @@ from .agents import (
     CodeQualityExpert,
     ModelExpert,
     SecurityExpert,
-    TestExpert,
+    TestIssueExpert,
 )
 from .ghostbusters_orchestrator import GhostbustersOrchestrator, run_ghostbusters
 from .recovery import (
@@ -24,7 +24,7 @@ from .validators import (
     CodeQualityValidator,
     ModelValidator,
     SecurityValidator,
-    TestValidator,
+    TestIssueValidator,
 )
 
 __version__ = "1.0.0"
@@ -33,13 +33,13 @@ __all__ = [
     "run_ghostbusters",
     "SecurityExpert",
     "CodeQualityExpert",
-    "TestExpert",
+    "TestIssueExpert",
     "BuildExpert",
     "ArchitectureExpert",
     "ModelExpert",
     "SecurityValidator",
     "CodeQualityValidator",
-    "TestValidator",
+    "TestIssueValidator",
     "BuildValidator",
     "ArchitectureValidator",
     "ModelValidator",
