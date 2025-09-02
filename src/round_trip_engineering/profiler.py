@@ -93,15 +93,23 @@ class Profiler:
                 # Newer pstats interface
                 stats = self.profile_stats.get_stats_profile()
                 # Handle StatsProfile object properly
-                if hasattr(stats, "func_profiles"):
-                    for func, profile in stats.func_profiles.items():
-                        if profile.cumtime > 0:  # Only include functions with time
+                if hasattr(stats, "func_profiles") and stats.func_profiles:
+                    # StatsProfile interface: stats.func_profiles[name] = FunctionProfile
+                    for func_name, profile in stats.func_profiles.items():
+                        # Handle ncalls format like "3540/20" or "1"
+                        ncalls_str = str(profile.ncalls)
+                        if '/' in ncalls_str:
+                            ncalls = int(ncalls_str.split('/')[0])
+                        else:
+                            ncalls = int(ncalls_str)
+                        
+                        if ncalls > 0:  # Only include functions that were called
                             stats_data["top_functions"].append(
                                 {
-                                    "function": str(func),
-                                    "call_count": profile.callcount,
+                                    "function": func_name,
+                                    "call_count": profile.ncalls,
                                     "cumulative_time": profile.cumtime,
-                                    "per_call_time": profile.cumtime / profile.callcount if profile.callcount > 0 else 0,
+                                    "per_call_time": profile.percall_cumtime,
                                 }
                             )
                 else:
