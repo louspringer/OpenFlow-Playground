@@ -43,6 +43,12 @@ class RoundTripSystem:
         self.artifact_forge_integrator = ArtifactForgeIntegrator()
         self.workflow_analysis_manager = WorkflowAnalysisManager()
 
+        # Expose components for backward compatibility with tests
+        self.vocabulary_aligner = self.code_generation_orchestrator.vocabulary_aligner
+        self.code_generator = self.code_generation_orchestrator.code_generator
+        self.duplication_cleaner = self.code_generation_orchestrator.duplication_cleaner
+        self.profiler = self.code_generation_orchestrator.profiler
+
         logger.info("✅ Round-trip system initialized with focused modules")
 
     def generate_code_from_extracted_model(self, extracted_model: Dict[str, Any], target_language: str = "python") -> str:
@@ -152,4 +158,19 @@ class RoundTripSystem:
             }
         except Exception as e:
             logger.error(f"❌ Failed to get system status: {e}")
+            return {"error": str(e)}
+
+    def print_profiling_summary(self) -> None:
+        """Print profiling summary using the profiler component."""
+        try:
+            self.profiler.print_summary()
+        except Exception as e:
+            logger.error(f"❌ Failed to print profiling summary: {e}")
+
+    def get_profiling_stats(self) -> Dict[str, Any]:
+        """Get profiling statistics from the profiler component."""
+        try:
+            return self.profiler.get_stats()
+        except Exception as e:
+            logger.error(f"❌ Failed to get profiling stats: {e}")
             return {"error": str(e)}
