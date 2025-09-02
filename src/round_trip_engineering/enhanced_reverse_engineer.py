@@ -13,8 +13,8 @@ import time
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional, Dict, List, Tuple
-from tqdm import tqdm
+from typing import Any, Dict, List
+
 
 from .profiler import Profiler
 from .ast_extractor import ASTExtractor
@@ -150,7 +150,7 @@ class EnhancedReverseEngineer:
 
                 if total_time > 0:
                     percentage = (top_time / total_time) * 100
-                    print(f"\n💡 PERFORMANCE INSIGHT:")
+                    print("\n💡 PERFORMANCE INSIGHT:")
                     print(f"  🎯 {top_func} accounts for {percentage:.1f}% of total execution time")
                     if percentage > 50:
                         print(f"  💡 {top_func} is a significant contributor to execution time")
@@ -228,6 +228,11 @@ class EnhancedReverseEngineer:
             if self.dashboard is not None:
                 print("  ✅ Module functions extracted")
 
+            # Create components field from classes
+            self.model_data["components"] = self._create_components_field(self.model_data["classes"])
+            if self.dashboard is not None:
+                print("  ✅ Components field created")
+
             self._extract_file_structure(tree, content)
             if self.dashboard is not None:
                 print("  ✅ File structure extracted")
@@ -278,6 +283,27 @@ class EnhancedReverseEngineer:
             self.model_data["module_assignments"] = {}
         except Exception as e:
             print(f"🚨 ERROR in _extract_module_assignments: {e}")
+
+    def _create_components_field(self, classes: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Create components field from extracted classes."""
+        try:
+            components = {}
+            for class_info in classes:
+                class_name = class_info["name"]
+                # Add responsibility field for compatibility with tests
+                components[class_name] = {
+                    "name": class_name,
+                    "responsibility": class_info.get("docstring", ""),
+                    "methods": class_info.get("methods", []),
+                    "line_number": class_info.get("line_number", 0),
+                    "bases": class_info.get("bases", []),
+                    "decorators": class_info.get("decorators", []),
+                    "docstring": class_info.get("docstring", ""),
+                }
+            return components
+        except Exception as e:
+            print(f"🚨 ERROR in _create_components_field: {e}")
+            return {}
 
     def _extract_file_structure(self, tree: ast.AST, content: str) -> None:
         """Extract file structure information"""

@@ -53,6 +53,10 @@ class MethodGenerator:
                     }
                     parameters.append(param)
 
+            # Remove 'self' parameter if it exists in the parameters list
+            # since it's added automatically by the method generator
+            parameters = [p for p in parameters if p.get("name") != "self"]
+
             # Ensure return_type is a string
             if hasattr(return_type, "__str__"):
                 return_type = str(return_type)

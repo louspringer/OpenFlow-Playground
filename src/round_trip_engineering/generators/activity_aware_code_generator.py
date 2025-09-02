@@ -36,6 +36,24 @@ class ActivityAwareCodeGenerator(CodeGenerator):
         super().__init__()
         logger.info("✅ Activity-aware code generator initialized")
 
+    def generate_code(self, extracted_model: Dict[str, Any], target_language: str = "python") -> str:
+        """
+        Generate code from an extracted model (standard interface).
+        
+        This method provides the standard interface expected by tests and other components.
+        It delegates to the activity-aware generation with empty activity models.
+        
+        Args:
+            extracted_model: The extracted model from reverse engineering
+            target_language: Target programming language (default: python)
+            
+        Returns:
+            str: Generated code
+        """
+        # Use empty activity models for standard generation
+        empty_activity_models = {}
+        return self.generate_with_activity_models(extracted_model, empty_activity_models, target_language)
+
     def generate_with_activity_models(
         self,
         extracted_model: Dict[str, Any],

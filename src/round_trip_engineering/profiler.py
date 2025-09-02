@@ -10,7 +10,7 @@ import cProfile
 import logging
 import pstats
 import time
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 # Setup logger for RM compliance
 logger = logging.getLogger(__name__)
@@ -88,14 +88,38 @@ class Profiler:
 
         # Get top functions by cumulative time
         stats_data["top_functions"] = []
-        if hasattr(self.profile_stats, "get_stats_profile"):
-            # Newer pstats interface
-            stats = self.profile_stats.get_stats_profile()
-            for func, (cc, nc, tt, ct, callers) in stats.items():
-                if tt > 0:  # Only include functions with time
-                    stats_data["top_functions"].append({"function": str(func), "call_count": cc, "cumulative_time": tt, "per_call_time": tt / cc if cc > 0 else 0})
-        else:
-            # Fallback for older pstats
+        try:
+            if hasattr(self.profile_stats, "get_stats_profile"):
+                # Newer pstats interface
+                stats = self.profile_stats.get_stats_profile()
+                # Handle StatsProfile object properly
+                if hasattr(stats, "func_profiles") and stats.func_profiles:
+                    # StatsProfile interface: stats.func_profiles[name] = FunctionProfile
+                    for func_name, profile in stats.func_profiles.items():
+                        # Handle ncalls format like "3540/20" or "1"
+                        ncalls_str = str(profile.ncalls)
+                        if '/' in ncalls_str:
+                            ncalls = int(ncalls_str.split('/')[0])
+                        else:
+                            ncalls = int(ncalls_str)
+                        
+                        if ncalls > 0:  # Only include functions that were called
+                            stats_data["top_functions"].append(
+                                {
+                                    "function": func_name,
+                                    "call_count": profile.ncalls,
+                                    "cumulative_time": profile.cumtime,
+                                    "per_call_time": profile.percall_cumtime,
+                                }
+                            )
+                else:
+                    # Fallback for different pstats interface
+                    stats_data["top_functions"] = [{"function": "profiling_data", "call_count": 0, "cumulative_time": 0, "per_call_time": 0}]
+            else:
+                # Fallback for older pstats
+                stats_data["top_functions"] = [{"function": "profiling_data", "call_count": 0, "cumulative_time": 0, "per_call_time": 0}]
+        except Exception as e:
+            logger.warning(f"Failed to extract profiling data: {e}")
             stats_data["top_functions"] = [{"function": "profiling_data", "call_count": 0, "cumulative_time": 0, "per_call_time": 0}]
 
         # Sort by cumulative time

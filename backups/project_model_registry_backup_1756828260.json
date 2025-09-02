@@ -4468,12 +4468,6 @@
       "domain": "general",
       "implementation": "",
       "test": ""
-    },
-    {
-      "requirement": "Successfully implemented PDCA loop to fix logic bomb in round-trip engineering system. Key lessons: Always use model-first approach and AST capabilities, fix root causes not symptoms, validate end-to-end workflows, use project model registry for domain-specific tools, follow RM principles. The logic bomb was caused by missing generate_code method in ActivityAwareCodeGenerator - tests passed but system was broken. Proper fix required AST analysis and model-first approach.",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
     }
   ],
   "implementation_plan": {
