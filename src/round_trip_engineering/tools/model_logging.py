@@ -67,7 +67,7 @@ class ModelProfiler:
             "min_duration_ms": min(m.duration_ms for m in self.metrics),
             "average_memory_mb": sum(m.memory_usage_mb or 0 for m in self.metrics) / len(self.metrics),
             "max_memory_mb": max(m.memory_usage_mb or 0 for m in self.metrics),
-            "recent_operations": [m.dict() for m in self.metrics[-10:]],  # Last 10 operations
+            "recent_operations": [m.model_dump() for m in self.metrics[-10:]],  # Last 10 operations
         }
 
 
@@ -217,7 +217,7 @@ class ModelLogger:
         metrics_data = {
             "timestamp": datetime.now().isoformat(),
             "summary": self.profiler.get_summary(),
-            "all_metrics": [metric.dict() for metric in self.profiler.metrics],
+            "all_metrics": [metric.model_dump() for metric in self.profiler.metrics],
         }
 
         with open(f"logs/{filename}", "w") as f:

@@ -3,7 +3,7 @@ Pydantic schemas for model validation and type safety.
 """
 
 from typing import Dict, List, Optional, Any, Union
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 from datetime import datetime
 
 
@@ -52,7 +52,8 @@ class ProjectModel(BaseModel):
     use_cases: List[Dict[str, Any]] = Field(default_factory=list, description="Use cases")
     meta: Dict[str, Any] = Field(default_factory=dict, description="Meta information")
 
-    @validator("domain_architecture")
+    @field_validator("domain_architecture")
+    @classmethod
     def validate_domain_architecture(cls, v):
         """Validate domain architecture structure."""
         for category_name, category_info in v.items():
@@ -60,7 +61,8 @@ class ProjectModel(BaseModel):
                 raise ValueError(f"Category info for '{category_name}' cannot be None")
         return v
 
-    @validator("domains")
+    @field_validator("domains")
+    @classmethod
     def validate_domains(cls, v):
         """Validate domains structure."""
         for domain_name, domain_info in v.items():
@@ -120,5 +122,4 @@ class LogEntry(BaseModel):
     target_model: Optional[str] = Field(None, description="Target model name")  # Fixed: was model_name
     details: Optional[Dict[str, Any]] = Field(None, description="Additional details")
 
-    class Config:
-        protected_namespaces = ()  # Disable protected namespace warnings
+    model_config = ConfigDict(protected_namespaces=())  # Disable protected namespace warnings
