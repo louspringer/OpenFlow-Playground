@@ -1,0 +1,274 @@
+{
+  "summary": {
+    "total_domains": 8,
+    "fully_compliant": 2,
+    "partially_compliant": 3,
+    "non_compliant": 3,
+    "overall_compliance_percentage": 25.0,
+    "average_compliance_score": 0.48
+  },
+  "compliance_groups": {
+    "fully_compliant": [
+      "ghostbusters",
+      "round_trip_engineering"
+    ],
+    "partially_compliant": [
+      "ssh_key_management",
+      "model_driven_testing",
+      "project_management"
+    ],
+    "non_compliant": [
+      "reflective_modules",
+      "model_driven_projection",
+      "secure_shell_service"
+    ]
+  },
+  "domain_details": {
+    "reflective_modules": {
+      "compliance_level": "none",
+      "implementation_count": 0,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.2,
+      "implementations": []
+    },
+    "ghostbusters": {
+      "compliance_level": "full",
+      "implementation_count": 3,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.8,
+      "implementations": [
+        {
+          "file_path": "src/ghostbusters/reflective_module_interfaces.py",
+          "class_name": "ReflectiveModule",
+          "interface_type": "ReflectiveModule"
+        },
+        {
+          "file_path": "src/ghostbusters/reflective_module_interfaces.py",
+          "class_name": "RecoveryReflectiveModule",
+          "interface_type": "ReflectiveModule"
+        },
+        {
+          "file_path": "src/ghostbusters/reflective_module_interfaces.py",
+          "class_name": "ValidationReflectiveModule",
+          "interface_type": "ReflectiveModule"
+        }
+      ]
+    },
+    "round_trip_engineering": {
+      "compliance_level": "full",
+      "implementation_count": 28,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 1.0,
+      "implementations": [
+        {
+          "file_path": "src/round_trip_engineering/demo/demo_orchestrator_focused.py",
+          "class_name": "DemoOrchestrator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/demo/demo_orchestrator.py",
+          "class_name": "DemoOrchestrator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/tools/project_model_manager.py",
+          "class_name": "ProjectModelManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/tools/ontology_model_manager.py",
+          "class_name": "OntologyModelManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/tools/neo4j_model_manager.py",
+          "class_name": "Neo4jModelManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/tools/model_crud_manager.py",
+          "class_name": "ModelCrudManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/core/round_trip_orchestrator.py",
+          "class_name": "RoundTripOrchestrator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/reverse_engineering/enhanced_reverse_engineer.py",
+          "class_name": "EnhancedReverseEngineer",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/design_model_manager.py",
+          "class_name": "DesignModelManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/type_normalizer.py",
+          "class_name": "TypeNormalizer",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/extracted_model_processor.py",
+          "class_name": "ExtractedModelProcessor",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/data_cleaner.py",
+          "class_name": "DataCleaner",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/model_persistence.py",
+          "class_name": "ModelPersistence",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/models/component_manager.py",
+          "class_name": "ComponentManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/alignment/vocabulary_aligner.py",
+          "class_name": "VocabularyAligner",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/extracted_model_code_generator.py",
+          "class_name": "ExtractedModelCodeGenerator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/base_reflective_module.py",
+          "class_name": "BaseReflectiveModule",
+          "interface_type": "ReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/test_generation_manager.py",
+          "class_name": "TestGenerationManager",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/code_quality_validator.py",
+          "class_name": "CodeQualityValidator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/module_domain_generator.py",
+          "class_name": "ModuleDomainGenerator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/method_validator.py",
+          "class_name": "MethodValidator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/operational_methods_generator.py",
+          "class_name": "OperationalMethodsGenerator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/design_model_generator.py",
+          "class_name": "DesignModelGenerator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/class_structure_generator.py",
+          "class_name": "ClassStructureGenerator",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/code_cleaner.py",
+          "class_name": "CodeCleaner",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/type_handler.py",
+          "class_name": "TypeHandler",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/generators/method_processor.py",
+          "class_name": "MethodCompleter",
+          "interface_type": "BaseReflectiveModule"
+        },
+        {
+          "file_path": "src/round_trip_engineering/voice_integration/voice_control.py",
+          "class_name": "VoiceControlIntegration",
+          "interface_type": "BaseReflectiveModule"
+        }
+      ]
+    },
+    "ssh_key_management": {
+      "compliance_level": "partial",
+      "implementation_count": 1,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.4,
+      "implementations": [
+        {
+          "file_path": "src/ssh_key_management/ssh_key_manager.py",
+          "class_name": "SSHKeyManager",
+          "interface_type": "ReflectiveModule"
+        }
+      ]
+    },
+    "model_driven_testing": {
+      "compliance_level": "partial",
+      "implementation_count": 2,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.6,
+      "implementations": [
+        {
+          "file_path": "src/model_driven_testing/test_generator_ARCHIVED_1740_lines.py",
+          "class_name": "PythonUnitTestGenerator",
+          "interface_type": "ReflectiveModule"
+        },
+        {
+          "file_path": "src/model_driven_testing/test_generator.py",
+          "class_name": "TestGenerator",
+          "interface_type": "ReflectiveModule"
+        }
+      ]
+    },
+    "model_driven_projection": {
+      "compliance_level": "none",
+      "implementation_count": 0,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.2,
+      "implementations": []
+    },
+    "secure_shell_service": {
+      "compliance_level": "none",
+      "implementation_count": 0,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.2,
+      "implementations": []
+    },
+    "project_management": {
+      "compliance_level": "partial",
+      "implementation_count": 1,
+      "requirements_count": 10,
+      "rm_requirements_count": 2,
+      "compliance_score": 0.4,
+      "implementations": [
+        {
+          "file_path": "src/project_management/rm_compliance_checker.py",
+          "class_name": "RMComplianceChecker",
+          "interface_type": "ReflectiveModule"
+        }
+      ]
+    }
+  },
+  "generated_at": 329887.735162916,
+  "generated_by": "RMComplianceChecker"
+}
