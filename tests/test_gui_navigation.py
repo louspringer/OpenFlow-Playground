@@ -14,10 +14,21 @@ from playwright.sync_api import sync_playwright, Page, expect
 import subprocess
 import signal
 import psutil
+import requests
 
 # Test configuration
 SCREENSHOT_DIR = Path("test_screenshots")
 SCREENSHOT_DIR.mkdir(exist_ok=True)
+
+# Skip GUI tests if Streamlit server is not available
+def skip_if_no_streamlit():
+    """Skip test if Streamlit server is not available."""
+    try:
+        response = requests.get("http://localhost:8501/_stcore/health", timeout=2)
+        if response.status_code != 200:
+            pytest.skip("Streamlit server not available")
+    except Exception:
+        pytest.skip("Streamlit server not available")
 
 
 class StreamlitTestServer:
@@ -92,6 +103,14 @@ class GUITestBase:
     @pytest.fixture(autouse=True)
     def setup_teardown(self):
         """Setup and teardown for each test."""
+        # Check if Streamlit server is available before starting
+        try:
+            response = requests.get("http://localhost:8501/_stcore/health", timeout=2)
+            if response.status_code != 200:
+                pytest.skip("Streamlit server not available")
+        except Exception:
+            pytest.skip("Streamlit server not available")
+        
         self.server = StreamlitTestServer()
         self.server.start()
 
