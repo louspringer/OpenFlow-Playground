@@ -10,3 +10,6 @@
 [submodule "external/voice-mode"]
 	path = external/voice-mode
 	url = https://github.com/mbailey/voicemode.git
+[submodule "hackathon/code_with_kiro"]
+	path = hackathon/code_with_kiro
+	url = https://github.com/nkllon/kiro-ai-development-hackathon.git
