@@ -8,28 +8,33 @@ from typing import List, Dict, Any
 
 class PerformanceDemoClass0:
     """Performance demo class iteration 0."""
-
+    
     def __init__(self, name: str):
         self.name = name
         self.counter = 0
         self.data = {}
-
+    
     def increment(self) -> int:
         """Increment counter and return new value."""
         self.counter += 1
         return self.counter
-
+    
     def add_data(self, key: str, value: Any) -> None:
         """Add data to the internal dictionary."""
         self.data[key] = value
-
+    
     def get_data(self, key: str) -> Any:
         """Get data by key."""
         return self.data.get(key)
-
+    
     def get_summary(self) -> Dict[str, Any]:
         """Get summary of the class state."""
-        return {"name": self.name, "counter": self.counter, "data_keys": list(self.data.keys()), "data_count": len(self.data)}
+        return {
+            "name": self.name,
+            "counter": self.counter,
+            "data_keys": list(self.data.keys()),
+            "data_count": len(self.data)
+        }
 
 
 def performance_demo_function0(value: int) -> str:

@@ -17,7 +17,7 @@ from src.ghostbusters.agents import (
     CodeQualityExpert,
     ModelExpert,
     SecurityExpert,
-    TestExpert,
+    TestIssueExpert,
 )
 from src.ghostbusters.ghostbusters_orchestrator import (
     GhostbustersOrchestrator,
@@ -35,7 +35,7 @@ from src.ghostbusters.validators import (
     CodeQualityValidator,
     ModelValidator,
     SecurityValidator,
-    TestValidator,
+    TestIssueValidator,
 )
 
 
@@ -60,7 +60,7 @@ class TestGhostbustersOrchestrator:
         # Check that agents are instances of the correct classes
         assert isinstance(orchestrator.agents["security"], SecurityExpert)
         assert isinstance(orchestrator.agents["code_quality"], CodeQualityExpert)
-        assert isinstance(orchestrator.agents["test"], TestExpert)
+        assert isinstance(orchestrator.agents["test"], TestIssueExpert)
         assert isinstance(orchestrator.agents["build"], BuildExpert)
         assert isinstance(orchestrator.agents["architecture"], ArchitectureExpert)
         assert isinstance(orchestrator.agents["model"], ModelExpert)
@@ -72,7 +72,7 @@ class TestGhostbustersOrchestrator:
         # Check that validators are instances of the correct classes
         assert isinstance(orchestrator.validators["security"], SecurityValidator)
         assert isinstance(orchestrator.validators["code_quality"], CodeQualityValidator)
-        assert isinstance(orchestrator.validators["test"], TestValidator)
+        assert isinstance(orchestrator.validators["test"], TestIssueValidator)
         assert isinstance(orchestrator.validators["build"], BuildValidator)
         assert isinstance(orchestrator.validators["architecture"], ArchitectureValidator)
         assert isinstance(orchestrator.validators["model"], ModelValidator)

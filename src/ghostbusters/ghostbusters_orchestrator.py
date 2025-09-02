@@ -50,7 +50,7 @@ from .agents import (
     MCPExpert,
     ModelExpert,
     SecurityExpert,
-    TestExpert,
+    TestIssueExpert,
 )
 from .recovery import (
     ImportResolver,
@@ -64,7 +64,7 @@ from .validators import (
     CodeQualityValidator,
     ModelValidator,
     SecurityValidator,
-    TestValidator,
+    TestIssueValidator,
 )
 
 
@@ -96,7 +96,7 @@ class GhostbustersOrchestrator:
         self.agents = {
             "security": SecurityExpert(),
             "code_quality": CodeQualityExpert(),
-            "test": TestExpert(),
+            "test": TestIssueExpert(),
             "build": BuildExpert(),
             "architecture": ArchitectureExpert(),
             "model": ModelExpert(),
@@ -107,7 +107,7 @@ class GhostbustersOrchestrator:
         self.validators = {
             "security": SecurityValidator(),
             "code_quality": CodeQualityValidator(),
-            "test": TestValidator(),
+            "test": TestIssueValidator(),
             "build": BuildValidator(),
             "architecture": ArchitectureValidator(),
             "model": ModelValidator(),

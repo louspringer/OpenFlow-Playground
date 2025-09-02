@@ -17,7 +17,7 @@ from .service_interfaces import (
 from .agents import (
     SecurityExpert,
     CodeQualityExpert,
-    TestExpert,
+    TestIssueExpert,
     BuildExpert,
     ArchitectureExpert,
     ModelExpert,
@@ -36,7 +36,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
         self.perspectives = {
             "security": SecurityExpert(),
             "code_quality": CodeQualityExpert(),
-            "test": TestExpert(),
+            "test": TestIssueExpert(),
             "build": BuildExpert(),
             "architecture": ArchitectureExpert(),
             "model": ModelExpert(),
@@ -201,7 +201,7 @@ class MultiPerspectiveService(MultiPerspectiveServiceInterface):
         perspective_keywords = {
             "security": ["security", "SecurityExpert"],
             "code_quality": ["code quality", "CodeQualityExpert", "quality"],
-            "test": ["test", "TestExpert", "testing"],
+            "test": ["test", "TestIssueExpert", "testing"],
             "build": ["build", "BuildExpert", "build"],
             "architecture": ["architecture", "ArchitectureExpert", "architectural"],
             "model": ["model", "ModelExpert", "model-driven"],

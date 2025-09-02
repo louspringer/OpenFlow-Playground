@@ -7,13 +7,13 @@ from .code_quality_expert import CodeQualityExpert
 from .mcp_expert import MCPExpert
 from .model_expert import ModelExpert
 from .security_expert import SecurityExpert
-from .test_expert import TestExpert
+from .test_expert import TestIssueExpert
 
 __all__ = [
     "BaseExpert",
     "SecurityExpert",
     "CodeQualityExpert",
-    "TestExpert",
+    "TestIssueExpert",
     "BuildExpert",
     "ArchitectureExpert",
     "ModelExpert",

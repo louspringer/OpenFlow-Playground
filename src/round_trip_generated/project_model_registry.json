@@ -244,7 +244,7 @@ traceability.",
         "BaseExpert",
         "SecurityExpert",
         "CodeQualityExpert",
-        "TestExpert",
+        "TestIssueExpert",
         "BuildExpert",
         "ArchitectureExpert",
         "ModelExpert",
@@ -628,7 +628,7 @@ via UV",
     {
       "requirement": "Ghostbusters agent orchestration",
       "domain": "ghostbusters",
-"implementation": "SecurityExpert, CodeQualityExpert, TestExpert, BuildExpert
+"implementation": "SecurityExpert, CodeQualityExpert, TestIssueExpert, BuildExpert
 orchestration",
       "test": "test_requirement_41_ghostbusters_orchestration"
     },
