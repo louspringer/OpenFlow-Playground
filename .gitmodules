@@ -16,3 +16,6 @@
 [submodule "hackathon/kiro-ai-development-hackathon"]
 	path = hackathon/kiro-ai-development-hackathon
 	url = https://github.com/nkllon/kiro-ai-development-hackathon.git
+[submodule "ackbert"]
+	path = ackbert
+	url = https://github.com/louspringer/ackbert.git
