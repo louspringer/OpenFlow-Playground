@@ -5015,12 +5015,6 @@
       "test": "tests/test_performance_benchmark.py",
       "implementation": "src/gmail_calendar_rm/performance_benchmark.py",
       "documentation": "RM_ARCHITECTURAL_ANALYSIS.md"
-    },
-    {
-      "requirement": "Requirements for vision projection framework with MIRV capabilities",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
     }
   ],
   "implementation_plan": {

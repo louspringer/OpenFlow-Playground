@@ -1,0 +1,62 @@
+[
+  {
+    "id": "INC-2025-09-03-110858",
+    "title": "Safety Check Health Monitoring Violation",
+    "severity": "P1",
+    "type": "rm-violation",
+    "component": "safety-check",
+    "description": "Safety check hanging due to numpy dependency corruption, violating RM principles of self-monitoring, operational visibility, and graceful degradation",
+    "reporter": "system",
+    "status": "open",
+    "created_at": "2025-09-03T11:08:58.250402",
+    "updated_at": "2025-09-03T11:08:58.250404",
+    "assignee": null,
+    "resolution": null,
+    "lessons_learned": null
+  },
+  {
+    "id": "INC-2025-09-03-110902",
+    "title": "Model Management CLI Import Failure",
+    "severity": "P2",
+    "type": "cli-tool-failure",
+    "component": "model-crud",
+    "description": "CLI tool failing with ImportError due to relative import issues, violating RM single responsibility principle",
+    "reporter": "system",
+    "status": "open",
+    "created_at": "2025-09-03T11:09:02.392317",
+    "updated_at": "2025-09-03T11:09:02.392318",
+    "assignee": null,
+    "resolution": null,
+    "lessons_learned": null
+  },
+  {
+    "id": "INC-2025-09-03-110907",
+    "title": "Test Infrastructure Bus Error",
+    "severity": "P1",
+    "type": "test-infrastructure-failure",
+    "component": "pytest",
+    "description": "Fatal Python error: Bus error during test collection, likely due to bcrypt/numpy dependency corruption",
+    "reporter": "system",
+    "status": "open",
+    "created_at": "2025-09-03T11:09:07.136972",
+    "updated_at": "2025-09-03T11:09:07.136974",
+    "assignee": null,
+    "resolution": null,
+    "lessons_learned": null
+  },
+  {
+    "id": "INC-2025-09-03-111610",
+    "title": "Safety Check Performance Violation",
+    "severity": "P1",
+    "type": "performance-violation",
+    "component": "safety-check",
+    "description": "Safety check exceeds 3-second performance requirement, timing out at 5+ seconds, violating REQ-PERF-002",
+    "reporter": "system",
+    "status": "open",
+    "created_at": "2025-09-03T11:16:10.939192",
+    "updated_at": "2025-09-03T11:16:10.939194",
+    "assignee": null,
+    "resolution": null,
+    "lessons_learned": null
+  }
+]

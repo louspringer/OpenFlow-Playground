@@ -10,9 +10,10 @@ include makefiles/activity-models.mk
 include makefiles/domains.mk
 include makefiles/testing.mk
 include makefiles/installation.mk
+include makefiles/rdi.mk
 
 # Main targets
-.PHONY: help status status-quick status-dashboard status-clean
+.PHONY: help status status-quick status-dashboard status-clean visionary-doc marketing-campaign
 
 # Default target
 .DEFAULT_GOAL := help
@@ -67,12 +68,23 @@ help: ## Show this help message
 	@echo "  validate-rm-interfaces          - Validate Reflective Module interfaces"
 	@echo "  check-architectural-boundaries  - Check architectural boundaries"
 	@echo ""
+	@echo "$(PURPLE)RDI Methodology:$(NC)"
+	@echo "  rdi-requirements     - Validate and manage requirements"
+	@echo "  rdi-design          - Validate and manage design specifications"
+	@echo "  rdi-implementation  - Validate and manage implementation"
+	@echo "  rdi-validation      - Run full RDI validation cycle"
+	@echo "  rdi-performance     - Run performance testing"
+	@echo "  rdi-traceability    - Check requirements→design→implementation traceability"
+	@echo "  rdi-full-cycle      - Run complete RDI cycle"
+	@echo ""
 	@echo "$(PURPLE)Examples:$(NC)"
 	@echo "  make smart-commit      - Run preprocessing, then commit"
 	@echo "  make test              - Run all tests"
 	@echo "  make install           - Install all dependencies"
 	@echo "  make ghostbusters      - Test Ghostbusters system"
 	@echo "  make round-trip-engineering - Test round-trip engineering system"
+	@echo "  make visionary-doc     - Generate visionary documentation"
+	@echo "  make marketing-campaign - Generate marketing campaign MIRV"
 
 status: ## Show comprehensive project status
 	@echo "$(CYAN)🚀 OpenFlow Playground - Comprehensive Status Report$(NC)"
@@ -103,6 +115,12 @@ status: ## Show comprehensive project status
 	@echo "  ✅ No direct command execution allowed"
 	@echo "  ✅ Comprehensive coverage of project model"
 	@echo ""
+	@echo "$(BLUE)📋 RDI Methodology$(NC)"
+	@echo "  ✅ Requirements→Design→Implementation flow"
+	@echo "  ✅ RDI validation and traceability"
+	@echo "  ✅ RM compliance integration"
+	@echo "  ✅ Systematic development methodology"
+	@echo ""
 	@echo "$(RED)📋 Backlog Summary$(NC)"
 	@jq -r '.backlog[] | "  \(.priority | ascii_upcase): \(.title) (\(.status))"' $(MODEL_FILE) 2>/dev/null | head -10 || echo "  No backlog items found or jq not available"
 	@echo ""
@@ -131,6 +149,32 @@ status-clean: ## Show clean project status (no verbose output)
 	@echo "  Platform: $(PLATFORM)-$(ARCH)"
 	@echo "  Project: $(PROJECT_NAME)"
 	@echo "  Status: ✅ Modular Makefile System Active"
+
+visionary-doc: ## Generate visionary documentation
+	@echo "$(CYAN)🐢 Generating Visionary Documentation$(NC)"
+	@echo "$(BLUE)====================================$(NC)"
+	@echo ""
+	@echo "$(YELLOW)📖 Recursive Turtle Architecture Vision$(NC)"
+	@echo "$(GREEN)✅ Visionary document created: docs/RECURSIVE_TURTLE_ARCHITECTURE_VISION.md$(NC)"
+	@echo ""
+	@echo "$(PURPLE)🎯 Document Type: VISIONARY$(NC)"
+	@echo "$(PURPLE)🎯 Purpose: Revolutionary paradigm shift documentation$(NC)"
+	@echo "$(PURPLE)🎯 Audience: Industry leaders, early adopters, future innovators$(NC)"
+	@echo ""
+	@echo "$(GREEN)🚀 BEAST MODE: Visionary document creation complete!$(NC)"
+
+marketing-campaign: ## Generate marketing campaign MIRV
+	@echo "$(CYAN)🎯 Generating Marketing Campaign MIRV$(NC)"
+	@echo "$(BLUE)====================================$(NC)"
+	@echo ""
+	@echo "$(YELLOW)📊 Marketing Campaign Generator$(NC)"
+	@uv run python src/vision_projection/marketing_campaign_generator.py
+	@echo ""
+	@echo "$(GREEN)✅ Marketing Campaign MIRV: Campaign assets generated$(NC)"
+	@echo "$(PURPLE)🎯 Campaign Plan: marketing_campaign_plan.json$(NC)"
+	@echo "$(PURPLE)🎯 Campaign Strategy: docs/MARKETING_CAMPAIGN_MIRV.md$(NC)"
+	@echo ""
+	@echo "$(GREEN)🚀 BEAST MODE: Marketing Campaign MIRV deployment complete!$(NC)"
 
 backlog: ## Show detailed backlog information
 	@echo "$(CYAN)📋 OpenFlow Playground - Backlog Status$(NC)"

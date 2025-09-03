@@ -1,0 +1,13 @@
+[
+  {
+    "id": "QUAL-20250903-112407",
+    "component": "response_time",
+    "metric": "response_time",
+    "threshold_violation": 0.5,
+    "impact": "Medium - Noticeable performance impact",
+    "root_cause": "Threshold violation detected",
+    "resolution": "Investigation required",
+    "timestamp": "2025-09-03 11:24:07.615887",
+    "lessons_learned": ""
+  }
+]

@@ -35,17 +35,16 @@ repos:
   #       exclude: ^(tests/|\.venv/|\.mypy_cache/|__pycache__/)
   #       pass_filenames: false
 
-  # Dependency vulnerability scanning (Safety is installed via UV)
-  # TEMPORARILY DISABLED due to numpy dependency corruption
-  # - repo: local
-  #   hooks:
-  #     - id: safety-check
-  #       name: Safety Check
-  #       entry: uv run safety check
-  #       language: system
-  #       pass_filenames: false
-  #       always_run: true
-  #       description: Check for known security vulnerabilities in dependencies
+  # Dependency vulnerability scanning with RM-compliant wrapper
+  - repo: local
+    hooks:
+      - id: safety-check
+        name: Safety Check (RM-Compliant)
+        entry: uv run python scripts/safety_check_wrapper.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        description: Check for security vulnerabilities with timeout
 
   # YAML validation
   - repo: https://github.com/adrienverge/yamllint
