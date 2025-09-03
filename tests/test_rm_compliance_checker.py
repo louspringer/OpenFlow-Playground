@@ -7,6 +7,7 @@ Tests the RM Compliance Checker Reflective Module functionality.
 
 import asyncio
 import pytest
+import pytest_asyncio
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -16,7 +17,7 @@ from src.project_management.rm_compliance_checker import RMComplianceChecker, RM
 class TestRMComplianceChecker:
     """Test cases for RM Compliance Checker."""
 
-    @pytest.fixture
+    @pytest_asyncio.fixture
     async def compliance_checker(self):
         """Create a test RM Compliance Checker."""
         checker = RMComplianceChecker(project_root=".")

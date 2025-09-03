@@ -1,0 +1,245 @@
+---
+description: PDCA Plan for Test Failure Remediation - Model-Driven RM Compliance
+alwaysApply: true
+globs: "*.py,*.mdc,*.json,*.md"
+---
+
+# 🎯 PDCA Plan: Test Failure Remediation with RM Compliance
+
+## 📋 PLAN Phase - Model-Driven Analysis
+
+### 🎯 **Objective**
+Remediate 28 test failures while enforcing Reflective Module (RM) principles, using Ghostbusters for decision confidence, and maintaining comprehensive logging and profiling.
+
+### 🔍 **Current State Analysis**
+- **Total Tests**: 825 (791 passed, 28 failed, 6 skipped)
+- **Success Rate**: 95.9% (excellent baseline)
+- **Critical Issues**: 4 main categories requiring systematic remediation
+
+### 🏗️ **Model-Driven Architecture Compliance**
+Based on project_model_registry.json analysis:
+- **Domain Architecture**: 100 domains with RM compliance standard
+- **Core Principle**: "RM Compliance - Consistent interfaces and health monitoring"
+- **Tool Integration**: Ghostbusters, intelligent linter system, multi-agent testing
+
+### 📊 **Failure Categories (AST Profiler Combo Analysis)**
+
+#### **Category 1: Abstract Class Implementation Issues**
+- **Root Cause**: Missing `detect_delusions` method in `BaseExpert`
+- **Impact**: 1 critical failure blocking expert system initialization
+- **RM Compliance**: Violates Single Responsibility Principle
+
+#### **Category 2: Async/Await Pattern Issues**
+- **Root Cause**: Fixtures returning `async_generator` instead of instances
+- **Impact**: 12 failures in agent coordination and RM compliance checker
+- **RM Compliance**: Violates Operational Visibility principle
+
+#### **Category 3: Reflective Module Interface Issues**
+- **Root Cause**: Missing `get_module_health` method, excessive line count
+- **Impact**: 8 failures in demo orchestrator and enhanced requirements
+- **RM Compliance**: Violates Self-Reporting and Architecture Boundaries
+
+#### **Category 4: Mock/Test Configuration Issues**
+- **Root Cause**: Improper mock object configuration
+- **Impact**: 7 failures in demo system tests
+- **RM Compliance**: Violates Testability principle
+
+## 🚀 DO Phase - Systematic Implementation
+
+### **Phase 1: Ghostbusters Analysis & Decision Confidence**
+```bash
+# Use Ghostbusters for delusion detection and recovery
+make ghostbusters
+uv run python src/ghostbusters/ghostbusters_orchestrator.py --target tests/
+```
+
+**RM Compliance Actions:**
+- Enable comprehensive logging for all Ghostbusters operations
+- Capture profiling data for decision confidence metrics
+- Generate activity models for test failure patterns
+
+### **Phase 2: Abstract Class Implementation (RM Single Responsibility)**
+**Target**: `src/ghostbusters/agents/base_expert.py`
+
+**Actions:**
+1. Implement missing `detect_delusions` method
+2. Add comprehensive logging and profiling
+3. Ensure RM interface compliance
+4. Add health monitoring capabilities
+
+**RM Compliance Requirements:**
+- Self-Monitoring: Log all delusion detection operations
+- Self-Reporting: Provide health indicators
+- Single Responsibility: Focus on delusion detection only
+- Operational Visibility: Track detection metrics
+
+### **Phase 3: Async/Await Pattern Fixes (RM Operational Visibility)**
+**Target**: Test fixtures in `tests/test_agent_coordination.py` and `tests/test_rm_compliance_checker.py`
+
+**Actions:**
+1. Add `@pytest_asyncio.fixture` decorators
+2. Fix fixture return types (generators → instances)
+3. Implement proper async context management
+4. Add comprehensive error handling
+
+**RM Compliance Requirements:**
+- Operational Visibility: Clear async operation tracking
+- Testability: Proper fixture lifecycle management
+- Self-Monitoring: Log async operation failures
+
+### **Phase 4: Reflective Module Interface Compliance (RM Self-Reporting)**
+**Target**: `src/round_trip_engineering/demo/demo_orchestrator.py`
+
+**Actions:**
+1. Add missing `get_module_health` method
+2. Refactor to meet 200-line limit (current: 532 lines)
+3. Implement missing `_create_basic_design_spec` method
+4. Add comprehensive health monitoring
+
+**RM Compliance Requirements:**
+- Self-Reporting: Complete health indicator implementation
+- Architecture Boundaries: Proper module separation
+- Single Responsibility: Focused module responsibilities
+
+### **Phase 5: Mock Configuration Fixes (RM Testability)**
+**Target**: Demo system test files
+
+**Actions:**
+1. Fix mock object configurations
+2. Ensure proper return values for mocked methods
+3. Add comprehensive test logging
+4. Implement proper error simulation
+
+**RM Compliance Requirements:**
+- Testability: Reliable mock configurations
+- Self-Monitoring: Test execution logging
+- Operational Visibility: Clear test failure reporting
+
+## 🔍 CHECK Phase - Validation & Monitoring
+
+### **AST Profiler Combo Validation**
+```python
+# Use AST analysis for structural validation
+import ast
+import cProfile
+import pstats
+
+# 1. AST Analysis - Structural validation
+def validate_ast_structure(file_path):
+    with open(file_path, 'r') as f:
+        tree = ast.parse(f.read())
+    return ast.walk(tree)
+
+# 2. Runtime Profiling - Behavioral validation
+def profile_test_execution():
+    profiler = cProfile.Profile()
+    profiler.enable()
+    # Run tests
+    profiler.disable()
+    stats = pstats.Stats(profiler)
+    return stats
+
+# 3. Behavioral Evidence - Match expected vs actual
+def validate_rm_compliance(module):
+    expected_methods = ['get_module_status', 'get_module_capabilities', 'is_healthy']
+    actual_methods = [method for method in dir(module) if not method.startswith('_')]
+    return all(method in actual_methods for method in expected_methods)
+```
+
+### **Comprehensive Test Validation**
+```bash
+# Run full test suite with logging and profiling
+make test 2>&1 | tee test_results.log
+uv run python scripts/test_analyzer.py --input test_results.log --output test_analysis.json
+```
+
+### **RM Compliance Validation**
+```bash
+# Validate RM compliance across all modules
+uv run python src/rm_compliance_checker.py --target src/ --output rm_compliance_report.json
+```
+
+### **Ghostbusters Validation**
+```bash
+# Run Ghostbusters validation
+make ghostbusters --validate
+uv run python src/ghostbusters/validation/rm_compliance_validator.py
+```
+
+## 🎯 ACT Phase - Continuous Improvement
+
+### **Success Metrics**
+- **Test Pass Rate**: Target 100% (currently 95.9%)
+- **RM Compliance**: 100% compliance across all modules
+- **Ghostbusters Confidence**: >95% decision confidence
+- **Performance**: <30s test execution time
+
+### **Documentation Updates**
+1. Update project_model_registry.json with new requirements
+2. Document RM compliance patterns
+3. Update testing guidelines
+4. Create troubleshooting guide
+
+### **Monitoring & Alerting**
+1. Implement continuous test monitoring
+2. Set up RM compliance alerts
+3. Create performance dashboards
+4. Establish health check endpoints
+
+## 🛠️ **Implementation Tools & Commands**
+
+### **Ghostbusters Integration**
+```bash
+# Enable Ghostbusters for all operations
+export GHOSTBUSTERS_ENABLED=true
+export GHOSTBUSTERS_LOGGING_LEVEL=DEBUG
+export GHOSTBUSTERS_PROFILING=true
+
+# Run Ghostbusters analysis
+make ghostbusters --target tests/ --analysis-mode comprehensive
+```
+
+### **RM Compliance Enforcement**
+```bash
+# Validate RM compliance
+uv run python src/rm_compliance_checker.py --enforce --target src/
+uv run python src/rm_compliance_checker.py --validate --target tests/
+```
+
+### **Comprehensive Logging & Profiling**
+```bash
+# Enable comprehensive logging
+export LOG_LEVEL=DEBUG
+export ENABLE_PROFILING=true
+export PROFILING_OUTPUT_DIR=./profiling_results/
+
+# Run tests with full instrumentation
+make test --with-profiling --with-logging
+```
+
+## 🎯 **Expected Outcomes**
+
+### **Immediate Results**
+- 100% test pass rate
+- Complete RM compliance across all modules
+- Comprehensive logging and profiling data
+- High Ghostbusters decision confidence
+
+### **Long-term Benefits**
+- Robust test infrastructure
+- Self-healing system capabilities
+- Comprehensive monitoring and alerting
+- Model-driven development excellence
+
+## 📋 **Success Criteria**
+
+✅ **All 28 test failures resolved**
+✅ **100% RM compliance across all modules**
+✅ **Ghostbusters decision confidence >95%**
+✅ **Comprehensive logging and profiling implemented**
+✅ **Model-driven architecture maintained**
+✅ **Performance targets met (<30s test execution)**
+
+---
+
+**Remember**: This plan follows RM principles with comprehensive logging, profiling, and Ghostbusters integration for maximum decision confidence and system reliability.

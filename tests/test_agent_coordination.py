@@ -5,6 +5,7 @@ Tests for Agent Coordination Framework
 
 import asyncio
 import pytest
+import pytest_asyncio
 from datetime import datetime, timedelta
 
 from src.agent_coordination import (
@@ -24,7 +25,7 @@ from src.agent_coordination import (
 class TestAgentCoordination:
     """Test cases for agent coordination framework"""
 
-    @pytest.fixture
+    @pytest_asyncio.fixture
     async def coordinator(self):
         """Create a test coordinator"""
         coordinator = AgentCoordinator("test_coordinator")

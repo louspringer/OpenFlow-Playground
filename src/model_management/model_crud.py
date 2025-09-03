@@ -9,11 +9,16 @@ Single responsibility: CLI orchestration for model_management domain.
 """
 
 import sys
+import os
 from typing import Any, Dict
-from .cli_parser import create_parser
-from .domain_operations import DomainOperations
-from .model_operations import ModelOperations
-from .crud_operations import CrudOperations
+
+# Add src to path for absolute imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+
+from src.model_management.cli_parser import create_parser
+from src.model_management.domain_operations import DomainOperations
+from src.model_management.model_operations import ModelOperations
+from src.model_management.crud_operations import CrudOperations
 
 
 class ModelManagementCLI:

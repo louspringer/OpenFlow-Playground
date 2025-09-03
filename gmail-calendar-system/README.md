@@ -1,0 +1,271 @@
+# Gmail-to-Calendar System
+
+A protocol-driven system for reading Gmail and adding events to Google Calendar with conflict checks, confirmations, and auditability. Designed for integration with LLM/agent systems via MCP (Model Context Protocol) tools.
+
+## 🎯 Features
+
+- **Gmail Integration**: Read emails, parse threads, extract attachments
+- **Calendar Management**: Create/update events with conflict detection
+- **ICS Parsing**: RFC 5545 compliant calendar file processing
+- **Natural Language Time**: Parse "this Friday 2:30-3pm", "tomorrow at noon"
+- **Conflict Detection**: Automatic conflict checking with alternative suggestions
+- **Idempotency**: Never duplicate events, even on reprocessing
+- **Audit Trails**: Complete operation logging and tracking
+- **MCP Tools**: Ready-to-use tools for LLM/agent integration
+- **OAuth2 Security**: Secure, least-privilege access to Google services
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install gmail-calendar-system
+```
+
+### Basic Usage
+
+```python
+from gmail_calendar_system import GmailCalendarOrchestrator
+from gmail_calendar_system.connectors import OAuthConfig
+
+# Configure OAuth
+gmail_config = OAuthConfig(
+    client_id="your-gmail-client-id",
+    client_secret="your-gmail-client-secret",
+    redirect_uri="http://localhost:8080/callback",
+    scopes=["https://www.googleapis.com/auth/gmail.readonly"]
+)
+
+calendar_config = OAuthConfig(
+    client_id="your-calendar-client-id",
+    client_secret="your-calendar-client-secret",
+    redirect_uri="http://localhost:8080/callback",
+    scopes=[
+        "https://www.googleapis.com/auth/calendar.readonly",
+        "https://www.googleapis.com/auth/calendar.events"
+    ]
+)
+
+# Create orchestrator
+orchestrator = GmailCalendarOrchestrator(
+    gmail_config=gmail_config,
+    calendar_config=calendar_config,
+    default_timezone="America/Denver"
+)
+
+# Process request
+result = await orchestrator.process_request(
+    "put Megan's meeting on my calendar",
+    user_id="user123"
+)
+
+print(f"Event created: {result['event_link']}")
+```
+
+### CLI Usage
+
+```bash
+# Setup OAuth credentials
+gmail-calendar setup
+
+# Process a request
+gmail-calendar process "put Megan's meeting on my calendar"
+
+# Test the system
+gmail-calendar test
+```
+
+## 🛠️ MCP Integration
+
+This package provides MCP tools for LLM/agent integration:
+
+### Google Calendar Tool
+
+```json
+{
+  "name": "google-calendar",
+  "functions": [
+    "find_conflicts",
+    "create_or_update_event",
+    "list_events",
+    "get_event",
+    "delete_event"
+  ]
+}
+```
+
+### Gmail Tool
+
+```json
+{
+  "name": "gmail",
+  "functions": [
+    "search_messages",
+    "read_thread",
+    "get_message",
+    "get_attachments",
+    "download_attachment"
+  ]
+}
+```
+
+### ICS Tool
+
+```json
+{
+  "name": "ics",
+  "functions": [
+    "parse",
+    "generate",
+    "validate"
+  ]
+}
+```
+
+## 📋 Configuration
+
+### OAuth Setup
+
+1. Create OAuth credentials in Google Cloud Console
+1. Download `credentials.json` files
+1. Configure scopes:
+   - Gmail: `https://www.googleapis.com/auth/gmail.readonly`
+   - Calendar: `https://www.googleapis.com/auth/calendar.events`
+
+### Environment Variables
+
+```bash
+export GMAIL_CLIENT_ID="your-gmail-client-id"
+export GMAIL_CLIENT_SECRET="your-gmail-client-secret"
+export CALENDAR_CLIENT_ID="your-calendar-client-id"
+export CALENDAR_CLIENT_SECRET="your-calendar-client-secret"
+export DEFAULT_TIMEZONE="America/Denver"
+export CONFIDENCE_THRESHOLD="0.85"
+```
+
+## 🏗️ Architecture
+
+### Core Components
+
+- **Connectors**: OAuth2 integration with Gmail and Calendar APIs
+- **Parsers**: ICS parsing and natural language time processing
+- **Orchestrator**: LangGraph-based workflow management
+- **Models**: Structured data models and contracts
+- **MCP Tools**: LLM/agent integration interfaces
+
+### Workflow
+
+```
+User Query → Intent Router → Email Locator → Meeting Extractor
+    ↓
+Time Normalizer → Conflict Check → Confirmation Gate → Calendar Write
+    ↓
+Notifier → Audit Log
+```
+
+## 🔒 Security
+
+- **OAuth2**: Secure, least-privilege access
+- **Token Encryption**: Encrypted storage with automatic refresh
+- **Audit Trails**: Complete operation logging
+- **Idempotency**: Never duplicate events
+- **Input Validation**: Comprehensive input sanitization
+
+## 📚 API Reference
+
+### GmailCalendarOrchestrator
+
+```python
+class GmailCalendarOrchestrator:
+    def __init__(
+        self,
+        gmail_config: OAuthConfig,
+        calendar_config: OAuthConfig,
+        default_timezone: str = "America/Denver",
+        confidence_threshold: float = 0.85
+    )
+    
+    async def process_request(
+        self, 
+        user_query: str, 
+        user_id: str = "default_user"
+    ) -> Dict[str, Any]
+```
+
+### EventCandidate
+
+```python
+@dataclass
+class EventCandidate:
+    summary: str
+    start_iso: str
+    end_iso: str
+    location: Optional[str] = None
+    description: Optional[str] = None
+    attendees: List[str] = field(default_factory=list)
+    source: SourceType = SourceType.MANUAL
+    idempotency_key: Optional[str] = None
+    confidence: float = 1.0
+```
+
+## 🧪 Testing
+
+```bash
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=gmail_calendar_system
+
+# Run specific test categories
+pytest -m unit
+pytest -m integration
+```
+
+## 📦 Development
+
+### Setup
+
+```bash
+git clone https://github.com/openflow-playground/gmail-calendar-system.git
+cd gmail-calendar-system
+pip install -e ".[dev]"
+```
+
+### Code Quality
+
+```bash
+# Format code
+black src/ tests/
+
+# Lint code
+flake8 src/ tests/
+
+# Type check
+mypy src/
+
+# Run pre-commit hooks
+pre-commit run --all-files
+```
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+1. Create a feature branch
+1. Make your changes
+1. Add tests
+1. Submit a pull request
+
+## 📞 Support
+
+- **Documentation**: [https://gmail-calendar-system.readthedocs.io](https://gmail-calendar-system.readthedocs.io)
+- **Issues**: [https://github.com/openflow-playground/gmail-calendar-system/issues](https://github.com/openflow-playground/gmail-calendar-system/issues)
+- **Discussions**: [https://github.com/openflow-playground/gmail-calendar-system/discussions](https://github.com/openflow-playground/gmail-calendar-system/discussions)
+
+______________________________________________________________________
+
+**Built with ❤️ for the OpenFlow-Playground project**

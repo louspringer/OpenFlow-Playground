@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "gmail": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "src/gmail_calendar_system/mcp_server.py"
+      ],
+      "env": {
+        "GMAIL_CLIENT_ID": "${GMAIL_CLIENT_ID}",
+        "GMAIL_CLIENT_SECRET": "${GMAIL_CLIENT_SECRET}",
+        "CALENDAR_CLIENT_ID": "${CALENDAR_CLIENT_ID}",
+        "CALENDAR_CLIENT_SECRET": "${CALENDAR_CLIENT_SECRET}",
+        "DEFAULT_TIMEZONE": "America/Denver",
+        "CONFIDENCE_THRESHOLD": "0.85"
+      }
+    },
+    "google-calendar": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "src/gmail_calendar_system/mcp_tools/google_calendar_tool.py"
+      ],
+      "env": {
+        "CALENDAR_CLIENT_ID": "${CALENDAR_CLIENT_ID}",
+        "CALENDAR_CLIENT_SECRET": "${CALENDAR_CLIENT_SECRET}"
+      }
+    },
+    "ics": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "src/gmail_calendar_system/mcp_tools/ics_tool.py"
+      ],
+      "env": {}
+    }
+  }
+}

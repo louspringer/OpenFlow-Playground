@@ -1,0 +1,18 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include setup.py
+recursive-include src/gmail_calendar_system *.py
+recursive-include src/gmail_calendar_system/mcp_tools *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.so
+recursive-exclude * .DS_Store
+recursive-exclude * .git*
+recursive-exclude * .pytest_cache
+recursive-exclude * .mypy_cache
+recursive-exclude * .coverage
+recursive-exclude * htmlcov
+recursive-exclude * dist
+recursive-exclude * build
+recursive-exclude * *.egg-info

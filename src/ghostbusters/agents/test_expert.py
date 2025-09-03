@@ -9,9 +9,9 @@ from .base_expert import BaseExpert, DelusionResult
 class TestIssueExpert(BaseExpert):
     """Expert agent for detecting test-related issues."""
 
-    def __init__(self) -> None:
+    def __init__(self, name: str = "TestIssueExpert") -> None:
         """Initialize the test issue expert."""
-        super().__init__("TestIssueExpert")
+        super().__init__(name)
 
     async def detect_delusions(self, project_path: Path) -> DelusionResult:
         """Detect test-related issues in the project."""

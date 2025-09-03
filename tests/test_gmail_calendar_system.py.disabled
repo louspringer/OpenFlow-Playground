@@ -1,0 +1,588 @@
+"""
+Comprehensive Test Suite for Gmail-to-Calendar System
+====================================================
+
+Tests all components including connectors, parsers, orchestrator, and MCP tools.
+"""
+
+import asyncio
+import json
+import pytest
+from datetime import datetime, timedelta
+from unittest.mock import AsyncMock, MagicMock, patch
+
+from src.gmail_calendar_system.models import (
+    EventCandidate, IdempotencyKey, SourceType, ConflictInfo,
+    ConfirmationRequest, EventResult, AuditLog
+)
+from src.gmail_calendar_system.connectors import GmailConnector, CalendarConnector, OAuthConfig
+from src.gmail_calendar_system.parsers import ICSParser, TimeNormalizer, TimeParseResult
+from src.gmail_calendar_system.orchestrator import GmailCalendarOrchestrator, OrchestratorState
+from src.gmail_calendar_system.mcp_tools.google_calendar_tool import GoogleCalendarMCPTool
+from src.gmail_calendar_system.mcp_tools.gmail_tool import GmailMCPTool
+from src.gmail_calendar_system.mcp_tools.ics_tool import ICSMCPTool
+
+
+class TestEventCandidate:
+    """Test EventCandidate model"""
+    
+    def test_event_candidate_creation(self):
+        """Test EventCandidate creation and serialization"""
+        candidate = EventCandidate(
+            summary="Test Meeting",
+            start_iso="2025-09-05T14:30:00-06:00",
+            end_iso="2025-09-05T15:00:00-06:00",
+            location="Conference Room A",
+            description="Test meeting description",
+            attendees=["test@example.com"],
+            source=SourceType.GMAIL,
+            confidence=0.9
+        )
+        
+        assert candidate.summary == "Test Meeting"
+        assert candidate.start_iso == "2025-09-05T14:30:00-06:00"
+        assert candidate.end_iso == "2025-09-05T15:00:00-06:00"
+        assert candidate.location == "Conference Room A"
+        assert candidate.attendees == ["test@example.com"]
+        assert candidate.source == SourceType.GMAIL
+        assert candidate.confidence == 0.9
+    
+    def test_event_candidate_serialization(self):
+        """Test EventCandidate to_dict and from_dict"""
+        original = EventCandidate(
+            summary="Test Meeting",
+            start_iso="2025-09-05T14:30:00-06:00",
+            end_iso="2025-09-05T15:00:00-06:00",
+            source=SourceType.ICS,
+            confidence=0.95
+        )
+        
+        # Serialize
+        data = original.to_dict()
+        assert data["summary"] == "Test Meeting"
+        assert data["source"] == "ics"
+        assert data["confidence"] == 0.95
+        
+        # Deserialize
+        restored = EventCandidate.from_dict(data)
+        assert restored.summary == original.summary
+        assert restored.start_iso == original.start_iso
+        assert restored.source == original.source
+        assert restored.confidence == original.confidence
+
+
+class TestIdempotencyKey:
+    """Test IdempotencyKey model"""
+    
+    def test_idempotency_key_creation(self):
+        """Test IdempotencyKey creation"""
+        key = IdempotencyKey("gmail", "12345")
+        assert str(key) == "gmail:12345"
+    
+    def test_idempotency_key_from_gmail(self):
+        """Test IdempotencyKey from Gmail message"""
+        key = IdempotencyKey.from_gmail_message("17889abcd")
+        assert str(key) == "gmail:17889abcd"
+    
+    def test_idempotency_key_from_ics(self):
+        """Test IdempotencyKey from ICS UID"""
+        key = IdempotencyKey.from_ics_uid("event-123@example.com")
+        assert str(key) == "ics:event-123@example.com"
+    
+    def test_idempotency_key_from_hash(self):
+        """Test IdempotencyKey from event hash"""
+        key = IdempotencyKey.from_event_hash(
+            "Meeting with Megan",
+            "2025-09-05T14:30:00-06:00",
+            "megan@example.com"
+        )
+        assert key.source_system == "manual"
+        assert len(key.identifier) == 16  # SHA256 truncated to 16 chars
+
+
+class TestICSParser:
+    """Test ICS parser functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.parser = ICSParser()
+        self.sample_ics = """BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Test//EN
+BEGIN:VEVENT
+UID:test-event-123@example.com
+DTSTART:20250905T143000Z
+DTEND:20250905T150000Z
+SUMMARY:Test Meeting
+DESCRIPTION:Test meeting description
+LOCATION:Conference Room A
+ATTENDEE:mailto:test@example.com
+END:VEVENT
+END:VCALENDAR"""
+    
+    def test_ics_parsing_success(self):
+        """Test successful ICS parsing"""
+        result = self.parser.parse(self.sample_ics)
+        
+        assert result is not None
+        assert result["summary"] == "Test Meeting"
+        assert result["description"] == "Test meeting description"
+        assert result["location"] == "Conference Room A"
+        assert result["attendees"] == ["test@example.com"]
+        assert result["uid"] == "test-event-123@example.com"
+        assert result["source"] == "ics"
+        assert result["confidence"] == 0.95
+    
+    def test_ics_parsing_invalid_content(self):
+        """Test ICS parsing with invalid content"""
+        result = self.parser.parse("invalid ics content")
+        assert result is None
+    
+    def test_ics_parsing_missing_vevent(self):
+        """Test ICS parsing with missing VEVENT"""
+        invalid_ics = """BEGIN:VCALENDAR
+VERSION:2.0
+END:VCALENDAR"""
+        
+        result = self.parser.parse(invalid_ics)
+        assert result is None
+
+
+class TestTimeNormalizer:
+    """Test time normalization functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.normalizer = TimeNormalizer("America/Denver")
+    
+    def test_time_normalization_success(self):
+        """Test successful time normalization"""
+        result = self.normalizer.normalize(
+            "this Friday 2:30-3pm",
+            user_tz="America/Denver",
+            reference_time_iso="2025-09-03T08:00:00-06:00"
+        )
+        
+        assert result.confidence > 0
+        assert result.start_iso != ""
+        assert result.end_iso != ""
+        assert result.timezone == "America/Denver"
+    
+    def test_time_normalization_relative_dates(self):
+        """Test time normalization with relative dates"""
+        # Test "tomorrow"
+        result = self.normalizer.normalize(
+            "tomorrow at 2pm",
+            user_tz="America/Denver",
+            reference_time_iso="2025-09-03T08:00:00-06:00"
+        )
+        
+        assert result.confidence > 0
+        assert "2025-09-04" in result.start_iso  # Tomorrow from reference
+    
+    def test_time_normalization_weekdays(self):
+        """Test time normalization with weekdays"""
+        result = self.normalizer.normalize(
+            "next Thursday 9am",
+            user_tz="America/Denver",
+            reference_time_iso="2025-09-03T08:00:00-06:00"  # Wednesday
+        )
+        
+        assert result.confidence > 0
+        assert result.start_iso != ""
+    
+    def test_time_normalization_special_times(self):
+        """Test time normalization with special times"""
+        result = self.normalizer.normalize(
+            "noon",
+            user_tz="America/Denver"
+        )
+        
+        assert result.confidence > 0
+        assert "12:00" in result.start_iso or "T12:" in result.start_iso
+    
+    def test_time_normalization_failure(self):
+        """Test time normalization failure"""
+        result = self.normalizer.normalize(
+            "invalid time expression",
+            user_tz="America/Denver"
+        )
+        
+        assert result.confidence == 0
+        assert result.start_iso == ""
+        assert result.end_iso == ""
+
+
+class TestGmailConnector:
+    """Test Gmail connector functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=["https://www.googleapis.com/auth/gmail.readonly"]
+        )
+        self.connector = GmailConnector(self.config)
+    
+    @pytest.mark.asyncio
+    async def test_search_messages_success(self):
+        """Test successful message search"""
+        # Mock the Gmail service
+        mock_service = MagicMock()
+        mock_service.users().messages().list().execute.return_value = {
+            'messages': [
+                {'id': 'msg1', 'threadId': 'thread1'},
+                {'id': 'msg2', 'threadId': 'thread2'}
+            ]
+        }
+        
+        with patch.object(self.connector, 'service', mock_service):
+            result = await self.connector.search_messages("test query", 25)
+            
+            assert len(result) == 2
+            assert result[0]['id'] == 'msg1'
+            assert result[1]['id'] == 'msg2'
+    
+    @pytest.mark.asyncio
+    async def test_read_thread_success(self):
+        """Test successful thread reading"""
+        mock_service = MagicMock()
+        mock_service.users().threads().get().execute.return_value = {
+            'id': 'thread1',
+            'messages': []
+        }
+        
+        with patch.object(self.connector, 'service', mock_service):
+            result = await self.connector.read_thread("thread1")
+            
+            assert result['id'] == 'thread1'
+    
+    @pytest.mark.asyncio
+    async def test_get_attachments_success(self):
+        """Test successful attachment retrieval"""
+        mock_service = MagicMock()
+        mock_service.users().messages().get().execute.return_value = {
+            'payload': {
+                'parts': [
+                    {
+                        'filename': 'meeting.ics',
+                        'mimeType': 'text/calendar',
+                        'body': {'attachmentId': 'att1', 'size': 1024}
+                    }
+                ]
+            }
+        }
+        
+        with patch.object(self.connector, 'service', mock_service):
+            result = await self.connector.get_attachments("msg1")
+            
+            assert len(result) == 1
+            assert result[0]['filename'] == 'meeting.ics'
+            assert result[0]['attachmentId'] == 'att1'
+
+
+class TestCalendarConnector:
+    """Test Calendar connector functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=[
+                "https://www.googleapis.com/auth/calendar.readonly",
+                "https://www.googleapis.com/auth/calendar.events"
+            ]
+        )
+        self.connector = CalendarConnector(self.config)
+    
+    @pytest.mark.asyncio
+    async def test_find_conflicts_success(self):
+        """Test successful conflict detection"""
+        mock_service = MagicMock()
+        mock_service.events().list().execute.return_value = {
+            'items': [
+                {
+                    'id': 'conflict1',
+                    'summary': 'Conflicting Event',
+                    'start': {'dateTime': '2025-09-05T14:00:00-06:00'}
+                }
+            ]
+        }
+        
+        with patch.object(self.connector, 'service', mock_service):
+            result = await self.connector.find_conflicts(
+                "2025-09-05T14:30:00-06:00",
+                "2025-09-05T15:00:00-06:00"
+            )
+            
+            assert result['has_conflict'] is True
+            assert result['count'] == 1
+            assert len(result['conflicting_events']) == 1
+    
+    @pytest.mark.asyncio
+    async def test_create_event_success(self):
+        """Test successful event creation"""
+        mock_service = MagicMock()
+        mock_service.events().insert().execute.return_value = {
+            'id': 'event123',
+            'htmlLink': 'https://calendar.google.com/event?eid=event123',
+            'summary': 'Test Event'
+        }
+        
+        with patch.object(self.connector, 'service', mock_service):
+            event_data = {
+                'summary': 'Test Event',
+                'start': {'dateTime': '2025-09-05T14:30:00-06:00', 'timeZone': 'America/Denver'},
+                'end': {'dateTime': '2025-09-05T15:00:00-06:00', 'timeZone': 'America/Denver'}
+            }
+            
+            result = await self.connector.create_or_update_event(
+                "primary", event_data, "test-key"
+            )
+            
+            assert result['id'] == 'event123'
+            assert result['htmlLink'] == 'https://calendar.google.com/event?eid=event123'
+
+
+class TestOrchestrator:
+    """Test orchestrator functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.gmail_config = OAuthConfig(
+            client_id="test_gmail_client_id",
+            client_secret="test_gmail_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=["https://www.googleapis.com/auth/gmail.readonly"]
+        )
+        
+        self.calendar_config = OAuthConfig(
+            client_id="test_calendar_client_id",
+            client_secret="test_calendar_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=[
+                "https://www.googleapis.com/auth/calendar.readonly",
+                "https://www.googleapis.com/auth/calendar.events"
+            ]
+        )
+        
+        self.orchestrator = GmailCalendarOrchestrator(
+            gmail_config=self.gmail_config,
+            calendar_config=self.calendar_config,
+            default_timezone="America/Denver",
+            confidence_threshold=0.85
+        )
+    
+    def test_orchestrator_state_creation(self):
+        """Test OrchestratorState creation"""
+        state = OrchestratorState(
+            user_query="put Megan's meeting on my calendar",
+            user_id="test_user"
+        )
+        
+        assert state.user_query == "put Megan's meeting on my calendar"
+        assert state.user_id == "test_user"
+        assert state.messages == []
+        assert state.event_candidates == []
+    
+    @pytest.mark.asyncio
+    async def test_intent_router(self):
+        """Test intent routing functionality"""
+        state = OrchestratorState(
+            user_query="put Megan's meeting on my calendar",
+            user_id="test_user"
+        )
+        
+        result_state = await self.orchestrator._intent_router(state)
+        
+        assert result_state.search_query != ""
+        assert "megan" in result_state.search_query.lower()
+    
+    @pytest.mark.asyncio
+    async def test_confirmation_gate_auto_proceed(self):
+        """Test confirmation gate with auto-proceed"""
+        candidate = EventCandidate(
+            summary="Test Meeting",
+            start_iso="2025-09-05T14:30:00-06:00",
+            end_iso="2025-09-05T15:00:00-06:00",
+            confidence=0.9
+        )
+        
+        state = OrchestratorState(
+            user_query="test",
+            user_id="test_user",
+            selected_candidate=candidate,
+            normalized_time={
+                "start_iso": "2025-09-05T14:30:00-06:00",
+                "end_iso": "2025-09-05T15:00:00-06:00",
+                "confidence": 0.9
+            },
+            conflict_info=ConflictInfo(has_conflict=False)
+        )
+        
+        result_state = await self.orchestrator._confirmation_gate(state)
+        
+        assert result_state.user_confirmation is True
+        assert result_state.confirmation_request is not None
+
+
+class TestMCPTools:
+    """Test MCP tool functionality"""
+    
+    def setup_method(self):
+        """Setup test fixtures"""
+        self.gmail_config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=["https://www.googleapis.com/auth/gmail.readonly"]
+        )
+        
+        self.calendar_config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=[
+                "https://www.googleapis.com/auth/calendar.readonly",
+                "https://www.googleapis.com/auth/calendar.events"
+            ]
+        )
+    
+    @pytest.mark.asyncio
+    async def test_gmail_mcp_tool_search(self):
+        """Test Gmail MCP tool search functionality"""
+        gmail_tool = GmailMCPTool(self.gmail_config)
+        
+        # Mock the connector
+        with patch.object(gmail_tool.connector, 'search_messages', new_callable=AsyncMock) as mock_search:
+            mock_search.return_value = [
+                {'id': 'msg1', 'threadId': 'thread1'},
+                {'id': 'msg2', 'threadId': 'thread2'}
+            ]
+            
+            result = await gmail_tool.search_messages({
+                "query": "from:megan subject:meeting",
+                "max_results": 25
+            })
+            
+            assert result["success"] is True
+            assert result["count"] == 2
+            assert len(result["messages"]) == 2
+    
+    @pytest.mark.asyncio
+    async def test_calendar_mcp_tool_conflicts(self):
+        """Test Calendar MCP tool conflict detection"""
+        calendar_tool = GoogleCalendarMCPTool(self.calendar_config)
+        
+        # Mock the connector
+        with patch.object(calendar_tool.connector, 'find_conflicts', new_callable=AsyncMock) as mock_conflicts:
+            mock_conflicts.return_value = {
+                'has_conflict': True,
+                'conflicting_events': [{'id': 'conflict1'}],
+                'count': 1
+            }
+            
+            result = await calendar_tool.find_conflicts({
+                "start_iso": "2025-09-05T14:30:00-06:00",
+                "end_iso": "2025-09-05T15:00:00-06:00"
+            })
+            
+            assert result["has_conflict"] is True
+            assert result["count"] == 1
+    
+    @pytest.mark.asyncio
+    async def test_ics_mcp_tool_parse(self):
+        """Test ICS MCP tool parsing"""
+        ics_tool = ICSMCPTool()
+        
+        sample_ics = """BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:test@example.com
+DTSTART:20250905T143000Z
+DTEND:20250905T150000Z
+SUMMARY:Test Meeting
+END:VEVENT
+END:VCALENDAR"""
+        
+        result = await ics_tool.parse({
+            "source": "inline",
+            "content": sample_ics
+        })
+        
+        assert result["success"] is True
+        assert result["event_data"]["summary"] == "Test Meeting"
+        assert result["event_data"]["uid"] == "test@example.com"
+
+
+class TestIntegration:
+    """Integration tests for the complete system"""
+    
+    @pytest.mark.asyncio
+    async def test_end_to_end_flow(self):
+        """Test complete end-to-end flow"""
+        # This would be a comprehensive integration test
+        # that tests the entire orchestration flow with mocked services
+        
+        gmail_config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=["https://www.googleapis.com/auth/gmail.readonly"]
+        )
+        
+        calendar_config = OAuthConfig(
+            client_id="test_client_id",
+            client_secret="test_client_secret",
+            redirect_uri="http://localhost:8080/callback",
+            scopes=[
+                "https://www.googleapis.com/auth/calendar.readonly",
+                "https://www.googleapis.com/auth/calendar.events"
+            ]
+        )
+        
+        orchestrator = GmailCalendarOrchestrator(
+            gmail_config=gmail_config,
+            calendar_config=calendar_config,
+            default_timezone="America/Denver",
+            confidence_threshold=0.85
+        )
+        
+        # Mock all the external services
+        with patch.object(orchestrator.gmail_connector, 'authenticate', new_callable=AsyncMock) as mock_gmail_auth, \
+             patch.object(orchestrator.calendar_connector, 'authenticate', new_callable=AsyncMock) as mock_calendar_auth, \
+             patch.object(orchestrator.gmail_connector, 'search_messages', new_callable=AsyncMock) as mock_search, \
+             patch.object(orchestrator.gmail_connector, 'read_thread', new_callable=AsyncMock) as mock_read_thread, \
+             patch.object(orchestrator.calendar_connector, 'find_conflicts', new_callable=AsyncMock) as mock_conflicts, \
+             patch.object(orchestrator.calendar_connector, 'create_or_update_event', new_callable=AsyncMock) as mock_create:
+            
+            # Setup mocks
+            mock_gmail_auth.return_value = True
+            mock_calendar_auth.return_value = True
+            mock_search.return_value = [{'id': 'msg1', 'threadId': 'thread1'}]
+            mock_read_thread.return_value = {'id': 'thread1', 'messages': []}
+            mock_conflicts.return_value = {'has_conflict': False, 'conflicting_events': [], 'count': 0}
+            mock_create.return_value = {
+                'id': 'event123',
+                'htmlLink': 'https://calendar.google.com/event?eid=event123'
+            }
+            
+            # Process request
+            result = await orchestrator.process_request(
+                "put Megan's meeting on my calendar",
+                "test_user"
+            )
+            
+            # Verify result
+            assert result["success"] is True
+            assert result["event_id"] == "event123"
+            assert result["event_link"] == "https://calendar.google.com/event?eid=event123"
+            assert len(result["audit_logs"]) > 0
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
