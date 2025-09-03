@@ -1,0 +1,38 @@
+# Include README.md for Docker builds
+!README.md
+
+# Ignore common development files
+.git/
+.gitignore
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.tox/
+.venv/
+venv/
+env/
+.env
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# Ignore large directories that aren't needed for deployment
+docs/
+tests/
+*.md
+!README.md
+
+# Ignore development tools
+.vscode/
+.idea/
+*.sublime-*
+
+# Ignore OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

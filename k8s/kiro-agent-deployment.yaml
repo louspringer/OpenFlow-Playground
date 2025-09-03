@@ -74,7 +74,7 @@ metadata:
   namespace: kiro-agents
   annotations:
     iam.gke.io/gcp-service-account: >-
-      kiro-agent@PROJECT_ID.iam.gserviceaccount.com
+      kiro-agent@aardvark-linkedin-grepper.iam.gserviceaccount.com
 
 ---
 # ClusterRole for Kiro Agent
@@ -136,9 +136,30 @@ spec:
         prometheus.io/path: "/metrics"
     spec:
       serviceAccountName: kiro-agent-sa
+      # Anti-affinity to spread pods across nodes for preemption resilience
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - kiro-agent
+                topologyKey: kubernetes.io/hostname
+      # Tolerations for preemptible nodes
+      tolerations:
+        - key: cloud.google.com/gke-preemptible
+          operator: Exists
+          effect: NoSchedule
+      # Node selector for preemptible nodes
+      nodeSelector:
+        cloud.google.com/gke-preemptible: "true"
       containers:
         - name: kiro-agent
-          image: gcr.io/PROJECT_ID/kiro-agent:latest
+          image: gcr.io/aardvark-linkedin-grepper/kiro-agent:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

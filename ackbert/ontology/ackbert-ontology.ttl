@@ -1,0 +1,119 @@
+@prefix ab: <http://example.org/ackbert#> .
+@prefix cand: <http://example.org/candidate#> .
+@prefix art: <http://example.org/artifact#> .
+@prefix jd: <http://example.org/jd#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Ack-Bert Comparison Ontology — Session Bundle
+# Generated: 2025-09-03T10:41:40Z
+#################################################################
+
+### Core Classes
+ab:Candidate a owl:Class ; rdfs:label "Candidate" .
+ab:JDRequirement a owl:Class ; rdfs:label "Job Description Requirement" .
+ab:EvidenceStrength a owl:Class ; rdfs:label "Evidence Strength Level" .
+ab:Artifact a owl:Class ; rdfs:label "Artifact" .
+ab:ComparisonMatrix a owl:Class ; rdfs:label "Comparison Matrix" ; rdfs:subClassOf ab:Artifact .
+ab:Recommendation a owl:Class ; rdfs:label "Recommendation" .
+ab:RiskAssessment a owl:Class ; rdfs:label "Risk Assessment" .
+ab:Procedure a owl:Class ; rdfs:label "Procedure" .
+ab:AssessmentCriterion a owl:Class ; rdfs:label "Assessment Criterion" .
+ab:Stakeholder a owl:Class ; rdfs:label "Stakeholder" .
+
+### Object Properties
+ab:evaluatedAgainst a owl:ObjectProperty ; rdfs:domain ab:Candidate ; rdfs:range ab:JDRequirement ; rdfs:label "evaluated against" .
+ab:hasEvidenceStrength a owl:ObjectProperty ; rdfs:domain ab:Candidate ; rdfs:range ab:EvidenceStrength ; rdfs:label "has evidence strength" .
+ab:showsStrength a owl:ObjectProperty ; rdfs:domain ab:Candidate ; rdfs:range ab:JDRequirement ; rdfs:label "shows strength in" .
+ab:lacksArtifact a owl:ObjectProperty ; rdfs:domain ab:Candidate ; rdfs:range ab:JDRequirement ; rdfs:label "lacks artifact for" .
+ab:producedArtifact a owl:ObjectProperty ; rdfs:domain ab:Procedure ; rdfs:range ab:Artifact ; rdfs:label "produced artifact" .
+ab:supportsRecommendation a owl:ObjectProperty ; rdfs:domain ab:Artifact ; rdfs:range ab:Recommendation ; rdfs:label "supports recommendation" .
+ab:concernsCandidate a owl:ObjectProperty ; rdfs:domain ab:Artifact ; rdfs:range ab:Candidate ; rdfs:label "concerns candidate" .
+ab:targetsRequirement a owl:ObjectProperty ; rdfs:domain ab:Artifact ; rdfs:range ab:JDRequirement ; rdfs:label "targets requirement" .
+ab:informsRisk a owl:ObjectProperty ; rdfs:domain ab:Artifact ; rdfs:range ab:RiskAssessment ; rdfs:label "informs risk" .
+ab:requestedBy a owl:ObjectProperty ; rdfs:domain ab:Procedure ; rdfs:range ab:Stakeholder ; rdfs:label "requested by" .
+ab:performedBy a owl:ObjectProperty ; rdfs:domain ab:Procedure ; rdfs:range ab:Stakeholder ; rdfs:label "performed by" .
+
+### Data Properties
+ab:level a owl:DatatypeProperty ; rdfs:domain ab:EvidenceStrength ; rdfs:range xsd:integer ; rdfs:label "level number" .
+ab:label a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "human-readable label" .
+ab:comment a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "comment" .
+ab:score a owl:DatatypeProperty ; rdfs:domain ab:Candidate ; rdfs:range xsd:decimal ; rdfs:label "score" .
+
+### JD Requirements (individuals)
+jd:LLMTraining a ab:JDRequirement ; rdfs:label "LLM training at scale" .
+jd:PostTraining a ab:JDRequirement ; rdfs:label "Post-training (RL/contrastive/IT)" .
+jd:Multimodal a ab:JDRequirement ; rdfs:label "Multimodal (graphs/3D/time-series)" .
+jd:Governance a ab:JDRequirement ; rdfs:label "Governance / provenance / eval hygiene" .
+jd:DomainAdjacency a ab:JDRequirement ; rdfs:label "Domain adjacency (molecular/biomed)" .
+
+### Evidence Levels
+ab:Level1 a ab:EvidenceStrength ; ab:level 1 ; ab:label "Self-asserted resume evidence" .
+ab:Level2 a ab:EvidenceStrength ; ab:level 2 ; ab:label "Partial demo / internal artifact" .
+ab:Level3 a ab:EvidenceStrength ; ab:level 3 ; ab:label "Third-party/public validation" .
+
+### Stakeholders
+ab:JackWilson a ab:Stakeholder ; rdfs:label "Jack Wilson (hiring decision-maker)" .
+ab:AckBertSystem a ab:Stakeholder ; rdfs:label "Ack-Bert comparison assistant" .
+
+### Candidates
+cand:Lou a ab:Candidate ;
+    rdfs:label "Lou" ;
+    ab:hasEvidenceStrength ab:Level1 ;
+    ab:evaluatedAgainst jd:LLMTraining, jd:PostTraining, jd:Multimodal, jd:Governance, jd:DomainAdjacency ;
+    ab:showsStrength jd:LLMTraining, jd:Governance ;
+    ab:lacksArtifact jd:PostTraining, jd:Multimodal ;
+    ab:comment "Pipelines/distributed signals present; governance aware; missing concrete artifacts for post-training & multimodal." .
+
+cand:Bittner a ab:Candidate ;
+    rdfs:label "John H. F. Bittner II" ;
+    ab:hasEvidenceStrength ab:Level3 ;
+    ab:evaluatedAgainst jd:LLMTraining, jd:PostTraining, jd:Multimodal, jd:Governance, jd:DomainAdjacency ;
+    ab:showsStrength jd:Governance ;
+    ab:lacksArtifact jd:LLMTraining, jd:PostTraining, jd:Multimodal ;
+    ab:comment "Ontology/governance strength with public validation; lacks hands-on LLM training & multimodal artifacts." .
+
+### Procedure (provenance)
+ab:ComparisonProcedure a ab:Procedure, prov:Activity ;
+    rdfs:label "Ack-Bert comparison procedure" ;
+    ab:comment "JD extraction → candidate evidence review → comparison matrix → risk & recommendations → one-pager" ;
+    ab:requestedBy ab:JackWilson ;
+    ab:performedBy ab:AckBertSystem ;
+    prov:startedAtTime "2025-09-03T10:41:40Z"^^xsd:dateTime .
+
+### Artifacts
+art:ComparisonMatrix_2025_09_03 a ab:ComparisonMatrix ;
+    rdfs:label "Head-to-head matrix (Lou vs Bittner)" ;
+    prov:wasGeneratedBy ab:ComparisonProcedure ;
+    ab:concernsCandidate cand:Lou, cand:Bittner ;
+    ab:targetsRequirement jd:LLMTraining, jd:PostTraining, jd:Multimodal, jd:Governance, jd:DomainAdjacency .
+
+art:OnePager_2025_09_03 a ab:Artifact ;
+    rdfs:label "One-pager for Jack Wilson" ;
+    prov:wasGeneratedBy ab:ComparisonProcedure ;
+    ab:concernsCandidate cand:Lou, cand:Bittner ;
+    ab:supportsRecommendation ab:AdvanceLou, ab:KeepBittnerWarm .
+
+### Risk Assessments & Recommendations
+ab:RiskLou a ab:RiskAssessment ;
+    rdfs:label "Lou risk assessment" ;
+    ab:comment "Medium — missing artifacts for post-training and multimodal." .
+
+ab:RiskBittner a ab:RiskAssessment ;
+    rdfs:label "Bittner risk assessment" ;
+    ab:comment "Medium-high — governance-strong but underpowered for research seat without training evidence." .
+
+ab:AdvanceLou a ab:Recommendation ;
+    rdfs:label "Advance Lou to technical screen" ;
+    ab:comment "Focus screen on training depth & post-training methods; request artifacts in advance." .
+
+ab:KeepBittnerWarm a ab:Recommendation ;
+    rdfs:label "Keep Bittner warm for governance lane" ;
+    ab:comment "Invite hands-on LLM artifacts; reconsider if surfaced." .
+
+### Links between artifacts, risk and recs
+art:ComparisonMatrix_2025_09_03 ab:informsRisk ab:RiskLou, ab:RiskBittner .
+art:ComparisonMatrix_2025_09_03 ab:supportsRecommendation ab:AdvanceLou, ab:KeepBittnerWarm .

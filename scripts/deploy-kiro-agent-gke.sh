@@ -66,7 +66,7 @@ echo "🔧 Building and pushing Docker image..."
 cd "$(dirname "$0")/.."
 
 # Build the image using Cloud Build
-gcloud builds submit --tag "${IMAGE_NAME}" --project="${PROJECT_ID}" -f Dockerfile.kiro-agent .
+gcloud builds submit --config cloudbuild.yaml --project="${PROJECT_ID}" .
 
 echo "✅ Docker image built and pushed: ${IMAGE_NAME}"
 

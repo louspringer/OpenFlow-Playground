@@ -8,26 +8,6 @@
     "target_audience": "Developers, DevOps engineers, and architects evaluating Snowflake OpenFlow"
   },
   "domain_architecture": {
-    "overview": {
-      "description": "Domain-driven architecture for the OpenFlow Playground project",
-      "architecture_type": "Domain-Driven Design (DDD)",
-      "total_domains": 100,
-      "compliance_standard": "Reflective Module (RM)",
-      "documentation": {
-        "architecture_guide": "docs/DOMAIN_ARCHITECTURE.md",
-        "registry_guide": "docs/DOMAIN_REGISTRY.md",
-        "compliance_guide": "docs/DOMAIN_COMPLIANCE.md",
-        "development_guide": "docs/DOMAIN_DEVELOPMENT.md",
-        "testing_guide": "docs/DOMAIN_TESTING.md"
-      },
-      "principles": [
-        "Domain Isolation - Independent packages with clear boundaries",
-        "Model-Driven Design - Central registry defines all domains",
-        "RM Compliance - Consistent interfaces and health monitoring",
-        "Tool Integration - Domain-specified tools and workflows",
-        "Quality Assurance - Comprehensive testing and validation"
-      ]
-    },
     "demo_core": {
       "description": "Core domains that implement the Snowflake OpenFlow demo",
       "domains": [
@@ -36,13 +16,9 @@
         "setup_wizard",
         "streamlit_demo_app"
       ],
-      "purpose": "Provide the actual demo functionality and user experience",
-      "compliance": "RM compliant",
-      "testing": "Comprehensive unit and integration tests",
-      "documentation": "Complete API and usage documentation"
+      "purpose": "Provide the actual demo functionality and user experience"
     },
     "demo_tools": {
-      "description": "Comprehensive tool ecosystem supporting the demo",
       "domains": [
         "ghostbusters",
         "intelligent_linter_system",
@@ -66,11 +42,7 @@
         "cache_manager",
         "f_string_policy",
         "model_management"
-      ],
-      "purpose": "Provide comprehensive tooling for development, testing, and quality assurance",
-      "compliance": "RM compliant with tool integration",
-      "testing": "Unit, integration, and compliance tests",
-      "documentation": "Tool usage and integration guides"
+      ]
     },
     "demo_infrastructure": {
       "description": "Infrastructure and supporting domains for the demo ecosystem",
@@ -84,10 +56,7 @@
         "rule_compliance",
         "glacier_schema_system"
       ],
-      "purpose": "Provide the foundation and supporting infrastructure for the demo ecosystem",
-      "compliance": "RM compliant with infrastructure monitoring",
-      "testing": "Infrastructure and security tests",
-      "documentation": "Infrastructure setup and configuration guides"
+      "purpose": "Provide the foundation and supporting infrastructure for the demo ecosystem"
     },
     "demo_apis": {
       "description": "API and service domains for demo functionality",
@@ -97,10 +66,7 @@
         "mcp_integration",
         "distributed_security_scanning"
       ],
-      "purpose": "Provide API services and integrations for demo functionality",
-      "compliance": "RM compliant with API monitoring",
-      "testing": "API and integration tests",
-      "documentation": "API documentation and integration guides"
+      "purpose": "Provide API services and integrations for demo functionality"
     },
     "demo_utilities": {
       "description": "Utility domains for demo development and deployment",
@@ -114,10 +80,7 @@
         "ssh_key_management",
         "build_system"
       ],
-      "purpose": "Provide utilities and support for demo development and deployment",
-      "compliance": "RM compliant with utility monitoring",
-      "testing": "Utility and deployment tests",
-      "documentation": "Utility usage and deployment guides"
+      "purpose": "Provide utilities and support for demo development and deployment"
     },
     "cursor_rules": {
       "description": "Cursor rules for AI assistance and code quality enforcement",
@@ -149,9 +112,6 @@
         "cursor_ide_systemic_issues"
       ],
       "purpose": "Provide AI assistance rules and code quality enforcement",
-      "compliance": "RM compliant with rule monitoring",
-      "testing": "Rule validation and compliance tests",
-      "documentation": "Rule usage and enforcement guides",
       "neo4j_integration": "completed",
       "round_trip_validation": "100% success",
       "status": "completed",
@@ -219,9 +179,6 @@
         "performance_optimization"
       ],
       "purpose": "Enable graph-based querying and visualization of project architecture",
-      "compliance": "RM compliant with graph monitoring",
-      "testing": "Graph and performance tests",
-      "documentation": "Graph setup and query guides",
       "status": "completed",
       "priority": "high",
       "completion_date": "2024-08-15",
@@ -291,9 +248,6 @@
         "cursor_rules_framework"
       ],
       "purpose": "Package and distribute reusable components to the Python community",
-      "compliance": "RM compliant with package monitoring",
-      "testing": "Package and distribution tests",
-      "documentation": "Package usage and distribution guides",
       "status": "planned",
       "priority": "medium",
       "requirements": [
@@ -308,20 +262,14 @@
       "domains": [
         "hackathon"
       ],
-      "purpose": "Track, coordinate, and manage hackathon participation across all relevant contests",
-      "compliance": "RM compliant with coordination monitoring",
-      "testing": "Coordination and submission tests",
-      "documentation": "Hackathon participation guides"
+      "purpose": "Track, coordinate, and manage hackathon participation across all relevant contests"
     },
     "project_management_coordination": {
       "description": "Central coordination domain for project management, design methodology, and workflow orchestration",
       "domains": [
         "project_management_design"
       ],
-      "purpose": "Provide unified project management, systematic design approaches, and cross-domain workflow orchestration",
-      "compliance": "RM compliant with management monitoring",
-      "testing": "Management and workflow tests",
-      "documentation": "Project management and workflow guides"
+      "purpose": "Provide unified project management, systematic design approaches, and cross-domain workflow orchestration"
     }
   },
   "dependency_relationships": {
@@ -2396,64 +2344,6 @@
         "model_compliance": "100% with make_first_enforcement rule",
         "targets_available": "80+ comprehensive Make targets",
         "domain_coverage": "All project domains covered"
-      },
-      "tools": [
-        "make",
-        "make -n",
-        "make help",
-        "make status",
-        "make quality-check",
-        "make security-check",
-        "make format-all",
-        "make test",
-        "make install",
-        "make clean",
-        "make pre-commit",
-        "make smart-commit"
-      ],
-      "capabilities": [
-        "modular_makefile_system",
-        "comprehensive_target_coverage",
-        "quality_checking",
-        "security_scanning",
-        "code_formatting",
-        "testing_orchestration",
-        "installation_management",
-        "pre_commit_integration",
-        "smart_commit_workflow",
-        "status_reporting",
-        "backlog_management",
-        "domain_coverage"
-      ],
-      "workflows": {
-        "makefile_changes": {
-          "validate": "make -n to validate syntax",
-          "test": "make help to verify targets work",
-          "format": "make format-all for consistency",
-          "commit": "make smart-commit for safe commits"
-        },
-        "makefile_running": {
-          "status": "make status for project health",
-          "quality": "make quality-check for code quality",
-          "security": "make security-check for security",
-          "test": "make test for comprehensive testing",
-          "install": "make install for installation"
-        },
-        "conformance_checking": {
-          "syntax_validation": "make -n validates all targets",
-          "target_verification": "make help shows all available targets",
-          "quality_gates": "make quality-check ensures standards",
-          "security_gates": "make security-check ensures security"
-        }
-      },
-      "tool_rules": {
-        "make_first_enforcement": "All operations must go through Make targets",
-        "no_direct_commands": "Never run commands directly, always use make",
-        "syntax_validation": "Always validate Makefile syntax with make -n",
-        "target_verification": "Verify targets work with make help",
-        "quality_gates": "All changes must pass make quality-check",
-        "security_gates": "All changes must pass make security-check",
-        "smart_commits": "Use make smart-commit for safe commit workflow"
       }
     },
     "ide_performance": {
@@ -3159,13 +3049,13 @@
         "reason": "Essential for RM compliance and test generation quality"
       }
     },
+    "model_crud": null,
     "model_management": {
       "patterns": [
-        "src/model_management/*.py",
         "src/round_trip_engineering/tools/*.py",
+        "scripts/model_crud.py",
         "**/*model_crud*.py",
-        "**/*model_management*.py",
-        "scripts/model_crud.py"
+        "**/*model_management*.py"
       ],
       "content_indicators": [
         "model_crud",
@@ -3215,12 +3105,7 @@
         "json_model_manager",
         "neo4j_model_manager",
         "ontology_model_manager",
-        "project_model_manager",
-        "model_crud.py",
-        "model_operations.py",
-        "cli_parser.py",
-        "crud_operations.py",
-        "domain_operations.py"
+        "project_model_manager"
       ],
       "capabilities": [
         "model_creation",
@@ -3231,192 +3116,7 @@
         "registry_management",
         "backup_management",
         "environment_injection",
-        "lifecycle_management",
-        "project_model_registry_management",
-        "domain_operations",
-        "cli_interface",
-        "read_operations"
-      ]
-    },
-    "pdca": {
-      "patterns": [
-        "pdca.mdc",
-        "**/*pdca*.py",
-        "**/*PDCA*.py",
-        "docs/*PDCA*.md",
-        "**/*pdca*.md"
-      ],
-      "content_indicators": [
-        "PDCA",
-        "Plan-Do-Check-Act",
-        "plan",
-        "do",
-        "check",
-        "act",
-        "AST profiler combo",
-        "activity models",
-        "behavioral evidence",
-        "evidence-based debugging",
-        "systematic approach",
-        "multi-dimensional validation"
-      ],
-      "linter": "flake8",
-      "validator": "pytest",
-      "formatter": "black",
-      "requirements": [
-        "All PDCA loops must follow the documented checklist",
-        "PDCA checklist includes: line length optimization, proper headings, comprehensive testing, documentation updates",
-        "Successfully implemented PDCA loop to fix logic bomb",
-        "PDCA Loop 1: Split into ClassStructureGenerator, CodeGenerationOrchestrator, VocabularyMappingManager",
-        "PDCA Loop 2: Split into CodeGenerationOrchestrator, VocabularyMappingManager, VocabularyTransformer",
-        "PDCA Loop 3: Split into VocabularyMappingManager, VocabularyTransformer, VocabularyValidator",
-        "PDCA Loop 4: Split into VocabularyTransformer, VocabularyValidator, VocabularyAnalyzer",
-        "AST profiler combo enables precise debugging by matching activity models with actual behavior",
-        "Use AST analysis for structural understanding",
-        "Use runtime profiling for behavioral evidence",
-        "Match expected vs actual interfaces for precise fixes",
-        "Fix based on real data, not assumptions",
-        "Multi-dimensional validation: Functional + Behavioral + Interface + Data Types + Performance",
-        "Document methodology and insights in commits",
-        "Tool consistency enforced through models and tool usage",
-        "If a TOOL is broken in the middle of work, stop and fix it or ask if it should be backlogged",
-        "Heavily rely on consistency enforced through models and tool usage"
-      ],
-      "tools": [
-        "ast.parse()",
-        "inspect.getsource()",
-        "cProfile",
-        "pstats",
-        "model_crud.py",
-        "jq",
-        "pytest",
-        "black",
-        "flake8"
-      ],
-      "capabilities": [
-        "AST analysis for code structure understanding",
-        "Runtime profiling for behavioral evidence",
-        "Activity model matching for precise debugging",
-        "Evidence-based systematic fixes",
-        "Multi-dimensional validation",
-        "Tool consistency enforcement",
-        "Model-driven workflow orchestration",
-        "Systematic problem-solving approach"
-      ],
-      "workflows": {
-        "standard_pdca_loop": {
-          "plan": "Define problem and approach using AST profiler combo",
-          "do": "Execute systematic approach: AST analysis \u2192 Runtime profiling \u2192 Behavioral matching \u2192 Fix \u2192 Validate",
-          "check": "Multi-dimensional validation: Functional + Behavioral + Interface + Data Types + Performance",
-          "act": "Document methodology and insights, commit with comprehensive documentation"
-        },
-        "tool_failure_recovery": {
-          "detect": "Identify broken or inadequate tools during work",
-          "assess": "Determine if tool should be fixed immediately or backlogged",
-          "fix": "Fix tool using evidence-based approach",
-          "validate": "Test tool functionality before continuing work",
-          "document": "Update tool capabilities and usage patterns"
-        },
-        "evidence_based_debugging": {
-          "ast_analysis": "Use ast.parse() to understand code structure",
-          "runtime_profiling": "Capture actual behavior with cProfile/pstats",
-          "behavioral_matching": "Match expected vs actual interfaces",
-          "evidence_fix": "Fix based on real data, not assumptions",
-          "validation": "Test fix with multi-dimensional validation"
-        }
-      },
-      "tool_rules": {
-        "consistency_enforcement": "All tool usage must be consistent with model-driven approach",
-        "tool_failure_handling": "If tool breaks during work, stop and fix it or ask if it should be backlogged",
-        "evidence_based_fixes": "All fixes must be based on behavioral evidence, not assumptions",
-        "multi_dimensional_validation": "All fixes must pass functional, behavioral, interface, data type, and performance validation",
-        "documentation_requirement": "All PDCA loops must document methodology and insights",
-        "model_driven_approach": "All workflows must be driven by project model registry"
-      },
-      "exclusions": [
-        "*.pyc",
-        "__pycache__",
-        "*.log",
-        "*.tmp"
-      ]
-    },
-    "test_domain": {
-      "patterns": [
-        "src/test_domain/*.py"
-      ],
-      "content_indicators": [
-        "test_domain"
-      ],
-      "linter": "flake8",
-      "validator": "pytest",
-      "formatter": "black",
-      "requirements": [
-        "Test domain for CLI"
-      ],
-      "tools": [],
-      "capabilities": [],
-      "workflows": {},
-      "tool_rules": {},
-      "exclusions": [
-        "*.pyc",
-        "__pycache__"
-      ]
-    },
-    "schema_test_domain3": {
-      "patterns": [
-        "src/schema_test_domain3/*.py"
-      ],
-      "content_indicators": [
-        "schema_test_domain3"
-      ],
-      "linter": "flake8",
-      "formatter": "black",
-      "validator": "pytest",
-      "exclusions": [
-        "*.pyc",
-        "__pycache__"
-      ],
-      "requirements": [
-        "Test domain with fixed schema validation"
-      ],
-      "demo_role": null,
-      "extraction_candidate": false,
-      "reason": null,
-      "completion_status": null,
-      "refactoring_status": null,
-      "current_phase": null,
-      "refactored_modules": [],
-      "new_modules": [],
-      "tools": [],
-      "capabilities": [],
-      "description": "Test domain with fixed schema validation",
-      "package_potential": null
-    },
-    "ackbert_candidate_evaluation": {
-      "description": "Ack-Bert: Structured candidate comparison and evaluation framework using ontology-based methodologies",
-      "patterns": [
-        "*.ttl",
-        "*.py",
-        "*.md"
-      ],
-      "content_indicators": [
-        "ontology",
-        "comparison",
-        "evidence",
-        "candidate"
-      ],
-      "linter": "ruff",
-      "validator": "pytest",
-      "formatter": "black",
-      "requirements": [
-        "RDF/Turtle ontology management",
-        "Evidence strength classification (Level 1-3)",
-        "Automated comparison matrix generation",
-        "Risk assessment with mitigation strategies",
-        "Recommendation synthesis with reasoning",
-        "CLI interface with rich output",
-        "Mermaid diagram generation",
-        "Comprehensive test coverage"
+        "lifecycle_management"
       ]
     }
   },
@@ -4768,77 +4468,6 @@
       "domain": "general",
       "implementation": "",
       "test": ""
-    },
-    {
-      "requirement": "Successfully implemented PDCA loop to fix logic bomb in round-trip engineering system. Key lessons: Always use model-first approach and AST capabilities, fix root causes not symptoms, validate end-to-end workflows, use project model registry for domain-specific tools, follow RM principles. The logic bomb was caused by missing generate_code method in ActivityAwareCodeGenerator - tests passed but system was broken. Proper fix required AST analysis and model-first approach.",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "RDF/Turtle ontology loading, parsing, and validation",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "Automated comparison matrix generation and risk assessment",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "Multi-source evidence gathering and strength classification",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "Command-line interface with rich terminal output",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "Mermaid diagram generation and process visualization",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
-    },
-    {
-      "requirement": "Ack-Bert ontology management",
-      "domain": "ackbert_candidate_evaluation",
-      "implementation": "src/ackbert/ontology.py",
-      "test": "tests/test_ontology.py",
-      "description": "RDF/Turtle ontology loading, parsing, and validation"
-    },
-    {
-      "requirement": "Ack-Bert comparison engine",
-      "domain": "ackbert_candidate_evaluation",
-      "implementation": "src/ackbert/comparison.py",
-      "test": "tests/test_comparison.py",
-      "description": "Automated comparison matrix generation and risk assessment"
-    },
-    {
-      "requirement": "Ack-Bert evidence collection",
-      "domain": "ackbert_candidate_evaluation",
-      "implementation": "src/ackbert/evidence.py",
-      "test": "tests/test_evidence.py",
-      "description": "Multi-source evidence gathering and strength classification"
-    },
-    {
-      "requirement": "Ack-Bert CLI interface",
-      "domain": "ackbert_candidate_evaluation",
-      "implementation": "src/ackbert/cli.py",
-      "test": "tests/test_cli.py",
-      "description": "Command-line interface with rich terminal output"
-    },
-    {
-      "requirement": "Ack-Bert visualization",
-      "domain": "ackbert_candidate_evaluation",
-      "implementation": "src/ackbert/visualization.py",
-      "test": "tests/test_visualization.py",
-      "description": "Mermaid diagram generation and process visualization"
     }
   ],
   "implementation_plan": {

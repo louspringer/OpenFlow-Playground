@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install UV package manager
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
+ENV PATH="/root/.local/bin:$PATH"
 
 # Set working directory
 WORKDIR /app
@@ -49,12 +49,13 @@ COPY --from=builder /app/.venv /app/.venv
 
 # Copy application code
 COPY src/ ./src/
+COPY main.py ./
 COPY hackathon/kiro-ai-development-hackathon/ ./hackathon/kiro-ai-development-hackathon/
 COPY project_model_registry.json ./
 COPY pdca.mdc ./
 
-# Install LangChain dependencies
-RUN uv add langchain langgraph langchain-core langchain-community
+# Install LangChain dependencies (already in pyproject.toml)
+# RUN uv add langchain langgraph langchain-core langchain-community
 
 # Create data directory
 RUN mkdir -p /app/data && chown -R kiro:kiro /app
@@ -80,4 +81,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
 USER kiro
 
 # Default command
-CMD ["python", "-m", "src.agent_coordination.agent_coordinator"]
+CMD ["python", "main.py"]
