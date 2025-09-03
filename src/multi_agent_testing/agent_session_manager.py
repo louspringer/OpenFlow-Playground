@@ -269,7 +269,7 @@ class AgentSessionManager:
     def _generate_finding_id(self, finding: AgentFinding) -> str:
         """Generate a unique ID for a finding"""
         content = f"{finding.agent_type.value}_{finding.category}_{finding.description[:50]}"
-        return hashlib.md5(content.encode()).hexdigest()[:12]
+        return hashlib.sha256(content.encode()).hexdigest()[:12]
 
     def get_cross_agent_context(self, agent_type: AgentType) -> dict[str, Any]:
         """Get context from other agents for cross-posting analysis"""

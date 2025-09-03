@@ -7,6 +7,7 @@ Provides intelligent repository context and file discovery
 import asyncio
 import json
 import logging
+import tempfile
 from typing import Any
 
 from src.secure_shell_service.elegant_client import secure_execute
@@ -123,7 +124,7 @@ class GitHubMCPClient:
         """Fallback method for repository structure analysis"""
         try:
             # Clone repository temporarily
-            temp_dir = f"/tmp/repo_analysis_{hash(repo_url) % 10000}"
+            temp_dir = tempfile.mkdtemp(prefix="repo_analysis_")
 
             # Clone the repository
             clone_result = await secure_execute(f"git clone {repo_url} {temp_dir}")
@@ -152,7 +153,7 @@ class GitHubMCPClient:
     ) -> dict[str, str]:
         """Fallback method for reading files"""
         try:
-            temp_dir = f"/tmp/repo_files_{hash(repo_url) % 10000}"
+            temp_dir = tempfile.mkdtemp(prefix="repo_files_")
 
             # Clone repository
             clone_result = await secure_execute(f"git clone {repo_url} {temp_dir}")

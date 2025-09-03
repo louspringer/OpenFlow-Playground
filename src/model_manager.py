@@ -49,7 +49,7 @@ class ModelManager:
         import hashlib
 
         with open(file_path, "rb") as f:
-            checksum = hashlib.md5(f.read()).hexdigest()
+            checksum = hashlib.sha256(f.read()).hexdigest()
 
         return ModelBackup(
             original_path=file_path,
@@ -96,7 +96,7 @@ class ModelManager:
             return False
 
         # Use temporary file for atomic write
-        temp_file = Path(tempfile.mktemp(suffix=".json"))
+        temp_file = Path(tempfile.mkstemp(suffix=".json")[1])
         try:
             with open(temp_file, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2, ensure_ascii=False)

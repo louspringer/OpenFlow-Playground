@@ -77,6 +77,7 @@ class GitGuardianSecurityScanner:
                 f"{self.base_url}/incidents/secrets",
                 headers=self.headers,
                 params=params,
+                timeout=30,
             )
             response.raise_for_status()
 
@@ -88,7 +89,7 @@ class GitGuardianSecurityScanner:
     def get_incident_details(self, incident_id: int) -> Optional[dict[str, Any]]:
         """Get detailed information about a specific incident"""
         try:
-            response = requests.get(f"{self.base_url}/incidents/secrets/{incident_id}", headers=self.headers)
+            response = requests.get(f"{self.base_url}/incidents/secrets/{incident_id}", headers=self.headers, timeout=30)
             response.raise_for_status()
             return response.json()
         except Exception as e:
@@ -300,10 +301,10 @@ class SecurityScanManager:
                     detector_display_name=issue["detector_name"],
                     severity=issue["severity"],
                     status=issue["status"],
-                    date="",
+                    date="",  # noqa: B106
                     filepath=issue["filepath"],
                     line_number=issue["line_number"],
-                    secret_type="",
+                    secret_type="",  # noqa: B106
                     description=issue["description"],
                     remediation=issue["remediation"],
                     priority=issue["priority"],

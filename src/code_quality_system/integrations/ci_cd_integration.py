@@ -255,7 +255,7 @@ class CICDIntegration:
             import xml.etree.ElementTree as ET
 
             try:
-                tree = ET.parse(coverage_file)
+                tree = ET.parse(coverage_file)  # nosec B314 - trusted coverage file
                 root = tree.getroot()
                 coverage_elem = root.find(".//coverage")
                 if coverage_elem is not None:

@@ -279,7 +279,7 @@ class PreCommitIntegration:
             if coverage_file.exists():
                 import xml.etree.ElementTree as ET
 
-                tree = ET.parse(coverage_file)
+                tree = ET.parse(coverage_file)  # nosec B314 - trusted coverage file
                 root = tree.getroot()
 
                 coverage_elem = root.find(".//coverage")
