@@ -1,0 +1,127 @@
+{
+  "dashboard_info": {
+    "generated_at": "2025-09-03T13:33:34.246947",
+    "project_root": ".",
+    "report_version": "1.0"
+  },
+  "summary": {
+    "overall_security_score": 20.0,
+    "security_status": "critical",
+    "total_metrics": 5,
+    "healthy_metrics": 1,
+    "warning_metrics": 2,
+    "critical_metrics": 2,
+    "total_alerts": 4,
+    "critical_alerts": 2,
+    "high_alerts": 2,
+    "medium_alerts": 0,
+    "low_alerts": 0
+  },
+  "metrics": [
+    {
+      "name": "Total Vulnerabilities",
+      "value": 6,
+      "unit": "count",
+      "status": "critical",
+      "trend": "stable",
+      "last_updated": "2025-09-03 13:33:34.246723",
+      "target": 0.0,
+      "threshold": 0.0
+    },
+    {
+      "name": "High Severity Vulnerabilities",
+      "value": 1,
+      "unit": "count",
+      "status": "critical",
+      "trend": "stable",
+      "last_updated": "2025-09-03 13:33:34.246727",
+      "target": 0.0,
+      "threshold": 0.0
+    },
+    {
+      "name": "Medium Severity Vulnerabilities",
+      "value": 5,
+      "unit": "count",
+      "status": "warning",
+      "trend": "stable",
+      "last_updated": "2025-09-03 13:33:34.246728",
+      "target": 0.0,
+      "threshold": 5.0
+    },
+    {
+      "name": "Low Severity Vulnerabilities",
+      "value": 0,
+      "unit": "count",
+      "status": "healthy",
+      "trend": "stable",
+      "last_updated": "2025-09-03 13:33:34.246729",
+      "target": 0.0,
+      "threshold": 10.0
+    },
+    {
+      "name": "Security Compliance",
+      "value": 40,
+      "unit": "percentage",
+      "status": "warning",
+      "trend": "stable",
+      "last_updated": "2025-09-03 13:33:34.246730",
+      "target": 100.0,
+      "threshold": 90.0
+    }
+  ],
+  "alerts": [
+    {
+      "id": "SEC-ALERT-20250903-133334",
+      "type": "Vulnerability",
+      "severity": "Critical",
+      "message": "Critical security issue: Total Vulnerabilities = 6 count",
+      "timestamp": "2025-09-03 13:33:34.246784",
+      "status": "Active",
+      "resolved_at": null
+    },
+    {
+      "id": "SEC-ALERT-20250903-133334",
+      "type": "Vulnerability",
+      "severity": "Critical",
+      "message": "Critical security issue: High Severity Vulnerabilities = 1 count",
+      "timestamp": "2025-09-03 13:33:34.246788",
+      "status": "Active",
+      "resolved_at": null
+    },
+    {
+      "id": "SEC-ALERT-20250903-133334",
+      "type": "Vulnerability",
+      "severity": "High",
+      "message": "Security warning: Medium Severity Vulnerabilities = 5 count",
+      "timestamp": "2025-09-03 13:33:34.246790",
+      "status": "Active",
+      "resolved_at": null
+    },
+    {
+      "id": "SEC-ALERT-20250903-133334",
+      "type": "Vulnerability",
+      "severity": "High",
+      "message": "Security warning: Security Compliance = 40 percentage",
+      "timestamp": "2025-09-03 13:33:34.246793",
+      "status": "Active",
+      "resolved_at": null
+    }
+  ],
+  "health_status": {
+    "status": "critical",
+    "last_check": "2025-09-03 13:33:34.246794",
+    "total_metrics": 5,
+    "total_alerts": 4,
+    "critical_alerts": 2,
+    "high_alerts": 2,
+    "medium_alerts": 0,
+    "low_alerts": 0
+  },
+  "recommendations": [
+    "CRITICAL: Address critical security issues immediately",
+    "HIGH: Address security warnings within 7 days",
+    "CRITICAL: Address high-severity vulnerabilities immediately",
+    "HIGH: Address medium-severity vulnerabilities within 7 days",
+    "HIGH: Improve security compliance to meet target of 90%"
+  ]
+}
