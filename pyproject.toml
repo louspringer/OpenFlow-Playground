@@ -1,162 +1,103 @@
-[project]
-name = "openflow-playground"
-version = "1.0.0"
-description = "OpenFlow Playground with Security-First Architecture and Multi-Agent Blind Spot Detection"
-authors = [
-    {name = "Lou Springer", email = "lou@example.com"}
-]
-# readme = "README.md"  # Commented out for Docker builds
-requires-python = ">=3.10"
-dependencies = [
-    # Core Framework
-    "streamlit>=1.28.0",
-    # Security Dependencies (Best Practices)
-    "bcrypt>=4.0.0",
-    "cryptography>=41.0.0",
-    "PyJWT>=2.8.0",
-    # Data Processing
-    "pandas>=2.0.0",
-    "numpy>=1.24.0",
-    # Visualization
-    "plotly>=5.15.0",
-    # AWS Integration
-    "boto3>=1.28.0",
-    "botocore>=1.31.0",
-    # Database and Caching
-    "redis>=4.6.0",
-    # HTTP Requests
-    "requests>=2.31.0",
-    "aiohttp>=3.8.0",
-    # Data Validation
-    "pydantic>=2.0.0",
-    "autoflake8>=0.4.1",
-    # Multi-Agent Framework
-    "langgraph>=0.2.0",
-    "langchain>=0.2.0",
-    "grpcio>=1.74.0",
-    "grpcio-tools>=1.74.0",
-    "gitpython>=3.1.45",
-    "functions-framework>=3.9.2",
-    "google-cloud-firestore>=2.21.0",
-    "google-cloud-pubsub>=2.31.1",
-    "pytest-asyncio>=1.1.0",
-    "matplotlib>=3.10.5",
-    "kaleido>=1.0.0",
-    "neo4j>=5.28.2",
-    "jq>=1.10.0",
-    "astor>=0.8.1",
-    # Code Quality Tools
-    "mypy==1.8.0",
-    "pytype>=2024.10.11",
-    # LangChain Components
-    "langchain-core>=0.3.74",
-    "langchain-anthropic>=0.3.19",
-    "langchain-openai>=0.3.30",
-    "langchain-community>=0.3.27",
-    # Utilities
-    "python-dotenv>=1.1.1",
-    "psutil>=6.1.1",
-    "tenacity>=9.1.2",
-    "rdflib>=7.1.4",
-    "pylint>=3.3.8",
-    "plantuml>=0.3.0",
-    "pyflowchart>=0.3.1",
-    "actdiag>=3.0.0",
-    "napkin>=0.6.9",
-    "pyregurgitator>=0.2.1",
-    "pyan3>=1.2.0",
-    "pydeps>=3.0.1",
-    "radon>=6.0.1",
-    "ast2json>=0.4",
-    "networkx>=3.4.2",
-    "graphviz>=0.21",
-    "playwright>=1.54.0",
-    "langchain-google-genai>=2.1.9",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-mock>=3.11.0",
-    "pytest-playwright>=0.4.0",
-    "playwright>=1.40.0",
-    "flake8>=6.0.0",
-    "black>=23.0.0",
-    "mypy>=1.0.0",
-    "bandit>=1.7.0",
-    "safety>=2.3.0",
-    "types-requests>=2.31.0",
-    "pandas-stubs>=2.0.0",
-]
-
-security = [
-    # Established Security Tools (Best Practices)
-    "bandit>=1.8.6",           # Python security scanning
-    "safety>=2.3.0",           # Dependency vulnerability scanning
-    "semgrep>=1.60.0",         # Pattern-based security scanning
-    "detect-secrets>=1.4.0",   # Secret detection (Python-based)
-    
-    # Additional Security Dependencies
-    "cryptography>=41.0.0",    # Cryptographic primitives
-    "bcrypt>=4.0.0",           # Password hashing
-    "PyJWT>=2.8.0",            # JWT handling
-]
-
-# External Security Tools (to be installed separately)
-# - Gitleaks: go install github.com/zricethezav/gitleaks/v8@latest
-# - Trivy: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-
-[project.scripts]
-openflow-app = "src.streamlit.openflow_quickstart_app:main"
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
-
-[tool.hatch.build]
-include = [
-    "src/**/*.py",
-    "tests/**/*.py",
-    "README.md",
-    "LICENSE",
+[project]
+name = "ackbert"
+version = "0.1.0"
+description = "Structured candidate comparison and evaluation framework using ontology-based methodologies"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+    {name = "Lou Springer", email = "lou@example.com"},
 ]
-
-[tool.uv]
-dev-dependencies = [
-    # Development and Testing
-    "pytest>=7.4.0",
-    "pytest-mock>=3.11.0",
-    # Code Quality
-    "flake8>=6.0.0",
+keywords = ["hiring", "evaluation", "ontology", "rdf", "comparison", "candidates"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "rdflib>=7.0.0",
+    "pydantic>=2.0.0",
+    "typer[all]>=0.9.0",
+    "rich>=13.0.0",
+    "click>=8.0.0",
+    # Beast Mode and PM dependencies
+    "jq>=1.4.0",
+    "neo4j>=5.0.0",
+    "networkx>=3.0.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "scikit-learn>=1.3.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+    "pytest-cov>=4.0.0",
     "black>=23.0.0",
+    "ruff>=0.1.0",
     "mypy>=1.0.0",
-    "ruff>=0.12.9",
-    "autopep8>=2.3.2",
-    "autoflake>=2.3.1",
-    # Type Stubs
-    "types-requests>=2.31.0",
-    "pandas-stubs>=2.0.0",
-    "bandit>=1.8.6",
-    "safety>=3.6.0",
-    "detect-secrets>=1.5.0",
-    "semgrep>=1.79.0",
-    "snakeviz>=2.2.2",
-    "viztracer>=1.0.4",
-    "pydantic>=2.9.2",
-    "mdformat>=0.7.22",
-    "yamlfix>=1.17.0",
-    "pre-commit>=4.3.0",
+    "pre-commit>=3.0.0",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.20.0",
+    # Additional Beast Mode dependencies
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+    "langchain-core>=0.3.0",
+    "openai>=1.0.0",
+    "anthropic>=0.25.0",
+    "tiktoken>=0.7.0",
+    "python-dotenv>=1.0.0",
+    "asyncio>=3.4.3",
+    "aiofiles>=23.0.0",
+    "httpx>=0.27.0",
+    "websockets>=12.0",
+    "uvicorn>=0.30.0",
+    "fastapi>=0.110.0",
+    "pydantic-settings>=2.0.0",
 ]
 
-# Security tools are now in [project.optional-dependencies.security]
-# External tools (Gitleaks, Trivy) are installed separately via Makefile
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.20.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/louspringer/ackbert"
+Repository = "https://github.com/louspringer/ackbert"
+Documentation = "https://github.com/louspringer/ackbert#readme"
+"Bug Tracker" = "https://github.com/louspringer/ackbert/issues"
+
+[project.scripts]
+ackbert = "ackbert.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ackbert"]
 
 [tool.black]
-        line-length = 200
-target-version = ['py312']
+line-length = 88
+target-version = ['py39']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -172,8 +113,29 @@ extend-exclude = '''
 )/
 '''
 
+[tool.ruff]
+target-version = "py39"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -187,83 +149,39 @@ warn_no_return = true
 warn_unreachable = true
 strict_equality = true
 
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
+python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --tb=short"
-asyncio_mode = "auto"
-# Generated tests are disabled until the generation system is fixed
-# norecursedirs = ["tests/generated"]
-
-[tool.bandit]
-exclude_dirs = ["tests", "venv", ".venv", ".mypy_cache", "__pycache__"]
-skips = ["B101", "B601"]
-targets = ["src", "scripts"]
-
-[tool.bandit.assert_used]
-skips = ["*_test.py", "test_*.py"]
-
-[tool.bandit.tests]
-skips = ["*_test.py", "test_*.py"]
-
-# Security scanning configuration (Best Practices)
-[tool.security]
-# Use established tools instead of custom scanners
-tools = [
-    "bandit",      # Python security scanning (Python package)
-    "semgrep",     # Pattern-based security scanning (Python package)
-    "safety",      # Dependency vulnerability scanning (Python package)
-    "detect-secrets", # Secret detection (Python package)
-    "gitleaks",    # Secret detection (Go binary - external)
-    "trivy"        # Vulnerability scanning (Go binary - external)
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
 ]
 
-# Security scanning workflow
-workflow = [
-    "1. Run Bandit for Python security issues",
-    "2. Run Semgrep for pattern-based security issues",
-    "3. Run Safety for dependency vulnerabilities",
-    "4. Run Detect-Secrets for secret detection",
-    "5. Run Gitleaks for comprehensive secret scanning",
-    "6. Run Trivy for infrastructure and dependency scanning",
-    "7. Review and fix all findings"
+[tool.coverage.run]
+source = ["src/ackbert"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
 ]
 
-# Exclude patterns for established tools
-exclude_patterns = [
-    ".git/",
-    ".venv/",
-    "__pycache__/",
-    ".mypy_cache/",
-    "node_modules/",
-    "dist/",
-    "build/",
-    "*.lock",      # Lock files
-    "*.exe",       # Binary files
-    "*.dll",
-    "*.so",
-    "*.dylib"
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
 ]
-
-# Security tool configurations
-[tool.security.bandit]
-exclude_dirs = ["tests", "venv", ".venv", ".mypy_cache", "__pycache__"]
-skips = ["B101", "B601"]  # Skip assert usage and hardcoded temp files
-targets = ["src", "scripts"]
-
-[tool.security.semgrep]
-config = "auto"  # Use Semgrep's auto-configuration
-output_format = "json"
-exclude_patterns = ["tests/", ".venv/", "__pycache__/"]
-
-[tool.security.safety]
-output_format = "json"
-exclude_patterns = ["tests/", ".venv/", "__pycache__/"]
-
-# External tool installation instructions
-[tool.security.external_tools]
-gitleaks = "go install github.com/zricethezav/gitleaks/v8@latest"
-trivy = "curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin"
