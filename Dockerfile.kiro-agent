@@ -1,0 +1,83 @@
+# Kiro Agent Dockerfile
+# Multi-stage build for optimized container size and security
+
+# Stage 1: Build stage
+FROM python:3.12-slim as builder
+
+# Set build arguments
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
+
+# Install system dependencies for building
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install UV package manager
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.cargo/bin:$PATH"
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependency files
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies using UV
+RUN uv sync --frozen --no-dev
+
+# Stage 2: Runtime stage
+FROM python:3.12-slim as runtime
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Create non-root user
+RUN groupadd -r kiro && useradd -r -g kiro kiro
+
+# Set working directory
+WORKDIR /app
+
+# Copy virtual environment from builder stage
+COPY --from=builder /app/.venv /app/.venv
+
+# Copy application code
+COPY src/ ./src/
+COPY hackathon/kiro-ai-development-hackathon/ ./hackathon/kiro-ai-development-hackathon/
+COPY project_model_registry.json ./
+COPY pdca.mdc ./
+
+# Install LangChain dependencies
+RUN uv add langchain langgraph langchain-core langchain-community
+
+# Create data directory
+RUN mkdir -p /app/data && chown -R kiro:kiro /app
+
+# Set environment variables
+ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app:/app/src"
+ENV BEAST_MODE_ENABLED="true"
+ENV AGENT_COORDINATION_ENABLED="true"
+ENV GKE_SERVICE_INTERFACE_ENABLED="true"
+ENV LANGCHAIN_ENABLED="true"
+ENV LANGGRAPH_ENABLED="true"
+ENV LOCAL_LLM_ENABLED="true"
+
+# Expose ports
+EXPOSE 8080 9090
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Switch to non-root user
+USER kiro
+
+# Default command
+CMD ["python", "-m", "src.agent_coordination.agent_coordinator"]
