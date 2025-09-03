@@ -13,3 +13,6 @@
 [submodule "hackathon/code_with_kiro"]
 	path = hackathon/code_with_kiro
 	url = https://github.com/nkllon/kiro-ai-development-hackathon.git
+[submodule "hackathon/kiro-ai-development-hackathon"]
+	path = hackathon/kiro-ai-development-hackathon
+	url = https://github.com/nkllon/kiro-ai-development-hackathon.git

@@ -87,7 +87,6 @@ op_api_cache/
 # Subproject directories
 clewcrew*/
 gke-ai-microservices-hackathon/
-kiro-ai-development-hackathon/
 tidb-agentx-hackathon/
 
 # Output files
