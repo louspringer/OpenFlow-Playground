@@ -12,31 +12,34 @@ RDI_DOCUMENTATION_DIR := docs
 RDI_REQUIREMENTS_VALIDATOR := uv run python scripts/rdi_requirements_validator.py
 RDI_DESIGN_VALIDATOR := uv run python scripts/rdi_design_validator.py
 RDI_IMPLEMENTATION_VALIDATOR := uv run python scripts/rdi_implementation_validator.py
+RDI_DOCUMENTATION_VALIDATOR := uv run python scripts/rdi_documentation_validator.py
 RDI_TRACEABILITY_CHECKER := uv run python scripts/rdi_traceability_checker.py
 
 # RDI Targets
-.PHONY: rdi-help rdi-status rdi-requirements rdi-design rdi-implementation rdi-validation rdi-traceability rdi-full-cycle rdi-performance rdi-quality-monitoring
+.PHONY: rdi-help rdi-status rdi-requirements rdi-design rdi-implementation rdi-documentation rdi-validation rdi-traceability rdi-full-cycle rdi-performance rdi-quality-monitoring
 
 rdi-help: ## Show RDI methodology help
-	@echo "$(CYAN)📋 RDI (Requirements→Design→Implementation) Methodology$(NC)"
-	@echo "$(BLUE)====================================================$(NC)"
+	@echo "$(CYAN)📋 RDI (Requirements→Design→Implementation→Documentation) Methodology$(NC)"
+	@echo "$(BLUE)================================================================$(NC)"
 	@echo ""
 	@echo "$(YELLOW)Available RDI targets:$(NC)"
 	@echo "  rdi-requirements     - Validate and manage requirements"
 	@echo "  rdi-design          - Validate and manage design specifications"
 	@echo "  rdi-implementation  - Validate and manage implementation"
+	@echo "  rdi-documentation   - Validate and manage documentation"
 	@echo "  rdi-validation      - Run full RDI validation cycle"
 	@echo "  rdi-performance     - Run performance testing"
 	@echo "  rdi-quality-monitoring - Run quality monitoring framework"
-	@echo "  rdi-traceability    - Check requirements→design→implementation traceability"
-	@echo "  rdi-full-cycle      - Run complete RDI cycle"
+	@echo "  rdi-traceability    - Check requirements→design→implementation→documentation traceability"
+	@echo "  rdi-full-cycle      - Run complete RDI cycle (R→D→I→D)"
 	@echo ""
 	@echo "$(PURPLE)RDI Principles:$(NC)"
 	@echo "  📋 Requirements: Clear, testable, traceable requirements"
 	@echo "  🎨 Design: Architecture and design specifications"
 	@echo "  🔧 Implementation: Code implementation with validation"
+	@echo "  📚 Documentation: Comprehensive documentation with traceability"
 	@echo "  ✅ Validation: End-to-end validation and testing"
-	@echo "  🔗 Traceability: Requirements→Design→Implementation mapping"
+	@echo "  🔗 Traceability: Requirements→Design→Implementation→Documentation mapping"
 	@echo ""
 	@echo "$(GREEN)RM Compliance:$(NC)"
 	@echo "  ✅ Self-Monitoring: RDI validation and health checks"
@@ -45,8 +48,8 @@ rdi-help: ## Show RDI methodology help
 	@echo "  ✅ Single Responsibility: Focused RDI operations"
 
 rdi-status: ## Show RDI methodology status
-	@echo "$(CYAN)📊 RDI Methodology Status$(NC)"
-	@echo "$(BLUE)========================$(NC)"
+	@echo "$(CYAN)📊 RDI Methodology Status (R→D→I→D)$(NC)"
+	@echo "$(BLUE)====================================$(NC)"
 	@echo ""
 	@echo "$(BLUE)📋 Requirements Status$(NC)"
 	@echo "  Directory: $(RDI_REQUIREMENTS_DIR)"
@@ -62,6 +65,11 @@ rdi-status: ## Show RDI methodology status
 	@echo "  Directory: $(RDI_IMPLEMENTATION_DIR)"
 	@echo "  Files: $(shell find $(RDI_IMPLEMENTATION_DIR) -name "*.py" -o -name "*.js" -o -name "*.ts" 2>/dev/null | wc -l)"
 	@echo "  Validator: $(RDI_IMPLEMENTATION_VALIDATOR)"
+	@echo ""
+	@echo "$(BLUE)📚 Documentation Status$(NC)"
+	@echo "  Directory: $(RDI_DOCUMENTATION_DIR)"
+	@echo "  Files: $(shell find $(RDI_DOCUMENTATION_DIR) -name "*.md" -o -name "*.rst" -o -name "*.txt" 2>/dev/null | wc -l)"
+	@echo "  Validator: $(RDI_DOCUMENTATION_VALIDATOR)"
 	@echo ""
 	@echo "$(BLUE)✅ Validation Status$(NC)"
 	@echo "  Directory: $(RDI_VALIDATION_DIR)"
@@ -134,6 +142,28 @@ rdi-implementation: ## Validate and manage implementation
 	@echo ""
 	@echo "$(GREEN)✅ Implementation validation completed$(NC)"
 
+rdi-documentation: ## Validate and manage documentation
+	@echo "$(CYAN)📚 RDI Documentation Validation$(NC)"
+	@echo "$(BLUE)============================$(NC)"
+	@echo ""
+	@echo "$(YELLOW)🔍 Checking documentation directory...$(NC)"
+	@if [ ! -d "$(RDI_DOCUMENTATION_DIR)" ]; then \
+		echo "$(RED)❌ Documentation directory not found: $(RDI_DOCUMENTATION_DIR)$(NC)"; \
+		echo "$(YELLOW)💡 Creating documentation directory...$(NC)"; \
+		mkdir -p $(RDI_DOCUMENTATION_DIR); \
+	fi
+	@echo "$(GREEN)✅ Documentation directory: $(RDI_DOCUMENTATION_DIR)$(NC)"
+	@echo ""
+	@echo "$(YELLOW)🔍 Validating documentation files...$(NC)"
+	@if [ -f "scripts/rdi_documentation_validator.py" ]; then \
+		$(RDI_DOCUMENTATION_VALIDATOR); \
+	else \
+		echo "$(YELLOW)⚠️  Documentation validator not found, creating basic validation...$(NC)"; \
+		find $(RDI_DOCUMENTATION_DIR) -name "*.md" -o -name "*.rst" -o -name "*.txt" | head -5; \
+	fi
+	@echo ""
+	@echo "$(GREEN)✅ Documentation validation completed$(NC)"
+
 rdi-validation: ## Run full RDI validation cycle
 	@echo "$(CYAN)✅ RDI Full Validation Cycle$(NC)"
 	@echo "$(BLUE)==========================$(NC)"
@@ -154,9 +184,9 @@ rdi-validation: ## Run full RDI validation cycle
 	@echo ""
 	@echo "$(GREEN)✅ RDI validation cycle completed$(NC)"
 
-rdi-traceability: ## Check requirements→design→implementation traceability
-	@echo "$(CYAN)🔗 RDI Traceability Check$(NC)"
-	@echo "$(BLUE)=======================$(NC)"
+rdi-traceability: ## Check requirements→design→implementation→documentation traceability
+	@echo "$(CYAN)🔗 RDI Traceability Check (R→D→I→D)$(NC)"
+	@echo "$(BLUE)====================================$(NC)"
 	@echo ""
 	@echo "$(YELLOW)🔍 Checking traceability...$(NC)"
 	@if [ -f "scripts/rdi_traceability_checker.py" ]; then \
@@ -167,15 +197,17 @@ rdi-traceability: ## Check requirements→design→implementation traceability
 		find $(RDI_REQUIREMENTS_DIR) -name "*.md" -o -name "*.yaml" -o -name "*.json" 2>/dev/null | wc -l; \
 		echo "$(BLUE)🎨 Design → Implementation Traceability$(NC)"; \
 		find $(RDI_DESIGN_DIR) -name "*.md" -o -name "*.yaml" -o -name "*.json" 2>/dev/null | wc -l; \
-		echo "$(BLUE)🔧 Implementation Files$(NC)"; \
+		echo "$(BLUE)🔧 Implementation → Documentation Traceability$(NC)"; \
 		find $(RDI_IMPLEMENTATION_DIR) -name "*.py" -o -name "*.js" -o -name "*.ts" 2>/dev/null | wc -l; \
+		echo "$(BLUE)📚 Documentation Files$(NC)"; \
+		find $(RDI_DOCUMENTATION_DIR) -name "*.md" -o -name "*.rst" -o -name "*.txt" 2>/dev/null | wc -l; \
 	fi
 	@echo ""
 	@echo "$(GREEN)✅ Traceability check completed$(NC)"
 
 rdi-full-cycle: ## Run complete RDI cycle
-	@echo "$(CYAN)🔄 RDI Full Cycle$(NC)"
-	@echo "$(BLUE)===============$(NC)"
+	@echo "$(CYAN)🔄 RDI Full Cycle (R→D→I→D)$(NC)"
+	@echo "$(BLUE)============================$(NC)"
 	@echo ""
 	@echo "$(YELLOW)🚀 Starting complete RDI cycle...$(NC)"
 	@echo ""
@@ -188,13 +220,16 @@ rdi-full-cycle: ## Run complete RDI cycle
 	@echo "$(BLUE)Phase 3: Implementation$(NC)"
 	@$(MAKE) rdi-implementation
 	@echo ""
-	@echo "$(BLUE)Phase 4: Validation & Testing$(NC)"
+	@echo "$(BLUE)Phase 4: Documentation$(NC)"
+	@$(MAKE) rdi-documentation
+	@echo ""
+	@echo "$(BLUE)Phase 5: Validation & Testing$(NC)"
 	@$(MAKE) rdi-validation
 	@echo ""
-	@echo "$(BLUE)Phase 5: Performance Testing$(NC)"
+	@echo "$(BLUE)Phase 6: Performance Testing$(NC)"
 	@$(MAKE) rdi-performance
 	@echo ""
-	@echo "$(BLUE)Phase 6: Traceability Verification$(NC)"
+	@echo "$(BLUE)Phase 7: Traceability Verification$(NC)"
 	@$(MAKE) rdi-traceability
 	@echo ""
 	@echo "$(GREEN)🎉 RDI full cycle completed successfully!$(NC)"

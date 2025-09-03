@@ -5081,12 +5081,6 @@
       "domain": "general",
       "implementation": "",
       "test": ""
-    },
-    {
-      "requirement": "Requirements traceability for RDI documentation integration",
-      "domain": "general",
-      "implementation": "",
-      "test": ""
     }
   ],
   "implementation_plan": {
@@ -7581,11 +7575,5 @@
       "Integrate documentation step into RDI full cycle (R\u2192D\u2192I\u2192D)",
       "Maintain documentation quality standards and validation criteria"
     ]
-  },
-  "rdi_documentation_requirements": {
-    "requirement": "Implement RDI Documentation Integration for complete R\u2192D\u2192I\u2192D cycle",
-    "domain": "rdi_documentation",
-    "implementation": "RDI Documentation Validator with RM compliance, documentation completeness validation, and traceability checking",
-    "test": "test_requirement_rdi_documentation_integration"
   }
 }
