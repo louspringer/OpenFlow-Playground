@@ -19,3 +19,18 @@
 [submodule "ackbert"]
 	path = ackbert
 	url = https://github.com/louspringer/ackbert.git
+[submodule "hackathon/gke-ai-microservices-hackathon"]
+	path = hackathon/gke-ai-microservices-hackathon
+	url = https://github.com/nkllon/gke-ai-microservices-hackathon.git
+[submodule "subprojects/claude-simone"]
+	path = subprojects/claude-simone
+	url = https://github.com/louspringer/claude-simone.git
+[submodule "subprojects/tidb-agentx-hackathon"]
+	path = subprojects/tidb-agentx-hackathon
+	url = https://github.com/louspringer/tidb-agentx-hackathon.git
+[submodule "subprojects/gke-ai-microservices-hackathon"]
+	path = subprojects/gke-ai-microservices-hackathon
+	url = https://github.com/nkllon/gke-ai-microservices-hackathon.git
+[submodule "subprojects/kiro-ai-development-hackathon"]
+	path = subprojects/kiro-ai-development-hackathon
+	url = https://github.com/nkllon/kiro-ai-development-hackathon.git
