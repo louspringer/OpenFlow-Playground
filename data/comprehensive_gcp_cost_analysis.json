@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-04T12:26:36.966410",
+  "timestamp": "2025-09-05T09:50:09.770795",
   "project_id": "aardvark-linkedin-grepper",
   "gke_clusters": {
     "kiro-agents-cluster": {
@@ -207,7 +207,7 @@
       "machineType": "e2-small",
       "status": "RUNNING",
       "preemptible": true,
-      "creationTimestamp": "2025-09-04T04:07:31.569-07:00",
+      "creationTimestamp": "2025-09-05T06:04:10.211-07:00",
       "disks": [
         {
           "architecture": "X86_64",
@@ -301,7 +301,7 @@
       "machineType": "e2-small",
       "status": "RUNNING",
       "preemptible": true,
-      "creationTimestamp": "2025-09-04T11:04:49.358-07:00",
+      "creationTimestamp": "2025-09-05T07:07:30.103-07:00",
       "disks": [
         {
           "architecture": "X86_64",
@@ -395,7 +395,7 @@
       "machineType": "e2-small",
       "status": "RUNNING",
       "preemptible": true,
-      "creationTimestamp": "2025-09-04T05:39:45.347-07:00",
+      "creationTimestamp": "2025-09-05T01:36:52.025-07:00",
       "disks": [
         {
           "architecture": "X86_64",
@@ -484,7 +484,14 @@
       ]
     }
   },
-  "cloud_functions": {},
+  "cloud_functions": {
+    "kiro-agent-function": {
+      "state": "ACTIVE",
+      "trigger": {},
+      "region": "us-central1",
+      "environment": "GEN_2"
+    }
+  },
   "firestore": {
     "(default)": {
       "location": "us-central1",
