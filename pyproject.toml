@@ -65,6 +65,9 @@ dependencies = [
     "uvicorn>=0.30.0",
     "fastapi>=0.110.0",
     "pydantic-settings>=2.0.0",
+    "pymupdf>=1.26.4",
+    "pdfplumber>=0.11.7",
+    "pypdf>=6.0.0",
 ]
 
 [project.optional-dependencies]

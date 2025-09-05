@@ -1,0 +1,266 @@
+{
+  "timestamp": "2025-09-03T21:25:51.823567",
+  "project_info": {
+    "project_id": "aardvark-linkedin-grepper",
+    "project_info": {
+      "createTime": "2024-05-09T19:04:15.381927Z",
+      "lifecycleState": "ACTIVE",
+      "name": "aardvark-linkedin-grepper",
+      "parent": {
+        "id": "193331292537",
+        "type": "organization"
+      },
+      "projectId": "aardvark-linkedin-grepper",
+      "projectNumber": "1077539189076"
+    },
+    "billing_info": {
+      "billingAccountName": "billingAccounts/01F112-E73FD5-795507",
+      "billingEnabled": true,
+      "name": "projects/aardvark-linkedin-grepper/billingInfo",
+      "projectId": "aardvark-linkedin-grepper"
+    }
+  },
+  "cloud_functions": {},
+  "firestore": {
+    "(default)": {
+      "location": "us-central1",
+      "type": "FIRESTORE_NATIVE",
+      "free_tier": true,
+      "create_time": "2025-08-05T19:14:43.141346Z",
+      "app_engine_integration": "DISABLED"
+    }
+  },
+  "enabled_services": {
+    "autoscaling.googleapis.com": {
+      "title": "Cloud Autoscaling API",
+      "state": "ENABLED"
+    },
+    "bigquery.googleapis.com": {
+      "title": "BigQuery API",
+      "state": "ENABLED"
+    },
+    "bigqueryconnection.googleapis.com": {
+      "title": "BigQuery Connection API",
+      "state": "ENABLED"
+    },
+    "bigquerydatapolicy.googleapis.com": {
+      "title": "BigQuery Data Policy API",
+      "state": "ENABLED"
+    },
+    "bigquerymigration.googleapis.com": {
+      "title": "BigQuery Migration API",
+      "state": "ENABLED"
+    },
+    "bigqueryreservation.googleapis.com": {
+      "title": "BigQuery Reservation API",
+      "state": "ENABLED"
+    },
+    "bigquerystorage.googleapis.com": {
+      "title": "BigQuery Storage API",
+      "state": "ENABLED"
+    },
+    "billingbudgets.googleapis.com": {
+      "title": "Cloud Billing Budget API",
+      "state": "ENABLED"
+    },
+    "cloudaicompanion.googleapis.com": {
+      "title": "Gemini for Google Cloud API",
+      "state": "ENABLED"
+    },
+    "cloudapis.googleapis.com": {
+      "title": "Google Cloud APIs",
+      "state": "ENABLED"
+    },
+    "cloudbilling.googleapis.com": {
+      "title": "Cloud Billing API",
+      "state": "ENABLED"
+    },
+    "cloudfunctions.googleapis.com": {
+      "title": "Cloud Functions API",
+      "state": "ENABLED"
+    },
+    "cloudtrace.googleapis.com": {
+      "title": "Cloud Trace API",
+      "state": "ENABLED"
+    },
+    "compute.googleapis.com": {
+      "title": "Compute Engine API",
+      "state": "ENABLED"
+    },
+    "container.googleapis.com": {
+      "title": "Kubernetes Engine API",
+      "state": "ENABLED"
+    },
+    "containerfilesystem.googleapis.com": {
+      "title": "Container File System API",
+      "state": "ENABLED"
+    },
+    "containerregistry.googleapis.com": {
+      "title": "Container Registry API",
+      "state": "ENABLED"
+    },
+    "dataform.googleapis.com": {
+      "title": "Dataform API",
+      "state": "ENABLED"
+    },
+    "dataplex.googleapis.com": {
+      "title": "Cloud Dataplex API",
+      "state": "ENABLED"
+    },
+    "datastore.googleapis.com": {
+      "title": "Cloud Datastore API",
+      "state": "ENABLED"
+    },
+    "dns.googleapis.com": {
+      "title": "Cloud DNS API",
+      "state": "ENABLED"
+    },
+    "eventarc.googleapis.com": {
+      "title": "Eventarc API",
+      "state": "ENABLED"
+    },
+    "firebaserules.googleapis.com": {
+      "title": "Firebase Rules API",
+      "state": "ENABLED"
+    },
+    "firestore.googleapis.com": {
+      "title": "Cloud Firestore API",
+      "state": "ENABLED"
+    },
+    "generativelanguage.googleapis.com": {
+      "title": "Generative Language API",
+      "state": "ENABLED"
+    },
+    "gkebackup.googleapis.com": {
+      "title": "Backup for GKE API",
+      "state": "ENABLED"
+    },
+    "iam.googleapis.com": {
+      "title": "Identity and Access Management (IAM) API",
+      "state": "ENABLED"
+    },
+    "iamcredentials.googleapis.com": {
+      "title": "IAM Service Account Credentials API",
+      "state": "ENABLED"
+    },
+    "logging.googleapis.com": {
+      "title": "Cloud Logging API",
+      "state": "ENABLED"
+    },
+    "monitoring.googleapis.com": {
+      "title": "Cloud Monitoring API",
+      "state": "ENABLED"
+    },
+    "networkconnectivity.googleapis.com": {
+      "title": "Network Connectivity API",
+      "state": "ENABLED"
+    },
+    "oslogin.googleapis.com": {
+      "title": "Cloud OS Login API",
+      "state": "ENABLED"
+    },
+    "pubsub.googleapis.com": {
+      "title": "Cloud Pub/Sub API",
+      "state": "ENABLED"
+    },
+    "run.googleapis.com": {
+      "title": "Cloud Run Admin API",
+      "state": "ENABLED"
+    },
+    "secretmanager.googleapis.com": {
+      "title": "Secret Manager API",
+      "state": "ENABLED"
+    },
+    "servicemanagement.googleapis.com": {
+      "title": "Service Management API",
+      "state": "ENABLED"
+    },
+    "serviceusage.googleapis.com": {
+      "title": "Service Usage API",
+      "state": "ENABLED"
+    },
+    "source.googleapis.com": {
+      "title": "Legacy Cloud Source Repositories API",
+      "state": "ENABLED"
+    },
+    "speech.googleapis.com": {
+      "title": "Cloud Speech-to-Text API",
+      "state": "ENABLED"
+    },
+    "sql-component.googleapis.com": {
+      "title": "Cloud SQL",
+      "state": "ENABLED"
+    },
+    "storage-api.googleapis.com": {
+      "title": "Google Cloud Storage JSON API",
+      "state": "ENABLED"
+    },
+    "storage-component.googleapis.com": {
+      "title": "Cloud Storage",
+      "state": "ENABLED"
+    },
+    "storage.googleapis.com": {
+      "title": "Cloud Storage API",
+      "state": "ENABLED"
+    }
+  },
+  "billing_budgets": {
+    "billing_account_id": "01F112-E73FD5-795507",
+    "budgets": [
+      {
+        "amount": {
+          "specifiedAmount": {
+            "currencyCode": "USD",
+            "units": "25"
+          }
+        },
+        "budgetFilter": {
+          "calendarPeriod": "MONTH",
+          "creditTypesTreatment": "INCLUDE_ALL_CREDITS"
+        },
+        "displayName": "$25 Monthly Budget Alert",
+        "etag": "1751389112048447",
+        "name": "billingAccounts/01F112-E73FD5-795507/budgets/0e019914-6ce9-43f0-a319-77db031a185d",
+        "notificationsRule": {},
+        "thresholdRules": [
+          {
+            "spendBasis": "CURRENT_SPEND",
+            "thresholdPercent": 0.5
+          },
+          {
+            "spendBasis": "CURRENT_SPEND",
+            "thresholdPercent": 0.9
+          },
+          {
+            "spendBasis": "CURRENT_SPEND",
+            "thresholdPercent": 1.0
+          },
+          {
+            "spendBasis": "CURRENT_SPEND",
+            "thresholdPercent": 1.5
+          }
+        ]
+      }
+    ]
+  },
+  "cost_estimates": {
+    "cloud_functions": {},
+    "firestore": {
+      "(default)": {
+        "tier": "Free Tier",
+        "estimated_monthly_cost": 0.0,
+        "limits": {
+          "storage": "1GB",
+          "reads": "50K/day",
+          "writes": "20K/day",
+          "deletes": "20K/day"
+        }
+      }
+    },
+    "total_estimated_monthly_cost": 0.0
+  },
+  "recommendations": [
+    "\u2705 Firestore database '(default)' is on free tier - good for cost optimization",
+    "\u2705 Budget alerts are configured - good for cost monitoring"
+  ]
+}

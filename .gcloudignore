@@ -1,38 +1,71 @@
-# Include README.md for Docker builds
-!README.md
-
-# Ignore common development files
+# Git files
 .git/
 .gitignore
-*.pyc
+
+# Python cache
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
 .pytest_cache/
-.mypy_cache/
 .coverage
-.tox/
-.venv/
+htmlcov/
+
+# Virtual environments
 venv/
 env/
-.env
-.DS_Store
-*.log
-*.tmp
-*.swp
-*.swo
-*~
+ENV/
 
-# Ignore large directories that aren't needed for deployment
-docs/
-tests/
-*.md
-!README.md
-
-# Ignore development tools
+# IDE files
 .vscode/
 .idea/
-*.sublime-*
+*.swp
+*.swo
 
-# Ignore OS files
+# OS files
+.DS_Store
 Thumbs.db
-ehthumbs.db
-Desktop.ini
+
+# Documentation
+docs/
+*.md
+README*
+
+# Test files
+tests/
+test_*
+
+# Backup files
+*.backup
+*.bak
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Node modules (if any)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Large data files
+data/
+*.csv
+*.json
+*.parquet
+
+# UV lock file (too large)
+uv.lock
+
+# Project model backups
+backups/

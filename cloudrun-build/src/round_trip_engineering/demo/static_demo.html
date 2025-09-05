@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 Round-Trip Engineering Demo</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .demo-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .demo-card p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .demo-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .demo-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .results-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-success { background-color: #28a745; }
+        .status-warning { background-color: #ffc107; }
+        .status-error { background-color: #dc3545; }
+        .status-info { background-color: #17a2b8; }
+
+        .log-container {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .log-timestamp {
+            color: #a0aec0;
+            font-size: 0.8rem;
+        }
+
+        .log-message {
+            margin-left: 10px;
+        }
+
+        .log-success { color: #68d391; }
+        .log-error { color: #fc8181; }
+        .log-info { color: #63b3ed; }
+        .log-warning { color: #f6e05e; }
+
+        .architecture-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .module-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .module-box {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .module-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #667eea;
+        }
+
+        .module-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .module-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔄 Round-Trip Engineering Demo</h1>
+            <p>Interactive demonstration of the refactored Reflective Module architecture</p>
+        </div>
+
+        <!-- Demo Controls -->
+        <div class="demo-grid">
+            <div class="demo-card">
+                <h3>🚀 Basic Demo</h3>
+                <p>Run a simple round-trip engineering workflow with basic class generation.</p>
+                <button class="demo-button" onclick="runBasicDemo()">Run Basic Demo</button>
+            </div>
+
+            <div class="demo-card">
+                <h3>🚀 Advanced Demo</h3>
+                <p>Execute a complex workflow with multiple components and vocabulary alignment.</p>
+                <button class="demo-button" onclick="runAdvancedDemo()">Run Advanced Demo</button>
+            </div>
+
+            <div class="demo-card">
+                <h3>🚀 Performance Demo</h3>
+                <p>Benchmark system performance with multiple iterations and metrics.</p>
+                <button class="demo-button" onclick="runPerformanceDemo()">Run Performance Demo</button>
+            </div>
+
+            <div class="demo-card">
+                <h3>🚀 All Demos</h3>
+                <p>Run all demo types sequentially for comprehensive testing.</p>
+                <button class="demo-button" onclick="runAllDemos()">Run All Demos</button>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Running demo...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="results-section" style="display: none;">
+            <h2>📊 Demo Results</h2>
+            <div class="results-grid" id="results-grid"></div>
+            <div class="chart-container">
+                <canvas id="performanceChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- System Architecture -->
+        <div class="architecture-section">
+            <h2>🏗️ System Architecture</h2>
+            <p>The Round-Trip Engineering system follows Reflective Module principles for maintainable, scalable, and compliant architecture.</p>
+            
+            <div class="module-diagram">
+                <div class="module-box">
+                    <div class="module-name">DemoOrchestrator</div>
+                    <div class="module-description">Coordinates demo workflows</div>
+                </div>
+                <div class="module-box">
+                    <div class="module-name">RoundTripSystem</div>
+                    <div class="module-description">Main system orchestrator</div>
+                </div>
+                <div class="module-box">
+                    <div class="module-name">ModelManager</div>
+                    <div class="module-description">Handles model creation and persistence</div>
+                </div>
+                <div class="module-box">
+                    <div class="module-name">VocabularyAligner</div>
+                    <div class="module-description">Manages domain vocabulary alignment</div>
+                </div>
+                <div class="module-box">
+                    <div class="module-name">CodeGenerator</div>
+                    <div class="module-description">Generates code from models</div>
+                </div>
+                <div class="module-box">
+                    <div class="module-name">ClassGenerator</div>
+                    <div class="module-description">Generates class structures</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Execution Log -->
+        <div class="results-section">
+            <h2>📝 Execution Log</h2>
+            <div class="log-container" id="log-container">
+                <div class="log-entry">
+                    <span class="log-timestamp">[System Ready]</span>
+                    <span class="log-message log-info">Round-Trip Engineering Demo System initialized and ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo state management
+        let demoResults = {};
+        let performanceChart = null;
+
+        // Logging functions
+        function log(message, type = 'info') {
+            const logContainer = document.getElementById('log-container');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `
+                <span class="log-timestamp">[${timestamp}]</span>
+                <span class="log-message log-${type}">${message}</span>
+            `;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // Show/hide loading
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Mock demo execution (in real implementation, this would call the Python backend)
+        async function runBasicDemo() {
+            showLoading();
+            log('🚀 Starting Basic Demo...', 'info');
+            
+            try {
+                // Simulate demo execution
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const results = {
+                    demo_type: 'basic',
+                    status: 'success',
+                    duration: 2.1,
+                    model_name: 'BasicDemoClass',
+                    components_count: 1,
+                    generated_files_count: 2,
+                    generated_files: ['basic_demo_class.py', 'basic_demo_test.py'],
+                    round_trip_successful: true
+                };
+                
+                demoResults['Basic Demo'] = results;
+                displayResults();
+                log('✅ Basic Demo completed successfully!', 'success');
+                
+            } catch (error) {
+                log(`❌ Basic Demo failed: ${error}`, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function runAdvancedDemo() {
+            showLoading();
+            log('🚀 Starting Advanced Demo...', 'info');
+            
+            try {
+                // Simulate demo execution
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                const results = {
+                    demo_type: 'advanced',
+                    status: 'success',
+                    duration: 3.2,
+                    model_name: 'AdvancedDemoSystem',
+                    components_count: 2,
+                    generated_files_count: 4,
+                    generated_files: ['data_processor.py', 'result_formatter.py', 'advanced_system.py', 'advanced_tests.py'],
+                    round_trip_successful: true,
+                    vocabulary_alignment: {
+                        status: 'validated',
+                        alignment_score: 0.95,
+                        vocabulary_matches: 19,
+                        vocabulary_mismatches: 1,
+                        overall_health: 'excellent'
+                    }
+                };
+                
+                demoResults['Advanced Demo'] = results;
+                displayResults();
+                log('✅ Advanced Demo completed successfully!', 'success');
+                
+            } catch (error) {
+                log(`❌ Advanced Demo failed: ${error}`, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function runPerformanceDemo() {
+            showLoading();
+            log('🚀 Starting Performance Demo...', 'info');
+            
+            try {
+                // Simulate demo execution
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                
+                const results = {
+                    demo_type: 'performance',
+                    status: 'success',
+                    total_duration: 4.1,
+                    iterations: 10,
+                    average_iteration_time: 0.41,
+                    results: Array.from({length: 10}, (_, i) => ({
+                        iteration: i + 1,
+                        duration: 0.4 + Math.random() * 0.1,
+                        components: 1,
+                        files_generated: 2
+                    })),
+                    performance_score: 'excellent'
+                };
+                
+                demoResults['Performance Demo'] = results;
+                displayResults();
+                log('✅ Performance Demo completed successfully!', 'success');
+                
+            } catch (error) {
+                log(`❌ Performance Demo failed: ${error}`, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function runAllDemos() {
+            showLoading();
+            log('🚀 Starting All Demos...', 'info');
+            
+            try {
+                await runBasicDemo();
+                await runAdvancedDemo();
+                await runPerformanceDemo();
+                
+                log('🎉 All demos completed successfully!', 'success');
+                
+            } catch (error) {
+                log(`❌ All Demos failed: ${error}`, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Display results
+        function displayResults() {
+            const resultsSection = document.getElementById('results-section');
+            const resultsGrid = document.getElementById('results-grid');
+            
+            resultsSection.style.display = 'block';
+            resultsGrid.innerHTML = '';
+            
+            // Display metrics for each demo
+            Object.entries(demoResults).forEach(([demoName, results]) => {
+                if (results.status === 'success') {
+                    const metricCard = document.createElement('div');
+                    metricCard.className = 'metric-card';
+                    
+                    if (results.demo_type === 'performance') {
+                        metricCard.innerHTML = `
+                            <div class="metric-value">${results.average_iteration_time.toFixed(3)}s</div>
+                            <div class="metric-label">${demoName} - Avg Time</div>
+                        `;
+                    } else {
+                        metricCard.innerHTML = `
+                            <div class="metric-value">${results.duration.toFixed(3)}s</div>
+                            <div class="metric-label">${demoName} - Duration</div>
+                        `;
+                    }
+                    
+                    resultsGrid.appendChild(metricCard);
+                }
+            });
+            
+            // Update performance chart
+            updatePerformanceChart();
+        }
+
+        // Update performance chart
+        function updatePerformanceChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            
+            if (performanceChart) {
+                performanceChart.destroy();
+            }
+            
+            const chartData = [];
+            const labels = [];
+            
+            Object.entries(demoResults).forEach(([demoName, results]) => {
+                if (results.status === 'success') {
+                    if (results.demo_type === 'performance') {
+                        labels.push(demoName);
+                        chartData.push(results.average_iteration_time);
+                    } else {
+                        labels.push(demoName);
+                        chartData.push(results.duration);
+                    }
+                }
+            });
+            
+            performanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Execution Time (seconds)',
+                        data: chartData,
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(118, 75, 162, 0.8)',
+                            'rgba(102, 126, 234, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(102, 126, 234, 1)',
+                            'rgba(118, 75, 162, 1)',
+                            'rgba(102, 126, 234, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Time (seconds)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Demo Type'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Demo Performance Comparison'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the demo system
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🎯 Demo system initialized', 'info');
+            log('📊 Ready to run round-trip engineering demonstrations', 'info');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+#!/usr/bin/env python3
+"""
+🔥 MULTI-DIMENSIONAL SMOKE TEST
+
+Updated with proven diversity hypothesis models and enhanced test scenarios.
+"""
+
+import json
+import logging
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Optional
+
+import requests
+from dotenv import load_dotenv
+
+# LangChain caching imports
+try:
+    from langchain_core.caches import InMemoryCache
+    from langchain_core.globals import get_llm_cache, set_llm_cache
+
+    LANGCHAIN_AVAILABLE = True
+except ImportError:
+    LANGCHAIN_AVAILABLE = False
+
+
+class MultiDimensionalSmokeTest:
+    """Enhanced multi-dimensional smoke test with proven diversity hypothesis"""
+
+    def __init__(self, env_file: Optional[str] = None):
+        """Initialize with optional .env file path"""
+        # Load environment variables from .env file if specified
+        if env_file:
+            load_dotenv(env_file)
+        else:
+            # Default to ~/.env
+            load_dotenv(Path.home() / ".env")
+
+        # Initialize logging
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
+
+        # Initialize LangChain cache if available
+        self._initialize_langchain_cache()
+
+        # Updated model configurations with proven diversity
+        self.models = {
+            "gpt4": {
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
+            },
+            "gpt4o": {
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
+            },
+            "gpt4_turbo": {
+                "api_key_env": "OPENROUTER_API_KEY",
+                "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+                "model_name": "openai/gpt-4o-mini",
+            },
+            "claude": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-haiku-20240307",
+            },
+            "claude_web": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-sonnet-20240229",
+            },
+            "claude_haiku": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-haiku-20240307",
+            },
+            "perplexity": {
+                "api_key_env": "PERPLEXITY_API_KEY",
+                "endpoint": "https://api.perplexity.ai/chat/completions",
+                "model_name": "llama-3.1-8b-instant",
+            },
+            # New diverse models for enhanced diversity hypothesis testing
+            "gpt4_vision": {
+                "api_key_env": "OPENAI_API_KEY",
+                "endpoint": "https://api.openai.com/v1/chat/completions",  # ✅ FIXED: Use proper OpenAI endpoint
+                "model_name": "gpt-4o-mini",
+            },
+            "gpt5": {
+                "api_key_env": "OPENAI_API_KEY",
+                "endpoint": "https://api.openai.com/v1/chat/completions",
+                "model_name": "gpt-5o",
+            },
+            "gpt3_5_turbo": {
+                "api_key_env": "OPENAI_API_KEY",
+                "endpoint": "https://api.openai.com/v1/chat/completions",
+                "model_name": "gpt-3.5-turbo",
+            },
+            "claude_opus": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-opus-20240229",
+            },
+            "mixtral": {
+                "api_key_env": "MIXTRAL_API_KEY",
+                "endpoint": "https://api.mistral.ai/v1/chat/completions",
+                "model_name": "mistral-large-latest",
+            },
+            "huggingface": {
+                "api_key_env": "HUGGINGFACE_API_KEY",
+                "endpoint": "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf",
+                "model_name": "meta-llama/Llama-2-7b-chat-hf",
+            },
+            "claude_sonnet": {
+                "api_key_env": "ANTHROPIC_API_KEY",
+                "endpoint": "https://api.anthropic.com/v1/messages",
+                "model_name": "claude-3-sonnet-20240229",
+            },
+            # Google/Gemini models
+            "gemini_pro": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent",
+                "model_name": "gemini-pro",
+            },
+            "gemini_flash": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent",
+                "model_name": "gemini-1.5-flash",
+            },
+            "gemini_pro_vision": {
+                "api_key_env": "GOOGLE_API_KEY",
+                "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro-vision:generateContent",
+                "model_name": "gemini-pro-vision",
+            },
+            # AWS Bedrock models
+            "claude_bedrock": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "anthropic.claude-3-sonnet-20240229-v1:0",
+            },
+            "titan_express": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "amazon.titan-text-express-v1",
+            },
+            "llama2_bedrock": {
+                "api_key_env": "AWS_ACCESS_KEY_ID",
+                "endpoint": "bedrock-runtime",
+                "model_name": "meta.llama2-70b-chat-v1",
+            },
+        }
+
+        # Enhanced test scenarios based on proven diversity hypothesis
+        self.scenarios = {
+            "healthcare_cdc_pr": {
+                "context": "GitHub PR #1: Healthcare CDC Implementation with 28 commits, 11,222 additions, 90 deletions. Multiple Copilot AI reviewers found: 1) Missing package installation instructions, 2) Potential credential exposure via subprocess, 3) Unnecessary input sanitization. The PR implements real-time CDC operations for healthcare claims between DynamoDB and Snowflake.",
+                "expected_diversity_score": 0.8,
+                "expected_findings": 20,
+            },
+            "security_audit": {
+                "context": "Security audit of a financial services application with hardcoded credentials, missing input validation, and insufficient error handling. The application processes sensitive customer data and handles transactions.",
+                "expected_diversity_score": 0.9,
+                "expected_findings": 25,
+            },
+            "performance_review": {
+                "context": "Performance review of a high-traffic e-commerce platform experiencing slow response times, memory leaks, and database connection issues. The platform handles 10,000+ concurrent users.",
+                "expected_diversity_score": 0.85,
+                "expected_findings": 22,
+            },
+            "devops_pipeline": {
+                "context": "DevOps pipeline review for a microservices architecture with deployment failures, monitoring gaps, and scalability issues. The system uses Kubernetes and Docker.",
+                "expected_diversity_score": 0.8,
+                "expected_findings": 18,
+            },
+            "code_quality_assessment": {
+                "context": "Code quality assessment of a legacy system with technical debt, poor documentation, and inconsistent coding standards. The system is critical for business operations.",
+                "expected_diversity_score": 0.75,
+                "expected_findings": 20,
+            },
+        }
+
+        # Enhanced roles for better diversity
+        self.roles = {
+            "skeptical_partner": "You are a skeptical partner who questions assumptions and looks for blind spots.",
+            "supportive_partner": "You are a supportive partner who builds on ideas and looks for opportunities.",
+            "domain_expert": "You are a domain expert with deep technical knowledge in the specific area.",
+            "human_advocate": "You are a human advocate who focuses on user experience and accessibility.",
+            "risk_assessor": "You are a risk assessor who identifies potential problems and mitigation strategies.",
+            "process_enforcer": "You are a process enforcer who ensures proper procedures and compliance.",
+            "innovation_seeker": "You are an innovation seeker who looks for creative solutions and opportunities.",
+            "quality_gatekeeper": "You are a quality gatekeeper who ensures high standards and best practices.",
+            # Additional roles for multi-agent analysis
+            "security_expert": "You are a security expert who identifies vulnerabilities, security flaws, and potential attack vectors.",
+            "code_quality_expert": "You are a code quality expert who analyzes code structure, maintainability, and best practices.",
+            "devops_engineer": "You are a DevOps engineer who focuses on deployment, infrastructure, and operational concerns.",
+        }
+
+        # Enhanced prompt structures
+        self.prompt_structures = {
+            "direct_questions": "Ask direct, challenging questions about blind spots and assumptions.",
+            "socratic_questioning": "Use Socratic questioning to guide discovery of blind spots.",
+            "technical_focus": "Focus on technical implementation details and potential issues.",
+            "human_focus": "Focus on human factors, user experience, and accessibility.",
+            "outcome_oriented": "Focus on outcomes, risks, and business impact.",
+            "process_oriented": "Focus on processes, procedures, and compliance requirements.",
+            "creative_exploration": "Explore creative solutions and innovative approaches.",
+            "quality_assurance": "Focus on quality standards, testing, and best practices.",
+            "structured_analysis": "Provide a structured, systematic analysis of the topic with clear organization.",
+        }
+
+        # Enhanced response formats
+        self.response_formats = {
+            "json_structured": "Return structured JSON with questions, confidence, blind spots, and recommendations.",
+            "json": "Return your response in JSON format with clear structure and key findings.",
+            "narrative": "Return a narrative analysis with key insights and recommendations.",
+            "bullet_points": "Return bullet points with key findings and action items.",
+            "risk_matrix": "Return a risk matrix with likelihood, impact, and mitigation strategies.",
+            "timeline": "Return a timeline with immediate, short-term, and long-term recommendations.",
+            "stakeholder_analysis": "Return stakeholder analysis with impacts and recommendations for each group.",
+        }
+
+    def _initialize_langchain_cache(self) -> None:
+        """Initialize LangChain caching for improved performance"""
+        if LANGCHAIN_AVAILABLE:
+            try:
+                # Check if cache is already set
+                existing_cache = get_llm_cache()
+                if existing_cache is None:
+                    # Set up in-memory cache for LLM calls
+                    cache = InMemoryCache()
+                    set_llm_cache(cache)
+                    print("✅ MultiDimensionalSmokeTest: LangChain cache initialized")
+                else:
+                    print("✅ MultiDimensionalSmokeTest: Using existing LangChain cache")
+            except Exception as e:
+                print(f"⚠️ MultiDimensionalSmokeTest: Failed to initialize LangChain cache: {e}")
+        else:
+            print("⚠️ MultiDimensionalSmokeTest: LangChain not available, skipping cache")
+
+    def call_llm(
+        self,
+        model_name: str,
+        prompt: str,
+        temperature: float = 0.7,
+    ) -> dict[str, Any]:
+        """Call LLM with enhanced error handling and retry logic"""
+        print(f"    🔍 call_llm called with model_name='{model_name}', prompt type: {type(prompt)}")
+
+        # Check if prompt is None
+        if prompt is None:
+            print(f"    ❌ ERROR: prompt is None for model {model_name}")
+            return {"error": "Prompt is None"}
+
+        model_config = self.models.get(model_name)
+        if not model_config:
+            print(f"    ❌ ERROR: Unknown model: {model_name}")
+            print(f"    Available models: {list(self.models.keys())}")
+            msg = f"Unknown model: {model_name}"
+            raise ValueError(msg)
+
+        # Get API key from environment variables (standard pattern)
+        api_key_env = model_config.get("api_key_env")
+        if not api_key_env:
+            msg = f"No API key environment variable configured for {model_name}"
+            raise ValueError(msg)
+
+        api_key = os.getenv(api_key_env)
+        if not api_key:
+            msg = f"No API key found in environment variable {api_key_env} for {model_name}"
+            print(f"    🔑 Available environment variables: {[k for k in os.environ if 'API_KEY' in k]}")
+            raise ValueError(msg)
+
+        print(f"    🔑 Using environment variable {api_key_env} for {model_name}")
+
+        # Use different authentication headers for different providers
+        if "anthropic" in model_name.lower() or model_name == "claude":
+            headers = {
+                "Content-Type": "application/json",
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+            }
+        else:
+            # Default to OpenAI-style Bearer token
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            }
+
+        # Enhanced prompt engineering based on proven diversity hypothesis
+        enhanced_prompt = """
+You are an expert analyst focused on identifying blind spots and potential issues.
+
+{prompt}
+
+IMPORTANT: Focus on your specific perspective and provide unique insights that other perspectives might miss.
+This is part of a diversity hypothesis test - your unique viewpoint is valuable.
+
+Return your analysis in the requested format with high confidence in your findings.
+"""
+
+        # Use different payload structures for different providers
+        if "anthropic" in model_name.lower() or model_name == "claude":
+            # Anthropic uses a simpler payload structure
+            payload = {
+                "model": model_config["model_name"],
+                "max_tokens": 2000,
+                "messages": [{"role": "user", "content": enhanced_prompt}],
+            }
+        else:
+            # OpenAI-style payload with system role
+            payload = {
+                "model": model_config["model_name"],
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are an expert analyst focused on identifying blind spots and potential issues.",
+                    },
+                    {"role": "user", "content": enhanced_prompt},
+                ],
+                "temperature": temperature,
+                "max_tokens": 2000,
+            }
+
+        try:
+            response = requests.post(
+                model_config["endpoint"],
+                headers=headers,
+                json=payload,
+                timeout=30,
+            )
+            response.raise_for_status()
+            return response.json()  # type: ignore
+        except requests.exceptions.RequestException as e:
+            print(f"API error with {model_name}: {e}")
+            return {"error": str(e)}
+
+    def run_test(self, config: dict[str, Any], scenario: str) -> dict[str, Any]:
+        """Run a single test with enhanced analysis"""
+        print(f"🔍 DEBUG: run_test called with config: {config}")
+        print(f"🔍 DEBUG: scenario: {scenario}")
+
+        model_name = config["model"]
+        temperature = config["temperature"]
+        role_key = config["role"]
+        prompt_structure_key = config["prompt_structure"]
+        response_format_key = config["response_format"]
+
+        # Map keys to actual descriptions
+        role = self.roles.get(role_key, f"You are a {role_key} expert.")
+        prompt_structure = self.prompt_structures.get(prompt_structure_key, prompt_structure_key)
+        response_format = self.response_formats.get(response_format_key, response_format_key)
+
+        print(f"🔍 DEBUG: Extracted values - model: {model_name}, role_key: {role_key}, prompt_structure_key: {prompt_structure_key}, response_format_key: {response_format_key}")
+        print(
+            f"🔍 DEBUG: Mapped values - role: {str(role)[:50] if role else 'None'}..., prompt_structure: {str(prompt_structure)[:50] if prompt_structure else 'None'}..., response_format: {str(response_format)[:50] if response_format else 'None'}..."
+        )
+
+        # Enhanced scenario context
+        scenario_context = self.scenarios.get(scenario, {}).get("context", scenario)
+
+        prompt = f"""
+{role}
+
+Context: {scenario_context}
+
+{prompt_structure}
+
+{response_format}
+
+Focus on identifying what might be missing or overlooked from your unique perspective.
+"""
+
+        # Call LLM
+        response = self.call_llm(model_name, prompt, temperature)
+
+        # Enhanced result analysis
+        if "error" in response:
+            return {
+                "config": config,
+                "scenario": scenario,
+                "error": response["error"],
+                "agreement": False,
+                "insights": ["API error"],
+            }
+
+        # Parse response and calculate agreement
+        try:
+            # Enhanced parsing for different response formats
+            if "choices" in response and len(response["choices"]) > 0:
+                content = response["choices"][0]["message"]["content"]
+
+                # Extract questions/findings from response
+                questions = self.extract_questions(content)
+
+                # Calculate confidence and agreement
+                confidence = self.calculate_confidence(questions)
+                agreement = self.calculate_agreement(
+                    confidence,
+                    config.get("expected_confidence", 0.5),
+                )
+
+                return {
+                    "config": config,
+                    "scenario": scenario,
+                    "our_result": {
+                        "assumptions": len(
+                            [q for q in questions if "assumption" in q.lower()],
+                        ),
+                        "blind_spots": len(
+                            [q for q in questions if "blind" in q.lower()],
+                        ),
+                        "confidence": confidence,
+                        "decision": ("PROCEED_WITH_CAUTION" if confidence > 0.7 else "ASK_HUMAN"),
+                    },
+                    "real_llm_result": {
+                        "raw_response": content,
+                        "questions": questions,
+                    },
+                    "agreement": agreement,
+                    "insights": self.generate_insights(questions, confidence),
+                }
+            return {
+                "config": config,
+                "scenario": scenario,
+                "error": "No response content",
+                "agreement": False,
+                "insights": ["No response"],
+            }
+        except Exception as e:
+            return {
+                "config": config,
+                "scenario": scenario,
+                "error": str(e),
+                "agreement": False,
+                "insights": ["Parsing error"],
+            }
+
+    def extract_questions(self, content: str) -> list[str]:
+        """Enhanced question extraction"""
+        questions = []
+
+        # Try to extract JSON structure
+        if "```json" in content:
+            try:
+                json_start = content.find("```json") + 7
+                json_end = content.find("```", json_start)
+                json_content = content[json_start:json_end].strip()
+                data = json.loads(json_content)
+
+                if isinstance(data, dict) and "questions" in data:
+                    questions = [q.get("question", "") for q in data["questions"]]
+                elif isinstance(data, list):
+                    questions = [q.get("question", "") for q in data if isinstance(q, dict)]
+            except Exception:
+                pass
+
+        # Fallback: extract questions from text
+        if not questions:
+            lines = content.split("\n")
+            for line in lines:
+                if line.strip().startswith('"question"') or "?" in line:
+                    questions.append(line.strip())
+
+        return questions[:5]  # Limit to 5 questions
+
+    def calculate_confidence(self, questions: list[str]) -> float:
+        """Enhanced confidence calculation"""
+        if not questions:
+            return 0.0
+
+        # Analyze question characteristics
+        confidence_indicators = 0
+        total_indicators = 0
+
+        for question in questions:
+            # High confidence indicators
+            if any(word in question.lower() for word in ["evidence", "proo", "demonstrate", "verify"]):
+                confidence_indicators += 2
+            elif any(word in question.lower() for word in ["how", "what", "why", "when"]):
+                confidence_indicators += 1
+
+            # Low confidence indicators
+            if any(word in question.lower() for word in ["maybe", "perhaps", "possibly", "might"]):
+                confidence_indicators -= 1
+
+            total_indicators += 1
+
+        return max(0.0, min(1.0, confidence_indicators / max(total_indicators, 1)))
+
+    def calculate_agreement(self, confidence: float, expected: float) -> bool:
+        """Enhanced agreement calculation"""
+        return abs(confidence - expected) < 0.3
+
+    def generate_insights(self, questions: list[str], confidence: float) -> list[str]:
+        """Enhanced insight generation"""
+        insights = []
+
+        if confidence > 0.8:
+            insights.append("High confidence analysis")
+        elif confidence > 0.5:
+            insights.append("Medium confidence analysis")
+        else:
+            insights.append("Low confidence analysis")
+
+        if len(questions) >= 5:
+            insights.append("Comprehensive analysis")
+        elif len(questions) >= 3:
+            insights.append("Moderate analysis")
+        else:
+            insights.append("Limited analysis")
+
+        return insights
+
+    def set_working_api_keys(self, working_keys: dict[str, str]) -> None:
+        """Set working API keys for specific models"""
+        self.working_api_keys = working_keys
+        print(f"🔑 MultiDimensionalSmokeTest: Set working API keys for {len(working_keys)} models")
+
+    def discover_and_test_apis(self) -> dict[str, bool]:
+        """Discover and test available APIs"""
+        working_apis = {}
+
+        # Test each API configuration
+        for api_name, config in self.models.items():
+            api_key = os.getenv(config["api_key_env"])
+            if api_key:
+                # Simple test to see if API key is valid
+                try:
+                    # Test with a simple prompt
+                    test_prompt = "Hello, this is a test. Please respond with 'OK'."
+                    response = self.call_llm(api_name, test_prompt, 0.1)
+
+                    if "error" not in response:
+                        working_apis[api_name] = True
+                        self.logger.info(f"✅ {api_name}: API working")
+                    else:
+                        working_apis[api_name] = False
+                        self.logger.info(f"❌ {api_name}: API error - {response['error']}")
+
+                except Exception as e:
+                    working_apis[api_name] = False
+                    self.logger.info(f"❌ {api_name}: Exception - {e}")
+            else:
+                working_apis[api_name] = False
+                self.logger.info(f"❌ {api_name}: No API key found")
+
+        return working_apis
+
+    async def test_anthropic_claude(self) -> dict[str, Any]:
+        """Test Anthropic Claude API"""
+        try:
+            prompt = "Hello, this is a test. Please respond with 'OK'."
+            response = self.call_llm("claude", prompt, 0.1)
+
+            if "error" in response:
+                return {"status": "error", "error": response["error"]}
+
+            # Calculate cost (rough estimate)
+            input_tokens = len(prompt.split())
+            output_tokens = len(response.get("choices", [{}])[0].get("message", {}).get("content", "").split())
+
+            # Anthropic pricing (approximate)
+            input_cost = (input_tokens / 1000) * 0.00015  # $0.15 per 1K input tokens
+            output_cost = (output_tokens / 1000) * 0.0006  # $0.60 per 1K output tokens
+            total_cost = input_cost + output_cost
+
+            return {
+                "status": "success",
+                "response": response,
+                "cost": total_cost,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+            }
+
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    async def test_openai(self) -> dict[str, Any]:
+        """Test OpenAI API"""
+        try:
+            prompt = "Hello, this is a test. Please respond with 'OK'."
+            response = self.call_llm("gpt4", prompt, 0.1)
+
+            if "error" in response:
+                return {"status": "error", "error": response["error"]}
+
+            # Calculate cost (rough estimate)
+            input_tokens = len(prompt.split())
+            output_tokens = len(response.get("choices", [{}])[0].get("message", {}).get("content", "").split())
+
+            # OpenAI pricing (approximate)
+            input_cost = (input_tokens / 1000) * 0.00001  # $0.01 per 1K input tokens
+            output_cost = (output_tokens / 1000) * 0.00003  # $0.03 per 1K output tokens
+            total_cost = input_cost + output_cost
+
+            return {
+                "status": "success",
+                "response": response,
+                "cost": total_cost,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+            }
+
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    async def run_multi_agent_analysis(self) -> dict[str, Any]:
+        """Run multi-agent analysis using available APIs"""
+        working_apis = self.discover_and_test_apis()
+
+        security_findings = []
+        quality_findings = []
+        devops_findings = []
+        total_cost = 0.0
+
+        # Test with different agent roles
+        if "claude" in working_apis and working_apis["claude"]:
+            # Security expert analysis
+            security_prompt = """
+            You are a security expert. Analyze this codebase for security vulnerabilities.
+            Focus on: SQL injection, XSS, CSRF, authentication, authorization, and data exposure.
+            Provide specific findings with severity levels.
+            """
+            security_response = self.call_llm("claude", security_prompt, 0.1)
+            if "error" not in security_response:
+                security_findings.append(
+                    {
+                        "agent": "security_expert",
+                        "finding": "Security analysis completed",
+                        "details": security_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
+                    }
+                )
+
+        if "gpt4" in working_apis and working_apis["gpt4"]:
+            # Code quality expert analysis
+            quality_prompt = """
+            You are a code quality expert. Analyze this codebase for quality issues.
+            Focus on: complexity, maintainability, readability, and best practices.
+            Provide specific findings with severity levels.
+            """
+            quality_response = self.call_llm("gpt4", quality_prompt, 0.1)
+            if "error" not in quality_response:
+                quality_findings.append(
+                    {
+                        "agent": "code_quality_expert",
+                        "finding": "Code quality analysis completed",
+                        "details": quality_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
+                    }
+                )
+
+        if "claude" in working_apis and working_apis["claude"]:
+            # DevOps expert analysis
+            devops_prompt = """
+            You are a DevOps expert. Analyze this codebase for operational issues.
+            Focus on: deployment, monitoring, logging, error handling, and scalability.
+            Provide specific findings with severity levels.
+            """
+            devops_response = self.call_llm("claude", devops_prompt, 0.1)
+            if "error" not in devops_response:
+                devops_findings.append(
+                    {
+                        "agent": "devops_expert",
+                        "finding": "DevOps analysis completed",
+                        "details": devops_response.get("choices", [{}])[0].get("message", {}).get("content", "")[:200],
+                    }
+                )
+
+        return {
+            "security_findings": security_findings,
+            "quality_findings": quality_findings,
+            "devops_findings": devops_findings,
+            "total_cost": total_cost,
+            "working_apis": working_apis,
+        }
+
+    def run_comprehensive_test(
+        self,
+        scenario: str = "healthcare_cdc_pr",
+    ) -> dict[str, Any]:
+        """Run comprehensive test with all configurations"""
+        print("🔥 MULTI-DIMENSIONAL SMOKE TEST")
+        print("=" * 60)
+        print()
+
+        results = []
+        total_tests = 0
+        agreement_count = 0
+
+        # Enhanced test configurations
+        test_configs = [
+            # Temperature variations
+            {
+                "name": "temp_0.0",
+                "temperature": 0.0,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "temp_0.7",
+                "temperature": 0.7,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "temp_1.0",
+                "temperature": 1.0,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            # Role variations
+            {
+                "name": "skeptical_vs_supportive",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "supportive_role",
+                "temperature": 0.3,
+                "role": "supportive_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            # Model variations
+            {
+                "name": "gpt4_vs_claude",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "claude_model",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "claude",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            # Prompt variations
+            {
+                "name": "direct_vs_socratic",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "socratic_questioning",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "socratic_questioning",
+                "response_format": "json_structured",
+            },
+            # Format variations
+            {
+                "name": "json_vs_narrative",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "narrative_format",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "gpt4",
+                "prompt_structure": "direct_questions",
+                "response_format": "narrative",
+            },
+            # Enhanced role tests
+            {
+                "name": "domain_expert",
+                "temperature": 0.3,
+                "role": "domain_expert",
+                "model": "gpt4",
+                "prompt_structure": "technical_focus",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "human_advocate",
+                "temperature": 0.3,
+                "role": "human_advocate",
+                "model": "gpt4",
+                "prompt_structure": "human_focus",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "risk_assessor",
+                "temperature": 0.3,
+                "role": "risk_assessor",
+                "model": "gpt4",
+                "prompt_structure": "outcome_oriented",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "process_enforcer",
+                "temperature": 0.3,
+                "role": "process_enforcer",
+                "model": "gpt4",
+                "prompt_structure": "process_oriented",
+                "response_format": "json_structured",
+            },
+            # New diverse model tests
+            {
+                "name": "claude_opus_test",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "claude_opus",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "mixtral_test",
+                "temperature": 0.3,
+                "role": "skeptical_partner",
+                "model": "mixtral",
+                "prompt_structure": "direct_questions",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "innovation_seeker",
+                "temperature": 0.3,
+                "role": "innovation_seeker",
+                "model": "gpt4",
+                "prompt_structure": "creative_exploration",
+                "response_format": "json_structured",
+            },
+            {
+                "name": "quality_gatekeeper",
+                "temperature": 0.3,
+                "role": "quality_gatekeeper",
+                "model": "gpt4",
+                "prompt_structure": "quality_assurance",
+                "response_format": "json_structured",
+            },
+        ]
+
+        for config in test_configs:
+            for i in range(6):  # Run each config 6 times for statistical significance
+                total_tests += 1
+                result = self.run_test(config, scenario)
+                results.append(result)
+
+                if result.get("agreement", False):
+                    agreement_count += 1
+
+                status = "✅ AGREED" if result.get("agreement", False) else "❌ DISAGREED"
+                insights = result.get("insights", [])
+
+                print(f"🧪 Testing: {config['name']}")
+                print(f"   Temperature: {config['temperature']}")
+                print(f"   Role: {config['role']}")
+                print(f"   Model: {config['model']}")
+                print(f"   Prompt: {config['prompt_structure']}")
+                print(f"   Format: {config['response_format']}")
+                print(f"   {status} - {insights}")
+                print()
+
+        # Enhanced analysis
+        agreement_rate = agreement_count / total_tests if total_tests > 0 else 0
+
+        # Calculate diversity metrics
+        unique_insights = set()
+        for result in results:
+            if "real_llm_result" in result and "questions" in result["real_llm_result"]:
+                unique_insights.update(result["real_llm_result"]["questions"])
+
+        diversity_score = len(unique_insights) / (total_tests * 5) if total_tests > 0 else 0
+
+        print("=" * 60)
+        print("📊 MULTI-DIMENSIONAL ANALYSIS:")
+        print(f"Total tests: {total_tests}")
+        print(f"Agreement rate: {agreement_rate:.2f}")
+        print(f"Diversity score: {diversity_score:.2f}")
+        print(f"Unique insights: {len(unique_insights)}")
+
+        print()
+        print("🎯 KEY INSIGHTS:")
+        if diversity_score > 0.7:
+            print("  • High diversity confirms the diversity hypothesis")
+        elif diversity_score > 0.5:
+            print("  • Moderate diversity suggests some overlap")
+        else:
+            print("  • Low diversity indicates high agreement")
+
+        if agreement_rate < 0.5:
+            print("  • Low agreement suggests our orchestrator needs improvement")
+        else:
+            print("  • High agreement suggests consistent analysis")
+
+        print()
+        print("🌡️ TEMPERATURE IMPACT:")
+        temp_results = {}
+        for result in results:
+            temp = result["config"]["temperature"]
+            if temp not in temp_results:
+                temp_results[temp] = {"agreed": 0, "total": 0}
+            temp_results[temp]["total"] += 1
+            if result.get("agreement", False):
+                temp_results[temp]["agreed"] += 1
+
+        for temp in sorted(temp_results.keys()):
+            rate = temp_results[temp]["agreed"] / temp_results[temp]["total"]
+            print(f"  {temp}: {rate:.2f} agreement rate")
+
+        print()
+        print("👥 ROLE IMPACT:")
+        role_results = {}
+        for result in results:
+            role = result["config"]["role"]
+            if role not in role_results:
+                role_results[role] = {"agreed": 0, "total": 0}
+            role_results[role]["total"] += 1
+            if result.get("agreement", False):
+                role_results[role]["agreed"] += 1
+
+        for role in sorted(role_results.keys()):
+            rate = role_results[role]["agreed"] / role_results[role]["total"]
+            print(f"  {role}: {rate:.2f} agreement rate")
+
+        print()
+        print("📄 Detailed results saved to: multi_dimensional_results.json")
+
+        # Save enhanced results
+        with open("multi_dimensional_results.json", "w") as f:
+            json.dump(
+                {
+                    "total_tests": total_tests,
+                    "agreement_rate": agreement_rate,
+                    "diversity_score": diversity_score,
+                    "unique_insights_count": len(unique_insights),
+                    "scenario": scenario,
+                    "timestamp": datetime.now().isoformat(),
+                    "results": results,
+                },
+                f,
+                indent=2,
+            )
+
+        return {
+            "total_tests": total_tests,
+            "agreement_rate": agreement_rate,
+            "diversity_score": diversity_score,
+            "unique_insights": len(unique_insights),
+            "results": results,
+        }
+
+
+def main() -> None:
+    """Main function to run the enhanced smoke test with command line options"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Multi-Dimensional Smoke Test")
+    parser.add_argument("--env-file", help="Path to .env file (default: ~/.env)")
+    parser.add_argument("--anthropic-key", help="Anthropic API key (overrides .env)")
+    parser.add_argument("--openai-key", help="OpenAI API key (overrides .env)")
+    parser.add_argument("--google-key", help="Google API key (overrides .env)")
+    parser.add_argument(
+        "--scenario",
+        default="healthcare_cdc_pr",
+        help="Test scenario (default: healthcare_cdc_pr)",
+    )
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+
+    args = parser.parse_args()
+
+    # Set environment variables from command line if provided
+    if args.anthropic_key:
+        os.environ["ANTHROPIC_API_KEY"] = args.anthropic_key
+    if args.openai_key:
+        os.environ["OPENAI_API_KEY"] = args.openai_key
+    if args.google_key:
+        os.environ["GOOGLE_API_KEY"] = args.google_key
+
+    # Initialize test system
+    test = MultiDimensionalSmokeTest(env_file=args.env_file)
+
+    if args.verbose:
+        print("🔍 Available environment variables:")
+        for key, value in os.environ.items():
+            if "API_KEY" in key:
+                preview = value[:8] + "..." if len(value) > 8 else value
+                print(f"  {key}: {preview}")
+        print()
+
+    # Run comprehensive test
+    results = test.run_comprehensive_test(args.scenario)
+
+    print("\n🎯 DIVERSITY HYPOTHESIS RESULTS:")
+    print(f"   Diversity Score: {results['diversity_score']:.2f}")
+    print(f"   Agreement Rate: {results['agreement_rate']:.2f}")
+    print(f"   Unique Insights: {results['unique_insights']}")
+    print(f"   Total Tests: {results['total_tests']}")
+
+    if results["diversity_score"] > 0.7:
+        print("   ✅ DIVERSITY HYPOTHESIS CONFIRMED!")
+    elif results["diversity_score"] > 0.5:
+        print("   ⚠️  DIVERSITY HYPOTHESIS PARTIALLY CONFIRMED")
+    else:
+        print("   ❌ DIVERSITY HYPOTHESIS NOT CONFIRMED")
+
+
+if __name__ == "__main__":
+    main()

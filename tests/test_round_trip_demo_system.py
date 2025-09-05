@@ -155,7 +155,7 @@ class TestDemoOrchestrator:
         mock_failing_system = Mock()
         mock_failing_system.create_model_from_design.side_effect = Exception("Test error")
 
-        with patch.object(demo_orchestrator, "round_trip_system", mock_failing_system):
+        with patch.object(demo_orchestrator.executor, "round_trip_system", mock_failing_system):
             # Run the basic demo (should fail)
             results = await demo_orchestrator.run_basic_demo()
 
