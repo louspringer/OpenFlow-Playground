@@ -180,9 +180,9 @@ class GKEServiceInterface(ReflectiveModule):
         systematic_quality_score = delivery_result.get("quality_score", 0.8)
 
         return {
-            "delivery_time_improvement": ((adhoc_delivery_time - systematic_delivery_time) / adhoc_delivery_time) * 100,
-            "success_rate_improvement": ((systematic_success_rate - adhoc_success_rate) / adhoc_success_rate) * 100,
-            "quality_score_improvement": ((systematic_quality_score - adhoc_quality_score) / adhoc_quality_score) * 100,
+            "delivery_time_improvement": ((adhoc_delivery_time - systematic_delivery_time) / adhoc_delivery_time) * 100 if adhoc_delivery_time > 0 else 0,
+            "success_rate_improvement": ((systematic_success_rate - adhoc_success_rate) / adhoc_success_rate) * 100 if adhoc_success_rate > 0 else 0,
+            "quality_score_improvement": ((systematic_quality_score - adhoc_quality_score) / adhoc_quality_score) * 100 if adhoc_quality_score > 0 else 0,
             "overall_improvement": "systematic_approach_superior",
             "comparison_timestamp": datetime.utcnow().isoformat(),
         }

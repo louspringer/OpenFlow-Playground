@@ -9,6 +9,6 @@ Requirements Compliance: R2 - PDCA Execution
 
 from .orchestrator import PDCAOrchestrator
 from .phases import PlanPhase, DoPhase, CheckPhase, ActPhase
-from .context import PDCATask, PDCAResult
+from .context import PDCATask
 
-__all__ = ["PDCAOrchestrator", "PlanPhase", "DoPhase", "CheckPhase", "ActPhase", "PDCATask", "PDCAResult"]
+__all__ = ["PDCAOrchestrator", "PlanPhase", "DoPhase", "CheckPhase", "ActPhase", "PDCATask"]
