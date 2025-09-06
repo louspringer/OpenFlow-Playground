@@ -68,6 +68,8 @@ dependencies = [
     "pymupdf>=1.26.4",
     "pdfplumber>=0.11.7",
     "pypdf>=6.0.0",
+    "numpy==1.24.3",
+    "redis>=6.4.0",
 ]
 
 [project.optional-dependencies]
