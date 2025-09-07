@@ -1,7 +1,7 @@
 # Beast Mode Agent Collaboration Network Makefile
 # Quick commands for development and testing
 
-.PHONY: help install redis start test lint format clean run-demo run-agent hackathon-beast-mode hackathon-status hackathon-refresh
+.PHONY: help install redis start test lint format clean run-demo run-agent hackathon-beast-mode hackathon-status hackathon-refresh hackathon-activity
 
 # Default target
 help:
@@ -24,6 +24,7 @@ help:
 	@echo "  make hackathon-beast-mode - Activate full BEAST MODE ($180,500 prize pool)"
 	@echo "  make hackathon-status    - Show hackathon project status"
 	@echo "  make hackathon-refresh   - Refresh all hackathon submodules"
+	@echo "  make hackathon-activity  - Track recent commits and HEAD positions"
 	@echo ""
 
 # Install dependencies
@@ -148,3 +149,9 @@ hackathon-verify:
 	@echo "🔍 BEAST MODE: Verifying Hackathon Configurations"
 	@echo "================================================="
 	uv run python scripts/hackathon_beast_mode.py verify
+
+# Track recent activity and HEAD positions
+hackathon-activity:
+	@echo "📊 BEAST MODE: Tracking Recent Activity"
+	@echo "======================================"
+	uv run python scripts/hackathon_beast_mode.py activity

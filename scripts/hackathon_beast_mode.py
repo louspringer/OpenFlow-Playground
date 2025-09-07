@@ -74,7 +74,7 @@ class BeastModeHackathonManager:
             return -1, "", str(e)
 
     def get_submodule_status(self) -> Dict[str, Dict]:
-        """Get comprehensive submodule status"""
+        """Get comprehensive submodule status with HEAD tracking and recent commits"""
         print("🔍 BEAST MODE: Analyzing submodule status...")
 
         exit_code, stdout, stderr = self.run_command("git submodule status")
@@ -98,9 +98,105 @@ class BeastModeHackathonManager:
                 if len(parts) > 2:
                     branch_info = " ".join(parts[2:])
 
-                status_data[path] = {"commit": commit_hash, "branch_info": branch_info, "status": "✅ OPERATIONAL" if not commit_hash.startswith("-") else "❌ NOT INITIALIZED"}
+                # Get detailed submodule information
+                submodule_info = self.get_detailed_submodule_info(path, commit_hash)
+
+                status_data[path] = {"commit": commit_hash, "branch_info": branch_info, "status": "✅ OPERATIONAL" if not commit_hash.startswith("-") else "❌ NOT INITIALIZED", **submodule_info}
 
         return status_data
+
+    def get_detailed_submodule_info(self, path: str, commit_hash: str) -> Dict[str, str]:
+        """Get detailed information about a submodule including HEAD position and recent commits"""
+        info = {"current_branch": "unknown", "head_position": "unknown", "recent_commits": "0", "last_commit_time": "unknown", "last_commit_author": "unknown"}
+
+        if commit_hash.startswith("-"):
+            return info
+
+        try:
+            # Get current branch
+            exit_code, stdout, stderr = self.run_command("git branch --show-current", cwd=path)
+            if exit_code == 0:
+                info["current_branch"] = stdout.strip() or "detached HEAD"
+
+            # Get HEAD position relative to remote
+            exit_code, stdout, stderr = self.run_command("git log --oneline -1", cwd=path)
+            if exit_code == 0:
+                info["head_position"] = stdout.strip()
+
+            # Get commits from last hour
+            exit_code, stdout, stderr = self.run_command("git log --since='1 hour ago' --oneline", cwd=path)
+            if exit_code == 0:
+                commits = [line for line in stdout.strip().split("\n") if line.strip()]
+                info["recent_commits"] = str(len(commits))
+
+                if commits:
+                    # Get last commit details
+                    exit_code, stdout, stderr = self.run_command("git log -1 --format='%H|%an|%ar'", cwd=path)
+                    if exit_code == 0:
+                        parts = stdout.strip().split("|")
+                        if len(parts) >= 3:
+                            info["last_commit_time"] = parts[2]
+                            info["last_commit_author"] = parts[1]
+
+            # Get remote tracking info
+            exit_code, stdout, stderr = self.run_command("git status -sb", cwd=path)
+            if exit_code == 0:
+                lines = stdout.strip().split("\n")
+                if lines and "ahead" in lines[0]:
+                    info["head_position"] = lines[0]
+                elif lines and "behind" in lines[0]:
+                    info["head_position"] = lines[0]
+
+        except Exception as e:
+            print(f"⚠️  Warning: Could not get detailed info for {path}: {e}")
+
+        return info
+
+    def track_recent_activity(self) -> Dict[str, Dict]:
+        """Track recent activity across all hackathon submodules"""
+        print("📊 BEAST MODE: Tracking recent activity across all submodules...")
+
+        activity_summary = {"total_recent_commits": 0, "active_projects": 0, "projects_with_activity": [], "last_activity": "unknown"}
+
+        for project_id, project in self.projects.items():
+            print(f"🔍 Checking activity for {project.name}...")
+
+            # Get commits from last hour
+            exit_code, stdout, stderr = self.run_command("git log --since='1 hour ago' --oneline", cwd=project.path)
+            recent_commits = 0
+            if exit_code == 0:
+                commits = [line for line in stdout.strip().split("\n") if line.strip()]
+                recent_commits = len(commits)
+
+            # Get commits from last 24 hours
+            exit_code, stdout, stderr = self.run_command("git log --since='24 hours ago' --oneline", cwd=project.path)
+            daily_commits = 0
+            if exit_code == 0:
+                commits = [line for line in stdout.strip().split("\n") if line.strip()]
+                daily_commits = len(commits)
+
+            # Get last commit info
+            exit_code, stdout, stderr = self.run_command("git log -1 --format='%H|%an|%ar|%s'", cwd=project.path)
+            last_commit_info = "unknown"
+            if exit_code == 0:
+                last_commit_info = stdout.strip()
+
+            project_activity = {"recent_commits_1h": recent_commits, "recent_commits_24h": daily_commits, "last_commit": last_commit_info, "is_active": recent_commits > 0}
+
+            activity_summary["total_recent_commits"] += recent_commits
+            if recent_commits > 0:
+                activity_summary["active_projects"] += 1
+                activity_summary["projects_with_activity"].append({"name": project.name, "commits": recent_commits, "last_commit": last_commit_info})
+
+        # Determine overall activity status
+        if activity_summary["total_recent_commits"] > 0:
+            activity_summary["status"] = "🔥 HIGH ACTIVITY"
+        elif activity_summary["active_projects"] > 0:
+            activity_summary["status"] = "🟡 MODERATE ACTIVITY"
+        else:
+            activity_summary["status"] = "🔵 LOW ACTIVITY"
+
+        return activity_summary
 
     def refresh_all_submodules(self) -> bool:
         """Refresh all hackathon submodules to latest commits"""
@@ -164,15 +260,29 @@ class BeastModeHackathonManager:
             submodule_status = status_data.get(project.path, {})
             status_icon = "✅" if "OPERATIONAL" in submodule_status.get("status", "") else "❌"
 
+            # Get detailed tracking information
+            current_branch = submodule_status.get("current_branch", "unknown")
+            head_position = submodule_status.get("head_position", "unknown")
+            recent_commits = submodule_status.get("recent_commits", "0")
+            last_commit_time = submodule_status.get("last_commit_time", "unknown")
+            last_commit_author = submodule_status.get("last_commit_author", "unknown")
+
             report += f"""
 ### {status_icon} {project.name}
 - **Prize**: ${project.prize:,}
 - **Deadline**: {project.deadline}
-- **Branch**: {project.branch}
+- **Configured Branch**: {project.branch}
+- **Current Branch**: {current_branch}
 - **Status**: {submodule_status.get('status', 'Unknown')}
 - **Commit**: {submodule_status.get('commit', 'Unknown')[:8]}
+- **HEAD Position**: {head_position}
+- **Recent Commits (1h)**: {recent_commits}
+- **Last Commit**: {last_commit_time} by {last_commit_author}
 - **Path**: {project.path}
 """
+
+        # Get recent activity summary
+        activity_summary = self.track_recent_activity()
 
         report += f"""
 ## 🎯 OPERATIONAL READINESS
@@ -181,6 +291,12 @@ class BeastModeHackathonManager:
 **Operational Projects**: {sum(1 for p in self.projects.values() if status_data.get(p.path, {}).get('status', '').startswith('✅'))}
 **Total Prize Pool**: ${self.total_prize_pool:,}
 **Success Probability**: 90%+ (Based on existing framework advantage)
+
+## 📊 RECENT ACTIVITY TRACKING
+
+**Activity Status**: {activity_summary['status']}
+**Recent Commits (1h)**: {activity_summary['total_recent_commits']}
+**Active Projects**: {activity_summary['active_projects']}/{len(self.projects)}
 
 ## 🚀 BEAST MODE CAPABILITIES
 
@@ -253,12 +369,24 @@ def main():
         elif command == "verify":
             success = manager.verify_branch_tracking()
             sys.exit(0 if success else 1)
+        elif command == "activity":
+            activity_summary = manager.track_recent_activity()
+            print(f"\n📊 BEAST MODE: Recent Activity Summary")
+            print("=" * 50)
+            print(f"Activity Status: {activity_summary['status']}")
+            print(f"Recent Commits (1h): {activity_summary['total_recent_commits']}")
+            print(f"Active Projects: {activity_summary['active_projects']}/{len(manager.projects)}")
+            if activity_summary["projects_with_activity"]:
+                print("\n🔥 Active Projects:")
+                for project in activity_summary["projects_with_activity"]:
+                    print(f"  - {project['name']}: {project['commits']} commits")
+            sys.exit(0)
         elif command == "activate":
             success = manager.beast_mode_activation()
             sys.exit(0 if success else 1)
         else:
             print(f"❌ Unknown command: {command}")
-            print("Available commands: status, refresh, verify, activate")
+            print("Available commands: status, refresh, verify, activity, activate")
             sys.exit(1)
     else:
         # Default: Full BEAST MODE activation
