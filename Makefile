@@ -1,7 +1,7 @@
 # Beast Mode Agent Collaboration Network Makefile
 # Quick commands for development and testing
 
-.PHONY: help install redis start test lint format clean run-demo run-agent
+.PHONY: help install redis start test lint format clean run-demo run-agent hackathon-beast-mode hackathon-status hackathon-refresh
 
 # Default target
 help:
@@ -19,6 +19,11 @@ help:
 	@echo "  make clean       - Clean up temporary files"
 	@echo "  make run-demo    - Run the demo agent"
 	@echo "  make run-agent   - Run a custom agent"
+	@echo ""
+	@echo "🚀 HACKATHON BEAST MODE COMMANDS:"
+	@echo "  make hackathon-beast-mode - Activate full BEAST MODE ($180,500 prize pool)"
+	@echo "  make hackathon-status    - Show hackathon project status"
+	@echo "  make hackathon-refresh   - Refresh all hackathon submodules"
 	@echo ""
 
 # Install dependencies
@@ -115,3 +120,31 @@ quick-start: install redis
 	@echo "3. Watch the collaboration happen!"
 	@echo ""
 	@echo "For more info, run 'make help'"
+
+# 🚀 HACKATHON BEAST MODE COMMANDS
+# Total Prize Pool: $180,500
+
+# Activate full BEAST MODE for hackathon preparation
+hackathon-beast-mode:
+	@echo "🚀 BEAST MODE ACTIVATION SEQUENCE INITIATED..."
+	@echo "💰 Total Prize Pool: $180,500"
+	@echo "=============================================="
+	uv run python scripts/hackathon_beast_mode.py activate
+
+# Show comprehensive hackathon project status
+hackathon-status:
+	@echo "📊 BEAST MODE: Hackathon Project Status"
+	@echo "======================================="
+	uv run python scripts/hackathon_beast_mode.py status
+
+# Refresh all hackathon submodules to latest commits
+hackathon-refresh:
+	@echo "🔄 BEAST MODE: Refreshing Hackathon Submodules"
+	@echo "=============================================="
+	uv run python scripts/hackathon_beast_mode.py refresh
+
+# Verify all hackathon submodule configurations
+hackathon-verify:
+	@echo "🔍 BEAST MODE: Verifying Hackathon Configurations"
+	@echo "================================================="
+	uv run python scripts/hackathon_beast_mode.py verify
