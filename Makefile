@@ -1,200 +1,117 @@
-# OpenFlow Playground - Modular Makefile System
-# This Makefile uses focused modules for maintainability
+# Beast Mode Agent Collaboration Network Makefile
+# Quick commands for development and testing
 
-# Include modular components
-include makefiles/config.mk
-include makefiles/platform.mk
-include makefiles/colors.mk
-include makefiles/quality.mk
-include makefiles/activity-models.mk
-include makefiles/domains.mk
-include makefiles/testing.mk
-include makefiles/installation.mk
-include makefiles/rdi.mk
-
-# Main targets
-.PHONY: help status status-quick status-dashboard status-clean visionary-doc marketing-campaign
+.PHONY: help install redis start test lint format clean run-demo run-agent
 
 # Default target
-.DEFAULT_GOAL := help
+help:
+	@echo "Beast Mode Agent Collaboration Network"
+	@echo "======================================"
+	@echo ""
+	@echo "Available commands:"
+	@echo "  make install     - Install Python dependencies"
+	@echo "  make redis       - Start Redis server"
+	@echo "  make start       - Start the message listener"
+	@echo "  make dashboard   - Start web dashboard"
+	@echo "  make test        - Run all tests"
+	@echo "  make lint        - Run linting checks"
+	@echo "  make format      - Format code with Black"
+	@echo "  make clean       - Clean up temporary files"
+	@echo "  make run-demo    - Run the demo agent"
+	@echo "  make run-agent   - Run a custom agent"
+	@echo ""
 
-help: ## Show this help message
-	@echo "$(CYAN)OpenFlow Playground - Modular Makefile System$(NC)"
-	@echo "$(YELLOW)Platform: $(PLATFORM)-$(ARCH)$(NC)"
-	@echo "$(YELLOW)Package Manager: $(PACKAGE_MANAGER)$(NC)"
-	@echo ""
-	@echo "$(YELLOW)Available targets:$(NC)"
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "$(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST)
-	@echo ""
-	@echo "$(PURPLE)Quality & Preprocessing:$(NC)"
-	@echo "  pre-commit-preprocess  - Run preprocessing to ensure hooks pass"
-	@echo "  pre-commit             - Run pre-commit hooks"
-	@echo "  smart-commit           - Smart commit workflow (recommended)"
-	@echo ""
-	@echo "$(PURPLE)Activity Models:$(NC)"
-	@echo "  activity-models        - Generate activity models with round-trip"
-	@echo "  activity-models-quick  - Generate activity models (quick mode)"
-	@echo "  ci-activity-models     - Run CI/CD activity model generation"
-	@echo ""
-	@echo "$(PURPLE)Code Quality:$(NC)"
-	@echo "  format-all             - Format all code"
-	@echo "  format-python          - Format Python code"
-	@echo "  format-bash            - Format Bash scripts"
-	@echo "  format-docs            - Format documentation"
-	@echo ""
-	@echo "$(PURPLE)Testing:$(NC)"
-	@echo "  test                   - Run all tests"
-	@echo "  test-python            - Run Python tests"
-	@echo "  test-security          - Run security tests"
-	@echo "  test-ghostbusters      - Test Ghostbusters system"
-	@echo ""
-	@echo "$(PURPLE)Installation:$(NC)"
-	@echo "  install                - Install all dependencies"
-	@echo "  install-python         - Install Python dependencies"
-	@echo "  install-security       - Install security tools"
-	@echo "  install-ghostbusters   - Install Ghostbusters system"
-	@echo ""
-	@echo "$(PURPLE)Domains:$(NC)"
-	@echo "  demo-core              - Demo core functionality"
-	@echo "  demo-tools             - Demo tools functionality"
-	@echo "  round-trip-engineering - Round-trip engineering system"
-	@echo "  ghostbusters           - Ghostbusters operations"
-	@echo "  security-first         - Security-first development"
-	@echo "  backlog-suite          - Comprehensive backlog management"
-	@echo ""
-	@echo "$(PURPLE)RM Compliance:$(NC)"
-	@echo "  test-reflective-module-compliance - Test RM compliance across all modules"
-	@echo "  check-module-sizes               - Check module sizes for RM compliance"
-	@echo "  validate-rm-interfaces          - Validate Reflective Module interfaces"
-	@echo "  check-architectural-boundaries  - Check architectural boundaries"
-	@echo ""
-	@echo "$(PURPLE)RDI Methodology:$(NC)"
-	@echo "  rdi-requirements     - Validate and manage requirements"
-	@echo "  rdi-design          - Validate and manage design specifications"
-	@echo "  rdi-implementation  - Validate and manage implementation"
-	@echo "  rdi-validation      - Run full RDI validation cycle"
-	@echo "  rdi-performance     - Run performance testing"
-	@echo "  rdi-traceability    - Check requirements→design→implementation traceability"
-	@echo "  rdi-full-cycle      - Run complete RDI cycle"
-	@echo ""
-	@echo "$(PURPLE)Examples:$(NC)"
-	@echo "  make smart-commit      - Run preprocessing, then commit"
-	@echo "  make test              - Run all tests"
-	@echo "  make install           - Install all dependencies"
-	@echo "  make ghostbusters      - Test Ghostbusters system"
-	@echo "  make round-trip-engineering - Test round-trip engineering system"
-	@echo "  make visionary-doc     - Generate visionary documentation"
-	@echo "  make marketing-campaign - Generate marketing campaign MIRV"
+# Install dependencies
+install:
+	@echo "Installing dependencies..."
+	pip install -r requirements.txt
+	@echo "✅ Dependencies installed"
 
-status: ## Show comprehensive project status
-	@echo "$(CYAN)🚀 OpenFlow Playground - Comprehensive Status Report$(NC)"
-	@echo "$(BLUE)====================================================$(NC)"
-	@echo ""
-	@echo "$(BLUE)📊 Platform Information$(NC)"
-	@echo "  Platform: $(PLATFORM)"
-	@echo "  Architecture: $(ARCH)"
-	@echo "  Package Manager: $(PACKAGE_MANAGER)"
-	@echo ""
-	@echo "$(BLUE)📦 Project Information$(NC)"
-	@echo "  Project: $(PROJECT_NAME)"
-	@echo "  Model File: $(MODEL_FILE)"
-	@echo "  Python: $(PYTHON)"
-	@echo "  UV: $(UV)"
-	@echo ""
-	@echo "$(GREEN)✅ Modular Makefile System Active$(NC)"
-	@echo "  Platform detection: makefiles/platform.mk"
-	@echo "  Quality tools: makefiles/quality.mk"
-	@echo "  Activity models: makefiles/activity-models.mk"
-	@echo "  Domain operations: makefiles/domains.mk"
-	@echo "  Testing framework: makefiles/testing.mk"
-	@echo "  Installation system: makefiles/installation.mk"
-	@echo ""
-	@echo "$(BLUE)🎯 Model Compliance$(NC)"
-	@echo "  ✅ make_first_enforcement rule implemented"
-	@echo "  ✅ All domains covered with Make targets"
-	@echo "  ✅ No direct command execution allowed"
-	@echo "  ✅ Comprehensive coverage of project model"
-	@echo ""
-	@echo "$(BLUE)📋 RDI Methodology$(NC)"
-	@echo "  ✅ Requirements→Design→Implementation flow"
-	@echo "  ✅ RDI validation and traceability"
-	@echo "  ✅ RM compliance integration"
-	@echo "  ✅ Systematic development methodology"
-	@echo ""
-	@echo "$(RED)📋 Backlog Summary$(NC)"
-	@jq -r '.backlog[] | "  \(.priority | ascii_upcase): \(.title) (\(.status))"' $(MODEL_FILE) 2>/dev/null | head -10 || echo "  No backlog items found or jq not available"
-	@echo ""
-	@echo "$(YELLOW)💡 Quick Actions:$(NC)"
-	@echo "  make smart-commit      - Smart commit workflow"
-	@echo "  make test              - Run all tests"
-	@echo "  make install           - Install all dependencies"
-	@echo "  make ghostbusters      - Test Ghostbusters system"
-	@echo "  make backlog-suite     - Comprehensive backlog management"
+# Start Redis server
+redis:
+	@echo "Starting Redis server..."
+	@if command -v redis-server >/dev/null 2>&1; then \
+		redis-server --daemonize yes; \
+		echo "✅ Redis server started"; \
+	else \
+		echo "❌ Redis not found. Install with: brew install redis (macOS) or apt-get install redis-server (Ubuntu)"; \
+		exit 1; \
+	fi
 
-status-quick: ## Show quick project status
-	@echo "$(CYAN)🚀 OpenFlow Playground - Quick Status$(NC)"
-	@echo "  Platform: $(PLATFORM)-$(ARCH)"
-	@echo "  Project: $(PROJECT_NAME)"
-	@echo "  Status: ✅ Modular Makefile System Active"
+# Start the message listener
+start:
+	@echo "Starting Beast Mode message listener..."
+	uv run python simple_listener.py
 
-status-dashboard: ## Update dashboard with real data
-	@echo "$(CYAN)📊 Updating Dashboard...$(NC)"
-	@echo "  Platform: $(PLATFORM)-$(ARCH)"
-	@echo "  Package Manager: $(PACKAGE_MANAGER)"
-	@echo "  Project: $(PROJECT_NAME)"
-	@echo "  ✅ Dashboard updated with modular system data"
+# Start web dashboard
+dashboard:
+	@echo "Starting Beast Mode web dashboard..."
+	uv run python web_dashboard.py --port 8080
 
-status-clean: ## Show clean project status (no verbose output)
-	@echo "$(CYAN)🚀 OpenFlow Playground$(NC)"
-	@echo "  Platform: $(PLATFORM)-$(ARCH)"
-	@echo "  Project: $(PROJECT_NAME)"
-	@echo "  Status: ✅ Modular Makefile System Active"
+# Run tests
+test:
+	@echo "Running tests..."
+	uv run python -m pytest tests/ -v
+	@echo "✅ Tests completed"
 
-visionary-doc: ## Generate visionary documentation
-	@echo "$(CYAN)🐢 Generating Visionary Documentation$(NC)"
-	@echo "$(BLUE)====================================$(NC)"
-	@echo ""
-	@echo "$(YELLOW)📖 Recursive Turtle Architecture Vision$(NC)"
-	@echo "$(GREEN)✅ Visionary document created: docs/RECURSIVE_TURTLE_ARCHITECTURE_VISION.md$(NC)"
-	@echo ""
-	@echo "$(PURPLE)🎯 Document Type: VISIONARY$(NC)"
-	@echo "$(PURPLE)🎯 Purpose: Revolutionary paradigm shift documentation$(NC)"
-	@echo "$(PURPLE)🎯 Audience: Industry leaders, early adopters, future innovators$(NC)"
-	@echo ""
-	@echo "$(GREEN)🚀 BEAST MODE: Visionary document creation complete!$(NC)"
+# Run linting
+lint:
+	@echo "Running linting checks..."
+	uv run flake8 src/ tests/ examples/
+	uv run mypy src/
+	@echo "✅ Linting completed"
 
-marketing-campaign: ## Generate marketing campaign MIRV
-	@echo "$(CYAN)🎯 Generating Marketing Campaign MIRV$(NC)"
-	@echo "$(BLUE)====================================$(NC)"
-	@echo ""
-	@echo "$(YELLOW)📊 Marketing Campaign Generator$(NC)"
-	@uv run python src/vision_projection/marketing_campaign_generator.py
-	@echo ""
-	@echo "$(GREEN)✅ Marketing Campaign MIRV: Campaign assets generated$(NC)"
-	@echo "$(PURPLE)🎯 Campaign Plan: marketing_campaign_plan.json$(NC)"
-	@echo "$(PURPLE)🎯 Campaign Strategy: docs/MARKETING_CAMPAIGN_MIRV.md$(NC)"
-	@echo ""
-	@echo "$(GREEN)🚀 BEAST MODE: Marketing Campaign MIRV deployment complete!$(NC)"
+# Format code
+format:
+	@echo "Formatting code..."
+	uv run black src/ tests/ examples/
+	@echo "✅ Code formatted"
 
-backlog: ## Show detailed backlog information
-	@echo "$(CYAN)📋 OpenFlow Playground - Backlog Status$(NC)"
-	@echo "$(BLUE)=====================================$(NC)"
+# Clean up
+clean:
+	@echo "Cleaning up..."
+	rm -f bus_messages.log
+	rm -f processed_messages.txt
+	rm -rf __pycache__/
+	rm -rf src/__pycache__/
+	rm -rf tests/__pycache__/
+	rm -rf examples/__pycache__/
+	@echo "✅ Cleanup completed"
+
+# Run demo agent
+run-demo:
+	@echo "Starting demo agent..."
+	uv run python examples/basic_agent_example.py
+
+# Run custom agent (pass AGENT_ID and CAPABILITIES as env vars)
+run-agent:
+	@echo "Starting custom agent..."
+	@if [ -z "$$AGENT_ID" ] || [ -z "$$CAPABILITIES" ]; then \
+		echo "Usage: make run-agent AGENT_ID=my_agent CAPABILITIES='python_coding,gcp_optimization'"; \
+		exit 1; \
+	fi
+	uv run python examples/my_agent.py
+
+# Development setup
+dev-setup: install redis
+	@echo "Development environment ready!"
+	@echo "Run 'make start' to begin listening for messages"
+
+# Full test suite
+test-all: lint test
+	@echo "✅ All checks passed"
+
+# Quick start for new users
+quick-start: install redis
+	@echo "🚀 Beast Mode Agent Collaboration Network"
+	@echo "=========================================="
 	@echo ""
-	@echo "$(RED)🚨 Critical Priority$(NC)"
-	@jq -r '.backlogged[] | select(.priority == "critical") | "  • \(.requirement) (\(.estimated_effort))"' $(MODEL_FILE) 2>/dev/null || echo "  No critical items found"
+	@echo "✅ Dependencies installed"
+	@echo "✅ Redis server started"
 	@echo ""
-	@echo "$(RED)🔴 High Priority$(NC)"
-	@jq -r '.backlogged[] | select(.priority == "high") | "  • \(.requirement) (\(.estimated_effort))"' $(MODEL_FILE) 2>/dev/null || echo "  No high priority items found"
+	@echo "Next steps:"
+	@echo "1. Run 'make start' in one terminal to listen for messages"
+	@echo "2. Run 'make run-demo' in another terminal to start a demo agent"
+	@echo "3. Watch the collaboration happen!"
 	@echo ""
-	@echo "$(YELLOW)🟡 Medium Priority$(NC)"
-	@jq -r '.backlogged[] | select(.priority == "medium") | "  • \(.requirement) (\(.estimated_effort))"' $(MODEL_FILE) 2>/dev/null || echo "  No medium priority items found"
-	@echo ""
-	@echo "$(GREEN)🟢 Low Priority$(NC)"
-	@jq -r '.backlogged[] | select(.priority == "low") | "  • \(.requirement) (\(.estimated_effort))"' $(MODEL_FILE) 2>/dev/null || echo "  No low priority items found"
-	@echo ""
-	@echo "$(BLUE)📊 Backlog Statistics$(NC)"
-	@echo "  Total Items: $(shell jq '.backlogged | length' $(MODEL_FILE) 2>/dev/null || echo "0")"
-	@echo "  Critical: $(shell jq '.backlogged[] | select(.priority == "critical") | .requirement' $(MODEL_FILE) 2>/dev/null | wc -l)"
-	@echo "  High: $(shell jq '.backlogged[] | select(.priority == "high") | .requirement' $(MODEL_FILE) 2>/dev/null | wc -l)"
-	@echo "  Medium: $(shell jq '.backlogged[] | select(.priority == "medium") | .requirement' $(MODEL_FILE) 2>/dev/null | wc -l)"
-	@echo "  Low: $(shell jq '.backlogged[] | select(.priority == "low") | .requirement' $(MODEL_FILE) 2>/dev/null | wc -l)"
+	@echo "For more info, run 'make help'"

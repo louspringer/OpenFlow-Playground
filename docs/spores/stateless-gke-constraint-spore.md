@@ -1,19 +1,21 @@
 # 🍄 Stateless GKE Constraint Spore
 
-**Date**: September 4, 2025  
-**Purpose**: Define stateless constraints for GKE usage and common interface  
+**Date**: September 4, 2025\
+**Purpose**: Define stateless constraints for GKE usage and common interface\
 **Goal**: Enable dev/prod choice between GKE and Cloud Run
 
----
+______________________________________________________________________
 
 ## 🎯 **Stateless GKE Usage Constraints**
 
 ### **Core Principle**
+
 **GKE must be used in a stateless manner** to enable seamless migration between GKE and Cloud Run implementations.
 
 ### **Stateless Requirements**
 
 #### **1. No Persistent Storage**
+
 ```yaml
 # ❌ FORBIDDEN - Persistent volumes
 apiVersion: v1
@@ -39,6 +41,7 @@ data:
 ```
 
 #### **2. No StatefulSets**
+
 ```yaml
 # ❌ FORBIDDEN - StatefulSets
 apiVersion: apps/v1
@@ -65,6 +68,7 @@ spec:
 ```
 
 #### **3. No Node Affinity**
+
 ```yaml
 # ❌ FORBIDDEN - Node affinity
 spec:
@@ -85,6 +89,7 @@ spec:
 ```
 
 #### **4. No Host Path Volumes**
+
 ```yaml
 # ❌ FORBIDDEN - Host path volumes
 spec:
@@ -111,11 +116,12 @@ spec:
       name: kiro-config
 ```
 
----
+______________________________________________________________________
 
 ## 🔧 **Common Interface Design**
 
 ### **1. Service Interface**
+
 ```python
 # src/kiro_agents/common/interface.py
 from abc import ABC, abstractmethod
@@ -157,6 +163,7 @@ class KiroAgentInterface(ABC):
 ```
 
 ### **2. GKE Implementation**
+
 ```python
 # src/kiro_agents/gke/agent.py
 from flask import Flask, request, jsonify
@@ -256,6 +263,7 @@ if __name__ == '__main__':
 ```
 
 ### **3. Cloud Run Implementation**
+
 ```python
 # src/kiro_agents/cloudrun/agent.py
 from flask import Flask, request, jsonify
@@ -348,11 +356,12 @@ if __name__ == '__main__':
     agent.run()
 ```
 
----
+______________________________________________________________________
 
 ## 🚀 **Deployment Configurations**
 
 ### **1. GKE Deployment (Stateless)**
+
 ```yaml
 # k8s/kiro-agents-gke.yaml
 apiVersion: apps/v1
@@ -438,6 +447,7 @@ data:
 ```
 
 ### **2. Cloud Run Deployment**
+
 ```yaml
 # cloudrun/kiro-agents-cloudrun.yaml
 apiVersion: serving.knative.dev/v1
@@ -484,11 +494,12 @@ spec:
           name: kiro-config
 ```
 
----
+______________________________________________________________________
 
 ## 🔄 **Dev/Prod Decision Framework**
 
 ### **Development Environment**
+
 ```bash
 # Use Cloud Run for development (cheaper)
 gcloud run deploy kiro-agent-dev \
@@ -500,12 +511,14 @@ gcloud run deploy kiro-agent-dev \
 ```
 
 ### **Production Environment**
+
 ```bash
 # Use GKE for production (more control)
 kubectl apply -f k8s/kiro-agents-gke.yaml
 ```
 
 ### **Environment Selection Script**
+
 ```python
 # scripts/deploy_kiro_agent.py
 import os
@@ -585,21 +598,24 @@ if __name__ == "__main__":
     deploy_kiro_agent(environment, platform)
 ```
 
----
+______________________________________________________________________
 
 ## 📋 **Usage Examples**
 
 ### **Deploy to Cloud Run (Development)**
+
 ```bash
 python scripts/deploy_kiro_agent.py development cloudrun
 ```
 
 ### **Deploy to GKE (Production)**
+
 ```bash
 python scripts/deploy_kiro_agent.py production gke
 ```
 
 ### **Switch Between Platforms**
+
 ```bash
 # Switch from GKE to Cloud Run
 kubectl delete -f k8s/kiro-agents-gke.yaml
@@ -610,38 +626,43 @@ gcloud run services delete kiro-agent-prod --region=us-central1
 python scripts/deploy_kiro_agent.py production gke
 ```
 
----
+______________________________________________________________________
 
 ## 🎯 **Benefits of This Approach**
 
 ### **1. Flexibility**
+
 - ✅ **Dev/Prod choice** between platforms
 - ✅ **Cost optimization** (Cloud Run for dev, GKE for prod)
 - ✅ **Easy migration** between platforms
 
 ### **2. Consistency**
+
 - ✅ **Common interface** ensures compatibility
 - ✅ **Same business logic** across platforms
 - ✅ **Unified testing** and monitoring
 
 ### **3. Stateless Design**
+
 - ✅ **No persistent storage** dependencies
 - ✅ **Horizontal scaling** capability
 - ✅ **Platform agnostic** deployment
 
----
+______________________________________________________________________
 
 ## 🚨 **Enforcement Rules**
 
 ### **GKE Stateless Constraints**
+
 1. **No PersistentVolumeClaims**
-2. **No StatefulSets**
-3. **No Node Affinity**
-4. **No Host Path Volumes**
-5. **Deployments only**
-6. **ConfigMaps and Secrets only**
+1. **No StatefulSets**
+1. **No Node Affinity**
+1. **No Host Path Volumes**
+1. **Deployments only**
+1. **ConfigMaps and Secrets only**
 
 ### **Validation Script**
+
 ```bash
 # scripts/validate_stateless_gke.sh
 #!/bin/bash
@@ -661,9 +682,9 @@ done
 echo "✅ GKE stateless constraints validated"
 ```
 
----
+______________________________________________________________________
 
-**Status**: Stateless constraints defined  
-**Priority**: High (Architecture compliance)  
-**Owner**: Kiro Agents Team  
+**Status**: Stateless constraints defined\
+**Priority**: High (Architecture compliance)\
+**Owner**: Kiro Agents Team\
 **Review Date**: September 5, 2025

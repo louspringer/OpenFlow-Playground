@@ -1,14 +1,15 @@
 # 🍄 Kiro GKE Cluster Access Instructions Spore
 
-**Date**: September 3, 2025  
-**Purpose**: Instructions for Kiro to access and manage the optimized GKE cluster  
+**Date**: September 3, 2025\
+**Purpose**: Instructions for Kiro to access and manage the optimized GKE cluster\
 **Cluster**: `kiro-agents-cluster` (3 preemptible nodes, cost-optimized)
 
----
+______________________________________________________________________
 
 ## 🎯 **Cluster Overview**
 
 ### **Current Configuration**
+
 - **Cluster Name**: `kiro-agents-cluster`
 - **Location**: `us-central1`
 - **Project**: `aardvark-linkedin-grepper`
@@ -16,14 +17,16 @@
 - **Cost**: ~$25/month (optimized from $197/month)
 
 ### **Node Pool Structure**
+
 - **default-pool**: 0 nodes (disabled for cost optimization)
 - **preemptible-pool**: 3 nodes (active, cost-optimized)
 
----
+______________________________________________________________________
 
 ## 🔧 **Access Instructions for Kiro**
 
 ### **1. Get Cluster Credentials**
+
 ```bash
 # Authenticate with GCP
 gcloud auth login
@@ -38,6 +41,7 @@ gcloud container clusters get-credentials kiro-agents-cluster \
 ```
 
 ### **2. Verify Access**
+
 ```bash
 # Check cluster connection
 kubectl cluster-info
@@ -50,6 +54,7 @@ kubectl get pods -n kiro-agents
 ```
 
 ### **3. Deploy Kiro Agents**
+
 ```bash
 # Apply kiro agents deployment
 kubectl apply -f k8s/kiro-agents-deployment.yaml
@@ -61,11 +66,12 @@ kubectl get deployments -n kiro-agents
 kubectl get pods -n kiro-agents -o wide
 ```
 
----
+______________________________________________________________________
 
 ## 📋 **Kiro Agent Deployment Template**
 
 ### **Namespace Creation**
+
 ```yaml
 # k8s/kiro-agents-namespace.yaml
 apiVersion: v1
@@ -75,6 +81,7 @@ metadata:
 ```
 
 ### **Deployment Configuration**
+
 ```yaml
 # k8s/kiro-agents-deployment.yaml
 apiVersion: apps/v1
@@ -116,6 +123,7 @@ spec:
 ```
 
 ### **Service Configuration**
+
 ```yaml
 # k8s/kiro-agents-service.yaml
 apiVersion: v1
@@ -132,11 +140,12 @@ spec:
   type: ClusterIP
 ```
 
----
+______________________________________________________________________
 
 ## 🚀 **Scaling Instructions**
 
 ### **Scale Up (When Needed)**
+
 ```bash
 # Scale deployment
 kubectl scale deployment kiro-agent --replicas=3 -n kiro-agents
@@ -146,6 +155,7 @@ kubectl get pods -n kiro-agents
 ```
 
 ### **Scale Down (Cost Optimization)**
+
 ```bash
 # Scale to minimum
 kubectl scale deployment kiro-agent --replicas=1 -n kiro-agents
@@ -154,31 +164,35 @@ kubectl scale deployment kiro-agent --replicas=1 -n kiro-agents
 kubectl top pods -n kiro-agents
 ```
 
----
+______________________________________________________________________
 
 ## 💰 **Cost Management Guidelines**
 
 ### **Current Cost Structure**
+
 - **3 Preemptible Nodes**: ~$25/month
 - **Management Fee**: ~$7/month
 - **Total**: ~$32/month
 
 ### **Cost Optimization Rules**
+
 1. **Never scale above 3 nodes** (would exceed budget)
-2. **Use preemptible nodes only** (70% cost savings)
-3. **Scale down when idle** (reduce to 1 replica)
-4. **Monitor daily costs** (target < $1.50/day)
+1. **Use preemptible nodes only** (70% cost savings)
+1. **Scale down when idle** (reduce to 1 replica)
+1. **Monitor daily costs** (target < $1.50/day)
 
 ### **Budget Alerts**
+
 - **Warning**: > $1.00/day
 - **Critical**: > $1.50/day
 - **Emergency**: > $2.00/day
 
----
+______________________________________________________________________
 
 ## 🔍 **Monitoring Commands**
 
 ### **Health Checks**
+
 ```bash
 # Check cluster health
 kubectl get nodes
@@ -193,6 +207,7 @@ kubectl logs -f deployment/kiro-agent -n kiro-agents
 ```
 
 ### **Resource Usage**
+
 ```bash
 # Check node resources
 kubectl top nodes
@@ -204,13 +219,14 @@ kubectl top pods -n kiro-agents
 kubectl describe quota -n kiro-agents
 ```
 
----
+______________________________________________________________________
 
 ## 🚨 **Troubleshooting**
 
 ### **Common Issues**
 
 #### **Pod ImagePullBackOff**
+
 ```bash
 # Check image availability
 kubectl describe pod <pod-name> -n kiro-agents
@@ -220,6 +236,7 @@ docker pull gcr.io/aardvark-linkedin-grepper/kiro-agent:latest
 ```
 
 #### **Preemptible Node Termination**
+
 ```bash
 # Check node status
 kubectl get nodes
@@ -229,6 +246,7 @@ kubectl get events -n kiro-agents --sort-by='.lastTimestamp'
 ```
 
 #### **Resource Constraints**
+
 ```bash
 # Check resource limits
 kubectl describe nodes
@@ -237,63 +255,71 @@ kubectl describe nodes
 kubectl edit deployment kiro-agent -n kiro-agents
 ```
 
----
+______________________________________________________________________
 
 ## 📊 **Performance Optimization**
 
 ### **Resource Recommendations**
+
 - **CPU Request**: 100m (0.1 cores)
 - **Memory Request**: 256Mi
 - **CPU Limit**: 500m (0.5 cores)
 - **Memory Limit**: 512Mi
 
 ### **Scaling Strategy**
+
 - **Min Replicas**: 1 (cost optimization)
 - **Max Replicas**: 3 (budget constraint)
 - **Scale Up**: When CPU > 70% for 5 minutes
 - **Scale Down**: When CPU < 30% for 10 minutes
 
----
+______________________________________________________________________
 
 ## 🎯 **Best Practices**
 
 ### **Deployment**
+
 1. **Always use preemptible nodes** (nodeSelector)
-2. **Set resource requests and limits**
-3. **Use health checks and readiness probes**
-4. **Implement graceful shutdown**
+1. **Set resource requests and limits**
+1. **Use health checks and readiness probes**
+1. **Implement graceful shutdown**
 
 ### **Cost Management**
+
 1. **Monitor daily costs**
-2. **Scale down during low usage**
-3. **Use horizontal pod autoscaling**
-4. **Regular cost reviews**
+1. **Scale down during low usage**
+1. **Use horizontal pod autoscaling**
+1. **Regular cost reviews**
 
 ### **Security**
-1. **Use service accounts with minimal permissions**
-2. **Enable network policies**
-3. **Regular security updates**
-4. **Monitor for vulnerabilities**
 
----
+1. **Use service accounts with minimal permissions**
+1. **Enable network policies**
+1. **Regular security updates**
+1. **Monitor for vulnerabilities**
+
+______________________________________________________________________
 
 ## 📞 **Support Contacts**
 
 ### **GCP Support**
+
 - **Project**: aardvark-linkedin-grepper
 - **Billing Account**: 01F112-E73FD5-795507
 - **Budget Alert**: $25/month
 
 ### **Cluster Information**
+
 - **Console**: https://console.cloud.google.com/kubernetes/clusters/details/us-central1/kiro-agents-cluster
 - **Logs**: https://console.cloud.google.com/logs/query
 - **Monitoring**: https://console.cloud.google.com/monitoring
 
----
+______________________________________________________________________
 
 ## 🎯 **Quick Reference**
 
 ### **Essential Commands**
+
 ```bash
 # Connect to cluster
 gcloud container clusters get-credentials kiro-agents-cluster --location=us-central1
@@ -312,6 +338,7 @@ kubectl logs -f deployment/kiro-agent -n kiro-agents
 ```
 
 ### **Cost Monitoring**
+
 ```bash
 # Check current costs
 gcloud billing budgets list --billing-account=01F112-E73FD5-795507
@@ -320,9 +347,9 @@ gcloud billing budgets list --billing-account=01F112-E73FD5-795507
 gcloud container clusters describe kiro-agents-cluster --location=us-central1
 ```
 
----
+______________________________________________________________________
 
-**Status**: Ready for Kiro deployment  
-**Priority**: High (Cost-optimized cluster access)  
-**Owner**: Kiro Agents Team  
+**Status**: Ready for Kiro deployment\
+**Priority**: High (Cost-optimized cluster access)\
+**Owner**: Kiro Agents Team\
 **Review Date**: September 10, 2025

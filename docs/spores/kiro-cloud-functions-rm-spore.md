@@ -5,6 +5,7 @@
 ### **✅ What We Built**
 
 **Cloud Function**: `kiro-agent-function`
+
 - **URL**: `https://kiro-agent-function-27wxncolha-uc.a.run.app`
 - **Platform**: Google Cloud Functions (Gen 2)
 - **Runtime**: Python 3.11
@@ -15,16 +16,19 @@
 ### **🎯 RM Principles Applied**
 
 #### **1. Single Responsibility**
+
 - **One Function**: `kiro_agent_http()` - handles all HTTP requests
 - **Focused Logic**: Health checks and basic analysis only
 - **No Complex Dependencies**: Minimal requirements.txt
 
 #### **2. Chainable Design**
+
 - **HTTP Triggers**: Can be chained with other Cloud Functions
 - **Standard Interface**: JSON input/output
 - **Event-Driven**: Responds to HTTP events
 
 #### **3. Cost Efficiency**
+
 - **Pay-per-Use**: Only charges when function executes
 - **Scales to Zero**: No idle costs
 - **Minimal Resources**: 256MB memory, 60s timeout
@@ -32,6 +36,7 @@
 ### **🔧 Implementation Details**
 
 #### **Function Structure**
+
 ```python
 def kiro_agent_http(request):
     """HTTP Cloud Function entry point"""
@@ -44,12 +49,14 @@ def kiro_agent_http(request):
 ```
 
 #### **Health Check**
+
 ```bash
 curl https://kiro-agent-function-27wxncolha-uc.a.run.app
 # Returns: {"status": "healthy", "platform": "cloud-functions"}
 ```
 
 #### **Analysis Endpoint**
+
 ```bash
 curl -X POST https://kiro-agent-function-27wxncolha-uc.a.run.app \
   -H "Content-Type: application/json" \
@@ -60,11 +67,13 @@ curl -X POST https://kiro-agent-function-27wxncolha-uc.a.run.app \
 ### **🔄 Hot-Swap Architecture**
 
 **Current Platforms Available:**
+
 1. **GKE Cluster**: `kiro-agents-cluster` (3 preemptible nodes)
-2. **Cloud Run**: `kiro-agent` (serverless containers)
-3. **Cloud Functions**: `kiro-agent-function` (event-driven functions)
+1. **Cloud Run**: `kiro-agent` (serverless containers)
+1. **Cloud Functions**: `kiro-agent-function` (event-driven functions)
 
 **RM-Compliant Chain:**
+
 ```
 HTTP Request → Load Balancer → Platform Router → Kiro Agent → Response
 ```
@@ -80,6 +89,7 @@ HTTP Request → Load Balancer → Platform Router → Kiro Agent → Response
 ### **🎯 Next Steps for Kiro**
 
 #### **1. Implement Platform Router**
+
 ```python
 def route_request(request, platform="cloud-functions"):
     """Route requests to appropriate platform"""
@@ -92,6 +102,7 @@ def route_request(request, platform="cloud-functions"):
 ```
 
 #### **2. Create Function Chain**
+
 ```python
 # Chain multiple Cloud Functions
 def kiro_processing_chain(request):
@@ -108,6 +119,7 @@ def kiro_processing_chain(request):
 ```
 
 #### **3. Environment Strategy**
+
 - **Development**: Cloud Functions (cheap, fast iteration)
 - **Production**: GKE (reliable, persistent)
 - **Hot-Swap**: Load balancer switches between platforms
@@ -115,10 +127,10 @@ def kiro_processing_chain(request):
 ### **🚀 Benefits of RM Approach**
 
 1. **Simplicity**: Single function, focused responsibility
-2. **Cost Efficiency**: Pay only for execution time
-3. **Scalability**: Automatic scaling to zero
-4. **Chainability**: Can be composed with other functions
-5. **Maintainability**: Easy to debug and modify
+1. **Cost Efficiency**: Pay only for execution time
+1. **Scalability**: Automatic scaling to zero
+1. **Chainability**: Can be composed with other functions
+1. **Maintainability**: Easy to debug and modify
 
 ### **📋 Deployment Commands**
 

@@ -3,5 +3,25 @@
     "*": true
   },
   "github.copilot.chat.enable": true,
-  "github.copilot.chat.autoComplete": true
+  "github.copilot.chat.autoComplete": true,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#77a6d5",
+    "activityBar.background": "#77a6d5",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#f7e7ef",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#77a6d5",
+    "statusBar.background": "#508cc9",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#3672b0",
+    "statusBarItem.remoteBackground": "#508cc9",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#508cc9",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#508cc999",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#508cc9"
 }
