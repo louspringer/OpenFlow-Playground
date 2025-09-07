@@ -1,5 +1,5 @@
 ---
-description: Do not run `python` or `python3` in this project.  Use `uv run python`.
+description: Use `uv run python` for Python execution in this project.
 alwaysApply: true
 ---
 # Python Execution Enforcement Rule
@@ -59,13 +59,19 @@ subprocess.run(["uv", "run", "pytest", "tests/"])     # ALLOWED
 
 ### **Automatic Blocking**
 This rule automatically blocks:
-- `python` commands in any context
-- `python3` commands in any context
-- Direct Python execution without `uv run`
+- Direct `python` commands (without `uv run`)
+- Direct `python3` commands (without `uv run`)
+- Python execution without proper UV environment
+
+### **Automatic Allowance**
+This rule automatically allows:
+- `uv run python` commands (NO APPROVAL REQUIRED)
+- `uv run python3` commands (NO APPROVAL REQUIRED)
+- Make target commands (NO APPROVAL REQUIRED)
 
 ### **Automatic Correction**
 When blocked commands are detected, the system will:
-1. **Block execution** of the command
+1. **Block execution** of direct python commands
 2. **Suggest correction** using `uv run python`
 3. **Provide Make target alternatives** when available
 
@@ -133,6 +139,11 @@ uv run python -m src.ghostbusters.ghostbusters_orchestrator
 1. **Command Blocked**: Direct Python execution is prevented
 2. **Correction Required**: Must use `uv run python` or Make targets
 3. **Documentation**: Violation is logged for review
+
+### **Allowed Commands (NO APPROVAL REQUIRED)**
+1. **`uv run python`**: Automatically allowed, no approval needed
+2. **`uv run python3`**: Automatically allowed, no approval needed
+3. **Make targets**: Automatically allowed, no approval needed
 
 ### **Repeated Violations**
 1. **Warning Issued**: Clear explanation of the rule
