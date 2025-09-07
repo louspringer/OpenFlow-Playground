@@ -198,6 +198,71 @@ class BeastModeHackathonManager:
 
         return activity_summary
 
+    def get_head_status(self) -> Dict[str, Dict]:
+        """Get detailed HEAD status for all hackathon submodules"""
+        print("📍 BEAST MODE: Analyzing HEAD status across all submodules...")
+
+        head_status = {}
+
+        for project_id, project in self.projects.items():
+            print(f"🔍 Checking HEAD status for {project.name}...")
+
+            project_head_info = {
+                "current_branch": "unknown",
+                "head_commit": "unknown",
+                "head_message": "unknown",
+                "remote_status": "unknown",
+                "ahead_behind": "unknown",
+                "last_commit_time": "unknown",
+                "last_commit_author": "unknown",
+            }
+
+            try:
+                # Get current branch
+                exit_code, stdout, stderr = self.run_command("git branch --show-current", cwd=project.path)
+                if exit_code == 0:
+                    project_head_info["current_branch"] = stdout.strip() or "detached HEAD"
+
+                # Get HEAD commit hash
+                exit_code, stdout, stderr = self.run_command("git rev-parse HEAD", cwd=project.path)
+                if exit_code == 0:
+                    project_head_info["head_commit"] = stdout.strip()[:8]
+
+                # Get HEAD commit message
+                exit_code, stdout, stderr = self.run_command("git log -1 --format='%s'", cwd=project.path)
+                if exit_code == 0:
+                    project_head_info["head_message"] = stdout.strip()
+
+                # Get remote status
+                exit_code, stdout, stderr = self.run_command("git status -sb", cwd=project.path)
+                if exit_code == 0:
+                    lines = stdout.strip().split("\n")
+                    if lines:
+                        status_line = lines[0]
+                        if "ahead" in status_line:
+                            project_head_info["remote_status"] = "ahead of remote"
+                            project_head_info["ahead_behind"] = status_line
+                        elif "behind" in status_line:
+                            project_head_info["remote_status"] = "behind remote"
+                            project_head_info["ahead_behind"] = status_line
+                        else:
+                            project_head_info["remote_status"] = "up to date"
+
+                # Get last commit details
+                exit_code, stdout, stderr = self.run_command("git log -1 --format='%an|%ar|%ad'", cwd=project.path)
+                if exit_code == 0:
+                    parts = stdout.strip().split("|")
+                    if len(parts) >= 2:
+                        project_head_info["last_commit_author"] = parts[0]
+                        project_head_info["last_commit_time"] = parts[1]
+
+            except Exception as e:
+                print(f"⚠️  Warning: Could not get HEAD status for {project.name}: {e}")
+
+            head_status[project.name] = project_head_info
+
+        return head_status
+
     def refresh_all_submodules(self) -> bool:
         """Refresh all hackathon submodules to latest commits"""
         print("🚀 BEAST MODE: Refreshing all hackathon submodules...")
@@ -381,12 +446,26 @@ def main():
                 for project in activity_summary["projects_with_activity"]:
                     print(f"  - {project['name']}: {project['commits']} commits")
             sys.exit(0)
+        elif command == "head-status":
+            head_status = manager.get_head_status()
+            print(f"\n📍 BEAST MODE: HEAD Status Report")
+            print("=" * 50)
+            for project_name, head_info in head_status.items():
+                print(f"\n🎯 {project_name}")
+                print(f"  Branch: {head_info['current_branch']}")
+                print(f"  HEAD Commit: {head_info['head_commit']}")
+                print(f"  Message: {head_info['head_message']}")
+                print(f"  Remote Status: {head_info['remote_status']}")
+                if head_info["ahead_behind"] != "unknown":
+                    print(f"  Status: {head_info['ahead_behind']}")
+                print(f"  Last Commit: {head_info['last_commit_time']} by {head_info['last_commit_author']}")
+            sys.exit(0)
         elif command == "activate":
             success = manager.beast_mode_activation()
             sys.exit(0 if success else 1)
         else:
             print(f"❌ Unknown command: {command}")
-            print("Available commands: status, refresh, verify, activity, activate")
+            print("Available commands: status, refresh, verify, activity, head-status, activate")
             sys.exit(1)
     else:
         # Default: Full BEAST MODE activation
