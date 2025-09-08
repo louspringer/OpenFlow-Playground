@@ -1,0 +1,19 @@
+[Unit]
+Description=Beast Mode Message Listener
+After=network.target redis.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=lou
+Group=staff
+WorkingDirectory=/Users/lou/Documents/OpenFlow-Playground
+ExecStart=/Users/lou/Documents/OpenFlow-Playground/.venv/bin/python simple_listener.py
+Restart=always
+RestartSec=10
+Environment=PYTHONPATH=/Users/lou/Documents/OpenFlow-Playground
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

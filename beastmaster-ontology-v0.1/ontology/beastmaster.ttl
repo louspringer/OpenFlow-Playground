@@ -1,0 +1,67 @@
+@prefix bm:   <http://nkllon.dev/beastmaster#> .
+@prefix ddd:  <http://nkllon.dev/ddd#> .
+@prefix metr: <http://nkllon.dev/metrics#> .
+@prefix spore:<http://nkllon.dev/spore#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+### Classes
+bm:Requirement      a rdfs:Class .
+bm:Specification    a rdfs:Class .
+bm:Artifact         a rdfs:Class .
+bm:Code             a rdfs:Class ; rdfs:subClassOf bm:Artifact .
+bm:Test             a rdfs:Class ; rdfs:subClassOf bm:Artifact .
+bm:Doc              a rdfs:Class ; rdfs:subClassOf bm:Artifact .
+bm:Config           a rdfs:Class ; rdfs:subClassOf bm:Artifact .
+
+bm:Projection       a rdfs:Class .
+bm:Convergence      a rdfs:Class .
+bm:ConstraintSet    a rdfs:Class .
+bm:RCAFinding       a rdfs:Class .
+bm:PDCACycle        a rdfs:Class .
+bm:PDCAState        a rdfs:Class .  # Plan|Do|Check|Act
+
+metr:Metric         a rdfs:Class .
+metr:Measurement    a rdfs:Class .
+
+ddd:BoundedContext  a rdfs:Class .
+ddd:ULTerm          a rdfs:Class .   # ubiquitous language term
+
+spore:Spore         a rdfs:Class .
+spore:Evidence      a rdfs:Class .
+
+### Object properties
+bm:satisfies        a rdf:Property ; rdfs:domain bm:Artifact ; rdfs:range bm:Requirement .
+bm:tracesTo         a rdf:Property ; rdfs:domain bm:Artifact ; rdfs:range bm:Requirement .
+bm:derivesFrom      a rdf:Property ; rdfs:domain bm:Projection ; rdfs:range bm:Specification .
+bm:projects         a rdf:Property ; rdfs:domain bm:Projection ; rdfs:range bm:Artifact .
+
+bm:hasConvergence   a rdf:Property ; rdfs:domain bm:Specification ; rdfs:range bm:Convergence .
+bm:constrains       a rdf:Property ; rdfs:domain bm:Convergence ; rdfs:range bm:ConstraintSet .
+
+metr:measures       a rdf:Property ; rdfs:domain metr:Measurement ; rdfs:range rdf:Resource .
+metr:ofMetric       a rdf:Property ; rdfs:domain metr:Measurement ; rdfs:range metr:Metric .
+metr:affects        a rdf:Property ; rdfs:domain metr:Measurement ; rdfs:range bm:ConstraintSet .
+
+bm:explains         a rdf:Property ; rdfs:domain bm:RCAFinding ; rdfs:range bm:Convergence .
+
+bm:hasState         a rdf:Property ; rdfs:domain bm:PDCACycle ; rdfs:range bm:PDCAState .
+bm:nextState        a rdf:Property ; rdfs:domain bm:PDCAState ; rdfs:range bm:PDCAState .
+
+ddd:withinContext   a rdf:Property ; rdfs:domain rdf:Resource ; rdfs:range ddd:BoundedContext .
+ddd:mapsTo          a rdf:Property ; rdfs:domain ddd:ULTerm ; rdfs:range rdfs:Resource . # vendor terms
+
+spore:proposes      a rdf:Property ; rdfs:domain spore:Spore ; rdfs:range rdf:Resource .
+spore:hasEvidence   a rdf:Property ; rdfs:domain spore:Spore ; rdfs:range spore:Evidence .
+spore:lineage       a rdf:Property ; rdfs:domain spore:Spore ; rdfs:range prov:Entity .
+spore:license       a rdf:Property .
+
+### Datatype properties
+metr:value          a rdf:Property ; rdfs:domain metr:Measurement ; rdfs:range xsd:double .
+metr:unit           a rdf:Property ; rdfs:domain metr:Metric ; rdfs:range xsd:string .
+metr:timestamp      a rdf:Property ; rdfs:domain metr:Measurement ; rdfs:range xsd:dateTime .
+
+bm:phase            a rdf:Property ; rdfs:domain bm:PDCAState ; rdfs:range xsd:string . # Plan|Do|Check|Act
+bm:status           a rdf:Property ; rdfs:range xsd:string .

@@ -4,15 +4,15 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-    - 6379:6379
+      - 6379:6379
     command: redis-server --appendonly yes
     volumes:
-    - redis_data:/data
+      - redis_data:/data
     healthcheck:
       test:
-      - CMD
-      - redis-cli
-      - ping
+        - CMD
+        - redis-cli
+        - ping
       interval: 10s
       timeout: 5s
       retries: 5
@@ -22,16 +22,17 @@ services:
       redis:
         condition: service_healthy
     environment:
-    - REDIS_URL=redis://redis:6379
-    - AGENT_ID=docker_agent
-    - CAPABILITIES=python_coding,gcp_optimization,data_analysis
+      - REDIS_URL=redis://redis:6379
+      - AGENT_ID=docker_agent
+      - CAPABILITIES=python_coding,gcp_optimization,data_analysis
     volumes:
-    - ./src:/app/src
-    - ./examples:/app/examples
-    - ./tests:/app/tests
-    command: python auto_setup_enhanced.py --agent-id docker_agent --capabilities
-      python_coding,gcp_optimization,data_analysis
+      - ./src:/app/src
+      - ./examples:/app/examples
+      - ./tests:/app/tests
+    command: >
+      python auto_setup_enhanced.py
+      --agent-id docker_agent
+      --capabilities python_coding,gcp_optimization,data_analysis
     restart: unless-stopped
 volumes:
   redis_data: null
-

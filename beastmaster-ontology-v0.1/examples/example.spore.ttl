@@ -1,0 +1,17 @@
+@prefix bm:   <http://nkllon.dev/beastmaster#> .
+@prefix metr: <http://nkllon.dev/metrics#> .
+@prefix spore:<http://nkllon.dev/spore#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+spore:123 a spore:Spore ;
+  spore:proposes bm:R_refund_p95 , bm:Svc_refund ;
+  spore:hasEvidence [ a spore:Evidence ;
+                      metr:ofMetric metr:p95 ;
+                      metr:value 87.0 ;
+                      metr:timestamp "2025-09-07T15:12:00Z"^^xsd:dateTime ] ;
+  spore:lineage <urn:git:commit/abc123> ;
+  spore:license "MIT" .
+
+bm:R_refund_p95 a bm:Requirement .
+bm:Svc_refund   a bm:Code ; bm:tracesTo bm:R_refund_p95 .

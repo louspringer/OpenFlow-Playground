@@ -32,3 +32,5 @@ ENV PYTHONPATH=/app/src
 # Default command
 CMD ["python", "auto_setup_enhanced.py"]
 
+
+

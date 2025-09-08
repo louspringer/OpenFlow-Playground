@@ -1,0 +1,27 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix bm:   <http://nkllon.dev/beastmaster#> .
+@prefix metr: <http://nkllon.dev/metrics#> .
+@prefix ddd:  <http://nkllon.dev/ddd#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Every Artifact must trace to ≥1 Requirement
+bm:ArtifactTraceShape a sh:NodeShape ;
+  sh:targetClass bm:Artifact ;
+  sh:property [ sh:path bm:tracesTo ; sh:minCount 1 ] .
+
+# Every Convergence must have a ConstraintSet
+bm:ConvergenceShape a sh:NodeShape ;
+  sh:targetClass bm:Convergence ;
+  sh:property [ sh:path bm:constrains ; sh:minCount 1 ] .
+
+# Every Measurement must reference a Metric and a subject (Artifact or Requirement)
+metr:MeasurementShape a sh:NodeShape ;
+  sh:targetClass metr:Measurement ;
+  sh:property [ sh:path metr:ofMetric ; sh:minCount 1 ] ;
+  sh:property [ sh:path metr:measures ; sh:minCount 1 ] ;
+  sh:property [ sh:path metr:value ; sh:datatype xsd:double ] .
+
+# Bounded context: artifacts/requirements must declare their context (advisory)
+ddd:ContextShape a sh:NodeShape ;
+  sh:targetClass bm:Requirement ;
+  sh:property [ sh:path ddd:withinContext ; sh:minCount 1 ] .

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Beastmaster Spore v0.2",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "proposal",
+    "evidence",
+    "lineage",
+    "license"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "context": {
+      "type": "object"
+    },
+    "proposal": {
+      "type": "object",
+      "required": [
+        "dagdiff"
+      ],
+      "properties": {
+        "spec": {
+          "type": [
+            "string",
+            "object"
+          ]
+        },
+        "dagdiff": {
+          "type": "object"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "measurement",
+              "validation",
+              "test",
+              "analysis"
+            ]
+          },
+          "metric": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_:\\-\\.]+$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "string",
+              "boolean",
+              "null"
+            ]
+          },
+          "threshold": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "warning",
+              "info"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "properties": {
+        "parents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "git": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        }
+      }
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}
