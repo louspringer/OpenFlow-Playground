@@ -68,7 +68,7 @@ dependencies = [
     "pymupdf>=1.26.4",
     "pdfplumber>=0.11.7",
     "pypdf>=6.0.0",
-    "numpy==1.24.3",
+    "numpy>=1.26.0",  # Python 3.12 compatible (no distutils dependency)
     "redis>=6.4.0",
 ]
 
