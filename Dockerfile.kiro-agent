@@ -22,11 +22,15 @@ ENV PATH="/root/.local/bin:$PATH"
 # Set working directory
 WORKDIR /app
 
-# Copy dependency files
+# Copy dependency files first for layer caching
 COPY pyproject.toml uv.lock ./
 
-# Install dependencies using UV
-RUN uv sync --frozen --no-dev
+# Create minimal source structure required for uv sync
+RUN mkdir -p src && touch src/__init__.py
+
+# Install dependencies using UV sync
+# --no-install-project flag skips installing the project itself (just deps)
+RUN uv sync --frozen --no-dev --no-install-project
 
 # Stage 2: Runtime stage
 FROM python:3.12-slim as runtime
