@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nim-embeddings.fullname" . }}
+  labels:
+    {{- include "nim-embeddings.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "nim-embeddings.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "nim-embeddings.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "nim-embeddings.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        {{- if .Values.healthCheck.enabled }}
+        livenessProbe:
+          {{- toYaml .Values.healthCheck.livenessProbe | nindent 10 }}
+        readinessProbe:
+          {{- toYaml .Values.healthCheck.readinessProbe | nindent 10 }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        env:
+          {{- toYaml .Values.env | nindent 10 }}
+          {{- if .Values.opentelemetry.enabled }}
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            value: {{ .Values.opentelemetry.endpoint }}
+          - name: OTEL_SERVICE_NAME
+            value: {{ .Values.opentelemetry.serviceName }}
+          - name: OTEL_TRACES_SAMPLER
+            value: "always_on"
+          {{- end }}
+        {{- if .Values.persistence.enabled }}
+        volumeMounts:
+        - name: model-cache
+          mountPath: {{ .Values.persistence.mountPath }}
+        {{- end }}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+      - name: model-cache
+        persistentVolumeClaim:
+          claimName: {{ include "nim-embeddings.fullname" . }}-pvc
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

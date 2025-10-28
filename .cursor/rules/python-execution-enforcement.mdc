@@ -55,29 +55,61 @@ subprocess.run(["uv", "run", "python", "script.py"])  # ALLOWED
 subprocess.run(["uv", "run", "pytest", "tests/"])     # ALLOWED
 ```
 
+## 🎯 **BEAST MODE Exceptions**
+
+### **BEAST Deployment and Operations**
+When working with BEAST deployments and infrastructure:
+
+```bash
+# ✅ BEAST MODE - Container/K8s contexts where UV may not be available
+# These are ALLOWED in deployment/containerized contexts:
+docker exec beast-container python /app/script.py
+kubectl exec -it beast-pod -- python /app/orchestrator.py
+docker-compose exec beast-service python manage.py
+```
+
+### **BEAST CI/CD Pipelines**
+```bash
+# ✅ BEAST MODE - CI/CD contexts where Make handles UV internally
+# Allowed in cloud-build.yaml, GitHub Actions, etc.:
+make deploy-beast      # Make target handles UV internally
+make run-demo          # Make target handles UV internally
+make build-embeddings  # Make target handles UV internally
+```
+
+### **When BEAST Exceptions Apply**
+- ✅ **Containerized environments** where UV is not installed
+- ✅ **Kubernetes pods** running production BEAST services
+- ✅ **CI/CD pipelines** where Make targets abstract UV usage
+- ✅ **Docker Compose services** with their own Python environments
+- ❌ **Local development** - NO EXCEPTIONS, always use `uv run python`
+- ❌ **Interactive shells** - NO EXCEPTIONS, always use `uv run python`
+
 ## 🔧 **Enforcement Implementation**
 
 ### **Automatic Blocking**
 This rule automatically blocks:
-- Direct `python` commands (without `uv run`)
-- Direct `python3` commands (without `uv run`)
-- Python execution without proper UV environment
+- Direct `python` commands (without `uv run`) in local development
+- Direct `python3` commands (without `uv run`) in local development
+- Python execution without proper UV environment in local contexts
 
 ### **Automatic Allowance**
 This rule automatically allows:
 - `uv run python` commands (NO APPROVAL REQUIRED)
 - `uv run python3` commands (NO APPROVAL REQUIRED)
 - Make target commands (NO APPROVAL REQUIRED)
+- Container/K8s execution contexts (BEAST MODE)
 
 ### **Automatic Correction**
 When blocked commands are detected, the system will:
-1. **Block execution** of direct python commands
+1. **Block execution** of direct python commands in local contexts
 2. **Suggest correction** using `uv run python`
 3. **Provide Make target alternatives** when available
+4. **Allow BEAST exceptions** in containerized/CI contexts
 
 ## 📋 **Common Use Cases**
 
-### **Running Scripts**
+### **Running Scripts (Local Development)**
 ```bash
 # ❌ WRONG
 python src/ghostbusters/ghostbusters_orchestrator.py
@@ -87,6 +119,18 @@ uv run python src/ghostbusters/ghostbusters_orchestrator.py
 
 # ✅ BEST
 make ghostbusters
+```
+
+### **Running Scripts (BEAST Deployment)**
+```bash
+# ✅ ALLOWED - Container context
+docker exec beast-orchestrator python /app/orchestrator.py
+
+# ✅ ALLOWED - K8s context
+kubectl exec -it beast-pod -- python /app/main.py
+
+# ✅ BEST - Make target abstracts execution
+make deploy-beast
 ```
 
 ### **Running Tests**
@@ -133,44 +177,56 @@ uv run python -m src.ghostbusters.ghostbusters_orchestrator
 - **Version Consistency**: Ensures same Python version across team
 - **Lock File Usage**: Uses `uv.lock` for reproducible builds
 
+### **BEAST MODE Benefits**
+- **Production Flexibility**: Allows containerized deployments without UV
+- **CI/CD Integration**: Make targets handle UV internally
+- **Kubernetes Support**: Supports K8s pod execution contexts
+- **Deployment Safety**: Ensures proper execution in all contexts
+
 ## 🚨 **Violation Consequences**
 
 ### **Immediate Actions**
-1. **Command Blocked**: Direct Python execution is prevented
+1. **Command Blocked**: Direct Python execution is prevented in local contexts
 2. **Correction Required**: Must use `uv run python` or Make targets
 3. **Documentation**: Violation is logged for review
+4. **Exception Allowed**: BEAST containerized contexts automatically allowed
 
 ### **Allowed Commands (NO APPROVAL REQUIRED)**
 1. **`uv run python`**: Automatically allowed, no approval needed
 2. **`uv run python3`**: Automatically allowed, no approval needed
 3. **Make targets**: Automatically allowed, no approval needed
+4. **BEAST container contexts**: Automatically allowed in deployment contexts
 
 ### **Repeated Violations**
 1. **Warning Issued**: Clear explanation of the rule
 2. **Alternative Suggested**: Show proper `uv run` command
 3. **Make Target Recommended**: Suggest appropriate Make target
+4. **Context Check**: Verify if BEAST exception applies
 
 ## 📚 **Integration with Other Rules**
 
 ### **Make-First Enforcement**
 - **Primary**: Use Make targets when available
 - **Secondary**: Use `uv run python` when no Make target exists
-- **Never**: Use direct Python commands
+- **BEAST MODE**: Make targets handle UV internally for deployments
+- **Never**: Use direct Python commands in local development
 
 ### **UV Package Management**
 - **Dependencies**: Install via `uv add` and `uv sync`
-- **Execution**: Run via `uv run python`
+- **Execution**: Run via `uv run python` (local) or Make targets
 - **Environment**: Manage via `uv` commands
+- **BEAST**: Container images include UV or use Make abstractions
 
 ### **Security Guidelines**
-- **No Subprocess**: Avoid direct Python execution
-- **UV Integration**: Use UV for all Python operations
+- **No Subprocess**: Avoid direct Python execution in local development
+- **UV Integration**: Use UV for all Python operations locally
 - **Make Targets**: Prefer Make targets for common operations
+- **BEAST Deployment**: Container contexts have their own security model
 
 ## 🎯 **Remember**
 
-**"If you need to run Python, use `uv run python` or find a Make target. Direct Python execution is forbidden in this project."**
+**"If you need to run Python locally, use `uv run python` or find a Make target. Direct Python execution is forbidden in local development."**
 
-**"UV run ensures proper dependency management and environment isolation. Make targets provide standardized workflows."**
+**"UV run ensures proper dependency management and environment isolation locally. Make targets provide standardized workflows everywhere."**
 
-
+**"BEAST MODE deployments run in containers/K8s where UV may not be available - use Make targets or container execution contexts."**

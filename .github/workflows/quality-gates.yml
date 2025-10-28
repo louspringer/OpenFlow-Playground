@@ -88,24 +88,20 @@ jobs:
         
         if [ -f "${{ env.QUALITY_REPORT_PATH }}" ]; then
           python -c "
-          import json
-          
-          try:
-              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
-                  report = json.load(f)
-              
-              print(f'**Overall Score**: {report.get(\"overall_score\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              print(f'**Quality Status**: {report.get(\"quality_status\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              print(f'**Can Proceed**: {report.get(\"can_proceed\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              
-              if 'gate_summary' in report:
-                  gates = report['gate_summary']
-                  print(f'**Total Gates**: {gates.get(\"total_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
-                  print(f'**Failed Gates**: {gates.get(\"failed_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
-                  
-          except Exception as e:
-              print(f'**Error**: Could not read quality report') >> $GITHUB_STEP_SUMMARY
-          "
+import json
+
+with open('${{ env.QUALITY_REPORT_PATH }}') as f:
+    report = json.load(f)
+
+print('**Overall Score**: ' + str(report.get('overall_score', 'N/A')))
+print('**Quality Status**: ' + report.get('quality_status', 'N/A'))
+print('**Can Proceed**: ' + str(report.get('can_proceed', 'N/A')))
+
+if 'gate_summary' in report:
+    gates = report['gate_summary']
+    print('**Total Gates**: ' + str(gates.get('total_gates', 0)))
+    print('**Failed Gates**: ' + str(gates.get('failed_gates', 0)))
+" >> $GITHUB_STEP_SUMMARY
         else
           echo "**Status**: Quality report not available" >> $GITHUB_STEP_SUMMARY
         fi

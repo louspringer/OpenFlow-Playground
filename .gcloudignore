@@ -61,11 +61,8 @@ build/
 # Large data files
 data/
 *.csv
-*.json
+# *.json - Commented out: project_model_registry.json needed for Docker build
 *.parquet
-
-# UV lock file (too large)
-uv.lock
 
 # Project model backups
 backups/
