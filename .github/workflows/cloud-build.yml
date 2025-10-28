@@ -26,11 +26,48 @@ jobs:
         
     - name: Trigger Cloud Build
       run: |
+        set -euo pipefail
         echo "🚀 Triggering Cloud Build pipeline"
-        gcloud builds submit \
+        BUILD_ID=$(gcloud builds submit \
           --config=cloudbuild.yaml \
           --project=gen-lang-client-0128452200 \
-          .
+          . \
+          --async \
+          --format='value(id)')
+        echo "Started build: $BUILD_ID"
+        echo "Build URL: https://console.cloud.google.com/cloud-build/builds/${BUILD_ID}?project=gen-lang-client-0128452200"
+        
+        # Poll build status (timeout ~15 minutes)
+        echo "Polling build status..."
+        for i in $(seq 1 90); do
+          STATUS=$(gcloud builds describe "$BUILD_ID" --project=gen-lang-client-0128452200 --format='value(status)')
+          echo "[$(date +%T)] Build $BUILD_ID status: $STATUS"
+          
+          case "$STATUS" in
+            SUCCESS)
+              echo "✅ Build succeeded!"
+              exit 0
+              ;;
+            FAILURE|CANCELLED|TIMEOUT)
+              echo "❌ Build failed with status: $STATUS"
+              echo "Fetching build logs..."
+              gcloud builds log "$BUILD_ID" --project=gen-lang-client-0128452200 || true
+              exit 1
+              ;;
+            WORKING|QUEUED|PENDING)
+              # Build still in progress
+              ;;
+            *)
+              echo "Unknown status: $STATUS"
+              ;;
+          esac
+          
+          sleep 10
+        done
+        
+        echo "⏱️ Timed out waiting for build $BUILD_ID"
+        gcloud builds log "$BUILD_ID" --project=gen-lang-client-0128452200 || true
+        exit 1
           
     - name: Check deployment status
       run: |
