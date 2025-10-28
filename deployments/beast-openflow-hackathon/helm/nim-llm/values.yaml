@@ -1,0 +1,112 @@
+# Default values for nim-llm
+replicaCount: 1
+
+image:
+  repository: nvcr.io/nim/meta/llama-3.1-8b-instruct
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets:
+  - name: ngc-secret
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    eks.amazonaws.com/role-arn: ""  # IRSA role ARN for AWS access
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+
+service:
+  type: ClusterIP
+  port: 8000
+  annotations: {}
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: nim-llm.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    nvidia.com/gpu: 1
+    memory: 16Gi
+  requests:
+    nvidia.com/gpu: 1
+    memory: 16Gi
+    cpu: 2000m
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector:
+  node.kubernetes.io/instance-type: g5.xlarge
+
+tolerations:
+  - key: nvidia.com/gpu
+    operator: Exists
+    effect: NoSchedule
+
+affinity: {}
+
+env:
+  - name: NGC_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ngc-credentials
+        key: api-key
+  - name: NIM_CACHE_PATH
+    value: /model-cache
+
+persistence:
+  enabled: true
+  storageClass: gp3
+  size: 50Gi
+  mountPath: /model-cache
+
+# OpenTelemetry configuration
+opentelemetry:
+  enabled: true
+  endpoint: http://otel-collector.observability.svc.cluster.local:4317
+  serviceName: nim-llm
+
+# Health check configuration
+healthCheck:
+  enabled: true
+  livenessProbe:
+    httpGet:
+      path: /v1/health/live
+      port: 8000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /v1/health/ready
+      port: 8000
+    initialDelaySeconds: 60
+    periodSeconds: 10
+

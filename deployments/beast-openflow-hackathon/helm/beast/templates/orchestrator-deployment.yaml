@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "beast.fullname" . }}-orchestrator
+  labels:
+    {{- include "beast.labels" . | nindent 4 }}
+    app.kubernetes.io/component: orchestrator
+spec:
+  replicas: {{ .Values.orchestrator.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "beast.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: orchestrator
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "beast.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: orchestrator
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "beast.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: orchestrator
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.orchestrator.image.repository }}:{{ .Values.orchestrator.image.tag }}"
+        imagePullPolicy: {{ .Values.orchestrator.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        {{- if .Values.healthCheck.enabled }}
+        livenessProbe:
+          {{- toYaml .Values.healthCheck.orchestrator.livenessProbe | nindent 10 }}
+        readinessProbe:
+          {{- toYaml .Values.healthCheck.orchestrator.readinessProbe | nindent 10 }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.orchestrator.resources | nindent 10 }}
+        env:
+          - name: BEAST_MODE
+            value: "orchestrator"
+          - name: LLM_ENDPOINT
+            value: {{ .Values.config.llmEndpoint }}
+          - name: EMBEDDINGS_ENDPOINT
+            value: {{ .Values.config.embeddingsEndpoint }}
+          - name: LOG_LEVEL
+            value: {{ .Values.config.logLevel }}
+          - name: MAX_AGENTS
+            value: {{ .Values.config.maxAgents | quote }}
+          - name: TASK_QUEUE_SIZE
+            value: {{ .Values.config.taskQueueSize | quote }}
+          - name: SNOWFLAKE_ACCOUNT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.snowflake.secretName }}
+                key: {{ .Values.secrets.snowflake.accountKey }}
+          - name: SNOWFLAKE_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.snowflake.secretName }}
+                key: {{ .Values.secrets.snowflake.userKey }}
+          - name: SNOWFLAKE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.snowflake.secretName }}
+                key: {{ .Values.secrets.snowflake.passwordKey }}
+          - name: SNOWFLAKE_WAREHOUSE
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.snowflake.secretName }}
+                key: {{ .Values.secrets.snowflake.warehouseKey }}
+          - name: SNOWFLAKE_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.snowflake.secretName }}
+                key: {{ .Values.secrets.snowflake.databaseKey }}
+          {{- if .Values.opentelemetry.enabled }}
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            value: {{ .Values.opentelemetry.endpoint }}
+          - name: OTEL_SERVICE_NAME
+            value: {{ .Values.opentelemetry.serviceName }}
+          - name: OTEL_TRACES_SAMPLER
+            value: "always_on"
+          {{- end }}
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

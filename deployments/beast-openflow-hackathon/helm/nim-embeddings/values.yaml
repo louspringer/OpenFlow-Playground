@@ -1,0 +1,133 @@
+# Default values for nim-embeddings
+replicaCount: 2
+
+image:
+  repository: nvcr.io/nim/nvidia/nv-embedqa-e5-v5
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets:
+  - name: ngc-secret
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    eks.amazonaws.com/role-arn: ""  # IRSA role ARN for AWS access
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+
+service:
+  type: ClusterIP
+  port: 8080
+  annotations: {}
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: nim-embeddings.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    nvidia.com/gpu: 1
+    memory: 8Gi
+  requests:
+    nvidia.com/gpu: 1
+    memory: 8Gi
+    cpu: 1000m
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector:
+  node.kubernetes.io/instance-type: g5.xlarge
+
+tolerations:
+  - key: nvidia.com/gpu
+    operator: Exists
+    effect: NoSchedule
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - nim-embeddings
+          topologyKey: kubernetes.io/hostname
+
+env:
+  - name: NGC_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ngc-credentials
+        key: api-key
+  - name: NIM_CACHE_PATH
+    value: /model-cache
+  - name: BATCH_SIZE
+    value: "32"
+  - name: MAX_BATCH_DELAY_MS
+    value: "100"
+
+persistence:
+  enabled: true
+  storageClass: gp3
+  size: 30Gi
+  mountPath: /model-cache
+
+# OpenTelemetry configuration
+opentelemetry:
+  enabled: true
+  endpoint: http://otel-collector.observability.svc.cluster.local:4317
+  serviceName: nim-embeddings
+
+# Health check configuration
+healthCheck:
+  enabled: true
+  livenessProbe:
+    httpGet:
+      path: /v1/health/live
+      port: 8080
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /v1/health/ready
+      port: 8080
+    initialDelaySeconds: 45
+    periodSeconds: 5
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+

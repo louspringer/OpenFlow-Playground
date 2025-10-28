@@ -1,0 +1,18 @@
+apiVersion: v2
+name: observability
+description: OpenTelemetry Collector + Grafana Stack for Beast + Openflow Hackathon
+type: application
+version: 0.1.0
+appVersion: "1.0"
+keywords:
+  - observability
+  - opentelemetry
+  - grafana
+  - loki
+  - tempo
+  - prometheus
+maintainers:
+  - name: OpenFlow-Playground Team
+annotations:
+  category: Observability
+

@@ -1,0 +1,164 @@
+# Default values for beast orchestrator
+orchestrator:
+  replicaCount: 1
+  image:
+    repository: gcr.io/openflow-playground/beast-orchestrator
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  resources:
+    limits:
+      memory: 2Gi
+      cpu: 1000m
+    requests:
+      memory: 1Gi
+      cpu: 500m
+
+agents:
+  replicaCount: 3
+  image:
+    repository: gcr.io/openflow-playground/beast-agent
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  resources:
+    limits:
+      memory: 1Gi
+      cpu: 500m
+    requests:
+      memory: 512Mi
+      cpu: 250m
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    eks.amazonaws.com/role-arn: ""  # IRSA role ARN for AWS access
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+
+service:
+  type: ClusterIP
+  orchestratorPort: 8000
+  agentPort: 8001
+  annotations: {}
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: beast.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/component
+                operator: In
+                values:
+                  - agent
+          topologyKey: kubernetes.io/hostname
+
+# Configuration
+config:
+  llmEndpoint: http://nim-llm.default.svc.cluster.local:8000
+  embeddingsEndpoint: http://nim-embeddings.default.svc.cluster.local:8080
+  snowflakeAccount: ""  # Set via secret
+  logLevel: INFO
+  maxAgents: 10
+  taskQueueSize: 100
+
+# Secrets (referenced from Kubernetes secrets)
+secrets:
+  snowflake:
+    secretName: snowflake-credentials
+    accountKey: account
+    userKey: user
+    passwordKey: password
+    warehouseKey: warehouse
+    databaseKey: database
+  aws:
+    secretName: aws-credentials
+    accessKeyIdKey: access-key-id
+    secretAccessKeyKey: secret-access-key
+
+# OpenTelemetry configuration
+opentelemetry:
+  enabled: true
+  endpoint: http://otel-collector.observability.svc.cluster.local:4317
+  serviceName: beast-orchestrator
+
+# Health check configuration
+healthCheck:
+  enabled: true
+  orchestrator:
+    livenessProbe:
+      httpGet:
+        path: /health/live
+        port: 8000
+      initialDelaySeconds: 10
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /health/ready
+        port: 8000
+      initialDelaySeconds: 5
+      periodSeconds: 5
+  agent:
+    livenessProbe:
+      httpGet:
+        path: /health/live
+        port: 8001
+      initialDelaySeconds: 10
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /health/ready
+        port: 8001
+      initialDelaySeconds: 5
+      periodSeconds: 5
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  orchestrator:
+    enabled: true
+    minAvailable: 1
+  agent:
+    enabled: true
+    minAvailable: 2
+
+# Autoscaling for agents
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+

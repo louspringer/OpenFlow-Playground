@@ -1,0 +1,190 @@
+# Default values for observability stack
+otelCollector:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: otel/opentelemetry-collector-contrib
+    pullPolicy: IfNotPresent
+    tag: "0.95.0"
+  resources:
+    limits:
+      memory: 2Gi
+      cpu: 1000m
+    requests:
+      memory: 1Gi
+      cpu: 500m
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: 'otel-collector'
+              scrape_interval: 10s
+              static_configs:
+                - targets: ['localhost:8888']
+    processors:
+      batch:
+        timeout: 10s
+        send_batch_size: 1024
+      memory_limiter:
+        check_interval: 1s
+        limit_mib: 1536
+    exporters:
+      prometheus:
+        endpoint: 0.0.0.0:8889
+      loki:
+        endpoint: http://loki:3100/loki/api/v1/push
+      otlp/tempo:
+        endpoint: tempo:4317
+        tls:
+          insecure: true
+      # External public endpoint
+      otlp/observatory:
+        endpoint: https://observatory.nkllon.com:4317
+        headers:
+          authorization: Bearer ${OBSERVATORY_API_KEY}
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, batch]
+          exporters: [otlp/tempo, otlp/observatory]
+        metrics:
+          receivers: [otlp, prometheus]
+          processors: [memory_limiter, batch]
+          exporters: [prometheus, otlp/observatory]
+        logs:
+          receivers: [otlp]
+          processors: [memory_limiter, batch]
+          exporters: [loki, otlp/observatory]
+
+grafana:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: grafana/grafana
+    pullPolicy: IfNotPresent
+    tag: "10.3.0"
+  resources:
+    limits:
+      memory: 512Mi
+      cpu: 500m
+    requests:
+      memory: 256Mi
+      cpu: 250m
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 10Gi
+  service:
+    type: LoadBalancer
+    port: 3000
+  datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus:9090
+      isDefault: true
+    - name: Loki
+      type: loki
+      url: http://loki:3100
+    - name: Tempo
+      type: tempo
+      url: http://tempo:3100
+
+prometheus:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: prom/prometheus
+    pullPolicy: IfNotPresent
+    tag: "v2.49.0"
+  resources:
+    limits:
+      memory: 4Gi
+      cpu: 2000m
+    requests:
+      memory: 2Gi
+      cpu: 1000m
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 50Gi
+  retention: 15d
+
+loki:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: grafana/loki
+    pullPolicy: IfNotPresent
+    tag: "2.9.0"
+  resources:
+    limits:
+      memory: 2Gi
+      cpu: 1000m
+    requests:
+      memory: 1Gi
+      cpu: 500m
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 50Gi
+
+tempo:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: grafana/tempo
+    pullPolicy: IfNotPresent
+    tag: "2.3.0"
+  resources:
+    limits:
+      memory: 2Gi
+      cpu: 1000m
+    requests:
+      memory: 1Gi
+      cpu: 500m
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 50Gi
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65534
+  fsGroup: 65534
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# External observatory configuration
+observatory:
+  enabled: true
+  endpoint: https://observatory.nkllon.com
+  secretName: observatory-credentials
+

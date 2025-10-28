@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "beast.fullname" . }}-orchestrator
+  labels:
+    {{- include "beast.labels" . | nindent 4 }}
+    app.kubernetes.io/component: orchestrator
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.orchestratorPort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "beast.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: orchestrator
+
