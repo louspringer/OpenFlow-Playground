@@ -62,6 +62,7 @@ build/
 data/
 *.csv
 *.json
+!project_model_registry.json  # Required by application
 *.parquet
 
 # Project model backups
