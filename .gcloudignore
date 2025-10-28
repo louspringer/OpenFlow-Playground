@@ -61,8 +61,7 @@ build/
 # Large data files
 data/
 *.csv
-*.json
-!project_model_registry.json  # Required by application
+# *.json - Commented out: project_model_registry.json needed for Docker build
 *.parquet
 
 # Project model backups
