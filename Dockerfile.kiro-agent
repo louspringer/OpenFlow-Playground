@@ -54,7 +54,7 @@ COPY --from=builder /app/.venv /app/.venv
 # Copy application code
 COPY src/ ./src/
 COPY main.py ./
-COPY hackathon/kiro-ai-development-hackathon/ ./hackathon/kiro-ai-development-hackathon/
+COPY subprojects/kiro-ai-development-hackathon/ ./subprojects/kiro-ai-development-hackathon/
 COPY project_model_registry.json ./
 COPY pdca.mdc ./
 
