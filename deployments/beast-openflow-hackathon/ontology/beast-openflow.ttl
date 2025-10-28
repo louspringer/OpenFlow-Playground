@@ -1,0 +1,47 @@
+@prefix : <http://openflow-playground.org/beast-openflow#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:BeastOpenflowOntology a owl:Ontology ;
+    rdfs:label "Beast + Openflow + Hackathon Semantic Model" ;
+    rdfs:comment "RDF/Turtle ontology for the integrated deployment" .
+
+# Core Components
+:Component a owl:Class ;
+    rdfs:label "Deployment Component" .
+
+:NIMService a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "NVIDIA NIM Service" .
+
+:LLMService a owl:Class ;
+    rdfs:subClassOf :NIMService ;
+    rdfs:label "NIM LLM Service" .
+
+:EmbeddingService a owl:Class ;
+    rdfs:subClassOf :NIMService ;
+    rdfs:label "NIM Embedding Service" .
+
+:BeastOrchestrator a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Beast Orchestrator" .
+
+:ObservabilityStack a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Observability Stack" .
+
+# Properties
+:hasEndpoint a owl:DatatypeProperty ;
+    rdfs:domain :Component ;
+    rdfs:range xsd:anyURI .
+
+:requiresGPU a owl:DatatypeProperty ;
+    rdfs:domain :NIMService ;
+    rdfs:range xsd:boolean .
+
+:exportsMetrics a owl:ObjectProperty ;
+    rdfs:domain :Component ;
+    rdfs:range :ObservabilityStack .
+
