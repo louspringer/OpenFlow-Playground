@@ -64,8 +64,5 @@ data/
 *.json
 *.parquet
 
-# UV lock file (too large)
-uv.lock
-
 # Project model backups
 backups/
