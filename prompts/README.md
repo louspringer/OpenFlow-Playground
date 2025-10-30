@@ -289,3 +289,12 @@ def check_prompt_completion(prompt_path: str):
 **Location**: `prompts/` directory  
 **Next**: Populate with current prompt cycle
 
+## Program Integration
+
+- Outbound prompts MUST cite requirement IDs (e.g., RED-002, NFR-004) and target the primary component(s).
+- Inbound responses MUST include headers:
+  - `Requirements:` IDs covered
+  - `Components:` impacted components
+  - `Artifacts:` produced (code/policy/diagrams)
+  - `Next:` actionable follow-ups/PRs
+- Maintainers sync results into `program/requirements/mapping.yaml` and update `program/releases`.

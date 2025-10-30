@@ -1,0 +1,32 @@
+name: prompts-validate
+on:
+  pull_request:
+    paths:
+      - 'prompts/**'
+      - 'program/requirements/**'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check dirs exist
+        run: |
+          test -d prompts/outbound && test -d prompts/inbound && test -d program/requirements
+      - name: Validate mapping format
+        run: |
+          python - << 'PY'
+import os, sys
+try:
+    import yaml  # type: ignore
+except Exception:
+    sys.exit("Missing pyyaml. Add to repo or pin in CI if needed.")
+p='program/requirements/mapping.yaml'
+assert os.path.exists(p), "missing mapping.yaml"
+with open(p,'r') as f:
+    y=yaml.safe_load(f)
+assert isinstance(y, dict), "mapping must be a dict"
+assert 'requirements_to_components' in y, "missing requirements_to_components"
+assert 'components_to_hackathons' in y, "missing components_to_hackathons"
+print('mapping ok')
+PY
+        shell: bash

@@ -1,0 +1,110 @@
+requirements_to_components:
+  FR-050:
+    description: AWS×NVIDIA app deliverable (NIM LLM + Retrieval/NIM on EKS/SageMaker)
+    primary: ["kiro-ai-development-hackathon"]
+    supporting: ["beast-adapter-aws", "beast-observability", "beast-redaction-client", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+  FR-051:
+    description: Cloud Run app deliverable (ADK/AI Studio, Service/Job/Worker Pool)
+    primary: ["cloud-run-app"]
+    supporting: ["beast-adapter-gcp", "beast-observability", "beast-redaction-client", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+  FR-052:
+    description: Distinctness & new-work disclosures
+    primary: ["OpenFlow-Playground/program/devpost"]
+    supporting: ["beast-devkit", "ontology-framework", "beast-* (versions/pins)"]
+
+  NFR-004:
+    description: Observability — live dashboards & alerts
+    primary: ["beast-observability"]
+    supporting: ["Observatory-Portal", "Cloudflare", "kiro-ai-development-hackathon", "cloud-run-app"]
+
+  OBS-001:
+    description: Unified log/metrics/traces ingest
+    primary: ["beast-observability"]
+    supporting: ["beast-adapter-aws", "beast-adapter-gcp", "OpenFlow-Playground"]
+
+  OBS-002:
+    description: Trace correlation (trace_id/run_id)
+    primary: ["beast-observability"]
+    supporting: ["beast-redaction-client", "kiro-ai-development-hackathon", "cloud-run-app"]
+
+  OBS-005:
+    description: Alerting (SLA/SLO breaches, error spikes)
+    primary: ["Observatory-Portal"]
+    supporting: ["beast-observability", "Cloudflare"]
+
+  RED-001:
+    description: Classifier microservice contract
+    primary: ["beast-redaction-client"]
+    supporting: ["kiro-ai-development-hackathon (NIM)", "cloud-run-app"]
+
+  RED-002:
+    description: NiFi integration (ingest enforcement)
+    primary: ["OpenFlow-Policy", "NiFi-Processors"]
+    supporting: ["beast-redaction-client", "Observatory"]
+
+  RED-003:
+    description: Snowflake external function & masking policy
+    primary: ["Snowflake-Artifacts"]
+    supporting: ["beast-redaction-client", "OpenFlow/NiFi", "Observatory"]
+
+  RED-004:
+    description: Policy mapping & governance
+    primary: ["OpenFlow-Policy", "program/requirements/redaction-policy.md"]
+    supporting: ["Cloudflare-Edge-DLP", "Observatory"]
+
+  SEC-010:
+    description: Threat model
+    primary: ["program/requirements"]
+    supporting: ["Cloudflare-Zero-Trust", "package-hardening"]
+
+  SEC-011:
+    description: Input validation & redaction hooks
+    primary: ["beast-redaction-client"]
+    supporting: ["OpenFlow/NiFi", "Cloudflare-Edge-DLP"]
+
+  DATA-011:
+    description: Lineage & provenance
+    primary: ["beast-observability"]
+    supporting: ["OpenFlow-Playground/spores", "Snowflake-Audit"]
+
+components_to_hackathons:
+  kiro-ai-development-hackathon:
+    provides: "Agentic app on EKS/SageMaker; NIM endpoints & classifier"
+    used_by: ["AWS×NVIDIA"]
+    depends_on: ["beast-adapter-aws", "beast-redaction-client", "beast-observability"]
+  cloud-run-app:
+    provides: "ADK/AI Studio app on Cloud Run (Service/Job/Worker)"
+    used_by: ["Cloud Run"]
+    depends_on: ["beast-adapter-gcp", "beast-redaction-client", "beast-observability"]
+  beast-redaction-client:
+    provides: "HMAC classify() + apply_redactions"
+    used_by: ["AWS×NVIDIA", "Cloud Run"]
+    depends_on: ["Classifier endpoint"]
+  beast-adapter-aws:
+    provides: "EKS Job runner, SageMaker invoke, ECR helpers"
+    used_by: ["AWS×NVIDIA"]
+    depends_on: ["AWS creds/cluster"]
+  beast-adapter-gcp:
+    provides: "Cloud Run deploy/run helpers"
+    used_by: ["Cloud Run"]
+    depends_on: ["GCP project/creds"]
+  beast-observability:
+    provides: "Signed logs + OTEL glue"
+    used_by: ["AWS×NVIDIA", "Cloud Run"]
+    depends_on: ["Observatory endpoint/tokens"]
+  beast-devkit:
+    provides: "Make/CI templates, Devpost fragments"
+    used_by: ["AWS×NVIDIA", "Cloud Run"]
+    depends_on: []
+  beast-validators:
+    provides: "Link/hash/structure CLI"
+    used_by: ["AWS×NVIDIA", "Cloud Run"]
+    depends_on: []
+  OpenFlow-Playground:
+    provides: "Program driver (requirements, releases, spores)"
+    used_by: ["AWS×NVIDIA", "Cloud Run"]
+    depends_on: ["ontology-framework"]
+  ontology-framework:
+    provides: "Requirements/traceability vocab"
+    used_by: ["OpenFlow-Playground", "docs generation"]
+    depends_on: []

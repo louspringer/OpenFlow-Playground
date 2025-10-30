@@ -240,3 +240,12 @@ Once we receive the master plan, we will:
 **Date**: 2025-10-30  
 **Status**: Standing by for master plan
 
+### Required Headers for Your Response
+Requirements: [ID, ...]
+Components: [component, ...]
+Artifacts:
+  - code: <repo/path or URL>
+  - policy: <path>
+  - diagrams: <path>
+Next:
+  - [ ] follow-up PR/actions
