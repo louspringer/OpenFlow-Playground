@@ -38,12 +38,12 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Establish a structured directory system for managing prompts and responses.
 
 **Acceptance Criteria:**
-- [ ] `prompts/outbound/` directory exists for requests sent to external agents
-- [ ] `prompts/inbound/` directory exists for raw responses delivered via PR
-- [ ] `prompts/processed/` directory exists for validated and accepted responses
-- [ ] `prompts/latent/` directory exists for deferred or ignored items
-- [ ] Each directory has a `README.md` explaining its purpose
-- [ ] Main `prompts/README.md` documents the complete workflow
+- [x] `prompts/outbound/` directory exists for requests sent to external agents
+- [x] `prompts/inbound/` directory exists for raw responses delivered via PR
+- [x] `prompts/processed/` directory exists for validated and accepted responses
+- [x] `prompts/latent/` directory exists for deferred or ignored items
+- [x] Each directory has a `README.md` explaining its purpose
+- [x] Main `prompts/README.md` documents the complete workflow
 
 **Priority**: P0 (Critical)  
 **Status**: ✅ Implemented
@@ -55,13 +55,13 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Define and document a PR-based workflow for external agent responses.
 
 **Acceptance Criteria:**
-- [ ] Protocol documented in `prompts/WORKFLOW.md`
-- [ ] Step-by-step instructions for external agents
-- [ ] PR title format specified: `prompt-response: <topic>`
-- [ ] File naming convention specified: `prompts/inbound/YYYYMMDD_HHMMSS_<agent-id>-<topic>.md`
-- [ ] Branch naming convention specified: `codex/<agent-id>-<topic>`
-- [ ] Machine-parseable response headers defined (Requirements, Components, Artifacts, Next)
-- [ ] Rationale documented (why PR-based, why unavoidable)
+- [x] Protocol documented in `prompts/WORKFLOW.md`
+- [x] Step-by-step instructions for external agents
+- [x] PR title format specified: `prompt-response: <topic>`
+- [x] File naming convention specified: `prompts/inbound/YYYYMMDD_HHMMSS_<agent-id>-<topic>.md`
+- [x] Branch naming convention specified: `codex/<agent-id>-<topic>`
+- [x] Machine-parseable response headers defined (Requirements, Components, Artifacts, Next)
+- [x] Rationale documented (why PR-based, why unavoidable)
 
 **Priority**: P0 (Critical)  
 **Status**: ✅ Implemented
@@ -73,13 +73,13 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Provide explicit, self-contained instructions for stateless or context-limited agents.
 
 **Acceptance Criteria:**
-- [ ] Every outbound request includes repository name
-- [ ] Every outbound request includes target branch name
-- [ ] Every outbound request includes agent ID
-- [ ] Every outbound request includes exact PR title
-- [ ] Every outbound request includes exact file path
-- [ ] "If You Get Lost" section reminds agents to re-read prompt
-- [ ] Template provided for creating outbound requests
+- [x] Every outbound request includes repository name
+- [x] Every outbound request includes target branch name
+- [x] Every outbound request includes agent ID
+- [x] Every outbound request includes exact PR title
+- [x] Every outbound request includes exact file path
+- [x] "If You Get Lost" section reminds agents to re-read prompt
+- [x] Template provided for creating outbound requests
 
 **Priority**: P0 (Critical)  
 **Status**: ✅ Implemented
@@ -91,14 +91,14 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Implement GitHub Actions workflow to validate prompt response PRs automatically.
 
 **Acceptance Criteria:**
-- [ ] `.github/workflows/validate-prompt-response.yml` exists
-- [ ] Triggers on PRs affecting `prompts/inbound/**`
-- [ ] Validates PR title format (`prompt-response: <topic>`)
-- [ ] Validates file naming convention
-- [ ] Validates required headers are present (Requirements, Components, Artifacts, Next)
-- [ ] Scans for hardcoded secrets
-- [ ] Validates markdown syntax
-- [ ] Posts summary comment on PR with validation results
+- [x] `.github/workflows/validate-prompt-response.yml` exists
+- [x] Triggers on PRs affecting `prompts/inbound/**`
+- [x] Validates PR title format (`prompt-response: <topic>`)
+- [x] Validates file naming convention
+- [x] Validates required headers are present (Requirements, Components, Artifacts, Next)
+- [x] Scans for hardcoded secrets
+- [x] Validates markdown syntax
+- [x] Posts summary comment on PR with validation results
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented
@@ -110,13 +110,13 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Document external LLM constraints and coordination patterns in `AGENTS.md`.
 
 **Acceptance Criteria:**
-- [ ] "External LLM Collaboration" section added to `AGENTS.md`
-- [ ] Stateless nature documented (no conversational memory, context overflow risks)
-- [ ] Security constraints documented (PR-only delivery)
-- [ ] Step-by-step working instructions provided
-- [ ] Required response format specified
-- [ ] Architecture diagram showing PR flow
-- [ ] Distinction between Beast Mode (internal) and external LLM coordination clarified
+- [x] "External LLM Collaboration" section added to `AGENTS.md`
+- [x] Stateless nature documented (no conversational memory, context overflow risks)
+- [x] Security constraints documented (PR-only delivery)
+- [x] Step-by-step working instructions provided
+- [x] Required response format specified
+- [x] Architecture diagram showing PR flow
+- [x] Distinction between Beast Mode (internal) and external LLM coordination clarified
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented
@@ -128,11 +128,11 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Define workflow for validating, accepting, and processing external agent responses.
 
 **Acceptance Criteria:**
-- [ ] Maintainer validation checklist defined
-- [ ] Process for moving from `inbound/` to `processed/` documented
-- [ ] Integration with `program/requirements/mapping.yaml` specified
-- [ ] Guidelines for creating implementation PRs based on responses
-- [ ] Process for moving to `latent/` if response is deferred
+- [x] Maintainer validation checklist defined
+- [x] Process for moving from `inbound/` to `processed/` documented
+- [x] Integration with `program/requirements/mapping.yaml` specified
+- [x] Guidelines for creating implementation PRs based on responses
+- [x] Process for moving to `latent/` if response is deferred
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented (documented in `prompts/WORKFLOW.md`)
@@ -144,10 +144,10 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Enable acknowledgment and status updates back to external agents.
 
 **Acceptance Criteria:**
-- [ ] Template for acknowledgment messages
-- [ ] Process for sending status updates via outbound prompts
-- [ ] Professional courtesy guidelines (even for AI agents)
-- [ ] Traceability of agent collaboration maintained
+- [x] Template for acknowledgment messages
+- [x] Process for sending status updates via outbound prompts
+- [x] Professional courtesy guidelines (even for AI agents)
+- [x] Traceability of agent collaboration maintained
 
 **Priority**: P2 (Medium)  
 **Status**: ✅ Implemented (acknowledgment to Master Planner sent)
@@ -161,10 +161,10 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Ensure no secrets or credentials are exposed in prompt exchanges.
 
 **Acceptance Criteria:**
-- [ ] GitHub Actions scans for secrets in response files
-- [ ] Common secret patterns detected (API keys, AWS keys, tokens, passwords)
-- [ ] PRs rejected if secrets detected
-- [ ] Security scanning integrated with validation workflow
+- [x] GitHub Actions scans for secrets in response files
+- [x] Common secret patterns detected (API keys, AWS keys, tokens, passwords)
+- [x] PRs rejected if secrets detected
+- [x] Security scanning integrated with validation workflow
 
 **Priority**: P0 (Critical)  
 **Status**: ✅ Implemented
@@ -176,11 +176,11 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Maintain complete audit trail of agent collaboration.
 
 **Acceptance Criteria:**
-- [ ] All outbound requests stored in version control
-- [ ] All inbound responses stored in version control
-- [ ] PR history provides timeline of collaboration
-- [ ] Machine-parseable headers enable automated tracking
-- [ ] Status updates reference previous PRs for continuity
+- [x] All outbound requests stored in version control
+- [x] All inbound responses stored in version control
+- [x] PR history provides timeline of collaboration
+- [x] Machine-parseable headers enable automated tracking
+- [x] Status updates reference previous PRs for continuity
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented
@@ -192,10 +192,10 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Support coordination with multiple external agents simultaneously.
 
 **Acceptance Criteria:**
-- [ ] Agent ID system allows differentiation
-- [ ] File naming prevents collisions
-- [ ] Multiple PRs can be in flight simultaneously
-- [ ] Validation workflow handles concurrent PRs
+- [x] Agent ID system allows differentiation
+- [x] File naming prevents collisions
+- [x] Multiple PRs can be in flight simultaneously
+- [x] Validation workflow handles concurrent PRs
 
 **Priority**: P2 (Medium)  
 **Status**: ✅ Implemented
@@ -207,12 +207,12 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Provide comprehensive, accessible documentation for external agents.
 
 **Acceptance Criteria:**
-- [ ] `prompts/WORKFLOW.md` explains complete protocol
-- [ ] `prompts/outbound/README.md` provides delivery instructions
-- [ ] `AGENTS.md` documents constraints and patterns
-- [ ] Examples and templates provided
-- [ ] Architecture diagrams included
-- [ ] "Hinkiness" acknowledged and explained
+- [x] `prompts/WORKFLOW.md` explains complete protocol
+- [x] `prompts/outbound/README.md` provides delivery instructions
+- [x] `AGENTS.md` documents constraints and patterns
+- [x] Examples and templates provided
+- [x] Architecture diagrams included
+- [x] "Hinkiness" acknowledged and explained
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented
@@ -226,10 +226,10 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Clarify when to use Beast Mode (internal) vs. external LLM coordination.
 
 **Acceptance Criteria:**
-- [ ] Use cases for external agents documented
-- [ ] Use cases for Beast Mode documented
-- [ ] Complementary nature explained
-- [ ] Decision tree for tool selection provided
+- [x] Use cases for external agents documented
+- [x] Use cases for Beast Mode documented
+- [x] Complementary nature explained
+- [x] Decision tree for tool selection provided
 
 **Priority**: P2 (Medium)  
 **Status**: ✅ Implemented
@@ -245,10 +245,10 @@ This creates "hinky" but unavoidable workflows that must embrace PR-based delive
 **Requirement**: Integrate external agent responses with `program/requirements/mapping.yaml`.
 
 **Acceptance Criteria:**
-- [ ] Process for extracting requirement IDs from responses
-- [ ] Process for extracting component references from responses
-- [ ] Guidelines for updating mapping.yaml based on responses
-- [ ] Validation that requirements trace to components
+- [x] Process for extracting requirement IDs from responses
+- [x] Process for extracting component references from responses
+- [x] Guidelines for updating mapping.yaml based on responses
+- [x] Validation that requirements trace to components
 
 **Priority**: P1 (High)  
 **Status**: ✅ Implemented (Master Planner updated mapping.yaml in PR #28)
