@@ -144,6 +144,10 @@ This pattern was extracted from the `beast-agent` package creation and serves as
 ### Phase 9: AI Agent Guide
 - [ ] Create `AGENT.md`:
   - Repository purpose and tier
+  - **How to access specs** (cc-sdd clarification):
+    - Method 1: Direct file reading (read_file tool)
+    - Method 2: Cursor commands (/kiro:spec-init, etc.)
+    - **Important**: cc-sdd uses Cursor commands, NOT an MCP server
   - Required reading order (specs first)
   - Architecture overview
   - Development workflow
@@ -155,6 +159,11 @@ This pattern was extracted from the `beast-agent` package creation and serves as
   - Pre-commit checklist
   
   **Template source**: `beast-agent/AGENT.md`
+  
+  **Key Section**: "Using Spec-Driven Development (cc-sdd)" must clarify:
+  - Specs are regular files accessed via read_file tool
+  - /kiro: commands are Cursor IDE commands, not MCP
+  - No MCP server required or expected
 
 ### Phase 10: Git & GitHub
 - [ ] Commit bootstrap:
