@@ -147,7 +147,8 @@ This pattern was extracted from the `beast-agent` package creation and serves as
   - **How to access specs** (cc-sdd clarification):
     - Method 1: Direct file reading (read_file tool)
     - Method 2: Cursor commands (/kiro:spec-init, etc.)
-    - **Important**: cc-sdd uses Cursor commands, NOT an MCP server
+    - Method 3: MCP server (future - for multi-agent clusters)
+    - **Important**: Current state uses direct reading, future state uses beast-spec-mcp
   - Required reading order (specs first)
   - Architecture overview
   - Development workflow
@@ -161,11 +162,33 @@ This pattern was extracted from the `beast-agent` package creation and serves as
   **Template source**: `beast-agent/AGENT.md`
   
   **Key Section**: "Using Spec-Driven Development (cc-sdd)" must clarify:
-  - Specs are regular files accessed via read_file tool
-  - /kiro: commands are Cursor IDE commands, not MCP
-  - No MCP server required or expected
+  - Current: Direct file reading (single-agent)
+  - Future: beast-spec-mcp (multi-agent clusters)
+  - Cursor commands for authoring workflows
 
-### Phase 10: Git & GitHub
+### Phase 10: Spec Review (Post-Implementation)
+- [ ] **Create `SPEC_REVIEW_FINDINGS.md`** 🆕
+  - Implementation status summary (FR/NFR checklist)
+  - Critical issues found
+  - Implementation gaps
+  - Documentation gaps
+  - Code quality issues
+  - Spec quality review
+  - Required fixes (priority order)
+  - Action items (completed + remaining)
+  - Overall status summary
+  
+  **Template source**: `beast-agent/SPEC_REVIEW_FINDINGS.md`
+  
+  **Purpose**: Document review findings when AI agents validate implementation against specs
+  
+  **When to Create**:
+  - After initial implementation
+  - When another agent reviews the work
+  - Before marking package complete
+  - As part of PDCA cycle (Check phase)
+
+### Phase 11: Git & GitHub
 - [ ] Commit bootstrap:
   ```bash
   git add -A
@@ -248,6 +271,7 @@ This pattern was extracted from the `beast-agent` package creation and serves as
 ├── AGENT.md                        # 🆕 AI agent working guide
 ├── LICENSE                         # MIT License
 ├── README.md                       # Package documentation
+├── SPEC_REVIEW_FINDINGS.md         # 🆕 Spec review results (post-implementation)
 ├── pyproject.toml                  # Package configuration
 └── sonar-project.properties        # SonarCloud configuration
 ```
@@ -367,13 +391,23 @@ All template files are based on `beast-agent` package:
 ### cc-sdd Integration 🆕
 - **.kiro/config.yaml**: `beast-agent/.kiro/config.yaml`
 - **.kiro/README.md**: `beast-agent/.kiro/README.md`
+- **.kiro/REQUIREMENTS_WRITING_GUIDANCE.md**: `beast-agent/.kiro/REQUIREMENTS_WRITING_GUIDANCE.md` 🆕
 - **Spec templates**: `beast-agent/.kiro/settings/templates/specs/`
   - design.md, requirements.md, tasks.md, init.json
 - **Workflow rules**: `beast-agent/.kiro/settings/rules/`
   - design-discovery-full.md, design-principles.md, ears-format.md, gap-analysis.md, tasks-generation.md
+  - requirements-writing-guide.md 🆕 (from agent learning)
 - **Initial specs**: `beast-agent/.kiro/specs/`
   - requirements.md, design.md, tasks.md
   - QUALITY_STANDARDS_TEMPLATE.md, SONARCLOUD_INTEGRATION_GUIDE.md
+
+### Post-Implementation Review 🆕
+- **SPEC_REVIEW_FINDINGS.md**: `beast-agent/SPEC_REVIEW_FINDINGS.md` 🆕
+  - Created during spec review phase
+  - Documents implementation vs requirements gaps
+  - Critical issues, implementation gaps, documentation gaps
+  - Required fixes with priority order
+  - Action items and overall status
 
 ### Examples
 - **Simple example**: `beast-agent/examples/simple_agent.py`
@@ -444,6 +478,35 @@ git push -u origin main
 
 ---
 
+## 🐛 Common Implementation Pitfalls (From beast-agent Review)
+
+### Type Annotation Errors
+❌ **Wrong**: `Dict[str, any]` (lowercase `any`)  
+✅ **Correct**: `Dict[str, Any]` (uppercase `Any`)
+
+**Why**: Python's type system requires `Any` from `typing` module, not lowercase `any`.
+
+**Always Import**:
+```python
+from typing import Any, Dict, List, Optional, Callable
+```
+
+### Overly Rigid Requirements
+❌ **Wrong**: "Must depend ONLY on X"  
+✅ **Correct**: "Principle: Minimize dependencies. Required: X, Y. Additional must meet criteria..."
+
+**See**: `.kiro/settings/rules/requirements-writing-guide.md`
+
+### Deferred Features
+❌ **Wrong**: Mark requirement as "Must" but defer implementation without note  
+✅ **Correct**: Note in requirements.md when features deferred to v0.2.0
+
+### Missing Spec Review
+❌ **Wrong**: Skip validation of implementation vs specs  
+✅ **Correct**: Create `SPEC_REVIEW_FINDINGS.md` to document gaps
+
+---
+
 ## ✅ Success Criteria
 
 ### Package is Ready When:
@@ -451,8 +514,10 @@ git push -u origin main
 - [ ] Core implementation complete
 - [ ] Tests passing (90%+ coverage)
 - [ ] Linting passes (Black, Flake8, MyPy)
+- [ ] **Type annotations correct** (`Any` not `any`) 🆕
 - [ ] Examples runnable
 - [ ] Documentation complete
+- [ ] **Spec review complete** (SPEC_REVIEW_FINDINGS.md created) 🆕
 - [ ] Git committed
 - [ ] GitHub repository created
 - [ ] Initial push complete
