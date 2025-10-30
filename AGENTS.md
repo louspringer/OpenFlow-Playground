@@ -312,7 +312,15 @@ prompts/
 
 ### External LLM Constraints
 
-**Reality Check:** External LLMs are security-constrained:
+**Reality Check:** External LLMs are both **stateless** and **security-constrained**:
+
+**Stateless Nature:**
+- ❌ No conversational memory between invocations
+- ❌ Cannot remember previous instructions
+- ❌ Cannot infer context from earlier messages
+- ✅ **Need explicit instructions** (repo, branch, agent-id, file paths)
+
+**Security Constraints:**
 - ❌ Cannot write directly to repositories
 - ❌ Cannot push files without review gates
 - ❌ Cannot bypass branch protection
@@ -323,6 +331,14 @@ prompts/
 ### Working with External Agents
 
 **Step 1: Create Outbound Request**
+
+**CRITICAL**: External agents are stateless. Include ALL required information:
+- Repository name (e.g., `louspringer/OpenFlow-Playground`)
+- Target branch (e.g., `feat/beast-hackathon-helm-charts-clean`)
+- Agent ID (e.g., `master-planner`)
+- Exact PR title (e.g., `prompt-response: hackathon master plan`)
+- Exact file path (e.g., `prompts/inbound/YYYYMMDD_HHMMSS_master-planner-topic.md`)
+
 ```bash
 # Create a request in prompts/outbound/
 cat > prompts/outbound/YYYYMMDD_HHMMSS_<agent>-<topic>.md <<EOF
@@ -337,8 +353,30 @@ cat > prompts/outbound/YYYYMMDD_HHMMSS_<agent>-<topic>.md <<EOF
 ## Requested Output
 [Specify deliverables]
 
-## Response Delivery Instructions
-See prompts/WORKFLOW.md for PR-based delivery protocol.
+## Response Delivery Instructions (PR-Based)
+
+**CRITICAL**: You are stateless and security-constrained. Follow these EXACT instructions:
+
+### Repository Information
+- **Repository**: louspringer/OpenFlow-Playground
+- **Target Branch**: feat/beast-hackathon-helm-charts-clean
+- **Your Agent ID**: <agent-id>
+
+### Step 1: Create Branch
+- **Exact branch name**: codex/<agent-id>-<topic>
+
+### Step 2: Add Response File
+- **Exact file path**: prompts/inbound/YYYYMMDD_HHMMSS_<agent-id>-<topic>.md
+- Include required headers (see below)
+
+### Step 3: Create Pull Request
+- **Exact PR title**: prompt-response: <topic>
+- **Target branch**: feat/beast-hackathon-helm-charts-clean (MUST match exactly)
+- **Repository**: louspringer/OpenFlow-Playground
+
+### If You Get Lost
+- Re-read this entire prompt (you are stateless)
+- All required information is in THIS document
 EOF
 ```
 

@@ -252,25 +252,70 @@ Next:
 
 ### Response Delivery Instructions (PR-Based)
 
-**Reality**: You are security-constrained and can ONLY deliver via pull request. This is expected and correct.
+**CRITICAL**: You are stateless and security-constrained. Follow these EXACT instructions:
 
-**Step 1: Create Branch**
-- Branch name: `codex/master-planner-hackathon-plan`
+#### Repository Information
+- **Repository**: `louspringer/OpenFlow-Playground`
+- **Target Branch**: `feat/beast-hackathon-helm-charts-clean`
+- **Your Agent ID**: `master-planner` (use this in all file names and branch names)
 
-**Step 2: Add Response File**
-- File path: `prompts/inbound/YYYYMMDD_HHMMSS_master-planner_hackathon-plan.md`
-- Include all Required Headers above (machine-parseable)
+#### Step 1: Create Branch
+- **Exact branch name**: `codex/master-planner-hackathon-plan`
+- Fork from target branch: `feat/beast-hackathon-helm-charts-clean`
 
-**Step 3: Create Pull Request**
+#### Step 2: Add Response File
+- **Exact file path**: `prompts/inbound/20251030_143500_master-planner-hackathon-plan.md`
+  - Format: `YYYYMMDD_HHMMSS_<agent-id>-<topic>.md`
+  - Use current timestamp when creating
+- **Required content**:
+  - Your comprehensive hackathon plan (see "Requested Master Plan Output" above)
+  - Machine-parseable headers (see "Required Headers for Your Response" above)
+
+#### Step 3: Create Pull Request
+- **Exact PR title**: `prompt-response: hackathon master plan`
+- **PR body template**:
+  ```markdown
+  ## Response to Outbound Request
+  
+  **Request**: prompts/outbound/20251030_143000_master-planner_hackathon-request.md
+  **Agent**: master-planner
+  **Topic**: Two hackathon sprint plan
+  
+  ## Summary
+  [Brief 2-3 sentence summary of your response]
+  
+  ## Deliverables
+  - [ ] Hackathon overview (both hackathons detailed)
+  - [ ] Technical strategy (component mapping)
+  - [ ] Timeline & milestones (day-by-day)
+  - [ ] Implementation plan (spec-driven workflow)
+  
+  See response file for complete details.
+  ```
+- **Target branch**: `feat/beast-hackathon-helm-charts-clean` (MUST match exactly)
+- **Repository**: `louspringer/OpenFlow-Playground`
+
+#### Step 4: Automated Validation (We Handle This)
+- GitHub Actions will check your PR format automatically
+- You don't need to do anything for this step
+
+#### Step 5: Our Process (We Handle This)
+- We review content for completeness
+- We merge PR (response lands in `prompts/inbound/`)
+- We validate and move to `prompts/processed/`
+- We update `program/requirements/mapping.yaml`
+- We create implementation PRs based on your plan
+
+#### Why This Workflow?
+You are **security-constrained** and can ONLY deliver via pull request. This is not a bug - it's the only mechanism available to external LLMs. You cannot:
+- ❌ Write files directly to repositories
+- ❌ Push without creating a PR
+- ❌ Bypass GitHub security model
+- ✅ CREATE PULL REQUESTS (your only option)
+
+#### If You Get Lost
+- Re-read this entire prompt (you are stateless, no conversational memory)
+- All required information is in THIS document
+- Target branch: `feat/beast-hackathon-helm-charts-clean`
+- Your agent ID: `master-planner`
 - PR title: `prompt-response: hackathon master plan`
-- PR body: Brief summary of your response
-- Target branch: `feat/beast-hackathon-helm-charts-clean` (current working branch)
-
-**Step 4: Our Process**
-- GitHub Actions will validate your PR format
-- We'll review content for completeness
-- We'll merge PR (response lands in `prompts/inbound/`)
-- We'll move to `prompts/processed/` and update `program/requirements/mapping.yaml`
-- We'll create implementation PRs based on your plan
-
-**Note**: The PR-based workflow is not a bug - it's the only mechanism available to external LLMs for security reasons. See `prompts/WORKFLOW.md` for complete protocol.
