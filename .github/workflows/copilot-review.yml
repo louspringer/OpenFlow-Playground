@@ -13,70 +13,87 @@ jobs:
   copilot-review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install uv
-          uv sync
-          
-      - name: Run Security Analysis
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python scripts/github_integration/copilot_review_automation.py
-          
-      - name: Comment Review Summary
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const summary = `
-            ## 🤖 Copilot Code Review Summary
-            
-            **PR:** #${context.issue.number}
-            **Status:** ${context.payload.action}
-            
-            ### Security Analysis
-            - ✅ Subprocess usage checked
-            - ✅ Credential exposure scanned
-            - ✅ Input validation verified
-            - ✅ Error handling validated
-            
-            ### Model Compliance
-            - ✅ Project model registry alignment
-            - ✅ Domain classification verified
-            - ✅ Tool selection validated
-            - ✅ Requirements traceability checked
-            
-            ### Next Steps
-            1. Review Copilot suggestions manually
-            2. Address any security issues
-            3. Verify model compliance
-            4. Update documentation if needed
-            
-            ---
-            *Automated by GitHub Copilot Review Integration*
-            `;
-            
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: summary
-            });
-            
-      - name: Request Manual Copilot Review
-        run: |
-          echo "🤖 Manual Copilot Review Instructions:"
-          echo "1. Open this PR in VS Code with GitHub Copilot extension"
-          echo "2. Use '@copilot review' to request a code review"
-          echo "3. Follow the security-first guidelines in .github/copilot-instructions.md"
-          echo "4. Address any issues identified by Copilot" 
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Notify Observatory - copilot-review Started
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_started\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"copilot-review\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"commit_sha\": \"${{
+        github.sha }}\"}}' || echo \"Observatory notification failed (non-blocking)\"\
+        \n"
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install uv
+        uv sync
+
+    - name: Run Security Analysis
+      env:
+        PR_NUMBER: ${{ github.event.number }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python scripts/github_integration/copilot_review_automation.py
+
+    - name: Comment Review Summary
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const summary = `
+          ## 🤖 Copilot Code Review Summary
+
+          **PR:** #${context.issue.number}
+          **Status:** ${context.payload.action}
+
+          ### Security Analysis
+          - ✅ Subprocess usage checked
+          - ✅ Credential exposure scanned
+          - ✅ Input validation verified
+          - ✅ Error handling validated
+
+          ### Model Compliance
+          - ✅ Project model registry alignment
+          - ✅ Domain classification verified
+          - ✅ Tool selection validated
+          - ✅ Requirements traceability checked
+
+          ### Next Steps
+          1. Review Copilot suggestions manually
+          2. Address any security issues
+          3. Verify model compliance
+          4. Update documentation if needed
+
+          ---
+          *Automated by GitHub Copilot Review Integration*
+          `;
+
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: summary
+          });
+
+    - name: Request Manual Copilot Review
+      run: |-
+        echo "🤖 Manual Copilot Review Instructions:"
+        echo "1. Open this PR in VS Code with GitHub Copilot extension"
+        echo "2. Use '@copilot review' to request a code review"
+        echo "3. Follow the security-first guidelines in .github/copilot-instructions.md"
+        echo "4. Address any issues identified by Copilot" 
+    - name: Notify Observatory - copilot-review Completed
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_completed\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"copilot-review\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"status\": \"${{ job.status
+        }}\", \"run_id\": \"${{ github.run_id }}\"}}' || echo \"Observatory notification
+        failed (non-blocking)\"\n"

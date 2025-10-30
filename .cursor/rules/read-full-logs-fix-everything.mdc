@@ -1,0 +1,163 @@
+---
+description: When CI/tests fail, read FULL logs, fix ALL errors at once, test locally, then push ONCE
+globs: "**/*"
+alwaysApply: true
+---
+
+# Read Full Logs, Fix Everything, Test Locally
+
+## The Problem
+
+**Wasteful cycle**:
+```
+Push → CI fails
+Read one error → fix it → push
+CI fails again  
+Read another error → fix it → push
+CI fails again
+...
+```
+
+**Cost**: Wasted CI cycles, wasted tokens, wasted time, looks ridiculous
+
+## The Rule
+
+**When ANY automated check fails (CI, tests, linting, build)**:
+
+### Step 1: GET FULL LOGS
+```bash
+# For GitHub Actions
+gh run view <run-id> --log > full_log.txt
+
+# For local tests
+make test 2>&1 | tee test_output.txt
+
+# For builds
+docker build . 2>&1 | tee build_output.txt
+```
+
+**Read the ENTIRE log. Not the summary. The FULL output.**
+
+### Step 2: IDENTIFY ALL ERRORS
+Make a list:
+```
+Error 1: Python version mismatch (requires 3.10, have 3.9)
+Error 2: Hatchling needs allow-direct-references
+Error 3: Missing import in module X
+Error 4: Type annotation error in Y
+```
+
+**Don't stop at the first error. Read through to the end.**
+
+### Step 3: FIX ALL ERRORS AT ONCE
+```python
+# Fix error 1
+requires-python = ">=3.10"
+
+# Fix error 2  
+[tool.hatch.metadata]
+allow-direct-references = true
+
+# Fix error 3
+import missing_module
+
+# Fix error 4
+def function(x: int) -> str:
+```
+
+**All fixes in one batch. Not one at a time.**
+
+### Step 4: TEST LOCALLY
+```bash
+# Test the exact thing that failed
+uv sync
+uv run python -c "import module; module.test()"
+make test
+make lint
+
+# Don't push until local tests pass
+```
+
+**If local tests fail, go back to step 2. Don't push broken code.**
+
+### Step 5: PUSH ONCE
+```bash
+git add .
+git commit -m "fix: Address all CI failures (fixes #1, #2, #3, #4)"
+git push
+```
+
+**One push with all fixes. Not incremental pushes.**
+
+## Anti-Patterns
+
+### ❌ DON'T Do This
+```
+1. CI fails with 3 errors
+2. Fix error 1
+3. Push
+4. CI fails with error 2
+5. Fix error 2  
+6. Push
+7. CI fails with error 3
+8. Fix error 3
+9. Push
+```
+
+**Result**: 3 wasted CI runs, looks incompetent
+
+### ✅ DO This
+```
+1. CI fails with 3 errors
+2. Read full log
+3. Identify all 3 errors
+4. Fix all 3 errors
+5. Test locally (all pass)
+6. Push once
+7. CI passes
+```
+
+**Result**: One CI run, looks professional
+
+## Common Mistakes
+
+### "I'll fix the obvious one first"
+**No.** Fix them all. The "obvious" one might not be the only one.
+
+### "I'll test after pushing"
+**No.** Test before pushing. CI is not your test environment.
+
+### "The log is long, I'll just read the summary"
+**No.** Read the full log. Summaries lie.
+
+### "I think I know what's wrong"
+**No.** Read the actual error. Don't guess.
+
+## Enforcement
+
+**Before pushing to fix CI failures**:
+- [ ] Downloaded/viewed FULL error log
+- [ ] Made list of ALL errors found
+- [ ] Fixed ALL errors (not just one)
+- [ ] Tested locally and confirmed ALL fixes work
+- [ ] Only THEN push
+
+**If you catch yourself doing incremental fix-push cycles**:
+- STOP
+- Read full logs
+- Fix everything
+- Test locally
+- Push once
+
+## Why This Matters
+
+- **CI costs money** (compute time)
+- **Tokens cost money** (this conversation)
+- **Time costs money** (your time reviewing)
+- **Looking ridiculous is free** (but unacceptable)
+
+## Remember
+
+**The logs tell you everything. Read them completely. Fix everything at once. Test locally. Push once.**
+
+**No excuses. No incremental fixes. No "I'll test in CI". Be thorough, not reactive.**

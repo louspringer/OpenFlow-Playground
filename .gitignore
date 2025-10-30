@@ -104,3 +104,4 @@ comprehensive_artifact_analysis_report.json
 tests/generated/
 tests/backup_generated/
 security_scan.json
+cc-sdd/

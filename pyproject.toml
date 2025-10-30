@@ -2,12 +2,15 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [project]
 name = "ackbert"
 version = "0.1.0"
 description = "Structured candidate comparison and evaluation framework using ontology-based methodologies"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 authors = [
     {name = "Lou Springer", email = "lou@example.com"},
@@ -32,6 +35,8 @@ dependencies = [
     "typer[all]>=0.9.0",
     "rich>=13.0.0",
     "click>=8.0.0",
+    # Beast AI Development Agent (platform-agnostic cloud agents)
+    "beast-ai-dev-agent @ git+https://github.com/nkllon/beast-ai-dev-agent.git",
     # Beast Mode and PM dependencies
     "jq>=1.4.0",
     "neo4j>=5.0.0",
@@ -68,9 +73,12 @@ dependencies = [
     "pymupdf>=1.26.4",
     "pdfplumber>=0.11.7",
     "pypdf>=6.0.0",
-    "numpy>=1.26.0",  # Python 3.12 compatible (no distutils dependency)
-    "pandas>=2.2.0",  # Python 3.12 compatible (no distutils dependency)
+    "numpy>=1.26.0", # Python 3.12 compatible (no distutils dependency)
+    "pandas>=2.2.0", # Python 3.12 compatible (no distutils dependency)
     "redis>=6.4.0",
+    "ruamel-yaml>=0.18.16",
+    "playwright>=1.55.0",
+    "psutil>=7.1.2",
 ]
 
 [project.optional-dependencies]

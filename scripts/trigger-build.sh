@@ -5,7 +5,7 @@
 
 set -e
 
-PROJECT_ID="aardvark-linkedin-grepper"
+PROJECT_ID="gen-lang-client-0128452200"
 
 echo "🚀 Triggering Cloud Build pipeline manually"
 echo "📋 Project: "PROJECT_I"D"

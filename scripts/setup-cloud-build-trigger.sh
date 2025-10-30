@@ -5,7 +5,7 @@
 
 set -e
 
-PROJECT_ID="aardvark-linkedin-grepper"
+PROJECT_ID="gen-lang-client-0128452200"
 TRIGGER_NAME="ghostbusters-api-trigger"
 REPO_NAME="OpenFlow-Playground"
 BRANCH_PATTERN="^ghostbusters-gcp-implementation$"

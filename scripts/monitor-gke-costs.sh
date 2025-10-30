@@ -4,7 +4,7 @@
 
 set -e
 
-PROJECT_ID="aardvark-linkedin-grepper"
+PROJECT_ID="gen-lang-client-0128452200"
 CLUSTER_NAME="kiro-agents-cluster"
 REGION="us-central1"
 BUDGET_THRESHOLD=20  # Alert when approaching $20

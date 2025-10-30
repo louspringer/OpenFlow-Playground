@@ -6,7 +6,7 @@ https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github
 
 set -e
 
-PROJECT_ID="aardvark-linkedin-grepper"
+PROJECT_ID="gen-lang-client-0128452200"
 REGION="us-central1"
 CONNECTION_NAME="github-connection"
 REPO_NAME="OpenFlow-Playground"
