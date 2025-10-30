@@ -2,75 +2,56 @@ name: Cloud Build CI/CD
 
 on:
   push:
-    branches: [ main, develop, staging ]
+    branches: [main, develop, staging]
   pull_request:
-    branches: [ main, develop, staging ]
+    branches: [main, develop, staging]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
+    - name: Notify Observatory - cloud-build Started
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_started\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"cloud-build\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"commit_sha\": \"${{
+        github.sha }}\"}}' || echo \"Observatory notification failed (non-blocking)\"\
+        \n"
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
-        
+
     - name: Setup Google Cloud CLI
       uses: google-github-actions/setup-gcloud@v2
       with:
-        project_id: gen-lang-client-0128452200
-        
+        project_id: aardvark-linkedin-grepper
+
     - name: Trigger Cloud Build
       run: |
-        set -euo pipefail
         echo "🚀 Triggering Cloud Build pipeline"
-        BUILD_ID=$(gcloud builds submit \
+        gcloud builds submit \
           --config=cloudbuild.yaml \
-          --project=gen-lang-client-0128452200 \
-          . \
-          --async \
-          --format='value(id)')
-        echo "Started build: $BUILD_ID"
-        echo "Build URL: https://console.cloud.google.com/cloud-build/builds/${BUILD_ID}?project=gen-lang-client-0128452200"
-        
-        # Poll build status (timeout ~15 minutes)
-        echo "Polling build status..."
-        for i in $(seq 1 90); do
-          STATUS=$(gcloud builds describe "$BUILD_ID" --project=gen-lang-client-0128452200 --format='value(status)')
-          echo "[$(date +%T)] Build $BUILD_ID status: $STATUS"
-          
-          case "$STATUS" in
-            SUCCESS)
-              echo "✅ Build succeeded!"
-              exit 0
-              ;;
-            FAILURE|CANCELLED|TIMEOUT)
-              echo "❌ Build failed with status: $STATUS"
-              echo "Fetching build logs..."
-              gcloud builds log "$BUILD_ID" --project=gen-lang-client-0128452200 || true
-              exit 1
-              ;;
-            WORKING|QUEUED|PENDING)
-              # Build still in progress
-              ;;
-            *)
-              echo "Unknown status: $STATUS"
-              ;;
-          esac
-          
-          sleep 10
-        done
-        
-        echo "⏱️ Timed out waiting for build $BUILD_ID"
-        gcloud builds log "$BUILD_ID" --project=gen-lang-client-0128452200 || true
-        exit 1
+          --project=aardvark-linkedin-grepper \
+          .
           
     - name: Check deployment status
-      run: |
+      run: |-
         echo "🔍 Checking deployment status..."
         sleep 30
         curl -f https://ghostbusters-api-container-1077539189076.us-central1.run.app/health || echo "Service not ready yet" 
+    - name: Notify Observatory - cloud-build Completed
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_completed\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"cloud-build\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"status\": \"${{ job.status
+        }}\", \"run_id\": \"${{ github.run_id }}\"}}' || echo \"Observatory notification
+        failed (non-blocking)\"\n"

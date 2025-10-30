@@ -73,9 +73,10 @@ dependencies = [
     "pymupdf>=1.26.4",
     "pdfplumber>=0.11.7",
     "pypdf>=6.0.0",
-    "numpy>=1.26.0",  # Python 3.12 compatible (no distutils dependency)
-    "pandas>=2.2.0",  # Python 3.12 compatible (no distutils dependency)
+    "numpy>=1.26.0", # Python 3.12 compatible (no distutils dependency)
+    "pandas>=2.2.0", # Python 3.12 compatible (no distutils dependency)
     "redis>=6.4.0",
+    "ruamel-yaml>=0.18.16",
 ]
 
 [project.optional-dependencies]

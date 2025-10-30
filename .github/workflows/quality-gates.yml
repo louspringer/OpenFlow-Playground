@@ -2,14 +2,17 @@ name: Quality Gates
 
 on:
   push:
-    branches: [ main, develop, staging ]
+    branches: [main, develop, staging]
   pull_request:
-    branches: [ main, develop, staging ]
+    branches: [main, develop, staging]
 
 env:
-  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref == 'refs/heads/staging' && 'staging' || 'development' }}
-  QUALITY_THRESHOLD: ${{ github.ref == 'refs/heads/main' && '85.0' || github.ref == 'refs/heads/staging' && '70.0' || '50.0' }}
-  FAIL_ON_QUALITY: ${{ github.ref == 'refs/heads/main' && 'true' || github.ref == 'refs/heads/staging' && 'true' || 'false' }}
+  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'production' ||
+    github.ref == 'refs/heads/staging' && 'staging' || 'development' }}
+  QUALITY_THRESHOLD: ${{ github.ref == 'refs/heads/main' && '85.0' || github.ref
+    == 'refs/heads/staging' && '70.0' || '50.0' }}
+  FAIL_ON_QUALITY: ${{ github.ref == 'refs/heads/main' && 'true' || github.ref 
+    == 'refs/heads/staging' && 'true' || 'false' }}
   QUALITY_VERBOSE: true
   QUALITY_REPORT_PATH: quality-reports/quality-report-${{ github.run_id }}.json
 
@@ -17,29 +20,42 @@ jobs:
   quality-check:
     name: Quality Gate Check
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
+    - name: Notify Observatory - quality-gates Started
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_started\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"quality-gates\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"commit_sha\": \"${{
+        github.sha }}\"}}' || echo \"Observatory notification failed (non-blocking)\"\
+        \n"
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-        
     - name: Install UV
       uses: astral-sh/setup-uv@v1
       with:
         version: "latest"
-        
     - name: Install dependencies
       run: |
         uv sync --all-extras
-        
+
+    - name: Run Tests
+      run: "uv run pytest tests/ -v --cov=src --cov-report=json --cov-report=html
+        --cov-report=term --junitxml=test-results.xml\n"
+    - name: Check Test Coverage
+      run: "uv run coverage report --fail-under=80 || echo \"Coverage below 80% -
+        will not block in development\"\n"
     - name: Run quality analysis
       run: |
         python -m src.code_quality_system.cli ci
-        
+
     - name: Upload quality report
       uses: actions/upload-artifact@v4
       if: always()
@@ -48,7 +64,10 @@ jobs:
         path: |
           quality-reports/
           .quality_metrics/
-          
+          test-results.xml
+          htmlcov/
+          coverage.json
+
     - name: Quality Gate Decision
       run: |
         if [ "${{ env.FAIL_ON_QUALITY }}" = "true" ]; then
@@ -75,7 +94,7 @@ jobs:
         else
           echo "Quality gates not enforced in ${{ env.DEPLOYMENT_ENVIRONMENT }} environment"
         fi
-        
+
     - name: Quality Summary
       if: always()
       run: |
@@ -85,23 +104,36 @@ jobs:
         echo "**Quality Threshold**: ${{ env.QUALITY_THRESHOLD }}" >> $GITHUB_STEP_SUMMARY
         echo "**Fail on Quality**: ${{ env.FAIL_ON_QUALITY }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        
+
         if [ -f "${{ env.QUALITY_REPORT_PATH }}" ]; then
           python -c "
-import json
-
-with open('${{ env.QUALITY_REPORT_PATH }}') as f:
-    report = json.load(f)
-
-print('**Overall Score**: ' + str(report.get('overall_score', 'N/A')))
-print('**Quality Status**: ' + report.get('quality_status', 'N/A'))
-print('**Can Proceed**: ' + str(report.get('can_proceed', 'N/A')))
-
-if 'gate_summary' in report:
-    gates = report['gate_summary']
-    print('**Total Gates**: ' + str(gates.get('total_gates', 0)))
-    print('**Failed Gates**: ' + str(gates.get('failed_gates', 0)))
-" >> $GITHUB_STEP_SUMMARY
+          import json
+          
+          try:
+              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
+                  report = json.load(f)
+              
+              print(f'**Overall Score**: {report.get(\"overall_score\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              print(f'**Quality Status**: {report.get(\"quality_status\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              print(f'**Can Proceed**: {report.get(\"can_proceed\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
+              
+              if 'gate_summary' in report:
+                  gates = report['gate_summary']
+                  print(f'**Total Gates**: {gates.get(\"total_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
+                  print(f'**Failed Gates**: {gates.get(\"failed_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
+                  
+          except Exception as e:
+              print(f'**Error**: Could not read quality report') >> $GITHUB_STEP_SUMMARY
+          "
         else
           echo "**Status**: Quality report not available" >> $GITHUB_STEP_SUMMARY
         fi
+    - name: Notify Observatory - quality-gates Completed
+      if: always()
+      run: "curl -X POST https://observatory.nkllon.com/api/events -H \"Authorization:
+        Bearer ${{ secrets.OBSERVATORY_TOKEN }}\" -H \"Content-Type: application/json\"\
+        \ -d '{\"event_type\": \"ci_workflow_completed\", \"source\": \"github-actions\"\
+        , \"data\": {\"workflow\": \"quality-gates\", \"repository\": \"${{ github.repository
+        }}\", \"pr_number\": \"${{ github.event.number }}\", \"status\": \"${{ job.status
+        }}\", \"run_id\": \"${{ github.run_id }}\"}}' || echo \"Observatory notification
+        failed (non-blocking)\"\n"
