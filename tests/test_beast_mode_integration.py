@@ -17,8 +17,9 @@ Requirements Tested:
 
 import pytest
 
-# TODO: Fix imports - these classes don't exist yet in src.beast_mode
-pytestmark = pytest.mark.skip(reason="Imports not yet implemented - to be fixed in hackathon sprint")
+# Skip entire module - imports not yet implemented
+pytest.skip("Beast Mode classes not yet implemented - to be fixed in hackathon sprint", allow_module_level=True)
+
 import json
 from datetime import datetime
 from pathlib import Path
