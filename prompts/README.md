@@ -298,3 +298,17 @@ def check_prompt_completion(prompt_path: str):
   - `Artifacts:` produced (code/policy/diagrams)
   - `Next:` actionable follow-ups/PRs
 - Maintainers sync results into `program/requirements/mapping.yaml` and update `program/releases`.
+
+## Master Planner Coordination (MCP)
+
+The Master Planner (Codex MCP agent) orchestrates requirement → component → hackathon alignment while PR #26 is in review.
+
+1. **Kickoff** – Create an outbound request under `prompts/outbound/` describing the planning goal (see `20251030_143000_master-planner_hackathon-request.md`).
+2. **Inbound Response Handling** – Store responses in `prompts/inbound/`, extract requirement/component references, and promote to `processed/` once the mapping file is updated.
+3. **Traceability Update** – Populate `program/requirements/mapping.yaml`:
+   - Add/refresh requirement metadata, stakeholder personas, and hackathon deliverables.
+   - Extend `requirement_component_hackathon_matrix` to capture cross-hackathon dependencies.
+4. **Dependency Graph** – Reference the matrix when generating follow-up prompts so other agents know which components/hackathons/stakeholders are impacted.
+5. **Status Broadcast** – Post a summary comment on the active PR noting updated mappings and pending data (e.g., missing official briefs).
+
+> 📌 Keep MCP iterations linked to the same PR until both hackathon requirement packets are on file.

@@ -1,71 +1,320 @@
-requirements_to_components:
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+hackathons:
+  aws_nvidia:
+    name: "AWS × NVIDIA Generative AI Hackathon"
+    short_name: "AWS×NVIDIA"
+    deliverable_focus: "NIM-powered retrieval + classifier workload deployed on EKS/SageMaker"
+    due: 2025-11-04
+    submission_channels: ["Devpost", "Live demo"]
+    notes: "Dates sourced from sprint brief; waiting on official hackathon packet for confirmation."
+  gcp_cloud_run:
+    name: "Google Cloud Run Hackathon"
+    short_name: "Cloud Run"
+    deliverable_focus: "Agentic experience on Cloud Run (service + job + worker pool) with AI Studio integration"
+    due: 2025-11-09
+    submission_channels: ["Devpost", "Demo video"]
+    notes: "Follow-on event a few days after AWS×NVIDIA; exact brief pending."
+
+stakeholder_personas:
+  security_ops:
+    name: "Security Operations"
+    priorities: ["Data loss prevention", "Audit trails", "Policy enforcement"]
+  devops_sre:
+    name: "DevOps / SRE"
+    priorities: ["Deployment repeatability", "Observability", "Incident response"]
+  data_architecture:
+    name: "Data Architecture"
+    priorities: ["Data lineage", "Schema governance", "Cross-cloud data movement"]
+  executive_sponsor:
+    name: "Executive Sponsor"
+    priorities: ["Win probability", "Timeline confidence", "Competitive differentiation"]
+  judges:
+    name: "Hackathon Judges"
+    priorities: ["Clarity of value", "Innovation", "Operational readiness"]
+  agent_team:
+    name: "Agent Engineering Team"
+    priorities: ["Reusable agent patterns", "Spec alignment", "Traceability"]
+
+requirements:
   FR-050:
-    description: AWS×NVIDIA app deliverable (NIM LLM + Retrieval/NIM on EKS/SageMaker)
-    primary: ["kiro-ai-development-hackathon"]
-    supporting: ["beast-adapter-aws", "beast-observability", "beast-redaction-client", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+    description: "AWS×NVIDIA app deliverable (NIM LLM + Retrieval/NIM on EKS/SageMaker)"
+    components:
+      primary: ["kiro-ai-development-hackathon", "beast-adapter-aws"]
+      supporting: ["beast-redaction-client", "beast-observability", "beast-devkit", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Demo retrieval agent packaged for NIM endpoints on AWS"
+        dependency_level: primary
+        shared_with:
+          - hackathon: gcp_cloud_run
+            shared_components: ["beast-redaction-client", "beast-observability"]
+            dependency_risk: "Telemetry schemas must match for cross-cloud comparison."
+      gcp_cloud_run:
+        deliverable: "Reference narrative demonstrating portability of retrieval workflow"
+        dependency_level: secondary
+    stakeholders: [security_ops, devops_sre, executive_sponsor, judges, agent_team]
+    status: "Awaiting official AWS×NVIDIA requirement packet"
+
   FR-051:
-    description: Cloud Run app deliverable (ADK/AI Studio, Service/Job/Worker Pool)
-    primary: ["cloud-run-app"]
-    supporting: ["beast-adapter-gcp", "beast-observability", "beast-redaction-client", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+    description: "Cloud Run app deliverable (ADK/AI Studio, Service/Job/Worker Pool)"
+    components:
+      primary: ["cloud-run-app", "beast-adapter-gcp"]
+      supporting: ["beast-redaction-client", "beast-observability", "beast-devkit", "OpenFlow-Playground", "Cloudflare-Edge-DLP"]
+    hackathon_alignment:
+      gcp_cloud_run:
+        deliverable: "Cloud Run deployment with worker orchestration and AI Studio workflows"
+        dependency_level: primary
+        shared_with:
+          - hackathon: aws_nvidia
+            shared_components: ["beast-redaction-client", "beast-observability"]
+            dependency_risk: "Need parity for redaction policies and trace IDs across clouds."
+      aws_nvidia:
+        deliverable: "Evidence of portability for AWS judges (optional showcase)"
+        dependency_level: tertiary
+    stakeholders: [security_ops, devops_sre, executive_sponsor, judges, agent_team]
+    status: "Awaiting official Cloud Run brief"
+
   FR-052:
-    description: Distinctness & new-work disclosures
-    primary: ["OpenFlow-Playground/program/devpost"]
-    supporting: ["beast-devkit", "ontology-framework", "beast-* (versions/pins)"]
+    description: "Distinctness & new-work disclosures"
+    components:
+      primary: ["OpenFlow-Playground/program/devpost", "beast-devkit"]
+      supporting: ["beast-observability", "ontology-framework"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Devpost narrative + disclosure appendix"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Devpost narrative + reuse statement"
+        dependency_level: shared
+    stakeholders: [executive_sponsor, judges, agent_team]
+    status: "Draft template available; requires event-specific language"
 
   NFR-004:
-    description: Observability — live dashboards & alerts
-    primary: ["beast-observability"]
-    supporting: ["Observatory-Portal", "Cloudflare", "kiro-ai-development-hackathon", "cloud-run-app"]
+    description: "Observability — live dashboards & alerts"
+    components:
+      primary: ["beast-observability"]
+      supporting: ["Observatory-Portal", "Cloudflare", "kiro-ai-development-hackathon", "cloud-run-app"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Dashboard stream proving run health"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Shared dashboards with segmented views"
+        dependency_level: shared
+    stakeholders: [devops_sre, executive_sponsor, judges, agent_team]
+    status: "Observatory stack scaffolded; deployment pending environment credentials"
 
   OBS-001:
-    description: Unified log/metrics/traces ingest
-    primary: ["beast-observability"]
-    supporting: ["beast-adapter-aws", "beast-adapter-gcp", "OpenFlow-Playground"]
+    description: "Unified log/metrics/traces ingest"
+    components:
+      primary: ["beast-observability"]
+      supporting: ["beast-adapter-aws", "beast-adapter-gcp", "OpenFlow-Playground"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Telemetry pipeline for AWS workloads"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Telemetry pipeline for GCP workloads"
+        dependency_level: shared
+    stakeholders: [devops_sre, data_architecture, security_ops]
+    status: "Schema defined; awaiting environment wiring"
 
   OBS-002:
-    description: Trace correlation (trace_id/run_id)
-    primary: ["beast-observability"]
-    supporting: ["beast-redaction-client", "kiro-ai-development-hackathon", "cloud-run-app"]
+    description: "Trace correlation (trace_id/run_id)"
+    components:
+      primary: ["beast-observability"]
+      supporting: ["beast-redaction-client", "kiro-ai-development-hackathon", "cloud-run-app"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Correlated traces between classifier and agent hops"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Cross-service correlation demo"
+        dependency_level: shared
+    stakeholders: [devops_sre, data_architecture, security_ops, judges]
+    status: "Correlation ID spec drafted; instrumentation pending"
 
   OBS-005:
-    description: Alerting (SLA/SLO breaches, error spikes)
-    primary: ["Observatory-Portal"]
-    supporting: ["beast-observability", "Cloudflare"]
+    description: "Alerting (SLA/SLO breaches, error spikes)"
+    components:
+      primary: ["Observatory-Portal"]
+      supporting: ["beast-observability", "Cloudflare"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Alert rules referencing AWS service health"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Alert rules referencing Cloud Run service health"
+        dependency_level: shared
+    stakeholders: [devops_sre, executive_sponsor]
+    status: "Alert catalogue drafted; connectors pending"
 
   RED-001:
-    description: Classifier microservice contract
-    primary: ["beast-redaction-client"]
-    supporting: ["kiro-ai-development-hackathon (NIM)", "cloud-run-app"]
+    description: "Classifier microservice contract"
+    components:
+      primary: ["beast-redaction-client"]
+      supporting: ["kiro-ai-development-hackathon", "cloud-run-app"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "HMAC-protected classify/apply endpoints"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Same contract consumed by Cloud Run agent"
+        dependency_level: shared
+    stakeholders: [security_ops, data_architecture, judges]
+    status: "Client library extracted; contract verification pending"
 
   RED-002:
-    description: NiFi integration (ingest enforcement)
-    primary: ["OpenFlow-Policy", "NiFi-Processors"]
-    supporting: ["beast-redaction-client", "Observatory"]
+    description: "NiFi integration (ingest enforcement)"
+    components:
+      primary: ["OpenFlow-Policy", "NiFi-Processors"]
+      supporting: ["beast-redaction-client", "Observatory"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Ingest policy diagram + reference NiFi flow"
+        dependency_level: supporting
+      gcp_cloud_run:
+        deliverable: "Evidence of consistent policy enforcement"
+        dependency_level: supporting
+    stakeholders: [security_ops, data_architecture, executive_sponsor]
+    status: "Integration concept documented; build pending official data requirements"
 
   RED-003:
-    description: Snowflake external function & masking policy
-    primary: ["Snowflake-Artifacts"]
-    supporting: ["beast-redaction-client", "OpenFlow/NiFi", "Observatory"]
+    description: "Snowflake external function & masking policy"
+    components:
+      primary: ["Snowflake-Artifacts"]
+      supporting: ["beast-redaction-client", "OpenFlow/NiFi", "Observatory"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Lineage demo showing masked outputs"
+        dependency_level: supporting
+      gcp_cloud_run:
+        deliverable: "Optional analytics story for judges"
+        dependency_level: optional
+    stakeholders: [data_architecture, security_ops, judges]
+    status: "Snowflake artifacts stubbed; waiting on dataset confirmation"
 
   RED-004:
-    description: Policy mapping & governance
-    primary: ["OpenFlow-Policy", "program/requirements/redaction-policy.md"]
-    supporting: ["Cloudflare-Edge-DLP", "Observatory"]
+    description: "Policy mapping & governance"
+    components:
+      primary: ["OpenFlow-Policy", "program/requirements/redaction-policy.md"]
+      supporting: ["Cloudflare-Edge-DLP", "Observatory"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Policy matrix appended to Devpost package"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Governance summary reused with GCP notes"
+        dependency_level: shared
+    stakeholders: [security_ops, executive_sponsor, judges]
+    status: "Policy outline complete; event-specific controls pending"
 
   SEC-010:
-    description: Threat model
-    primary: ["program/requirements"]
-    supporting: ["Cloudflare-Zero-Trust", "package-hardening"]
+    description: "Threat model"
+    components:
+      primary: ["program/requirements"]
+      supporting: ["Cloudflare-Zero-Trust", "package-hardening", "beast-devkit"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Threat model summary referencing AWS attack surface"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Threat model summary referencing GCP attack surface"
+        dependency_level: shared
+    stakeholders: [security_ops, executive_sponsor, judges]
+    status: "Base template available; requires hackathon-specific assets"
 
   SEC-011:
-    description: Input validation & redaction hooks
-    primary: ["beast-redaction-client"]
-    supporting: ["OpenFlow/NiFi", "Cloudflare-Edge-DLP"]
+    description: "Input validation & redaction hooks"
+    components:
+      primary: ["beast-redaction-client"]
+      supporting: ["OpenFlow/NiFi", "Cloudflare-Edge-DLP"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Runtime guardrails in AWS agent"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Runtime guardrails in Cloud Run agent"
+        dependency_level: shared
+    stakeholders: [security_ops, devops_sre, judges]
+    status: "Guardrail hooks defined; integration awaits final workloads"
 
   DATA-011:
-    description: Lineage & provenance
-    primary: ["beast-observability"]
-    supporting: ["OpenFlow-Playground/spores", "Snowflake-Audit"]
+    description: "Lineage & provenance"
+    components:
+      primary: ["beast-observability"]
+      supporting: ["OpenFlow-Playground/spores", "Snowflake-Audit"]
+    hackathon_alignment:
+      aws_nvidia:
+        deliverable: "Lineage report showing agent + classifier flow"
+        dependency_level: shared
+      gcp_cloud_run:
+        deliverable: "Comparative lineage showing cross-cloud movement"
+        dependency_level: shared
+    stakeholders: [data_architecture, security_ops, judges, executive_sponsor]
+    status: "Traceability spec available; needs data feeds"
+
+requirement_component_hackathon_matrix:
+  - requirement: FR-050
+    component: beast-redaction-client
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "shared-service"
+    stakeholder_focus: [security_ops, devops_sre]
+    notes: "Classifier contract must remain identical across deployments."
+  - requirement: FR-050
+    component: beast-observability
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "shared-telemetry"
+    stakeholder_focus: [devops_sre, data_architecture]
+    notes: "Use same trace_id schema for comparability."
+  - requirement: FR-051
+    component: beast-adapter-gcp
+    hackathon: [gcp_cloud_run]
+    dependency_type: "primary-platform"
+    stakeholder_focus: [devops_sre, judges]
+    notes: "Cloud Run deployment automation."
+  - requirement: FR-051
+    component: beast-adapter-aws
+    hackathon: [aws_nvidia]
+    dependency_type: "evidence-of-portability"
+    stakeholder_focus: [executive_sponsor, judges]
+    notes: "Showcases cross-cloud portability narrative."
+  - requirement: FR-052
+    component: OpenFlow-Playground/program/devpost
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "submission-artifact"
+    stakeholder_focus: [judges, executive_sponsor]
+    notes: "Single source for disclosure narratives."
+  - requirement: NFR-004
+    component: beast-observability
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "monitoring-core"
+    stakeholder_focus: [devops_sre, executive_sponsor]
+    notes: "Dashboards reused with filtered contexts."
+  - requirement: OBS-002
+    component: beast-redaction-client
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "trace-id-propagation"
+    stakeholder_focus: [data_architecture, judges]
+    notes: "Ensure trace IDs survive redaction boundary."
+  - requirement: RED-001
+    component: beast-redaction-client
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "runtime-governance"
+    stakeholder_focus: [security_ops]
+    notes: "HMAC handshake validated in both environments."
+  - requirement: SEC-010
+    component: program/requirements
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "governance-document"
+    stakeholder_focus: [security_ops, executive_sponsor]
+    notes: "Threat models tailored per venue."
+  - requirement: DATA-011
+    component: beast-observability
+    hackathon: [aws_nvidia, gcp_cloud_run]
+    dependency_type: "lineage-capture"
+    stakeholder_focus: [data_architecture, judges]
+    notes: "Comparative lineage required for storytelling."
 
 components_to_hackathons:
   kiro-ai-development-hackathon:
