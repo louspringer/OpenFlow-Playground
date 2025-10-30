@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
 """
 Main entry point for Cloud Run deployment.
+Now uses beast-ai-dev-agent package.
 """
 
-import os
-import sys
-
-# Add src to Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
-
-# Import and run the Cloud Run agent
-from kiro_agents.cloudrun.agent import CloudRunKiroAgent
+# Import from the beast-ai-dev-agent package
+from beast_ai_dev_agent import CloudRunKiroAgent
 
 if __name__ == '__main__':
     agent = CloudRunKiroAgent()

@@ -32,6 +32,8 @@ dependencies = [
     "typer[all]>=0.9.0",
     "rich>=13.0.0",
     "click>=8.0.0",
+    # Beast AI Development Agent (platform-agnostic cloud agents)
+    "beast-ai-dev-agent @ git+https://github.com/nkllon/beast-ai-dev-agent.git",
     # Beast Mode and PM dependencies
     "jq>=1.4.0",
     "neo4j>=5.0.0",
