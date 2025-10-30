@@ -96,7 +96,67 @@ This pattern was extracted from the `beast-agent` package creation and serves as
   
   **Template source**: `beast-agent/examples/simple_agent.py`
 
-### Phase 8: Git & GitHub
+### Phase 8: Spec-Driven Development (cc-sdd)
+- [ ] Create `.kiro/` directory structure:
+  ```bash
+  mkdir -p .kiro/specs .kiro/settings/templates/specs .kiro/settings/rules
+  ```
+- [ ] Create `.kiro/config.yaml`:
+  - Project metadata (name, tier, category)
+  - Specs directory configuration
+  - Quality targets (coverage, maintainability)
+  - Dependencies (upstream, downstream)
+  
+  **Template source**: `beast-agent/.kiro/config.yaml`
+
+- [ ] Create `.kiro/README.md`:
+  - cc-sdd workflow explanation
+  - Available commands (/kiro:spec-init, etc.)
+  - Example workflows
+  - Quality gate integration
+  
+  **Template source**: `beast-agent/.kiro/README.md`
+
+- [ ] Copy cc-sdd templates:
+  - `settings/templates/specs/design.md`
+  - `settings/templates/specs/requirements.md`
+  - `settings/templates/specs/tasks.md`
+  - `settings/templates/specs/init.json`
+  
+  **Source**: Copy from OpenFlow-Playground `.kiro/settings/templates/specs/`
+
+- [ ] Copy cc-sdd rules:
+  - `settings/rules/design-discovery-full.md`
+  - `settings/rules/design-principles.md`
+  - `settings/rules/ears-format.md`
+  - `settings/rules/gap-analysis.md`
+  - `settings/rules/tasks-generation.md`
+  
+  **Source**: Copy from OpenFlow-Playground `.kiro/settings/rules/`
+
+- [ ] Create initial specs in `.kiro/specs/`:
+  - `requirements.md` (package requirements)
+  - `design.md` (architecture and design)
+  - `tasks.md` (implementation tasks)
+  - `QUALITY_STANDARDS_TEMPLATE.md` (from OpenFlow-Playground)
+  - `SONARCLOUD_INTEGRATION_GUIDE.md` (from OpenFlow-Playground)
+
+### Phase 9: AI Agent Guide
+- [ ] Create `AGENT.md`:
+  - Repository purpose and tier
+  - Required reading order (specs first)
+  - Architecture overview
+  - Development workflow
+  - Critical rules (DO NOT / ALWAYS)
+  - Integration points (upstream/downstream)
+  - Quality standards
+  - Common tasks
+  - Troubleshooting
+  - Pre-commit checklist
+  
+  **Template source**: `beast-agent/AGENT.md`
+
+### Phase 10: Git & GitHub
 - [ ] Commit bootstrap:
   ```bash
   git add -A
@@ -139,6 +199,28 @@ This pattern was extracted from the `beast-agent` package creation and serves as
 ├── .github/
 │   └── workflows/
 │       └── sonarcloud.yml          # CI/CD workflow
+├── .kiro/                          # 🆕 Spec-driven development
+│   ├── config.yaml                 # cc-sdd configuration
+│   ├── README.md                   # cc-sdd workflow guide
+│   ├── specs/
+│   │   ├── requirements.md         # Package requirements
+│   │   ├── design.md               # Architecture and design
+│   │   ├── tasks.md                # Implementation tasks
+│   │   ├── QUALITY_STANDARDS_TEMPLATE.md
+│   │   └── SONARCLOUD_INTEGRATION_GUIDE.md
+│   └── settings/
+│       ├── templates/
+│       │   └── specs/              # cc-sdd spec templates
+│       │       ├── design.md
+│       │       ├── requirements.md
+│       │       ├── tasks.md
+│       │       └── init.json
+│       └── rules/                  # cc-sdd workflow rules
+│           ├── design-discovery-full.md
+│           ├── design-principles.md
+│           ├── ears-format.md
+│           ├── gap-analysis.md
+│           └── tasks-generation.md
 ├── src/
 │   └── {package_name}/
 │       ├── __init__.py             # Package exports
@@ -154,6 +236,7 @@ This pattern was extracted from the `beast-agent` package creation and serves as
 │   └── advanced_{concept}.py       # Advanced example (optional)
 ├── docs/                           # Documentation (optional, created later)
 ├── .gitignore                      # Git ignore rules
+├── AGENT.md                        # 🆕 AI agent working guide
 ├── LICENSE                         # MIT License
 ├── README.md                       # Package documentation
 ├── pyproject.toml                  # Package configuration
@@ -205,6 +288,7 @@ fi
 
 # Create structure
 mkdir -p $PACKAGE_NAME/{src/$PACKAGE_NAME,tests,examples,.github/workflows,docs}
+mkdir -p $PACKAGE_NAME/.kiro/{specs,settings/templates/specs,settings/rules}
 cd $PACKAGE_NAME
 
 # Initialize git
@@ -213,17 +297,33 @@ git init
 # Copy templates
 cp ../templates/pyproject.toml.template ./pyproject.toml
 cp ../templates/README.md.template ./README.md
+cp ../templates/AGENT.md.template ./AGENT.md
 cp ../templates/sonar-project.properties.template ./sonar-project.properties
 cp ../templates/sonarcloud.yml.template ./.github/workflows/sonarcloud.yml
 cp ../templates/LICENSE ./LICENSE
 cp ../templates/.gitignore ./
 
+# Copy cc-sdd templates
+cp ../templates/.kiro/config.yaml.template ./.kiro/config.yaml
+cp ../templates/.kiro/README.md.template ./.kiro/README.md
+cp -r ../templates/.kiro/settings/templates/specs/* ./.kiro/settings/templates/specs/
+cp -r ../templates/.kiro/settings/rules/* ./.kiro/settings/rules/
+
+# Copy initial specs
+cp ../templates/.kiro/specs/QUALITY_STANDARDS_TEMPLATE.md ./.kiro/specs/
+cp ../templates/.kiro/specs/SONARCLOUD_INTEGRATION_GUIDE.md ./.kiro/specs/
+
 # Replace placeholders
 sed -i "s/{PACKAGE_NAME}/$PACKAGE_NAME/g" pyproject.toml
 sed -i "s/{DESCRIPTION}/$DESCRIPTION/g" pyproject.toml
+sed -i "s/{TIER}/$TIER/g" pyproject.toml
 sed -i "s/{PACKAGE_NAME}/$PACKAGE_NAME/g" README.md
 sed -i "s/{DESCRIPTION}/$DESCRIPTION/g" README.md
+sed -i "s/{PACKAGE_NAME}/$PACKAGE_NAME/g" AGENT.md
+sed -i "s/{TIER}/$TIER/g" AGENT.md
 sed -i "s/{PACKAGE_NAME}/$PACKAGE_NAME/g" sonar-project.properties
+sed -i "s/{PACKAGE_NAME}/$PACKAGE_NAME/g" .kiro/config.yaml
+sed -i "s/{TIER}/$TIER/g" .kiro/config.yaml
 
 # Create initial files
 touch src/$PACKAGE_NAME/__init__.py
@@ -231,10 +331,13 @@ touch tests/__init__.py
 
 echo "✅ Bootstrap complete for $PACKAGE_NAME (Tier $TIER)"
 echo "📝 Next steps:"
-echo "  1. Implement core modules in src/$PACKAGE_NAME/"
-echo "  2. Write tests in tests/"
-echo "  3. Add examples in examples/"
-echo "  4. Commit and push to GitHub"
+echo "  1. Create specs: /kiro:spec-init $PACKAGE_NAME"
+echo "  2. Write requirements: /kiro:spec-requirements $PACKAGE_NAME"
+echo "  3. Design architecture: /kiro:spec-design $PACKAGE_NAME -y"
+echo "  4. Break down tasks: /kiro:spec-tasks $PACKAGE_NAME -y"
+echo "  5. Implement: /kiro:spec-impl $PACKAGE_NAME 1.1,1.2,1.3"
+echo "  6. Test and validate"
+echo "  7. Commit and push to GitHub"
 ```
 
 ---
@@ -243,12 +346,27 @@ echo "  4. Commit and push to GitHub"
 
 All template files are based on `beast-agent` package:
 
+### Core Configuration
 - **pyproject.toml**: `beast-agent/pyproject.toml`
 - **README.md**: `beast-agent/README.md`
+- **AGENT.md**: `beast-agent/AGENT.md` 🆕
 - **sonar-project.properties**: `beast-agent/sonar-project.properties`
 - **sonarcloud.yml**: `beast-agent/.github/workflows/sonarcloud.yml`
 - **.gitignore**: `beast-agent/.gitignore`
 - **LICENSE**: `beast-agent/LICENSE`
+
+### cc-sdd Integration 🆕
+- **.kiro/config.yaml**: `beast-agent/.kiro/config.yaml`
+- **.kiro/README.md**: `beast-agent/.kiro/README.md`
+- **Spec templates**: `beast-agent/.kiro/settings/templates/specs/`
+  - design.md, requirements.md, tasks.md, init.json
+- **Workflow rules**: `beast-agent/.kiro/settings/rules/`
+  - design-discovery-full.md, design-principles.md, ears-format.md, gap-analysis.md, tasks-generation.md
+- **Initial specs**: `beast-agent/.kiro/specs/`
+  - requirements.md, design.md, tasks.md
+  - QUALITY_STANDARDS_TEMPLATE.md, SONARCLOUD_INTEGRATION_GUIDE.md
+
+### Examples
 - **Simple example**: `beast-agent/examples/simple_agent.py`
 
 ---
