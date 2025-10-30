@@ -71,26 +71,7 @@ jobs:
     - name: Quality Gate Decision
       run: |
         if [ "${{ env.FAIL_ON_QUALITY }}" = "true" ]; then
-          python -c "
-          import json
-          import sys
-          
-          try:
-              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
-                  report = json.load(f)
-              
-              if not report.get('can_proceed', False):
-                  print('❌ Quality gates failed!')
-                  print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
-                  print(f'Threshold: {report.get(\"quality_threshold\", \"N/A\")}')
-                  sys.exit(1)
-              else:
-                  print('✅ Quality gates passed!')
-                  print(f'Overall score: {report.get(\"overall_score\", \"N/A\")}')
-          except Exception as e:
-              print(f'Error reading quality report: {e}')
-              sys.exit(1)
-          "
+          uv run python scripts/ci/check_quality_gate.py "${{ env.QUALITY_REPORT_PATH }}"
         else
           echo "Quality gates not enforced in ${{ env.DEPLOYMENT_ENVIRONMENT }} environment"
         fi
@@ -106,25 +87,7 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
 
         if [ -f "${{ env.QUALITY_REPORT_PATH }}" ]; then
-          python -c "
-          import json
-          
-          try:
-              with open('${{ env.QUALITY_REPORT_PATH }}') as f:
-                  report = json.load(f)
-              
-              print(f'**Overall Score**: {report.get(\"overall_score\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              print(f'**Quality Status**: {report.get(\"quality_status\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              print(f'**Can Proceed**: {report.get(\"can_proceed\", \"N/A\")}') >> $GITHUB_STEP_SUMMARY
-              
-              if 'gate_summary' in report:
-                  gates = report['gate_summary']
-                  print(f'**Total Gates**: {gates.get(\"total_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
-                  print(f'**Failed Gates**: {gates.get(\"failed_gates\", 0)}') >> $GITHUB_STEP_SUMMARY
-                  
-          except Exception as e:
-              print(f'**Error**: Could not read quality report') >> $GITHUB_STEP_SUMMARY
-          "
+          uv run python scripts/ci/print_quality_summary.py "${{ env.QUALITY_REPORT_PATH }}" >> $GITHUB_STEP_SUMMARY
         else
           echo "**Status**: Quality report not available" >> $GITHUB_STEP_SUMMARY
         fi

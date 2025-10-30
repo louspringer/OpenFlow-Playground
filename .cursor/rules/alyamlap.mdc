@@ -1,0 +1,170 @@
+---
+description: ALYAMLAP - As Little YAML As Possible
+globs: .github/workflows/*.yml,.github/workflows/*.yaml,*.yml,*.yaml
+alwaysApply: false
+---
+
+# ALYAMLAP: As Little YAML As Possible
+
+## Core Principle
+
+**Minimize YAML content. Extract logic to proper scripts.**
+
+## The Problem
+
+YAML + embedded code = indentation hell:
+- Quote escaping nightmares
+- Indentation errors
+- Hard to test
+- Hard to debug
+- Hard to maintain
+
+## The Rule
+
+### ❌ NEVER Do This
+```yaml
+- name: Complex Logic
+  run: |
+    python -c "
+    import json
+    import sys
+    
+    try:
+        # 50 lines of Python embedded in YAML
+        with open('file.json') as f:
+            data = json.load(f)
+        
+        for item in data:
+            print(f'Processing {item}')
+    except Exception as e:
+        sys.exit(1)
+    "
+```
+
+### ✅ ALWAYS Do This
+```yaml
+- name: Complex Logic
+  run: uv run python scripts/ci/process_data.py
+```
+
+**Then create**: `scripts/ci/process_data.py` with proper Python
+
+## Extraction Guidelines
+
+### When to Extract
+
+**Extract to script if:**
+- More than 3 lines of Python/bash
+- Any quoting or escaping needed
+- Logic needs testing
+- Multiple uses across workflows
+
+### Where to Put Scripts
+
+- **CI/CD scripts**: `scripts/ci/`
+- **GitHub integration**: `scripts/github_integration/`
+- **Deployment**: `scripts/deployment/`
+- **Quality**: `scripts/quality/`
+
+### Script Template
+
+```python
+#!/usr/bin/env python3
+"""
+Brief description of what this script does.
+
+Used by: .github/workflows/workflow-name.yml
+"""
+
+import sys
+
+
+def main() -> int:
+    """Main function."""
+    try:
+        # Your logic here
+        return 0
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+## YAML Best Practices
+
+### Keep YAML Simple
+
+**YAML should only:**
+- Define workflow structure
+- Set environment variables
+- Call scripts/actions
+- Handle simple conditionals
+
+**YAML should NOT:**
+- Contain complex logic
+- Have embedded Python/bash
+- Require extensive quoting
+- Be hard to read
+
+### Example: Before/After
+
+**Before (❌ Bad):**
+```yaml
+- name: Process Results
+  run: |
+    python -c "
+    import json, sys
+    data = json.load(open('report.json'))
+    if data.get('score', 0) > 80:
+        print('Pass')
+        sys.exit(0)
+    else:
+        print('Fail')
+        sys.exit(1)
+    "
+```
+
+**After (✅ Good):**
+```yaml
+- name: Process Results
+  run: uv run python scripts/ci/check_score.py report.json 80
+```
+
+## Benefits
+
+**Extracting to scripts provides:**
+- ✅ **Testability** - Unit test the script
+- ✅ **Debuggability** - Run script locally
+- ✅ **Maintainability** - Standard Python formatting
+- ✅ **Reusability** - Use in multiple workflows
+- ✅ **No YAML hell** - No quoting/indentation issues
+
+## Migration Strategy
+
+### Finding Candidates
+
+```bash
+# Find workflows with embedded Python
+grep -r "python -c" .github/workflows/
+
+# Find workflows with complex bash
+grep -r "run: |" .github/workflows/ | wc -l
+```
+
+### Extraction Process
+
+1. **Identify embedded code** in workflow
+2. **Create script** in appropriate `scripts/` directory
+3. **Test script locally** with sample inputs
+4. **Update workflow** to call script
+5. **Test workflow** in CI
+6. **Delete old embedded code**
+
+## Remember
+
+**"If it's more than 3 lines, it shouldn't be in YAML."**
+
+**ALYAMLAP saves sanity, improves quality, and prevents YAML-induced rage.**
