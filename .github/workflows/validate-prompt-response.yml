@@ -1,0 +1,243 @@
+name: Validate Prompt Response
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'prompts/inbound/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-prompt:
+    name: Validate Prompt Response Format
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Check PR title format
+        id: check-title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$PR_TITLE" =~ ^prompt-response:\ .+ ]]; then
+            echo "❌ PR title must start with 'prompt-response: '"
+            echo "   Current title: $PR_TITLE"
+            echo "   Expected format: prompt-response: <topic>"
+            echo "title_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          echo "✅ PR title format valid"
+          echo "title_valid=true" >> $GITHUB_OUTPUT
+      
+      - name: Get changed files
+        id: changed-files
+        run: |
+          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
+          echo "Changed files:"
+          cat changed_files.txt
+          
+          # Check if files are in prompts/inbound/
+          while IFS= read -r file; do
+            if [[ ! "$file" =~ ^prompts/inbound/ ]]; then
+              echo "❌ File not in prompts/inbound/: $file"
+              echo "files_valid=false" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          done < changed_files.txt
+          
+          echo "✅ All files in prompts/inbound/"
+          echo "files_valid=true" >> $GITHUB_OUTPUT
+      
+      - name: Validate file naming
+        id: check-naming
+        run: |
+          while IFS= read -r file; do
+            filename=$(basename "$file")
+            # Expected format: YYYYMMDD_HHMMSS_<agent>-<topic>.md
+            if [[ ! "$filename" =~ ^[0-9]{8}_[0-9]{6}_[a-z-]+\.md$ ]]; then
+              echo "❌ Invalid filename: $filename"
+              echo "   Expected format: YYYYMMDD_HHMMSS_<agent>-<topic>.md"
+              echo "naming_valid=false" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          done < changed_files.txt
+          
+          echo "✅ File naming valid"
+          echo "naming_valid=true" >> $GITHUB_OUTPUT
+      
+      - name: Check required headers
+        id: check-headers
+        run: |
+          python3 - <<'EOF'
+          import re
+          import sys
+          
+          required_headers = [
+              r'Requirements:\s*\[',
+              r'Components:\s*\[',
+              r'Artifacts:',
+              r'Next:'
+          ]
+          
+          with open('changed_files.txt', 'r') as f:
+              files = [line.strip() for line in f if line.strip()]
+          
+          all_valid = True
+          for file in files:
+              if not file.endswith('.md'):
+                  continue
+              
+              print(f"Checking headers in: {file}")
+              with open(file, 'r') as f:
+                  content = f.read()
+              
+              for header_pattern in required_headers:
+                  if not re.search(header_pattern, content):
+                      print(f"❌ Missing required header: {header_pattern}")
+                      all_valid = False
+          
+          if all_valid:
+              print("✅ All required headers present")
+              sys.exit(0)
+          else:
+              print("\n❌ Required headers missing")
+              print("Expected headers:")
+              print("  Requirements: [ID, ...]")
+              print("  Components: [component, ...]")
+              print("  Artifacts:")
+              print("    - code: <path>")
+              print("  Next:")
+              print("    - [ ] follow-up actions")
+              sys.exit(1)
+          EOF
+      
+      - name: Check for secrets
+        id: check-secrets
+        run: |
+          python3 - <<'EOF'
+          import re
+          import sys
+          
+          # Patterns that might indicate secrets
+          secret_patterns = [
+              r'sk-[a-zA-Z0-9]{32,}',  # OpenAI-style keys
+              r'pk_[a-zA-Z0-9]{32,}',  # Stripe-style keys
+              r'AKIA[A-Z0-9]{16}',     # AWS access keys
+              r'ghp_[a-zA-Z0-9]{36}',  # GitHub personal access tokens
+              r'password\s*[:=]\s*["\']?[^"\'\s]+',  # Passwords
+          ]
+          
+          with open('changed_files.txt', 'r') as f:
+              files = [line.strip() for line in f if line.strip()]
+          
+          secrets_found = False
+          for file in files:
+              if not file.endswith('.md'):
+                  continue
+              
+              with open(file, 'r') as f:
+                  content = f.read()
+              
+              for pattern in secret_patterns:
+                  matches = re.findall(pattern, content, re.IGNORECASE)
+                  if matches:
+                      print(f"❌ Potential secret found in {file}")
+                      print(f"   Pattern: {pattern}")
+                      secrets_found = True
+          
+          if secrets_found:
+              print("\n❌ Potential secrets detected")
+              print("   Please review and remove any hardcoded credentials")
+              sys.exit(1)
+          else:
+              print("✅ No secrets detected")
+              sys.exit(0)
+          EOF
+      
+      - name: Validate markdown syntax
+        id: check-markdown
+        run: |
+          pip install markdown-it-py
+          
+          python3 - <<'EOF'
+          import sys
+          from markdown_it import MarkdownIt
+          
+          with open('changed_files.txt', 'r') as f:
+              files = [line.strip() for line in f if line.strip()]
+          
+          md = MarkdownIt()
+          all_valid = True
+          
+          for file in files:
+              if not file.endswith('.md'):
+                  continue
+              
+              print(f"Validating markdown: {file}")
+              try:
+                  with open(file, 'r') as f:
+                      content = f.read()
+                  md.parse(content)
+                  print(f"✅ Valid markdown")
+              except Exception as e:
+                  print(f"❌ Invalid markdown: {e}")
+                  all_valid = False
+          
+          if all_valid:
+              print("\n✅ All markdown files valid")
+              sys.exit(0)
+          else:
+              print("\n❌ Markdown validation failed")
+              sys.exit(1)
+          EOF
+      
+      - name: Post validation summary
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title_valid = '${{ steps.check-title.outputs.title_valid }}' === 'true';
+            const files_valid = '${{ steps.changed-files.outputs.files_valid }}' === 'true';
+            const naming_valid = '${{ steps.check-naming.outputs.naming_valid }}' === 'true';
+            
+            const summary = `## Prompt Response Validation Summary
+            
+            | Check | Status |
+            |-------|--------|
+            | PR Title Format | ${title_valid ? '✅ Pass' : '❌ Fail'} |
+            | Files Location | ${files_valid ? '✅ Pass' : '❌ Fail'} |
+            | File Naming | ${naming_valid ? '✅ Pass' : '❌ Fail'} |
+            | Required Headers | ${{ steps.check-headers.outcome == 'success' ? '✅ Pass' : '❌ Fail' }} |
+            | Secrets Check | ${{ steps.check-secrets.outcome == 'success' ? '✅ Pass' : '❌ Fail' }} |
+            | Markdown Syntax | ${{ steps.check-markdown.outcome == 'success' ? '✅ Pass' : '❌ Fail' }} |
+            
+            ${title_valid && files_valid && naming_valid && 
+              steps.check-headers.outcome == 'success' && 
+              steps.check-secrets.outcome == 'success' && 
+              steps.check-markdown.outcome == 'success' ? 
+              '✅ All validation checks passed! This PR is ready for human review.' :
+              '❌ Some validation checks failed. Please review the workflow logs and fix the issues.'}
+            
+            ---
+            
+            **See \`prompts/WORKFLOW.md\` for the complete prompt response protocol.**
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+

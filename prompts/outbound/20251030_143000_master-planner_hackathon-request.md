@@ -249,3 +249,28 @@ Artifacts:
   - diagrams: <path>
 Next:
   - [ ] follow-up PR/actions
+
+### Response Delivery Instructions (PR-Based)
+
+**Reality**: You are security-constrained and can ONLY deliver via pull request. This is expected and correct.
+
+**Step 1: Create Branch**
+- Branch name: `codex/master-planner-hackathon-plan`
+
+**Step 2: Add Response File**
+- File path: `prompts/inbound/YYYYMMDD_HHMMSS_master-planner_hackathon-plan.md`
+- Include all Required Headers above (machine-parseable)
+
+**Step 3: Create Pull Request**
+- PR title: `prompt-response: hackathon master plan`
+- PR body: Brief summary of your response
+- Target branch: `feat/beast-hackathon-helm-charts-clean` (current working branch)
+
+**Step 4: Our Process**
+- GitHub Actions will validate your PR format
+- We'll review content for completeness
+- We'll merge PR (response lands in `prompts/inbound/`)
+- We'll move to `prompts/processed/` and update `program/requirements/mapping.yaml`
+- We'll create implementation PRs based on your plan
+
+**Note**: The PR-based workflow is not a bug - it's the only mechanism available to external LLMs for security reasons. See `prompts/WORKFLOW.md` for complete protocol.

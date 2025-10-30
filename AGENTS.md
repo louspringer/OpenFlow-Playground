@@ -291,6 +291,147 @@ cat .kiro/steering/*.md
 - [Vercel AI SDK](https://sdk.vercel.ai/docs) - AI SDK documentation
 - [Beast Mode Paper](docs/spores/) - Multi-agent collaboration patterns
 
+## External LLM Collaboration
+
+### Multi-Agent Coordination Beyond Beast Mode
+
+OpenFlow Playground coordinates with external LLM agents (Master Planner/Codex, Claude Projects, etc.) using a **PR-based prompts workflow**.
+
+### Prompts System
+
+**Directory Structure:**
+```
+prompts/
+├── outbound/     # Requests we send to external agents
+├── inbound/      # Responses delivered via PR
+├── processed/    # Validated and accepted responses
+└── latent/       # Deferred or ignored items
+```
+
+**See `prompts/WORKFLOW.md`** for complete protocol.
+
+### External LLM Constraints
+
+**Reality Check:** External LLMs are security-constrained:
+- ❌ Cannot write directly to repositories
+- ❌ Cannot push files without review gates
+- ❌ Cannot bypass branch protection
+- ✅ **CAN create pull requests** (only mechanism)
+
+**This is by design** - product teams balance capability vs. security.
+
+### Working with External Agents
+
+**Step 1: Create Outbound Request**
+```bash
+# Create a request in prompts/outbound/
+cat > prompts/outbound/YYYYMMDD_HHMMSS_<agent>-<topic>.md <<EOF
+# Request to <Agent>: <Topic>
+
+## Context
+[Provide context]
+
+## What We Need
+[List requirements]
+
+## Requested Output
+[Specify deliverables]
+
+## Response Delivery Instructions
+See prompts/WORKFLOW.md for PR-based delivery protocol.
+EOF
+```
+
+**Step 2: External Agent Creates PR**
+- Agent creates branch: `codex/<agent>-<topic>`
+- Adds file: `prompts/inbound/YYYYMMDD_HHMMSS_<agent>-<topic>.md`
+- Creates PR with title: `prompt-response: <topic>`
+- Includes machine-parseable headers
+
+**Step 3: Review and Merge**
+- GitHub Actions validate format
+- Human reviews content
+- Merge PR (response lands in `prompts/inbound/`)
+
+**Step 4: Process Response**
+- Validate response completeness
+- Move to `prompts/processed/` if accepted
+- Update `program/requirements/mapping.yaml`
+- Create implementation PRs as needed
+
+### Required Response Format
+
+External agents must include machine-parseable headers:
+
+```markdown
+Requirements: [ID, ...]
+Components: [component, ...]
+Artifacts:
+  - code: <repo/path or URL>
+  - policy: <path>
+  - diagrams: <path>
+Next:
+  - [ ] follow-up PR/actions
+```
+
+### GitHub Actions Validation
+
+`.github/workflows/validate-prompt-response.yml` auto-checks:
+- File naming convention
+- Required header format
+- No secrets or binaries
+- Valid markdown syntax
+
+### The "Hinkiness" Reality
+
+**This PR-based workflow is awkward but unavoidable:**
+- External LLMs will ALWAYS be PR-constrained for security
+- This is not a bug, it's the product reality
+- We design workflows that work WITH constraints, not against them
+
+**Product Manager's Dilemma:**
+> "What can web-based LLMs safely do?" → Create PRs, not much else.
+
+### Architecture Pattern
+
+```
+┌──────────────┐
+│   You/IDE    │ (Create outbound request)
+└──────┬───────┘
+       │
+       ↓ Send to external LLM
+┌──────────────┐
+│ External LLM │ (Codex, ChatGPT, Claude)
+└──────┬───────┘
+       │
+       ↓ ONLY METHOD: Create PR
+┌──────────────┐
+│ Pull Request │ (PR-based delivery)
+└──────┬───────┘
+       │
+       ↓ Review + Merge
+┌──────────────┐
+│ prompts/     │ (Inbound response)
+│ inbound/     │
+└──────────────┘
+```
+
+### When to Use External LLM Coordination
+
+**Use external agents for:**
+- Strategic planning (Master Planner)
+- Cross-project requirements analysis
+- Architecture reviews requiring different perspectives
+- Research tasks spanning multiple contexts
+
+**Use Beast Mode (internal) for:**
+- Real-time collaboration
+- Trust network verification
+- Delusion detection (Ghostbusters)
+- Multi-agent validation
+
+**Both systems complement each other:** Beast Mode for real-time internal collaboration, external LLM coordination for asynchronous strategic work.
+
 ## License & Attribution
 
 **OpenFlow Playground**: MIT License  
