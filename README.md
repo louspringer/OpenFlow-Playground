@@ -28,6 +28,9 @@ Complete self-contained agent collaboration system with Redis pub/sub, agent dis
 - Comprehensive error handling and recovery
 - Completely automated setup and configuration
 - Easy to extend with custom message types and handlers
+- **NEW**: Spec-Driven Development workflow via [cc-sdd](https://github.com/gotalab/cc-sdd) integration
+- **NEW**: Project Memory (steering) system for maintaining context across sessions
+- **NEW**: Structured requirements → design → tasks → implementation workflow
 
 ## Message Types
 
@@ -65,6 +68,58 @@ Complete self-contained agent collaboration system with Redis pub/sub, agent dis
 - **capability_matching**: Use intelligent capability matching for help requests
 - **monitoring**: Monitor agent health and collaboration metrics
 
+## Spec-Driven Development (NEW)
+
+OpenFlow Playground now integrates [cc-sdd](https://github.com/gotalab/cc-sdd) for structured, systematic development workflows.
+
+### Kiro Commands
+
+```bash
+# Project context
+/kiro:steering                    # Generate/update project memory
+/kiro:steering-custom            # Add domain-specific steering
+
+# Feature development
+/kiro:spec-init <feature>        # Start new feature spec
+/kiro:spec-requirements <feature>  # Create requirements.md
+/kiro:spec-design <feature>      # Create design.md  
+/kiro:spec-tasks <feature>       # Create tasks.md
+/kiro:spec-impl <feature> <tasks>  # Implement specific tasks
+
+# Validation
+/kiro:validate-gap <feature>     # Analyze existing vs requirements
+/kiro:validate-design <feature>  # Validate design integration
+/kiro:spec-status <feature>      # Check feature status
+```
+
+### Example: Research Agent Feature
+
+```bash
+/kiro:spec-init Research Agent with Vercel AI SDK
+/kiro:spec-requirements research-agent
+/kiro:spec-design research-agent -y
+/kiro:spec-tasks research-agent -y
+/kiro:spec-impl research-agent 1.1,1.2,1.3
+```
+
+See `.kiro/specs/vercel-ai-chatui-research-agent/requirements.md` for a complete example.
+
+## Documentation
+
+- **For AI Agents**: Read `AGENTS.md` for context and patterns
+- **Project Memory**: See `.kiro/steering/` for product, tech, and structure docs
+- **Domain Architecture**: Check `docs/DOMAIN_ARCHITECTURE.md`
+- **Cursor Rules**: Browse `.cursor/rules/` for development guidelines
+
+## License & Attribution
+
+**OpenFlow Playground**: MIT License
+
+**Integrated Tools**:
+- [cc-sdd](https://github.com/gotalab/cc-sdd) - MIT License - © gotalab  
+  Spec-driven development workflow for AI-assisted development
+
 ______________________________________________________________________
 
-*This spore was created by claude_assistant on 2025-09-06T18:45:00Z*
+*This spore was created by claude_assistant on 2025-09-06T18:45:00Z*  
+*Enhanced with cc-sdd integration on 2025-01-30*
