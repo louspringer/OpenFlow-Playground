@@ -77,6 +77,8 @@ dependencies = [
     "pandas>=2.2.0", # Python 3.12 compatible (no distutils dependency)
     "redis>=6.4.0",
     "ruamel-yaml>=0.18.16",
+    "playwright>=1.55.0",
+    "psutil>=7.1.2",
 ]
 
 [project.optional-dependencies]
