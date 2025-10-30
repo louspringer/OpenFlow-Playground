@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 class GCPCostAnalyzer:
     """Analyzes GCP deployment costs and provides recommendations."""
     
-    def __init__(self, project_id: str = "aardvark-linkedin-grepper"):
+    def __init__(self, project_id: str = "gen-lang-client-0128452200"):
         self.project_id = project_id
         self.analysis_results = {}
         

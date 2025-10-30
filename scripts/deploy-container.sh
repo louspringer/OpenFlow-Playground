@@ -7,7 +7,7 @@ echo "🚀 Deploying Ghostbusters API Container to GCP Cloud Run"
 echo "========================================================"
 
 # Configuration
-PROJECT_ID=${GCP_PROJECT_ID:-"aardvark-linkedin-grepper"}
+PROJECT_ID=${GCP_PROJECT_ID:-"gen-lang-client-0128452200"}
 REGION=${GCP_REGION:-"us-central1"}
 SERVICE_NAME="ghostbusters-api"
 IMAGE_NAME="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"

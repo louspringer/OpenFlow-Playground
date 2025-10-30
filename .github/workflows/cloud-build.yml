@@ -31,14 +31,14 @@ jobs:
     - name: Setup Google Cloud CLI
       uses: google-github-actions/setup-gcloud@v2
       with:
-        project_id: aardvark-linkedin-grepper
+        project_id: gen-lang-client-0128452200
 
     - name: Trigger Cloud Build
       run: |
         echo "🚀 Triggering Cloud Build pipeline"
         gcloud builds submit \
           --config=cloudbuild.yaml \
-          --project=aardvark-linkedin-grepper \
+          --project=gen-lang-client-0128452200 \
           .
           
     - name: Check deployment status

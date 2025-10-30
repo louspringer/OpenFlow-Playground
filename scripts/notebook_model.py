@@ -178,7 +178,7 @@ def create_gemini_notebook() -> str:
         [
             "",
             "**Generated**: 2025-08-07 08:30:00",
-            "**Project**: aardvark-linkedin-grepper",
+            "**Project**: gen-lang-client-0128452200",
             "**Billing Account**: 01F112-E73FD5-795507",
             "",
             "This notebook uses Gemini LLM with LangGraph/LangChain to analyze your GCP billing data.",

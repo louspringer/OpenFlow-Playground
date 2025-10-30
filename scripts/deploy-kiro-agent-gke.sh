@@ -8,7 +8,7 @@ echo "🚀 Deploying Kiro Agent to GKE with Beast Mode Framework"
 echo "========================================================"
 
 # Configuration
-PROJECT_ID=${GCP_PROJECT_ID:-"aardvark-linkedin-grepper"}
+PROJECT_ID=${GCP_PROJECT_ID:-"gen-lang-client-0128452200"}
 REGION=${GCP_REGION:-"us-central1"}
 CLUSTER_NAME=${GKE_CLUSTER_NAME:-"kiro-agents-cluster"}
 NAMESPACE="kiro-agents"
