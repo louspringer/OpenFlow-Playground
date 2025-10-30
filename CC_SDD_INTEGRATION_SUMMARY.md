@@ -24,7 +24,7 @@ cc-sdd brings **Spec-Driven Development (SDD)** to AI coding assistants (Claude 
 
 Forked cc-sdd to personal GitHub account:
 - **Original**: https://github.com/gotalab/cc-sdd
-- **Fork**: https://github.com/louspringer/cc-sdd
+- **Fork**: https://github.com/nkllon/cc-sdd
 - **Clone**: `/Volumes/lemon/cursor/OpenFlow-Playground/cc-sdd/`
 
 ### 2. Directory Structure
