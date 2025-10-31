@@ -21,11 +21,11 @@ compliance, and observability.
 ## 📋 **Form Fields Quick Reference**
 
 ### Required Fields (*):
-1. **First and Last Name**: [Your name]
-2. **Registered for hackathon?**: Yes
-3. **Devpost Portfolio URL**: [Your Devpost profile]
-4. **Company Name**: [Your company or "Independent"]
-5. **Company email**: [Your company/professional email - NOT personal gmail]
+1. **First and Last Name**: Lou Springer
+2. **Registered for hackathon?**: Yes ✅
+3. **Devpost Portfolio URL**: https://devpost.com/louspringer ✅
+4. **Company Name**: louspringer ✅
+5. **Company email**: lou@louspringer.com ✅
 6. **Date of Birth**: [Your DOB]
 7. **Country of Residence**: United States [or your country]
 8. **Project idea**: [Use text above]
