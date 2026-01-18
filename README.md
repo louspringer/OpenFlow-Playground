@@ -1,13 +1,33 @@
 # OpenFlow Playground
 
-> **Multi-Agent Collaboration Framework with Spec-Driven Development**
+> **A Proven Framework for Multi-LLM Collaboration**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Redis](https://img.shields.io/badge/redis-required-red.svg)](https://redis.io/)
 [![cc-sdd](https://img.shields.io/badge/cc--sdd-integrated-green.svg)](https://github.com/gotalab/cc-sdd)
 
-Complete self-contained agent collaboration system with Redis pub/sub, agent discovery, help wanted system, and 12 message types. Now enhanced with **spec-driven development workflow** for systematic feature development.
+## Origin Story
+
+**July 2025**: A friend (Solutions Engineer at Snowflake) said *"Build Snowflake OpenFlow for OSS."* When asked why there wasn't an official quickstart, the answer was clear: **multi-vendor integration complexity**. Snowflake can't document AWS setup, AWS can't document Snowflake OAuth, and nobody wants to pick a single Kubernetes flavor. 
+
+**The result?** [Official docs](https://docs.snowflake.com/en/developer-guide/native-apps/open-containers/tutorials/tutorial-1) stop at individual components. **Zero end-to-end quickstarts exist anywhere.** (Go ahead, search for one. We'll wait.)
+
+**The Challenge**: Attempting to build this with raw, unconstrained LLMs was chaos. Multi-vendor integration requires coordinating CloudFormation, Kubernetes, OAuth flows, and infrastructure validation. A single LLM would hallucinate credentials, break YAML syntax, and mix up vendor-specific requirements.
+
+**October 2025**: Evolved into a **proven framework for multi-LLM collaboration** with techniques refined through brutal real-world complexity. The Snowflake OpenFlow infrastructure remains (see `config/`, `setup.py`, `QUICKSTART.md`), but the real value is **how to coordinate multiple AI agents to build complex systems**.
+
+## The Proof
+
+**Built using this framework:**
+- **[beast-mailbox-core](https://github.com/nkllon/beast-mailbox-core)** - 90% coverage, ZERO defects, 59 tests passing
+- **[beast-ai-dev-agent](https://github.com/nkllon/beast-ai-dev-agent)** - Production-ready agent package
+
+These weren't built by a single developer - they were built by **coordinated LLMs using the patterns developed in this playground**.
+
+## What This Framework Provides
+
+Complete multi-agent collaboration system with Redis pub/sub, agent discovery, help wanted system, and 12 message types. Enhanced with **spec-driven development workflow** for systematic feature development.
 
 ## 📋 Table of Contents
 

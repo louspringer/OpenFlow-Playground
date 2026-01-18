@@ -1,4 +1,5 @@
 import asyncio
+import os
 import redis.asyncio as redis
 import logging
 
@@ -6,7 +7,10 @@ logger = logging.getLogger(__name__)
 
 
 class RedisConnectionManager:
-    def __init__(self, redis_url: str = "redis://localhost:6379", max_retries: int = 5, retry_delay: float = 1.0):
+    def __init__(self, redis_url: str = None, max_retries: int = 5, retry_delay: float = 1.0):
+        # Read from REDIS_URL environment variable if not provided
+        if redis_url is None:
+            redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
         self.redis_url = redis_url
         self.client = None
         self.pubsub = None

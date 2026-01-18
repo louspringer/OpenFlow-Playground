@@ -45,6 +45,8 @@ requirements:
       aws_nvidia:
         deliverable: "Demo retrieval agent packaged for NIM endpoints on AWS"
         dependency_level: primary
+        deadline: "2025-11-04T17:00:00-08:00"  # Tuesday, 4 November 2025 at 17:00 Pacific Time
+        submission_assets: ["demo_video_3min", "github_repo_public", "devpost_narrative_800words", "architecture_diagram", "cost_estimate", "compliance_statement"]
         shared_with:
           - hackathon: gcp_cloud_run
             shared_components: ["beast-redaction-client", "beast-observability"]
@@ -53,7 +55,8 @@ requirements:
         deliverable: "Reference narrative demonstrating portability of retrieval workflow"
         dependency_level: secondary
     stakeholders: [security_ops, devops_sre, executive_sponsor, judges, agent_team]
-    status: "Awaiting official AWS×NVIDIA requirement packet"
+    status: "Master Planner requirements captured; awaiting official brief packet for final confirmation (monitoring AWS Events portal and NVIDIA Developer challenges)"
+    strategy: "Prioritize AWS×NVIDIA (earlier deadline Nov 4) then iterate for Cloud Run (Nov 9)"
 
   FR-051:
     description: "Cloud Run app deliverable (ADK/AI Studio, Service/Job/Worker Pool)"
@@ -64,6 +67,8 @@ requirements:
       gcp_cloud_run:
         deliverable: "Cloud Run deployment with worker orchestration and AI Studio workflows"
         dependency_level: primary
+        deadline: "2025-11-09T23:59:00-08:00"  # Sunday, 9 November 2025 at 23:59 Pacific Time
+        submission_assets: ["demo_video_2_3min", "github_repo_public", "devpost_narrative_500_800words", "live_cloud_run_url", "architecture_diagram", "deployment_instructions"]
         shared_with:
           - hackathon: aws_nvidia
             shared_components: ["beast-redaction-client", "beast-observability"]
@@ -72,7 +77,8 @@ requirements:
         deliverable: "Evidence of portability for AWS judges (optional showcase)"
         dependency_level: tertiary
     stakeholders: [security_ops, devops_sre, executive_sponsor, judges, agent_team]
-    status: "Awaiting official Cloud Run brief"
+    status: "Master Planner requirements captured; awaiting official brief packet for final confirmation (monitoring Google Cloud Innovators events hub and Devpost)"
+    strategy: "Iterate AWS solution for Cloud Run after Nov 4 submission"
 
   FR-052:
     description: "Distinctness & new-work disclosures"
