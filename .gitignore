@@ -108,6 +108,15 @@ cc-sdd/
 
 # SDD spec files should only be in .kiro/specs/, not root level
 # Prevent duplicate spec directories and archives at root
+# These patterns catch common spec naming conventions
 /rm-ddd/
 /rm-ddd-*/
 /rm-ddd*.zip
+/*-spec/
+/*-specs/
+/spec-*/
+/specs-*/
+/*.spec.zip
+/*-spec.zip
+/*-specs.zip
+/specs-*.zip
