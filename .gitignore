@@ -105,3 +105,8 @@ tests/generated/
 tests/backup_generated/
 security_scan.json
 cc-sdd/
+
+# SDD spec files should only be in .kiro/specs/, not root level
+# Prevent duplicate spec directories at root
+/rm-ddd/
+/rm-ddd-*/
